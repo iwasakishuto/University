@@ -34,4 +34,4 @@ Run `make html`
 ## Pelican theme
 I use [elegant](https://github.com/Pelican-Elegant/elegant) as a pelican-theme. Special thanks to them.
 
-<img src="https://raw.github.com/Pelican-Elegant/elegant/master/home-page-screenshot.png">
+<img src="https://github.com/Pelican-Elegant/elegant/blob/master/elegant-logo/elegant_logo.png?raw=true">
