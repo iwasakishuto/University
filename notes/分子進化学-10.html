@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 分子進化学, 分子進化学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="分子進化学 第10回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/分子進化学-10.html" />
+<meta property="og:description" content="遺伝子系図理論" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-07-10T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-07-10T00:00:00+09:00" />
+<meta name="twitter:title" content="分子進化学 第10回 ">
+<meta name="twitter:description" content="遺伝子系図理論">
+
+        <title>分子進化学 第10回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/分子進化学-10.html"> 分子進化学 第10回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第10回 2019/7/10</h1>
+<ul>
+<li><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></li>
+</ul>
+<h2>内容</h2>
+<ol>
+<li>遺伝子系図理論<ol>
+<li>幾何分布と指数分布</li>
+<li>合祖過程</li>
+<li>サイト頻度スペクトラム</li>
+<li>組替えと合祖過程</li>
+</ol>
+</li>
+<li>中立性の検定<ol>
+<li>同義置換率と非同義置換率</li>
+<li>MacDonald-Kreitman(MK)検定</li>
+<li>田嶋の検定（Tajima's D）</li>
+<li>Extended haplotype homozygosity(EHH)</li>
+</ol>
+</li>
+</ol>
+<h2>遺伝子系図理論</h2>
+<h2>1. 指数分布</h2>
+<h3>幾何分布</h3>
+<p>同じことを繰り返し行う時、<b>初めて成功するまでの回数が従う分布を<font color="red">幾何分布</font></b>という。</p>
+<p>確率 <span class="math">\(p\)</span> で成功するような施行を繰り返し行い、<span class="math">\(n\)</span> 回目に<b>初めて</b>成功する確率は、</p>
+<div class="math">$$P(n) = (1-p)^{n-1}\times p = p(1-p)^{n-1}$$</div>
+<p>で与えられ、この時平均と分散は以下になる。</p>
+<div class="math">$$
+\begin{aligned}
+  \mathrm{E}[n] &amp;= \frac{1}{p}\\
+  \mathrm{V}[n] &amp;= \frac{1-p}{p^2}
+\end{aligned}
+$$</div>
+<h4>平均の導出</h4>
+<p>平均の導出は面倒なので、幾何分布のもつ<font color="red"><b>無記憶性</b></font>に基づいて導出する。</p>
+<p>成功するまでの平均回数を <span class="math">\(N\)</span> 回とすると、無記憶性を用いれば、以下の等式が成り立つことがわかる。</p>
+<div class="math">$$N= p\times1 + (1-p)\times(N+1)$$</div>
+<p>どういうことかというと、<b>成功するまでの平均回数</b>は、一回前に成功したか失敗したかに関わらず一定なので、成功するまでの回数を考えると、</p>
+<ul>
+<li>次成功する（確率 <span class="math">\(p\)</span>）：この1回で成功</li>
+<li>次失敗する（確率 <span class="math">\(1-p\)</span>）：あとN（=1+N）回で成功</li>
+</ul>
+<p>に分割することができる。ゆえに、上の式によって平均回数が <span class="math">\(N=\frac{1}{p}\)</span> と求めることができる。</p>
+<h4>分散の導出</h4>
+<p>幾何分布の分散は、計算</p>
+<h3>指数分布</h3>
+<p>ある事象が起きるまでの期待時間（平均時間）が <span class="math">\(\sigma\)</span> である時、<b>その事象が起きるまでの時間 <span class="math">\(t\)</span> の確率都度分布 <span class="math">\(f(t)\)</span> </b>は<b><font color="red">指数分布</font></b>となる。</p>
+<div class="math">$$
+\begin{aligned}
+f(t) &amp;= \frac{1}{\sigma}e^{-\frac{1}{\sigma}t} &amp; \left(\text{probability density function, PDF}\right)\\
+F(t) &amp;= \int_0^tf(t)dt = \int_0^t\frac{1}{\sigma}e^{\frac{1}{\sigma}}dt = 1-e^{-\frac{1}{\sigma}t}dt &amp; \left(\text{cumulative distribution function, CDF}\right)
+\end{aligned}
+$$</div>
+<h2>2. 合祖過程</h2>
+<h3>遺伝子系図</h3>
+<ul>
+<li><span class="math">\(N\)</span> 人からなる2倍体集団には <span class="math">\(2N\)</span> 個の遺伝子コピーが存在する。</li>
+<li>どの遺伝子コピーも次世代にコピーを残す確率は等しい。</li>
+<li>ある世代の2個の遺伝子コピーが1世代前の同一遺伝子コピーに由来する（1世代前に合祖する）確率は <span class="math">\(1/2N\)</span></li>
+</ul>
+<p>この時、木構造を考えればわかるが、時間を遡っていくと<b>現在の全遺伝子コピーにとって共通の親コピーに必ずたどり着く。</b></p>
+<h3>合祖確率</h3>
+<ul>
+<li>集団サイズ <span class="math">\(N\)</span> が一定の2倍体集団を考える。</li>
+<li>現在を0世代、時間を遡って世代数 <span class="math">\(t\)</span> を考える。（世代は<b>離散的</b>）</li>
+<li>2個の遺伝子コピーが <span class="math">\(t(\leq)1\)</span> 世代前に<b><font color="red">初めて</font>合祖する確率</b>を <span class="math">\(C_t\)</span> とおく。</li>
+</ul>
+<div class="math">$$
+C(1) = \frac{1}{N},\quad C(t+1) = \frac{1}{2N}\left(1-\sum_{t=1}^tC(t)\right)\\
+\therefore C(t) = \frac{1}{2N}\left(1-\frac{1}{2N}\right)^{t-1}
+$$</div>
+<h4>2個の遺伝子コピーが合祖するまでの世代数 <span class="math">\(T_2\)</span></h4>
+<div class="math">$$
+\begin{aligned}
+\mathrm{E}[T_2] &amp;= \sum_{t=1}^{\infty}tC(t) = \sum_{t=1}^{\infty}\frac{t}{2N}\left(1-\frac{1}{2N}\right)^{t-1} = 2N\\
+\mathrm{V}[T_2] &amp;= \frac{1-\frac{1}{2N}}{\left(\frac{1}{2N}\right)^2} = 2N(2N-1) \approx 4N^2
+\end{aligned}
+$$</div>
+<h4><span class="math">\(i\)</span> 個の遺伝子コピーのうちの <span class="math">\(2\)</span> 個が合祖して <span class="math">\(i-1\)</span> 個となるまでの世代数 <span class="math">\(T_i\)</span></h4>
+<p><b>同一世代において <span class="math">\(3\)</span> 個以上の遺伝子コピーが合祖することはない</b>と仮定すると、</p>
+<div class="math">$$
+\begin{aligned}
+C_i(t)
+&amp;\approx\frac{\binom{i}{2}}{2N}\left(1-\frac{\binom{i}{2}}{2N}\right)^{i-1}\\
+\mathrm{E}[T_i] &amp;= \frac{4N}{i(i-1)}\\
+\mathrm{V}[T_i] &amp;= \frac{4N}{i(i-1)}\left\{\frac{4N}{i(i-1) - 1}\right\}\approx\left\{\frac{4N}{i(i-1)}\right\}^2
+\end{aligned}
+$$</div>
+<h4><span class="math">\(n\)</span> 個の遺伝子コピーが全て合祖するまでの世代数 <span class="math">\(T_{\mathrm{MRCA}}\)</span></h4>
+<p><b>※ MRCA; Most Recent Common Ancestor</b></p>
+<div class="math">$$\begin{aligned}
+\mathrm{E}[T_{\mathrm{MRCA}}]
+&amp;= \sum_{i=2}^n\mathrm{E}[T_i] = \sum_{i=2}^n\frac{4N}{i(i-1)} = 4N\sum_{i=2}^n\left(\frac{1}{i-1}-\frac{1}{i}\right)\\
+&amp;= 4N\left(1-\frac{1}{n}\right)
+\end{aligned}$$</div>
+<p>したがって、<span class="math">\(n=2N\)</span> ならば<font color="red"><b> <span class="math">\(4N-2\)</span> </b></font>であり、これは<b>固定に要する期待世代</b>である。</p>
+<p>また、<b>「<span class="math">\(2\)</span> 個になるまでの期待世代数 <span class="math">\(2N\)</span>」</b>と<b>「<span class="math">\(2\)</span> 個になってからの期待世代数 <span class="math">\(2N-2\)</span>」</b>はほぼ等しい。</p>
+<h3>合祖確率の応用</h3>
+<p>上記の確率を利用して、以下の様々な応用が行われている。</p>
+<ul>
+<li>各合祖イベントまでの世代時間 <span class="math">\(u\)</span> の計算（組換えを起こさないゲノム領域ex.)mtDNAやY染色体）</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/15703244">Bayesian coalescent inference</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4381518/">Bayesian Skyline Plots</a>による集団の遷移年代推定</li>
+<li>全経路の世代数 <span class="math">\(T_{\mathrm{total}}\)</span> の期待値と分散から突然変異の期待値の導出</li>
+</ul>
+<h3>無限サイトモデル</h3>
+<ul>
+<li>点突然変異 <span class="math">\(\mu\)</span> は極めて小さいとする。（ヒトの場合、<span class="math">\(1.2\times10^{-8}\)</span> per site per generation）</li>
+<li>同一塩基サイトに点突然変異が2回起こる可能性は低い（ので、<b>ヒトでは観察されるSNPの大部分が2種類のアリルのみ</b>）</li>
+<li>全ての突然変異はuniqueであると仮定する。</li>
+</ul>
+<h3>ヘテロ接合度の期待値</h3>
+<p>2個の遺伝子コピーが1世代遡る過程について考える。
+- 2個の遺伝子コピーが合祖する確率は <span class="math">\(1/2N\)</span>
+- 世代あたりの突然変異率を <span class="math">\(u\)</span> とすると、2個の遺伝子コピーの少なくともどちらか一方で突然変異が起こる確率は <span class="math">\(1-(1-u)^2\fallingdotseq2u\)</span></p>
+<p>ここで、合祖か突然変異のどちらかが起こるまで遡ったとすると、</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>塩基配列</th>
+<th></th>
+<th>ホモ/へテロ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>合祖が先に起こる</td>
+<td>同一</td>
+<td>
+<div class="math">$$\frac{\frac{1}{2N}}{\frac{1}{2N} + 2u} = \frac{1}{1+4Nu}$$</div>
+</td>
+<td>ホモ</td>
+</tr>
+<tr>
+<td>突然変異が先に起こる</td>
+<td>異なる</td>
+<td>
+<div class="math">$$\frac{\frac{2u}{2N}}{\frac{1}{2N} + 2u} = \frac{4Nu}{1+4Nu}$$</div>
+</td>
+<td>ヘテロ</td>
+</tr>
+</tbody>
+</table>
+<h3>塩基相違数の期待値</h3>
+<ul>
+<li>世代あたりの突然変異率を <span class="math">\(u\)</span> とすると、ある世代で2本のどちらかで突然変異が起こる確率は <span class="math">\(2u(1-u)\fallingdotseq2u\)</span><b>（共に起こることはないと仮定）</b></li>
+<li>合祖と突然変異の両イベントのうち突然変異が起こる確率は
+<div class="math">$$\frac{2u}{\frac{1}{2N} + 2u} = \frac{4Nu}{1+4Nu}=\frac{\theta}{1+\theta}\left(\because\ \theta=4Nu\right)$$</div>
+</li>
+<li>したがって、合祖までの過程で突然変異が<font color="red"><b>先に</b></font> <span class="math">\(k\)</span> 回起こる確率は、
+<div class="math">$$P(k) = \frac{1}{1+\theta}\left(\frac{\theta}{1+\theta}\right)^k$$</div>
+</li>
+</ul>
+<p>この確率を用いれば、<b>ある集団から無作為に抽出された2本の配列（<span class="math">\(i,j\)</span>）間で観察される塩基相違数 <span class="math">\(d_{ij}\)</span> </b>は、（逆に辿った時に）<font color="red"><b>合祖（塩基配列一致）までに何回突然変異が起こったか？</b></font>で求めることができるので、以下によって求めることができる。</p>
+<div class="math">$$\begin{aligned}
+d_{ij}&amp;= \sum_{k=0}^{\infty}kP(k) = \sum_{k=0}^{\infty}k\cdot\frac{1}{1+\theta}\left(\frac{\theta}{1+\theta}\right)^k\\
+&amp;=\frac{\theta}{1+\theta}\frac{1}{1+\theta}\sum_{k=0}^{\infty}k\left(\frac{1}{1+\theta}\right)^{k-1}\\
+&amp;= \frac{\theta}{1+\theta}\frac{1}{1+\theta}\times\left(1+\theta\right)^2 = \theta
+\end{aligned}$$</div>
+<p>したがって、<span class="math">\(n\)</span> 本の配列をサンプルし、ペアワイズに比較した際の平均塩基相違数（<font color="red"><b>塩基多様度(nucleotide diversity)</b></font>）も求めることができ、<span class="math">\(\mathrm{E}[d] = \theta\)</span>。</p>
+<p>ここで、この <span class="math">\(d\)</span> は観察可能なので、<span class="math">\(Nu\)</span> を推定することができる。</p>
+<h3>分離サイト数(segregationg site)</h3>
+<p>世代あたりの突然変異率を <span class="math">\(u\)</span> とする。ここで、<b>組換えが起こらなければ</b>、<span class="math">\(n\)</span> 本の配列中に期待される<b>突然変異の個数 <span class="math">\(S\)</span>（分離サイトの期待数）</b>は、</p>
+<div class="math">$$\mathrm{E}[S] = 4Nu\sum_{i=1}^{n-1}\frac{1}{i} = \theta\sum_{i=1}^{n-1}\frac{1}{i}$$</div>
+<p>で求められる。この <span class="math">\(S\)</span> は観察可能なので、上の式から <span class="math">\(Nu\)</span> を推定することができる。</p>
+<h3>Identify by descent (IBD)と固定指数（<span class="math">\(F_t\)</span>）</h3>
+<ul>
+<li>ある世代を <span class="math">\(t\)</span> 世代目、その1世代前を <span class="math">\(t-1\)</span> 世代目とする。</li>
+<li><span class="math">\(t\)</span> 世代目に無作為に抽出した2個の遺伝子コピーが同祖的（IBD）である確率を <span class="math">\(F_t\)</span> とする。</li>
+</ul>
+<div class="math">$$
+\begin{aligned}
+F_t
+&amp;= \text{t-1世代で合祖してIBD} + \text{t-1世代で合祖しないがIBD}\\
+&amp;= \frac{1}{2N} + \left(1 - \frac{1}{2N}\right) F_{t-1}
+\end{aligned}
+$$</div>
+<p>したがって、0世代目の <span class="math">\(F_t\)</span> を <span class="math">\(F_0\)</span> とおくと、</p>
+<div class="math">$$F_t = 1-(1-F_0)\left(1-\frac{1}{2N}\right)^t$$</div>
+<h3>有効集団サイズ（<span class="math">\(N_e\)</span>）</h3>
+<ul>
+<li>実際は世代毎に集団サイズは変化する。</li>
+<li><span class="math">\(i\)</span> 世代目の集団サイズを <span class="math">\(N_i\)</span> とする。
+<div class="math">$$F_i = 1-(1-F_0)\prod_{i=0}^{t-1}\left(1-\frac{1}{2N_i}\right)$$</div>
+</li>
+<li>一方で、以下を満たす <span class="math">\(N_e\)</span> を有効集団サイズとする。
+<div class="math">$$\left(1-\frac{1}{2N_e}\right)^t = \prod_{i=0}^{t-1}\left(1-\frac{1}{2N_i}\right)$$</div>
+つまり、<span class="math">\(t,F_t,F_0\)</span> がわかっている場合、
+<div class="math">$$F_t = 1 - (1-F_0)\prod_{i=0}^{t-1}\left(1-\frac{1}{2N_i}\right)$$</div>
+によって集団サイズを求めることができる。</li>
+<li>集団サイズは十分に大きいので、
+<div class="math">$$1 - \frac{t}{2N_e} = 1 - \sum_{i=0}^{t-1}\frac{1}{2N_i}$$</div>
+と近似することができ、これによって、
+<div class="math">$$\frac{1}{N_e} = \frac{1}{t}\left(\frac{1}{N_0} + \frac{1}{N_1} + \cdots + \frac{1}{N_{t-1}}\right)$$</div>
+と計算できる。つまり、<b>有効集団サイズ <span class="math">\(N_e\)</span> は、<font color="red">実際の個体数の調和平均</font></b>となる。
+したがって、たとえ1世代でも<b>集団サイズの急激な減少<font color="red">（ボトルネック）</font></b>が起こると、有効集団サイズもかなり小さくなることがわかる。</li>
+</ul>
+<h3>突然変異とヘテロ接合度（<span class="math">\(H_t\)</span>）</h3>
+<ul>
+<li>ある世代を <span class="math">\(t\)</span> 世代目、その1世代前を <span class="math">\(t-1\)</span> 世代目とする</li>
+<li><span class="math">\(t\)</span> 世代目に無作為に抽出した2個の遺伝子コピーが異なるアリル（ヘテロ接合）である確率を <span class="math">\(H_t\)</span> とする。</li>
+<li>世代あたりの突然変異率を <span class="math">\(u\)</span> とし、<b>「突然変異が起きるとそれまでに集団中に存在しなかった新たなアリルが誕生する（<font color="red">復帰突然変異</font>が起こらないよりも厳しい制約）」</b><font color="red"><b>（無限対立遺伝子モデル）</b></font></li>
+<li>上記の制約より、<b>「異なるアリルに変異が起こった結果同一のアリルになる」</b>ことはありえない。</li>
+</ul>
+<div class="math">$$
+\begin{aligned}
+1-H_t
+&amp;= \left\{\text{ともに突然変異が起こらない}\right\}\times\left\{(\text{t-1世代目の同一の遺伝子コピー由来}) + (\text{異なる2つの遺伝子コピーに由来})\right\}\\
+&amp;= (1-u^2)\left\{\frac{1}{2N} + \left(1-\frac{1}{2N}\right)(1-H_{t-1})\right\}
+\end{aligned}
+$$</div>
+<p>この漸化式を解くと、</p>
+<div class="math">$$
+\begin{aligned}
+1-H_{t}
+&amp;=(1-u)^{2}\left\{\frac{1}{2 N}+\left(1-\frac{1}{2 N}\right)\left(1-H_{t-1}\right)\right\}\\
+1-H_{t}
+&amp;=(1-2 u)\left\{\frac{1}{2 N}+\left(1-\frac{1}{2 N}\right)\left(1-H_{t-1}\right)\right\}\\
+1-H_{t}
+&amp;=\frac{(1-2 u)}{2 N}+(1-2 u)\left(1-\frac{1}{2 N}\right)\left(1-H_{t-1}\right)\\
+1-H_{t}-\frac{1-2 u}{4 N u+1}
+&amp;=\left(1-2 u-\frac{1}{2 N}\right)\left(1-H_{t-1}-\frac{1-2 u}{4 N u+1}\right)\\
+1-H_{t}-\frac{1-2 u}{4 N u+1}&amp;=\left(1-2 u-\frac{1}{2 N}\right)^{t}\left(1-H_{0}-\frac{1-2 u}{4 N u+1}\right)\\
+H_{\infty}&amp;=\frac{4 N u+2 u}{4 N u+1}=\frac{4 N u}{4 N u+1}
+\end{aligned}
+$$</div>
+<p>よって、<span class="math">\(H\)</span> は観察可能なので、<b>ヘテロ接合度から <span class="math">\(Nu\)</span> を推定できる。</b></p>
+<hr>
+<h3>幾何分布（離散）から指数分布（連続）へ</h3>
+<ul>
+<li>ここまでは、離散的な世代モデルを考えてきた。</li>
+<li><span class="math">\(T\)</span> は2つのコピーが初めて合祖する時間</li>
+<li>時間 <span class="math">\(t\)</span> の単位を2Nにする</li>
+<li>確率変数 <span class="math">\(t\)</span> の確率密度関数を <span class="math">\(f(t)\)</span>、累積分布関数を <span class="math">\(F(t)\)</span> とする。</li>
+<li>単位時間（<span class="math">\(t=1\)</span>）あたり合祖する確率を <span class="math">\(c\)</span> とする。</li>
+</ul>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Pr}(t\leq T&lt;t+\Delta t|T \geq t)
+&amp;= \frac{\mathrm{Pr}(t\leq T&lt;t+\Delta t)}{\mathrm{Pr}(T \geq t)}\\
+&amp;= \frac{F(t+\Delta t) - F(t)}{1-F(t)}\\
+&amp;= \frac{F(t+\Delta t) - F(t)}{\Delta t}\times\Delta t\times\frac{1}{1-F(t)}\\
+&amp;\fallingdotseq\frac{F'(t)\Delta t}{1-F(t)} = c\Delta t
+\end{aligned}
+$$</div>
+<p>したがって、<span class="math">\(\frac{F'(t)}{1-F(t)} = c\quad (t&gt;0)\)</span></p>
+<p>ここで、左辺を変形すると、<span class="math">\(-\{\ln\left(1-F'(t)\right)\} = c\)</span> となる。この式の両辺を <span class="math">\(t\)</span> で積分し、<span class="math">\(F(0) = 0\)</span> であることを使えば、</p>
+<div class="math">$$
+\begin{aligned}
+F(t) &amp;= 1-e^{-ct}\\
+f(t) &amp;= F'(t) = ce^{-ct}
+\end{aligned}
+$$</div>
+<p>ゆえに、1世代あたり合祖が起きる確率は <span class="math">\(1/2N\)</span> であるので、単位時間（<span class="math">\(t=1\)</span>）あたり合祖する確率は <span class="math">\(c=1/2N\times2N=1\)</span> となる。よって、</p>
+<ul>
+<li>時間 <span class="math">\(t\)</span> に初めて合祖する確率は<font color="red"><b>指数分布</b></font> <span class="math">\(f(t) = e^{-t}\)</span></li>
+<li>時間 <span class="math">\(t\)</span> までに合祖する確率は <span class="math">\(F(t)=1-e^{-t}\)</span></li>
+</ul>
+<h4><span class="math">\(i\)</span> 個の遺伝子コピーのうちの <span class="math">\(2\)</span> 個が合祖して <span class="math">\(i-1\)</span> 個となるまでの世代数 <span class="math">\(T_i\)</span></h4>
+<p>※ 同一世代に置いて3個以上の遺伝子コピーが合祖することはないと仮定。</p>
+<div class="math">$$\mathrm{E}[T_i] = \frac{2}{i(i-1)},\quad \mathrm{V}[T_i] = \left\{\frac{2}{i(i-1)}\right\}^2$$</div>
+<h4><span class="math">\(n\)</span> 個の遺伝子コピーが全て合祖するまでの世代数 <span class="math">\(T_{\mathrm{MRCA}}\)</span></h4>
+<p><b>※ MRCA; Most Recent Common Ancestor</b></p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{E}[T_{\mathrm{MRCA}}]
+&amp;= \sum_{i=2}^n\mathrm{E}[T_i] = 2\sum_{i=2}^n\left(\frac{1}{i-1} - \frac{1}{i}\right) = 2\left(1-\frac{1}{n}\right)\\
+\mathrm{V}[T_{\mathrm{MRCA}}]
+&amp;= \sum_{i=2}^n\mathrm{V}[T_i] = 4\sum_{i=2}^{n}\left\{\frac{1}{(i-1)^2} + \frac{1}{i^2}\ + \frac{2}i(i-1)\right\}\\
+&amp;= 8\sum_{i=2}^n\frac{1}{i^2} + 4 - \frac{4}{i^2} -8\left(1-\frac{1}{n}\right) = 8\sum_{i=2}^n\frac{1}{i^2} - 4\left(1-\frac{1}{4}^2\right)
+\end{aligned}
+$$</div>
+<h4>その他の応用</h4>
+<p>先ほどと同様に、
+- 集団サイズが変化する場合
+- 塩基相違数の分布（ポアソン分布に従う）
+- 分離サイト数</p>
+<p>なども計算が可能である。</p>
+<h2>3. サイト頻度スペクトラム(site frequency spectrum; SFS)</h2>
+<p><span class="math">\(\mathrm{E}[S_i^n]\)</span>：<span class="math">\(n\)</span> 個の遺伝子コピー中に <span class="math">\(i\)</span> 個の派生アリルが観察されるサイトの期待値</p>
+<div class="math">$$\mathrm{E}[S_i^n] = 4Nu/i = \theta/i\quad(i=1,\ldots,n-1)$$</div>
+<p>この時、<font color="red"><b><span class="math">\(\mathrm{E}[S_i^n]\)</span></b></font>は <span class="math">\(n\)</span> に依らない！</p>
+<h3>導出</h3>
+<ul>
+<li><span class="math">\(n\)</span> 個の遺伝子コピーをサンプルした場合に、<span class="math">\(i\)</span> 個の派生アリルを持つサイトの経路<b>（突然変異以降の経路）</b>の端点は当然ながら <span class="math">\(i\)</span> 個。</li>
+<li><span class="math">\(n+1\)</span> 個の遺伝子コピーをサンプルすることは、先の状態において、<span class="math">\(n\)</span> 個ある端点の1つに2分岐が1つ足されることを意味する。</li>
+<li>この時、もちろん <span class="math">\(i\)</span> 個の派生アリルを持つサイトの経路の端点に2分岐が足されると、<span class="math">\(i+1\)</span> 個の派生アリルを持つことになる。</li>
+<li>サンプル数が <span class="math">\(n\)</span> 個から <span class="math">\(n+1\)</span> 個になるということは、<ul>
+<li><span class="math">\(n\)</span> 個の端点のうちランダムに選んだ1個に長さが <span class="math">\(4N/\left\{(n+1)n\right\}\)</span> の枝を<font color="red"><b>2つ</b></font>（最後の分岐）足し、</li>
+<li>残り <span class="math">\(n-1\)</span> 個に長さが <span class="math">\(4N/\left\{(n+1)n\right\}\)</span> の枝を1つ足すこと。</li>
+</ul>
+</li>
+<li>上記の足された部分で起こる突然変異は、必ず<font color="red"><b>singleton</b></font>になる。</li>
+<li>サンプル数が <span class="math">\(n\)</span> 個から <span class="math">\(n+1\)</span> 個に変わったとしても、<span class="math">\(n\)</span> 個から <span class="math">\(2\)</span> 個になるまでの合祖過程は変わらない。</li>
+</ul>
+<p>ここで、<b><font color="red"><span class="math">\(n\)</span> 個</font>の遺伝子コピーをサンプルした場合に <span class="math">\(i\)</span> 個の派生アリルを持つサイトの期待個数は、<span class="math">\(\mathrm{E}[s_i^n]=\theta/i\quad (i=1,\ldots n)\)</span> である</b>とすると、<b><font color="red"><span class="math">\(n+1\)</span> 個</font>の遺伝子コピーをサンプルした場合に <span class="math">\(j\)</span> 個の派生アリルを持つサイトの期待個数が <span class="math">\(\mathrm{E}[s_j^{n+1}] = \theta/j\)</span> で表される</b>ことを示す。</p>
+<h4>Base Case (<span class="math">\(n=2\)</span>)</h4>
+<p>2個の遺伝子コピーをサンプルした場合に合祖するまでの期待時間は <span class="math">\(2N\)</span> である。どちらの経路で突然変異が起きても、派生アリルの個数が <span class="math">\(1\)</span> のサイトとなる。</p>
+<p>したがって、<span class="math">\(\mathrm{E}[s_1^2] = 2\times2N\times u = 4Nu = \theta\)</span> より、<span class="math">\(n=2\)</span> の時 <span class="math">\(\mathrm{E}[s_i^n] = \theta/i\)</span> が成り立つ。</p>
+<h4>Inductive Step (<span class="math">\(n\geq2\)</span>)</h4>
+<ol>
+<li><span class="math">\(j=1\)</span> の場合
+<span class="math">\(n\)</span> 個のサンプルした系図の端点の1つに、2分岐足して <span class="math">\(n+1\)</span> 個サンプルした系図にすることを考える。
+1個の派生アリルを持つ経路の端点の1つに2分岐が<font color="red"><b>足されない</b></font>確率は <span class="math">\((n-1)/n\)</span> であり、この時1個の派生アリルを持つ経路は維持される。
+また、<span class="math">\(n+1\)</span> 個ある各枝の長さは、<span class="math">\(4N/\left\{(n+1)n\right\}\)</span> 増えたことにより1個の派生アリルを持つサイト数が <span class="math">\(4N/\left\{(n+1)n\right\}\times(n+1)\times u = \theta/n\)</span> 増える。
+したがって、<div class="math">$$\mathrm{E}[s_1^{n+1}] = \left\{(n-1)/n\right\}\times\theta + \theta/n = \theta$$</div>
+</li>
+<li><span class="math">\(j = i(2\leq i\leq n-1)\)</span> の時
+<span class="math">\(n\)</span> 個サンプルした系図の端点の1つに、2分岐足して <span class="math">\(n+1\)</span> 個サンプルした系図にすることを考える。
+<span class="math">\(i-1\)</span> 個の派生アリルを持つ経路の端点の1つに2分岐が足される確率は <span class="math">\((i-1)/n\)</span> であり、この時 <span class="math">\(i-1\)</span> 個の派生アリルを持っていた経路は <span class="math">\(i\)</span> 個の派生アリルを持つ経路となる。
+<span class="math">\(i-1\)</span> 個の派生アリルを持つ経路の端点の1つに2分岐が<font color="red"><b>足されない</b></font>確率は <span class="math">\((n-i)/n\)</span> であり、この時派生アリルの個数は <span class="math">\(i\)</span> のままである。
+したがって、
+<div class="math">$$\begin{aligned}
+\mathrm{E}[s_j^{n+1}]
+&amp;= (i-1)/n\times\mathrm{E}[s_{i-1}^n] + (n-j)/n\times\mathrm{E}[s_i^n]\\
+&amp;= (i-1)/n\times\theta/(i-1) + (n-i)/n \times \theta/i\\
+&amp;= \theta/n + (n-i)\theta/(ni) = \theta/i
+\end{aligned}$$</div>
+</li>
+<li><span class="math">\(j=n\)</span> の時
+<span class="math">\(n\)</span> 個サンプルした系図の端点の1つに、2分岐足して <span class="math">\(n+1\)</span> 個サンプルした系図にすることを考える。
+<span class="math">\(n-1\)</span> 個の派生アリルを持つ経路の端点の1つに2分岐が1つ足される確率は <span class="math">\((n-1)/n\)</span> であり、この時 <span class="math">\(n-1\)</span> 個の派生アリルを持っていた経路は <span class="math">\(n\)</span> 個の派生アリルを持つ経路となる。
+したがって、
+<div class="math">$$\begin{aligned}
+\mathrm{E}[s_j^{n+1}]
+&amp;= (n-1)/n\times\mathrm{E}[s_{n-1}^n]\\
+&amp;= (n-1)/n\times\theta/(n-1) = \theta/n
+\end{aligned}$$</div>
+</li>
+</ol>
+<p>以上の議論から、2つ以上の全ての自然数 <span class="math">\(n\)</span> について <span class="math">\(\mathrm{E}[s_i^n] = \theta/i\)</span> が成り立つ。</p>
+<h2>4. 組換えと合祖過程</h2>
+<p><b>（組換え時に連鎖した）各領域ごとに合祖を考えると、元の配列で隣接していた領域の系図は似通ったものになる。</b></p>
+<h2>中立性の検定</h2>
+<h2>1. 同義置換率と非同義置換率</h2>
+<ul>
+<li><b>塩基座位あたりの同義置換数（同義置換率）<span class="math">\(d_S\)</span> </b></li>
+<li><b>塩基座位あたりの非同義置換数（同義置換率）<span class="math">\(d_N\)</span> </b></li>
+</ul>
+<p>をそれぞれ求めることができる。ここで、ヒトとマウスの比較によって以下がわかった。</p>
+<ol>
+<li>調べた全ての遺伝子において <span class="math">\(d_S&gt;d_N(d_N/d_S&lt;1)\)</span>
+→一般に、タンパクコード遺伝子は<font color="red"><b>保守的に進化</b></font>する。すなわち、非同義変異のほとんどは<font color="red"><b>有害変異</b></font>である。</li>
+<li><span class="math">\(d_S\)</span> のばらつきに比較して <span class="math">\(d_N\)</span> のばらつきは大きい
+→一般的に、同義置換は自然選択上<font color="red"><b>中位</b></font>であるため、<b>点突然変異率 <span class="math">\(\mu\)</span> と同義置換率 <span class="math">\(d_S\)</span> はほぼ等しい。</b>
+遺伝子間の <span class="math">\(d_N/d_S\)</span> の違いは、遺伝子の<font color="red"><b>機能的制約</b></font>の違いを反映している。</li>
+</ol>
+<h3>非同義突然変異中の有害変異の割合 <span class="math">\(\alpha\)</span></h3>
+<ul>
+<li>同義突然変異率 <span class="math">\(\mu_S\)</span> と非同義突然変異率 <span class="math">\(\mu_N\)</span> は、共に点突然変異率 <span class="math">\(\mu\)</span> に等しい。</li>
+<li>非同義置換の中に有害な変異は含まれず、有利な変異の割合は極めて小さい。すなわち、<b>非同義置換の大部分は中立的な変異</b>である。</li>
+</ul>
+<div class="math">$$d_n = (1-\alpha)\mu_N = (1-\alpha)\mu_S = (1-\alpha)d_S$$</div>
+<p>よって、<span class="math">\(\alpha\)</span> = 1-d_N/d_S</p>
+<h2>2. MacDonald-Kreitman(MK)検定</h2>
+<p><b>中立性を検定する</b>テストの一種。</p>
+<p>中立なら、<font color="red"><b>同義置換率：非同義置換率</b></font>が種内・種間で一定であろう、という仮説に基づいた検定。「種間」と「種内」における同義置換と非同義置換の差を<a href="https://iwasakishuto.github.io/study/notes/Chi-squared.html">カイ二乗検定</a>によって検定する。</p>
+<h2>3. 田嶋の検定（Tajima's D）</h2>
+<p>集団サイズが一定で中立的な場合<b>（これが帰無仮説）</b></p>
+<div class="math">$$\mathrm{E}[d] = 4Nu = \theta_T,\quad\frac{\mathrm{E}[S]}{\sum_{i=1}^{n-1}\frac{1}{i}} = 4Nu = \theta_W$$</div>
+<p>が成立する。（<span class="math">\(\theta_T = \theta_W =0\)</span>）</p>
+<p>Tagimaの検定では、</p>
+<div class="math">$$D = \frac{\hat{\theta_T} - \hat{\theta_W}}{\sqrt{\mathrm{V}[\hat{\theta_T} - \hat{\theta_W}]}}$$</div>
+<p>がベータ分布に従う<b>（実際はシミュレーションすべき）</b>ことを利用して中立（<span class="math">\(D=0\)</span>）からの逸脱を検定する。</p>
+<p><font color="red"><b>特筆すべきは、<span class="math">\(D\)</span> の正負から、その「逸脱要因」を推定できること。</b></font></p>
+<ul>
+<li><span class="math">\(D&lt;0\)</span> の場合：<font color="red"><b>低頻度アリル（singleton）が多い</b></font><ul>
+<li>正の自然選択（方向性選択）の可能性</li>
+<li>集団サイズの急激な増加の可能性</li>
+</ul>
+</li>
+<li><span class="math">\(D&gt;0\)</span> の場合：<font color="red"><b>中程度〜高頻度アリルが多い</b></font><ul>
+<li>平行選択（古くに分岐）の可能性</li>
+<li>集団サイズの急激な減少の可能性</li>
+</ul>
+</li>
+</ul>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+  <h3>注意点</h3>
+  <p>田嶋の検定では、有意差が検出された場合に、その理由として以下の二つを識別することができない。</p>
+  <li>集団サイズ変化（集団サイズが一定でない）</li>
+  <li>自然選択</li>
+  <p>もし多数のゲノム領域（理想としては全ゲノム領域）を調べることができれば、ゲノムワイドにDの<font color="red"><b>経験分布</b></font>を得ることができる。</p>
+  <p>Dの経験分布は集団サイズ変化を反映するため、それに比べてDの値が大きくずれているのであれば、着目する領域が自然選択の作用を受けたと言える<b>（経験分布なしには議論できない）</b></p>
+  <p>合祖シミュレーションでは、集団サイズ一定を仮定しても平均のDは0よりわずかに小さな値をとる。</p>
+</div>
+
+<h2>4. Extended haplotype homozygosity(EHH)</h2>
+<p>EHHは、具体的な例があった方がわかりやすいと考える。そこで<a href="https://iwasakishuto.github.io/study/notes/%E5%88%86%E5%AD%90%E9%80%B2%E5%8C%96%E5%AD%A6-kadai-ans.html">講義中の課題19</a>で実際に問題を解いているので、それに説明を譲る。</p>
+<p>なお、集団史が不明なため、REHH(relative EHH; EHHi/EHHj)の理論分布は存在しない。</p>
+<p>もし全ゲノム領域を調べることができれば、ターゲットアリルと<font color="red"><b>同じ頻度</b></font>のアリルのREHHの<font color="red"><b>経験分布</b></font>を得ることができる。</p>
+<p>経験分布に比べてREHHの値がかなり大きければ、着目する領域でpartial selective sweepが起きたと言える。（有意性については、経験分布なしには議論できない。）</p>
+<p>なお、当然ながら、既に固定した変異については、調べることができない。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-07-10T00:00:00+09:00"> 7 10, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-07-10T00:00:00+09:00"> 7 10, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#fen-zi-jin-hua-xue-ref">分子進化学
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅰ, ゲノム配列解析論Ⅰ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅰ 第2回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅰ-2.html" />
+<meta property="og:description" content="Pairwise sequence alignment" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-04-15T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-04-15T00:00:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅰ 第2回 ">
+<meta name="twitter:description" content="Pairwise sequence alignment">
+
+        <title>ゲノム配列解析論Ⅰ 第2回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅰ-2.html"> ゲノム配列解析論Ⅰ 第2回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第2回 2019/4/15</h1>
+<ul>
+<li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/">後藤 修</a></li>
+</ul>
+<h2>本講義の概要</h2>
+<ol>
+<li>配列アラインメントとは</li>
+<li>動的計画法を用いた最良アラインメント計算アルゴリズム</li>
+<li>大域法と局所法</li>
+<li>アルゴリズムの実装</li>
+<li>線形メモリーアルゴリズム</li>
+<li>高速アルゴリズムゲノム解析</li>
+<li>多重配列アラインメント</li>
+<li>確率的アラインメント、ペアHMM、プロファイルHMM</li>
+</ol>
+<h2>配列アラインメントとは</h2>
+<h3>定義</h3>
+<p><div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+複数<span class="math">\((N\geq 2)\)</span> の文字列 <span class="math">\(\mathbf{s}_1,\mathbf{s}_2,\ldots,\mathbf{s}_N\)</span> が与えられたとき、それぞれの文字列の間で<b>対応</b>する要素（文字、残基）を、適宜<b>空白</b>を入れながら、縦一列に<b>整列</b>させること、あるいは<b>整列</b>させられたもの
+</div></p>
+<h3>目的</h3>
+<ol>
+<li>単独配列（遺伝子、タンパク質）の未知の機能・構造を類似配列の<b>既知情報</b>をもとに予測<b>（2配列アラインメント）</b>
+keywords: ホモロジー検索、ホモロジーモデリング、遺伝子予測</li>
+<li>同一ファミリー、オーソログ間で<b>共通する機能・構造単位</b>を予測（多重アラインメント）
+keywords: プロファイル、ドメイン、モチーフ、系統フットプリント、進化トレース</li>
+<li>進化系統樹の作成</li>
+</ol>
+<h3>種類と方法</h3>
+<h4>基本</h4>
+<table>
+<thead>
+<tr>
+<th align="left">配列数</th>
+<th align="left">大域的・半大域的</th>
+<th align="left">局所的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2配列(厳密)</td>
+<td align="left">NWG法</td>
+<td align="left">SWG法</td>
+</tr>
+<tr>
+<td align="left">2配列(高速)</td>
+<td align="left">PH<br><b>Cgaln</b><br>FASTS<br>BLAST</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">多重</td>
+<td align="left">累進法<br>反復改善法<br>整合法</td>
+<td align="left">期待値最大化Gibbsサンプリング</td>
+</tr>
+</tbody>
+</table>
+<h4>応用</h4>
+<table>
+<thead>
+<tr>
+<th align="left">スレディング</th>
+<th align="left">スプライスアラインメント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">高次構造と配列とのアラインメント</td>
+<td align="left">真核生物ゲノム配列とcDNAやアミノ酸配列とのアラインメント</td>
+</tr>
+</tbody>
+</table>
+<h2>動的計画法を用いた最良アラインメント計算アルゴリズム</h2>
+<h3>動的計画法による文字列比較</h3>
+<ul>
+<li>最長部分配列(Longest Common Subsequence)</li>
+<li>最小編集距離(Minimum Edit Distance)（配列 <span class="math">\(a\)</span> から配列 <span class="math">\(b\)</span> に変換する置換・欠失・挿入の数を最小化）</li>
+<li>最大一致(Maximal Match) = LCS-Gap Penalty（狭義のNeedleman-Wunsch法）</li>
+<li>大域的・半大域的(Global, Semi-global)アラインメント（広義のNeedleman-Wunsch法）</li>
+<li>局所的(Local)アラインメント（Smith-Waterman法）</li>
+</ul>
+<h3>Minimum Edit Distance</h3>
+<div class="math">$$
+D_{i,j} = \min
+  \begin{cases}
+    D_{i-1, j-1}+d\left(a_{i}, b_{j}\right), \\
+    D_{i-1, j}+1, \\
+    D_{i, j-1}+1
+  \end{cases}\\
+d\left(a_{i}, b_{j}\right)=a_{i}==b_{j} ? 0 : 1
+$$</div>
+<h3>Longest Common Subsequence</h3>
+<div class="math">$$
+C_{i,j} = \min
+  \begin{cases}
+    C_{i-1, j-1}+d\left(a_{i}, b_{j}\right), \\
+    C_{i-1, j}+1, \\
+    C_{i, j-1}+1, \\
+    0
+  \end{cases}\\
+d\left(a_{i}, b_{j}\right)=a_{i}==b_{j} ? 0 : 1
+$$</div>
+<h3>Pairwise Sequence Alignment <span class="math">\(O(N^2)\)</span> with Affine Gap Penalty (<span class="math">\(g(k)=-uk-v\)</span>)</h3>
+<div class="math">$$
+\begin{aligned}
+H_{i,j} &amp;= \max\left\{H_{i, j}^1,H_{i, j}^2,H_{i, j}^3\right\}\\
+H_{i, j}^1 &amp;= H_{i-1, j-1}^1 + s(a_i,b_j)\\
+H_{i, j}^2 &amp;= \max\left\{H_{i-1,j}+g(1), H_{i-1, j}^2-u\right\}\\
+H_{i, j}^3 &amp;= \max\left\{H_{i,j-1}+g(1), H_{i, j-1}^3-u\right\}
+\end{aligned}
+$$</div>
+<h2>大域法と局所法</h2>
+<h3>局所的最良アラインメント法</h3>
+<p>Smith-Waterman法 = NW法 + 最大部分配列問題（偏った組成の領域を探す）</p>
+<h3>最大部分列問題</h3>
+<p>以下の <code>sum</code> を考える。</p>
+<p><img src="https://inzkyk.github.io//ox-hugo/AlgorithmFigure_3-ex10.png"></p>
+<p>Kadane-Gries <span class="math">\(O(n)\)</span> Algorithm:</p>
+<div class="highlight"><pre><span></span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 初期化</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+  <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">{</span><span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">};</span> <span class="c1">// 0より小さくなったらその次から再スタート</span>
+  <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">{</span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">]};</span> <span class="c1">// 最大値を記録</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h3>Smith-Waterman-Gotoh Algorithm (<span class="math">\(g(k)=-uk-v\)</span>)</h3>
+<p><img src="https://1.bp.blogspot.com/_39NGKVWYg3o/Sn2Vnx0m4RI/AAAAAAAAAeg/WD2HCZFQo9s/s320/Picture+2.png"></p>
+<h4>Recursion Eq.</h4>
+<div class="math">$$
+\begin{aligned}
+P_{i,j} &amp;= \max\left\{H_{i-1,j}-v,P_{i-1, j}\right\}-u\\
+Q_{i,j} &amp;= \max\left\{H_{i,j-1}-v,Q_{i, j-1}\right\}-u\\
+H_{i,j} &amp;= \max\left\{H_{i-1,j-1}+s(a_i,b_j),P_{i,j},Q_{i,j},0\right\}-u\\
+\end{aligned}
+$$</div>
+<h4>Initial Condition</h4>
+<div class="math">$$
+\begin{aligned}
+&amp; H_{i,0}=H_{0,j}=0;\ P_{i,0} = P_{0,j} = Q_{i,0} = Q_{0,j} = -\infty\\
+&amp; u&gt;0; v&gt;0;\\
+&amp; s(a_i,b_j)\geq0\ \mathrm{if}\ a_i == b_i\\
+&amp; s(a_i,b_j)\leq0\ \mathrm{otherwise}
+\end{aligned}
+$$</div>
+<div class="math">$$\mathrm{Score} = H_{i^*-1,j^*-1} = \underset{0\leq i\leq m, 1\leq j\leq n}{\max}\left\{H_{i,j}\right\}$$</div>
+<h2>編集距離アルゴリズムの実装</h2>
+<h4>漸化式(recurrent method)</h4>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span>
+                 <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">],</span>
+                 <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h4>再帰式(recursive call)</h4>
+<div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">D</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">){</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">min</span><span class="p">{</span><span class="n">D</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="err"></span><span class="n">s</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+              <span class="n">D</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">),</span>
+              <span class="n">D</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>上の式の場合、<span class="math">\(D(i,j)(i\neq0)\)</span> を計算する時に、再帰式の中で <span class="math">\(D(i-1,j-1)\)</span> を <span class="math">\(3\)</span> 回計算することになるため同じ値の計算が指数関数的に増えてしまい、無駄が多くなっている。</p>
+<h3>進行方向</h3>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+</pre></div>
+
+
+<p>の方向は、かなり実装が楽。</p>
+<p>一方で、斜め方向の場合並列処理が可能になるので、大規模なDP matrixを考えた時は効率が良い。</p>
+<h2>トレースバック法</h2>
+<p>DP行列が求められても、どのパスが最良のアラインメントに対応するのかがわからない。そこで、DP行列から最良のアラインメントを求める。</p>
+<ul>
+<li>スコア法</li>
+<li>ビットマップ法</li>
+<li>連結リスト法</li>
+<li>線形メモリー法</li>
+</ul>
+<h3>線形メモリー法</h3>
+<p><img src="https://developer.ibm.com/developer/articles/j-seqalign/images/NWTab2.gif"></p>
+<p>上図のように終点からたどる方法もあるが、その場合2次元配列がメモリとして必要になってしまう。そこで、ここでは一次元配列のみを利用してトレースバックを行う手法を紹介する。</p>
+<p>アルゴリズムは簡単で、逆向きからも同じようにDP行列を作成し、最も値が大きいものを繋げば良い、というだけである。</p>
+<h4>A problem with Affine Gap penalties</h4>
+<p>実はアフィンギャップの場合はギャップコストが異なる関係でうまくいかない。</p>
+<p>この場合は、<b>「ギャップ開始か伸長を記録する」</b>ことで、後で補正すれば問題なく同じアルゴリズムが使える。</p>
+<h2>配列アラインメントのまとめ</h2>
+<ul>
+<li>バイオインフォマティクスにおいては最も実用的な計算機利用のひとつ</li>
+<li>対象・目的により様々なバリエーション</li>
+<li>歴史は古いが現在でも盛んに研究されている</li>
+<li>タンパク質・機能RNAの立体構造予測</li>
+<li>タンパク質・機能RNAの活性部位予測</li>
+<li>ゲノム配列上の遺伝子予測</li>
+<li>ゲノム配列上の制御領域予測</li>
+<li>配列より高次な構造（木、グラフ）への拡張</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-04-15T00:00:00+09:00"> 4 15, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-04-15T00:00:00+09:00"> 4 15, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ
+                    <span>6</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

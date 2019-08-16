@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="JavaScript, JavaScript, " />
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/OpenCV_Logo_with_text_svg_version.svg/360px-OpenCV_Logo_with_text_svg_version.svg.png"/>
+
+<meta property="og:title" content="JS.10 OpenCVで遊ぶ "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/JavaScript-10.html" />
+<meta property="og:description" content="OpenCVで遊ぶ" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-06-13T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-06-13T00:00:00+09:00" />
+<meta name="twitter:title" content="JS.10 OpenCVで遊ぶ ">
+<meta name="twitter:description" content="OpenCVで遊ぶ">
+
+        <title>JS.10 OpenCVで遊ぶ  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/JavaScript-10.html"> JS.10 OpenCVで遊ぶ  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>JS.10 OpenCVで遊ぶ</h1>
+<h3>作ったもの</h3>
+<p>画像にいくつかの処理を（一度に一つだけ）加えることのできるアプリケーションです。線画化が意外といい感じに仕上がるので、試してみてください。</p>
+<!--画像を表示-->
+
+<table>
+  <thead>
+    <tr>
+      <th align="center">Source</th>
+      <th align="center">Output</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img id="src-image" src="../../images/icon/apple-touch-icon-152x152.png" />
+        <img id="hidden-image" src="../../images/icon/apple-touch-icon-152x152.png" style="display: none;" />
+      </td>
+      <td>
+        <canvas id="dest-canvas"></canvas>
+        <canvas id="hidden-canvas" style="display: none;"></canvas>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <!-- 入力ファイル選択 -->
+        <input type="file" id="input-file" />
+      </td>
+      <td align="center">
+        <!-- ダウンロード -->
+        <input id="download-btn" type="button" value="ダウンロード">
+      </td>
+  </tbody>
+</table>
+
+<!-- 処理方法を選択 -->
+
+<form name="Processing Method" action="#">
+  <h2>処理方法</h2>
+  <ul>
+    <li><input type="radio" name="method" id="gray-scale-btn" onClick="changeDisabled()"><label for="gray-scale-btn">グレースケール化</label></li>
+    <li><input type="radio" name="method" id="linedraw-btn" onClick="changeDisabled()"><label for="linedraw-btn">線画化</label></li>
+    <li><input type="radio" name="method" id="resize-btn" onClick="changeDisabled()"><label for="resize-btn">リサイズ化</label>
+    <label for="gray-scale-btn">横幅</label><p style="display:inline;"><input type="number" id="resize-width" name="resizeSize" step="10" min="10" max="1000" value="400">px</p>
+    <label for="gray-scale-btn">縦幅</label><p style="display:inline;"><input type="number" id="resize-height" name="resizeSize" step="10" min="10" max="1000" value="400">px</p></li>
+  </ul>
+  <input id="execute-btn" type="button" value="実行">
+</form>
+
+<script src="https://docs.opencv.org/3.4/opencv.js" type="text/javascript"></script>
+
+<script>
+  const srcImg = document.getElementById('src-image');
+  const hiddenImg = document.getElementById('hidden-image');
+  const fileInput = document.getElementById('input-file');
+  const canvas = document.getElementById('dest-canvas');
+  const hiddenCanvas = document.getElementById('hidden-canvas');
+  const grayScaleBtn = document.getElementById('gray-scale-btn');
+  const lineDrawBtn = document.getElementById('linedraw-btn');
+  const downloadBtn = document.getElementById('download-btn');
+  const resizeBtn = document.getElementById('resize-btn');
+  const executeBtn = document.getElementById('execute-btn');
+  const resizeSize = document.getElementsByName('resizeSize');
+
+  // OpenCVメソッドを全て引き受ける
+  function EventHandler(func, ...args){
+    const src = cv.imread(srcImg);
+    const dst = func(src, ...args);
+    cv.imshow('dest-canvas', dst);
+    src.delete();
+    dst.delete();
+
+    const hiddenSrc = cv.imread(hiddenImg);
+    const hiddenDst = func(hiddenSrc, ...args);
+    cv.imshow('hidden-canvas', hiddenDst);
+    hiddenSrc.delete();
+    hiddenDst.delete();
+  }
+
+  function convertImageToGray(img) {
+    let dst = new cv.Mat();
+    cv.cvtColor(img, dst, cv.COLOR_RGBA2GRAY, 0);
+    return dst;
+  }
+
+  function convertImageToLineDrawing(img) {
+      const kernel = cv.getStructuringElement(cv.MORPH_RECT,new cv.Size(5,5));
+
+      const imgGray = new cv.Mat();
+      cv.cvtColor(img, imgGray, cv.COLOR_RGBA2GRAY);
+
+      const imgDilated = new cv.Mat();
+      cv.dilate(imgGray, imgDilated, kernel, new cv.Point(-1, 1), 1);
+
+      const imgDiff = new cv.Mat();
+      cv.absdiff(imgDilated, imgGray, imgDiff);
+
+      const contour = new cv.Mat();
+      cv.bitwise_not(imgDiff, contour);
+      return contour;
+  }
+
+  function convertImageRisze(img, width, height) {
+    let dst = new cv.Mat();
+    let dsize = new cv.Size(width, height);
+    cv.resize(img, dst, dsize, 0, 0, cv.INTER_AREA);
+    return dst;
+  }
+
+  // Execute Button
+  executeBtn.addEventListener('click', function(){
+    var radios = document.getElementsByName("method");
+    if (radios[0].checked) EventHandler(convertImageToGray);
+    if (radios[1].checked) EventHandler(convertImageToLineDrawing);
+    if (radios[2].checked) EventHandler(
+      convertImageRisze,
+      parseInt(document.getElementById("resize-width").value),
+      parseInt(document.getElementById("resize-height").value)
+    );
+  });
+
+  // Input Button
+  fileInput.addEventListener('change', function(e){
+    srcImg.src = URL.createObjectURL(e.target.files[0]);
+    hiddenImg.src = URL.createObjectURL(e.target.files[0]);
+    const src = cv.imread(hiddenImg);
+  }, false);
+
+  // Make URL for Download
+  function dataUriToBlob(dataUri) {
+    const b64 = atob(dataUri.split(',')[1]);
+    const u8 = Uint8Array.from(b64.split(''), e => e.charCodeAt());
+    return new Blob([u8], {type: 'image/png'});
+  }
+
+  // Download Button
+  downloadBtn.addEventListener('click', function(e){
+    let data = hiddenCanvas.toDataURL();
+    let url = URL.createObjectURL(dataUriToBlob(data));
+    let link = document.createElement("a");
+    link.href = url;
+    link.download = "processed.png";
+    link.click();
+  })
+
+  function changeDisabled() {
+    if (document.getElementsByName("method")[2].checked ) {
+      resizeSize[0].disabled = false;
+      resizeSize[1].disabled = false;
+    } else {
+      resizeSize[0].disabled = true;
+      resizeSize[1].disabled = true;
+    }
+  }
+
+  window.onload = changeDisabled();
+</script>
+
+<style>
+  ul {
+    list-style: none;
+  }
+  label {
+    display: inline-flex;
+    margin-bottom: 0;
+  }
+</style>
+
+<h3>動機</h3>
+<p>色々と覚えてきたので、最後に</p>
+<ul>
+<li><a href="https://github.com/ucisysarch/opencvjs"><code>OpenCV.js</code></a></li>
+<li>Webカメラ</li>
+<li><code>Canvas</code></li>
+<li><a href="https://www.tensorflow.org/js"><code>TensorFlow.js</code></a></li>
+</ul>
+<p>あたりを使って<b>静的サイトで機械学習のWebアプリケーションを動かし</b>、<code>JavaScript</code> の勉強は一旦終了にしようと思いました。そこで、まずは <code>OpenCV.js</code> から使ってみようと思い、上記のアプリケーションを作りました。</p>
+<p>あと、地味に毎回 <code>Python</code> やシェルでコード書いたり、 <code>PowerPoint</code> 使って画像のリサイズするのが面倒だったので意外と重宝しています笑</p>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-06-13T00:00:00+09:00"> 6 13, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-06-13T00:00:00+09:00"> 6 13, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#javascript-ref">JavaScript</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#javascript-ref">JavaScript
+                    <span>15</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, システム生物学, システム生物学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="システム生物学 第1回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/システム生物学-1.html" />
+<meta property="og:description" content="フィードフォワード" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-06-07T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-06-07T00:00:00+09:00" />
+<meta name="twitter:title" content="システム生物学 第1回 ">
+<meta name="twitter:description" content="フィードフォワード">
+
+        <title>システム生物学 第1回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/システム生物学-1.html"> システム生物学 第1回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第1回 2019/6/7</h1>
+<ul>
+<li>講師：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/ja/top/">黒田 真也</a></li>
+<li>教科書<ul>
+<li><a href="https://www.amazon.co.jp/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%83%90%E3%82%A4%E3%82%AA%E3%83%AD%E3%82%B8%E3%83%BC-%E7%8F%BE%E4%BB%A3%E7%94%9F%E7%89%A9%E7%A7%91%E5%AD%A6%E5%85%A5%E9%96%80-%E7%AC%AC8%E5%B7%BB-%E5%8C%97%E9%87%8E-%E5%AE%8F%E6%98%8E/dp/4000069683">システムバイオロジー 岩波書店（現代生物化学入門８）</a></li>
+<li><a href="https://www.amazon.co.jp/%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E7%94%9F%E7%89%A9%E5%AD%A6%E5%85%A5%E9%96%80-%E7%94%9F%E7%89%A9%E5%9B%9E%E8%B7%AF%E3%81%AE%E8%A8%AD%E8%A8%88%E5%8E%9F%E7%90%86-Uri-Alon/dp/4320056736">システム生物学入門 -生物回路の設計原理-</a></li>
+</ul>
+</li>
+<li>参考書<ul>
+<li><a href="https://www.amazon.co.jp/%E3%83%95%E3%82%A1%E3%82%A4%E3%83%B3%E3%83%9E%E3%83%B3%E7%89%A9%E7%90%86%E5%AD%A6%E3%80%881%E3%80%89%E5%8A%9B%E5%AD%A6-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%B3%E3%83%9E%E3%83%B3/dp/4000077112">ファイマン物理学&lt;1&gt;力学</a></li>
+<li><a href="https://www.amazon.co.jp/%E3%82%84%E3%81%95%E3%81%97%E3%81%84%E6%A9%9F%E6%A2%B0%E5%88%B6%E5%BE%A1-%E9%87%91%E5%AD%90-%E6%95%8F%E5%A4%AB/dp/4526031879">やさしい機械制御</a></li>
+<li><a href="https://www.amazon.co.jp/Hirsch%E3%83%BBSmale%E3%83%BBDevaney-%E5%8A%9B%E5%AD%A6%E7%B3%BB%E5%85%A5%E9%96%80-%E2%80%95%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%BC%8F%E3%81%8B%E3%82%89%E3%82%AB%E3%82%AA%E3%82%B9%E3%81%BE%E3%81%A7%E2%80%95-Morris-W-Hirsch/dp/4320111362/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=%E5%8A%9B%E5%AD%A6%E7%B3%BB%E5%85%A5%E9%96%80&amp;qid=1561863796&amp;s=books&amp;sr=1-1">力学系入門</a></li>
+<li><a href="https://www.amazon.co.jp/%E9%9D%9E%E7%B7%9A%E5%BD%A2%E5%88%B6%E5%BE%A1-%E7%8F%BE%E4%BB%A3%E9%9D%9E%E7%B7%9A%E5%BD%A2%E7%A7%91%E5%AD%A6%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA-%E5%B9%B3%E4%BA%95-%E4%B8%80%E6%AD%A3/dp/4339026085/ref=sr_1_1?__mk_ja_JP=%E3%82%AB%E3%82%BF%E3%82%AB%E3%83%8A&amp;keywords=%E9%9D%9E%E7%B7%9A%E5%BD%A2%E5%88%B6%E5%BE%A1&amp;qid=1561863824&amp;s=books&amp;sr=1-1">非線形制御</a></li>
+<li><a href="https://www.amazon.co.jp/%E7%89%A9%E7%90%86%E6%B3%95%E5%89%87%E3%81%AF%E3%81%84%E3%81%8B%E3%81%AB%E3%81%97%E3%81%A6%E7%99%BA%E8%A6%8B%E3%81%95%E3%82%8C%E3%81%9F%E3%81%8B-%E5%B2%A9%E6%B3%A2%E7%8F%BE%E4%BB%A3%E6%96%87%E5%BA%AB%E2%80%95%E5%AD%A6%E8%A1%93-R-P-%E3%83%95%E3%82%A1%E3%82%A4%E3%83%B3%E3%83%9E%E3%83%B3/dp/4006000480">物理法則はいかにして発見されたか</a></li>
+</ul>
+</li>
+</ul>
+<h2>講義日程</h2>
+<table>
+<thead>
+<tr>
+<th align="left">#</th>
+<th align="left">日付</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">6/7</td>
+<td align="left">・イントロ<br>・フィードフォワード<br>・微分積分回路と細胞運命決定</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">6/21</td>
+<td align="left">・フィードフォワード<br>・インスリン作用<br>・低周波フィルタ</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">6/28</td>
+<td align="left">・ネガティブフィードバック<br>・浸透圧調節<br>・固有値と解の振る舞い</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">7/5</td>
+<td align="left">・高次反応とスイッチ応答<br>・ポジティブフィードバック<br>・減数分裂</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">7/12</td>
+<td align="left">・ポジティブ+ネガティブフィードバック<br>・神経細胞の活動電位<br>・確率共鳴<br>・分子数の少数性によるゆらぎを利用したロバストネス</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">7/19</td>
+<td align="left">・シャノンの情報理論によるシグナル伝達経路の解析<br>・代謝フラックス解析<br>・多階層オミクスを統合したデータドリブンシステム生物学</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">7/26</td>
+<td align="left">テスト</td>
+</tr>
+</tbody>
+</table>
+<h2>イントロダクション</h2>
+<p>現象の特性</p>
+<h3>部分と全体</h3>
+<h3>システムが分かるとは？</h3>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">天体の運動</th>
+<th align="center">シグナル伝達</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">要素の同定</td>
+<td align="center">惑星</td>
+<td align="center">遺伝子、タンパク質</td>
+</tr>
+<tr>
+<td align="center">要素の振る舞い</td>
+<td align="center">軌道<br>（ブラーエ）</td>
+<td align="center">一括性や持続性の活性化</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>要素を同定し、振る舞いを観察することで、<font color="red"><b>「系の特性とそれを生み出す原理」</b></font>を導出するのがシステム生物学。</p>
+<p>ニュートンはすごい
+ニュートンがやったことは、説明。重力というものを仮定すると、全部説明できる。新しいものを発見したわけではないが、世の中の見方を大きく変えた。それが自然科学の面白いところだと感じている。</p>
+<h3>Model（理論）と限定性</h3>
+<p>現象を記述するのに必要なパラメータは、システムの特性に依存する。</p>
+<p>また、全ての要素が入った複雑なモデルは、必ずしも良いモデルとは言えない。→<font color="red"><b>「シンプル」</b></font>かつ、<font color="red"><b>「エッセンシャル」</b></font>なルールを抽出する（<font color="red"><b>モデルの縮約(Model Reduction)</b></font>）ことが必要である。</p>
+<h3>順モデルと逆モデル</h3>
+<p>システム生物学の研究の仕方として、<b>「順モデル」</b>と<b>「逆モデル」</b>がある。</p>
+<table>
+<thead>
+<tr>
+<th align="center">順モデル</th>
+<th align="center">逆モデル</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">仮説ドリブン</td>
+<td align="center">データドリブン</td>
+</tr>
+<tr>
+<td align="center">分子間の相互作用に関する事前知識（ネットワークを記述する式）がありそこから反応を記述し検証する。</td>
+<td align="center">何が正解かわからないので、データから内部構造を推定する（システム同定）</td>
+</tr>
+</tbody>
+</table>
+<p>以前はデータと知見によって人力でモデルを作り込んでいたが、統計科学の発展と計算機性能向上により、「データからモデル」の流れが実用的になりつつある。</p>
+<blockquote>
+<p><b>データからモデルを生成する</b>というのは、正に機械学習がやってることそのものだなぁ。関数の置き方に生物学的な知識はどれほど必要なのだろうか…。実習（生命科学基礎実験）でモデルを作ってみたい！！</p>
+</blockquote>
+<h2>分子ネットワークのタイプ</h2>
+<h3>前向き制御（フィードフォワード）</h3>
+<h4>細胞運命決定機構</h4>
+<p>多細胞生物は、一つの受精卵が増殖して異なる細胞へ分化することにより、組織を形成して固体となる。</p>
+<p>細胞の増殖と分化は同時には起こらないため、<b>細胞の増殖と分化は一種のスイッチ現象と見なす事ができる。</b></p>
+<p>細胞の増殖と分化のモデルとして用いられるPC12細胞（神経になる一歩手前の細胞）では、<font color="red"><b>EGF(Epidermal growth factor)刺激</b></font>により増殖を、<font color="red"><b>NGF(Nerve growth factor)刺激</b></font>により神経様細胞へ分化する事が知られている。</p>
+<p>この時、EGFとNGF刺激は、細胞内では一種類の分子<font color="red"><b>ERKを一過性および持続性に活性化する。</b></font></p>
+<p>つまり、<font color="red"><b>「同じ分子（ERK）であっても時間波形が異なるだけで異なる現象を引き起こす」</b></font>事がわかる。</p>
+<p><img src="https://player.slidesplayer.net/89/14232848/slides/slide_1.jpg"></p>
+<p>Reference: <a href="https://slidesplayer.net/slide/14232848/">Slides Player</a></p>
+<h4>シグナル伝達の時間情報コーディング</h4>
+<ul>
+<li>微分回路（上）は早いスピードの刺激に対して応答し、刺激の強さに依らずに活性化する。</li>
+<li>積分回路（下）は刺激の強さに応じて活性化する。</li>
+</ul>
+<p><img src="https://player.slidesplayer.net/97/16746652/slides/slide_20.jpg"></p>
+<p>Reference: <a href="https://slidesplayer.net/slide/16746652/">Slides Player</a></p>
+<p>このように、回路がフィルタの役割をしているので、上流のinhibitorが下流のactivatorになることも十分に考えられる。</p>
+<h3>後ろ向き制御（ポジティブフィードバック）</h3>
+<p>以下の二種類のスイッチ応答を行なう。</p>
+<ul>
+<li>単安定応答：一度閾値を超えても、また刺激がなくなると応答を行わなくなう。</li>
+<li>双安定応答：一度閾値を超えると、刺激がなくなっても応答を行う。（記録）</li>
+</ul>
+<p>◯特徴
+- All-or-none
+- 刺激強度に閾値がある（超えるとAll, 超えないとNone）
+- 履歴がある。つまり、メモリ（一度超えるとその状態を保持）</p>
+<h3>例）神経細胞の活動電位</h3>
+<p>細胞の興奮（＝細胞が活動電位を発生すること）を考える。なお、<font color="red"><b>活動電位</b></font>とは、細胞内電位が一定の値よりも浅くなったとき、それに続く一過性の電位変化のことである。</p>
+<p>細胞は、静止電位の状態では、以下のような濃度勾配になっている。</p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="center"><span class="math">\(\mathrm{Na}^{+}\)</span></th>
+<th align="center"><span class="math">\(\mathrm{K}^{+}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">内側</td>
+<td align="center"><span class="math">\(37\ \mathrm{mM}\)</span></td>
+<td align="center"><span class="math">\(110\ \mathrm{mM}\)</span></td>
+</tr>
+<tr>
+<td align="right">外側</td>
+<td align="center"><span class="math">\(140\ \mathrm{mM}\)</span></td>
+<td align="center"><span class="math">\(\sim5 \mathrm{mM}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>この状態で刺激を受けると、それまで不透過であったナトリウムイオン（<span class="math">\(\mathrm{Na}^{+}\)</span>）を細胞内に通すことになる。</p>
+<p>すると、細胞内への <span class="math">\(\mathrm{Na}^{+}\)</span> がさらなる<b><font color="red">脱分極</font>（膜電位の現象）</b>を引き起こし、それがさらに多くの <span class="math">\(\mathrm{Na}^{+}\)</span> チャネルを開状態にする。このポジティブフィードバックによって、活動電位が全か無かの法則に従って発生する。<b>（閾値を超える脱分極が生じたときのみ、活動電位が発生する。）</b></p>
+<p><img src="https://bsd.neuroinf.jp/w/images/5/58/%E9%96%BE%E5%80%A4_%E5%9B%B32.jpg"></p>
+<h3>活動電位とノイズ：確率共鳴</h3>
+<p><font color="red"><b>確率共鳴(Stochastic Resonance)</b></font>とは、信号にノイズを加えることで、ある確率の下で信号が強まり、反応が向上する現象のこと。</p>
+<p>閾値未満の<font color="red"><b>微弱な信号</b></font>に不規則な<b>ノイズ</b>を加えると、確率共鳴により、閾値を越えて検知できるようになる。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>ポイント</b><br>
+  一つのNeuronでの発火はバラバラだが、入力の強さに相関しながら確率的に発火するので、ポストニューロンが受け取る信号（重ね合わせ）は元の微弱な信号となっている。
+</div>
+
+<h3>定性的マップ vs 定量的マップ</h3>
+<table>
+<thead>
+<tr>
+<th align="center">定性的</th>
+<th align="center">定量的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ローカルの積み上げ<br>→仮説駆動</td>
+<td align="center">グローバル<br>→データ駆動</td>
+</tr>
+<tr>
+<td align="center">個人のバイアスが入る<br>でもわかりやすい</td>
+<td align="center">個人のバイアスを避ける<br>でも複雑でわからん？</td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.springernature.com/lw900/springer-static/image/art%3A10.1038%2F414799a/MediaObjects/41586_2001_Article_BF414799a_Fig3_HTML.jpg"></td>
+<td align="center"><img src="http://kurodalab.bs.s.u-tokyo.ac.jp/wordpress/wp-content/uploads/topimage.gif" width=400></td>
+</tr>
+</tbody>
+</table>
+<h3>まとめ</h3>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0; text-align: center;"><b>TAKE HOME MESSAGE</b><br>
+  <p><font size=20>分子は媒体</font></p>
+</div>
+
+<p>分子と機能をついつい対応させたくなるが、<b>分子自体は情報ではなく媒体（情報を伝えるもの）</b>であり、分子の<font color="red"><b>「変動パターン」</b></font>が情報であり、分子ネットワークの上を伝わるものである。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-06-07T00:00:00+09:00"> 6 7, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-06-07T00:00:00+09:00"> 6 7, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#shisutemusheng-wu-xue-ref">システム生物学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#shisutemusheng-wu-xue-ref">システム生物学
+                    <span>4</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

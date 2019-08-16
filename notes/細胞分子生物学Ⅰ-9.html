@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 細胞分子生物学Ⅰ, 細胞分子生物学Ⅰ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="細胞分子生物学Ⅰ 第9回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/細胞分子生物学Ⅰ-9.html" />
+<meta property="og:description" content="Rif1 protein" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-06-12T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-06-12T00:00:00+09:00" />
+<meta name="twitter:title" content="細胞分子生物学Ⅰ 第9回 ">
+<meta name="twitter:description" content="Rif1 protein">
+
+        <title>細胞分子生物学Ⅰ 第9回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/細胞分子生物学Ⅰ-9.html"> 細胞分子生物学Ⅰ 第9回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第9回 2019/6/12</h1>
+<ul>
+<li>講師：<a href="https://www.k.u-tokyo.ac.jp/pros/person/masai_hisao/masai_hisao.htm">正井 久雄</a></li>
+</ul>
+<h3>Fluorescent Proteins</h3>
+<p><b>自然の</b>蛍光性タンパク質(FP)を生成する生物も存在するため、研究者はこれらのタンパク質を蛍光顕微鏡観察のツールとして用いる技術を開発した。こうしたFPは、<font color="red"><b>特に生細胞イメージングに役立つ</b></font>ため、経時的顕微鏡動画撮影を実施して細胞の中でターゲットがどのように機能しているかを見ることができる。</p>
+<p>FP遺伝子をターゲット遺伝子に融合させることにより、FPは蛋白質マーカーとして取り込まれます。その後、宿主細胞は、永久的に取り付けられた蛍光マーカーを有するターゲットタンパク質を産生します。そのため、蛍光色素をサンプルに添加する必要がない。</p>
+<p>細胞生物学のツールとしての有用性が明示された最初の蛍光タンパク質は、<font color="red"><b>緑色蛍光タンパク質(GFP)</b></font>であった。</p>
+<h4>Fucci</h4>
+<p><b>Fucci(Fluorescent Ubiqutination-based Cell Cycle Indicator: フーチ)</b>とは、</p>
+<ul>
+<li>細胞周期の進行を"リアルタイム"に観察できる蛍光プローブ。</li>
+<li>細胞周期の特定の時期にのみ存在する<font color="green"><b>Geminin</b></font>と<font color="Orange"><b>Cdt1</b></font>という2つのタンパク質に、それぞれ緑色とオレンジ色の蛍光タンパク質を融合して細胞周期を可視化できるようにした。</li>
+<li><font color="green"><b>Geminin</b></font>: DNA複製のライセンス化阻害因子。<b>S期に、一度複製が開始されたゲノムの複製開始地点へのライセンス化因子の結合を阻害する。</b>M期からG1期にかけて、ユビキチンープロテアソーム系により分解される。（→S/G2/M期に緑色）</li>
+<li><font color="Orange"><b>Cdt1</b></font>: Cdc10 dependent transcript 1. DNA複製のライセンス化制御因子。G1期に複製開始点に局在し、<b>一度複製されたDNAが再複製されないように制御している。</b>G1期に発現量が高いが、S期に入るとユビキチンープロテアソーム系により分解される。（→G1期にオレンジ色）</li>
+</ul>
+<video src="http://ruo.mbl.co.jp/bio/fucci/movie/Fucci1.mp4" autoplay loop controls></video>
+
+<h3>Rif1 protein</h3>
+<p>論文の流れに沿って研究を見ていく。（講義中はついていけなかったので、後から調べた。）
+<img src="http://www.igakuken.or.jp/genome/wp-content/uploads/2015/09/08987757e6b49a230512da72e792ef9e.tif-620x469.jpg"></p>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/22279046">Rif1 is a global regulator of timing of replication origin firing in fission yeast.</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3442270/">Mouse Rif1 is a key regulator of the replication-timing programme in mammalian cells</a></li>
+</ul>
+<p>真核細胞の染色体複製では、G1期初期に潜在的複製起点に<font color="red"><b>複製起点認識複合体(origin recognition complex;ORC)</b></font>や<font color="red"><b>MCM(Minichromosome maintenance)複合体</b></font>が結合し<font color="red"><b>複製前複合体(pre-replicative complex;pre-RC)</b></font>を形成する。</p>
+<p>S期においてこれらのpre-RCの一部は「初期」に、一部は「中期」あるいは「後期」に活性化を受ける。<font color="red"><b>活性化にはCdc7キナーゼが重要な役割を果たす</b></font>ことが知られているが、活性化のタイミングを制御する機構は不明であった。</p>
+<p>そこで、活性化のタイミング解析を行うことで、<font color="red"><b>Rif1</b></font>という進化的に保存されているタンパク質が複製タイミングの制御に中心的な役割をはたすことを見い出した。</p>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/26436827">Rif1 binds to G quadruplexes and suppresses replication over long distances.</a></li>
+</ul>
+<p>動物細胞においてRif1をノックダウンしたところクロマチンループが伸長したことから、Rif1は核において染色体と結合し、その折りたたみ構造に影響をおよぼしていることが想像された。</p>
+<p><img src="https://dbarchive.biosciencedbc.jp/data/first_authors/data/Fig/Masai-Nature-Structural-Molecular-Biology-15.11.3-Fig.1.jpg"></p>
+<p>また、Rif1の結合部位をChip-Seqでゲノムワイドに決定したところ、コンセンサス配列が見い出された。そこには<b>複数のグアニンリピートが含まれており</b>、Rif1はこのグアニンリピートにより形成されるグアニン4重鎖構造に結合することがわかった。</p>
+<p>そして、<b>染色体に結合したRif1はその周辺の約100 kbにわたり複製の開始を抑制する</b>ことが示された。以下は、Rif1とグアニン4重鎖構造を形成したDNAとによる染色体の高次構造の形成のモデルである。</p>
+<p>Rif1は遺伝子間領域に存在するグアニン4重鎖構造を形成したDNAと結合し、染色体ファイバー構造をたばね、複製や転写を制御する<b>"クロマチンドメイン"</b>を形成する。このクロマチンドメインは複製の開始に抑制的である。<b>Rif1はホスファターゼであるPP1と結合することにより、複製の開始に必要なリン酸化を阻害する機能もある。</b></p>
+<p><img src="https://dbarchive.biosciencedbc.jp/data/first_authors/data/Fig/Masai-Nature-Structural-Molecular-Biology-15.11.3-Fig.2.jpg"></p>
+<p>これらの結果から、<b>Rif1とグアニン4重鎖構造を形成するDNAとの相互作用により、複製の開始に抑制的な複製ドメインが構築されること</b>が示唆された。</p>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-06-12T00:00:00+09:00"> 6 12, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-06-12T00:00:00+09:00"> 6 12, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#xi-bao-fen-zi-sheng-wu-xue-i-ref">細胞分子生物学Ⅰ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#xi-bao-fen-zi-sheng-wu-xue-i-ref">細胞分子生物学Ⅰ
+                    <span>14</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

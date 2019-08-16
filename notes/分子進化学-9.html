@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 分子進化学, 分子進化学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="分子進化学 第9回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/分子進化学-9.html" />
+<meta property="og:description" content="突然変異の固定確率" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-07-03T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-07-03T00:00:00+09:00" />
+<meta name="twitter:title" content="分子進化学 第9回 ">
+<meta name="twitter:description" content="突然変異の固定確率">
+
+        <title>分子進化学 第9回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/分子進化学-9.html"> 分子進化学 第9回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第9回 2019/7/3</h1>
+<ul>
+<li><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></li>
+</ul>
+<h2>突然変異の固定確率</h2>
+<ol>
+<li><a data-scroll href="#anchor1">対立遺伝子頻度変化の確率論的記述</a></li>
+<li><a data-scroll href="#anchor2"> ヘテロ接合度の時間変化</a></li>
+<li><a data-scroll href="#anchor3">固定確率の理論的導出</a></li>
+</ol>
+<h2 id="anchor1">対立遺伝子頻度変化の確率論的記述</h2>
+
+<h3>機械的遺伝的浮動(random genetic drift)</h3>
+<p>生物集団のサイズが<font color="red"><b>有限である</b></font>ため、配偶子選択の過程においてゆらぎが生じ、対立遺伝子頻度が世代毎に確率的に変動し、有限時間以内に必ず「固定」または「消失」が起きる。</p>
+<p>ここで、「固定」または「消失」が起きると、その後は対立遺伝子頻度は変化しない。</p>
+<p>そこで、<b>「究極的固定確率」や「究極的消失確率」がどのように値になるのか？</b>また、<b>突然変異（対立遺伝子）が究極的に固定する確率はどの程度なのか？</b>を考えるために、以下の二つのモデルがよく利用されている。</p>
+<h3>Wright-Fisherモデル</h3>
+<ul>
+<li><b>世代は離散的（全固体が入れ替わる）</b></li>
+<li>任意婚</li>
+<li>親世代の各個体が、次世代の任意の子供の親である確率は等しい（<span class="math">\(1/N\)</span>）</li>
+</ul>
+<h4>総分散の定理</h4>
+<p>確率変数 <span class="math">\(Y\)</span> の分散は、同一確率空間内の<b>確率変数 <span class="math">\(X\)</span> を条件づけることで</b>以下の2つの要素の和に分解できる。</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{V}[Y]
+&amp;=\mathrm{E}[Y^2] - \mathrm{E}[Y]^2 = \mathrm{E}[\textcolor{orange}{\mathrm{E}[Y^2|X]}] - [\mathrm{E}[\mathrm{E}[Y|X]]]^2\\
+&amp;= \mathrm{E}[\textcolor{orange}{\mathrm{V}[Y|X] + \mathrm{E}[Y|X]^2}] - [\mathrm{E}[\mathrm{E}[Y|X]]]^2\\
+&amp;=\mathrm{E}[\mathrm{V}[Y|X]] + \mathrm{E}[\mathrm{E}[Y|X]^2] - [\mathrm{E}[\mathrm{E}[Y|X]]]^2\\
+&amp;= \mathrm{E[\mathrm{V}[Y|X]]} + \mathrm{V}[\mathrm{E}[Y|X]]
+\end{aligned}
+$$</div>
+<h4>1単位時間経過後の平均と分散</h4>
+<p>現在のAアリル頻度が <span class="math">\(p\)</span>、aアリル頻度が <span class="math">\(q\)</span> であるとき、1世代後の <span class="math">\(2N\)</span> 個のコピー中にAが <span class="math">\(i\)</span> 個含まれるとすると、<span class="math">\(i\)</span> の期待値 <span class="math">\(\mathrm{E}[i]\)</span> と分散 <span class="math">\(\mathrm{V}[i]\)</span> は、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{E}[i]
+&amp;= \sum_{i=0}^{2N}\left[i{{2N}\choose{i}} p^i(1-p)^{2N-i}\right]\\
+&amp;= 2Np\sum_{i=0}^{2N-1}\left[{{2N-1}\choose{i}} p^i(1-p)^{(2N-1)-i}\right]\\
+&amp;= 2Np \left[p + (1-p)\right]^{2N-1} = 2Np\\
+\mathrm{E}[i(i-1)]
+&amp;= \sum_{i=0}^{2N}\left[i(i-1){{2N}\choose{i}} p^i(1-p)^{2N-i}\right]\\
+&amp;= 2Np\sum_{i=0}^{2N-1}\left[(i-1){{2N-1}\choose{i}} p^i(1-p)^{(2N-1)-i}\right]\\
+&amp;= 2N(2N-1)p^2\sum_{i=0}^{2N-2}\left[{{2N-2}\choose{i}} p^i(1-p)^{(2N-2)-i}\right]\\
+&amp;= 2N(2N-1)p^2\left[p + (1-p)\right]^{2N-2} = 2N(2N-1)p^2\\
+\mathrm{E}[i^2]
+&amp;= \mathrm{E}[i(i-1) + i]\\
+&amp;= 2N(2N-1)p^2 + 2Np = 2Np\left\{1+(2N-1)p\right\}\\
+\mathrm{V}[i]
+&amp;= \mathrm{E}[i^2] - \mathrm{E}[i]^2 = 2Np(1-p)
+\end{aligned}
+$$</div>
+<h4>世代 <span class="math">\(t\)</span> における平均</h4>
+<p>上記の結果から、世代 <span class="math">\(t-1\)</span> においてAアリルの個数が <span class="math">\(i_{t-1}\)</span> 個（Aの頻度が <span class="math">\(p_{t-1}\)</span>）であるとき、1世代後のAの個数 <span class="math">\(i_t\)</span> の期待値は、</p>
+<div class="math">$$\mathrm{E}[i_t] = \mathrm{E}[\mathrm{E}[i_t|i_{t-1}]] = \mathrm{E}[2Np_{t-1}] = \mathrm{E}[2N\times(i_{t-1}/2N)] = \mathrm{E}[i_{t-1}]$$</div>
+<p>なので、これを繰り返すことで、<span class="math">\(\mathrm{E}[i_t] = \mathrm{E}[i_0] = i_0\)</span> となり、初期の個数 <span class="math">\(i_0\)</span> と一致する。つまり、</p>
+<div class="math">$$\mathrm{E}[p_t] = p_0$$</div>
+<p>であり、<font color="red"><b>期待頻度</b></font>は<b>経過時間に依らず、初期頻度と同じ（一定）</b>である。</p>
+<h4>世代 <span class="math">\(t\)</span> における分散</h4>
+<p>世代 <span class="math">\(t\)</span> におけるAの個数 <span class="math">\(i_t\)</span> 分散は、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{V}[i_t]
+&amp;=\mathrm{E}\left[\mathrm{V}\left[i_{t} | i_{t-1}\right]\right]=\mathrm{E}\left[\mathrm{E}\left[i_{t}^{2} | i_{t-1}\right]-\mathrm{E}\left[i_{t} | i_{t-1}\right]^{2}\right]\\
+&amp;= \mathrm{E}\left[\mathrm{E}\left[i_{t}^{2} | i_{t-1}\right]\right]-\mathrm{E}\left[\mathrm{E}\left[i_{t} | i_{t-1}\right]^{2}\right]\\
+&amp;=\mathrm{E}\left[\mathrm{E}\left[i_{t}^{2} | i_{t-1}\right]\right]-\mathrm{E}\left[i_{0}^{2}\right]=\mathrm{E}\left[\mathrm{E}\left[i_{t}^{2} | i_{t-1}\right]\right]-i_{0}^{2}
+\end{aligned}
+$$</div>
+<p>ここで、
+</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{\mathrm{E}}\left[\mathrm{\mathrm{E}}\left[i_{t}^{2} | i_{t-1}\right]\right]
+&amp;=\textcolor{red}{\mathrm{\mathrm{E}}\left[\mathrm{\mathrm{\mathrm{V}}}\left[i_{t} | i_{t-1}\right]+\mathrm{\mathrm{E}}\left[i_{t} | i_{t-1}\right]^{2}\right]}(\because \text{条件付き分散})\\
+&amp;=\mathrm{E}\left[2Np_{t-1}(1-p_{t-1}) + i_{t-1}^2 \right]\\
+&amp;=\textcolor{blue}{\mathrm{E}\left[i_{t-1}^{2}\right]}\left(1-1 / 2N\right)+\textcolor{green}{\mathrm{E}\left[i_{t-1}\right]}
+\end{aligned}
+$$</div>
+<p>であるので、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{V}\left[i_{t}\right]+i_{0}^{2}
+&amp;=\textcolor{blue}{\left\{\mathrm{V}\left[i_{t-1}\right]+i_{0}^{2}\right\}}\left(1-1/2N\right)+\textcolor{green}{i_{0}}\\
+&amp;=\mathrm{V}\left[i_{t-1}\right]\left(1-1/ 2N\right)+i_{0}^{2}-i_{0}^{2} / 2N+i_{0}\\
+\mathrm{V}\left[i_{t}\right]-i_{0}\left(2N-i_{0}\right)
+&amp;=\left(1-1 / 2N\right)\left\{\mathrm{V}\left[i_{t-1}\right]-i_{0}\left(2N-i_{0}\right)\right\}
+\end{aligned}
+$$</div>
+<p>ここで、<span class="math">\(\mathrm{V}[i_0] = 0\)</span> に注意してこの漸化式を解くと、</p>
+<div class="math">$$\mathrm{V}\left[i_{t}\right]=i_{0}\left(2N-i_{0}\right)\left\{1-\left(1-1 / 2N\right)^{t}\right\}$$</div>
+<p>頻度に変換するために両辺を <span class="math">\((2N)^2\)</span> で割ると、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{V}\left[i_{t}\right] / (2N)^{2}
+&amp;=\left(i_{0} / 2N\right)\left(1-i_{0} / 2N\right)\left\{1-\left(1-1 /2 N\right)^{t}\right\} \\
+\mathrm{V}\left[i_{t} / 2N\right]
+&amp;=\left(i_{0} / 2N\right)\left(1-i_{0} / 2N\right)\left\{1-\left(1-1 /2 N\right)^{t}\right\}
+\end{aligned}
+$$</div>
+<p>以上より、</p>
+<div class="math">$$\mathrm{V}\left[p_{t}\right]=p_{0}\left(1-p_{0}\right)\left\{1-\left(1-\frac{1}{2N}\right)^{t}\right\}$$</div>
+<p>このことから、Aアリル頻度の分散は時間経過と共に大きくなり、<span class="math">\(t\rightarrow\infty\)</span> で <span class="math">\(\mathrm{V}[p_t] = p_0(1-p_0)\)</span> になることがわかる。</p>
+<p>なお、初期頻度 <span class="math">\(p_0\)</span> のAアリルを持つ個体が
+- 固定する（頻度が1になる）確率は <span class="math">\(p_0\)</span>
+- 消失する（頻度が0になる）確率は <span class="math">\(1-p_0\)</span></p>
+<p>である。</p>
+<h3>Moranモデル</h3>
+<ul>
+<li>個体数 <span class="math">\(N\)</span> の一倍体の生物</li>
+<li>単位時間あたり、無作為に選ばれた1個体が子供を産み、無作為に選ばれた1個体が死亡する。（同一個体が子供を残し死亡することもある）</li>
+<li>Aアリルを持つ個体数が <span class="math">\(i\)</span>、aアリルを持つ個体数が <span class="math">\(N-i\)</span></li>
+</ul>
+<p><span class="math">\(p=i/N\)</span> として、単位時間経過後に <span class="math">\(i\)</span> が <span class="math">\(j\)</span> になる確率 <span class="math">\(P_{ij}\)</span></p>
+<div class="math">$$P_{ij} =
+\begin{cases}
+  p(1-p), &amp; \text{if}\ j=i+1 \\
+  (1-p)p, &amp; \text{if}\ j=i-1 \\
+  p^2 + (1-p)^2, &amp; \text{if}\ j=i \\
+\end{cases}
+$$</div>
+<h4>1単位時間経過後の平均と分散</h4>
+<p>現在のAアリルを持つ個体数が <span class="math">\(i(=Np)\)</span> のとき、1単位時間経過後のAアリルを持つ個体数 <span class="math">\(j\)</span> の期待値 <span class="math">\(\mathrm{E}[j]\)</span> と分散 <span class="math">\(\mathrm{V}[j]\)</span> は、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{E}[j]
+&amp;= (Np+1)p(1-p) + (Np-1)(1-p)p + Np\left(p^2 + (1-p)^2\right)\\
+&amp;= Np = i\\
+\mathrm{V}[j]
+&amp;= (Np+1-\mathrm{E}[j])^2p(1-p) + (Np-1-\mathrm{E}[j])^2(1-p)p\\
+&amp;+ (Np-\mathrm{E}[j])^2\left(p^2 + (1-p)^2\right) = 2p(1-p)\\
+&amp;= 2(i/N)(1-i/N)\\
+\mathrm{E}[j^2]
+&amp;= \mathrm{V}[j] + \mathrm{E}[j]^2 = 2p(1-p) + N^2p^2\\
+&amp;= 2\left(\frac{i}{N}\right)\left(1-\frac{i}{N}\right) + i^2
+\end{aligned}
+$$</div>
+<h4>時間 <span class="math">\(t\)</span> における平均</h4>
+<p>上記の結果から、世代 <span class="math">\(t-1\)</span> においてAアリルを持つ個体数が <span class="math">\(i_{t-1}\)</span>（Aアリルの頻度が <span class="math">\(p_t\)</span>）であるとき、1世代後のAアリルを持つ個体数 <span class="math">\(i_t\)</span> の期待値は、</p>
+<div class="math">$$\mathrm{E}[i_t] = \mathrm{E}[\mathrm{E}[i_t|i_{t-1}]] = \mathrm{E}[N\times(i_{t-1}/N)] = \mathrm{E}[i_{t-1}]$$</div>
+<p>なので、これを繰り返すことで、<span class="math">\(\mathrm{E}[i_t] = \mathrm{E}[i_0] = i_0\)</span> となり、初期のAアリルを持つ個体数 <span class="math">\(i_0\)</span> と一致する。つまり、</p>
+<div class="math">$$\mathrm{E}[p_t] = p_0$$</div>
+<p>であり、<font color="red"><b>期待頻度</b></font>は<b>経過時間に依らず、初期頻度と同じ（一定）</b>である。</p>
+<h4>時間 <span class="math">\(t\)</span> における分散</h4>
+<p>時間 <span class="math">\(t\)</span> におけるAアリルを持つ個体数の分散は、以下で求められる。</p>
+<div class="math">$$
+\mathrm{V}[i_t] =\mathrm{E}\left[\mathrm{E}\left[i_{t}^{2} | i_{t-1}\right]\right]-i_{0}^{2}
+$$</div>
+<p>ここで、
+</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{\mathrm{E}}\left[\mathrm{\mathrm{E}}\left[i_{t}^{2} | i_{t-1}\right]\right]
+&amp;=\textcolor{red}{\mathrm{\mathrm{E}}\left[\mathrm{\mathrm{\mathrm{V}}}\left[i_{t} | i_{t-1}\right]+\mathrm{\mathrm{E}}\left[i_{t} | i_{t-1}\right]^{2}\right]}(\because \text{条件付き分散})\\
+&amp;=\mathrm{E}\left[2 \times\left(i_{t-1} / N\right) \times\left(1-\left(i_{t-1} / N\right)\right)+i_{t-1}^{2}\right]\\
+&amp;=\textcolor{blue}{\mathrm{E}\left[i_{t-1}^{2}\right]}\left(1-2 / N^{2}\right)+2 \textcolor{green}{\mathrm{E}\left[i_{t-1}\right]} / N
+\end{aligned}
+$$</div>
+<p>であるので、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{V}\left[i_{t}\right]+i_{0}^{2}
+&amp;=\textcolor{blue}{\left\{\mathrm{V}\left[i_{t-1}\right]+i_{0}^{2}\right\}}\left(1-2 / N^{2}\right)+\textcolor{green}{2 i_{0}} / N \\
+&amp;=\mathrm{V}\left[i_{t-1}\right]\left(1-2 / N^{2}\right)+i_{0}^{2}-2 i_{0}^{2} / N^{2}+2 i_{0} / N\\
+\mathrm{V}\left[i_{t}\right]-i_{0}\left(N-i_{0}\right)
+&amp;=\left(1-2 / N^{2}\right)\left\{\mathrm{V}\left[i_{t-1}\right]-i_{0}\left(N-i_{0}\right)\right\}
+\end{aligned}
+$$</div>
+<p>ここで、<span class="math">\(\mathrm{V}[i_0] = 0\)</span> に注意してこの漸化式を解くと、</p>
+<div class="math">$$\mathrm{V}\left[i_{t}\right]=i_{0}\left(N-i_{0}\right)\left\{1-\left(1-2 / N^{2}\right)^{t}\right\}$$</div>
+<p>頻度に変換するために両辺を <span class="math">\(N^2\)</span> で割ると、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{V}\left[i_{t}\right] / N^{2}
+&amp;=\left(i_{0} / N\right)\left(1-i_{0} / N\right)\left\{1-\left(1-2 / N^{2}\right)^{t}\right\} \\
+\mathrm{V}\left[i_{t} / N\right]
+&amp;=\left(i_{0} / N\right)\left(1-i_{0} / N\right)\left\{1-\left(1-2 / N^{2}\right)^{t}\right\}
+\end{aligned}
+$$</div>
+<p>以上より、</p>
+<div class="math">$$\mathrm{V}\left[p_{t}\right]=p_{0}\left(1-p_{0}\right)\left\{1-\left(1-\frac{2}{N^2}\right)^{t}\right\}$$</div>
+<p>このことから、Aアリルを持つ個体頻度の分散は時間経過と共に大きくなり、<span class="math">\(t\rightarrow\infty\)</span> で <span class="math">\(\mathrm{V}[p_t] = p_0(1-p_0)\)</span> になることがわかる。</p>
+<p>なお、Wright-Fisherモデルと同様に、初期頻度 <span class="math">\(p_0\)</span> のAアリルを持つ個体が
+- 固定する（頻度が1になる）確率は <span class="math">\(p_0\)</span>
+- 消失する（頻度が0になる）確率は <span class="math">\(1-p_0\)</span></p>
+<p>である。</p>
+<h2 id="anchor2">ヘテロ接合度の時間変化</h2>
+
+<h3>ヘテロ接合度</h3>
+<p>ある集団中における、</p>
+<ul>
+<li>アリルAの対立遺伝子頻度を <span class="math">\(p\)</span></li>
+<li>アリルaの対立遺伝子頻度を <span class="math">\(q\)</span></li>
+</ul>
+<p>とおく。<span class="math">\((p+q=1)\)</span></p>
+<p>ハーディ・ワインバーグ平衡にあると仮定した場合のヘテロ接合体の<font color="red"><b>期待頻度 <span class="math">\(2pq\)</span> </b></font>をヘテロ接合度 <span class="math">\(H\)</span> という。<b>（※ ヘテロ接合体の<font color="red">観察頻度</font>ではないことに注意！！）</b></p>
+<h3>Wright-Fisherモデル</h3>
+<p>世代 <span class="math">\(t\)</span> におけるヘテロ接合度は <span class="math">\(H_t=2p_t(1-p_t)\)</span> である。</p>
+<p>ここで、Wright-Fisherモデルでは <span class="math">\(\mathrm{E}[p_t] = p_0\)</span> と、<b>期待頻度が経過時間に依らず、一定</b>であるから、次世代の <span class="math">\(H\)</span> の期待値 <span class="math">\(H_{t+1}\)</span> は、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{E}[H_{t+1}]
+&amp;= \mathrm{E}[2p_t(1-p_t)]\\
+&amp;= \mathrm{E}[2\times i/2N\times (2N-i)/2N]\\
+&amp;= 2\mathrm{E}[i]/2N - \textcolor{blue}{2\mathrm{E}[i^2]}/(2N)^2\\
+&amp;= 2p - \textcolor{blue}{4Np\{1+(2N-1)p\}}/(2N)^2\qquad(\because \text{上で計算済み})\\
+&amp;= 2p_t(1-p_t)(1-1/2N) = H_t(1-1/2N)
+\end{aligned}
+$$</div>
+<p>ヘテロ接合度の初期値を <span class="math">\(H_0\)</span> とすると、<span class="math">\(\mathrm{E}[H_t] = H_0(1-1/2N)^t\)</span> であるので、<font color="red"><b>機械的浮動</b></font>があることでヘテロ接合度は毎世代 <span class="math">\((1-1/2N)\)</span> 倍に<b>減少する</b>ことがわかる。</p>
+<h3>Moranモデル</h3>
+<p>Moranモデルでは1倍体を考えているので、ヘテロ接合度 <span class="math">\(H\)</span> とは、<span class="math">\(N\)</span> 個体からなる集団から<font color="red"><b>復元抽出</b></font>で<b>無作為にとった <span class="math">\(2\)</span> 個体が異なるアリルを持つ確率</b>のことである。</p>
+<p><span class="math">\(p_t=j/N\)</span> として、<span class="math">\(1\)</span> 単位時間経過後の <span class="math">\(H\)</span> の期待値 <span class="math">\(H_{t+1}\)</span> は、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{E}[H_{t+1}]
+&amp;= \mathrm{E}[2\times j/N\times (N-j)/N]\\
+&amp;= 2\mathrm{E}[j]/N-\textcolor{blue}{2\mathrm{E}[j^2]/N^2}\\
+&amp;= 2p - \textcolor{blue}{\{4p(1-p)/N^2 + 2p^2\}}\qquad(\because \text{上で計算済み})\\
+&amp;= 2p_t(1-p_t)(1-2/N^2) = H_t(1-2/N^2)
+\end{aligned}
+$$</div>
+<p>ヘテロ接合度の初期値を <span class="math">\(H_0\)</span> とすると、<span class="math">\(\mathrm{E}[H_t] = H_0(1-2/N^2)^t\)</span> であるので、<font color="red"><b>機械的浮動</b></font>があることでヘテロ接合度は毎世代 <span class="math">\((1-2/N^2)\)</span> 倍に<b>減少する</b>ことがわかる。</p>
+<h2 id="anchor3">固定確率の理論的導出</h2>
+
+<h3>Wright-Fisherモデル</h3>
+<p>上の議論により、ヘテロ接合度のは <span class="math">\(\mathrm{E}[H_t] = H_0(1-1/2N)^t\)</span> で表されるので、<span class="math">\(t\rightarrow\infty\)</span> で、<span class="math">\(\mathrm{E}[H_t]=2p_tq_t=0\)</span> になることがわかる。</p>
+<p>つまり、<b>初期頻度によらず</b>以下が起こる。
+- <span class="math">\(p_t=0\)</span>（Aアリルが消滅）
+- <span class="math">\(q_t=0\)</span>（Aアリルが固定）</p>
+<p>ここで、<b>「初期頻度 <span class="math">\(p\)</span> の対立遺伝子が固定する確率 <span class="math">\(u(p)\)</span>」</b>を求めることを考える。</p>
+<p>1世代後に頻度 <span class="math">\(p\)</span> から頻度 <span class="math">\(p+\Delta p\)</span> に変化する確率を <span class="math">\(t(\Delta p)\)</span> とおくと、（<span class="math">\(\sum_{\Delta p}t(\Delta p) = 1\)</span>）</p>
+<div class="math">$$u(p) = \sum_{\Delta p}t(\Delta p)u(p+\Delta p)$$</div>
+<p>となる。ここで、Taylor展開によって <span class="math">\(\Delta p\)</span> の3次以上の項を無視すると、</p>
+<div class="math">$$
+\begin{aligned}
+u(p)
+&amp;= \sum_{\Delta p}t(\Delta p)\textcolor{blue}{u(p+\Delta p)}\\
+&amp;= \sum_{\Delta p}t(\Delta p)\textcolor{blue}{\left\{u(p)+u'(p)\Delta p + (1/2)u''(p)(\Delta p)^2\right\}}\\
+&amp;= u(p) + u'(p)\mathrm{E}[\Delta p] + (1/2)u''(p)\mathrm{E}[(\Delta p)^2]
+\end{aligned}$$</div>
+<p>以上より、以下の式が成立することがわかる。</p>
+<div class="math">$$(1/2)u''(p)\textcolor{green}{\mathrm{E}[(\Delta p)^2]} + u'(p)\textcolor{blue}{\mathrm{E}[\Delta p]} = 0\ \cdots(\ast)$$</div>
+<h4>自然選択上中立の場合</h4>
+<p>自然選択に置いて、適応度に差がない場合を考える。すると、</p>
+<div class="math">$$
+\begin{aligned}
+\textcolor{blue}{\mathrm{E}[\Delta p]}
+&amp;= \mathrm{E}[i/2N-p] = (1/2N)\mathrm{E}[i]-\mathrm{E}[p] = (1/2N)\cdot2Np-p = 0\\
+\textcolor{green}{\mathrm{E}[(\Delta p)^2]}
+&amp;= \mathrm{V}[\Delta p] + \textcolor{blue}{\mathrm{E}[\Delta p]}^2 = \mathrm{V}[\Delta p] = \mathrm{V}[i/2N-p] \\
+&amp;= \mathrm{V}[i/2N] = 2Np(1-p) / (2N)^2 = p(1-p)/N
+\end{aligned}
+$$</div>
+<p>これらを <span class="math">\((\ast)\)</span> に代入すると、<span class="math">\(u(p)=Cp\ (C:\mathrm{const.})\)</span> であり、<span class="math">\(u(0)=0,u(1)=1\)</span> より、<span class="math">\(C=1\)</span> とわかる。したがって、<span class="math">\(u(p) = p\)</span> である。</p>
+<p>すなわち、初期頻度が <span class="math">\(1/2N\)</span> で<b>自然選択上中立(selectively natural)</b>な突然変異が固定する確率 <span class="math">\(u_n\)</span> は、<b><span class="math">\(u_n= 1/2N\)</span></b> である。</p>
+<h4>自然選択上中立ではない場合</h4>
+<p>各遺伝子型に以下の適応度の差がある場合を考える。</p>
+<table>
+<thead>
+<tr>
+<th align="center">AA</th>
+<th align="center">Aa</th>
+<th align="center">aa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(1\)</span></td>
+<td align="center"><span class="math">\(1-s/2\)</span></td>
+<td align="center"><span class="math">\(1-s\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>すると、<b>決定論的方程式</b>から <span class="math">\(\mathrm{E}[\Delta p] = (s/2)p(1-p)\)</span> がわかるので、</p>
+<div class="math">$$
+\begin{aligned}
+\textcolor{blue}{\mathrm{E}[\Delta p]}
+&amp;= (s/2)p(1-p)\\
+\textcolor{green}{\mathrm{E}[(\Delta p)^2]}
+&amp;= \mathrm{V}[\Delta p] + \textcolor{blue}{\mathrm{E}[\Delta p]}^2 = \mathrm{V}[i/2N-p] + \mathrm{E}[\Delta p]^2\\
+&amp;= (1/2N)^2\mathrm{V}[i] + \mathrm{V}[p] + (s/2)^2p^2(1-p)^2\\
+&amp;= (1/2N)^2 \times 2N(p+\Delta p)(1-p-\Delta p) + (s/2)^2p^2(1-p)^2 \\
+&amp;\fallingdotseq p(1-p)/2N
+\end{aligned}
+$$</div>
+<p>これらを <span class="math">\((\ast)\)</span> に代入すると、</p>
+<div class="math">$$
+\begin{aligned}
+(1/2)u''(p)\textcolor{green}{p(1-p)/2N} + u'(p)\textcolor{blue}{(s/2)p(1-p)}
+&amp;= 0\\
+u''(p) + u'(p)\cdot2Ns
+&amp;= 0\\
+[u'(p)\exp(2Nsp)]'
+&amp;= 0 \\
+u'(p)
+&amp;= C\exp(-2Nsp)\\
+\therefore u(p)
+&amp;= C_1\exp(-2Nsp) + C_2
+\end{aligned}$$</div>
+<p>ここで、<span class="math">\(u(0)=0,u(1)=1\)</span> より、<span class="math">\(u(p) = (1-e^{-2Nsp})/(1-e^{-2Ns})\)</span> となる。</p>
+<p>すなわち、初期頻度が <span class="math">\(1/2N\)</span> で<b>ヘテロだと <span class="math">\(s/2\)</span>、ホモだと <span class="math">\(s\)</span> 有利</b>な突然変異が固定する確率 <span class="math">\(u_s\)</span> は、<b><span class="math">\(u_s= (1-e^{-s})/(1-e^{-2Ns})\)</span></b> である。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-07-03T00:00:00+09:00"> 7 3, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-07-03T00:00:00+09:00"> 7 3, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#fen-zi-jin-hua-xue-ref">分子進化学
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

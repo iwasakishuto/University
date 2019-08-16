@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 分子進化学, 分子進化学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="分子進化学 第6回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/分子進化学-6.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-06-12T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-06-12T00:00:00+09:00" />
+<meta name="twitter:title" content="分子進化学 第6回 ">
+<meta name="twitter:description" content="">
+
+        <title>分子進化学 第6回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/分子進化学-6.html"> 分子進化学 第6回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第6回 2019/6/12</h1>
+<ul>
+<li>講師：<a href="https://www.nig.ac.jp/nig/ja/research/interviews/faculty-interviews/saitou">斎藤 成也</a></li>
+<li>参考書：<a href="https://www.springer.com/gp/book/9783319926414">Introduction to Evolutionary Genomics
+ Second Edition</a></li>
+</ul>
+<h2>Chapter 14 Omic Worlds and their Databases</h2>
+<ul>
+<li>14.1 Omic Worlds</li>
+<li>14.1.1 Genome Databases</li>
+<li>14.1.2 Transcriptomes and Their Databases</li>
+<li>14.1.3 Proteome and Protein Databases</li>
+<li>14.1.4 Metabolomes and Metabolite Databases</li>
+<li>14.1.5 Phenomes and Ecomes</li>
+<li>14.2 Other Databases</li>
+<li>14.2.1 INSDC Databases</li>
+<li>14.2.2 Literature Databases</li>
+<li>14.2.3 Evolution-Related Databases</li>
+<li>14.3 Historical Perspectives on Biodatabase Developments</li>
+</ul>
+<h3>14.1 Omic Worlds</h3>
+<h4>14.1.1 Genome Databases</h4>
+<p>進化ゲノミクスにおいて最も重要なデータベースは、ゲノムの塩基配列のデータベースである。世界には以下の2つの包括的なデータベースが存在する。</p>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/genome">National Center for Biotechnology Information (NCBI)</a></li>
+<li><a href="http://ensemblgenomes.org/">Ensembl Genome</a></li>
+</ul>
+<p><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/324-Table14.1-1.png"></p>
+<p>また、包括的なゲノム塩基配列データベースの他に、あるグループに限ったデータベースも存在し、以下のようなものがある。</p>
+<table>
+<thead>
+<tr>
+<th align="left">Organism group</th>
+<th align="left">Genome database</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Prokaryotes</td>
+<td align="left"><a href="http://mbgd.nibb.ac.jp">MBGD</a></td>
+</tr>
+<tr>
+<td align="left">Plants</td>
+<td align="left"><a href="https://phytozome.jgi.doe.gov/pz/portal.html">Phytozome</a></td>
+</tr>
+<tr>
+<td align="left">Plants</td>
+<td align="left"><a href="http://www.plantgdb.org">PlantGDB</a></td>
+</tr>
+<tr>
+<td align="left">Plants</td>
+<td align="left"><a href="http://pgdbj.jp">PGDB</a></td>
+</tr>
+<tr>
+<td align="left">Fungi</td>
+<td align="left"><a href="https://genome.jgi.doe.gov/programs/fungi/index.jsf">MycoCosm</a></td>
+</tr>
+<tr>
+<td align="left">Fungi</td>
+<td align="left"><a href="http://fungidb.org/fungidb/">FungiDB</a></td>
+</tr>
+</tbody>
+</table>
+<h4>14.1.2 Genome Databases</h4>
+<p>DNAから転写された転写産物であるRNAのデータベース（例:<a href="http://www.eurexpress.org/ee/">Eureexpress atlas</a>）も存在する。</p>
+<p>mRNA の発現状況を把握する、いわゆる遺伝子発現プロファイリングのための手法として使われている手法は<font color="red"><b>Serial Analysis of Gene Expression(SAGE)</b></font>で、この手法は以下のステップに分かれている。</p>
+<ol>
+<li>腫瘍などの試料から mRNA を単離する。</li>
+<li>単離した mRNA の特定の位置から十～数十塩基対の配列（SAGEタグ）を分離する。</li>
+<li>SAGEタグ連結してある程度の長さの配列（コンカテマー）を作成する。</li>
+<li>コンカテマーをベクターに挿入し、バクテリアに導入してクローニングする。</li>
+<li>DNAシークエンシングを行って配列を決定する。</li>
+<li>読まれた配列からそれぞれのSAGEタグを計数し、データを分析して発現状況を調べる。</li>
+</ol>
+<p>しかし、塩基配列のシークエンスが安くなったこともあり、現在では<font color="red"><b>DNAマイクロアレイ(DNA microarray, DNA chip)</b></font>によって<b>直接</b>、<b>数万から数十万の遺伝子発現を一度に</b>調べる手法がとられている。</p>
+<p>DNAマイクロアレイでは、数万から数十万に区切られたスライドガラス、またはシリコン基盤上にDNAの部分配列を高密度に配置し固定したものである。</p>
+<p>あらかじめ塩基配列の明らかな1本鎖のDNAを多種、基板上に配置しておき、これに<b>検体（<font color="red">メッセンジャーRNA（mRNA）を逆転写酵素で相補的DNA(cDNA)に変換したもの</font>）</b>を反応<font color="red"><b>（ハイブリダイゼーション）</b></font>させれば、検体のDNA配列と相補的な塩基配列の部分にのみ検体のDNA鎖が結合する。</p>
+<p>したがって、結合位置を蛍光や電流によって検出すれば、網羅的に検体に含まれるDNA配列を知る事が出来る。検体の塩基配列が予測できる場合には、効率的にその配列が特定できる。</p>
+<h4>14.1.3 Proteome and Protein Databases</h4>
+<p>トランスクリプトーム解析によってmRNAの発現量に関する情報は得られるが、実際にそれらがタンパク質に翻訳されているかはわからない。したがって、タンパク質の解析をすることが必要である。</p>
+<p>タンパク質解析の初期は「Two-dimensional protein electrophoresis, developed by O’Farrell」が広く使われていたが、現在では「matrix-associated laser desorption/ionization (MALDI) coupled with mass
+spectrometer」が広く使われている。</p>
+<p>タンパク質に関するデータベースには長い歴史があり、色々な派生系がある。
+最も代表的なのは<a href="http://www.uniprot.org">UNIPROT</a>で、以下のようなアミノ酸の配列データが格納されている。</p>
+<p>タンパク質解析の別視点における重要な手法は3次元立体構造解析で、登録データ数はUNIPROTと比べるとはるかに少ないが、<a href="https://www.rcsb.org">Protein Data Bank(PDB)</a>には3次元立体構造に特化したデータが格納されている。</p>
+<table>
+<thead>
+<tr>
+<th align="center">UNIPROT</th>
+<th align="center">PDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/328-Figure14.1-1.png"></td>
+<td align="center"><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/329-Figure14.2-1.png"></td>
+</tr>
+</tbody>
+</table>
+<p>他の重要なタンパク質関連のデータベースはドメインごとのもので、<a href="http://pfam.xfam.org">PFAM</a>や<a href="https://www.ebi.ac.uk/interpro/">InterPro</a>などがある。</p>
+<p>タンパク質のデータは急激に増えているため、現在は<a href="https://www.ebi.ac.uk/pride/archive/">PRIDE Archive</a>や<a href="http://www.peptideatlas.">Peptide Atlas</a>など、いくつかのデータベースが存在する。</p>
+<h4>14.1.4 Metabolomes and Metabolite Databases</h4>
+<p>DNA,RNA,タンパク質の遺伝情報の流れはセントラルドグマと呼ばれ非常に重要な役割を果たすが、細胞を構成する物質にはさらに<b>糖</b>、<b>有機酸</b>、<b>アミノ酸</b>など多くの低分子が存在し、その種類は数千種に及ぶ。これらの物質の多くは、酵素などの代謝活動によって作り出された<font color="red"><b>代謝物質(Metabolite)</b></font>である。</p>
+<p>現在では、細胞の働きを包括的に理解しようとするとき、DNA 配列の網羅的解析（ゲノム解析）やタンパク質の網羅的解析（プロテオーム解析）に加えて、代謝物質の網羅的解析（メタボローム解析）が重要であると言われている。</p>
+<p>これは、生命のロバストネスにより、<b>マイクロアレイ解析で変化が観察されても、表現型に最も近いメタボローム解析をしてみると変化が見られない</b>こともあるからである。</p>
+<h4>14.1.5 Phenomes and Ecomes</h4>
+<p>遺伝学の主な目的の1つは、遺伝子型と表現型を関連付けることである。</p>
+<p>表現型は人の目による認識と深く結びついているが、現在ではX線またはNMR CTスキャニングを用いたイメージングによる広大な形態学的特徴の自動収集が行われることもある。</p>
+<h3>14.2 Other Databases</h3>
+<p>他にも進化学において重要なデータベースは存在する。</p>
+<table>
+<thead>
+<tr>
+<th align="left">名前</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="http://www.genome.jp/kegg/pathway.html">Kyoto Encyclopedia of Genes and Genomes (KEGG)</a> pathway databases</td>
+<td align="left">人手によって描かれた代謝産物の経路。</td>
+</tr>
+<tr>
+<td align="left"><a href="http://www.geneontology.org">Gene Ontology Consortium Webpage</a>.)</td>
+<td align="left">遺伝子機能の説明</td>
+</tr>
+</tbody>
+</table>
+<p>また、人に特化した表現型のデータセットはいくつか存在する。</p>
+<table>
+<thead>
+<tr>
+<th align="left">名前</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="http://www.ukbiobank.ac.uk/">UK BioBank</a></td>
+<td align="left">DNAサンプルとヒト表現型データ</td>
+</tr>
+<tr>
+<td align="left"><a href="https://carta.anthropogeny.org/">Matrix of Comparative Anthropogeny(MOCA)</a></td>
+<td align="left">ヒトと進化的に近い動物（チンパンジー、ボノボ、ゴリラ、オランウータン、などの「類人猿」）の情報</td>
+</tr>
+</tbody>
+</table>
+<h4>14.2.1 INSDC Databases</h4>
+<p>地球上には膨大な数の生物がおり、それらのほとんどはシークエンスされていない。したがって、人類の間でデータを共有し、同じフォーマットに整えることは極めて重要である。そこで、以下の3つの機関が連携して<a href="http://www.insdc.org">International Nucleotide Sequence Database Collaboration (INSDC)</a>を形成した。</p>
+<table>
+<thead>
+<tr>
+<th align="left">名前</th>
+<th align="left">機関</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://www.ncbi.nlm.nih.gov/genbank/">GenBank</a></td>
+<td align="left">National Center for Biotechnology Information (NCBI) in USA</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.ebi.ac.uk/ena">European Nucleotide Archive (ENA)</a></td>
+<td align="left">European Bioinformatics Institute (EBI)</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.ddbj.nig.ac.jp/">DNA Data Bank of Japan (DDBJ)</a></td>
+<td align="left">National Institute of Genetics (NIG)</td>
+</tr>
+</tbody>
+</table>
+<h4>14.2.2 Literature Databases</h4>
+<table>
+<thead>
+<tr>
+<th align="left">名前</th>
+<th align="left">機関</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://www.ncbi.nlm.nih.gov/pubmed/">PubMed</a></td>
+<td align="left">NCBI</td>
+<td align="left">自由にアクセスできるが、名前の通り医療や動物向けの論文が多い。</td>
+</tr>
+<tr>
+<td align="left"><a href="https://scholar.google.com">Google Scholar</a></td>
+<td align="left">Google</td>
+<td align="left">自由にアクセスでき、ジャーナルだけでなく書籍や論文など、様々なジャンルをカバーしている。</td>
+</tr>
+<tr>
+<td align="left">Science Citation Index of Thomson Reuters/ Scopus of Elsevier</td>
+<td align="left"></td>
+<td align="left">利用料が膨大であり、一部の研究機関のみが利用している。</td>
+</tr>
+</tbody>
+</table>
+<h4>14.2.3 Evolution-Related Databases</h4>
+<p>種内のDNA多型は重要な進化的現象であり、特にヒトに関して広く研究されている。そのため、データベースも用意されている。</p>
+<table>
+<thead>
+<tr>
+<th align="left">名前</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://www.mitomap.org/MITOMAP">MITOMAP</a></td>
+<td align="left">人手によって精選されたヒトミトコンドリアDNAに関する公開済みおよび未公開データのデータベース</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.ncbi.nlm.nih.gov/snp">dbSNP</a></td>
+<td align="left">SNPsの包括的なデータベースから始まったが、現在はマイクロサテライトや小規模の挿入や欠失のデータも含まれている。</td>
+</tr>
+<tr>
+<td align="left"><a href="http://tolweb.org/tree/">Tree of Life</a></td>
+<td align="left">系統樹のデータベース</td>
+</tr>
+<tr>
+<td align="left"><a href="https://www.ncbi.nlm.nih.gov/taxonomy">NCBI Taxonomy</a></td>
+<td align="left">分類学のデータベース。ネアンデルタール人とデニソヴァン人がホモ・サピエンスとして分類されている。</td>
+</tr>
+<tr>
+<td align="left"><a href="http://www.timetree.org">TimeTree</a></td>
+<td align="left">いつ種が分岐したか、という時間データを出版された研究成果をアセンブルすることで推測しているデータベース</td>
+</tr>
+</tbody>
+</table>
+<h3>14.3 Historical Perspectives on Biodatabase Developments</h3>
+<p>1950年代にデジタルコンピュータが非軍用データベースに使用されるようになる前は、紙でデータを集めていた、みたいな歴史の話。</p>
+<h2>Chapter 15 Homology Search and Multiple Alignment</h2>
+<p>ヌクレオチドおよびアミノ酸配列の<font color="red"><b>進化的相同性</b></font>を発見する方法<b>（ホモロージーサーチ）</b>と、それらを分析する方法<b>（ペアワイズアラインメント・マルチプルアラインメント・ゲノムワイドシーケンス）</>について見ていく。</p>
+<ul>
+<li>15.1 What Is Homology?</li>
+<li>15.2 Homology Search</li>
+<li>15.3 Pairwise Alignment</li>
+<li>15.4 Multiple Alignment</li>
+<li>15.5 Genomewide Homology Viewers</li>
+<li>15.6 Historical Perspectives on CLUSTAL Series Developments</li>
+</ul>
+<h3>15.1 What Is Homology?</h3>
+<p>"Homology" という言葉は、 "analogy" と<b>対照的な意味</b>として、イギリスの解剖学者であるRichard Owenによって提案されたが、現在では<font color="red"><b>「ある形態や遺伝子が共通の祖先に由来すること」</b></font>を指している。</p>
+<p>比較している配列が共通の祖先に由来しない場合、それらの配列は<b>独立に進化してきた</b>ことを意味する。しかし、シークエンスによって得られた配列を比較するとかなりの相同性を持っていることから、<b>確率論的に独立に進化してきたとは結論づけにくい。</b></p>
+<h3>15.2 Homology Search</h3>
+<p>ホモロジーサーチとは、<b>「異なる分子間のアミノ酸配列やヌクレオチド配列の類似性に基づいて比較を行うこと」</b>であり、「クエリシーケンス」と相同配列をデータベースから検索することがよく行われる。<a href="https://blast.ncbi.nlm.nih.gov/Blast.cgi">BLAST</a>が最も有名であり、広く使われている。</p>
+<h3>15.3 Pairwise Alignment</h3>
+<p>ホモロジーサーチの理論的な基礎は、ペアワイズアラインメントである。ペアワイズアラインメントでは、生物学的により確からしい結果をもたらすようにスコア行列をモデル化し、動的計画法を用いて解くことが行われる。</p>
+<h3>15.4 Multiple Alignment</h3>
+<p>3つ以上の配列を比較したいことはよくあるが、単純にペアワイズアラインメントを繰り返すだけでは組合せ爆発が起きてしまう。そこで、<a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a>など、様々なアルゴリズムが考えられ、ソフトウェア化されている。</p>
+<p>なお、それらは<a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.0030123">Recent Evolutions of Multiple Sequence Alignment Algorithms</a>の論文にまとめられている。</p>
+<p><img src="https://journals.plos.org/ploscompbiol/article/figure/image?size=large&id=10.1371/journal.pcbi.0030123.t001"></p>
+<h3>15.5 Genomewide Homology Viewers</h3>
+<p>ホモロジーサーチの結果を可視化するツールはいくつかあるが、以下の2つが広く使われている。どちらも、基本的には片方の配列をデータベースとし、もう片方の配列を自動的に細切れにしてクエリとする。</p>
+<p>|<a href="http://pipmaker.bx.psu.edu/pipmaker">PipMaker</a>|<a href="http://genome.lbl.gov/vista/index.shtml">VISTA</a>|
+|局所的整列の集合体として全体の相似度を表現する方法であり、相同性の程度が直感的に理解しやすく、逆位や重複などがある場合にも使いやすい。|固定した塩基長のウインドウを配列全体にずらして当てはめていった時の各所のスコアを表示する方法であり、指定したウインドウサイズに依存して結果が変化する。|
+|<img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/368-Figure15.11-1.png">|<img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/369-Figure15.12-1.png">|</p>
+<h3>15.6 Historical Perspectives on CLUSTAL Series Developments</h3>
+<p><a href="http://www.clustal.org/">CLUSTAL</a>は広く使われているマルチプルアラインメントのプログラムで、以下の3ステップのアルゴリズムからなる。</p>
+<ol>
+<li>1対1の整列（ペアワイズアラインメント）を行う
+1対1の整列を総当たりで行い、配列一致度の行列を作成する。</li>
+<li>配列一致度に基づいて樹形図(Guide Tree)を得る
+配列一致度を距離尺度に用いて階層型クラスタリングを行う。この際のアルゴリズムは近隣結合法（または非加重結合法）が用いられている。</li>
+<li>樹形図に沿って配列を追加しながら整列を行う
+最も一致度の高い配列ペアからはじめて、樹形図に沿って1つずつ配列を追加しながら整列させていくことで効率的に多重整列を得る。</li>
+</ol>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-06-12T00:00:00+09:00"> 6 12, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-06-12T00:00:00+09:00"> 6 12, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#fen-zi-jin-hua-xue-ref">分子進化学
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

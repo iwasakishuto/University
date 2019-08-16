@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅰ, ゲノム配列解析論Ⅰ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅰ 第5回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅰ-5.html" />
+<meta property="og:description" content="Multiple sequence alignment &amp; Phylogeny" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-20T12:10:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-20T12:10:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅰ 第5回 ">
+<meta name="twitter:description" content="Multiple sequence alignment &amp; Phylogeny">
+
+        <title>ゲノム配列解析論Ⅰ 第5回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅰ-5.html"> ゲノム配列解析論Ⅰ 第5回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第5回 2019/5/20</h1>
+<ul>
+<li>講師：<a href="https://researchmap.jp/kazutaka-katoh/">加藤和貴</a></li>
+<li><a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a></li>
+</ul>
+<h2>講義内容</h2>
+<ul>
+<li>About MAFFT</li>
+<li>Multiple sequence alignment methods</li>
+<li>Dynamic Programming?</li>
+<li>Heuristics (Progressive method, Iterative refinement method, Consistency)</li>
+<li>最近の話題</li>
+<li>可変スコアリングマトリクス<ul>
+<li>Vingron &amp; Waterman (1994), Thompson et al. (1994) → Katoh &amp; Standley (2016)</li>
+</ul>
+</li>
+<li>タンパク質の立体構造を考慮したアラインメントのための計算サービス<ul>
+<li>O’Sullivan et al (2004) → Rozewicki et al (2019)</li>
+</ul>
+</li>
+<li>鎖状案内木の有用性<ul>
+<li>Barton &amp; Sternberg (1987) → Boyce et al. (2014) ╳ Tan et al. (2015) ╳ Fox
+et al. (2016) ╳ Yamada et al. (2016)</li>
+</ul>
+</li>
+<li>半自動アラインメント</li>
+</ul>
+<h2>About MAFFT</h2>
+<h3>What is multiple sequence alignment(MSA)?</h3>
+<p>多重配列アラインメントは、<b>「複数の配列を比較することで元となっている配列を予測する手法」</b>のこと。</p>
+<p>時間の経過とともに各塩基配列は<b>独立に</b>挿入・欠失・置換を受けるため、現在の配列を単純に比較しても元となった配列を推定することは難しい。</p>
+<p>そこで、多くの場合「アラインメントをスコアリングし、最高のスコアのアラインメントを選択する」という手法を取る。スコアリングのモデルは様々なものが提案されているが、<b>「(ギャップ開始ペナルティ) &gt; (ギャップ伸長ペナルティ)」</b>や<b>「(ロイシン→イソロイシン) &lt; (システイン→グリシン)」</b>などの<b>生物学的に意味のある（進化系統樹と整合性のある）関係性を入れたスコア</b>が研究されている。</p>
+<p>アラインメントという操作は適応範囲がかなり広く、進化系統樹解析、タンパク質やRNNの機能構造・二次構造予測、シークエンス時のコンセンサス配列決定、オーソログ・ホモログ識別などに用いられている。そのため、かなり研究が盛んな分野でもある。</p>
+<p>加藤先生は<a href="https://mafft.cbrc.jp/alignment/software/">MAFFT</a>というアプリケーションを作成しており、かなり利用されている。</p>
+<h2>Multiple sequence alignment methods</h2>
+<p>今回の授業では、MAFFTの中で使われているアルゴリズムのうち、以下の3つの論文の内容をカバーする。</p>
+<ul>
+<li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4920119/">Reducing over-alignment</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/27378296">Support for large data</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/31062021">DASH + MAFFT</a></li>
+</ul>
+<h3>Dynamic Programming?</h3>
+<h4>Pairwise sequence alignment</h4>
+<p>2本の配列を比較するのがペアワイズアラインメント。</p>
+<p>基本的な考え方はDP。"Pairwise alignment score"を最大化するのが目的である。DP matrixを用いて効率的にスコアを最大化し、最後にback-trackする。計算量は DP matrix の面積に比例する。</p>
+<h4>Multiple sequence alignment</h4>
+<p>3本以上の時でも一応はできるが、計算量が多い上に厳密解を求めることはかなり難しい…というか厳密的な全ペアの最大化って何？</p>
+<p>比較している現在の配列は<b>それぞれ独立ではなく木構造を取っていた</b>ため、<span class="math">\(\mathrm{SP} = \sum\mathrm{Pair\ alignment\ score}\)</span> とするのはあまり使われていない。</p>
+<p>主要なアルゴリズムとして、「累進法」と「反復改善法」が挙げられる。</p>
+<h4>累進法(Progressive Method)</h4>
+<p><img src="https://media.springernature.com/original/springer-static/image/chp%3A10.1007%2F978-1-62703-646-7_8/MediaObjects/300415_1_En_8_Fig1_HTML.gif"></p>
+<ul>
+<li>Pairwise alignment を繰り返しながら更新し、最終的なアラインメトを得る手法。（ある子孫グループの各メンバーを別の子孫グループの各メンバーとペアワイズするイメージ。つまり、重み付けされたスコアを用いる。）</li>
+<li>高速に計算が可能</li>
+<li><b>"Once a gap, always a gap"</b></li>
+</ul>
+<div style="border: solid 1px #000000;padding: 0.5em 1em; margin: 2em 0;">
+  入力配列の間の全通りの比較に基づいて距離行列(Distance matrix)と案内木(Tree)を計算する。この案内木にしたがってまず配列aと配列b、次に配列cと配列d、続いて配列グループcdとc、というような順番でグループ間アラインメントを繰り返す。<br>
+  ここで、案内木を再構築してもう一度アラインメントを繰り返すと精度が向上する場合がある。
+</div>
+
+<h4>反復改善法(Iterative Algorithm)</h4>
+<p><img src="https://molevol.mbl.edu/images/thumb/1/1e/KatohEtAl2008Fig1Bcropped.png/500px-KatohEtAl2008Fig1Bcropped.png"></p>
+<ul>
+<li>累進法などで得られたアラインメントを2つに分割し、それらのアラインメントから再び1つのアラインメントを計算する（ある評価関数の値が上昇したら更新）、ということを繰り返す手法</li>
+<li>アラインメント中のエラーを取り除くことが可能</li>
+<li>進化的な距離を踏まえるため、系統樹の枝を切断する形でアラインメントを2つに分割する</li>
+<li>計算量は多いが、高精度。</li>
+</ul>
+<h3>FFT(fast Fourier transform)</h3>
+<p>MAFFTの中心的なアルゴリズムの一つに<b>FFT(fast Fourier transform)</b>がある。これは、フーリエ変換を用いて「相同性が明らかな領域」を高速に識別する手法のことである。</p>
+<p>この手法を用いると、確実にマッチングさせるべき領域がわかるので、計算量が大幅に減る。定量的には、<span class="math">\(O(L^2)\)</span> から <span class="math">\(O(L\log L)\)</span> に減ることが知られている。</p>
+<h4>Embedding</h4>
+<p>FFTを使う上で、個々の配列を波として捉える必要がある。そこで、アミノ酸や塩基配列をベクトル表現する手法が提案されている。</p>
+<ul>
+<li>アミノ酸
+アミノ酸の特徴を<b>極性</b>と<b>体積</b>で表すことができる。</li>
+<li>DNA
+「A→i,G→1,C→-1,T→-i」のように複素数を用いることでベクトル表現することができる。</li>
+</ul>
+<h3>Consistency Criterion</h3>
+<p><b>「間違いを訂正する代わりに最初から間違えないようにしよう」</b>という考え方。</p>
+<p>通常はAとBのみを比較するが、Library extension という操作を行う。全ペアのアラインメントを計算するということ。</p>
+<p>この手法には、「直接比較していない他の配列の情報も含めた配列の比較ができるので間違えにくいだろう」というアイデアが根底にある。単純な累進法よりも（ある評価基準のもとでは）良い結果を返すが、計算量が多くなってしまう。</p>
+<p>より数学的に厳密的な手法を撮ったものが<a href="https://www.ncbi.nlm.nih.gov/pubmed/20576627">MSAProbs</a>とか。これは重みをつけている。</p>
+<h3>PRANK</h3>
+<p>従来の累進法のおかしな点を指摘。例えば以下の左の図を考える。
+<img src="https://matsen.github.io/teaching/slides/figures/alignment/prank.png"></p>
+<p>まず、累進法で考えると、以下により合計 -3.5 となる。</p>
+<ol>
+<li>"A-T" と "AGT" の間のアラインメントにより、▼(-2)</li>
+<li>"A-T/AGT" と "A-T" の間のアラインメントにより、▽(-0.5)</li>
+<li>"A-T/AGT/A-T" と "ACT" の間のアラインメントにより、🔴(-1)</li>
+</ol>
+<p>しかし、この進化系統樹が正しいとすると、進化の順序を考えると</p>
+<ol>
+<li>③で、AT　と ACT　が分岐。2配列のアラインメントは、"A-T/ACT" のようになる。</li>
+<li>②で、AT と AGT が分岐する。2配列のアラインメントは、"A-T/AGT" のようになる。</li>
+</ol>
+<p>この２つのアラインメントを統合するとき、<b>CとGには共通祖先が無い（置換によってCとGが分岐したのではない）ので同じカラムにCとGをアラインメントするのはおかしい。</b></p>
+<p>そこで、PRANK というメソッドもあるが、PRANK is less prone to <b>"over-alignment（合わせすぎ）"</b></p>
+<h2>最近の話題</h2>
+<h3>可変スコアリングマトリックス</h3>
+<p>詳しくは論文参照：<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4920119/">A simple method to control over-alignment in the MAFFT multiple sequence alignment program</a></p>
+<p>合わせすぎ問題に対応するためのもの。</p>
+<p>スコア行列から定数 <span class="math">\(a\)</span> を引くことでこの問題に対応した。DPの式を考えれば、こうなることは自明。<b>（∵アラインメントを長くすることがペナルティ）</b></p>
+<p><span class="math">\(a\)</span> の値も変化させるようにしており、配列（グループ）間の類似性にしたがって異なるスコア行列を用いるアイデアは一時期取られていたが、今では使われていない。</p>
+<p>置換行列は通常<b>「進化的に共通祖先を持つモデルと無関係なモデルの対数尤度比」</b>で、定義される。</p>
+<h4>BLOSUM行列</h4>
+<p>配列の一致度が高いところでマルチプルアライメントをとり、特に保存性の高いところでのアミノ酸の変異を解析して求めたもの。</p>
+<div style="border: solid 1px #000000;padding: 0.5em 1em; margin: 2em 0;">BLOSUM $x$ 行列の求め方<br>
+  <li>既存の多くの配列のアラインメントを求めギャップ無しの領域(ブロック)を集める。</li>
+  <li>残基が $x$% 以上一致しているものを同一クラスタに集める。</li>
+  <li>同じ文字が $a$ と $b$ に変異する確率($a$ と $b$ が整列する確率)$p_{ab}=p_{ba}$ を求める。（2本の配列が進化的に関係があるとするモデル）</li>
+  <li>文字 $a$ が現れる確率 $q_a$ を求める（2本の配列に関係がないとするモデル）</li>
+  <li>$s(a,b) = T\log\frac{p_{ab}}{q_aq_b}$ をスコアとする。（$T$ はスケーリング）</li>
+</div>
+
+<p>したがって、共通祖先を持つモデルでは、文字の同時確率　<span class="math">\(p_{a,b}\)</span> が、進化的距離（何年前に分岐したか）によって異なるので、進化的距離に応じた置換行列を使うことが求められる。</p>
+<h4>まとめ</h4>
+<ul>
+<li>ユーザ向け</li>
+<li>可変スコアリングマトリクスによって、全体的に類似度の高い配列の途中に、類似度の低い部分が見 つかった場合、そこを合わせないようになる。</li>
+<li>→ 合わせすぎ問題は緩和される。<ul>
+<li>難点: 定量的評価はシミュレーションのみ。</li>
+</ul>
+</li>
+<li>厳密に系統樹を考慮する方法 (PRANK、BAli-Phy) に比べて不足は残る。</li>
+<li>一方、弱い保存領域を特定する能力は、PRANKやBAli-Phyを上回る。</li>
+<li>開発者向け</li>
+<li>ベンチマークの基準によって結果は全然異なる。特に MSAProbs • 適切な基準を設定することは、難しいけれども重要な課題。</li>
+<li>合わせすぎを防ぐには、他の方法も可能。<ul>
+<li>専用マトリクス (Yamada &amp; Tomii 2014, for remote homologs)?</li>
+<li>ペアワイズアラインメントの座位ごとに、信頼性評価 (Hamada et al 2011)、以後マスク?</li>
+</ul>
+</li>
+</ul>
+<p>※ 配列の合わせすぎ問題はかなり深刻。<b>「変な配列をどのように無視するか」</b>が難しい。</p>
+<h3>タンパク質の立体構造を考慮したアラインメントのための計算サービス</h3>
+<p>立体構造の評価はかなり難しい。なぜなら、<b>「もともと立体構造上の距離が近かったのだが構造が変わった。ところが配列部分は機能的に重要な役割を果たしていたため配列自身は保存されている」</b>という可能性もあるから。</p>
+<p>そこで、タンパク質の立体構造の評価に関しては、<b>「合わせるべきところ（立体構造上近いところ）を合わせられているか？？」</b>のみを指標としている。</p>
+<h4>タンパク質の構造を考慮する必要について</h4>
+<p>タンパク質の立体構造を考慮した方がより信頼性の高いアラインメントが得られる。</p>
+<ul>
+<li>タンパク質をコードする遺伝子に対する進化的制約</li>
+<li>タンパク質の機能の保持 ~ <b>立体構造の保持が、配列の保存より直接的な制約</b>として働く</li>
+<li>したがって、<b>配列上の類似性は見られなくなってしまった後も、立体構造上の類似性が 残っている場合が多い</b></li>
+<li><b>遠い関係にある配列の比較解析のために有用</b></li>
+<li>多重配列アラインメントへの適用</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/15201059">3DCoffee</a> (2004)</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/24170408">Promals3D</a> (2008)</li>
+</ul>
+<h3>鎖状案内木の有用性</h3>
+<ul>
+<li>ContTest (Fox et al. 2016) は再現する。</li>
+<li>確かに、鎖状案内木（ランダム案内木）がよい結果を与えることもある。（<a href="https://www.pnas.org/content/111/29/10556">Simple chained guide trees give high-quality protein multiple sequence alignments</a>）</li>
+<li>ただし、k-mer距離に基づく案内木に比べて。</li>
+<li>全ペアDP (計算コスト高) に基づく案内木が望ましい。</li>
+<li>反復改善法や整合性の考慮など他の既知のテクニックによって、鎖状案内木より安定的に大アラインメントの正確さは向上する。</li>
+<li>それらを適用可能にする必要。</li>
+</ul>
+<h4>last-train</h4>
+<p>ここまでは進化的に関係のある配列をアラインメントしていたが、ここでは進化的に関係がない配列を並べてコンセンサスアラインメントを行う。
+普通にペアワイズアラインメントをしてパラメータを推測→アラインメントし直すを繰り返す。</p>
+<h3>半自動アラインメント</h3>
+<p>時間がなかったので省略された。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-20T12:10:00+09:00"> 5 20, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-20T12:10:00+09:00"> 5 20, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ
+                    <span>6</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

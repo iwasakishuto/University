@@ -1,0 +1,47 @@
+.prompt {
+  /* This is for jupyter blog.*/
+  min-width: 0;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0em 0.4em 0em 0em;
+  margin: 0px;
+  font-family: monaco;
+}
+/*蛍光ペン(pink)*/
+.marker-pink {
+  color: #c45a5a;
+  background: linear-gradient(transparent 70%, #ff66ff 60%);
+  font-weight: bold;
+}
+/*蛍光ペン(blue) & hover info*/
+.marker-info {
+    color: #5C7DC4;
+    background: linear-gradient(transparent 70%, #66FFCC 60%);
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+.marker-info:hover:before {
+    opacity: 1;
+}
+.marker-info:before {
+  content: attr(aria-label);
+  opacity: 0;
+  position: absolute;
+  top: 30px;
+  right: -90px;
+  font-size: 14px;
+  width: 300px;
+  padding: 10px;
+  color: #fff;
+  background-color: #555;
+  border-radius: 3px;
+  pointer-events: none;
+}
+/* 枠囲み */
+.frame {
+  border: solid 1.0px #000000;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+}
+
+

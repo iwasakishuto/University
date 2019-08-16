@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅰ, ゲノム配列解析論Ⅰ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅰ 第4回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅰ-4.html" />
+<meta property="og:description" content="Hidden Markov Model (HMM)" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-13T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-13T00:00:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅰ 第4回 ">
+<meta name="twitter:description" content="Hidden Markov Model (HMM)">
+
+        <title>ゲノム配列解析論Ⅰ 第4回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅰ-4.html"> ゲノム配列解析論Ⅰ 第4回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第4回 2019/5/13</h1>
+<ul>
+<li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a></li>
+</ul>
+<p>※ 今回の式にふってある式番号は、PRMLの対応する式番号です。</p>
+<h2>Definition of HMM</h2>
+<h3>Markov Process（マルコフ連鎖）</h3>
+<p>系列データ <span class="math">\(\mathbf{X} = \mathbf{x_1,\ldots,\mathbf{x}_N}\)</span> があった時、未来の予測値が直近 <span class="math">\(k\)</span> 個の観測値以外の過去の観測値に対して独立であるという仮定をもち、条件付き分布 <span class="math">\(p(\mathbf{x}_n|\mathbf{x}_{n-k},\ldots,\mathbf{x}_n-1)\)</span> が <span class="math">\(n\)</span> によらずみな同一である時、この確率過程を定常 <span class="math">\(k\)</span> 次マルコフ連鎖と呼ぶ。</p>
+<h3>Markov Model（マルコフモデル）</h3>
+<p>マルコフモデルは、マルコフ連鎖の系列データ <span class="math">\(\mathbf{X}=\{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span> そのものを出力列としてみなす。（隠れマルコフモデルとの対応でこういう書き方をするが、当たり前）</p>
+<p>例えば定常一次マルコフモデルの同時確率は以下で表される。</p>
+<div class="math">$$
+p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{N}\right)=p\left(\mathbf{x}_{1}\right) \prod_{n=2}^{N} p\left(\mathbf{x}_{n} | \mathbf{x}_{n-1}\right)\qquad (13.2)
+$$</div>
+<p><img src="http://nineties.github.io/prml-seminar/fig/first-order-markov-model.png"></p>
+<h3>Hidden Markov Model（隠れマルコフモデル）</h3>
+<p>隠れマルコフモデルでは、マルコフ連鎖の系列データ <span class="math">\(\mathbf{X}=\{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span> を<font color="red"><b>状態</b></font>として考え、その状態からの出力記号列 <span class="math">\(\mathbf{Z}=\{\mathbf{z}_1,\ldots,\mathbf{z}_N\}\)</span> だけが観察できると考える。</p>
+<p>このモデルは、状態（潜在変数）を <b>「<span class="math">\(K\)</span> 個の離散的な多項変数であり、<span class="math">\(1\)</span> 次のマルコフ性を有する」</b>と仮定するのが一般的で、このモデルは以下のように表される。</p>
+<div class="math">$$
+p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{N}, \mathbf{z}_{1}, \ldots, \mathbf{z}_{N}\right)=p\left(\mathbf{z}_{1}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\right] \prod_{n=1}^{N} p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right)\qquad (13.6)
+$$</div>
+<p><img src="http://nineties.github.io/prml-seminar/fig/hmm.png"></p>
+<p>この時、潜在変数は <span class="math">\(K\)</span> 次元の二値変数（one-of-K符号化法）なので、この条件付き分布は<font color="red"><b>遷移確率(transition probability)</b></font>を要素にもつ数表 <span class="math">\(A\)</span> に対応する。</p>
+<p>つまり、遷移確率は <span class="math">\(A_{jk}\equiv p(z_{nk}=1|z_{n-1,j}=1)\)</span> で定義される。なお、確率なのでもちろん <span class="math">\(0\ll A_{jk}\ll 1\)</span> と <span class="math">\(\sum_kA_{jk}=1\)</span> を満たす。したがって、行列 <span class="math">\(A\)</span> は <span class="math">\(K(K-1)\)</span> 個の独立なパラメータを持つことになる。</p>
+<p>この結果、条件付き分布は以下の形で明示的にかける。</p>
+<div class="math">$$
+p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\qquad (13.7)
+$$</div>
+<p>最初の潜在ノード <span class="math">\(\mathbf{z}_1\)</span> は、親ノードを持たないという点で特別である。このノードは、要素 <span class="math">\(\pi_k\equiv p(z_{1k}=1)\)</span> を持つ確率のベクトル <span class="math">\(\boldsymbol{\pi}\)</span> で表される周辺分布 <span class="math">\(p(\boldsymbol{\pi})\)</span> を持つ。<span class="math">\(\left(\sum_k\pi_k=1\right)\)</span></p>
+<div class="math">$$
+p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\qquad (13.8)
+$$</div>
+<p>最後に、観測変数の条件付き確率分布 <span class="math">\(p(\mathbf{x}_n|\mathbf{z}_n,\boldsymbol{\phi})\)</span> を定義する。ここで、<span class="math">\(\boldsymbol{\phi}\)</span> は分布を支配するパラメータの集合である。</p>
+<p>例えば <span class="math">\(\mathbf{x}\)</span> が連続変数の場合は出力各位率は以下で与えられる。<span class="math">\(\left(\boldsymbol{\phi} = \{\boldsymbol{\mu}, \boldsymbol{\Sigma}\} \right)\)</span></p>
+<div class="math">$$
+p(\mathbf{x}_n | \mathbf{z}_n)=\prod_{k=1}^{K} \mathcal{N}\left(\mathbf{x}_n | \boldsymbol{\mu}_{k}, \mathbf{\Sigma}_{k}\right)^{z_{nk}}\qquad (9.11)
+$$</div>
+<p>一方で <span class="math">\(\mathbf{x}\)</span> が離散的な場合は、条件付き確率表で与えられる。<span class="math">\(\mathbf{x}_n\)</span> は観測されるので、<span class="math">\(\boldsymbol{\phi}\)</span> の値が与えられたとき、分布 <span class="math">\(p(\mathbf{x}_n|\mathbf{z}_n,\boldsymbol{\phi})\)</span> は二値のベクトル <span class="math">\(\mathbf{z}_n\)</span> の <span class="math">\(K\)</span> 個の可能な状態に対応した <span class="math">\(K\)</span> 個の要素をもつベクトル（ベクトルのサイズは<span class="math">\(\mathbf{x}\)</span> の種類数）からなる。</p>
+<p>以上をまとめると、同時確率は以下のように表される。</p>
+<div class="math">$$
+\begin{aligned}
+p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})
+&amp;=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)
+&amp; (13.10)\\
+&amp;=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}
+\left[\prod_{n=2}^{N} \prod_{i=1}^{K} \prod_{j=1}^{K} A_{j i}^{z_{n-1, j} z_{n i}}\right] \prod_{m=1}^{N}p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)
+\end{aligned}
+$$</div>
+<h3>小休止：Regular Grammar to HMM</h3>
+<p>正規文法(RG)の生成規則の全てに確率を付与することにより、確率正規文法(Stochastic Regular Grammar;SRG)となる。</p>
+<p>確率正規文法は、非終端記号を状態、開始非終端記号を初期状態、終端記号を出力記号とみなすことにより、マルコフ連鎖から導入した隠れマルコフモデルと類似の確率モデルとなる。</p>
+<p>ただし、確率正規文法では、各状態からではなく、各状態遷移から記号が出力されるという違いがある。</p>
+<h2>DP of HMM</h2>
+<h3>Viterbi Algorithm</h3>
+<p>Viterbi アルゴリズムは、モデルパラメータ <span class="math">\(\{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\}\)</span> がわかっているHMM及び配列 <span class="math">\(\mathbf{X}\)</span> が観測された時に、<span class="math">\(\mathbf{X}\)</span> を出力する最も確からしい状態系列 <span class="math">\(\mathbf{Z}\)</span> を求める<font color="red"><b>max-sumアルゴリズム</b></font>である。</p>
+<div class="math">$$
+v_k(n) = p(\mathbf{x}_n|z_{nk}=1)\max_i\biggl\{v_i(n-1)p(z_{nk}=1|z_{n-1,i}=1)\biggr\}\\
+v_k(1) = p(\mathbf{x}_1|z_{nk}=1)
+$$</div>
+<p>ここで、<b><span class="math">\(v_k(n)\)</span> は、最後の状態 <span class="math">\(\mathbf{z}_n\)</span> が <span class="math">\(z_{nk}=1\)</span> であるという条件の下で <span class="math">\(\{\mathbf{x}_1,\ldots,\mathbf{x}_n\}\)</span> を出力する<font color="red">最も確からしいパスの確率</font>を表している。</b></p>
+<p>動的計画法が終われば、あとは <span class="math">\(\max_kv_k(N)\)</span> の隠れ状態 <span class="math">\(k\)</span> からトレースバックすれば、求めたい状態系列 <span class="math">\(\mathbf{Z}\)</span> は求められる。</p>
+<p><img src="http://nineties.github.io/prml-seminar/fig/viterbi2.png"></p>
+<p><span class="math">\(K\)</span> 状態からなるHMMと長さ <span class="math">\(N\)</span> の系列データ <span class="math">\(\mathbf{X}\)</span> が与えられた時、<span class="math">\(\mathbf{X}\)</span> の出力確率が最大となるパスは、Viterbi アルゴリズムにより、<span class="math">\(O(NK^2)\)</span> 時間で計算できる。</p>
+<h3>Forward Algorithm</h3>
+<p>Viterbi アルゴリズムでは、確率が最大となる1つのパス（上でいう赤いパス）のみを考えていたが、Forward アルゴリズムでは、<span class="math">\(\mathbf{X}\)</span> を出力する全ての確率を考えて、<span class="math">\(\mathbf{X}\)</span> が出力される確率を計算する。</p>
+<p>この確率も、動的計画法を用いることで計算できる。ここで、<b><span class="math">\(f_k(n)\)</span> は、最後の状態 <span class="math">\(\mathbf{z}_n\)</span> が <span class="math">\(z_{nk}=1\)</span> であるという条件の下で <font color="red"><span class="math">\(\{\mathbf{x}_1,\ldots,\mathbf{x}_n\}\)</span> を出力する確率</font>である</b>とする。</p>
+<p>すると、この <span class="math">\(f_k(n)\)</span> は、次の再帰式に基づく動的計画法アルゴリズムにより計算することができる。</p>
+<div class="math">$$
+f_k(n) = p(\mathbf{x}_n|z_{nk}=1)\sum_i^K\biggl\{f_i(n-1)p(z_{nk}=1|z_{n-1,i}=1)\biggr\}\\
+f_k(1) = p(\mathbf{x}_1|z_{nk}=1)
+$$</div>
+<p>※ <b>Forward アルゴリズムとViterbi アルゴリズムの違いは、<font color="red"><span class="math">\(\sum\)</span> を計算しているか <span class="math">\(\max\)</span> を計算しているか</font>だけである。</b></p>
+<h3>Backward Algorithm</h3>
+<p>Backward アルゴリズムは、出力系列 <span class="math">\(\mathbf{X}\)</span> が得られる確率を、Forward アルゴリズムとは逆向きの順序で計算する。</p>
+<p>その目的は、<b><font color="red">HMMのパラメータ学習に用いられるBaum-Welch アルゴリズムなど、周辺確率の計算に用いることである。</font></b></p>
+<p>次の再帰式を考える。</p>
+<div class="math">$$
+b_k(n) = \sum_i^K\biggl\{p(\mathbf{x}_{n+1}|z_{n+1,i}=1)b_i(n+1) p(z_{n+1,i}=1|z_{nk}=1)\biggr\}\\
+\forall_kb_k(N) = 1
+$$</div>
+<p>なお、Forward アルゴリズム、Backward アルゴリズムともに <span class="math">\(O(NK^2)\)</span> 時間で全ての <span class="math">\(f_k(n),b_k(n)\)</span> を計算できる。</p>
+<h2>EM of HMM</h2>
+<h3>Marginalized Probabilities</h3>
+<h4>States and Outputs</h4>
+<p>観測系列が <span class="math">\(\mathbf{X} = \{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span> であるとき、状態 <span class="math">\(\mathbf{z}_n\)</span> が <span class="math">\(z_{nk}=1\)</span> である確率は，</p>
+<div class="math">$$
+\begin{aligned}
+p\left(z_{nk}=1, | \mathbf{X} \right) &amp;=\frac{p(\mathbf{X}, z_{nk}=1)}{p(\mathbf{X})} \\
+&amp;=\frac{p\left(\mathbf{x}_1,\ldots,\mathbf{x}_n, z_{nk}=1 \right) p\left(\mathbf{x}_{n+1},\ldots,\mathbf{x}_N  | z_{nk}=1 \right)}{p\left(\mathbf{X}\right)} \\
+&amp;=\frac{f_{k}(n) b_{k}(n)}{\sum_{i} f_{i}(T)}
+\end{aligned}
+$$</div>
+<h3>EM Algorithm</h3>
+<p>EMアルゴリズムは、観測できないデータ（隠れ変数）がある場合の<font color="red"><b>最尤推定(Maximum likelihood estimation)</b></font>のためのアルゴリズムで、次の式で定義される<font color="red"><b>対数尤度(log likelihood)</b></font>を最大化する <span class="math">\(\boldsymbol{\theta}\)</span> を計算することが目標となる。</p>
+<div class="math">$$\log p(\mathbf{X}|\boldsymbol{\theta}) = \log\sum_{\mathbf{Z}}p(\mathbf{X},\mathbf{Z}|\boldsymbol{\theta})$$</div>
+<p>この式の最適解を解析的に求めるのは困難であるので、反復を繰り返すことで対数尤度を<font color="red"><b>単調に</b></font>増加させ、その極大化を図る。</p>
+<p>まず、上の式の左辺を以下のように変形する。（∵確率の乗法定理）</p>
+<div class="math">$$\log p(\mathbf{X}|\boldsymbol{\theta}) = \log p(\mathbf{X},\mathbf{Z}|\boldsymbol{\theta}) - \log p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta})$$</div>
+<p>EMアルゴリズムは、反復でパラメータを更新することによって対数尤度を増加させていく。そこで、一つ前のステップで求めたパラメータを <span class="math">\(\boldsymbol{\theta}^{\mathrm{old}}\)</span> と定義する。</p>
+<p>すると、上の式の両辺に <span class="math">\(p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})\)</span> をかけて <span class="math">\(\mathbf{Z}\)</span> についての和をとると次の式を得る。</p>
+<div class="math">$$\log p(\mathbf{X}|\boldsymbol{\theta})
+= \sum_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})\log p(\mathbf{X},\mathbf{Z}|\boldsymbol{\theta})
+-\sum_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})\log p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta})$$</div>
+<p>右辺の第１項を <span class="math">\(Q(\boldsymbol{\theta}|\boldsymbol{\theta}^{\mathrm{old}})\)</span> と定義する。つまり、以下のように表される。</p>
+<div class="math">$$
+\begin{aligned}
+\log p(\mathbf{X}|\boldsymbol{\theta})
+&amp;= Q(\boldsymbol{\theta}|\boldsymbol{\theta}^{\mathrm{old}}) -\sum_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})\log p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta})\\
+\log p(\mathbf{X}|\boldsymbol{\theta}^{\mathrm{old}})
+&amp;= Q(\boldsymbol{\theta}^{\mathrm{old}}|\boldsymbol{\theta}^{\mathrm{old}}) -\sum_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})\log p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})
+\end{aligned}
+$$</div>
+<p>したがって、以下の式が得られる。</p>
+<div class="math">$$
+\begin{aligned}
+\log p(\mathbf{X}|\boldsymbol{\theta})
+&amp; - \log p(\mathbf{X}|\boldsymbol{\theta}^{\mathrm{old}})\\
+&amp; = Q(\boldsymbol{\theta}|\boldsymbol{\theta}^{\mathrm{old}}) - Q(\boldsymbol{\theta}^{\mathrm{old}}|\boldsymbol{\theta}^{\mathrm{old}}) + \sum_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})\log\frac{p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})}{ p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta})}
+\end{aligned}
+$$</div>
+<p>ここで、最後の項は<font color="red"><b>カルバックライブラー情報量(Kullback–Leibler divergence, 相対エントロピー)</b></font>であり、常に非負である。なお、カルバックライブラー情報量の定義（離散）は以下で、 <span class="math">\(P=Q\)</span> で右辺の等号が成立する。</p>
+<div class="math">$$
+\mathrm{KL}(P \| Q)=\sum_{i} P(i) \log \frac{P(i)}{Q(i)} \geq 0
+$$</div>
+<p>したがって、カルバックライブラー情報量が非負であることを踏まえると、以下の関係が成立する。</p>
+<div class="math">$$
+\log p(\mathbf{X}|\boldsymbol{\theta}) - \log p(\mathbf{X}|\boldsymbol{\theta}^{\mathrm{old}}) \geq Q(\boldsymbol{\theta}|\boldsymbol{\theta}^{\mathrm{old}}) - Q(\boldsymbol{\theta}^{\mathrm{old}}|\boldsymbol{\theta}^{\mathrm{old}})
+$$</div>
+<p>ゆえに、<span class="math">\(\boldsymbol{\theta}^{\mathrm{new}} = \mathrm{argmax}_{\boldsymbol{\theta}} Q(\boldsymbol{\theta}|\boldsymbol{\theta}^{\mathrm{old}})\)</span> とすることによって右辺が非負になり、尤度は増大するか、変化しないままとなる。</p>
+<p>したがって、パラメータの更新を尤度関数が変化しなくなるまで行えば良い。</p>
+<h4>まとめ</h4>
+<ol>
+<li>初期パラメータ <span class="math">\(\boldsymbol{\theta}^0\)</span> を決定し、<span class="math">\(t=0\)</span> とする。</li>
+<li><span class="math">\(Q(\boldsymbol{\theta}|\boldsymbol{\theta}^t) = \sum_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^t)\log p(\mathbf{X},\mathbf{Z}|\boldsymbol{\theta})\)</span> を計算する。</li>
+<li><span class="math">\(Q(\boldsymbol{\theta}|\boldsymbol{\theta}^t)\)</span> を最大化する <span class="math">\(\boldsymbol{\theta}^*\)</span> を計算して <span class="math">\(\boldsymbol{\theta}^{t+1} = \boldsymbol{\theta}^*\)</span> とし、<span class="math">\(t=t+1\)</span> とする。</li>
+<li><span class="math">\(Q(\boldsymbol{\theta}|\boldsymbol{\theta}^t)\)</span> が増加しなくなるまでステップ <span class="math">\(2,3\)</span> を繰り返す。</li>
+</ol>
+<h3>Baum-Welch Algorithm</h3>
+<p>Baum-Welchアルゴリズムは、<font color="red"><b><span class="math">\(f_k(n)\)</span> と <span class="math">\(b_k(n)\)</span> を用いてHMMのパラメータの推定を行う</b></font>EMアルゴリズムの一種である。</p>
+<p>実際に配列解析に適用した例を<a href="https://iwasakishuto.github.io/study/notes/ゲノム配列解析論Ⅰ-6.html">ここ</a>でやっているので、具体的な式変形はここで。</p>
+<p>基本的には <span class="math">\(Q\)</span> 関数内で各パラメータが関与する部分が独立であるので、確率の制約条件（<span class="math">\([0,1]\)</span> の範囲、足して <span class="math">\(1\)</span> になる）を制約条件として加えて、<font color="red"><b>ラグランジュの未定乗数法</b></font>を使うことになる。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-13T00:00:00+09:00"> 5 13, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-13T00:00:00+09:00"> 5 13, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ
+                    <span>6</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

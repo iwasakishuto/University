@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 遺伝子機能学, 遺伝子機能学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="遺伝子機能学 第4回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/遺伝子機能学-4.html" />
+<meta property="og:description" content="リプログラミングとクロマチン構造変換" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-16T12:24:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-16T12:24:00+09:00" />
+<meta name="twitter:title" content="遺伝子機能学 第4回 ">
+<meta name="twitter:description" content="リプログラミングとクロマチン構造変換">
+
+        <title>遺伝子機能学 第4回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/遺伝子機能学-4.html"> 遺伝子機能学 第4回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第4回 2019/5/16</h1>
+<ul>
+<li>講師：<a href="http://www.iam.u-tokyo.ac.jp/okadalab/okada.html">岡田 由紀</a></li>
+</ul>
+<h2>リプログラミングとクロマチン構造変換</h2>
+<p><img src="https://www.researchgate.net/profile/Vladimir_Kovac/publication/230718157/figure/fig1/AS:300417280954380@1448636469781/The-epigenetic-landscape-proposed-by-C-H-Waddington-1940-in-Organisers-genes.png" width=50%></p>
+<blockquote>
+<p>「分化とは、坂道を転げ落ちる球のようなもの」
+Epigenetic landscape (Waddington 1953)</p>
+</blockquote>
+<p>「再生」＝「球が坂道を重力に逆らって登る」＝「不可能」
+だが、</p>
+<ul>
+<li>プラナリア</li>
+<li>イモリ・トカゲの尻尾</li>
+<li>ウーパールーパーの肢</li>
+</ul>
+<p>など、実際にからだ（の一部）が再生する動物がいる。
+→再生可能な生物で再生のキーとなる因子を見つければ、哺乳類も再生が可能になるかも!!</p>
+<h3>3つの代表的な「リプログラミング」</h3>
+<table>
+<thead>
+<tr>
+<th align="left">名前</th>
+<th align="left">内容</th>
+<th align="center">精度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">受精卵</td>
+<td align="left">生理的</td>
+<td align="center">95%</td>
+</tr>
+<tr>
+<td align="left">体細胞クローニング</td>
+<td align="left">人工的</td>
+<td align="center">10-15%</td>
+</tr>
+<tr>
+<td align="left">IPS細胞</td>
+<td align="left">人工的（外来因子導入）</td>
+<td align="center">かつては0.1%</td>
+</tr>
+</tbody>
+</table>
+<p>IPS細胞では、もともとあったドナー細胞のエピゲノム因子が残っているから効率が悪いのではないか…？？</p>
+<h3>体細胞クローニング(SCNT)</h3>
+<ul>
+<li>カエルを用いた体細胞クローニング技術(1962)：<a href="https://www.ncbi.nlm.nih.gov/pubmed/13951335">論文link</a><ul>
+<li>卵の細胞質の中には初期化物質がある。</li>
+<li>遺伝情報はドナー細胞に由来する。（茶色のアフリカツメガエルの未受精卵に紫外線を当てて核を壊し、そこにアルビノ（白色）のオタマジャクシの核を移植したところ、白色のカエルが育った）</li>
+</ul>
+</li>
+<li>初のクローン動物「羊のドリー」(1996)：<a href="https://www.ncbi.nlm.nih.gov/pubmed/8598906">論文link</a><ul>
+<li>ガードンからかなり時間がかかったが、<b>やっている実験は同じ。</b></li>
+<li>実験器具の性能向上が成功の要因かもしれない。</li>
+<li>「クローン動物は重大な疾患を抱えていないのか」「クローン動物は子供を作れるのか」ということが疑問となっていたが、普通の羊(より少し長く)生きた。</li>
+</ul>
+</li>
+<li>初のクローンマウス「キュムリーナ」(1998)：<a href="https://www.ncbi.nlm.nih.gov/pubmed/9690471">論文link</a><ul>
+<li>ドナー細胞にキュムルスセルを用いた。実験は成功し、実験動物でもクローンが起こることがわかった。この時の成功率は ~2% 程度であった。</li>
+</ul>
+</li>
+</ul>
+<p>現在では、「優良形質家畜の育成」・「希少動物保護」・「ペットの再生」などの理由から、様々な哺乳動物がクローン化されている。
+（※ 馬は、「夢がなくなる」からクローンが禁止されている。）</p>
+<h3>クローン動物利用のメリット・デメリット</h3>
+<ul>
+<li>高品質な家畜由来食品(肉・乳)の安定供給
+個体による格差がないので、コントロールしやすいが、消費者の抵抗感がある。</li>
+<li>絶滅危惧動物の保全
+遺伝的多様性が失われてしまい、逆に絶滅のリスクが上がる。（単一疾患による絶滅）</li>
+<li>倫理・医療応用への壁</li>
+</ul>
+<h3>TSAは体細胞クローンの成功率を向上させる。</h3>
+<p>論文（<a href="https://www.ncbi.nlm.nih.gov/pubmed/16356478">link</a>）によると、TSA(トリコスタチンA, ヒストン脱アセチル化酵素阻害剤)がある(アセチル化が残りやすい=クロマチンが緩む)と、成功率が高まる。(6~8%, 3倍程度)</p>
+<h3>H3K9メチル化の消去は体細胞クローンの成功率を向上させる</h3>
+<p>論文（<a href="https://www.ncbi.nlm.nih.gov/pubmed/25417163">link</a>）によると、ドナー細胞内でKdm4d(ヒストン脱メチル化酵素)を過剰に発現させると、成功率が高まった。(7~9%)また、TSAと組み合わせるとさらに効率が高まることが知られている。</p>
+<h3>H3K9メチル化消去法でクローン猿が誕生</h3>
+<p>論文：<a href="https://www.bbc.com/news/health-42809445">link</a>
+<iframe width="560" height="315" src="ttps://www.youtube.com/embed/lVRYA8MD0S8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p>霊長類にクローン技術を適用しており、批判が相次いだ。「中国はヒトに適用するだろう」との声もある。</p>
+<p><b>材料費、人件費等合わせて1匹あたり1億円以上のコスト</b>がかかり、まだまだ現実的ではない。</p>
+<h3>おまけ：初のクローン猫は毛色が違った</h3>
+<p>論文：<a href="https://www.ncbi.nlm.nih.gov/pubmed/13951335">link</a></p>
+<p>ある大富豪が三毛猫を飼っていたが、死んでしまった。そこで、クローン技術で三毛猫を作成した。ところが、三毛猫でもなんでもない猫が生まれてしまった。これは、<b>X染色体の不活化によって、遺伝子とは関係なく(エピゲノム調節)発現の段階で決まるから。</b></p>
+<h3>iPS細胞</h3>
+<h4>山中4因子</h4>
+<p>以下の因子が協調しあって初期化に関与している。</p>
+<ul>
+<li>OCT4</li>
+<li>SOX2</li>
+<li>KLF4</li>
+<li>c-MYC</li>
+</ul>
+<p>OCT4とSOX2が必須で、他の因子は条件によって異なる。（OCT3/4,Sox2,Lin28,Nanogでも可という報告もある。）</p>
+<h3>なぜiPS誘導因子は特別なのか？</h3>
+<p>後付の理由とはなるが、山中4因子は<font color="red"><b>パイオニア転写因子</b></font>と呼ばれるグループに属していることがわかった。</p>
+<p>転写因子は標的配列が決まっているが、<b>自分の標的配列がクロマチンがヘテロクロマチン構造をしていると(標的配列を見つけることができず)転写することができない。</b></p>
+<p><b>パイオニア転写因子はその必要がない。</b>クロマチンにくっついたのち、クロマチンをほどきながら(外来エネルギーを必要とせず)自分の標的配列を探すことができる。</p>
+<h3>クロマチン構造</h3>
+<p>iPS誘導因子の特別さが<b>パイオニア転写因子であること故</b>であれば、クロマチン構造が重要だと推測される。<b>（クロマチン構造を緩めれば、より効率的にiPS化する？）</b></p>
+<p>c.f.) 体細胞クローンの効率を上げるTASとKDM4もクロマチンを緩める作用がある。</p>
+<p>じゃあ、クロマチン緩めれば良いのでは？？→クロマチンを凝縮させる因子をノックダウンさせてiPSを作成した（論文：<a href="https://www.ncbi.nlm.nih.gov/pubmed/22388813">link</a>）</p>
+<p>すると、ノックダウンするとiPSが増えるもの、減るものの両者が存在していた。</p>
+<p>「もっと探す」 or 「違う組み合わせを試す」といった選択肢もあったが、この作業を繰り返すのは非効率的だと感じた。</p>
+<p>iPS細胞になった時に<b>発現しないといけない未分化遺伝子は、山中4因子によって開かれ</b>、逆に線維芽細胞の中には、分化遺伝子はiPS細胞になるとシャットダウンされるものがいた。</p>
+<p>これらに注目して、１つ１つに注目するのではなく、全体的な構造を変化させることはできないのか？？</p>
+<h3>H3バリアントがクロマチン構造をスイッチする</h3>
+<p>当時、ヒストンH3には4つ程度のバリアントが見つかっており、バリアントによってどういった構造を作るのかが異なっていた。</p>
+<ul>
+<li>H3.1はヒストンクロマチン化をして転写を制御する。</li>
+<li>H3.3はヒストンクロマチン化を解き、転写を活性化させる。</li>
+</ul>
+<p>→ H3.1が少なく、H3.3が多い方が効率が良い。
+じゃあ、H3.1を無くしてしまえば、より多くのH3.3が入って(クロマチンが緩み)転写が活性化されるのでは？</p>
+<ul>
+<li>H3.1 はマルチコピー遺伝子(数十カ所)のため、遺伝子破壊できない。</li>
+<li>ヒストンは発現量が多すぎてRNAが難しい。</li>
+</ul>
+<p>そこで、<b>H3.1自体の遺伝子量を減らすのではなく、H3.1特異的シャペロンCAF1を潰す</b>という方法をとった。</p>
+<h3>CAF-1のノックダウン(阻害)はiPS効率を上げる</h3>
+<p>うまくいった。（論文：<a href="https://www.ncbi.nlm.nih.gov/pubmed/26659182">link</a>）</p>
+<p>やはり、クロマチンを緩ませることは重要であった。</p>
+<p>CAF-1はH3.3を使ってヘテロクロマチン構造を作る
+→ ノックダウンは、クロマチン構造を緩める
+→ パイオニアたちを助ける。</p>
+<p><b>また、CAF-1のノックダウンはより安全で高効率な形質転換ももたらした。</b></p>
+<div style="border: solid 1px #000000;padding: 0.5em 1em; margin: 2em 0;">
+  <h4>結論</h4>
+  CaF1の機能を阻害してクロマチンを緩めれば、目的の細胞を高効率に作出できる。
+</div>
+
+<h3>エピジェネティクス豆知識：様々なシーケンス法</h3>
+<p>転写因子などがゲノム上のどこに存在するのかが知りたいことがある。</p>
+<table>
+<thead>
+<tr>
+<th align="left">シーケンス法</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Chip-seq</td>
+<td align="left"><b>クロマチン免疫沈降法 (chromatin immunoprecipitation: ChIP)</b>と<b>次世代シークエンサー</b>を組合わせた新技術。免疫沈降で回収したDNA断片に、機種に応じたサンプル調整を施し、超高速シークエンシングを行う。ヒストンメチル化など<b>クロマチン構造変化のエピジェネティックな修飾や転写調節因子（DNA結合タンパク質）のゲノム上での結合部位を、ゲノムワイドかつ網羅的に解析することができる。</b></td>
+</tr>
+<tr>
+<td align="left">DNase-seq</td>
+<td align="left">核をとりだして軽くDNase I 消化を行って活発に機能しているゲノム部分を消化した後、次世代シークエンサーで切れた部分の配列を同定すれば、その細胞で<b>活発に働いているゲノムの部分の塩基配列がわかる。</b></td>
+</tr>
+<tr>
+<td align="left">ATAC-seq</td>
+<td align="left">タンパクの結合していない裸のDNA部位に選択的に挿入されるトランスポゾンを使っている。<br>核を抽出してこれをトランスポゾン反応を支持する溶液に浮かべ、そこに遺伝子シークエンスに用いるプライマー配列を挿入したトランスポゾンを感染させる。<br>すると、染色体の裸のDNA部分にトランスポゾンが飛び込み、これにより<b>ゲノム全領域の中で染色体の開いた場所を標識することができる。</b><br>この標識はシークエンスプライマーになっているので、この標識部位をシークエンスするだけで、<b>開いた染色体、すなわち転写が活性化されている場所とその頻度を調べることができる。</b></td>
+</tr>
+</tbody>
+</table>
+<h3>例えば CHip-seq でわかること</h3>
+<p>スケールを100万倍すると…。
+ある特定のてんとう虫（タンパク質）が2000 kmのひも（DNAの総延長）上のどこにいるかを、センチメートルの解像度でしかも網羅的に（数千匹を同時に）見つける技術のこと。</p>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-16T12:24:00+09:00"> 5 16, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-16T12:24:00+09:00"> 5 16, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#yi-chuan-zi-ji-neng-xue-ref">遺伝子機能学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#yi-chuan-zi-ji-neng-xue-ref">遺伝子機能学
+                    <span>6</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

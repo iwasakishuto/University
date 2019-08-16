@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅱ, ゲノム配列解析論Ⅱ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅱ 第2回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅱ-2.html" />
+<meta property="og:description" content="Comparing bio-molecule sequences" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-06-17T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-06-17T00:00:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅱ 第2回 ">
+<meta name="twitter:description" content="Comparing bio-molecule sequences">
+
+        <title>ゲノム配列解析論Ⅱ 第2回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅱ-2.html"> ゲノム配列解析論Ⅱ 第2回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第2回 2019/6/17</h1>
+<ul>
+<li>講師：<a href="https://www.k.u-tokyo.ac.jp/pros-e/person/martin_frith/martin_frith.htm">Martin Frith</a></li>
+</ul>
+<h2>Today's topic</h2>
+<ol>
+<li><a data-scroll href="#anchor1">Motivations</a></li>
+<li><a data-scroll href="#anchor2">Aims of sequence comparison</a></li>
+<li><a data-scroll href="#anchor3">"Repeats"</a></li>
+<li><a data-scroll href="#anchor4">Statistical models</a></li>
+<li><a data-scroll href="#anchor5">Seeds &amp; indexing</a></li>
+<li><a data-scroll href="#anchor6">Sparse seeding &amp; minimizers</a></li>
+<li><a data-scroll href="#anchor7">Spaced seeds &amp; subset seeds</a></li>
+<li><a data-scroll href="#anchor8">Adaptive seeds (LAST)</a></li>
+<li><a data-scroll href="#anchor9">Exercises</a></li>
+</ol>
+<h2 id="anchor1">1. Motivations</h2>
+
+<h3>Diverse bio-molecule sequence data</h3>
+<table>
+<thead>
+<tr>
+<th align="left">topic</th>
+<th align="center">images</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">What kind of microbes are in here?</td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/8/86/BNSF_5350_20040808_Prairie_du_Chien_WI.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">What's wrong with his DNA?</td>
+<td align="center"><img src="https://medicine.news.am/static/news/b/2018/08/19302.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">Why so long-lived?</td>
+<td align="center"><img src="https://static01.nyt.com/images/2016/10/06/science/05AGING-JP/05ZIMMER-jumbo.jpg?quality=90&auto=webp" width=50%></td>
+</tr>
+<tr>
+<td align="left">Ancient DNA</td>
+<td align="center"><img src="https://newhumanist.org.uk/images/rowson-DNA.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">Religious relics?</td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/St._Yves.JPG" width=50%></td>
+</tr>
+<tr>
+<td align="left">Infectious diseases</td>
+<td align="center"><img src="https://www.yourgenome.org/sites/default/files/images/photos/Close%20up%20a%20mosquito%20sucking%20human%20blood_set%20B-3.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">What genes are active in each cell?</td>
+<td align="center"><img src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2018/cells.jpg" width=50%></td>
+</tr>
+</tbody>
+</table>
+<h3>How do we analyze these sequences?</h3>
+<p><font color="red"><b>The main way is by comparing and aligning them.</b></font></p>
+<h3>Diverse alignment tasks</h3>
+<ul>
+<li>Compare two genome assemblies</li>
+<li><b>Align  bisulfite-converted DNA reads   to a genome</b></li>
+<li>Compare   metagenomic DNA reads   to  all known   proteins (via the   genetic code)</li>
+<li><b>Align ancient / damaged DNA</b></li>
+<li>Align (trans-)spliced RNA</li>
+<li><b>Align long, high-error reads from nanopore</b></li>
+<li>Compare DNA reads to each other</li>
+</ul>
+<h2 id="anchor2">2. Aims of sequence comparison</h2>
+
+<h3>What are we really trying to do?</h3>
+<ol>
+<li>Find and align <font color="red"><b>similar</b></font> sequences?</li>
+<li>Find and align <font color="red"><b>homologous</b></font> sequences?</li>
+<li>Find and align <font color="red"><b>orthologous</b></font> sequences?</li>
+<li>Find and align <font color="red"><b>paralogous</b></font> sequences?</li>
+</ol>
+<p>It depends on the purpose and researchers' options.</p>
+<h4>Ortholog and Paralog</h4>
+<p><img src="http://www.discoveryandinnovation.com/bioinformatics/glossary_detail/images/orthologs.jpg"></p>
+<table>
+<thead>
+<tr>
+<th align="center">term</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><b>Homology</b></td>
+<td align="left">descent from a common ancestor</td>
+</tr>
+<tr>
+<td align="center"><b>Orthology</b></td>
+<td align="left">descent from a common ancestor <b>by genome division</b></td>
+</tr>
+<tr>
+<td align="center"><b>Paralogy</b></td>
+<td align="left">descent from a common ancestor <b>by duplication within a genome</b></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Orthology is not necessary to 1-to-1. (many-to-many.)</li>
+<li>Orthology is not transitive.
+Given "A and B are Orthologs" and "B and C are Orthologs", A and C <font color="red"><b>are not always</b></font> Orthologs. (Not an equivalence relation.)</li>
+</ul>
+<h3>Similarity versus homology</h3>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Homologous sequences</th>
+<th align="center">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Similar sequences</td>
+<td align="center"></td>
+<td align="center"><b>Convergent evolution</b></td>
+</tr>
+<tr>
+<td align="center">Not</td>
+<td align="center">Rapid evolution over a long time span</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>The most frequent case of <b>convergent evolution</b> is <font color="red"><b>simple sequences</b></font>.</p>
+<h3>Simple sequences</h3>
+<p>DNA (and RNA and protein) frequently has <font color="red"><b>simple sequences</b></font>:</p>
+<div class="highlight"><pre><span></span><span class="n">atgatcgattatcgtagtctaggtcgtatgctatgatt</span>
+<span class="n">cgat</span> <span class="s2">&quot;aaaaaaaaaaaaaaaaaaa&quot;</span> <span class="n">cggtatgcgtagctg</span>
+<span class="n">cgatcgtagtgactatatgagagaggattcgatgctaa</span>
+<span class="n">gttctctaggagaggcttaggctgagcgcgtatcactg</span>
+<span class="n">gctcgcggc</span> <span class="s2">&quot;tgtgtgtgtgtgtgtgtgtgtgtgtgtg&quot;</span> <span class="n">a</span>
+<span class="n">cgtatcgcacatcgtcgattttgagattcccgatggcc</span>
+</pre></div>
+
+
+<p>Of course, these simple sequences also appear randomly, but such sequences appear with a higher probability in the genome sequences of the actual organisms. (Why??)</p>
+<h4>How do simple sequences evolve?</h4>
+<ul>
+<li>Strand <b>slippage</b> during DNA replication:<ul>
+<li>An initial (short, mild) simple sequence occurs by chance</li>
+<li>Due to slippage, it gets longer...</li>
+<li>And longer...</li>
+</ul>
+</li>
+<li>Retro-transcription of RNA poly-A tails</li>
+</ul>
+<h2 id="anchor3"> 3. "Repeats"</h2>
+
+<ul>
+<li>Different thigs are called "repeats":<ul>
+<li>Tandem Repeats</li>
+<li>Simple sequences/low-complexity tracts</li>
+<li>Interspersed repeats</li>
+</ul>
+</li>
+</ul>
+<h4>Tandem repeats</h4>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Protein_tandem_repeat.png/1280px-Protein_tandem_repeat.png"></p>
+<ul>
+<li>The repeating unit may have any length (minimum = 1, maximum = millions?)</li>
+<li>The number of repeats <b>may not be an integer</b></li>
+<li>The repeats may be inexact (Not perfect repeats.)</li>
+</ul>
+<h4>Simple sequences/low-complexity tracts</h4>
+<ul>
+<li><b>Maybe the same as short-period (inexact) tandem repeats?</b></li>
+<li>Examples:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">atatatatatatctctctctct</span>
+<span class="n">aaaagagaaaacaaaaaagggaaaaa</span>
+</pre></div>
+
+
+<ul>
+<li>Maybe evolve by slippage during DNA replication, <em>with change slip offsets?</em></li>
+</ul>
+<h4>Interspersed repeats</h4>
+<p>Completely different from the above two.</p>
+<ul>
+<li>Identical, or non-identical, sequences scattered around the genome:</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">ctt</span> <span class="s2">&quot;gttattgctgatc&quot;</span> <span class="n">gtcctctctgtaaatt</span> <span class="s2">&quot;gttattgctgatc&quot;</span> <span class="n">atgctttaac</span>
+</pre></div>
+
+
+<ul>
+<li>Many of them are virus-like, and copy themselves<ul>
+<li>Example: one human genome has about 1 million <font color="red">Alu</font> elements, and about 1 million <font color="red">LINE</font> elements.</li>
+</ul>
+</li>
+</ul>
+<h3>Effects of repeats on sequence comparison</h3>
+<p>The influence of the "repeat sequence" is very serious, but it is divided into the following two types.</p>
+<ul>
+<li>Simple sequences cause <font color="red"><b>similarities that are not homologies</b></font><ul>
+<li>Interspersed repeats do not, because <b>they are true homologs</b></li>
+</ul>
+</li>
+<li>All kinds of repeat cause <font color="red"><b>huge numbers of similarities</b></font><ul>
+<li>E.g. human and chimp genomes both have <span class="math">\(\sim10^6\)</span> Alu elements <span class="math">\(\rightarrow10^{12}\)</span> pair-wise similarities</li>
+</ul>
+</li>
+</ul>
+<h3>Dealing with repeats</h3>
+<ul>
+<li>It is common to identify and <b>"mask"</b> repeats, to exclude them from sequence comparison. <b>(ignore)</b></li>
+<li>Unfortunately, many researchers just use a popular method, and assume it will "work".</li>
+<li>Care is needed!<ul>
+<li>There is no exact, objective definition of <b>"repeat"</b></li>
+<li>Repeats can be biologically important!</li>
+<li>There are different kinds of "repeat", with differing effects.</li>
+</ul>
+</li>
+</ul>
+<h2 id="anchor4">4. Statistical models</h2>
+
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>The most important thing about statistical models
+<p style="font-size: 1.5em; color: red;">All models are wrong, but some are useful</b></p>
+</div>
+
+<h3>Classic sequence alignment</h3>
+<ol>
+<li>Define a scoring scheme.</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">c</th>
+<th align="center">g</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">a</td>
+<td align="center">2</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">-3</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">-3</td>
+<td align="center">2</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">-1</td>
+<td align="center">-3</td>
+<td align="center">2</td>
+<td align="center">-3</td>
+</tr>
+<tr>
+<td align="center">t</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">-3</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Gap existence cost: 5</li>
+<li>
+<p>Gap extension cost: 1</p>
+</li>
+<li>
+<p>Find alignments with high (optimal) scores</p>
+</li>
+</ul>
+<p>Why is this a good method??</p>
+<p><b>Because using above matrix means equivalent to finding alignments with high likelihood, in a statistical model of related sequences.</b></p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">c</th>
+<th align="center">g</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">a</td>
+<td align="center">0.2</td>
+<td align="center">0.03</td>
+<td align="center">0.05</td>
+<td align="center">0.03</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">0.03</td>
+<td align="center">0.2</td>
+<td align="center">0.03</td>
+<td align="center">0.05</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.2</td>
+<td align="center">0.03</td>
+</tr>
+<tr>
+<td align="center">t</td>
+<td align="center">0.03</td>
+<td align="center">0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.2</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Gap existence probability: 0.1</li>
+<li>Gap extension probability: 0.7</li>
+</ul>
+<h4>All models are wrong</h4>
+<p>The classic alignment model is a gross simplification. In reality:
+- Substitutions are much more frequent at cg dinucleotides (neighbor effect).
+- Insertions and deletions are much more frequent in tandem repeats.
+- Gap lengths do not follow a geometric distribution.
+- Substitution rates vary across a genome
+- Etc.</p>
+<h4>But, some are useful</h4>
+<ul>
+<li>Nevertheless, the classic alignment model often works well enough to give useful results.</li>
+<li>More complex models have been proposed (but they are still wrong). <b>There is a tradeoff between model complexity and wrongness.</b></li>
+</ul>
+<h3>Scores are log likelihood ratios</h3>
+<div class="math">$$S_{xy}=t \times \log \left(\frac{A_{xy}}{P_{x} \times Q_{y}}\right)$$</div>
+<table>
+<thead>
+<tr>
+<th align="center">variable</th>
+<th align="left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(A_{xy}\)</span></td>
+<td align="left">Probability of <span class="math">\(x\)</span> aligned to <span class="math">\(y\)</span> in a true alignment</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P_{x}\)</span></td>
+<td align="left">Probability of <span class="math">\(x\)</span> in the first sequence</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Q_{y}\)</span></td>
+<td align="left">Probability of <span class="math">\(y\)</span> in the second sequence</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(t\)</span></td>
+<td align="left">an arbitrary positive constant.</td>
+</tr>
+</tbody>
+</table>
+<p><b>We get more accurate alignments if we use model parameters that fit the data.</b></p>
+<h4>Sequence quality data</h4>
+<p>Some <b>DNA sequencers estimate the rror probability</b> of every base. We ought to use this information when comparing sequences.
+ex.)
+|base|t|a|t|g|c|g|a|
+|:--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|error prob|0.01|0.02|0.07|0.24|0.32|0.75|0.62|</p>
+<div class="math">$$\begin{aligned}
+t\times\log\left(\frac{A_{xy}}{P_x\times Q_y}\right)
+&amp;\Longrightarrow t\times\log\left(\sum_{i,j}\frac{A_{ij}}{P_i\times Q_j}p(x=i)p(y=j)\right)\\
+&amp;= t\times\log\left(cd\frac{A_{xy}}{P_xQ_y} + (1-cd)\right)
+\end{aligned}$$</div>
+<p>Why this formula can model probability well ??
+→ Home work:(</p>
+<h4>A flaw with classic alignment</h4>
+<table>
+<thead>
+<tr>
+<th align="center">Alignment scores</th>
+<th align="center"><span class="math">\(200\)</span></th>
+<th align="center"><span class="math">\(-150\)</span></th>
+<th align="center"><span class="math">\(300\)</span></th>
+<th align="center"><span class="math">\(-450\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Sequence A</td>
+<td align="center"><font color="red">▲</font></td>
+<td align="center"><font color="green">◀︎</font></td>
+<td align="center"><font color="pink">◼︎</font></td>
+<td align="center"><font color="cyan">▶︎</font></td>
+</tr>
+<tr>
+<td align="center">Sequence B</td>
+<td align="center"><font color="red">▲</font></td>
+<td align="center"><font color="blue">🔵</font></td>
+<td align="center"><font color="pink">◼︎</font></td>
+<td align="center"><font color="orange">⬛️</font></td>
+</tr>
+</tbody>
+</table>
+<p>→ Maximum alignment score: <span class="math">\(350\)</span></p>
+<p>We Assuming that there is <b>only one homologous sequence</b>, but there may be <b>two homologous sequences</b>.</p>
+<h2 id="anchor5">5. Seeds & indexing</h2>
+
+<h3>Alignment algorithms</h3>
+<table>
+<thead>
+<tr>
+<th align="left">Exact</th>
+<th align="left">Heuristic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Guaranteed to find the highest alignment score</td>
+<td align="left">Not guaranteed to find the highest alignment score</td>
+</tr>
+<tr>
+<td align="left">A bit slow</td>
+<td align="left">Fast</td>
+</tr>
+<tr>
+<td align="left">Smith-Waterman algotirhm, Gotoh algorithm</td>
+<td align="left"><b>seed-and-extend approach</b></td>
+</tr>
+</tbody>
+</table>
+<h3>Seed-and-extend approach (e.g. BLAST)</h3>
+<ol>
+<li>Find "seeds"</li>
+<li>Try extending an alignment</li>
+</ol>
+<h3>Types of seed</h3>
+<ul>
+<li><font color="red"><b>Fixed-length exact matches</b></font></li>
+<li>Spaced seeds (inexact)</li>
+<li>Subset seeds (inexact)</li>
+<li>Adaptive seeds (variable length)</li>
+</ul>
+<h3>How to find seed matches efficiently?</h3>
+<ul>
+<li>A common approach is <em>indexing</em></li>
+<li><b>Preprocessing step</b>: make an "index" of the first sequence</li>
+<li><b>Search step</b>: scan across the second sequence, looking up seeds in the index</li>
+</ul>
+<h3>indexing</h3>
+<ul>
+<li><b>First sequence</b>: Use suffix array algorithm etc. to make suffix array. (or k-mer table).</li>
+<li><b>Second sequence</b>: Move fixed-length indexes from the end to end and search each of them in above.</li>
+</ul>
+<h2 id="anchor6">6. Sparse seeding & minimizers</h2>
+
+<p><b>Sparse seeding</b> reduce run time and/or memory use, and there are 3 types of it. <font color="red"><b>Examine only some of the indexes, not all the exact ones.</b></font></p>
+<ul>
+<li>Sparse seeding in the "query" (Second sequence) sequence(s)<ul>
+<li><b>Chose query's every <span class="math">\(2^{\mathrm{nd}}\)</span> position (or every <span class="math">\(3^{\mathrm{rd}}\)</span> position, etc.)</b></li>
+</ul>
+</li>
+<li>Sparse seeding in the "reference" (First sequence) sequence(s)<ul>
+<li><b>Chose reference's every <span class="math">\(2^{\mathrm{nd}}\)</span> position (or every <span class="math">\(3^{\mathrm{rd}}\)</span> position, etc.)</b></li>
+</ul>
+</li>
+<li>Minimizers<ul>
+<li>Use sparse seeding in <b>both query and reference.</b></li>
+<li><b>Chose position which are "minimum"</b> (the sequence starting here is alphabetically lowest) in sliding windows of <span class="math">\(W\)</span> consecutive positions.</li>
+<li>We can define "minimum" as we like, we have to use the <font color="red"><b>same</b></font> definition in both query and reference. <font color="red"><b>(If so, the probability that "minimum" is included in the "reference" will increase. Avoid dropping too much.)</b></font></li>
+</ul>
+</li>
+</ul>
+<h2 id="anchor7">7. Spaced seeds & subset seeds</h2>
+
+<ul>
+<li>Fixed-length exact matches</li>
+<li><font color="red"><b>Spaced seeds (inexact)</b></font></li>
+<li><font color="red"><b>Subset seeds (inexact)</b></font></li>
+<li>Adaptive seeds (variable length)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Methods</th>
+<th align="left">Biological background</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Spaced seeds</td>
+<td align="left">Ignore some positions.</td>
+<td align="left">protein-coding DNA tends to change at every <span class="math">\(3^{\mathrm{rd}}\)</span> position</td>
+</tr>
+<tr>
+<td align="left">Subset seeds</td>
+<td align="left">A generalization of spaced seeds.<br>Use reduced alphabets (allow a mismatch between "g" and "t") at some positions.</td>
+<td align="left">Proteins: similar (e.g. small) amino acids tend to replace each other<br>DNA: a ↔︎ g and c ↔︎ t are often more common</td>
+</tr>
+<tr>
+<td align="left">Spaced &amp; subset seeds</td>
+<td align="left">Both</td>
+<td align="left"><font color="red"><b>Even for randomly evolving sequences, they can be more sensitive than exact match seeds (surprising)</b></font></td>
+</tr>
+</tbody>
+</table>
+<h3>Analogy: word counts</h3>
+<ul>
+<li>We have a random DNA sequence of length 5.</li>
+<li>Which of these words is more likely to occur? "aaaa" or "atgc" (Ans. "aaaa" (<span class="math">\(7/4^5\)</span>) &lt; "atgc" (<span class="math">\(8/4^5\)</span>) )</li>
+</ul>
+<h3>Spaced seeds</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 70%-identical sequences, length 50</span>
+<span class="n">ctaactagctagctgccgctatcttagctagctagctctctggtcgta</span>
+<span class="n">cttgctagctaactacccctatctaaactagttaaatccctgggcata</span>
+</pre></div>
+
+
+<table>
+<thead>
+<tr>
+<th align="center">Un-spaced seed (length=<span class="math">\(5\)</span>)</th>
+<th align="center"></th>
+<th align="center">Spaced seed (length=<span class="math">\(7\)</span>, weight=<span class="math">\(5\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">■■■■■</td>
+<td align="center">seed</td>
+<td align="center">■■□■□■■</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\((0.7)^5\)</span></td>
+<td align="center">Prob(match at <span class="math">\(1\)</span> position)</td>
+<td align="center"><span class="math">\((0.7)^5\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(46\)</span></td>
+<td align="center">Number of positions</td>
+<td align="center"><span class="math">\(44\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(46\times(0.7)^5\)</span></td>
+<td align="center">Expected number of matches</td>
+<td align="center"><span class="math">\(44\times(0.7)^5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Almost same probability, but...</p>
+<div class="highlight"><pre><span></span><span class="c1"># 70%-identical sequences, length 50</span>
+<span class="n">index</span><span class="p">:</span> <span class="mf">0123456789.</span><span class="o">..</span>
+<span class="n">seq</span> <span class="n">A</span><span class="p">:</span> <span class="n">ctaa</span><span class="s2">&quot;ctagcta&quot;</span><span class="n">gctg</span><span class="s2">&quot;ccgctat&quot;</span><span class="n">cttag</span><span class="s2">&quot;ctagcta&quot;</span><span class="n">gctctctggtcgta</span>
+<span class="n">seq</span> <span class="n">B</span><span class="p">:</span> <span class="n">cttg</span><span class="s2">&quot;ctagcta&quot;</span><span class="n">acta</span><span class="s2">&quot;cccctat&quot;</span><span class="n">ctaaa</span><span class="s2">&quot;ctagtta&quot;</span><span class="n">aatccctgggcata</span>
+</pre></div>
+
+
+<ul>
+<li>Un-spaced seed: <span class="math">\(\Longrightarrow [4:9],[5:10],[6:11]\)</span></li>
+<li>Spaced seed: <span class="math">\(\Longrightarrow [4:11],[15:22],[27:34]\)</span></li>
+</ul>
+<p>In this case, <b>the spaced pattern finds more pairs of similar sequence. <font color="red">Even though the number of seed hits is no greater.</font></b></p>
+<p><font color="red">Un-spaced seeds tend to have several overlapping hits, or no hits Spaced seeds are (sometimes) more likely to have at least on hit.</font></p>
+<h3>Seed design</h3>
+<p>Which pattern is best??</p>
+<p>"■■□■□■■","■■□■■■","■■□■□□■■","■■□■□□□■■"</p>
+<p>It is very hard and depends on these numbers. (<font color="red"><span class="math">\(70\)</span>%</font> identical sequences, length <font color="red">$50%</font>)</p>
+<h3>Co-designed seed patterns</h3>
+<div class="highlight"><pre><span></span><span class="c1"># 1: must match</span>
+<span class="c1"># T: transitions are allowed (A ↔︎ G, C ↔︎ T)</span>
+<span class="c1"># 0: any mismatch is allowed</span>
+<span class="mi">1101</span><span class="n">T1T0T1T00TT1TT11</span>
+<span class="mi">1</span><span class="n">TTTTT010TT0TT01011TTT1</span>
+<span class="mi">1</span><span class="n">TTTT10010T011T0TTTT11</span>
+<span class="mi">111</span><span class="n">T011T0T01T100111</span>
+<span class="mi">1</span><span class="n">T10T100TT01000TT01TT111</span>
+<span class="mi">111</span><span class="n">T101TT000T0T10T00T1T1</span>
+<span class="mi">111100</span><span class="n">T011TTT00T0TT01T1</span>
+<span class="mi">1</span><span class="n">T1T10T11011011T1</span>
+</pre></div>
+
+
+<ul>
+<li>Each pattern tends to find alignments that the other ones miss.</li>
+<li>Design is very and very hard, so usually use Heuristics.</li>
+</ul>
+<h2 id="anchor8">8. Adaptive seeds (LAST)</h2>
+
+<ul>
+<li>Fixed-length exact matches</li>
+<li>Spaced seeds (inexact)</li>
+<li>Subset seeds (inexact)</li>
+<li><font color="red"><b>Adaptive seeds (variable length)</b></font></li>
+</ul>
+<h3>Three algorithms so far</h3>
+<ol>
+<li>Find "seeds" (initial matches) of a fixed length.</li>
+<li>Try extending an alignment from each seed.</li>
+</ol>
+<p>The three algorithms so far used "fixed-length" seeds. However, if we align repeated array (such as "LINEs", "CpG islands", "Alu", "SINEs", "Isochores" etc.), we could get too many seeds, and also they could extend very long. As a result, calculation costs are huge.</p>
+<p>Example)
+If we compare the human and chimp genomes, as each genome has <span class="math">\(\sim1\)</span> million Alu elements, we will get <span class="math">\(\sim10^{12}\)</span> seed matches...</p>
+<h3>Solution: adaptive seeds</h3>
+<ol>
+<li>Find "seeds" (initial matches) of a fixed ~~length~~ <font color="red">rareness</font>.</li>
+<li>Try extending an alignment from each seed.</li>
+</ol>
+<h3>Definition of adaptive seeds</h3>
+<p>At each position in the query, find the shortest sequence that occurs <span class="math">\(\leq M\)</span> times in the reference. (For example, <span class="math">\(M=10\)</span>, and query starts from "|")</p>
+<div class="highlight"><pre><span></span><span class="c1"># Query</span>
+<span class="err">…</span><span class="n">atcgtatcgtatcgtactgctggcc</span> <span class="o">|</span> <span class="n">tagtggggga</span><span class="err">…</span>
+<span class="c1"># Reference</span>
+<span class="err">…</span><span class="n">ctcgtcgatgctagtcgtactgctgatgctatatatatattaatg</span><span class="err">…</span>
+</pre></div>
+
+
+<ul>
+<li>"tag" occurs <span class="math">\(135\)</span> times in the reference.</li>
+<li>"tagt" occurs <span class="math">\(19\)</span> times in the reference.</li>
+<li>"tagtg" occurs <span class="math">\(7\)</span> times in the reference.</li>
+</ul>
+<p>→ Chose "tagtg" as the query.</p>
+<p><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/104d7b571ad21e035cd0f7d4de7fd07436fabd1b/5-Figure3-1.png" alt="Adaptive versus fixed-length seeds"></p>
+<p>Reference: <a href="https://genome.cshlp.org/content/21/3/487.long">Adaptive seeds tame genomic sequence comparison Material Supplemental</a></p>
+<blockquote>
+<p>Performance comparison of adaptive seeds (circles) versus fixed-length seeds (crosses)</p>
+</blockquote>
+<h3>How to find adaptive seeds?</h3>
+<p>One way is to use a <font color="red"><b>suffix array</b></font>
+. About Suffix array, please look at <a href="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/tree/master/S1/kadai/kadai2">here (Doubling)</a>, and <a href="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/tree/master/S1/kadai/kadai3.1">here (SA-IS)</a>.</p>
+<h3>Adaptive spaced seeds &amp; Adaptive subset seeds</h3>
+<p>We can combine the benefits of <font color="red"><b>spaced/subset seeds</b></font> and <font color="red"><b>adaptive seeds</b></font></p>
+<h3>Spaced suffix array</h3>
+<p>Also, there is a <font color="red"><b>Spaced suffix array</b></font> to find "Adaptive spaced seeds". (Algotirhm is same as normal one.)</p>
+<div class="highlight"><pre><span></span><span class="c1"># Sequence</span>
+<span class="n">acgatcgatg</span>
+<span class="c1"># Spaced suffixes</span>
+<span class="mi">0</span> <span class="n">ac_at_ga_g</span>
+<span class="mi">1</span>  <span class="n">cg_tc_at_</span>
+<span class="mi">2</span>   <span class="n">ga_cg_tg</span>
+<span class="mi">3</span>    <span class="n">at_ga_g</span>
+<span class="mi">4</span>     <span class="n">tc_at_</span>
+<span class="mi">5</span>      <span class="n">cg_tg</span>
+<span class="mi">6</span>       <span class="n">ga_g</span>
+<span class="mi">7</span>        <span class="n">at_</span>
+<span class="mi">8</span>         <span class="n">tg</span>
+<span class="mi">9</span>          <span class="n">g</span>
+</pre></div>
+
+
+<h3>Subset suffix array</h3>
+<div class="highlight"><pre><span></span><span class="c1"># Sequence</span>
+<span class="n">acgatcgatg</span>
+<span class="c1"># Subset suffixes</span>
+<span class="c1"># a,g → R / c,t → Y</span>
+<span class="mi">0</span> <span class="n">acRatYgaYg</span>
+<span class="mi">1</span>  <span class="n">cgRtcRatR</span>
+<span class="mi">2</span>   <span class="n">gaYcgRtg</span>
+<span class="mi">3</span>    <span class="n">atYgaYg</span>
+<span class="mi">4</span>     <span class="n">tcRatR</span>
+<span class="mi">5</span>      <span class="n">cgRtg</span>
+<span class="mi">6</span>       <span class="n">gaYg</span>
+<span class="mi">7</span>        <span class="n">atR</span>
+<span class="mi">8</span>         <span class="n">tg</span>
+<span class="mi">9</span>          <span class="n">g</span>
+</pre></div>
+
+
+<h2>Advertising</h2>
+<p>Frith(teacher) and his colleagues made <a href="http://last.cbrc.jp">LAST</a>. "Adaptive seeds", and "Subset seeds" are used in the algorithm.</p>
+<p><a href="http://last.cbrc.jp"><img src="http://last.cbrc.jp/lastwebfig.png"></a></p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><h2>Summary</h2>
+  <li>To do meaningful sequence comparison, the most important thing is to understand the aim clearly</li>
+  <li><font color="red">"Repeats"</font> have a massive effect on bio-sequence comparison</li>
+  <li><font color="red">Statistical models</font></li> are the basis of accurate sequence comparison
+  <li>Spaced and subset seeds<font color="red"></font> improve sensitivity, but are hard to design</li>
+  <li><font color="red">Adaptive seeds</font> are useful when there is non-uniform composition</li>
+</div>
+
+<h2>Exercises</h2>
+<ol>
+<li>Find the minimizer positions, using <span class="math">\(W=3\)</span>, for this sequence: "acgatcgatgaagatgca"</li>
+<li>Write the sparse suffix array, which uses only these minimizer positions</li>
+<li>Provide an argument for why equation [1] is appropriate.</li>
+<li>Show how to simpligy equation [1] into equation [2]. What are <span class="math">\(c\)</span> and <span class="math">\(d\)</span> ?</li>
+</ol>
+<div class="math">$$\begin{aligned}
+t\times\log\left(\frac{A_{xy}}{P_x\times Q_y}\right)
+&amp;\Longrightarrow t\times\log\left(\sum_{i,j}\frac{A_{ij}}{P_i\times Q_j}p(x=i)p(y=j)\right)
+&amp; [1]\\
+&amp;= t\times\log\left(cd\frac{A_{xy}}{P_xQ_y} + (1-cd)\right)
+&amp; [2]
+\end{aligned}$$</div>
+<h2>Answer</h2>
+<h4>1</h4>
+<p><span class="math">\(0,3,5,7,10,11,13,16,17\)</span></p>
+<div class="highlight"><pre><span></span><span class="n">acgatcgatgaagatgca</span>
+<span class="o">=--</span>
+ <span class="o">--=</span>
+  <span class="o">-=-</span>
+   <span class="o">=--</span>
+    <span class="o">-=-</span>
+<span class="n">acgatcgatgaagatgca</span>
+     <span class="o">--=</span>
+      <span class="o">-=-</span>
+       <span class="o">=--</span>
+        <span class="o">--=</span>
+         <span class="o">-=-</span>
+<span class="n">acgatcgatgaagatgca</span>
+          <span class="o">=--</span>
+           <span class="o">=--</span>
+            <span class="o">-=-</span>
+             <span class="o">=--</span>
+              <span class="o">--=</span>
+               <span class="o">--=</span>
+</pre></div>
+
+
+<h4>2</h4>
+<div class="highlight"><pre><span></span><span class="mi">17</span> <span class="n">a</span>
+<span class="mi">10</span> <span class="n">aagatgca</span>
+ <span class="mi">0</span> <span class="n">acgatcgatgaagatgca</span>
+<span class="mi">11</span> <span class="n">agatgca</span>
+ <span class="mi">3</span> <span class="n">atcgatgaagatgca</span>
+ <span class="mi">7</span> <span class="n">atgaagatgca</span>
+<span class="mi">13</span> <span class="n">atgca</span>
+<span class="mi">16</span> <span class="n">ca</span>
+ <span class="mi">5</span> <span class="n">cgatgaagatgca</span>
+</pre></div>
+
+
+<h4>3</h4>
+<p><span class="math">\(S_{xy} (x,y\in\{a,c,g,t\})\)</span> specifies the score for aligning the nucleotides <span class="math">\(x\)</span> and <span class="math">\(y\)</span>. The scoring matrix can be interpreted as a log likelihood ratio:</p>
+<div class="math">$$S_{x y}=t \times \ln \left(R_{x y}\right)$$</div>
+<p>where <span class="math">\(T\)</span> is an arbitrary scaling factor, and <span class="math">\(R_{xy}\)</span> is the likelihood ratio:</p>
+<div class="math">$$R_{x y}=\frac{P(x y | A)}{P(x) P(y)}$$</div>
+<ul>
+<li><span class="math">\(P(xy|A)\)</span> is the probability of observing <span class="math">\(x\)</span> aligned to <span class="math">\(y\)</span> in a <font color="red">probabilistic model</font> of aligned sequences.</li>
+<li><span class="math">\(P(x)\)</span> and <span class="math">\(P(y)\)</span> are the probabilities of observing <span class="math">\(x\)</span> and <span class="math">\(y\)</span> individually.</li>
+</ul>
+<p>Then, extending the standard scoring matrix derivation to take <font color="red">sequencing error probabilities into account.</font></p>
+<p>We assume that the sequencing instrument estimates <span class="math">\(P(z|d)\)</span>, <b>the probability that a base is <span class="math">\(z\)</span> (where <span class="math">\(z\in\{a,c,g,t\}\)</span>) based on some observed data <span class="math">\(d_z\)</span> (e.g. image intensities).</b></p>
+<p>Following the likelihood-ratio principle, we define a generalization
+of standard substitution scores:</p>
+<div class="math">$$R_{\alpha \beta}^{\prime}=\frac{P(\alpha \beta | A)}{P(\alpha) P(\beta)}$$</div>
+<p>This formula can be rearranged by observing,</p>
+<div class="math">$$\begin{aligned}
+P(\alpha)
+&amp;=\sum_{x \in[a, c, g, t]} P(x) P(\alpha | x) \\
+P(\beta)
+&amp;=\sum_{y \in[a, c, g, t]} P(y) P(\beta | y) \\
+P(\alpha \beta | A)
+&amp;=\sum_{x \in[a, c, g, t]}\sum_{y \in[a, c, g, t]} P(x y | A) P(\alpha | x) P(\beta | y)
+\end{aligned}$$</div>
+<p>and by Bayes formula,</p>
+<div class="math">$$
+P(\alpha | x)=\frac{P(x | \alpha) P(\alpha)}{P(x)}\\
+P(\beta  | y)=\frac{P(y |  \beta) P(\beta )}{P(y)}
+$$</div>
+<p>to obtain:</p>
+<div class="math">$$
+\begin{aligned}
+R_{\alpha \beta}^{\prime}
+&amp;= \frac{P(\alpha \beta | A)}{P(\alpha) P(\beta)}\\
+&amp;= \frac{\sum_{x \in[a, c, g, t]}\sum_{y \in[a, c, g, t]} P(x y | A) P(\alpha | x) P(\beta | y)}{\sum_{x \in[a, c, g, t]} P(x) P(\alpha | x) \sum_{y \in[a, c, g, t]} P(y) P(\beta | y)} \\
+&amp;= \frac{\sum_{x \in[a, c, g, t]}\sum_{y \in[a, c, g, t]} P(x y | A) P(\alpha | x) P(\beta | y)}{\sum_{x \in[a, c, g, t]} P(x | \alpha) P(\alpha) \sum_{y \in[a, c, g, t]} P(y |  \beta) P(\beta )} \\
+&amp;= \frac{\sum_{x \in[a, c, g, t]}\sum_{y \in[a, c, g, t]} P(x y | A) P(\alpha | x) P(\beta | y)}{P(\alpha) P(\beta )} \\
+&amp;= \sum_{x \in[a, c, g, t]}\sum_{y \in[a, c, g, t]}\frac{ P(x y | A) P(x|\alpha) P(y|\beta )}{P(x) P(y )} \\
+&amp;= \sum_{x \in[a, c, g, t]}\sum_{y \in[a, c, g, t]}R_{xy}P(x|\alpha) P(y|\beta ) \\
+\end{aligned}
+$$</div>
+<p>Finally, we define scores by the usual log transformation:</p>
+<div class="math">$$S_{\alpha\beta}^{\prime}=t \times \ln \left(R_{\alpha\beta}^{\prime}\right)$$</div>
+<p>Reference:
+<a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2853142/">Incorporating sequence quality data into alignment improves DNA read mapping</a></p>
+<h4>4</h4>
+<p>Given the probability of one of the bases, <span class="math">\(x', y'\)</span>, we can make an assumption that the probability of the others (ex. <span class="math">\(x''\)</span>) is following the respective <span class="math">\(P_{x''}\)</span>.</p>
+<p>Therefore, the following equation holds;
+</p>
+<div class="math">$$p(x=i) =
+\begin{cases}
+  p(x=x'), &amp; (\text{if}\ i=x') \\
+  \left(1-p(x=x')\right)\frac{P_i}{1-P_{x'}}, &amp; (\text{otherwise})
+\end{cases}
+$$</div>
+<p>Then, the formula can be rearranged as follows;</p>
+<div class="math">$$\begin{aligned}
+&amp;\sum_{i, j} \frac{A_{i j}}{P_{i} \times Q_{j}} p(x=i) p(y=j)\\
+&amp;= \sum_{i=x',j=y'}+\sum_{i=x',j\neq y'}+\sum_{i\neq x',j=y'}+\sum_{x\neq x',y\neq y'}\\
+&amp;= \frac{A_{x' y'}}{P_{x'} \times Q_{y'}} p(x=x') p(y=y') + \sum_{j\neq y'} \frac{A_{x' j}}{P_{x'} \times Q_{j}}p(x=x')\left\{\left(1-p(y=y')\right)\frac{Q_j}{1-Q_{y'}}\right\}\\
+&amp;+ \sum_{i\neq x'} \frac{A_{i y'}}{P_{i} \times Q_{y'}}\left\{\left(1-p(x=x')\right)\frac{P_i}{1-P_{x'}}\right\}p(y=y') + \sum_{i\neq x',j\neq y'} \frac{A_{i j}}{P_{i} \times Q_{j}}\left\{\left(1-p(x=x')\right)\frac{P_i}{1-P_{x'}}\right\}\left\{\left(1-p(y=y')\right)\frac{Q_i}{1-Q_{y'}}\right\}\\
+&amp;= \frac{A_{x' y'}}{P_{x'} \times Q_{y'}} p(x=x') p(y=y') + \frac{p(x=x')}{P_{x'}}\frac{1-p(y=y')}{1-Q_{y'}}\sum_{j\neq y'}A_{x' j}\\
+&amp;+ \frac{1-p(x=x')}{1-P_{x'}}\frac{p(y=y')}{Q_{y'}}\sum_{i\neq x'}A_{i y'} + \frac{1-p(x=x')}{1-P_{x'}}\frac{1-p(y=y')}{1-Q_{y'}} \sum_{i\neq x',j\neq y'} A_{i j} \\
+&amp;= \frac{A_{x' y'}}{P_{x'} \times Q_{y'}} p(x=x') p(y=y') + \frac{p(x=x')}{P_{x'}}\frac{1-p(y=y')}{1-Q_{y'}}\left(P_{x'}-A_{x' y'}\right)\\
+&amp;+ \frac{1-p(x=x')}{1-P_{x'}}\frac{p(y=y')}{Q_{y'}}\left(Q_{y'}-A_{x' y'}\right) + \frac{1-p(x=x')}{1-P_{x'}}\frac{1-p(y=y')}{1-Q_{y'}} \left(1-\left(P_{x'}+Q_{y'}-A_{x' y'}\right)\right) \\
+&amp;=\cdots\\
+&amp;=\left(\frac{p(x=x')-P_{x'}}{1-P_{x'}}\right)\left(\frac{p(y=y')-Q_{y'}}{1-Q_{y'}}\right)\frac{A_{x' y'}}{P_{x'} \times Q_{y'}} + \left(1-\left(\frac{p(x=x')-P_{x'}}{1-P_{x'}}\right)\left(\frac{p(y=y')-Q_{y'}}{1-Q_{y'}}\right)\right)
+\end{aligned}$$</div>
+<p>So, we get the following equation:</p>
+<div class="math">$$
+t\times\log\left(\sum_{i,j}\frac{A_{ij}}{P_i\times Q_j}p(x=i)p(y=j)\right)= t\times\log\left(cd\frac{A_{xy}}{P_xQ_y} + (1-cd)\right)\\
+c=\left(\frac{p(x=x')-P_{x'}}{1-P_{x'}}\right),\quad d=\left(\frac{p(y=y')-Q_{y'}}{1-Q_{y'}}\right)
+$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-06-17T00:00:00+09:00"> 6 17, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-06-17T00:00:00+09:00"> 6 17, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ
+                    <span>8</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 細胞分子生物学Ⅱ, 細胞分子生物学Ⅱ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="細胞分子生物学Ⅱ 第6回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/細胞分子生物学Ⅱ-6.html" />
+<meta property="og:description" content="染色体異常と発がん" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-21T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-21T00:00:00+09:00" />
+<meta name="twitter:title" content="細胞分子生物学Ⅱ 第6回 ">
+<meta name="twitter:description" content="染色体異常と発がん">
+
+        <title>細胞分子生物学Ⅱ 第6回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/細胞分子生物学Ⅱ-6.html"> 細胞分子生物学Ⅱ 第6回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第6回 2019/5/21</h1>
+<ul>
+<li>講師：<a href="https://www.u-tokyo.ac.jp/focus/ja/people/people000296.html">須谷 尚史</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/Molecular-Biology-Cell-Bruce-Alberts/dp/0815344643">Molecular Biology of the Cell</a></li>
+</ul>
+<h2>がん</h2>
+<h3>がんの性質</h3>
+<ul>
+<li>とめどなく増え続ける</li>
+<li><span class="marker-info" aria-label="しんじゅん,本来その組織固有のものでない細胞が，組織の中に出現すること">浸潤</span>と転移を起こす。</li>
+</ul>
+<p>これらの機能によって、正常な機能を阻害し、死に至らせる。</p>
+<h3>がんのクローン進化</h3>
+<p><b>「変異の獲得→悪性度の進行」</b>を繰り返すことで、最終的に悪性腫瘍が誕生する。特徴としては以下。</p>
+<ul>
+<li><span class="marker-pink">正常な組織から生じる</span></li>
+<li><span class="marker-pink">だんだんと悪性度が増加する</span></li>
+</ul>
+<h3>がん研究の歴史</h3>
+<h4>ラウス肉腫ウイルスの発見</h4>
+<p>ニワトリのがん細胞をすりつぶした濾過液を正常なニワトリに注射（転移）したところ、正常な細胞ががん化した（Rous discovered a chicken <span class="marker-info" aria-label="肉腫">sarcoma</span> virus. 1909）</p>
+<p>濾過液中に病原体（<span class="marker-pink">ラウス肉腫ウイルス</span>）が存在することが発見され、発がん性ウイルスであることが確かめられた。</p>
+<p>RNAウイルスであるラウス肉腫ウイルスは、逆転写酵素の働きによって動物細胞内のDNAに組み込まれ、がんを引き起こしていた。また、ラウス肉腫ウイルスの遺伝子は4個からなる簡単な構造を持っており、その中のがんを起こす原因となる遺伝子（<span class="marker-pink">がん遺伝子(oncogene)</span>）が初めて同定され、<span class="marker-pink">v-src</span>と命名された。</p>
+<h4>ヒトゲノムでのc-srcの発見</h4>
+<p>v-src遺伝子とほぼ同じ遺伝子（<span class="marker-pink">c-src</span>）が哺乳類細胞の染色体上にあることが発見され、さらに<span class="marker-pink">がん遺伝子がもともと正常な細胞にも存在していた</span><b>（正常細胞の持つ遺伝子の変異が細胞のがん化を引き起こす）</b>ということが分かった。</p>
+<blockquote>
+<p>Srcは細胞に増殖刺激を伝えるキナーゼであり、活性化型と不活性化型を行き来するが、活性の抑制にはC末端が必要である。v-src はC末端がないので、増殖シグナルが永続的に入ってしまい、これが細胞のがん化を引き起こしていた。</p>
+</blockquote>
+<h4>まれな遺伝性がん症候群の研究により、がん抑制遺伝子が同定された</h4>
+<p>がん抑制遺伝子の発見の鍵は、ヒトのまれながんである<span class="marker-pink">網膜芽細胞腫(retinoblastoma)</span>の研究から得られた。</p>
+<p>結論から言うと原因となる遺伝子は<span class="marker-pink">Rb遺伝子</span>であったが、<b>Rb遺伝子は片方の染色体に正常な遺伝子を保持している限り、がんにならない。</b></p>
+<p>したがって、<b>遺伝性の患者（予め1コピーが変異型）の方ががんを発症する確率が格段に高い（がんを発症しやすい家系がある）</b>ことがわかる。</p>
+<blockquote>
+<p>Rb遺伝子から作られる<span class="marker-pink">Rbタンパク(Rb protein)</span>は、体内のほぼ全ての細胞に存在する普遍的な細胞周期調節因子で、Rbタンパクは細胞分裂周期の進行にブレーキをかける重要な因子の1つであり、これが欠損すると細胞は適切でない時期に細胞周期に入ってしまう。</p>
+</blockquote>
+<h3>がん発生に関わる遺伝子</h3>
+<ul>
+<li><span class="marker-pink">がん原遺伝子(proto-oncogene)</span><ul>
+<li>活性化型の変異が入ることにより、発がんの原因となる遺伝子</li>
+<li>がんウイルスの研究から発見されたものが多い</li>
+<li><b>増殖刺激の代謝経路の遺伝子が多い</b><ul>
+<li>ex.)<span class="marker-pink">src, myc, ras…</span></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span class="marker-pink">がん抑制遺伝子(tumor suppressor gene)</span><ul>
+<li>不活性化型の変異が両アリルに入ることにより、発がんの原因となる遺伝子</li>
+<li>がんを好発する家系の研究から発見されたものが多い。</li>
+<li><b>細胞周期のブレーキ、チェックポイント、損傷修復などに関わる遺伝子</b><ul>
+<li>ex.)<span class="marker-pink">Rb,p53,APC,BRCA1...</span></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>がんゲノミクス</h3>
+<p>次世代シークエンサーを使ってがん細胞中に生じた変異を網羅的に知ることができるようになった。</p>
+<p>→（感染性や家系性でない）一般のがんでも、<b>がん原遺伝子</b>や<b>がん抑制遺伝子</b>に変異が生じていることがわかった。</p>
+<p>多くのがんでよく壊れている経路：</p>
+<ul>
+<li>Rb 経路(細胞周期)</li>
+<li>RTK/Ras/PI3K 経路(細胞増殖のシグナル伝達)</li>
+<li>p53 経路(ダメージレスポンシブ)</li>
+</ul>
+<p>※ がんの半数以上では<b>細胞の恒常性の維持やアポトーシス誘導に関わる</b><span class="marker-pink">p53遺伝子</span>が壊れていることから、p53遺伝子は、<b>「ゲノムの守護神」</b>とも呼ばれている。</p>
+<h2>がんのリスク因子</h2>
+<p>がんになるメカニズムはある程度わかった。では、どうやったらがんになるん？？</p>
+<p>がんになった人を集めてきてそれらの人々の生活習慣の情報から統計的に原因を調べる。
+Harvard Center for Cancer Prevention</p>
+<ul>
+<li>喫煙:
+タバコの煙には発がん物質が70種類も含まれている。
+特に肺がんは喫煙が原因の80%以上</li>
+</ul>
+<p>がん研究の
+- 煙突清掃人に皮膚がん（タールがん）が多いことに注目。
+→うさぎの耳にタールを塗り続けることで人工的にがんを作成。</p>
+<p>獣肉、加工肉の取りすぎ
+→ 大腸がんのリスク↑</p>
+<p>ポリープから始まることが多いので、小さいうちに切除すればOK
+ポリープの出来やすい人は要注意。</p>
+<p>肥満
+→ 大腸ガン、食道がん、乳がんなどのリスク ↑
+- 過剰なカロリー摂取が DNAを傷つけるかっ精算書種が増加？</p>
+<p>ピロリ菌;
+胃の中で生きられる珍しい菌。胃炎、胃潰瘍の原因。
+アンモニアを作ることができ、それによって胃酸の中でも大丈夫だった。
+保菌者は胃がんのリスクが5-10倍。
+抗生剤による除菌が可能。</p>
+<p>肝炎ウイルス(B,C型);
+慢性的な肝臓の炎症
+→ 肝臓がんの原因(90%)</p>
+<p>パピローマウイルス(HPV);
+子宮頸がんのほとんどはHPV感染が原因。
+ワクチンによって感染予防が可能(感染前なら)</p>
+<p>アンジェリーナジョリー;
+BRCA1 という遺伝子に変異があることがわかった。BRACA1 に変異がある人が一生のうちに乳がんになる確率は80%↑(そういう数字だったのね)→予防的</p>
+<p>環境・感染・家系 → 遺伝子の変異 → がん</p>
+<p>がんの ~40 % は予防できる。(by 国立がん研究センター)</p>
+<p>がんは高齢になる程発症しやすくなる病気（ゲノムに溜まった変異が原因）なので、それを止めることは厳しいのでは…？？</p>
+<h3>ミューテーター(Mutator)</h3>
+<p>突然変異が生じる確率が正常よりも高くなるような変異。（ex. <span class="marker-info" aria-label="DNAにできた傷を修復するタンパク質。アンジェリーナジョリーが予防的乳房切除をおこなったのがこれ。BRACA1に変異がある人が一生のうちに乳がんになる確率は80%">BRCA1</span>）</p>
+<h3>染色体不安定性(CIN)の原因(モデル)</h3>
+<p>がん細胞は、悪性化の過程のどこかで<span class="marker-info" aria-label="細胞分裂の度に染色体数が変動する病態">染色体不安定性(CIN;Chromosome instability)</span>を獲得している。</p>
+<p>M期やS期の制御に変異が入ることで、<b>遺伝子数の増減</b>や<b>融合遺伝子の形成</b>を引き起こし、さらなる悪性化をもたらしている。</p>
+<ul>
+<li>染色体分配の異常：異数性</li>
+<li>過剰なDNA複製開始:染色体の断裂化,GCR</li>
+</ul>
+<h3>がんの治療法</h3>
+<ul>
+<li>これまでの抗がん剤：
+増殖の盛んな細胞や、チェックポイントの壊れた細胞（=がん細胞）がより障害を受けることを狙いとして、細胞分裂を阻害し、細胞を殺す薬。正常な細胞にも作用するため、副作用が強い。</li>
+<li>最近では：
+がん細胞のゲノムを調べることで、<ul>
+<li><span class="marker-pink">分子標的薬</span>：
+がん細胞のみが持つ異常な遺伝子を狙い撃ちにする薬剤を用いる。</li>
+<li><span class="marker-pink">個別化医療</span>・<span class="marker-pink">オーダーメイド医療</span>：
+がん細胞の"個性"にあわせた治療法の選択</li>
+</ul>
+</li>
+</ul>
+<h2>Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Words</th>
+<th>Meanings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proto-oncogene, Oncogene</td>
+<td></td>
+</tr>
+<tr>
+<td>Tumor suppressor gene</td>
+<td></td>
+</tr>
+<tr>
+<td>c-myc, c-src, ras, EGFR</td>
+<td></td>
+</tr>
+<tr>
+<td>p53, Rb, Brca1, Brca2</td>
+<td></td>
+</tr>
+<tr>
+<td>Cancer genomics</td>
+<td></td>
+</tr>
+<tr>
+<td>Mutator</td>
+<td></td>
+</tr>
+<tr>
+<td>Aneuploidy, gross chromosome rearrangement</td>
+<td></td>
+</tr>
+<tr>
+<td>Chromosome instability</td>
+<td></td>
+</tr>
+<tr>
+<td>Translocation, gene fusion, gene amplification</td>
+<td></td>
+</tr>
+<tr>
+<td>Personalized medicine, Molecularly targeted therapy</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Quizzes, True or False?</h2>
+<table>
+<thead>
+<tr>
+<th>Questions</th>
+<th>T/F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Virus and other infectious agents play no role in human cancers.<br><br>ウイルスや他の感染性の要因は人間の癌には関わらない。</td>
+<td><font color="white">False</font></td>
+</tr>
+<tr>
+<td>The main environmental causes of cancer are the products of our industrialized way of life such as pollution and food additives.<br><br>癌の主な環境要因は、汚染や食品添加物のような個々の生活様式によるものだ。</td>
+<td><font color="white">False</font></td>
+</tr>
+<tr>
+<td>Anticancer therapies take advantage of some molecular abnormality of cancer cells that distinguishes them from normal cells.<br><br>抗がん医療は、正常細胞とがん細胞の分子的な違いを利用する。</td>
+<td><font color="white">True</font></td>
+</tr>
+</tbody>
+</table>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-21T00:00:00+09:00"> 5 21, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-21T00:00:00+09:00"> 5 21, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#xi-bao-fen-zi-sheng-wu-xue-ii-ref">細胞分子生物学Ⅱ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#xi-bao-fen-zi-sheng-wu-xue-ii-ref">細胞分子生物学Ⅱ
+                    <span>7</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

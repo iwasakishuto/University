@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 分子進化学, 分子進化学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="系統樹の個数 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/Number-of-phylogeny.html" />
+<meta property="og:description" content="系統樹の個数の求め方。" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-29T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-29T00:00:00+09:00" />
+<meta name="twitter:title" content="系統樹の個数 ">
+<meta name="twitter:description" content="系統樹の個数の求め方。">
+
+        <title>系統樹の個数  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/Number-of-phylogeny.html"> 系統樹の個数  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>系統樹の個数</h1>
+<p>2019/5/29 2限の分子進化学の講義中に先生がさらっと<b>「系統樹の個数は奇数だけをかければ良いので」</b>と言っていて、:thinking_face:となったので、それについて考える。</p>
+<p>対象とする種の数（葉の個数）を <span class="math">\(n\)</span> としたとき、「本質的に形状が異なる木の個数」とは、「（葉のラベルを考慮したうえで）<b>同型(isomorphic)</b>ではない木の個数」のことである。<b>「同型」</b>の数学的な定義は<a href="#グラフの同型性">最後</a>に書いた。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">定理）$n$ 個（$n\geq 3$）の葉を持つ同型でない系統樹の個数
+  <li>有限系統樹： $(2n-3)!!$ </li>
+  <li>無根系統樹： $(2n-5)!!$ </li>
+</div>
+
+<p><img src="https://www.cis.doshisha.ac.jp/mjin/R/42/42tree-ex1.PNG"></p>
+<p>※ <span class="math">\(n\)</span> を奇数とするとき、<span class="math">\(n!!\)</span> を次のように定義している。</p>
+<div class="math">$$n!! = n\times(n-2)\times(n-4)\times\cdots\times1$$</div>
+<h2>節点・枝・葉の関係</h2>
+<p>葉の個数に関する帰納法（といえば大げさだが、葉を <span class="math">\(1\)</span> つ取り除くと枝の数、節点の数が共に <span class="math">\(2\)</span> 個減少することは明らか）を用いれば、以下の性質が簡単に説明できる。</p>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>説明</th>
+<th>有根系統樹</th>
+<th>無根系統樹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>葉</td>
+<td>次数が <span class="math">\(1\)</span> の節点で、現存する、もしくは、対象とする <span class="math">\(1\)</span> つの生物種に対応する。<br>葉はラベルを持ち、異なる葉には異なるラベルが割り当てられる。</td>
+<td><span class="math">\(n\)</span></td>
+<td><span class="math">\(n\)</span></td>
+</tr>
+<tr>
+<td>節点</td>
+<td>木の葉もしくは枝分かれ部分をいう。</td>
+<td><span class="math">\(2n-1\)</span></td>
+<td><span class="math">\(2n-2\)</span></td>
+</tr>
+<tr>
+<td>枝（辺）</td>
+<td>節点の対で、種の親子関係を表す。</td>
+<td><span class="math">\(2n-2\)</span></td>
+<td><span class="math">\(2n-3\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2>系統樹の個数</h2>
+<h3>無根系統樹</h3>
+<p>こちらも葉の個数に関する帰納法によって証明できる。葉が <span class="math">\(3\)</span> 個の時に、無根系統樹に対して定理が成立することは明らか。</p>
+<p>ここで、葉が <span class="math">\(n\)</span> 個の時に定理が成立するものと仮定する。この時 <span class="math">\(n+1\)</span> 個目のラベルは <span class="math">\(2n-3\)</span> 個の枝のどこにでも挿入することができ、この時異なる枝を選ぶと異なる系統樹が構成できる。</p>
+<p>したがって、<span class="math">\(n+1\)</span> 個の葉をもつ無根系統樹の個数は、</p>
+<div class="math">$$(2n-3)\times((2n-5)!!) = (2(n+1)-5)!!$$</div>
+<p>となり、証明が完了する。</p>
+<h3>有根系統樹</h3>
+<p>無根系統樹の任意の枝の中間に根を配置することにより、有根系統樹が構成できることを利用する。</p>
+<p><span class="math">\(n\)</span> 個の葉を持つ無根系統樹の <span class="math">\(2n-3\)</span> 個の異なる枝に根を追加することで得られる有根系統樹は異なるので、</p>
+<div class="math">$$(2n-3)\times((2n-5)!!)=(2n-3)!!$$</div>
+<p>となり、有根系統樹に関しても定理が成立する。</p>
+<h2>グラフの同型性</h2>
+<p><div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">定義
+  <li><span class="math">\(G_1(V_1,E_1),G_2(V_2,E_2)\)</span> をそれぞれグラフ</li>
+  <li><span class="math">\(\Sigma_V\)</span> と <span class="math">\(\Sigma_E\)</span> を集合</li>
+  <li>各頂点 <span class="math">\(v\)</span> には <span class="math">\(\Sigma_V\)</span> の要素がラベル <span class="math">\(l(v)\)</span> として割り当てられている</li>
+  <li>各辺 <span class="math">\(e\)</span> には <span class="math">\(\Sigma_E\)</span> の要素がラベル <span class="math">\(l(e)\)</span> として割り当てられている</li>
+  <li><span class="math">\(e=(u,v)\)</span> のとき、<span class="math">\(l(e)=l(u,v)\)</span> と書く</li>
+</div></p>
+<p>ここで、<span class="math">\(V_1\)</span> から <span class="math">\(V_2\)</span> への全単射の写像 <span class="math">\(\phi\)</span> が存在し、かつ以下の条件を満たすとき、<span class="math">\(G_1\)</span> および <span class="math">\(G_2\)</span> は同型であるという。</p>
+<ul>
+<li><span class="math">\((\forall v\in V_1)(l(v) = l(\phi(v)))\)</span></li>
+<li><span class="math">\((\forall(u,v)\in E_1)(l(u,v) = l(\phi(u),\phi(v)))\)</span></li>
+<li><span class="math">\((\forall u\in V_1,\forall v\in V_1)((u,v)\in E_1\Longleftrightarrow(\phi(u),\phi(v))\in E_2)\)</span></li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-29T00:00:00+09:00"> 5 29, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-29T00:00:00+09:00"> 5 29, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#fen-zi-jin-hua-xue-ref">分子進化学
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

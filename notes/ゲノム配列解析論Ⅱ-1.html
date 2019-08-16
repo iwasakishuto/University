@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅱ, ゲノム配列解析論Ⅱ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/study/notes/theme/img/default_image.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅱ 第1回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅱ-1.html" />
+<meta property="og:description" content="変形文法" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-06-10T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-06-10T00:00:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅱ 第1回 ">
+<meta name="twitter:description" content="変形文法">
+
+        <title>ゲノム配列解析論Ⅱ 第1回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/University/notes/theme/img/icon/apple-touch-icon-152x152.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/notes/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/notes/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/notes/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/notes/ゲノム配列解析論Ⅱ-1.html"> ゲノム配列解析論Ⅱ 第1回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第1回 2019/6/10</h1>
+<ul>
+<li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a></li>
+<li>資料：<a href="https://www.amazon.co.jp/%E3%83%90%E3%82%A4%E3%82%AA%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%9E%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9-%E7%A2%BA%E7%8E%87%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AB%E3%82%88%E3%82%8B%E9%81%BA%E4%BC%9D%E5%AD%90%E9%85%8D%E5%88%97%E8%A7%A3%E6%9E%90-Richard-Durbin/dp/B0050YGNNY">バイオインフォマティクス 確率モデルによる遺伝子配列解析</a> 第９章</li>
+</ul>
+<h2>Lecture Schedule</h2>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">date</th>
+<th align="left">teacher</th>
+<th align="left">title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="left">6/10</td>
+<td align="left">浅井</td>
+<td align="left">変形文法</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">6/17</td>
+<td align="left">Martin Frith</td>
+<td align="left">Comparing bio-molecule sequences</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">6/24</td>
+<td align="left">寺井悟朗</td>
+<td align="left">RNA informatics　</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">7/1</td>
+<td align="left">岩切淳一</td>
+<td align="left">RNA seq　</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">7/8</td>
+<td align="left">浅井</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="left">7/22</td>
+<td align="left">浅井</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="left">7/29</td>
+<td align="left"></td>
+<td align="left">筆記試験</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="http://asailab.cb.k.u-tokyo.ac.jp/lecture/">講義HP</a></li>
+</ul>
+<h2>講義概要</h2>
+<p>今回の講義は、上記の資料（浅井先生が翻訳に関わられている本）の文章をそのまま追うだけであった。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">第9章 変形文法
+  <ol>
+    <li><a data-scroll href="#anchor1">変形文法</a></li>
+    <li><a data-scroll href="#anchor2">正規文法</a></li>
+    <li><a data-scroll href="#anchor3">文脈自由文法</a></li>
+    <li><a data-scroll href="#anchor4">文脈依存文法</a></li>
+    <li><a data-scroll href="#anchor5">確率文法</a></li>
+    <li><a data-scroll href="#anchor6">配列モデルのための確率文脈文法</a></li>
+  </ol>
+</div>
+
+<h2>変形文法</h2>
+<p><a href="https://iwasakishuto.github.io/study/notes/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>では、<b>「配列のアラインメント」</b>や<b>「隠れマルコフモデル」</b>など、<font color="red"><b>生物配列を一次元の記号列として扱っていた。</b></font>この仮定は、計算するには扱いやすいが、生物配列の性質を十分に表現できていない。</p>
+<p>そこで、<font color="red"><b>タンパク質や塩基の三次元的な折れ畳み</font>（一次元の配列上では隣り合っていない残基の広範囲な物理的相互作用）</b>を考慮に入れた確率モデルを作ることを考える。なお、その例として<font color="red"><b>RNAの二次構造解析</b></font>を見る。</p>
+<p>生物配列の性質を取り入れると言っても、結局は配列を<font color="red"><b>「ある文法にのっとった文字列」</b></font>として見る<b>（RNAの二次構造解析では、確率自由文法(SCFG)を利用する）</b>ため、形式言語の基本を理解する必要はある。</p>
+<p>そのため、今日は</p>
+<ol>
+<li>確率をもたない形の変形文法を概観</li>
+<li>遠距離の相関と制約のある配列の完全な確率的モデル化のための形式システムとしての確率文法の導入</li>
+<li>確率文脈自由文法に対する一般化したアラインメントアルゴリズムの提示</li>
+</ol>
+<p>といった流れで確率文脈自由文法に基づく確率モデルをRNA二次構造問題に適用するための土台を準備する。</p>
+<h3 id="anchor1">1. 変形文法</h3>
+
+<p>変形文法は、有限個の記号と、<span class="math">\(\alpha\rightarrow\beta\)</span> の形の有限個の<font color="red"><b>書き換え規則(rewriting rule)</b></font>から成る。<span class="math">\(\alpha\)</span> と <span class="math">\(\beta\)</span> はともに<b>記号の列</b>であり、書き換え規則は<font color="red"><b>生成規則(production rule)</b></font>とも呼ばれる。</p>
+<p>記号には、以下の2種類があり、左辺の <span class="math">\(\alpha\)</span> は少なくとも1個の非終端記号を含み、一般に右辺の非終端記号や終端記号の新しい列に変換される。</p>
+<ul>
+<li>抽象的な<font color="red"><b>非終端記号(nonterminal symbol)</b></font></li>
+<li>観測文字列に実際に現れる<font color="red"><b>終端記号(terminal symbol)</b></font></li>
+</ul>
+<p>例えば、2文字の終端記号のアルファベット <span class="math">\(\{a, b\}\)</span> とひとつの非終端記号 <span class="math">\(S\)</span>、処理を終わらせるための特殊な空終端記号 <span class="math">\(\epsilon\)</span> を用いて <span class="math">\(a\)</span> と <span class="math">\(b\)</span> からなる任意の文字列を生成する変形文法は以下のように書かれる。</p>
+<div class="math">$$S\rightarrow aS,\ S\rightarrow bS,\ S\rightarrow\epsilon$$</div>
+<p>部分文字列を選び、許された書き換え規則のひとつに従ってそれを書き換えるプロセス<b>（非終端記号がなくなるまで続く）</b>の結果生じる文字列の系列を文法からの<font color="red"><b>導出(derivation)</b></font>と呼ぶ。</p>
+<p>配列解析の問題に変形文法を用いる時は、特定の配列がその文法に<font color="red"><b>適合する</b></font>（その文法から生成された）かどうかが問題となるため、文字列の導出が存在するかを逆向きにたどることになる。</p>
+<p>与えられた配列に対して有効な導出を見つけることを<font color="red"><b>構文解析(parsing)</b></font>と呼んでおり、その意味で<b>「導出は配列の構文解析」</b>とも呼ばれる。</p>
+<h4>チョムスキー階層</h4>
+<p><img src="https://camo.qiitausercontent.com/4ed972d64fc0cab2db696162d8f3b7e4f873bed3/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3137323131332f32373230653363662d336131352d323839632d623830362d3133393761323362373231312e6a706567"></p>
+<ul>
+<li><span class="math">\(W\)</span> を任意の<b>非終端記号</b></li>
+<li><span class="math">\(a\)</span> を任意の<b>終端記号</b></li>
+<li><span class="math">\(\alpha\)</span> と <span class="math">\(\gamma\)</span> を<b>ヌル記号を含む</b>非終端記号や終端記号の任意の系列</li>
+<li><span class="math">\(\beta\)</span> を<b>ヌル記号を含まない</b>非終端記号や終端記号の任意の系列</li>
+</ul>
+<p>と定義すると、それぞれの階層は以下のように説明できる。</p>
+<table>
+<thead>
+<tr>
+<th align="center">文法</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">正規文法(regular grammar)</td>
+<td align="left"><span class="math">\(W\rightarrow aW\)</span> と <span class="math">\(W\rightarrow a\)</span> の形の生成規則のみが許される。</td>
+</tr>
+<tr>
+<td align="center">文脈自由文法(context free grammar)</td>
+<td align="left">任意の <span class="math">\(W\rightarrow\beta\)</span> の形の生成規則が許される。生成規則の左辺はちょうど一個の非終端記号でなければならないが、右辺は何であっても構わない。</td>
+</tr>
+<tr>
+<td align="center">文脈依存文法(context dependent grammar)</td>
+<td align="left"><span class="math">\(\alpha_1W\alpha_2\rightarrow\alpha_1\beta\alpha_2\)</span> の形の生成規則が許される。非終端記号 <span class="math">\(W\)</span> の許される変形はその文脈 <span class="math">\(\alpha_1\)</span> と <span class="math">\(\alpha_2\)</span> に依存している。なお、生成規則から分かるように<b>文脈依存文法は決して縮退しない。</b></td>
+</tr>
+<tr>
+<td align="center">句構造文法(phase structure grammar)</td>
+<td align="left"><span class="math">\(\alpha_1W\alpha_2\rightarrow\gamma\)</span> の形の任意の生成規則が許される。</td>
+</tr>
+</tbody>
+</table>
+<h4>オートマトン</h4>
+<p>上記の図形のように、それぞれの文法は<font color="red"><b>オートマトン</b></font>と呼ばれる抽象的な計算機構に対応している。オートマトンは配列を受理あるいは棄却する構文解析器として記述される。</p>
+<h3 id="anchor2">2. 正規文法</h3>
+
+<p><font color="red"><b>正規文法(regular grammar)</b></font>の全ての生成規則は <span class="math">\(W\rightarrow aW\)</span> または <span class="math">\(W\rightarrow a\)</span> の形をしている。しばしば <span class="math">\(W\rightarrow\epsilon\)</span> という生成規則を追加することがあるが、<b>正規文法は常に <span class="math">\(\epsilon\)</span> を吸収するように拡張できることが知られている</b>（例：正規文法に近い <span class="math">\(S\rightarrow aS|bS|\epsilon\)</span> は <span class="math">\(S\rightarrow aS|bS|a|b\)</span> と同値）ので、アルゴリズムに深刻な問題とはならない。</p>
+<p>正規文法は配列を左（右）から右（左）に発生するため、終端記号の間の遠距離の相関を効果的に記述<font color="red"><b>一時配列モデル</b></font>であると言うことができる。</p>
+<h4>有限状態オートマトン</h4>
+<p><font color="red"><b>正規文法</b></font>に対応する構文解析オートマトンは<font color="red"><b>有限状態オートマトン(finite state automaton)</b></font>である。</p>
+<p>有限状態オートマトンはいくつかの状態(state)からなるモデルで、状態は<font color="red"><b>状態遷移(state transition)</b></font>によって互いに結合している。<b>状態と状態遷移は同値な正規文法の非終端記号と生成規則に対応</b>している。</p>
+<h5>ムーア機械とミーリー機械</h5>
+<p>有限状態オートマトンには以下の二つのタイプの機械があるが、相互変換可能である。</p>
+<ul>
+<li><b>ムーア機械(Moore machine)</b>：<b>状態で</b>記号を受理するもの</li>
+<li><b>ミーリー機械(Mealy machine)</b>：<b>遷移時に</b>記号を受理するもの</li>
+</ul>
+<h5>決定性オートマトンと非決定性オートマトン</h5>
+<p>有限状態オートマトンにはさらに以下の二つの性質があり、<b>任意の非決定性有限状態オートマトンは決定性有限オートマトンに変換可能</b>であることが知られている。</p>
+<ul>
+<li><b>決定性</b>：任意の状態で任意の入力記号を受理する<b>1個以上の遷移はない</b>。</li>
+<li><b>非決定性</b>：ある状態で、ある記号列を受理する<b>複数の遷移がある</b>。</li>
+</ul>
+<p>決定性有限状態オートマトンによる構文解析は極めて効率的であり、高速な<font color="red"><b>BLAST</b></font>データベース検索プログラムに生かされている。</p>
+<p>一方の非決定性有限状態オートマトンは配列を棄却する前に全ての代替経路を調べないといけないが、効率的に行うことができ、<code>grep</code>や<code>sed</code>,<code>awk</code>,<code>vi</code> などのUNIXのユーティリティにおけるテキストのパターン称号プログラムは高度に効率的な非決定性有限状態オートマトンを用いている。（※UNIXの「正規表現」は正規文法と同値である。）</p>
+<h4>正規文法でできないこと</h4>
+<p>正規文法が記述できない言語 <span class="math">\(L\)</span> の古典的な2個の例題：</p>
+<ol>
+<li><span class="math">\(L\)</span> が <span class="math">\(aa,bb,abba,abaaba\)</span> といった、<b>逆から読んでも同一な文字列</b>全てを含む<font color="red"><b>（回文言語）</b></font></li>
+<li><span class="math">\(L\)</span> が <span class="math">\(aa,bb,abab,aabaab\)</span> といった、<b>同一の2個の部分からなる文字列</b>全てを含む<font color="red"><b>（複写言語）</b></font></li>
+</ol>
+<p><b>※ なお、RNAの二次構造予測の場合、<font color="red"><b>回文構造</b></font>を読むことは極めて大事である。</b></p>
+<h3 id="anchor3">3. 文脈自由文法</h3>
+
+<p>回文構造は、チョムスキー階層の次の段階、<font color="red"><b>文脈自由文法(CFG)</b></font>によって扱われる。RNAの二次構造は一種の回文構造になっており、<b>「入れ子になった位置（ステムループの架橋構造）の塩基対の強い相互作用が維持される限り、配列自体はどうなっても良い」</b>と言う問題を提示している。</p>
+<p>文脈自由文法の生成規則の左辺は正規文法と同様に1個の非終端記号でなければならないが、<b>右辺は終端記号と非終端記号の任意の組み合わせであって構わない。</b>ゆえに、右辺において相関のある塩基対を生成することができる。</p>
+<p>回文を生成するCFGの例は以下のようなものである。</p>
+<div class="math">$$S\rightarrow aSa|bSb|aa|bb$$</div>
+<p>正規文法は文字を<b>左から右</b>に生成するが、文脈自由文法は文字列を<b>外側から内側</b>に生成するため、入れ子になった相関だけが捕らえられる。</p>
+<p><b>※ 複写言語は入れ子の制限を破るため、文脈自由言語ではない。</b></p>
+<p>プッシュダウンオートマトンは構文解析木を一次元でやっている（プッシュとポップを繰り返せばできる。）</p>
+<h4>構文解析木</h4>
+<p><font color="red"><b>文脈自由文法</b></font>の配列に対するアラインメント（＝構文解析）には<font color="red"><b>構文解析木(parse tree)</b></font>と呼ばれるエレガントな表現がある。任意の<font color="red"><b>部分木(subtree)</b></font>は配列の連続した断片を<font color="red"><b>導出</b></font>するという重要な性質を持っている。</p>
+<p><img src="https://kenyu-life.com/wp-content/uploads/2019/03/%E6%A7%8B%E9%80%A0%E8%A7%A3%E6%9E%90.jpg"></p>
+<h4>プッシュダウン・オートマトン</h4>
+<p>CFGのための構文解析オートマトンは<font color="red"><b>プッシュダウン・オートマトン(push down automaton)</b></font>と呼ばれるが、これを用いることで、構文解析木が行なっていることを<b>一次元で</b>行うことができる。</p>
+<p>プッシュダウン・オートマトンは<font color="red"><b>スタック</b></font>をメモリとして保持しており、プッシュとポップを使うことで構文解析する。</p>
+<p>アルゴリズムは以下の通り。なお、<b>開始非終端記号をプッシュすることで初期化され</b>、入力記号がなくなるまで以下のステップを逐次的に繰り返す。<b>入力記号がなくなった時にスタックが空なら、その配列の構文解析は成功したことになる</b></p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>スタックから記号をポップする</b>
+  <ul>
+    <li>もし、ポップされた記号が非終端記号なら</li>
+    <ul>
+      <li>入力現在の位置から先を覗いて非終端記号に対する有効な生成を選ぶ。決定性プッシュダウン・オートマトンに対しては、最大1個の選択しかない。<br>非決定性オートマトンに対しては、全ての可能な選択が独立に評価されなければならない。もし有効な生成がなければ、停止して配列を棄却する。</li>
+      <li>選ばれた生成規則の右辺をスタックにプッシュする。この時、右側の記号から順にプッシュする。</li>
+    </ul>
+    <li>もし、ポップされた記号が終端記号なら</li>
+    <ul>
+      <li>それを現在の入力記号と比較する。もし一致したら、オートマトンを入力の右へと移動させる（入力記号が受理された）。もし一致しなかったら、停止して配列を棄却する。</li>
+    </ul>
+  </ul>
+</div>
+
+<p>非決定性文脈自由文法に対しては、オートマトンの全ての有効な動作が網羅的に試されるため、<font color="red"><b>プッシュダウン・オートマトンは効率の良い認識器ではない。</b></font></p>
+<p>文脈自由文法に対するより洗練された<font color="red"><b>多項式時間(polynomial time)</b></font>の<font color="red"><b>Cocke-Younger-Kasami(CYK)構文解析アルゴリズム</b></font>が存在する。</p>
+<h3 id="anchor4">4. 文脈依存文法</h3>
+
+<p><font color="red"><b>複写言語</b></font>は<font color="red"><b>文脈自由言語</b></font>ではなく、<font color="red"><b>文脈依存文法</b></font>を必要とする。</p>
+<p>文脈依存文法は、複写言語の<b>交差して相互作用している記号の組を直接には生成しない。</b>その代わり、非終端記号 <span class="math">\(W\)</span> が交差しない相互作用の組としてそれらを生成し、それから<b>文法が局所的な文脈を調べることによって非終端記号を並び替える。</b></p>
+<p>並び替えの規則は <b>「 <span class="math">\(\hat{}\)</span> のついた非終端記号を <span class="math">\(\hat{}\)</span> のつかない非終端記号と入れ替えること」</b>である。なお、<b>任意の生成規則はその左辺が現れた時いつでも適用可能である</b>ので、非終端記号が正しく並び替えられるまでは終端記号を生成し始めないように注意深く文法を作らないといけない。</p>
+<h4>例</h4>
+<p><span class="math">\(cc,acca,abaccaba, bbabccbbab\)</span> のような、<span class="math">\(a\)</span> と <span class="math">\(b\)</span> からなる文字列の2個のコピーの間に2個の <span class="math">\(c\)</span> が挟まった全ての文字列からなる複写言語を考える。</p>
+<ul>
+<li>初期化<ul>
+<li><span class="math">\(S\rightarrow CW\)</span></li>
+</ul>
+</li>
+<li>非終端記号の生成<ul>
+<li><span class="math">\(W\rightarrow A\hat{A}W|B\hat{B}W|C\)</span></li>
+</ul>
+</li>
+<li>非終端記号の並べ替え<ul>
+<li><span class="math">\(\hat{A}B\rightarrow B\hat{A}\)</span></li>
+<li><span class="math">\(\hat{A}A\rightarrow A\hat{A}\)</span></li>
+<li><span class="math">\(\hat{B}A\rightarrow A\hat{B}\)</span></li>
+<li><span class="math">\(\hat{B}B\rightarrow B\hat{B}\)</span></li>
+</ul>
+</li>
+<li>終端記号の生成<ul>
+<li><span class="math">\(CA\rightarrow aC\)</span></li>
+<li><span class="math">\(CB\rightarrow bC\)</span></li>
+<li><span class="math">\(\hat{A}C\rightarrow Ca\)</span></li>
+<li><span class="math">\(\hat{B}C\rightarrow Cb\)</span></li>
+</ul>
+</li>
+<li>終了<ul>
+<li><span class="math">\(CC\rightarrow cc\)</span></li>
+</ul>
+</li>
+</ul>
+<p>上記の文法から <span class="math">\(aabccaab\)</span> を生成する導出は以下のようになる。</p>
+<div class="math">$$
+\begin{aligned}
+S
+&amp;\Rightarrow CW \Rightarrow CA\hat{A}W \Rightarrow CA\hat{A}A\hat{A}W \Rightarrow CA\hat{A}A\hat{A}B\hat{B}W\\
+&amp;\Rightarrow CA\hat{A}A\hat{A}B\hat{B}C \Rightarrow CAA\hat{A}\hat{A}B\hat{B}C \Rightarrow CAA\hat{A}B\hat{A}\hat{B}C\\
+&amp;\Rightarrow CAABCaab \Rightarrow aCABCaab \Rightarrow aaCBCaab\\
+&amp;\Rightarrow aabCCaab \Rightarrow aabccaab
+\end{aligned}
+$$</div>
+<p>文脈依存文法のための構文解析オートマトンは<font color="red"><b>線形有界オートマトン(linear bounded automaton)</b></font>である。</p>
+<p>線形有界オートマトンは、<b>「導出が開始非終端記号にたどり着く」</b>か、<b>「たどり着かずに全ての可能な導出を調べ尽くす」</b>かするまで、観測文字列に対する全ての可能な導出を規則正しく逆向きにたどる仕組みである。</p>
+<p>任意の文脈依存文法は<font color="red"><b>単調文法(monotonic grammar)</b></font>であり、<b>「<span class="math">\(u\rightarrow v\)</span> という生成規則を持つ時 <span class="math">\(|u|\leq |v|\)</span> かつ <span class="math">\(u\)</span> は少なくとも1つの非終端記号を含まなければならない」</b>という制約を満たしている。</p>
+<p>したがって、線形有界オートマトンがトレースバックするときに調べるべき可能な導出は必ず有限になる。しかしながら、可能な導出の数は指数的に大きい。</p>
+<p>文脈依存文法に対する一般的な<b>多項式時間</b>のアルゴリズムは知られていないため、文脈依存文法の実用的な応用を考える場合にはこれが深刻な問題となる。</p>
+<h4>NP問題と「手に負えなさ」</h4>
+<p><b>「解を見つける<font color="red">多項式時間</font>のアルゴリズムは<font color="red">知られていない</font>が、解が正しいかどうかは多項式時間で検査できる」</b>問題は、<font color="red"><b>NP問題(nondeterministic polynomial problem)</b></font>と呼ばれている。</p>
+<p>文脈依存文法の構文解析を含む多くのアルゴリズムがNP問題である。NP問題は<b>「手に負えない(intractable)」</b>とも呼ばれるが、多くのモデル化の問題では<b>「一般的にはNPだが、扱いやすい特殊な場合が存在する」</b>ことがあり、それを理解することが重要である。</p>
+<h4>句構造文法とチューリング機械</h4>
+<ul>
+<li><font color="red"><b>句構造文法(phase structure grammar)</b></font>は変形文法で、生成規則の左辺と右辺が記号の任意の組み合わせであって構わないものである。</li>
+<li>同値な構文解析オートマトンは<font color="red"><b>チューリング機械(Turing machine)</b></font>である。</li>
+<li>ある文字列に句構造文法からの有効な<b>導出</b>があるかどうかを有限時間で決定する保証された一般的なアルゴリズムは<b>存在しない</b>。</li>
+</ul>
+<h3 id="anchor5">5. 確率文法</h3>
+
+<p>パターンの規則に対する例外はどのような位置にも起こり得る。ここで、例外のためにパターンを増やしていくと、パターンの特異性が下がっていき、結果として関係のないランダムな配列と一致してしまうほどパターンは情報のないものとなってしまう。</p>
+<p>そこで、例外を許すときに<b>「全ての可能性を同等に扱う」</b>のではなく、<b>「強い共通部分より例外に対して少ないスコアを与える」</b>ことでこの問題を解決する。</p>
+<p>チョムスキー階層のどの文法も、確率的な形をとることによって配列の確率的モデル化の基礎として使える。確率的文法モデル <span class="math">\(\theta\)</span> は異なった文字列 <span class="math">\(x\)</span> を確率 <span class="math">\(P(x|\theta)\)</span> で生成する。</p>
+<h4>確率文脈自由文法か句構造文法か</h4>
+<p>文脈依存文法や句構造文法に対する一般的な多項式時間のアルゴリズムは存在せず、実用的な応用があるとは思えないので今後議論しないが、<b>確率的にこれらを扱う際には注意深く定式化しなければならない</b>ことだけ留意しておく必要がある。</p>
+<p>例えば、以下の文脈依存文法を考える。</p>
+<table>
+<thead>
+<tr>
+<th align="center">生成規則</th>
+<th align="center">確率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(S\rightarrow aW\)</span></td>
+<td align="center"><span class="math">\(p_1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(S\rightarrow bW\)</span></td>
+<td align="center"><span class="math">\(p_2\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(bW\rightarrow bb\)</span></td>
+<td align="center"><span class="math">\(p_3\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(W\rightarrow a\)</span></td>
+<td align="center"><span class="math">\(p_4\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(W\rightarrow b\)</span></td>
+<td align="center"><span class="math">\(p_5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>このとき、この文法から生成される言語は <span class="math">\(\{aa,ab,ba,bb\}\)</span> であり、その確率は <span class="math">\(\{p_1p_4,p_1p_5,p_2p_4,(p_2p_3 + p_2p_5)\}\)</span> である。単に <span class="math">\(S\)</span> と <span class="math">\(W\)</span> に対する生成の確率の和が <span class="math">\(1\)</span> 、つまり <span class="math">\(p_1+p_2=1\)</span> かつ <span class="math">\(p_3+p_4+p_5=1\)</span> であるだけでは、<span class="math">\(p_1=0\)</span> または <span class="math">\(p_3=0\)</span> である特殊な場合を除いて<font color="red"><b>言語全体に対して確率分布を与えたことにはならない。</b></font></p>
+<h4>隠れマルコフモデルは確率正規文法である</h4>
+<p><font color="red"><b>隠れマルコフモデル(HMM)</b></font>は<font color="red"><b>確率正規文法</b></font>と同様である。</p>
+<p>唯一の違いは2種類のモデルは伝統的に異なった表現能力を持つことで、</p>
+<ul>
+<li>HMMは通常<b>ムーア機械</b>として、<b>遷移に関わりなく状態から記号を出力する</b>ように記述される。</li>
+<li>確率正規文法の生成は<b>ミーリー機械</b>として、<b>新たな非終端記号への遷移から記号を出力する</b>ように記述される。</li>
+</ul>
+<h3 id="anchor6">6. 配列モデルのための確率文脈文法</h3>
+
+<p><font color="red"><b>文脈自由文法(CFG)</b></font>は書き換え規則の右辺で無制限の記号文字列を持っている。一般的なCFG構文解析アルゴリズムを表現するのに、制限された<b>「標準形」</b>を書き換え規則に採用するのは有用である。</p>
+<p>そういった標準形で最も一般的なものとして<font color="red"><b>チョムスキー標準形</b></font>が挙げられる。チョムスキー標準形は、次のような生成規則のみからなる文法である。なお、<b>任意のCFGがチョムスキー標準形に変換できる</b>ことが知られている。</p>
+<div class="math">$$
+A\rightarrow BC\\
+A\rightarrow\alpha
+$$</div>
+<p>さて、これで配列のモデルとしての<font color="red"><b>確率文脈自由文法</b></font>を書き下した後に、次の3つの問題を解かなければならない。なお、HMM<font color="red"><b>（確率正規文法）</b></font>の場合と比較させた。</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">確率文脈自由文法</th>
+<th align="center">確率正規文法</th>
+<th align="left">目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">CYK</td>
+<td align="center">Viterbi</td>
+<td align="left">パラメータ化された確率文法に対する<b>配列の最適なアラインメントを計算する</b></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">内側</td>
+<td align="center">前向き</td>
+<td align="left">パラメータ化された確率文法で<b>配列の確率を計算する</b></td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">内側・外側</td>
+<td align="center">前向き・後向き(Baum-Welch)</td>
+<td align="left">配列／構造の例が与えられたとき、<b>確率文法の最適なパラメータを推定する</b></td>
+</tr>
+</tbody>
+</table>
+<h4>内側アルゴリズム</h4>
+<p><font color="red"><b>内側アルゴリズム</b></font>は、SCFGが与えられた時の配列の確率（スコア）を計算する。</p>
+<p>まず、いくつかの記法を定義する。</p>
+<ul>
+<li><span class="math">\(M\)</span> 個の非終端記号 <span class="math">\(W = W_1,\ldots,W_M\)</span> をもつ</li>
+<li>開始非終端記号は <span class="math">\(W_1\)</span> である</li>
+<li><span class="math">\(v,y,z\)</span> を非終端記号 <span class="math">\(W_v,W_y,W_z\)</span> に対する添字とする。</li>
+<li>生成規則は <span class="math">\(W_v\rightarrow W_yW_z,\ W_v\rightarrow a\)</span>（<span class="math">\(a\)</span> は終端記号のアルファベットの中の可能な記号の1個）の形をしている</li>
+<li>生成に対する遷移(transition)の確率パラメータを <span class="math">\(t_v(y,z)\)</span> と呼ぶ</li>
+<li>生成に対する出力(emission)の確率パラメータを <span class="math">\(e_v(a)\)</span> と呼ぶ</li>
+<li>配列 <span class="math">\(x\)</span> は <span class="math">\(L\)</span> 個の記号を持ち、<span class="math">\(x_1,\ldots,x_L\)</span> と書かれる</li>
+<li><span class="math">\(i,j,k\)</span> を配列 <span class="math">\(x\)</span> 中の記号 <span class="math">\(x_i,x_j,x_k\)</span> に対する添字とする</li>
+</ul>
+<p>内側アルゴリズムは、<font color="red"><b>「部分文字列 <span class="math">\(x_i,\ldots,x_j\)</span> に対応する非終端記号 <span class="math">\(W_v\)</span> に根を持つ構文解析部分木の確率 <span class="math">\(\alpha(i,j,v)\)</span> 」</b></font>を、すべての <span class="math">\(i,j,v\)</span> に対して計算する。</p>
+<p>計算は <span class="math">\(L\times L\times M\)</span> の3次元のDP行列を必要とし、長さ <span class="math">\(1(i=j)\)</span> の部分配列から始めてより長い部分文字列へと、開始非終端記号に根を持つ完全な構文解析木の確率が求まるまで続けられる。</p>
+<p>形式的には内側アルゴリズムは以下のように書かれる。</p>
+<ul>
+<li>初期化：
+<div class="math">$$\alpha(i,i,v) = e_v(x_i)\quad (\forall i, v)$$</div>
+</li>
+<li>再帰：
+<div class="math">$$\alpha(i,j,v) = \sum_{y=1}^M\sum_{z=1}^M\sum_{k=i}^{j-1}\alpha(i,k,y)\alpha(k+1,j,z)t_v(y,z)$$</div>
+</li>
+<li>終了条件：
+<div class="math">$$P(x|\theta) = \alpha(1,L,1)$$</div>
+</li>
+</ul>
+<p><img src="http://lecture.asai.tokyo/wordpress/wp-content/uploads/2017/06/09.07.png" alt="内側アルゴリズム"></p>
+<p>なお、この時再帰式で以下のように <span class="math">\(i,j\)</span> をともに左から走査するとDPがうまく回らない（求め終わっていない部分問題を利用しようとしてしまう）</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">L</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">L</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">){</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">v</span><span class="o">&lt;=</span><span class="n">M</span><span class="p">;</span> <span class="n">v</span><span class="o">++</span><span class="p">){</span>
+      <span class="err">再帰式</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>したがって、<span class="math">\(j-i\)</span> を次第に大きくするように計算していく必要がある。</p>
+<div class="math">$$\alpha(1,3,v),\alpha(2,4,v) \ldots,\alpha(L-2,L,v),\alpha(1,4,v),\alpha(2,5,v),\ldots$$</div>
+<p>内側アルゴリズムはこのようにして配列のSCFGによる確率（スコア）を計算する。</p>
+<ul>
+<li><span class="math">\(\alpha\)</span> に対する3個の添字から明らかなように、<b>記憶領域複雑度は <span class="math">\(O(L^2M)\)</span> </b>である。</li>
+<li>配列の3個の位置の添字 <span class="math">\(i,j,k\)</span> と文法の非終端記号の3個の添字 <span class="math">\(v,y,z\)</span> に関する再帰繰り返しの回数から明らかなように、<b>時間複雑度は <span class="math">\(O(L^3M^3)\)</span> </b>である。</li>
+</ul>
+<h4>外側アルゴリズム</h4>
+<p>参考：<a href="http://www.cs.columbia.edu/~mcollins/io.pdf">The Inside-Outside Algorithm</a></p>
+<p>外側アルゴリズムは、<font color="red"><b>「開始非終端記号 <span class="math">\(W_1\)</span>（図では<span class="math">\(S\)</span>）を根に持ち、<span class="math">\(x_1,\ldots,x_{i-1},W_v,x_{j+1},\ldots,x_L\)</span> という記号列に構文解析できる確率 <span class="math">\(\beta(i,j,v)\)</span> 」</b></font>を、すべての <span class="math">\(i,j,v\)</span> に対して計算するもので、以下の特徴を持つ。</p>
+<ul>
+<li>計算は <span class="math">\(L\times L\times M\)</span> の3次元のDP行列を必要とする。</li>
+<li>外側 <span class="math">\(\beta(i,j,v)\)</span> 確率を計算するのには内側アルゴリズムの計算結果 <span class="math">\(\alpha(i,j,v)\)</span> を必要とする。</li>
+<li><span class="math">\(W_v\)</span> に <span class="math">\(x_1,\ldots,x_L\)</span> が含まれるものから始め、内側に向かって進む。</li>
+</ul>
+<p>形式的には外側アルゴリズムは以下のように書かれる。</p>
+<ul>
+<li>初期化：<ul>
+<li><span class="math">\(\beta(1,L,1) = 1\)</span></li>
+<li><span class="math">\(\beta(1,L,v) = 0\ (1&lt;v\leq M)\)</span></li>
+</ul>
+</li>
+<li>再帰：
+<div class="math">$$\beta(i,j,v) = \sum_{y,z}\sum_{k=1}^{i-1}\alpha(k,i-1,z)\beta(k,j,y)t_y(z,v) + \sum_{y,z}\sum_{k=j+1}^{L}\alpha(j+1,k,z)\beta(i,k,y)t_y(v,z)$$</div>
+</li>
+<li>終了条件：
+<div class="math">$$P(x|\theta) = \sum_{v=1}^{M}\beta(i,i,v)e_v(x_i) \text{ for any } i$$</div>
+</li>
+</ul>
+<p>この再帰式を理解するには、以下の2パターンを考えれば良い。</p>
+<p><img src="http://lecture.asai.tokyo/wordpress/wp-content/uploads/2017/06/09.08.png" alt="外側アルゴリズム"></p>
+<ul>
+<li><span class="math">\(N_y\rightarrow N_zN_v\)</span> の時（上図）
+<span class="math">\(x_1,\ldots,x_{k-1},W_y,x_{j+1},\ldots,x_L\)</span> という形に構文解析できる確率は <span class="math">\(\beta(k,j,y)\)</span> で求められているから、そこに<b>「 <span class="math">\(N_y\rightarrow N_zN_v\)</span> と遷移する確率 <span class="math">\(t_y(z,v)\)</span> 」</b>と <b>「部分文字列 <span class="math">\(x_k,\ldots,x_{i-1}\)</span> に対応する非終端記号 <span class="math">\(W_z\)</span> に根を持つ構文解析部分木の確率 <span class="math">\(\alpha(k,i-1,z)\)</span> 」</b>をかければこの場合の <span class="math">\(\beta(i,j,v)\)</span> は求めることができる。あとは、<span class="math">\(k\)</span> の位置を <span class="math">\(1\)</span> から <span class="math">\(i-1\)</span> まで動かして総和を求めれば良い。</li>
+<li><span class="math">\(N_y\rightarrow N_vN_z\)</span> の時（下図）
+<span class="math">\(x_1,\ldots,x_{i-1},W_y,x_{k+1},\ldots,x_L\)</span> という形に構文解析できる確率は <span class="math">\(\beta(i,k,y)\)</span> で求められているから、そこに<b>「 <span class="math">\(N_y\rightarrow N_vN_z\)</span> と遷移する確率 <span class="math">\(t_y(v,z)\)</span> 」</b>と <b>「部分文字列 <span class="math">\(x_{j+1},\ldots,x_k\)</span> に対応する非終端記号 <span class="math">\(W_z\)</span> に根を持つ構文解析部分木の確率 <span class="math">\(\alpha(j+1,k,z)\)</span> 」</b>をかければこの場合の <span class="math">\(\beta(i,j,v)\)</span> は求めることができる。あとは、<span class="math">\(k\)</span> の位置を <span class="math">\(j+1\)</span> から <span class="math">\(L\)</span> まで動かして総和を求めれば良い。</li>
+</ul>
+<h4>期待値最大化によるパラメータ再推定</h4>
+<p>HMMのEMによる学習で前向き変数、後ろ向き変数が使われたのと同様に、SCFGの確率パラメータの期待値最大化における再推定に内側変数 <span class="math">\(\alpha\)</span> と外側変数 <span class="math">\(\beta\)</span> を使うことができる。</p>
+<p>これらを使うと、導出の中で状態 <span class="math">\(v\)</span> が使われる回数の期待値は以下の式で表される。</p>
+<div class="math">$$
+c(v)=\frac{1}{P(x | \theta)} \sum_{i=1}^{L} \sum_{j=i}^{L} \alpha(i, j, v) \beta(i, j, v)
+$$</div>
+<p>これは、さらに以下のように拡張して、<span class="math">\(W_v\)</span> が占められ生成規則 <span class="math">\(W_v\rightarrow W_yW_z\)</span> が使われる回数の期待値を見つけることができる。</p>
+<div class="math">$$
+c(v \rightarrow y z)=\frac{1}{P(x | \theta)} \sum_{i=1}^{L-1} \sum_{j=i+1}^{L} \sum_{k=i}^{j-1} \beta(i, j, v) \alpha(i, k, y) \alpha(k+1, j, z) t_{v}(y, z)
+$$</div>
+<p>生成規則 <span class="math">\(W_v\rightarrow W_yW_z\)</span> の確率のためのEM再推定の式は、</p>
+<div class="math">$$
+\begin{aligned} \hat{t}_{v}(y, z) &amp;=\frac{c(v \rightarrow y z)}{c(v)} \\ &amp;=\frac{\sum_{i=1}^{L-1} \sum_{j=i+1}^{L} \sum_{k=i}^{j-1} \beta(i, j, v) \alpha(i, k, y) \alpha(k+1, j, z) t_{v}(y, z)}{\sum_{i=1}^{L} \sum_{j=i}^{L} \alpha(i, j, v) \beta(i, j, v)} \end{aligned}
+$$</div>
+<p>同様の式は他の生成規則 <span class="math">\(W_v\rightarrow a\)</span> についても成り立つから、</p>
+<div class="math">$$
+e_{v}^{\wedge}(a)=\frac{c(v \rightarrow a)}{c(v)}=\frac{\sum_{i | x_{j}=a} \beta(i, i, v) e_{v}(a)}{\sum_{i=1}^{L} \sum_{j=1}^{L} \alpha(i, j, v) \beta(i, j, v)}
+$$</div>
+<p>これらの1個の観測配列 <span class="math">\(x\)</span> からの再推定は、独立した複数の観測配列の場合に容易に拡張できる。<b>期待される度数は単に全ての配列について和を取れば良い。</b></p>
+<h4>CYKのトレースバック</h4>
+<p>残った問題は、<b><font color="red">「配列に対する最適な構文解析木を求めること」</font></b>である。これは、<font color="red"><b>Coke-Younger-Kasam(CYK)アルゴリズム</b></font>、<font color="red"><b>内側アルゴリズムで確率の合計の代わりに最大の確率を与える操作を使うもの</b></font>によって解かれる。</p>
+<p>このアルゴリズムは、最終的に <span class="math">\(P(x,\hat{\pi}|\theta)\)</span>（<span class="math">\(\hat{\pi}\)</span> は最も確率の高い構文解析木）になる変数 <span class="math">\(\gamma(i,j,v)\)</span> を計算する。なお、この時3次元のDP行列でトレースバックして最適のアラインメントを回復するために必要な <span class="math">\((y,z,k)\)</span> という3個の数字の組の後戻り変数 <span class="math">\(\tau(i,j,v)\)</span> も保持しなければならない。</p>
+<p>式で書くと、行列を埋めるアルゴリズムは以下のようになる。</p>
+<h5>CYKアルゴリズム</h5>
+<ul>
+<li>初期化：for <span class="math">\(i=1\)</span> to <span class="math">\(L\)</span>, <span class="math">\(v=1\)</span> to <span class="math">\(M\)</span>:
+<div class="math">$$
+\begin{aligned}
+\gamma(i,i,v)
+&amp;= \log e_v(x_i)\\
+\tau(i,j,v)
+&amp;= (0,0,0)
+\end{aligned}
+$$</div>
+</li>
+<li>再帰：for <span class="math">\(i=1\)</span> to <span class="math">\(L-1\)</span>, <span class="math">\(j=i+1\)</span> to <span class="math">\(L\)</span>, <span class="math">\(v=1\)</span> to <span class="math">\(M\)</span>:
+<div class="math">$$
+\gamma(i,j,v) = \max_{y,z}\max_{k=1,\ldots,j-1}\{\gamma(i,k,y),\gamma(k+1,j,z)+\log t_v(y,z)\}\\
+\tau(i,j,v) = \arg\max_{(y,z,l),k=i,\ldots,j-1}\{\gamma(i,k,y),\gamma(k+1,j,z)+\log t_v(y,z)\}
+$$</div>
+</li>
+<li>終了：
+<div class="math">$$\log P(x,\hat{\pi}|\theta) = \gamma(1,L,1)$$</div>
+</li>
+</ul>
+<p>このあと、最善のアラインメントを回復するために、プッシュダウン・スタックから三つ組 <span class="math">\((i,j,v)\)</span> をプッシュとポップしながら逆戻りを行う。</p>
+<h5>CYK逆戻りアルゴリズム</h5>
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="err">をスタックにプッシュする。</span>
+<span class="k">while</span><span class="p">()</span>
+<span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="err">をポップ</span>
+<span class="k">if</span> <span class="err">τ</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="o">==</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">):</span> <span class="c1"># (i==j)</span>
+  <span class="n">x_iをvの子供として割り当てる</span><span class="err">。</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">y</span><span class="p">,</span><span class="n">zをvの子供として構文解析木に</span><span class="err">付け加える。</span>
+  <span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="err">をプッシュ</span>
+  <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="err">をプッシュ</span>
+</pre></div>
+
+
+<h4>SCFGアルゴリズムのまとめ</h4>
+<table>
+<thead>
+<tr>
+<th align="center">目的</th>
+<th align="center">HMMアルゴリズム</th>
+<th align="center">SCFGアルゴリズム</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">最適アラインメント</td>
+<td align="center">Viterbi</td>
+<td align="center">CYK</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P(xⅠ\theta)\)</span></td>
+<td align="center">前向き</td>
+<td align="center">内側</td>
+</tr>
+<tr>
+<td align="center">EMパラメータ推定</td>
+<td align="center">前向き・後ろ向き</td>
+<td align="center">内側・外側</td>
+</tr>
+<tr>
+<td align="center">記憶領域複雑度</td>
+<td align="center"><span class="math">\(O(LM)\)</span></td>
+<td align="center"><span class="math">\(O(L^2M)\)</span></td>
+</tr>
+<tr>
+<td align="center">時間複雑度</td>
+<td align="center"><span class="math">\(O(LM^2)\)</span></td>
+<td align="center"><span class="math">\(O(L^3M^3)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>ここまでチョムスキー標準形の場合で説明したが、内側・外側アルゴリズムが適用可能なのはチョムスキー標準形のSCFGだけではない。（一般性と記法の便利さゆえ）</p>
+<p>実際、RNAをモデル化する別のSCFGが存在する。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-06-10T00:00:00+09:00"> 6 10, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-06-10T00:00:00+09:00"> 6 10, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/notes/categories.html#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/notes/tags#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ
+                    <span>8</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
