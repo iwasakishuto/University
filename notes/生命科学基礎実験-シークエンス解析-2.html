@@ -40,7 +40,7 @@
         <!-- Syntax highlight -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <!-- LaTex -->
@@ -62,6 +62,8 @@
             startOnLoad:true
           });
         </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
     </head>
     <body>
         <div id="content-sans-footer">
@@ -146,11 +148,11 @@ RNAをダイレクトにシークエンスする。多くのインプットが�
 <h3>解析の流れ</h3>
 <h4>illumina</h4>
 <p>以下の流れに沿って解析を行います。</p>
-<div class="highlight"><pre><span></span>graph LR;
-  A((BCL))--&gt;B;
-  B((fastq))--&gt;C;
-  C[マッピング]--&gt;D;
-  D((BAM))--&gt;F[リードカウント];
+<div class="highlight"><pre><span></span><span class="n">graph</span> <span class="n">LR</span><span class="p">;</span>
+  <span class="n">A</span><span class="p">((</span><span class="n">BCL</span><span class="p">))</span><span class="c1">--&gt;B;</span>
+  <span class="n">B</span><span class="p">((</span><span class="n">fastq</span><span class="p">))</span><span class="c1">--&gt;C;</span>
+  <span class="k">C</span><span class="p">[</span><span class="err">マッピング</span><span class="p">]</span><span class="c1">--&gt;D;</span>
+  <span class="n">D</span><span class="p">((</span><span class="n">BAM</span><span class="p">))</span><span class="c1">--&gt;F[リードカウント];</span>
 </pre></div>
 
 
@@ -163,12 +165,12 @@ RNAをダイレクトにシークエンスする。多くのインプットが�
 <h4>MinION</h4>
 <p>以下の流れに沿って解析を行います。</p>
 <p>illuminaと異なり、MinIONで得られるのはイオンシグナル情報なので、それを塩基配列の情報に変換するのに <code>Guppy</code> というツールを用いてベースコール情報を付加する必要があるのと、マッピング時に長いリードや高いエラー率に対応したツールを用いる必要がある点のみが異なります。</p>
-<div class="highlight"><pre><span></span>graph LR;
-  A((fast5))--&gt;G;
-  G[ベースコール]--&gt;B;
-  B((fastq))--&gt;C;
-  C[マッピング]--&gt;D;
-  D((BAM))--&gt;F[リードカウント];
+<div class="highlight"><pre><span></span><span class="n">graph</span> <span class="n">LR</span><span class="p">;</span>
+  <span class="n">A</span><span class="p">((</span><span class="n">fast5</span><span class="p">))</span><span class="c1">--&gt;G;</span>
+  <span class="k">G</span><span class="p">[</span><span class="err">ベースコール</span><span class="p">]</span><span class="c1">--&gt;B;</span>
+  <span class="n">B</span><span class="p">((</span><span class="n">fastq</span><span class="p">))</span><span class="c1">--&gt;C;</span>
+  <span class="k">C</span><span class="p">[</span><span class="err">マッピング</span><span class="p">]</span><span class="c1">--&gt;D;</span>
+  <span class="n">D</span><span class="p">((</span><span class="n">BAM</span><span class="p">))</span><span class="c1">--&gt;F[リードカウント];</span>
 </pre></div>
 
 
@@ -439,16 +441,16 @@ Status  pass_sort.bam
 <p></details>
 </summary></p>
 <h4>Pearson相関係数算出(R)</h4>
-<div class="highlight"><pre><span></span>ILLUMINA <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;illumina/illumina_counts.txt&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">)</span>
-total_illumina <span class="o">&lt;-</span> <span class="m">9265506</span>
-ppm_i <span class="o">&lt;-</span> ILLUMINA<span class="o">$</span>group2_Aligned.sortedByCoord.out.bam <span class="o">/</span> total_illumina <span class="o">*</span> <span class="m">1000000</span>
-rpkm_i <span class="o">&lt;-</span> ppm_i <span class="o">/</span> ILLUMINA<span class="o">$</span>Length <span class="o">*</span> <span class="m">1000</span>
-MINION <span class="o">&lt;-</span> read.table<span class="p">(</span><span class="s">&quot;minion/minion_counts.txt&quot;</span><span class="p">,</span> header<span class="o">=</span><span class="bp">T</span><span class="p">)</span>
-total_minion <span class="o">&lt;-</span> <span class="m">515045</span>
-ppm_m <span class="o">&lt;-</span> MINION<span class="o">$</span>pass_sort.bam <span class="o">/</span> total_minion <span class="o">*</span> <span class="m">1000000</span>
-log_rpkm_i <span class="o">&lt;-</span> <span class="kp">log2</span><span class="p">(</span>rpkm_i <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
-log_ppm_m <span class="o">&lt;-</span> <span class="kp">log2</span><span class="p">(</span>ppm_m <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
-cor.test <span class="p">(</span>log_rpkm_i<span class="p">,</span> log_ppm_m<span class="p">,</span> method<span class="o">=</span><span class="s">&quot;pearson&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">ILLUMINA</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;illumina/illumina_counts.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">total_illumina</span> <span class="o">&lt;-</span> <span class="m">9265506</span>
+<span class="n">ppm_i</span> <span class="o">&lt;-</span> <span class="n">ILLUMINA</span><span class="o">$</span><span class="n">group2_Aligned.sortedByCoord.out.bam</span> <span class="o">/</span> <span class="n">total_illumina</span> <span class="o">*</span> <span class="m">1000000</span>
+<span class="n">rpkm_i</span> <span class="o">&lt;-</span> <span class="n">ppm_i</span> <span class="o">/</span> <span class="n">ILLUMINA</span><span class="o">$</span><span class="n">Length</span> <span class="o">*</span> <span class="m">1000</span>
+<span class="n">MINION</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;minion/minion_counts.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">total_minion</span> <span class="o">&lt;-</span> <span class="m">515045</span>
+<span class="n">ppm_m</span> <span class="o">&lt;-</span> <span class="n">MINION</span><span class="o">$</span><span class="n">pass_sort.bam</span> <span class="o">/</span> <span class="n">total_minion</span> <span class="o">*</span> <span class="m">1000000</span>
+<span class="n">log_rpkm_i</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">rpkm_i</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">log_ppm_m</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">ppm_m</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">cor.test </span><span class="p">(</span><span class="n">log_rpkm_i</span><span class="p">,</span> <span class="n">log_ppm_m</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;pearson&quot;</span><span class="p">)</span>
 
 <span class="c1">#   Pearson&#39;s product-moment correlation</span>
 
@@ -461,9 +463,9 @@ cor.test <span class="p">(</span>log_rpkm_i<span class="p">,</span> log_ppm_m<sp
 <span class="c1">#       cor</span>
 <span class="c1"># 0.8853666</span>
 
-pdf<span class="p">(</span><span class="s">&quot;comparison.pdf&quot;</span><span class="p">)</span>
-plot<span class="p">(</span>log_rpkm_i<span class="p">,</span> log_ppm_m<span class="p">,</span> xlab<span class="o">=</span><span class="s">&quot;illumina, log2 (rpkm+1)&quot;</span><span class="p">,</span> ylab<span class="o">=</span><span class="s">&quot;MinION, log2 (ppm+1)&quot;</span><span class="p">)</span>
-dev.off<span class="p">()</span>
+<span class="nf">pdf</span><span class="p">(</span><span class="s">&quot;comparison.pdf&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">log_rpkm_i</span><span class="p">,</span> <span class="n">log_ppm_m</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;illumina, log2 (rpkm+1)&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;MinION, log2 (ppm+1)&quot;</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
 <span class="c1"># null device</span>
 <span class="c1">#           1</span>
 </pre></div>
@@ -590,7 +592,7 @@ dev.off<span class="p">()</span>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
 
     
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
     </body>
     <!-- Theme: Elegant built for Pelican
     License : MIT -->

@@ -40,7 +40,7 @@
         <!-- Syntax highlight -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <!-- LaTex -->
@@ -62,6 +62,8 @@
             startOnLoad:true
           });
         </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
     </head>
     <body>
         <div id="content-sans-footer">
@@ -1290,22 +1292,22 @@ Second Edition</a></li>
 <span class="c1">#==========</span>
 <span class="c1"># p158 遺伝的浮動のシミュレーション のRスクリプト </span>
 <span class="c1">#==========</span>
-drift <span class="o"><-</span> <span class="kr">function</span><span class="p">(</span>Population<span class="p">,</span> init_Freq<span class="p">,</span> total_Gen<span class="p">,</span> Rep<span class="p">,</span> place<span class="p">){</span>
-    Freq <span class="o"><-</span> <span class="kt">numeric</span><span class="p">(</span>total_Gen <span class="m">+1</span><span class="p">)</span> 
-    Num <span class="o"><-</span> <span class="kt">numeric</span><span class="p">(</span>total_Gen<span class="p">)</span> 
-    Gen <span class="o"><-</span> <span class="kt">numeric</span><span class="p">(</span>total_Gen <span class="m">+1</span><span class="p">)</span>
-    Freq<span class="p">[</span><span class="m">1</span><span class="p">]</span> <span class="o"><-</span> init_Freq 
-    par<span class="p">(</span>mfrow <span class="o">=</span> place<span class="p">)</span> 
-    <span class="kr">for</span><span class="p">(</span>j <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>Rep<span class="p">){</span> <span class="c1"># 集団別に Rep 回繰り返し</span>
-        <span class="kr">for</span><span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>total_Gen<span class="p">){</span> <span class="c1"># 総世代回数だけ繰り返し </span>
-            Gen<span class="p">[</span>i<span class="p">]</span> <span class="o"><-</span> i
-            Num<span class="p">[</span>i<span class="p">]</span> <span class="o"><-</span> rbinom<span class="p">(</span><span class="m">1</span><span class="p">,</span> Population <span class="p">,</span> Freq<span class="p">[</span>i<span class="p">])</span> <span class="c1"># 二項分布から乱数取得 </span>
-            Freq<span class="p">[</span>i<span class="m">+1</span><span class="p">]</span> <span class="o"><-</span> Num<span class="p">[</span>i<span class="p">]</span> <span class="o">/</span> Population
+<span class="n">drift</span> <span class="o"><-</span> <span class="nf">function</span><span class="p">(</span><span class="n">Population</span><span class="p">,</span> <span class="n">init_Freq</span><span class="p">,</span> <span class="n">total_Gen</span><span class="p">,</span> <span class="n">Rep</span><span class="p">,</span> <span class="n">place</span><span class="p">){</span>
+    <span class="n">Freq</span> <span class="o"><-</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">total_Gen</span> <span class="m">+1</span><span class="p">)</span> 
+    <span class="n">Num</span> <span class="o"><-</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">total_Gen</span><span class="p">)</span> 
+    <span class="n">Gen</span> <span class="o"><-</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">total_Gen</span> <span class="m">+1</span><span class="p">)</span>
+    <span class="n">Freq[1]</span> <span class="o"><-</span> <span class="n">init_Freq</span> 
+    <span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="n">place</span><span class="p">)</span> 
+    <span class="nf">for</span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">Rep</span><span class="p">){</span> <span class="c1"># 集団別に Rep 回繰り返し</span>
+        <span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">total_Gen</span><span class="p">){</span> <span class="c1"># 総世代回数だけ繰り返し </span>
+            <span class="n">Gen[i]</span> <span class="o"><-</span> <span class="n">i</span>
+            <span class="n">Num[i]</span> <span class="o"><-</span> <span class="nf">rbinom</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="n">Population</span> <span class="p">,</span> <span class="n">Freq[i]</span><span class="p">)</span> <span class="c1"># 二項分布から乱数取得 </span>
+            <span class="n">Freq[i</span><span class="m">+1</span><span class="n">]</span> <span class="o"><-</span> <span class="n">Num[i]</span> <span class="o">/</span> <span class="n">Population</span>
         <span class="p">}</span> 
-        Gen <span class="p">[</span>i<span class="m">+1</span><span class="p">]</span> <span class="o"><-</span> i<span class="m">+1</span>
-        title <span class="o"><-</span> <span class="kp">paste</span><span class="p">(</span><span class="s">"Population: "</span><span class="p">,</span> Population<span class="p">,</span> sep<span class="o">=</span><span class="s">""</span><span class="p">)</span> <span class="c1"># 追加</span>
-        plot<span class="p">(</span>Gen<span class="p">,</span>Freq<span class="p">,</span>ylim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span>xlim<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span>total_Gen<span class="p">),</span>type<span class="o">=</span><span class="s">"l"</span><span class="p">,</span>lty<span class="o">=</span><span class="m">1</span><span class="p">,</span> main<span class="o">=</span>title<span class="p">)</span>
-        par<span class="p">(</span>new<span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+        <span class="n">Gen</span> <span class="n">[i</span><span class="m">+1</span><span class="n">]</span> <span class="o"><-</span> <span class="n">i</span><span class="m">+1</span>
+        <span class="n">title</span> <span class="o"><-</span> <span class="nf">paste</span><span class="p">(</span><span class="s">"Population: "</span><span class="p">,</span> <span class="n">Population</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">""</span><span class="p">)</span> <span class="c1"># 追加</span>
+        <span class="nf">plot</span><span class="p">(</span><span class="n">Gen</span><span class="p">,</span><span class="n">Freq</span><span class="p">,</span><span class="n">ylim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="n">xlim</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="n">total_Gen</span><span class="p">),</span><span class="n">type</span><span class="o">=</span><span class="s">"l"</span><span class="p">,</span><span class="n">lty</span><span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">main</span><span class="o">=</span><span class="n">title</span><span class="p">)</span>
+        <span class="nf">par</span><span class="p">(</span><span class="n">new</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -1318,11 +1320,11 @@ drift <span class="o"><-</span> <span class="kr">function</span><span class="p">
 <div class="prompt input_prompt">In [2]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>Population <span class="o">=</span> <span class="m">1000</span>       <span class="c1"># 集団サイズ</span>
-initial_frequency <span class="o">=</span> <span class="m">0.5</span> <span class="c1"># 初期頻度</span>
-total_generation <span class="o">=</span> <span class="m">50</span>   <span class="c1"># 総世代数</span>
-Replication <span class="o">=</span> <span class="m">10</span>        <span class="c1"># 試行回数</span>
-place <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>          <span class="c1"># 描画する場所を定義</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">Population</span> <span class="o">=</span> <span class="m">1000</span>       <span class="c1"># 集団サイズ</span>
+<span class="n">initial_frequency</span> <span class="o">=</span> <span class="m">0.5</span> <span class="c1"># 初期頻度</span>
+<span class="n">total_generation</span> <span class="o">=</span> <span class="m">50</span>   <span class="c1"># 総世代数</span>
+<span class="n">Replication</span> <span class="o">=</span> <span class="m">10</span>        <span class="c1"># 試行回数</span>
+<span class="n">place</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">)</span>          <span class="c1"># 描画する場所を定義</span>
 </pre></div>
 </div>
 </div>
@@ -1334,9 +1336,9 @@ place <span class="o">=</span> <span class="kt">c</span><span class="p">(</span>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># 集団サイズが 1000 の場合</span>
-drift<span class="p">(</span>Population<span class="o">=</span><span class="m">1000</span><span class="p">,</span> initial_frequency<span class="p">,</span> total_generation<span class="p">,</span> Replication<span class="p">,</span> place<span class="o">=</span>place<span class="p">)</span>
+<span class="nf">drift</span><span class="p">(</span><span class="n">Population</span><span class="o">=</span><span class="m">1000</span><span class="p">,</span> <span class="n">initial_frequency</span><span class="p">,</span> <span class="n">total_generation</span><span class="p">,</span> <span class="n">Replication</span><span class="p">,</span> <span class="n">place</span><span class="o">=</span><span class="n">place</span><span class="p">)</span>
 <span class="c1"># 集団サイズが 10 の場合</span>
-drift<span class="p">(</span>Population<span class="o">=</span><span class="m">10</span><span class="p">,</span> initial_frequency<span class="p">,</span> total_generation<span class="p">,</span> Replication<span class="p">,</span> place<span class="o">=</span>place<span class="p">)</span>
+<span class="nf">drift</span><span class="p">(</span><span class="n">Population</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">initial_frequency</span><span class="p">,</span> <span class="n">total_generation</span><span class="p">,</span> <span class="n">Replication</span><span class="p">,</span> <span class="n">place</span><span class="o">=</span><span class="n">place</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2710,7 +2712,7 @@ A9wrEUnQtnJoAAAAAElFTkSuQmCC" />
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
 
     
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/notes/theme/css/jupyter.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
     </body>
     <!-- Theme: Elegant built for Pelican
     License : MIT -->

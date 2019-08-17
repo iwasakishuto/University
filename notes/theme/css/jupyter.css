@@ -1,8 +1,0 @@
-.prompt {
-  /* This is for jupyter blog.*/
-  min-width: 0;
-  /* This padding is tuned to match the padding on the CodeMirror editor. */
-  padding: 0em 0.4em 0em 0em;
-  margin: 0px;
-  font-family: monaco;
-}
