@@ -17,14 +17,14 @@
 <meta property="og:title" content="シミュレーション実習 Day5 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-5.html" />
 <meta property="og:description" content="シミュレーション実習¶Day.5: 力学系としての細胞 担当：黒田研究室 実習のwiki：Slides and programs おことわり。 このノートが、「2019年シミュレーション実習 Day5」の実習課題の内容です。こちらは、はやとちって先に終わらせてしまった去年（2018）のDay5の内容となっています。 色々なモデルのシミュレーションができた上、線形安定性解析について再び一から学ぶことのできる充実したスライドだったので、やる分には良かったと思います。 概要¶ # タイトル キーワード 0 Introduction ワディントン描像・分化・iPS細胞 1 大腸菌のコロニー増殖とその派生 平衡点・安定性 2 Notch-Deltaの側方抑制モデル/a&gt; 多安定性・ピッチフォーク分岐 3 LacYのポジティブ・フィードバックモデル ヒステリシス・サドルノード分岐 4 （発展課題）解糖系振動のモデル リミットサイクル・ホップ分岐 今日のゴール 生物のモデルを使って力学系のキーワードを理解する 描画に使用する関数まとめ¶※とばしたい場合はここを押してください .square_btn{ display: inline-block; padding: 0.5em 1em; text-decoration: none; background: #f7f7f7; border-left: solid 6px #80273F; color: #80273F; font-weight: bold; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29); } .square_btn:active { box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1); transform: translateY(2px); }" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-16T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-16T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day5 ">
 <meta name="twitter:description" content="シミュレーション実習¶Day.5: 力学系としての細胞 担当：黒田研究室 実習のwiki：Slides and programs おことわり。 このノートが、「2019年シミュレーション実習 Day5」の実習課題の内容です。こちらは、はやとちって先に終わらせてしまった去年（2018）のDay5の内容となっています。 色々なモデルのシミュレーションができた上、線形安定性解析について再び一から学ぶことのできる充実したスライドだったので、やる分には良かったと思います。 概要¶ # タイトル キーワード 0 Introduction ワディントン描像・分化・iPS細胞 1 大腸菌のコロニー増殖とその派生 平衡点・安定性 2 Notch-Deltaの側方抑制モデル/a&gt; 多安定性・ピッチフォーク分岐 3 LacYのポジティブ・フィードバックモデル ヒステリシス・サドルノード分岐 4 （発展課題）解糖系振動のモデル リミットサイクル・ホップ分岐 今日のゴール 生物のモデルを使って力学系のキーワードを理解する 描画に使用する関数まとめ¶※とばしたい場合はここを押してください .square_btn{ display: inline-block; padding: 0.5em 1em; text-decoration: none; background: #f7f7f7; border-left: solid 6px #80273F; color: #80273F; font-weight: bold; box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29); } .square_btn:active { box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1); transform: translateY(2px); }">
 
-        <title>シミュレーション実習 Day5  · My Notes
+        <title>シミュレーション実習 Day5  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">

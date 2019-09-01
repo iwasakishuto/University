@@ -17,14 +17,14 @@
 <meta property="og:title" content="ゲノム配列解析論Ⅰ 第6回 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅰ-6.html" />
 <meta property="og:description" content="第6回 2019/5/27- 講師：浅井 潔¶ 今回の講義は今までの復習であり、隠れマルコフモデルについて結構重点的に触れたので、Baum-Welch アルゴリズムを用いて隠れマルコフモデルのパラメータを推定し、Viterbi アルゴリズムを用いて最大系列を推定するプログラムを Python で実行して理解を深めます。なお、以下の説明で用いられている式番号はPRMLに基づいています。 Python のコードだけ知りたい方は、ここまで飛ばしてください。 隠れマルコフモデル(hidden Markov model, HMM)¶ 隠れマルコフモデルに従う観測データ $\{\mathbf{x}_n\}$ と隠れ変数 $\{\mathbf{z}_n\}$ の同時分布は以下のようになります。 $$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$ したがって、均一マルコフ連鎖(斉次モデル)であれば、以下の三種類のパラメータ $\{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\} = \boldsymbol{\theta}$ が必要となります。 初期状態(initial state): $p(\mathbf{z}_1)$ を記述するパラメータ $\boldsymbol{\pi}$ 遷移確率(transition probability): $p(\mathbf{z}_n|\mathbf{z}_{n-1})$ を記述するパラメータ $\mathbf{A}$ 出力確率(emission probability): $p(\mathbf{x}_n|\mathbf{z}_n)$ を記述するパラメータ $\boldsymbol{\phi}$ 最初の潜在ノード $\mathbf{z}_1$ は、要素 $\pi_k\equiv p(z_{1 k} = 1)$ をもつ確率のベクトル $\boldsymbol{\pi}$ で表される周辺分布 $p(\mathbf{z}_1)$ を持ちます。 $$p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\qquad (13.8)$$ 遷移確率は、$A_{j k}\equiv p(z_{n k} = 1|z_{n-1,j} = 1)$ で定義されるので、以下のように書けます。 $$p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1, \mathbf{A}}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\qquad (13.7)$$ 放出確率はどのような分布も考えることができます。$z_n = k$ の場合の分布のパラメータを $\phi_k$ とすれば、以下の形で書くことができます。 $$p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)^{z_{n k}}\qquad (13.9)$$" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-05-27T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-05-27T00:00:00+09:00" />
 <meta name="twitter:title" content="ゲノム配列解析論Ⅰ 第6回 ">
 <meta name="twitter:description" content="第6回 2019/5/27- 講師：浅井 潔¶ 今回の講義は今までの復習であり、隠れマルコフモデルについて結構重点的に触れたので、Baum-Welch アルゴリズムを用いて隠れマルコフモデルのパラメータを推定し、Viterbi アルゴリズムを用いて最大系列を推定するプログラムを Python で実行して理解を深めます。なお、以下の説明で用いられている式番号はPRMLに基づいています。 Python のコードだけ知りたい方は、ここまで飛ばしてください。 隠れマルコフモデル(hidden Markov model, HMM)¶ 隠れマルコフモデルに従う観測データ $\{\mathbf{x}_n\}$ と隠れ変数 $\{\mathbf{z}_n\}$ の同時分布は以下のようになります。 $$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$ したがって、均一マルコフ連鎖(斉次モデル)であれば、以下の三種類のパラメータ $\{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\} = \boldsymbol{\theta}$ が必要となります。 初期状態(initial state): $p(\mathbf{z}_1)$ を記述するパラメータ $\boldsymbol{\pi}$ 遷移確率(transition probability): $p(\mathbf{z}_n|\mathbf{z}_{n-1})$ を記述するパラメータ $\mathbf{A}$ 出力確率(emission probability): $p(\mathbf{x}_n|\mathbf{z}_n)$ を記述するパラメータ $\boldsymbol{\phi}$ 最初の潜在ノード $\mathbf{z}_1$ は、要素 $\pi_k\equiv p(z_{1 k} = 1)$ をもつ確率のベクトル $\boldsymbol{\pi}$ で表される周辺分布 $p(\mathbf{z}_1)$ を持ちます。 $$p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\qquad (13.8)$$ 遷移確率は、$A_{j k}\equiv p(z_{n k} = 1|z_{n-1,j} = 1)$ で定義されるので、以下のように書けます。 $$p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1, \mathbf{A}}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\qquad (13.7)$$ 放出確率はどのような分布も考えることができます。$z_n = k$ の場合の分布のパラメータを $\phi_k$ とすれば、以下の形で書くことができます。 $$p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)^{z_{n k}}\qquad (13.9)$$">
 
-        <title>ゲノム配列解析論Ⅰ 第6回  · My Notes
+        <title>ゲノム配列解析論Ⅰ 第6回  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">

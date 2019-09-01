@@ -17,14 +17,14 @@
 <meta property="og:title" content="検量線周りのまとめ② "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/Calibration_curve2.html" />
 <meta property="og:description" content="非線形関数フィッティング¶ 酵素反応は一般に基質濃度を[S]として、 $$-\frac{d[S]}{dt}=k[S]$$ として表されます。この解を解析的に求めることは簡単で、時間と基質濃度の関係は以下の式で与えられます。 $$[S] = Ae^{-kt}\qquad (\text{Aは積分定数})$$ この式は非線形関数ですが、誤差関数を指定して（今回は二乗誤差）パラメータを最尤推定すれば曲線フィッティングが可能です。 一応今回の実験のプロトコルや原理をかいつまんで書いておくので、非線形関数フィッティングだけ見たい場合はここへどうぞ。 原理¶リゾチームは、真正細菌の細胞壁を構成する多糖類を加水分解する酵素である。 Wikipedia この時の反応は酵素反応であり、細胞溶液の濃度は、式(2)の曲線に乗ると考えられます。 なお、直接濃度を測ることは難しいので、$\mathrm{OD}_{600}$ の値を用います。なお、$\mathrm{OD}_{600}$ と濃度の関係は $\mathrm{OD}_{600}=a[S]+b$ という関係で表せることがわかっているので、以下の式で表されます。 $$\begin{aligned} \mathrm{OD}_{600} &amp;= aAe^{-kt} + b\\ &amp;= Ce^{-kt} + b \end{aligned}$$ プロトコル¶ 0.3 mg/mL菌液(Mycrococcus lysodeikticus)25 mLを分注した。 リゾチームを500 mM酢酸ナトリウムpH 4.5に溶かし、0.1 mg/mLを作製した。 菌液をよく撹拌してから1.4 mLを光学セルに入れ、600 nmの吸光度を測定した。これを、t=0 秒後の吸光度の値とした。 0.1 mg/mLのリゾチーム溶液を0.1 mL入れて反応を開始した。リゾチームを添加して120 秒後までの吸光度を10 秒毎に測定した。なお、この時毎回の測定の間にピペッティングをした。 結果¶ t[s] 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 $\mathrm{OD}_{600}$ 0.939 0.677 0.576 0.508 0.451 0.419 0.381 0.362 0.339 0.321 0.299 0.282 0.275 0.276 0.267 0.252" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-05-28T14:20:00+09:00" />
 <meta property="og:article:modified_time" content="2019-05-28T14:20:00+09:00" />
 <meta name="twitter:title" content="検量線周りのまとめ② ">
 <meta name="twitter:description" content="非線形関数フィッティング¶ 酵素反応は一般に基質濃度を[S]として、 $$-\frac{d[S]}{dt}=k[S]$$ として表されます。この解を解析的に求めることは簡単で、時間と基質濃度の関係は以下の式で与えられます。 $$[S] = Ae^{-kt}\qquad (\text{Aは積分定数})$$ この式は非線形関数ですが、誤差関数を指定して（今回は二乗誤差）パラメータを最尤推定すれば曲線フィッティングが可能です。 一応今回の実験のプロトコルや原理をかいつまんで書いておくので、非線形関数フィッティングだけ見たい場合はここへどうぞ。 原理¶リゾチームは、真正細菌の細胞壁を構成する多糖類を加水分解する酵素である。 Wikipedia この時の反応は酵素反応であり、細胞溶液の濃度は、式(2)の曲線に乗ると考えられます。 なお、直接濃度を測ることは難しいので、$\mathrm{OD}_{600}$ の値を用います。なお、$\mathrm{OD}_{600}$ と濃度の関係は $\mathrm{OD}_{600}=a[S]+b$ という関係で表せることがわかっているので、以下の式で表されます。 $$\begin{aligned} \mathrm{OD}_{600} &amp;= aAe^{-kt} + b\\ &amp;= Ce^{-kt} + b \end{aligned}$$ プロトコル¶ 0.3 mg/mL菌液(Mycrococcus lysodeikticus)25 mLを分注した。 リゾチームを500 mM酢酸ナトリウムpH 4.5に溶かし、0.1 mg/mLを作製した。 菌液をよく撹拌してから1.4 mLを光学セルに入れ、600 nmの吸光度を測定した。これを、t=0 秒後の吸光度の値とした。 0.1 mg/mLのリゾチーム溶液を0.1 mL入れて反応を開始した。リゾチームを添加して120 秒後までの吸光度を10 秒毎に測定した。なお、この時毎回の測定の間にピペッティングをした。 結果¶ t[s] 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 $\mathrm{OD}_{600}$ 0.939 0.677 0.576 0.508 0.451 0.419 0.381 0.362 0.339 0.321 0.299 0.282 0.275 0.276 0.267 0.252">
 
-        <title>検量線周りのまとめ②  · My Notes
+        <title>検量線周りのまとめ②  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">

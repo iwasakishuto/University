@@ -17,14 +17,14 @@
 <meta property="og:title" content="シミュレーション実習 Day1 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-1.html" />
 <meta property="og:description" content="シミュレーション実習¶Day.1: イントロダクション 担当：黒田研究室 実習のwiki：Slides and programs 講義日程¶ # 日付 内容 1 7/9 イントロ 2 7/10 プローブと信号 3 7/11 実験結果からの数理モデル作成 4 7/12 時間パターンに対する選択的応答 5 7/16 スイッチ応答とメモリ、振動現象 6 7/17 トランスオミクス解析1 7 7/18 トランスオミクス解析2 8 7/19 質疑応答 本日の目標 とにかく手を動かしてMatlabに慣れる。 概要¶ Matlabとは シグナル伝達（経路）とは 何故モデルを作成する？ 1. [Matlab](https://jp.mathworks.com/help/matlab/)とは 米国MathWorks社の数値解析ソフトウェア（有償） 長所 ベクトル、行列計算が得意 グラフ表示機能なども充実 対話形式とプログラム形式の両方に対応 対話形式（初学者向き） 命令を一つずつ実行する。電卓と同様。 プログラム形式 複数の命令をまとめて実行 2. シグナル伝達（経路）とは 細胞は外界などからの信号（シグナル）を受けて応答をする。 シグナルを受けてからから応答の様式を決定するまでの情報を伝える（シグナル伝達）経路を指す。 シグナル分子のリン酸化やセカンドメッセンジャーによる生化学反応がその実行を担う。 3. 何故モデルを作成する？ シミュレーション出来る！ PC上で様々な実験ができる！ どんな応答か予測できる！ 理解が深まる！ 経路の特性を理解する一つの方法として、説明したい現象を表現するモデルを作成し、解析する手法がある。 →生化学反応を微分方程式で表現した生化学反応の微分方程式モデルは、反応の動的特性を解析上で非常に強力である。 本授業では微分方程式モデルの作成の仕方、そして解析例を基に、シグナル伝達経路解析の様式を学ぶ。 課題：モデルの作成（分子間相互作用）¶微分方程式を作成し、その時間変動をプロットする。 $$\underset{\mathrm{initial}\ =\ 0.5}{\mathrm{A}} + \underset{\mathrm{initial}\ =\ 1}{\mathrm{B}} \overset{K_{\mathrm{f}}=0.1}{\underset{K_{\mathrm{b}}=0.1}{\rightleftarrows}} \underset{\mathrm{initial}\ =\ 0}{\mathrm{AB}}$$ 微分方程式¶$$ \begin{aligned} \frac{d[A]}{d t} &amp;=-K_f \times[A] \times[B]+K_b \times[A B] \\ \frac{d[B]}{d t} &amp;=-K_f \times[A] \times[B]+K_b \times[A B] \\ \frac{d[A B]}{d t} &amp;=K_f \times[A] \times[B]-K_b \times[A B] \end{aligned} $$ ※ $K_d = K_b / K_f$" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-09T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-09T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day1 ">
 <meta name="twitter:description" content="シミュレーション実習¶Day.1: イントロダクション 担当：黒田研究室 実習のwiki：Slides and programs 講義日程¶ # 日付 内容 1 7/9 イントロ 2 7/10 プローブと信号 3 7/11 実験結果からの数理モデル作成 4 7/12 時間パターンに対する選択的応答 5 7/16 スイッチ応答とメモリ、振動現象 6 7/17 トランスオミクス解析1 7 7/18 トランスオミクス解析2 8 7/19 質疑応答 本日の目標 とにかく手を動かしてMatlabに慣れる。 概要¶ Matlabとは シグナル伝達（経路）とは 何故モデルを作成する？ 1. [Matlab](https://jp.mathworks.com/help/matlab/)とは 米国MathWorks社の数値解析ソフトウェア（有償） 長所 ベクトル、行列計算が得意 グラフ表示機能なども充実 対話形式とプログラム形式の両方に対応 対話形式（初学者向き） 命令を一つずつ実行する。電卓と同様。 プログラム形式 複数の命令をまとめて実行 2. シグナル伝達（経路）とは 細胞は外界などからの信号（シグナル）を受けて応答をする。 シグナルを受けてからから応答の様式を決定するまでの情報を伝える（シグナル伝達）経路を指す。 シグナル分子のリン酸化やセカンドメッセンジャーによる生化学反応がその実行を担う。 3. 何故モデルを作成する？ シミュレーション出来る！ PC上で様々な実験ができる！ どんな応答か予測できる！ 理解が深まる！ 経路の特性を理解する一つの方法として、説明したい現象を表現するモデルを作成し、解析する手法がある。 →生化学反応を微分方程式で表現した生化学反応の微分方程式モデルは、反応の動的特性を解析上で非常に強力である。 本授業では微分方程式モデルの作成の仕方、そして解析例を基に、シグナル伝達経路解析の様式を学ぶ。 課題：モデルの作成（分子間相互作用）¶微分方程式を作成し、その時間変動をプロットする。 $$\underset{\mathrm{initial}\ =\ 0.5}{\mathrm{A}} + \underset{\mathrm{initial}\ =\ 1}{\mathrm{B}} \overset{K_{\mathrm{f}}=0.1}{\underset{K_{\mathrm{b}}=0.1}{\rightleftarrows}} \underset{\mathrm{initial}\ =\ 0}{\mathrm{AB}}$$ 微分方程式¶$$ \begin{aligned} \frac{d[A]}{d t} &amp;=-K_f \times[A] \times[B]+K_b \times[A B] \\ \frac{d[B]}{d t} &amp;=-K_f \times[A] \times[B]+K_b \times[A B] \\ \frac{d[A B]}{d t} &amp;=K_f \times[A] \times[B]-K_b \times[A B] \end{aligned} $$ ※ $K_d = K_b / K_f$">
 
-        <title>シミュレーション実習 Day1  · My Notes
+        <title>シミュレーション実習 Day1  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">

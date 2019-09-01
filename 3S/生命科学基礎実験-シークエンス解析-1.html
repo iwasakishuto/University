@@ -17,14 +17,14 @@
 <meta property="og:title" content="シークエンス解析実習1 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シークエンス解析-1.html" />
 <meta property="og:description" content="シークエンス解析実習1¶〜第6日目：数理モデル解析〜 担当：波江野 洋 講義全体の流れ¶ノートに記録するのは初めてなので、今回の実習の講義日程も記録しておく。 目的 次世代シークエンス解析関連の実験操作と解析を学ぶ # 日付 内容 1 6/25(火) はじめに/Total RNAの調製とBioanalyzerによる濃度測定 2 6/26(水) ナノポアシークエンサーMinION RNA-seq 1日目 3 6/27(木) ナノポアシークエンサーMinION RNA-seq 2日目 4 6/28(金) イルミナシークエンサー RNA-seq 1日目 5 7/2(火) イルミナシークエンサー RNA-seq 2日目 6 7/3(水) 数理モデル講義・演習（社会連携講座） 7 7/4(木) RNA-seq解析 8 7/5(金) RNA-seq解析とまとめ 課題1: ロジスティック方程式¶ロジスティック成長：¶内的自然増加率（$r$）と環境収容力（$K$）があり、集団の大きさに依存して増加率が変化する。 $$\frac{dx(t)}{dt} = r\left(1-\frac{x(t)}{K}\right)x(t)$$ 解析解¶$$ \begin{aligned} \frac{dx(t)}{dt} &amp;= r\left(1-\frac{x(t)}{K}\right)x(t)\\ \frac{dx(t)}{dt} &amp;= \frac{r}{K}\left(K-x(t)\right)x(t)\\ \int\left(\frac{1}{K-x(t)}+\frac{1}{x(t)}\right)dx(t) &amp;= \int rdt\\ \ln\left(\frac{x(t)}{K-x(t)}\right) &amp;= Crt\qquad(C:\mathrm{const.})\\ \frac{x(t)}{K-x(t)} &amp;= Ae^{rt}\qquad(A=e^C)\\ \end{aligned} $$ここで、$t=0$ で $x(t)=x_0$ だから、$A = \frac{x_0}{K-x_0}$ となるので、これを代入して、 $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$ シミュレーション（数値計算）¶" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-03T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-03T00:00:00+09:00" />
 <meta name="twitter:title" content="シークエンス解析実習1 ">
 <meta name="twitter:description" content="シークエンス解析実習1¶〜第6日目：数理モデル解析〜 担当：波江野 洋 講義全体の流れ¶ノートに記録するのは初めてなので、今回の実習の講義日程も記録しておく。 目的 次世代シークエンス解析関連の実験操作と解析を学ぶ # 日付 内容 1 6/25(火) はじめに/Total RNAの調製とBioanalyzerによる濃度測定 2 6/26(水) ナノポアシークエンサーMinION RNA-seq 1日目 3 6/27(木) ナノポアシークエンサーMinION RNA-seq 2日目 4 6/28(金) イルミナシークエンサー RNA-seq 1日目 5 7/2(火) イルミナシークエンサー RNA-seq 2日目 6 7/3(水) 数理モデル講義・演習（社会連携講座） 7 7/4(木) RNA-seq解析 8 7/5(金) RNA-seq解析とまとめ 課題1: ロジスティック方程式¶ロジスティック成長：¶内的自然増加率（$r$）と環境収容力（$K$）があり、集団の大きさに依存して増加率が変化する。 $$\frac{dx(t)}{dt} = r\left(1-\frac{x(t)}{K}\right)x(t)$$ 解析解¶$$ \begin{aligned} \frac{dx(t)}{dt} &amp;= r\left(1-\frac{x(t)}{K}\right)x(t)\\ \frac{dx(t)}{dt} &amp;= \frac{r}{K}\left(K-x(t)\right)x(t)\\ \int\left(\frac{1}{K-x(t)}+\frac{1}{x(t)}\right)dx(t) &amp;= \int rdt\\ \ln\left(\frac{x(t)}{K-x(t)}\right) &amp;= Crt\qquad(C:\mathrm{const.})\\ \frac{x(t)}{K-x(t)} &amp;= Ae^{rt}\qquad(A=e^C)\\ \end{aligned} $$ここで、$t=0$ で $x(t)=x_0$ だから、$A = \frac{x_0}{K-x_0}$ となるので、これを代入して、 $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$ シミュレーション（数値計算）¶">
 
-        <title>シークエンス解析実習1  · My Notes
+        <title>シークエンス解析実習1  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">

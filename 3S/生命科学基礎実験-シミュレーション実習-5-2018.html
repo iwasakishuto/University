@@ -17,14 +17,14 @@
 <meta property="og:title" content="シミュレーション実習 Day5(2018) "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-5-2018.html" />
 <meta property="og:description" content="シミュレーション実習¶Day.5: 生化学反応系で見られる双安定性と振動現象（力学系の基礎） 担当：黒田研究室 実習のwiki：Slides and programs おことわり。 このノートは、はやとちって先に終わらせてしまった去年（2018）のDay5の内容となっています。色々なモデルのシミュレーションができた上、線形安定性解析について再び一から学ぶことのできる充実したスライドだったので、やって良かったと思います。 概要¶目的：「何故ヒステリシスが起きるのか？」を力学系の道具を使って説明する。 ヒステリシスとは 双安定性 相平面 ヌルクライン 固定点 振動現象 Sel&#39;kov model 発展課題（双安定性） 固定点（再） ベクトル場 ヤコビ行列と固有値・固有ベクトル 発展課題（振動） FitzHugh-Nagumo model Repressilator model 発展課題（おまけ） Lotka-Volterra model Brusselator model More... 1. ヒステリシスとはまず、「ヒステリシス（履歴依存性）が何か？」、「ヒステリンシスが生じるために必要な要素は何か？」を学ぶために、大腸菌lacオペロンの双安定性を以下のようにモデル化し、シミュレーションを行うことでヒステリンシスを再現する。 論文のモデル 簡略化したモデル 数式で書くと、以下のようになる。 $$\begin{aligned} \frac{\mathrm{d} x}{\mathrm{d} t} &amp;=-x+\alpha X_{o u t}+\beta y \\ \frac{\mathrm{d} y}{\mathrm{d} t} &amp;=\frac{x^{2}}{\rho+x^{2}}-y \end{aligned}$$ Variable/Constant Meaning $x$ 細胞内TMG濃度 $y$ LacY-GFP濃度 $X_{out}$ 細胞外TMG濃度 $\alpha,\beta$ Rate constants $\rho$ Tightness of LacⅠ repression" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-16T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-16T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day5(2018) ">
 <meta name="twitter:description" content="シミュレーション実習¶Day.5: 生化学反応系で見られる双安定性と振動現象（力学系の基礎） 担当：黒田研究室 実習のwiki：Slides and programs おことわり。 このノートは、はやとちって先に終わらせてしまった去年（2018）のDay5の内容となっています。色々なモデルのシミュレーションができた上、線形安定性解析について再び一から学ぶことのできる充実したスライドだったので、やって良かったと思います。 概要¶目的：「何故ヒステリシスが起きるのか？」を力学系の道具を使って説明する。 ヒステリシスとは 双安定性 相平面 ヌルクライン 固定点 振動現象 Sel&#39;kov model 発展課題（双安定性） 固定点（再） ベクトル場 ヤコビ行列と固有値・固有ベクトル 発展課題（振動） FitzHugh-Nagumo model Repressilator model 発展課題（おまけ） Lotka-Volterra model Brusselator model More... 1. ヒステリシスとはまず、「ヒステリシス（履歴依存性）が何か？」、「ヒステリンシスが生じるために必要な要素は何か？」を学ぶために、大腸菌lacオペロンの双安定性を以下のようにモデル化し、シミュレーションを行うことでヒステリンシスを再現する。 論文のモデル 簡略化したモデル 数式で書くと、以下のようになる。 $$\begin{aligned} \frac{\mathrm{d} x}{\mathrm{d} t} &amp;=-x+\alpha X_{o u t}+\beta y \\ \frac{\mathrm{d} y}{\mathrm{d} t} &amp;=\frac{x^{2}}{\rho+x^{2}}-y \end{aligned}$$ Variable/Constant Meaning $x$ 細胞内TMG濃度 $y$ LacY-GFP濃度 $X_{out}$ 細胞外TMG濃度 $\alpha,\beta$ Rate constants $\rho$ Tightness of LacⅠ repression">
 
-        <title>シミュレーション実習 Day5(2018)  · My Notes
+        <title>シミュレーション実習 Day5(2018)  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">

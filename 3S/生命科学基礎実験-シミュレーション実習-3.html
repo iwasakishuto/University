@@ -17,14 +17,14 @@
 <meta property="og:title" content="シミュレーション実習 Day3 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-3.html" />
 <meta property="og:description" content="シミュレーション実習¶Day.3: 生化学反応系の数理モデル 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Introduction 細胞運命決定機構とRas, Rap1 パラメタ推定 最適化 課題 1. Introduction そもそも、なぜモデルを作るのか？ 現象を定量的に理解するため。（観測データの再現には、どのパラメータが重要？） 現象を予測するため。（面白い現象を見るには、どんな実験条件が適切？） 実験で確かめるのが困難なことを知りたいから。（コスト・技術・倫理などの問題で、そもそも実験できないことを知りたい） 構造は既知とする。パラメータはどうやって決める？ 文献・データベースを参照（→実験条件がバラバラ。使って大丈夫？） 実験的に測る（→手間がかかる。そもそも測定できる？） 再現したい現象とモデルに依存して決める。 今日のテーマ シグナル分子活性の経時変化のデータから、生化学反応の速度パラメータを推定する。 2. 細胞運命決定機構とRas, Rap1 システム生物学の講義参照。 ERKの時間波形が異なるだけで、異なる現象（増殖/分化）を制御 複雑なモデルをシンプルに記述する。（ERKの一過性活性化はRas（のみ）に、持続性活性化はRap1（のみ）に依存している。） 3. パラメータ推定 パラメータの決め方 事象をうまく説明するモデルを作りたい。 客観的かつ定量的な指標（評価関数）を定義（ex.残差二乗和） 最適化 4. 最適化 勾配（微分）を用いた最適化：局所的な最適化に向いている。収束性や収束速度なども理論が進んでいる。 最急降下法 共役勾配法 ニュートン法 信頼領域法 など 確率を用いた最適化：大域的な最適化に向いている。ただし、得られた解の最適性は保証されない。 Nelder-Mead法 シミュレーテッドアニーリング（SA） タブー探索 遺伝的アルゴリズム（GA） 進化的プログラミング（EP） 粒子群最適化（PSO） など 5. 課題" />
-<meta property="og:site_name" content="My Notes" />
+<meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-11T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-11T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day3 ">
 <meta name="twitter:description" content="シミュレーション実習¶Day.3: 生化学反応系の数理モデル 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Introduction 細胞運命決定機構とRas, Rap1 パラメタ推定 最適化 課題 1. Introduction そもそも、なぜモデルを作るのか？ 現象を定量的に理解するため。（観測データの再現には、どのパラメータが重要？） 現象を予測するため。（面白い現象を見るには、どんな実験条件が適切？） 実験で確かめるのが困難なことを知りたいから。（コスト・技術・倫理などの問題で、そもそも実験できないことを知りたい） 構造は既知とする。パラメータはどうやって決める？ 文献・データベースを参照（→実験条件がバラバラ。使って大丈夫？） 実験的に測る（→手間がかかる。そもそも測定できる？） 再現したい現象とモデルに依存して決める。 今日のテーマ シグナル分子活性の経時変化のデータから、生化学反応の速度パラメータを推定する。 2. 細胞運命決定機構とRas, Rap1 システム生物学の講義参照。 ERKの時間波形が異なるだけで、異なる現象（増殖/分化）を制御 複雑なモデルをシンプルに記述する。（ERKの一過性活性化はRas（のみ）に、持続性活性化はRap1（のみ）に依存している。） 3. パラメータ推定 パラメータの決め方 事象をうまく説明するモデルを作りたい。 客観的かつ定量的な指標（評価関数）を定義（ex.残差二乗和） 最適化 4. 最適化 勾配（微分）を用いた最適化：局所的な最適化に向いている。収束性や収束速度なども理論が進んでいる。 最急降下法 共役勾配法 ニュートン法 信頼領域法 など 確率を用いた最適化：大域的な最適化に向いている。ただし、得られた解の最適性は保証されない。 Nelder-Mead法 シミュレーテッドアニーリング（SA） タブー探索 遺伝的アルゴリズム（GA） 進化的プログラミング（EP） 粒子群最適化（PSO） など 5. 課題">
 
-        <title>シミュレーション実習 Day3  · My Notes
+        <title>シミュレーション実習 Day3  · 3S
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -77,9 +77,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </a>
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3S</span></a>
                     <!--
-                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3S</span></a>
                     -->
                     <div class="nav-collapse collapse">
                         <ul class="nav pull-right top-menu">
