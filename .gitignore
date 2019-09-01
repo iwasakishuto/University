@@ -1,6 +1,7 @@
 ## Pelican
 Makefile
-content/*
+[0-9]Scontent
+[0-9]Acontent
 static/*
 working
 pelicanconf.py
