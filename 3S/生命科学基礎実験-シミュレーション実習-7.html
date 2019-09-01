@@ -1,0 +1,2129 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 生命科学基礎実験, 生命科学基礎実験, " />
+<meta property="og:image" content="https://www.genome.jp/tmp/mark_pathway1563378718109875/rno01100_0.35109875.png"/>
+
+<meta property="og:title" content="シミュレーション実習 Day7 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-7.html" />
+<meta property="og:description" content="シミュレーション実習¶Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ トランスオミクスStep3：リン酸化された責任代謝酵素を同定する トランスオミクスStep4：責任キナーゼの推定 トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する # この後使うデータの準備（Webサイトのある階層を一括取得し、展開する。） $ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day7/transomics_data.zip $ unzip transomics_data.zip $ mv transomics_data" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-07-18T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-07-18T00:00:00+09:00" />
+<meta name="twitter:title" content="シミュレーション実習 Day7 ">
+<meta name="twitter:description" content="シミュレーション実習¶Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ トランスオミクスStep3：リン酸化された責任代謝酵素を同定する トランスオミクスStep4：責任キナーゼの推定 トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する # この後使うデータの準備（Webサイトのある階層を一括取得し、展開する。） $ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day7/transomics_data.zip $ unzip transomics_data.zip $ mv transomics_data">
+
+        <title>シミュレーション実習 Day7  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-7.html"> シミュレーション実習 Day7  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
+  border: 0;
+  border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph > img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 1px 0 1px 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="シミュレーション実習">シミュレーション実習<a class="anchor-link" href="#シミュレーション実習">¶</a></h1><p><b>Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築</b></p>
+<ul>
+<li>担当：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/">黒田研究室</a></li>
+<li>実習のwiki：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/">Slides and programs</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="概要">概要<a class="anchor-link" href="#概要">¶</a></h2><ol>
+<li><a data-scroll="" href="#anchor1">トランスオミクスStep3：リン酸化された責任代謝酵素を同定する</a></li>
+<li><a data-scroll="" href="#anchor2">トランスオミクスStep4：責任キナーゼの推定</a></li>
+<li><a data-scroll="" href="#anchor3">トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する</a></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># この後使うデータの準備（Webサイトのある階層を一括取得し、展開する。）</span>
+$ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day7/transomics_data.zip
+$ unzip transomics_data.zip
+$ mv transomics_data
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> tree <span class="p">|</span> grep -v *.ipynb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>.
+├── Day7_AnswerFiles
+│   ├── Step_iii
+│   │   ├── phospho_ec_ipi_residue.txt
+│   │   ├── phosphorme_ec_ipi_residue.txt
+│   │   └── phosphorme_ipi_ec.txt
+│   ├── Step_iv
+│   │   ├── networkin_predictions.tsv
+│   │   ├── phosphorme_ec_kinase.txt
+│   │   ├── phosphorme_ipi.fasta
+│   │   ├── phosphorme_ipi_kinase.txt
+│   │   └── phosphorme_ipi_residue.txt
+│   └── Step_v
+│       ├── ccm_ec.txt
+│       ├── glycolysis_ec.txt
+│       ├── phosphorme_ccmec_inskinase.txt
+│       ├── phosphorme_ec_inskinase.txt
+│       ├── ppp_ec.txt
+│       └── rme.txt
+├── extensions
+│   ├── j3dcore.jar
+│   ├── j3dutils.jar
+│   ├── jogamp-fat.jar
+│   └── vecmath.jar
+├── fileA.txt
+├── fileB.txt
+├── inCase
+│   ├── seqkit_32
+│   └── seqkit_win64.exe
+├── inssigpath_ccm.gml
+├── ipi.RAT.fasta
+├── ipi_sample.fasta
+├── makeJava3Denv.sh
+├── phosphoproteome.txt
+├── resnum_sample.txt
+├── seqkit
+
+6 directories, 30 files
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　<b>※ これに加えて、前日作成した「責任代謝酵素リスト(</b> <code>rme.txt</code> <b>)」が必要になります。</b></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor1">1. トランスオミクスStep3：リン酸化された責任代謝酵素を同定する</h2><p>　<code>phosphoproteome.txt</code> の１列目には、リン酸化された代謝酵素の EC number が含まれている。ここから、責任代謝酵素に関する行のみ抽出する。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_phosphoproteome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"phosphoproteome.txt"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1. phosphoproteome.txt をExcelで開き、データの特徴を捉える。</span>
+<span class="n">df_phosphoproteome</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[4]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>Phosphoproteomic data of the responsible metabolic enzymes and the responsible protein kinases</th>
+<th>Unnamed: 1</th>
+<th>Unnamed: 2</th>
+<th>Unnamed: 3</th>
+<th>Unnamed: 4</th>
+<th>Unnamed: 5</th>
+<th>Unnamed: 6</th>
+<th>Unnamed: 7</th>
+<th>Unnamed: 8</th>
+<th>Unnamed: 9</th>
+<th>Unnamed: 10</th>
+<th>Unnamed: 11</th>
+<th>Unnamed: 12</th>
+<th>Unnamed: 13</th>
+<th>Unnamed: 14</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>EC number</td>
+<td>IPI</td>
+<td>KEGG identifier</td>
+<td>Gene name</td>
+<td>KEGG annotation</td>
+<td>Phosphopeptide sequence</td>
+<td>Other Modification</td>
+<td>Phosphorylated residue</td>
+<td>time=0min</td>
+<td>2min</td>
+<td>5min</td>
+<td>10min</td>
+<td>30min</td>
+<td>45min</td>
+<td>60min</td>
+</tr>
+<tr>
+<th>1</th>
+<td>ec:1.1.1.37</td>
+<td>IPI00198717</td>
+<td>rno:24551</td>
+<td>Mdh1</td>
+<td>malate dehydrogenase</td>
+<td>KLpSSAMSAAK</td>
+<td>NaN</td>
+<td>S241</td>
+<td>1.027587068</td>
+<td>1.554700684</td>
+<td>1.20995715</td>
+<td>1</td>
+<td>1.479191537</td>
+<td>1.191214131</td>
+<td>1.539084861</td>
+</tr>
+<tr>
+<th>2</th>
+<td>ec:1.1.1.95</td>
+<td>IPI00475835</td>
+<td>rno:58835</td>
+<td>Phgdh</td>
+<td>phosphoglycerate dehydrogenase</td>
+<td>QNLSKEELIAELQDCEGLIVRpSATK</td>
+<td>NaN</td>
+<td>S55</td>
+<td>NaN</td>
+<td>0.75701328</td>
+<td>NaN</td>
+<td>1</td>
+<td>1.159319876</td>
+<td>NaN</td>
+<td>0.889512017</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># 2. リン酸化された代謝酵素の[EC number, IPI ID, リン酸化残基]　の情報を抜き出し、phospho_ec_ipi_residue.txtを作成しなさい。先頭２行は見出し行なので、３行目から出力すること。重複の除去を忘れずに。</span>
+$ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f1,2,8 <span class="p">|</span> sort <span class="p">|</span> uniq > phospho_ec_ipi_residue.txt
+
+<span class="c1"># 3. 2の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phospho_ec_ipi_residue.txt Day7_AnswerFiles/Step_iii/phospho_ec_ipi_residue.txt
+
+<span class="c1"># 4. phospho_ec_ipi_residue.txt から責任代謝酵素リスト(rme.txt)にも含まれている代謝酵素のみを抜き出しphosphorme_ec_ipi_residue.txtを作成せよ。for文でrme.txtのそれぞれのEC番号をphospho_ec_ipi_residue.txtからgrepするとよい。ただしgrepは単語一致を指定するオプションwを用いる（ec:1.1.1.1とec:1.1.1.10を区別するため）。</span>
+$ <span class="k">for</span> aEC in <span class="k">$(</span>cat rme.txt<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> grep -w <span class="nv">$aEC</span> phospho_ec_ipi_residue.txt <span class="p">;</span> <span class="k">done</span> > phosphorme_ec_ipi_residue.txt
+
+<span class="c1"># 5. 4の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phosphorme_ec_ipi_residue.txt Day7_AnswerFiles/Step_iii/phosphorme_ec_ipi_residue.txt
+
+<span class="c1"># 6. phosphorme_ec_ipi_residue.txtからリン酸化された責任代謝酵素のIPI IDとEC番号を抜き出したファイルphosphorme_ipi_ec.txtを作成せよ。</span>
+$ awk -F<span class="s2">"\t"</span> <span class="s1">'{ print $2"\t"$1 }'</span> phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq > phosphorme_ipi_ec.txt
+
+<span class="c1"># 7. 6の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phosphorme_ipi_ec.txt Day7_AnswerFiles/Step_iii/phosphorme_ipi_ec.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor2">2. トランスオミクスStep4：責任キナーゼの推定</h2><p>　キナーゼ推定ソフトウェアNetPhorestを用いて、責任代謝酵素をリン酸化したタンパク質キナーゼを推定する。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Q.1.-まずはお試し用のタンパク質配列ipi_sample.fastaを使い、以下の手順に則ってNetPhorest-の動作を体験してみよう。">Q.1. まずはお試し用のタンパク質配列ipi_sample.fastaを使い、以下の手順に則ってNetPhorest の動作を体験してみよう。<a class="anchor-link" href="#Q.1.-まずはお試し用のタンパク質配列ipi_sample.fastaを使い、以下の手順に則ってNetPhorest-の動作を体験してみよう。">¶</a></h4><ol>
+<li>TextEditで <code>ipi_sample.fasta</code> の中身を確認する（TextEditにDrag & Drop）。タンパク質ID_IPI00197210とそのアミノ酸配列から構成されていることがわかる。このような形式をFASTA形式という。</li>
+<li><code>less</code> などで <code>resnum_sample.txt</code> の中身を確認する。タンパク質ID_IPI00197210とその490番目のアミノ酸であるSerineを表すS490が記されている。このファイルはタンパク質のどの位置がリン酸化されているかの情報を与えるために用いる。</li>
+<li><a href="http://netphorest.info">NetPhorest</a> のウェブサイトを開く</li>
+<li>FASTA形式のアミノ酸配列ファイル <code>ipi_sample.fasta</code> の内容を<b>そのまま</b>問合せフォームに貼り付けて、<b>[Select Phosphosite]</b> を押す。</li>
+<li>配列相同度が最も高いタンパク質を選択し、<b>[Next]</b> を押す。</li>
+<li>"Load sites from file" にて、<code>resnum_sample.txt</code> を選択する。これにより、タンパク質のIDと当該タンパク質において実際にリン酸化が確認された残基の位置が与えられる。最後に <b>[Start prediction]</b> ボタンをクリックする。</li>
+<li>今回はキナーゼによるリン酸化のみ使うので、8つあるチェックボックス “KIN”, “SH2”, “PTP”, “PTB”, “14-3-3”, “BRCT”, “WW” ,”WD40” のうち ”KIN” のみチェックする。</li>
+<li><b>[Save]</b> → <b>Full dataset</b> を選択し、キナーゼの予測結果 <code>networkin_predictions_sample.tsv</code> を保存し、Excelなどで中身を確認する。タンパク質IPI00197210の490番目のSerineのリン酸化の予測キナーゼやその予測スコアが記されている。（その他には、アミノ酸配列やキナーゼのタンパク質IDが記されている。）</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_NetPhorest_path</span> <span class="o">=</span> <span class="s2">"../NetPhorest/sample_networkin_predictions.tsv"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sample_NetPhorest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sample_NetPhorest_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sample_NetPhorest</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[7]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>#substrate</th>
+<th>position</th>
+<th>id</th>
+<th>networkin_score</th>
+<th>tree</th>
+<th>netphorest_group</th>
+<th>netphorest_score</th>
+<th>string_identifier</th>
+<th>string_score</th>
+<th>substrate_name</th>
+<th>sequence</th>
+<th>string_path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>IPI00197210</td>
+<td>490</td>
+<td>AuroraA</td>
+<td>0.000223</td>
+<td>KIN</td>
+<td>AuroraA</td>
+<td>0.046184</td>
+<td>ENSP00000369100</td>
+<td>0.267089</td>
+<td>NaN</td>
+<td>LMRRNsVTPLA</td>
+<td>ENSP00000216911, 0.5728 ENSP00000386759, 0.653...</td>
+</tr>
+<tr>
+<th>1</th>
+<td>IPI00197210</td>
+<td>490</td>
+<td>Pim2</td>
+<td>0.163875</td>
+<td>KIN</td>
+<td>Pim2</td>
+<td>0.035309</td>
+<td>ENSP00000369100</td>
+<td>0.140811</td>
+<td>NaN</td>
+<td>LMRRNsVTPLA</td>
+<td>ENSP00000365692, 0.7824 ENSP00000367207, 0.790...</td>
+</tr>
+<tr>
+<th>2</th>
+<td>IPI00197210</td>
+<td>490</td>
+<td>Pim3</td>
+<td>0.346647</td>
+<td>KIN</td>
+<td>Pim3_Pim1_group</td>
+<td>0.152856</td>
+<td>ENSP00000369100</td>
+<td>0.147894</td>
+<td>NaN</td>
+<td>LMRRNsVTPLA</td>
+<td>ENSP00000353824, 0.756 ENSP00000376436, 0.7736...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>以上で見たように、NetPhorestへの入力として必要な情報は、以下の2つである。</p>
+<ol>
+<li>FASTA形式のアミノ酸配列　(例：<code>ipi_sample.fasta</code>)</li>
+<li>リン酸化が実際に確認された残基の位置　(例：<code>resnum_sample.txt</code>)</li>
+</ol>
+<p>そこで、実際に以下のQ2,Q3でそれぞれのデータファイルを作成する。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Q2.-FASTA形式のアミノ酸配列データ作成">Q2. FASTA形式のアミノ酸配列データ作成<a class="anchor-link" href="#Q2.-FASTA形式のアミノ酸配列データ作成">¶</a></h4><p>　<code>ipi.RAT.fasta</code> は、ラット全タンパク質のアミノ酸配列をFASTA形式で格納しているファイルである。FASTA形式とは、以下のようなファイル形式である。</p>
+<pre><code>fasta
+[IPI]
+[60文字ごとに改行したアミノ酸配列]
+[60文字ごとに改行したアミノ酸配列]
+       （以下、配列の末尾まで同様）</code></pre>
+<p>※なお、IPIはタンパク質を識別するID体系のひとつ、<b>International Protein Index</b>を指す。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># 1. ipi.RAT.fastaをless等で閲覧せよ。見出しとアミノ酸配列が繰り返されていることがわかる。</span>
+$ less ipi.RAT.fasta
+
+<span class="c1"># 2. fasta形式のファイルの操作にはいくつかのツールが開発されている。今回はそのうちのseqkitを使用する。以下のコマンドを実行し、その動作を確認せよ。</span>
+$ cp seqkit /usr/local/bin/ <span class="c1"># パスの通っている場所に移動</span>
+$ seqkit grep ipi.RAT.fasta  -p IPI00197210
+$ seqkit grep ipi.RAT.fasta  -p IPI00197241
+
+<span class="c1"># 3. phosphorme_ec_ipi_residue.txtに含まれるタンパク質の配列をipi.RAT.fastaから抜き出し、phosphorme_ipi.fastaを作成しなさい。IPI IDはphosphorme_ec_ipi_residue.txtの2列目から抜き出し、重複を除いた上でfor文に用いるとよい。</span>
+$ <span class="k">for</span> aIPI in <span class="k">$(</span>cut -f2 phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> seqkit grep ipi.RAT.fasta -p <span class="nv">$aIPI</span><span class="p">;</span> <span class="k">done</span> > phosphorme_ipi.fasta
+
+<span class="c1"># 4. 3の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phosphorme_ipi.fasta Day7_AnswerFiles/Step_iv/phosphorme_ipi.fasta
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Q3.-リン酸化が実際に確認された残基の位置を示すデータ作成">Q3. リン酸化が実際に確認された残基の位置を示すデータ作成<a class="anchor-link" href="#Q3.-リン酸化が実際に確認された残基の位置を示すデータ作成">¶</a></h4><p>　責任代謝酵素についてこの情報を取り出し、<code>resnum_sample.txt</code>と同様の</p>
+<pre><code>[IPI][tab][リン酸化部位]</code></pre>
+<p>という形式で保存したい。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># 1. phosphorme_ec_ipi_residue.txtからリン酸化された責任代謝酵素のリン酸化部位（残基番号）を抜き出したファイルphosphorme_ipi_residue.txtを作成せよ。（ヒント：cutで2列目と3列目を抜き出し、重複削除）</span>
+$ cut -f2,3 phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq > phosphorme_ipi_residue.txt
+
+<span class="c1"># 2. 1の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phosphorme_ipi_residue.txt Day7_AnswerFiles/Step_iv/phosphorme_ipi_residue.txt
+
+<span class="c1"># 3. リン酸化された責任代謝酵素のFASTA形式ファイルphosphorme_ipi.fasta (Q2で作成)およびリン酸化部位ファイルphosphorme_ipi_residue.txt (Q3で作成)をNetPhorestに入力し、キナーゼの予測結果をnetworkin_predictions.tsvに保存しなさい。（先きほどのサンプルデータと別に取り扱うことを明確化したかったので、../NetPhorest/networkin_predictions.tsvに保存した。)</span>
+<span class="c1"># → [NetPhorest](http://netphorest.info) のウェブサイトを開く</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NetPhorest_path</span> <span class="o">=</span> <span class="s2">"../NetPhorest/networkin_predictions.tsv"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_NetPhorest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sample_NetPhorest_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_NetPhorest</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[10]:</div>
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+<tr style="text-align: right;">
+<th></th>
+<th>#substrate</th>
+<th>position</th>
+<th>id</th>
+<th>networkin_score</th>
+<th>tree</th>
+<th>netphorest_group</th>
+<th>netphorest_score</th>
+<th>string_identifier</th>
+<th>string_score</th>
+<th>substrate_name</th>
+<th>sequence</th>
+<th>string_path</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>0</th>
+<td>IPI00197210</td>
+<td>490</td>
+<td>AuroraA</td>
+<td>0.000223</td>
+<td>KIN</td>
+<td>AuroraA</td>
+<td>0.046184</td>
+<td>ENSP00000369100</td>
+<td>0.267089</td>
+<td>NaN</td>
+<td>LMRRNsVTPLA</td>
+<td>ENSP00000216911, 0.5728 ENSP00000386759, 0.653...</td>
+</tr>
+<tr>
+<th>1</th>
+<td>IPI00197210</td>
+<td>490</td>
+<td>Pim2</td>
+<td>0.163875</td>
+<td>KIN</td>
+<td>Pim2</td>
+<td>0.035309</td>
+<td>ENSP00000369100</td>
+<td>0.140811</td>
+<td>NaN</td>
+<td>LMRRNsVTPLA</td>
+<td>ENSP00000365692, 0.7824 ENSP00000367207, 0.790...</td>
+</tr>
+<tr>
+<th>2</th>
+<td>IPI00197210</td>
+<td>490</td>
+<td>Pim3</td>
+<td>0.346647</td>
+<td>KIN</td>
+<td>Pim3_Pim1_group</td>
+<td>0.152856</td>
+<td>ENSP00000369100</td>
+<td>0.147894</td>
+<td>NaN</td>
+<td>LMRRNsVTPLA</td>
+<td>ENSP00000353824, 0.756 ENSP00000376436, 0.7736...</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="c1"># 4. 3の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff ../NetPhorest/networkin_predictions.tsv Day7_AnswerFiles/Step_iv/networkin_predictions.tsv
+
+<span class="c1"># 5. networkin_predictions.tsv は1,6列目にそれぞれ基質のIPI、責任キナーゼ名が含まれている。これらの列のみ抽出して重複を取り除き、phosphorme_ipi_kinase.txtに保存し、Excel等で中身を確認せよ。１行目は見出しなので、除いておくこと。sortコマンドにおいては、辞書順にするために-fオプションを用いること。</span>
+$ cut -f1,6 ../NetPhorest/networkin_predictions.tsv <span class="p">|</span> tail -n +2 <span class="p">|</span> sort -f <span class="p">|</span> uniq > phosphorme_ipi_kinase.txt
+
+<span class="c1"># 6. 最後に、phosphorme_ipi_ec.txtとphosphorme_ipi_kinase.txtを統合し、代謝酵素とキナーゼの対応関係phosphorme_ec_kinase.txtを作成し、less等で確認せよ。join(後述)を用いて、IPI_ID, EC番号, キナーゼの表を作成後、2列目と3列目を抽出し（*）、重複を削除すれば良い。ただし、cutコマンドにおいては、区切り文字を” ”にする必要があるため（joinの仕様）、-d “ ”を付加すること。またsortコマンドにおいては、辞書順にするために-fオプションを用いること。</span>
+<span class="c1"># *2列目と3列目の間は"\t"タブ文字ではなく、" "空白を用いてください（joinの仕様）。そのため、awkを用いる場合は$2と$3の間は" "を用いる必要がある。</span>
+$ join phosphorme_ipi_ec.txt phosphorme_ipi_kinase.txt <span class="p">|</span> cut -d <span class="s2">" "</span> -f2,3 <span class="p">|</span> sort -f <span class="p">|</span> uniq > phosphorme_ec_kinase.txt
+
+<span class="c1"># 7. 6の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phosphorme_ec_kinase.txt Day7_AnswerFiles/Step_iv/phosphorme_ec_kinase.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="まとめ：経路抜き出し">まとめ：経路抜き出し<a class="anchor-link" href="#まとめ：経路抜き出し">¶</a></h4><p>　ここまでの操作で、以下の経路ファイルが作成された。</p>
+<pre><code>・metab_rme.txt：     変動代謝物　　～責任代謝酵素
+            cpd:C00021      ec:1.16.1.8
+            cpd:C00021      ec:2.1.1.1
+            cpd:C00021      ec:2.1.1.10
+            cpd:C00021      ec:2.1.1.100
+            …       …
+
+・phosphorme_ec_kinase.txt   代謝酵素　～  キナーゼ
+            ec:1.1.1.95 AuroraA
+            ec:1.1.1.95 CLK_group
+            ec:1.1.1.95 DMPK_group
+            ec:1.1.1.95 PKC_group
+            ec:1.1.1.95 RCK_group
+            ec:1.1.1.95 RSK_group
+            …               …</code></pre>
+<p>　最後に、これらのデータを用いて<b>ネットワークの可視化</b>を試みる。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor3">3. トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する</h2><p>　インスリンシグナル伝達経路と中心炭素代謝経路の間をつないで立体的に視覚化する。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Q1.-まず、phosphorme_ec_kinase.txt-のうち、インスリンシグナル伝達経路と中心炭素代謝経路の間をつなぐリン酸化の情報のみを取り出す。">Q1. まず、<code>phosphorme_ec_kinase.txt</code> のうち、インスリンシグナル伝達経路と中心炭素代謝経路の間をつなぐリン酸化の情報のみを取り出す。<a class="anchor-link" href="#Q1.-まず、phosphorme_ec_kinase.txt-のうち、インスリンシグナル伝達経路と中心炭素代謝経路の間をつなぐリン酸化の情報のみを取り出す。">¶</a></h4><div class="highlight"><pre><span></span><span class="c1"># 1. NetPhorestで推定したキナーゼのうち、KEGGのインスリンシグナル伝達経路に存在するキナーゼのIDはPKA_group, PKB_group, PKC_group, p70S6K_group, GSK3_group, MAPK3_MAPK1_MAPK7_NLK_groupの6つである。これら6つを含む行のみをphosphorme_ec_kinase.txtから抜き出し、phosphorme_ec_inskinase.txt という名前のファイルに保存しなさい。</span>
+<span class="c1"># ヒント：「PKA_groupまたはPKB_group」を検索したいときは、 "PKA_group\|PKB_group" のように書く。検索に記号を含むので、""で囲む。</span>
+$ grep <span class="s2">"PKA_group\|PKB_group\|PKC_group\|p70S6K_group\|GSK3_group\|MAPK3_MAPK1_MAPK7_NLK_group"</span> phosphorme_ec_kinase.txt > phosphorme_ec_inskinase.txt
+
+<span class="c1"># 2. 1の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff phosphorme_ec_inskinase.txt Day7_AnswerFiles/Step_v/phosphorme_ec_inskinase.txt
+
+<span class="c1"># 3. 中心炭素代謝の酵素リストをつくる。そのために再びKEGG API ”Link”を用いる。</span>
+<span class="c1">#    curl http://rest.kegg.jp/link/ec/[生化学パスウェイのID]</span>
+<span class="c1">#    と入力すると、当該生化学パスウェイに含まれる全酵素のEC numberが表示される。解糖系(map00010)、TCAサイクル(map00020)、ペントースリン酸経路(map00030)に含まれる全酵素のEC number一覧をそれぞれglycolysis_ec.txt、tca_ec.txt、ppp_ec.txtというファイル名で保存しなさい。１列目はmapIDであることに注意せよ。</span>
+$ curl http://rest.kegg.jp/link/ec/map00010 <span class="p">|</span> cut -f2 > glycolysis_ec.txt
+$ curl http://rest.kegg.jp/link/ec/map00020 <span class="p">|</span> cut -f2 > tca_ec.txt
+$ curl http://rest.kegg.jp/link/ec/map00030 <span class="p">|</span> cut -f2 > ppp_ec.txt
+
+<span class="c1"># 4. glycolysis_ec.txt、tca_ec.txt、ppp_ec.txtに含まれる全EC numberを重複なく統合し、中心炭素代謝経路のEC number一覧ccm_ec.txt というファイル名で保存しなさい。（ヒント：ファイルの統合にはcatを用いる。ex. cat fileA fileB fileC > file ABC）</span>
+$ cat glycolysis_ec.txt tca_ec.txt ppp_ec.txt <span class="p">|</span> sort <span class="p">|</span> uniq > ccm_ec.txt
+
+<span class="c1"># 5. 4の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
+$ diff ccm_ec.txt Day7_AnswerFiles/Step_v/ccm_ec.txt
+
+<span class="c1"># 6. EC numberリストccm_ec.txtとphosphorme_ec_inskinase.txtを用いて、「インスリンシグナル伝達経路の6つのキナーゼにリン酸化された中心炭素代謝の責任代謝酵素」phosphorme_ccmec_inskinase.txtを作成せよ。</span>
+$ <span class="k">for</span> aEC in <span class="k">$(</span>cat ccm_ec.txt<span class="k">)</span><span class="p">;</span> <span class="k">do</span> grep -w <span class="nv">$aEC</span> phosphorme_ec_inskinase.txt<span class="p">;</span> <span class="k">done</span> > phosphorme_ccmec_inskinase.txt
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p># 7. phosphorme_ccmec_inskinase.txtの中身を読み、最終的に得られた中心炭素代謝系酵素とその責任キナーゼが次のペアであることを確認しなさい。</p>
+<table>
+<thead><tr>
+<th style="text-align:center">責任キナーゼ</th>
+<th style="text-align:left">酵素番号(酵素名)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GSK3_group</td>
+<td style="text-align:left">2.3.3.8 (Acly), 5.4.2.2 (Pgm1)</td>
+</tr>
+<tr>
+<td style="text-align:center">p70S6K_group</td>
+<td style="text-align:left">1.2.1.3 (Aldh), 2.3.3.8 (Acly), 2.7.1.11 (Pfkl)</td>
+</tr>
+<tr>
+<td style="text-align:center">PKA_group</td>
+<td style="text-align:left">1.2.1.3 (Aldh), 2.3.3.8 (Acly), 2.7.1.11 (Pfkl)</td>
+</tr>
+<tr>
+<td style="text-align:center">PKB_group</td>
+<td style="text-align:left">1.2.1.3 (Aldh), 2.3.3.8 (Acly), 2.7.1.11 (Pfkl)</td>
+</tr>
+<tr>
+<td style="text-align:center">PKC_group</td>
+<td style="text-align:left">1.2.1.3 (Aldh), 2.3.3.8 (Acly), 2.7.1.11 (Pfkl)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> cat phosphorme_ccmec_inskinase.txt <span class="p">|</span> sort -k <span class="m">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ec:2.3.3.8 GSK3_group
+ec:5.4.2.2 GSK3_group
+ec:1.2.1.3 PKA_group
+ec:2.3.3.8 PKA_group
+ec:2.7.1.11 PKA_group
+ec:1.2.1.3 PKB_group
+ec:2.3.3.8 PKB_group
+ec:2.7.1.11 PKB_group
+ec:1.2.1.3 PKC_group
+ec:2.3.3.8 PKC_group
+ec:2.7.1.11 PKC_group
+ec:1.2.1.3 p70S6K_group
+ec:2.3.3.8 p70S6K_group
+ec:2.7.1.11 p70S6K_group
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Q2.-VANTED-with-HIVEを使って、インスリンシグナル伝達経路と中心炭素代謝経路の間を立体的に視覚化する。">Q2. VANTED with HIVEを使って、インスリンシグナル伝達経路と中心炭素代謝経路の間を立体的に視覚化する。<a class="anchor-link" href="#Q2.-VANTED-with-HIVEを使って、インスリンシグナル伝達経路と中心炭素代謝経路の間を立体的に視覚化する。">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol>
+<li>ソフトウェアの準備のために、以下のコマンドを実行せよ。特に意味は考えないくて良い（JAVA 3D関連のライブラリを導入している。）
+<code>$  ./makeJava3Denv.sh</code></li>
+<li>HIVE with VANTEDをデスクトップにダウンロードし、解凍しなさい。(URL: <a href="https://immersive-analytics.infotech.monash.edu/hive/">https://immersive-analytics.infotech.monash.edu/hive/</a>)</li>
+<li>デスクトップで解凍した HIVE_with_VANTED.jar をダブルクリックして HIVE with VANTED を起動しなさい。</li>
+<li><b>"File"</b> → <b>"Open"</b> より、中心炭素代謝とインスリンシグナル経路を統合した <b>`inssigpath_ccm_gml`</b> を開き、全体を概観せよ。</li>
+<li><b>`insulin_trans_omic.gml`</b> という名前で保存しなさい。</li>
+<li><b>`insulin_trans_omic.gml`</b> の内、右側のインスリンシグナル伝達ネットワークを範囲選択し、<b>"Cluster"</b>→<b>"Enter Cluster ID"</b>→<b>"Enter and set cluster ID"</b>を選択し、Cluster IDに <b>"signaling"</b> と入力しなさい。同様に左側の中心炭素代謝ネットワークを範囲選択し、Cluster IDに <b>"metabolism"</b> と入力しなさい。</li>
+<li><p>先ほど同定した責任キナーゼと代謝酵素の間のネットワーク（対応するペア）に基づき、<code>insulin_trans_omic.gml</code> の中の対応するノード同士をエッジで結びなさい。</p>
+<ul>
+<li>代謝酵素のうち、Aldh3a2はマップにないので無視してよい</li>
+<li><b>`insulin_trans_omic.gml`</b> のネットワークにおいて、代謝酵素の名前は上図そのままであるが、キナーゼの名前は(~~)のようになっている。</li>
+</ul>
+</li>
+<li><p><b>`insulin_trans_omic.gml`</b> を保存しなさい。</p>
+</li>
+<li><b>"File"</b> → <b>"New View"</b> → <b>"3D Graph View"</b> で3D表示ウィンドウが開きなさい。</li>
+<li>2D表示ウィンドウにて、“Edit””Selection””Select Cluster”でmetabolismまたはsignalingを選ぶと、代謝層またはシグナル層を選択できる。一方の層を選択し、両者が上下にくるように位置を調整しなさい。2D表示ウィンドウで位置を調整してファイルを保存すると、3D表示ウィンドウに反映される。</li>
+<li>代謝層とシグナル層の間隔を変えたいときは次のようにする。<ol>
+<li><b>"Edit"</b>→<b>"Selection"</b>→<b>"Select Cluster"</b> で <b>metabolism</b> または <b>signaling</b> を選択</li>
+<li>右側の<b>"Network"</b>→<b>"Node"</b>→<b>"Node Attributes"</b>→<b>"Position"</b>の3つある欄のうち、一番右の欄がZ座標なので、ここに適当な値を入れる。Z座標の初期設定は、metabolismが-800、signalingが0である。</li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+<h3>まとめ</h3>
+<p>
+<li>マルチオミクスデータから多階層ネットワークを再構築</li>
+<li>メタボローム階層を起点に、シグナルの流れをさかのぼる</li>
+<li>インスリンシグナルは従来考えられていたよりも広く伝播する</li>
+</p></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-07-18T00:00:00+09:00"> 7 18, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-07-18T00:00:00+09:00"> 7 18, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

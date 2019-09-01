@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅰ, PRML, ゲノム配列解析論Ⅰ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅰ 第6回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅰ-6.html" />
+<meta property="og:description" content="第6回 2019/5/27- 講師：浅井 潔¶ 今回の講義は今までの復習であり、隠れマルコフモデルについて結構重点的に触れたので、Baum-Welch アルゴリズムを用いて隠れマルコフモデルのパラメータを推定し、Viterbi アルゴリズムを用いて最大系列を推定するプログラムを Python で実行して理解を深めます。なお、以下の説明で用いられている式番号はPRMLに基づいています。 Python のコードだけ知りたい方は、ここまで飛ばしてください。 隠れマルコフモデル(hidden Markov model, HMM)¶ 隠れマルコフモデルに従う観測データ $\{\mathbf{x}_n\}$ と隠れ変数 $\{\mathbf{z}_n\}$ の同時分布は以下のようになります。 $$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$ したがって、均一マルコフ連鎖(斉次モデル)であれば、以下の三種類のパラメータ $\{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\} = \boldsymbol{\theta}$ が必要となります。 初期状態(initial state): $p(\mathbf{z}_1)$ を記述するパラメータ $\boldsymbol{\pi}$ 遷移確率(transition probability): $p(\mathbf{z}_n|\mathbf{z}_{n-1})$ を記述するパラメータ $\mathbf{A}$ 出力確率(emission probability): $p(\mathbf{x}_n|\mathbf{z}_n)$ を記述するパラメータ $\boldsymbol{\phi}$ 最初の潜在ノード $\mathbf{z}_1$ は、要素 $\pi_k\equiv p(z_{1 k} = 1)$ をもつ確率のベクトル $\boldsymbol{\pi}$ で表される周辺分布 $p(\mathbf{z}_1)$ を持ちます。 $$p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\qquad (13.8)$$ 遷移確率は、$A_{j k}\equiv p(z_{n k} = 1|z_{n-1,j} = 1)$ で定義されるので、以下のように書けます。 $$p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1, \mathbf{A}}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\qquad (13.7)$$ 放出確率はどのような分布も考えることができます。$z_n = k$ の場合の分布のパラメータを $\phi_k$ とすれば、以下の形で書くことができます。 $$p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)^{z_{n k}}\qquad (13.9)$$" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-27T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-27T00:00:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅰ 第6回 ">
+<meta name="twitter:description" content="第6回 2019/5/27- 講師：浅井 潔¶ 今回の講義は今までの復習であり、隠れマルコフモデルについて結構重点的に触れたので、Baum-Welch アルゴリズムを用いて隠れマルコフモデルのパラメータを推定し、Viterbi アルゴリズムを用いて最大系列を推定するプログラムを Python で実行して理解を深めます。なお、以下の説明で用いられている式番号はPRMLに基づいています。 Python のコードだけ知りたい方は、ここまで飛ばしてください。 隠れマルコフモデル(hidden Markov model, HMM)¶ 隠れマルコフモデルに従う観測データ $\{\mathbf{x}_n\}$ と隠れ変数 $\{\mathbf{z}_n\}$ の同時分布は以下のようになります。 $$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$ したがって、均一マルコフ連鎖(斉次モデル)であれば、以下の三種類のパラメータ $\{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\} = \boldsymbol{\theta}$ が必要となります。 初期状態(initial state): $p(\mathbf{z}_1)$ を記述するパラメータ $\boldsymbol{\pi}$ 遷移確率(transition probability): $p(\mathbf{z}_n|\mathbf{z}_{n-1})$ を記述するパラメータ $\mathbf{A}$ 出力確率(emission probability): $p(\mathbf{x}_n|\mathbf{z}_n)$ を記述するパラメータ $\boldsymbol{\phi}$ 最初の潜在ノード $\mathbf{z}_1$ は、要素 $\pi_k\equiv p(z_{1 k} = 1)$ をもつ確率のベクトル $\boldsymbol{\pi}$ で表される周辺分布 $p(\mathbf{z}_1)$ を持ちます。 $$p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\qquad (13.8)$$ 遷移確率は、$A_{j k}\equiv p(z_{n k} = 1|z_{n-1,j} = 1)$ で定義されるので、以下のように書けます。 $$p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1, \mathbf{A}}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\qquad (13.7)$$ 放出確率はどのような分布も考えることができます。$z_n = k$ の場合の分布のパラメータを $\phi_k$ とすれば、以下の形で書くことができます。 $$p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)^{z_{n k}}\qquad (13.9)$$">
+
+        <title>ゲノム配列解析論Ⅰ 第6回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅰ-6.html"> ゲノム配列解析論Ⅰ 第6回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <style type="text/css">/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI escape sequences */
+/* The color values are a mix of
+   http://www.xcolors.net/dl/baskerville-ivorylight and
+   http://www.xcolors.net/dl/euphrasia */
+.ansi-black-fg {
+  color: #3E424D;
+}
+.ansi-black-bg {
+  background-color: #3E424D;
+}
+.ansi-black-intense-fg {
+  color: #282C36;
+}
+.ansi-black-intense-bg {
+  background-color: #282C36;
+}
+.ansi-red-fg {
+  color: #E75C58;
+}
+.ansi-red-bg {
+  background-color: #E75C58;
+}
+.ansi-red-intense-fg {
+  color: #B22B31;
+}
+.ansi-red-intense-bg {
+  background-color: #B22B31;
+}
+.ansi-green-fg {
+  color: #00A250;
+}
+.ansi-green-bg {
+  background-color: #00A250;
+}
+.ansi-green-intense-fg {
+  color: #007427;
+}
+.ansi-green-intense-bg {
+  background-color: #007427;
+}
+.ansi-yellow-fg {
+  color: #DDB62B;
+}
+.ansi-yellow-bg {
+  background-color: #DDB62B;
+}
+.ansi-yellow-intense-fg {
+  color: #B27D12;
+}
+.ansi-yellow-intense-bg {
+  background-color: #B27D12;
+}
+.ansi-blue-fg {
+  color: #208FFB;
+}
+.ansi-blue-bg {
+  background-color: #208FFB;
+}
+.ansi-blue-intense-fg {
+  color: #0065CA;
+}
+.ansi-blue-intense-bg {
+  background-color: #0065CA;
+}
+.ansi-magenta-fg {
+  color: #D160C4;
+}
+.ansi-magenta-bg {
+  background-color: #D160C4;
+}
+.ansi-magenta-intense-fg {
+  color: #A03196;
+}
+.ansi-magenta-intense-bg {
+  background-color: #A03196;
+}
+.ansi-cyan-fg {
+  color: #60C6C8;
+}
+.ansi-cyan-bg {
+  background-color: #60C6C8;
+}
+.ansi-cyan-intense-fg {
+  color: #258F8F;
+}
+.ansi-cyan-intense-bg {
+  background-color: #258F8F;
+}
+.ansi-white-fg {
+  color: #C5C1B4;
+}
+.ansi-white-bg {
+  background-color: #C5C1B4;
+}
+.ansi-white-intense-fg {
+  color: #A1A6B2;
+}
+.ansi-white-intense-bg {
+  background-color: #A1A6B2;
+}
+.ansi-default-inverse-fg {
+  color: #FFFFFF;
+}
+.ansi-default-inverse-bg {
+  background-color: #000000;
+}
+.ansi-bold {
+  font-weight: bold;
+}
+.ansi-underline {
+  text-decoration: underline;
+}
+/* The following styles are deprecated an will be removed in a future version */
+.ansibold {
+  font-weight: bold;
+}
+.ansi-inverse {
+  outline: 0.5px dotted;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  position: relative;
+  overflow: visible;
+}
+div.cell:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: transparent;
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected,
+div.cell.selected.jupyter-soft-selected {
+  border-color: #ababab;
+}
+div.cell.selected:before,
+div.cell.selected.jupyter-soft-selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #42A5F5;
+}
+@media print {
+  div.cell.selected,
+  div.cell.selected.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+}
+.edit_mode div.cell.selected:before {
+  position: absolute;
+  display: block;
+  top: -1px;
+  left: -1px;
+  width: 5px;
+  height: calc(100% +  2px);
+  content: '';
+  background: #66BB6A;
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell > div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area > div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area > div.highlight > pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the <head> if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  /* Note that this should set vertical padding only, since CodeMirror assumes
+       that horizontal padding will be set on CodeMirror pre */
+  padding: 0.4em 0;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. This sets horizontal padding only,
+    use .CodeMirror-lines for vertical */
+  padding: 0 0.4em;
+  border: 0;
+  border-radius: 0;
+}
+.CodeMirror-cursor {
+  border-left: 1.4px solid black;
+}
+@media screen and (min-width: 2138px) and (max-width: 4319px) {
+  .CodeMirror-cursor {
+    border-left: 2px solid black;
+  }
+}
+@media screen and (min-width: 4320px) {
+  .CodeMirror-cursor {
+    border-left: 4px solid black;
+  }
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+div.output_area .mglyph > img {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 1px 0 1px 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+.rendered_html ul:not(.list-inline),
+.rendered_html ol:not(.list-inline) {
+  padding-left: 2em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+
+
+
+.rendered_html pre,
+
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+
+.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+
+.rendered_html * + .alert {
+  margin-top: 1em;
+}
+[dir="rtl"] 
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell > div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.rendered .rendered_html tr,
+.text_cell.rendered .rendered_html th,
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.text_cell .dropzone .input_area {
+  border: 2px dashed #bababa;
+  margin: -1px;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+</style>
+<style type="text/css">.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="第6回-2019/5/27--講師：浅井-潔">第6回 2019/5/27- 講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a><a class="anchor-link" href="#第6回-2019/5/27--講師：浅井-潔">¶</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　今回の講義は今までの復習であり、隠れマルコフモデルについて結構重点的に触れたので、<b>Baum-Welch アルゴリズムを用いて隠れマルコフモデルのパラメータを推定</b>し、<b>Viterbi アルゴリズムを用いて最大系列を推定</b>するプログラムを <code>Python</code> で実行して理解を深めます。なお、以下の説明で用いられている式番号はPRMLに基づいています。<br />
+　<code>Python</code> のコードだけ知りたい方は、<a href="#Program">ここ</a>まで飛ばしてください。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="隠れマルコフモデル(hidden-Markov-model,-HMM)">隠れマルコフモデル(hidden Markov model, HMM)<a class="anchor-link" href="#隠れマルコフモデル(hidden-Markov-model,-HMM)">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　隠れマルコフモデルに従う観測データ $\{\mathbf{x}_n\}$ と隠れ変数 $\{\mathbf{z}_n\}$ の同時分布は以下のようになります。
+$$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$
+　したがって、均一マルコフ連鎖(斉次モデル)であれば、以下の三種類のパラメータ $\{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\} = \boldsymbol{\theta}$ が必要となります。</p>
+<ul>
+<li>初期状態(initial state): $p(\mathbf{z}_1)$ を記述するパラメータ $\boldsymbol{\pi}$</li>
+<li>遷移確率(transition probability): $p(\mathbf{z}_n|\mathbf{z}_{n-1})$ を記述するパラメータ $\mathbf{A}$</li>
+<li>出力確率(emission probability): $p(\mathbf{x}_n|\mathbf{z}_n)$ を記述するパラメータ $\boldsymbol{\phi}$</li>
+</ul>
+<p>　最初の潜在ノード $\mathbf{z}_1$ は、要素 $\pi_k\equiv p(z_{1 k} = 1)$ をもつ確率のベクトル $\boldsymbol{\pi}$ で表される周辺分布 $p(\mathbf{z}_1)$ を持ちます。
+$$p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\qquad (13.8)$$
+　遷移確率は、$A_{j k}\equiv p(z_{n k} = 1|z_{n-1,j} = 1)$ で定義されるので、以下のように書けます。
+$$p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1, \mathbf{A}}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\qquad (13.7)$$
+　放出確率はどのような分布も考えることができます。$z_n = k$ の場合の分布のパラメータを $\phi_k$ とすれば、以下の形で書くことができます。
+$$p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)^{z_{n k}}\qquad (13.9)$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Baum-Welch-algorithm">Baum-Welch algorithm<a class="anchor-link" href="#Baum-Welch-algorithm">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　データ集合 $\mathbf{X} = \{\mathbf{x}_1,\ldots,\mathbf{x}_N\}$ が観測された場合、HMMのパラメータを最尤推定で決定することができます。<br />
+　同時分布の式
+$$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$
+　を潜在変数について周辺化することで、以下の尤度関数が得られます。
+$$p(\mathbf{X} | \boldsymbol{\theta})=\sum_{\mathbf{Z}} p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})\qquad (13.11)$$
+　ここで、同時分布 $p(\mathbf{X} | \boldsymbol{\theta})$ は $n$ について分解することができないので、各々の $\mathbf{z}_n$ に関する和を独立なものとして単純に扱うことができません。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　さらに、和を取る対象が $N$ 個の変数で、その各々が $K$ 状態を取る結果、全部で $K^N$ 項になり、明示的に和の演算を実行することもできません。<br />
+　また、尤度関数(13.11)におけるさらなる困難は、混合分布の一般化に相当しているために、潜在変数の異なる値に対する出力モデルの和になっている点です。そのため、尤度関数を直接最大化しようとすると、閉じた形の解を持たない複雑な式になってしまいます。<br />
+　そこで、ここでは、隠れマルコフモデルの尤度関数を最大化する効率的な枠組みとして、<font color="red"><b>Baum-Welchアルゴリズム</b></font>を考えることにします。なお、これは機械学習の分野でよく使われるEMアルゴリズムの一種です。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="$Q$-関数">$Q$ 関数<a class="anchor-link" href="#$Q$-関数">¶</a></h3><p>　Eステップでは、パラメータ $\boldsymbol{\theta}$ の値を利用して、潜在変数 $p(\mathbf{Z}|\mathbf{X},\boldsymbol{\theta}^{\mathrm{old}})$ の事後分布を求めます。<br />
+　次に、この事後分布を用いて、パラメータ集合 $\boldsymbol{\theta}$ の関数としての、<font color="red"><b>データに対する尤度関数の対数の期待値</b></font>を求めます。この期待値は、以下の関数 $Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)$ で定義されます。
+$$Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)=\sum_{\mathbf{Z}} p(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text { old }}) \ln p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})\qquad (13.12)$$
+　ここで、表記を簡単にするため、いくつかの記号を導入します。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<li>潜在変数 $\mathbf{z}_n$ の周辺事後分布 $\gamma$:
+$$\begin{aligned}
+\gamma\left(\mathbf{z}_{n}\right)
+& =p\left(\mathbf{z}_{n} | \mathbf{X}, \boldsymbol{\theta}^{\text { old }}\right)
+& (13.13)\\
+\gamma\left(z_{n k}\right)
+& =\mathbb{E}\left[z_{n k}\right]=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n k}
+& (13.15)
+\end{aligned}$$
+<li>二つの連続した潜在変数に対する同時事後分布 $\xi$:
+$$\begin{aligned}
+\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
+& =p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n} | \mathbf{X}, \boldsymbol{\theta}^{\text { old }}\right)
+& (13.14)\\
+\xi\left(z_{n-1, j}, z_{n k}\right)
+& =\mathbb{E}\left[z_{n-1, j} z_{n k}\right]=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n-1, j} z_{n k}
+& (13.16)
+\end{aligned}$$</li>
+</li></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　これらを用いることで、Eステップで最大化したい $Q$ 関数が以下のように表されます。
+$$\begin{aligned}
+                Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)
+                =& \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\
+                & +\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)\qquad (13.17)
+                \end{aligned}$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="M-step">M step<a class="anchor-link" href="#M-step">¶</a></h3><p>　Mステップでは、$\gamma(\mathbf{z}),\xi(\mathbf{z}_{n-1},\mathbf{z})$ を定数とみなし、パラメータ $\boldsymbol{\theta} = \{\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}\}$ に関して $Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)$ を最大化します。<br />
+　ただし、$\boldsymbol{\pi},\mathbf{A}$ には制約条件が付くので、ラグランジュの未定乗数を導入して、以下の式を解く必要があります。
+$$\begin{aligned}
+                &Q;\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)
+                =\sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\
+                & +\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right) + \lambda_1\left(\sum_{k=1}^K\pi_k - 1\right) + \sum_{j=1}^K\lambda_{2,j}\left(\sum_{k=1}^K A_{jk} - 1\right)
+                \end{aligned}$$
+　難しく見えますが、$\boldsymbol{\pi},\mathbf{A},\boldsymbol{\phi}$ を含む項は別々になっているので、計算は楽です。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$\boldsymbol{\pi}$-に関する最大化">$\boldsymbol{\pi}$ に関する最大化<a class="anchor-link" href="#$\boldsymbol{\pi}$-に関する最大化">¶</a></h4><p>　以下を $\boldsymbol{\pi}$ に関して最大化すれば良いです。
+$$Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right) = \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k} + \lambda_1\left(\sum_{k=1}^K\pi_k - 1\right)$$
+　したがってこれは簡単に求まり、
+$$\pi_{k}=\frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)}\qquad (13.20)$$
+となります。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$\mathbf{A}$-に関する最大化">$\mathbf{A}$ に関する最大化<a class="anchor-link" href="#$\mathbf{A}$-に関する最大化">¶</a></h4><p>　同様に、以下を $\mathbf{A}$ に関して最大化すれば良いです。
+$$\begin{aligned}
+                Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)
+                & = \sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k}\\
+                & + \sum_{j=1}^K\lambda_{2,j}\left(\sum_{k=1}^K A_{jk} - 1\right)
+                \end{aligned}$$
+　これも簡単に求まり、以下を得ます。
+$$A_{j k}=\frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)}\qquad (13.19)$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$\phi_k$-に関する最大化">$\phi_k$ に関する最大化<a class="anchor-link" href="#$\phi_k$-に関する最大化">¶</a></h4><p>　$Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)$ を $\phi_k$ に関して最大化する場合、以下を $\phi_k$ に関して最大化すれば良いことがわかります。
+$$Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right) = \sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)$$
+　これは、$\gamma(z_{n k})$ が負担率の役割を果たす標準的な混合分布に対する $Q$ 関数のデータ依存項と全く同一です。したがって、重み $\gamma_{n k}$ で重み付けられた出力確率 $p(\mathbf{x}|\phi_k)$ の重み付き対数尤度関数を単に最大化すれば良くなります。
+　例えば出力分布がガウス密度関数の時($p(\mathbf{x}|\phi_k) = \mathcal{N}(\mathbf{x}|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)$)には以下を得ます。
+$$\begin{aligned}
+                \boldsymbol{\mu}_{k}
+                & =\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) \mathbf{x}_{n}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)}
+                & (13.20)\\
+                \Sigma_{k}
+                & =\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)\left(\mathrm{x}_{n}-\mu_{k}\right)\left(\mathrm{x}_{n}-\mu_{k}\right)^{\mathrm{T}}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)}
+                & (13.21)
+                \end{aligned}$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="E-step">E step<a class="anchor-link" href="#E-step">¶</a></h3><p>　それでは、EMアルゴリズムのEステップで $\gamma(z_{n k}),\xi(z_{n-1,j},z_{n k})$ を効率的に求めるアルゴリズムを検討します。<br />
+　HMMのグラフは木構造をもちます。したがって、二段階のメッセージパッシングアルゴリズムをによって潜在変数の事後確率 $\gamma_{n k}$ を効率良く求めることができます。これを、<font color="red"><b>フォワード-バッグワードアルゴリズム(forward-backward algorithm)</b></font>や<font color="red"><b>Baum-Welchアルゴリズム</b></font>と呼びます。<br />
+　まず、ベイズの定理より以下が成立するので、
+$$\gamma\left(\mathbf{z}_{n}\right)=p\left(\mathbf{z}_{n} | \mathbf{X}\right)=\frac{p(\mathbf{X} | \mathbf{z}_{n}) p\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.32)$$
+　$\boldsymbol{\theta}^{\mathrm{old}}$ を使って $p(\mathbf{x}|\mathbf{z}_n)$ を計算することができれば $\gamma_{n k}$ を求めることができます。<br />
+　ここで、$z_n$ の値が定まると $n$ より過去より未来が独立になるので、
+$$p(\mathbf{X} | \mathbf{z}_{n})= p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n} | \mathbf{z}_{n}\right)p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)$$と分解ができます。
+<img src="http://nineties.github.io/prml-seminar/fig/forward-backward.png" />
+　これと $p(\mathbf{x}_1,\ldots,\mathbf{x}_n|z_n)p(z_n) = p(\mathbf{x}_1,\ldots,\mathbf{x}_n,z_n)$ であることを利用すれば、
+$$\gamma_{n k} = p(\mathbf{z}_n|\mathbf{x}) = \frac{p(\mathbf{x}_1,\ldots,\mathbf{x}_n,\mathbf{z}_n)p(\mathbf{x}_{n+1},\ldots,\mathbf{x}_N|\mathbf{z}_n)}{p(\mathbf{x})}$$
+　と表すことができます。そこで、
+                $$\begin{aligned}
+                \alpha(\mathbf{z}_n)
+                & = p(\mathbf{x}_1,\ldots,\mathbf{x}_n,\mathbf{z}_n)
+                & (13.34)\\
+                \beta(z_i)
+                & = p(\mathbf{x}_{n+1},\ldots,\mathbf{x}_N|\mathbf{z}_n)
+                & (13.35)
+                \end{aligned}$$
+　と定義します。これらを用いれば、
+$$\gamma\left(\mathbf{z}_{n}\right)=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p(\mathbf{X})}
+                =\frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.33)$$
+                のように表すことができます。<br />
+　ここで目的となるのは、$\alpha$ の漸化式を求めること<font color="red"><b>（前向き）</b></font>と $\beta$ の漸化式を求めること<font color="red"><b>（後ろ向き）</b></font>です。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="前向き">前向き<a class="anchor-link" href="#前向き">¶</a></h4><p>　条件付き独立性や加法・乗法定理を用いることで、以下のように $\alpha(\mathbf{z}_{n-1})$ を用いて $\alpha(\mathbf{z}_n)$ を表すことが可能になります。
+                $$\begin{aligned}
+                \alpha\left(\mathbf{z}_{n}\right)
+                & =p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) \\
+                & =p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n-1}, \mathbf{z}_{n}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n-1}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n-1}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \\
+                & =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \alpha(\mathbf{z}_{n-1})p(\mathbf{z} | \mathbf{z}_{n-1})\\
+                \end{aligned}$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　よって、再帰式は、以下のようになります。
+$$\alpha\left(\mathbf{z}_{n}\right)=p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\qquad (13.36)$$
+　この再帰を開始するためには、以下で与えられる初期条件が必要になります。
+                $$\alpha\left(\mathbf{z}_{1}\right)=p\left(\mathbf{x}_{1}, \mathbf{z}_{1}\right)=p\left(\mathbf{z}_{1}\right) p\left(\mathbf{x}_{1} | \mathbf{z}_{1}\right)=\prod_{k=1}^{K}\left\{\pi_{k} p\left(\mathbf{x}_{1} | \boldsymbol{\phi}_{k}\right)\right\}^{z_{1 k}}\qquad (13.37)$$
+　再帰の各段階が $K\times K$ 行列による乗算を含むので、鎖全体に対してこれらの値を求める全体のコストは $\mathcal{O}(K^2N)$ になります。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　意味を解釈すると、$(n-1)$ ステップの $\alpha(\mathbf{z}_{n-1})$ の要素 $\alpha(z_{n-1,j})$ について、$p(\mathbf{z}_n|\mathbf{z}_{n-1})$ の値に相当する $A_{j1}$ で与えられる重みを用いて、重み付け和を取り、さらにそれにデータの寄与 $p(\mathbf{x}_n|z_{n1})$ を掛けることで $\alpha(z_{n,1})$ を得ています。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="後ろ向き">後ろ向き<a class="anchor-link" href="#後ろ向き">¶</a></h4><p>　同様にして、$\beta(\mathbf{z}_n)$ に関する再帰式は以下のように定義できます。
+                $$\begin{aligned}
+                \beta\left(\mathbf{z}_{n}\right)
+                & =p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) \\
+                & =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N}, \mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \\
+                & =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}, \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \\
+                & =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \\
+                & =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+2}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \\
+                & =\sum_{\mathbf{z}_{n+1}} \beta(\mathbf{z}_{n+1})p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1})p(\mathbf{z}_{n+1}|\mathbf{z}_n)\qquad (13.38)
+                \end{aligned}$$</p>
+                <p>ここでの初期条件は、(13.33)で $n=N$ と置くことによって、以下になります。$\mathbf{z}_n$ の全ての値について $\beta(\mathbf{z}_n) = 1$ とすることでこの式は正しくなります。
+                $$p\left(\mathbf{z}_{N} | \mathbf{X}\right)=\frac{p\left(\mathbf{X}, \mathbf{z}_{N}\right) \beta\left(\mathbf{z}_{N}\right)}{p(\mathbf{X})}\qquad (13.39)$$</p>
+</p></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　こちらも意味を解釈すると、$n+1$ ステップの $\beta(\mathbf{z_{n+1}})$ の要素 $\beta(z_{n+1},k)$ について重み付け和を取ることで、$\beta(z_{n,1})$ を得ます。ここで、各 $\beta(z_{n+1,k})$ に対する重みは、$p(\mathbf{z_{n+1}}|\mathbf{z}_n)$ の値に対応する $A_{1 k}$ とその要素に対応する出力密度 $p(\mathbf{x}_n|z_{n+1,k})$ の値を乗じたものです。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$p(\mathbf{X})$-の計算">$p(\mathbf{X})$ の計算<a class="anchor-link" href="#$p(\mathbf{X})$-の計算">¶</a></h4><p>　$p(\mathbf{X})$ は尤度関数を表し、EMアルゴリズムの停止条件などに利用されることがあるのでその値を求めることは有用です。
+                $$\gamma\left(\mathbf{z}_{n}\right)
+                =\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p(\mathbf{X})}
+                =\frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.33)$$
+                の両辺において $\mathbf{z}_n$ について和を取り、左辺が正規化された分布であることを利用すると、
+                $$p(\mathbf{X})=\sum_{\mathbf{z}_{n}} \alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)\qquad (13.41)$$
+　が得られます。すなわち、$n$ を好きなように取り、この和を計算することで尤度関数を求めることができます。よって、単に尤度関数を求めたい場合は $n=N$ の結果を用いて、以下で求めることが可能です。
+$$p(\mathbf{X})=\sum_{\mathbf{k}_{N}} \alpha\left(\mathbf{z}_{N}\right)\qquad (13.42)$$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="$\xi(\mathbf{z}_{n-1},\mathbf{z}_n)$-の計算">$\xi(\mathbf{z}_{n-1},\mathbf{z}_n)$ の計算<a class="anchor-link" href="#$\xi(\mathbf{z}_{n-1},\mathbf{z}_n)$-の計算">¶</a></h4><p>　$(\mathbf{z}_{n-1},\mathbf{z}_n)$ の $K\times K$ 個の値の組各々についての条件付き確率 $p(\mathbf{z}_{n-1},\mathbf{z}_n)$ に対応する $\xi(\mathbf{z}_{n-1},\mathbf{z}_n)$ は、ベイズの定理を用いることによって、以下で表されます。
+$$\begin{array}{l}
+                {\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)=p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n} | \mathbf{X}\right)} \\
+                {=\frac{p(\mathbf{X} | \mathbf{z}_{n-1}, \mathbf{z}_{n}) p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)}{p(\mathbf{X})}} \\
+                {=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1} | \mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n-1}\right)}{p(\mathbf{X})}} \\
+                {=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{x}_{n}\right)}{p(\mathbf{X})}} \qquad (13.43)
+                \end{array}$$
+　したがって、すでに計算した $\alpha(\mathbf{z}_n)$ と $\beta(\mathbf{z}_n)$ の値を用いて更新ができます。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="まとめ">まとめ<a class="anchor-link" href="#まとめ">¶</a></h3><h4 id="初期化">初期化<a class="anchor-link" href="#初期化">¶</a></h4><p>　最初に、パラメータ $\boldsymbol{\theta}^{\mathrm{old}}$ の初期値を求めます。<br />
+　パラメータ $\mathbf{A}$ や $\boldsymbol{\mu}$ は、一様に、もしくはランダムに、一様分布から非負性や和の制約を満たす範囲内で選択されることが多いです。<br />
+　パラメータ $\boldsymbol{\phi}$ の初期化は、出力分布の形により異なります。例えば、ガウス分布の場合には、データに K-means アルゴリズムを用いることによって $\boldsymbol{\mu}_k$ が初期化され、$\boldsymbol{\Sigma}_k$ の初期値としては対応する $K$ 個のクラスの共分散行列が用いられることがあります。</p>
+<h4 id="Estep">Estep<a class="anchor-link" href="#Estep">¶</a></h4><p>　まず、フォワード $\alpha$ 再帰とバックワード $\beta$ 再帰が実行され、その結果を用いて $\gamma(\mathbf{z}_n)$ と $\xi(\mathbf{z_{n-1},\mathbf{z}_n})$ を求めることができます。この段階で尤度関数も求めることができます。</p>
+<h4 id="Mstep">Mstep<a class="anchor-link" href="#Mstep">¶</a></h4><p>上で求めたパラメータを固定し、
+                $$\begin{aligned}
+                Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)
+                =& \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\
+                & +\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln p\left(\mathbf{x}_{n} | \boldsymbol{\phi}_{k}\right)\qquad (13.17)
+                \end{aligned}$$
+ を最大化するようなパラメータ集合 $\boldsymbol{\theta}^{\mathrm{old}}$ を求めます.</p>
+<h4 id="停止条件">停止条件<a class="anchor-link" href="#停止条件">¶</a></h4><p>　ある収束基準、例えば尤度関数の変化やパラメータの変化がある閾値より小さくなるまで、E step と M step を繰り返します。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Viterbi-algorithm">Viterbi algorithm<a class="anchor-link" href="#Viterbi-algorithm">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　隠れマルコフモデルの多くの応用で、潜在変数は何らかの意味を持つと解釈されます。そこで、与えられた観測系列に対し、隠れ状態の最も確からしい系列を求めることにしばしば興味が持たれます。<br />
+　例えば、遺伝子配列解析で、隠れた状態から配列が決まっていると仮定すれば、その隠れた状態を見つけることに意味があると思われます。<br />
+　隠れマルコフモデルのグラフは有向木なので、この問題は<font color="red"><b>max-sumアルゴリズム</b></font>を用いることで厳密に解くことができます。<br />
+　ここで、先ほど利用した<font color="red"><b>Baum-Welch(積和)アルゴリズム</b></font>を用いて単純に潜在変数の周辺確率 $\gamma(\mathbf{z}_n)$ を求め、各 $n$ について最も確からしい状態の集合を求めるだけでは、一般には最も確からしい状態系列に対応しないことに注意が必要です。<br />
+　この問題の定式化をすると、$\mathbf{Z}$ の事後確率が最大となる系列 $\hat{\mathbf{Z}}$ を見つけるという問題に対応するので、
+$$\begin{aligned}
+\hat{\mathbf{Z}}
+& = \mathop{\rm arg~max}\limits_{\mathbf{Z}}p(\mathbf{Z}|\mathbf{X}) \\
+& = \mathop{\rm arg~max}\limits_{\mathbf{Z}}\frac{p(\mathbf{X},\mathbf{Z})}{p(\mathbf{X})} \\
+& = \mathop{\rm arg~max}\limits_{\mathbf{Z}}p(\mathbf{X},\mathbf{Z}) \\
+& = \mathop{\rm arg~max}\limits_{\mathbf{Z}}\ln p(\mathbf{X},\mathbf{Z}) \\
+\end{aligned}$$
+　を解くことになります。<br />
+　これを再帰的に計算するアルゴリズムを<font color="red"><b>ビタビアルゴリズム(Viterbi algorithm)</b></font>と呼びます。</p></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　まず、$\mathop{\rm max}\limits_{\mathbf{Z}}\ln p(\mathbf{X},\mathbf{Z})$ について考えます。<br />
+　これに、先ほど導いた
+$$p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)$$
+　を代入すると、以下の式を得ます。
+$$\mathop{\rm max}\limits_{\mathbf{Z}}\ln p(\mathbf{X},\mathbf{Z}) = \mathop{\rm max}\limits_{\mathbf{Z}} \left\{ \ln p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right) + \sum_{n=2}^N \ln p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right) + \sum_{n=1}^N \ln p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)  \right\}$$
+　そこで、以下のように $\omega\left(\mathbf{z}_{n}\right)$ を定義します。
+$$\omega\left(\mathbf{z}_{n}\right)=\max _{\mathbf{z}_{1}, \ldots, \mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{1}, \ldots, \mathbf{z}_{n}\right)\qquad (13.70)$$
+　すると、$\mathop{\rm max}\limits_{\mathbf{Z}} \ln p(\mathbf{X},\mathbf{Z}) = \mathop{\rm max}\limits_{\mathbf{z}_N}\omega\left(\mathbf{z}_{n}\right)$ を得ます。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　ここで、$\omega$ は次の漸化式を満たします。
+                $$\begin{aligned}
+                \omega(\mathbf{z}_{n+1})
+                & = \mathop{\rm max}\limits_{\mathbf{z}_1,\ldots,\mathbf{z}_n}\left\{ \ln p(\mathbf{z}_1) + \sum_{i=2}^{n+1}\ln p(\mathbf{z}_i|\mathbf{z}_{i-1}) + \sum_{i=1}^{n+1} \ln p(\mathbf{x}_i|\mathbf{z}_i)\right\} \\
+                & = \mathop{\rm max}\limits_{\mathbf{z}_1,\ldots,\mathbf{z}_n}\left\{ \ln p(\mathbf{z}_1) + \sum_{i=2}^{n+1}\ln p(\mathbf{z}_i|\mathbf{z}_{i-1}) + \sum_{i=1}^{n+1} \ln p(\mathbf{x}_i|\mathbf{z}_i)\right\} \\
+                & \qquad + \ln p(\mathbf{z}_{n+1}|\mathbf{z}_n) + \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1})\\
+                & = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{\rm max}\limits_{\mathbf{z}_n}\left\{\ln p(\mathbf{z}_{n+1}|\mathbf{z}_n) + \omega(\mathbf{z}_n)\right\}
+                \end{aligned}$$</p>
+                <p>これは、
+                $$\omega\left(\mathbf{z}_{1}\right)=\ln p\left(\mathbf{z}_{1}\right)+\ln p\left(\mathbf{x}_{1} | \mathbf{z}_{1}\right)\qquad (13.69)$$
+                によって初期化されます。</p>
+</p></div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　ここで、漸化式
+$$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{\rm max}\limits_{\mathbf{z}_n}\left\{\ln p(\mathbf{z}_{n+1}|\mathbf{z}_n) + \omega(\mathbf{z}_n)\right\}$$
+                において、$\mathbf{z}_{n+1}$ が決まると、$\max$ の部分の $\mathbf{z}_n$ の値が決まります。この関数関係 $\mathbf{z}_{n+1}\rightarrow\mathbf{z}_n$ を $\mathrm{pred}$ と書く事にします。つまり、
+                $$\mathrm{pred}(\mathbf{z}_{n+1}) = \mathop{\rm arg~max}\limits_{\mathbf{z}_n}\left\{\ln p(\mathbf{z}_{n+1}|\mathbf{z}_n) + \omega(\mathbf{z}_n)\right\}$$
+                となります。<br />
+　これを用いることで、左から右に、<font color="red"><b>「$\mathbf{z}_n = k$ の時に、そこより過去の部分の対数尤度が最大となるようなラベルの系列」</b></font>が計算されていきます。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="http://nineties.github.io/prml-seminar/fig/viterbi1.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　求める隠れ変数の系列は
+                $$\begin{aligned}
+                \hat{\mathbf{Z}}
+                & = \mathop{\rm arg~max}\limits_{\mathbf{Z}}\log p(\mathbf{X},\mathbf{Z}) \\
+                & = \mathop{\rm arg~max}\limits_{\mathbf{z}_N}\omega(\mathbf{z}_N)
+                \end{aligned}$$
+                だったので、まず $\mathbf{z}_N$ を決めます。すると、$\mathrm{pred}$ によって $\mathbf{z}_{N-1} = \mathrm{pred}(\mathbf{z}_N)$ が決まります。<br />
+　これを繰り返すことで、系列 $\mathbf{z}_1 \rightarrow \mathbf{z}_2 \rightarrow \cdots \mathbf{z}_{N-1} \rightarrow \mathbf{z}_N$ が右から順番に求まることになります。いわゆる<font color="red"><b>バックトラッキング(backtracking)</b></font>という計算です。</p></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="http://nineties.github.io/prml-seminar/fig/viterbi2.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Program">Program<a class="anchor-link" href="#Program">¶</a></h2><p>　実際に使用してみる。以下のプログラムは、<code>fit</code>, <code>E_step</code>, <code>M_step</code> が本質的な情報で残りは綺麗に結果を出力するだけの関数です。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">base2int</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="s2">"A"</span><span class="p">,</span><span class="mi">0</span><span class="p">),(</span><span class="s2">"T"</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="s2">"G"</span><span class="p">,</span><span class="mi">2</span><span class="p">),(</span><span class="s2">"C"</span><span class="p">,</span><span class="mi">3</span><span class="p">)])</span> <span class="c1"># 辞書（indexで管理）</span>
+<span class="n">int2base</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span><span class="s2">"A"</span><span class="p">),(</span><span class="mi">1</span><span class="p">,</span><span class="s2">"T"</span><span class="p">),(</span><span class="mi">2</span><span class="p">,</span><span class="s2">"G"</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="s2">"C"</span><span class="p">)])</span> <span class="c1"># 逆の辞書</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">HMM</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">sequences</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">M</span> <span class="o">=</span> <span class="n">M</span> <span class="c1"># x（データ）の種類</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">K</span> <span class="o">=</span> <span class="n">K</span> <span class="c1"># z（状態）の種類</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequences</span> <span class="o">=</span><span class="p">[</span><span class="n">base2int</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">Bases</span><span class="p">]</span>    <span class="c1"># 塩基配列を数字で表す。</span>
+        <span class="c1">#=== モデルのパラメータ初期化 ===</span>
+        <span class="c1"># 初期状態</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.75</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>             <span class="c1"># πの初期化。極端な値をとると最適化できない。</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi</span>   <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">sum</span><span class="p">()]</span>
+        <span class="c1"># 遷移確率</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">K</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span> <span class="p">[</span><span class="n">K</span><span class="p">,</span><span class="n">K</span><span class="p">])</span> <span class="c1"># Aの初期化(対角成分の確率を高める)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span>   <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="c1"># 放出確率</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>       <span class="c1"># φの初期化</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ITER_MAX</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ITER_MAX</span><span class="p">):</span>
+            <span class="c1"># 更新前のパラメタを記録</span>
+            <span class="n">past_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+            <span class="c1">#=== E step ===</span>
+            <span class="n">gamma</span><span class="p">,</span> <span class="n">xi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
+            <span class="c1">#=== M step ===</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">M_step</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">xi</span><span class="p">)</span>
+            
+            <span class="c1">#=== 終了条件(更新後のパラメータが近似的に等しいかを調べる) ===</span>
+            <span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="o">.</span><span class="n">ravel</span><span class="p">()))</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">past_params</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">):</span>
+                <span class="k">break</span>
+        <span class="k">return</span> <span class="n">it</span>
+            
+    <span class="k">def</span> <span class="nf">E_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">)</span>
+        
+        <span class="c1">#=== 前向き後向きアルゴリズムの漸化式 ===</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">])</span> <span class="c1"># 前向きアルゴリズムのαを記録</span>
+        <span class="n">beta</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">])</span> <span class="c1"># 後向きアルゴリズムのβを記録</span>
+        <span class="n">alpha</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1"># 初期化：α(z1) = p(x1|φ_z1)π_z1</span>
+        <span class="n">beta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>                                     <span class="c1"># 初期化：β(zN) = 1</span>
+        
+        <span class="c1">#=== 動的計画法でαを計算 ===</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">)):</span>
+            <span class="c1">#  α(zi) = ∑z_i−1 α(z_i−1) A_zi−1,zi * p(xi|ϕ_zi)</span>
+            <span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">alpha</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+
+        <span class="c1">#=== 動的計画法でβを計算 ===</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+            <span class="c1"># β(zi)  = ∑β(z_i+1) p(x_i+1|ϕz_i+1) A_zi,zi+1</span>
+            <span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="o">=</span> <span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>        
+
+        <span class="c1">#=== 上のα,βから、γを計算 α(zi)β(zi)/p(x) ===</span>
+        <span class="n">gamma</span>  <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">beta</span>
+        <span class="n">gamma</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1">#=== 上のα,βから、ξを計算 ξ_i = α(z_i-1)β(zi)p(zi|φ_zi)A_z_i-1,zi / p(x) ===</span>
+        <span class="n">xi</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">*</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">:])[::,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="n">xi</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">xi</span>
+    
+    <span class="k">def</span> <span class="nf">M_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="n">xi</span><span class="p">):</span>
+        <span class="c1">#=== 初期状態のパラメタπを更新 πk=γ_1k/∑γ_1k ===</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pi</span> <span class="o">=</span> <span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+        <span class="c1">#=== 遷移確率のパラメタAの更新 Ajk=∑ξ_ijk/∑∑ξijk ===</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1">#=== 放出確率のパラメタφの更新 ϕ_kj=∑γ_ik*x_ij/∑∑γ_ik * x_ij ===</span>
+        <span class="n">x</span>   <span class="o">=</span> <span class="n">gamma</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">])[:,:,</span><span class="kc">None</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="n">gamma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"state translation. (iteration=</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+        
+    <span class="k">def</span> <span class="nf">plot_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">"z(</span><span class="si">{}</span><span class="s2">): </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
+            
+    <span class="k">def</span> <span class="nf">plot_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">"      【Before state】"</span><span class="p">)</span>
+
+        <span class="n">z_format</span>  <span class="o">=</span> <span class="s2">"      "</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+            <span class="n">z_format</span> <span class="o">+=</span> <span class="s2">"z(</span><span class="si">{}</span><span class="s2">)  "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">z_format</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">" z(</span><span class="si">{}</span><span class="s2">) "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+            <span class="n">A_form</span> <span class="o">=</span> <span class="s2">""</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+                <span class="n">A_form</span> <span class="o">+=</span> <span class="s2">"</span><span class="si">{:.3f}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">A_form</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">plot_emission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="n">z_format</span>  <span class="o">=</span> <span class="s2">" \ "</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+            <span class="n">z_format</span> <span class="o">+=</span> <span class="s2">"z(</span><span class="si">{}</span><span class="s2">)  "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">z_format</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">" </span><span class="si">{}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">int2base</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span> <span class="n">end</span><span class="o">=</span><span class="s2">""</span><span class="p">)</span>
+            <span class="n">phi_form</span> <span class="o">=</span> <span class="s2">""</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+                <span class="n">phi_form</span> <span class="o">+=</span> <span class="s2">"</span><span class="si">{:.3f}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">phi_form</span><span class="p">)</span>
+            
+    <span class="k">def</span> <span class="nf">plot_state_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="n">gamma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gamma</span><span class="p">[:,</span><span class="n">k</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"z(</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    
+            
+    <span class="k">def</span> <span class="nf">plot_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+        <span class="n">gamma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#=== 学習データを作成（非常に極端な例です） ===</span>
+<span class="n">Bases</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o"><</span> <span class="mi">20</span><span class="p">:</span>
+        <span class="n">Bases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"T"</span><span class="p">,</span><span class="s2">"C"</span><span class="p">]))</span> <span class="c1"># ピリミジン塩基のみ</span>
+    <span class="k">elif</span> <span class="n">i</span><span class="o">>=</span> <span class="mi">80</span><span class="p">:</span>
+        <span class="n">Bases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"G"</span><span class="p">]))</span> <span class="c1"># プリン塩基のみ</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">Bases</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="s2">"A"</span><span class="p">,</span><span class="s2">"T"</span><span class="p">,</span><span class="s2">"G"</span><span class="p">,</span><span class="s2">"C"</span><span class="p">]))</span> <span class="c1"># 一般的</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Bases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[5]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array(['C', 'C', 'C', 'T', 'T', 'C', 'C', 'C', 'C', 'T', 'T', 'C', 'C',
+       'C', 'T', 'T', 'C', 'T', 'C', 'C', 'T', 'G', 'T', 'T', 'T', 'G',
+       'C', 'G', 'C', 'C', 'T', 'C', 'A', 'T', 'T', 'G', 'C', 'G', 'C',
+       'A', 'C', 'T', 'A', 'C', 'C', 'C', 'A', 'G', 'G', 'G', 'T', 'C',
+       'C', 'G', 'T', 'T', 'C', 'C', 'T', 'G', 'G', 'A', 'A', 'C', 'T',
+       'C', 'T', 'G', 'G', 'T', 'C', 'A', 'G', 'T', 'A', 'T', 'G', 'C',
+       'T', 'G', 'G', 'G', 'G', 'A', 'G', 'A', 'G', 'G', 'A', 'G', 'A',
+       'G', 'A', 'G', 'G', 'G', 'A', 'A', 'A', 'G'], dtype='<u1&#x27;)&lt; pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">HMM</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">Bases</span><span class="p">)</span>
+<span class="n">model</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">plot_state_translation</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">plot_state</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt output_prompt">Out[8]:</div>
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+       2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+       1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">plot_emission</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">phi</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'coolwarm'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre> \ z(1)  z(2)  z(3)  
+ A 0.000 0.392 0.127 
+ T 0.370 0.000 0.309 
+ G 0.000 0.608 0.256 
+ C 0.630 0.000 0.308 
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+1JChK0kN/T+mttw1N4XqiAAAAABJRU5ErkJggg==
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">plot_initial_state</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>z(1): 1.000
+z(2): 0.000
+z(3): 0.000
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">plot_translation</span><span class="p">()</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">'coolwarm'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>      【Before state】
+      z(1)  z(2)  z(3)  
+ z(3) 0.821 0.080 0.046 
+ z(3) 0.066 0.873 0.031 
+ z(3) 0.113 0.048 0.923 
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+AABJRU5ErkJggg==
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="発展">発展<a class="anchor-link" href="#発展">¶</a></h3><p>　実際の塩基配列を公共データベースである<a href="https://www.ddbj.nig.ac.jp/index.html">DDBJ　日本DNAデータバンク</a> から入手し、適当な状態数でモデル化をすると、今まで気づかなかった発見などがあるかもしれません。「機械学習」などの、<b>「機械に特徴を学習させる学問」</b>は、そこが面白さの１つだと考えています。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　アプローチの仕方は全く異なりますが、<b>「今まで人間が発見できなかった事実に気づける」</b>という面では、<b>順遺伝学</b>にも似ていると感じています。それが僕が生物情報科学かを選んだ理由でもあります。</p>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-27T00:00:00+09:00"> 5 27, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-27T00:00:00+09:00"> 5 27, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ
+                    <span>6</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#prml-ref">PRML
+                    <span>1</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

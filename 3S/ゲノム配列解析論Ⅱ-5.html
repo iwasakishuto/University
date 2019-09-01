@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, ゲノム配列解析論Ⅱ, ゲノム配列解析論Ⅱ, " />
+<meta property="og:image" content="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/05.02.png"/>
+
+<meta property="og:title" content="ゲノム配列解析論Ⅱ 第5回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅱ-5.html" />
+<meta property="og:description" content="配列ファミリーのプロファイル" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-07-08T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-07-08T00:00:00+09:00" />
+<meta name="twitter:title" content="ゲノム配列解析論Ⅱ 第5回 ">
+<meta name="twitter:description" content="配列ファミリーのプロファイル">
+
+        <title>ゲノム配列解析論Ⅱ 第5回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅱ-5.html"> ゲノム配列解析論Ⅱ 第5回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第5回 2019/7/8</h1>
+<ul>
+<li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a></li>
+<li>資料：<a href="https://www.amazon.co.jp/%E3%83%90%E3%82%A4%E3%82%AA%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%9E%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9-%E7%A2%BA%E7%8E%87%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AB%E3%82%88%E3%82%8B%E9%81%BA%E4%BC%9D%E5%AD%90%E9%85%8D%E5%88%97%E8%A7%A3%E6%9E%90-Richard-Durbin/dp/B0050YGNNY">バイオインフォマティクス 確率モデルによる遺伝子配列解析</a> 第５章</li>
+</ul>
+<h2>講義概要</h2>
+<p>今回の講義は、上記の資料（浅井先生が翻訳に関わられている本）の文章をそのまま追うだけであった。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">第5章 配列ファミリーのプロファイル
+  <ol>
+    <li><a data-scroll href="#anchor1">ギャップなしのスコア行列</a></li>
+    <li><a data-scroll href="#anchor2">挿入状態と欠失状態をプロファイル HMM に加える</a></li>
+    <li><a data-scroll href="#anchor3">マルチプルアラインメントからのプロファイル HMM の導出</a></li>
+    <li><a data-scroll href="#anchor4">プロファイル HMM による検索</a></li>
+    <li><a data-scroll href="#anchor5">非大域アラインメントの変形としてのプロファイル HMM</a></li>
+    <li><a data-scroll href="#anchor6">確率推定についての再考</a></li>
+  </ol>
+</div>
+
+<h2 id="anchor1">ギャップなしのスコア行列</h2>
+
+<p>ここでは、<span class="marker-pink">タンパク質ファミリーのマルチプルアラインメント</span>を考える。</p>
+<div class="highlight"><pre><span></span><span class="mi">5</span><span class="n">p21</span><span class="o">-</span> <span class="n">MTEYKLVVV</span><span class="s1">&#39;G&#39;</span><span class="n">AGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTIQLIQNH</span><span class="s1">&#39;F&#39;</span><span class="n">VDEYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDSY</span>
+<span class="mi">1</span><span class="n">ctqA</span> <span class="n">MTEYKLVVV</span><span class="s1">&#39;G&#39;</span><span class="n">AGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTIQLIQNH</span><span class="s1">&#39;F&#39;</span><span class="n">VDEYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDSY</span>
+<span class="mi">1</span><span class="n">c1yA</span> <span class="n">MREYKLVVL</span><span class="s1">&#39;G&#39;</span><span class="n">SGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTVQFVQGI</span><span class="s1">&#39;F&#39;</span><span class="n">VEKYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDSY</span>
+<span class="mi">1</span><span class="n">kao</span><span class="o">-</span> <span class="n">MREYKVVVL</span><span class="s1">&#39;G&#39;</span><span class="n">SGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTVQFVTGT</span><span class="s1">&#39;F&#39;</span><span class="n">IEKYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDFY</span>
+<span class="mi">1</span><span class="n">huqA</span> <span class="o">--</span><span class="n">QFKLVLL</span><span class="s1">&#39;G&#39;</span><span class="n">ESAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">SLVLRFVKGQ</span><span class="s1">&#39;F&#39;</span><span class="n">HEYQE</span><span class="s1">&#39;S&#39;</span><span class="n">TIGAAF</span>
+<span class="mi">1</span><span class="n">g16A</span> <span class="o">----</span><span class="n">KILLI</span><span class="s1">&#39;G&#39;</span><span class="n">DSGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">CLLVRFVE</span><span class="o">--</span><span class="s1">&#39;-&#39;</span><span class="o">-</span><span class="n">DKFN</span><span class="s1">&#39;P&#39;</span><span class="n">I</span><span class="o">--</span><span class="n">DFK</span>
+<span class="mi">1</span><span class="n">ek0A</span> <span class="n">VTSIKLVLL</span><span class="s1">&#39;G&#39;</span><span class="n">EAAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">SIVLRFVSND</span><span class="s1">&#39;F&#39;</span><span class="n">AENKE</span><span class="s1">&#39;P&#39;</span><span class="n">TIGAAF</span>
+<span class="mi">3</span><span class="n">rabA</span> <span class="o">---</span><span class="n">FKILII</span><span class="s1">&#39;G&#39;</span><span class="n">NSSV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">SFLFRYADDS</span><span class="s1">&#39;F&#39;</span><span class="n">TPAFV</span><span class="s1">&#39;S&#39;</span><span class="n">TVGIDF</span>
+<span class="mi">1</span><span class="n">mh1</span><span class="o">-</span> <span class="o">----</span><span class="n">KCVVV</span><span class="s1">&#39;G&#39;</span><span class="n">DGAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">CLLISYTTNA</span><span class="s1">&#39;F&#39;</span><span class="n">PGEYI</span><span class="s1">&#39;P&#39;</span><span class="n">TVFDNY</span>
+<span class="mi">2</span><span class="n">ngrA</span> <span class="n">MQTIKCVVV</span><span class="s1">&#39;G&#39;</span><span class="n">DGAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">CLLISYTTNK</span><span class="s1">&#39;F&#39;</span><span class="n">PSEYV</span><span class="s1">&#39;P&#39;</span><span class="n">TVFDNY</span>
+<span class="mi">1</span><span class="n">tx4B</span> <span class="o">----</span><span class="n">KLVIV</span><span class="s1">&#39;G&#39;</span><span class="n">DGAC</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">CLLIVNSKDQ</span><span class="s1">&#39;F&#39;</span><span class="o">---</span><span class="n">YV</span><span class="s1">&#39;P&#39;</span><span class="n">TVFENY</span>
+</pre></div>
+
+
+<p>上の配列から見てわかるように、タンパク質ファミリーの配列同士には特徴がある。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+  <h4>タンパク質ファミリーのマルチプルアラインメントの特徴</h4>
+  <ol>
+    <li><span class="marker-pink">ギャップは互いに一列に並ぶ傾向</span>があり配列によって所々抜けていることが少ない。</li>
+    <li>サイトごとに<span class="marker-pink">保存度</span>に差がある。</li>
+    <li>サイトごとに<span class="marker-pink">アミノ酸の出現傾向</span>に差がある。</li>
+    <li>サイトごとに<span class="marker-pink">ギャップの出現傾向</span>に差がある。</li>
+  </ol>
+</div>
+
+<p>そこで、まずは上記の性質1を利用して、<span class="marker-pink">分断化される非ギャップ領域のアラインメント</span>を考える。</p>
+<p>まず、<b>位置 <span class="math">\(i\)</span> において観察されるアミノ酸 <span class="math">\(a\)</span> が、各位置 <span class="math">\(i\)</span> について独立の確率 <span class="math">\(e_i(a)\)</span> に従って現れる</b>と仮定した、最も簡単なモデルを考える。</p>
+<p>この時、このモデルに従った配列 <span class="math">\(x\)</span> の確率は、</p>
+<div class="math">$$P(x|M) = \prod_{i=1}^Le_i(x_i)$$</div>
+<p>と表される。ただし <span class="math">\(L\)</span> はブロック長で、上の配列の場合 <span class="math">\(40\)</span> である。</p>
+<p>ここで、次の<span class="marker-pink">位置特異的スコア行列(Position Specific Score Matrix; PSSM)</span></p>
+<div class="math">$$S_i(a) = \log\frac{e_i(a)}{q_a}$$</div>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(e_i(a)\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> においてアミノ酸 <span class="math">\(a\)</span> が出力される確率</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(q_a\)</span></td>
+<td align="left">アミノ酸 <span class="math">\(a\)</span> の背景確率</td>
+</tr>
+</tbody>
+</table>
+<p>を考える。この値は、<span class="marker-pink">サイトごとのスコア行列</span>を意味している。</p>
+<blockquote>
+<p>スコア行列が <span class="math">\(s(a,b)=\log\frac{p(a,b)}{q(a)q(b)}\)</span> で表されていたことを思い出す。これとの比較より、今考えているのはスコア行列の第2引数 <span class="math">\(b\)</span> が位置 <span class="math">\(i\)</span> である時のスコア行列と言うことができる。</p>
+</blockquote>
+<h2 id="anchor2">挿入状態と欠失状態をプロファイル HMM に加える</h2>
+
+<p>ここまでで、位置 <span class="math">\(i\)</span> に固有のスコア行列 <span class="math">\(S_i\)</span> を定義することができた。</p>
+<p>しかし、これだけではまだタンパク質ファミリーの特徴を全て表現しきれていない。次に、<span class="marker-pink">ギャップを考慮する</span>方法を考える。</p>
+<p>ペアワイズアラインメント同様に単一のギャップスコア <span class="math">\(\gamma(g)\)</span> を導入し、各位置についてギャップを許すことも可能だが、<span class="marker-pink">サイトごとのギャップの出現傾向</span>を捉えるために、<span class="marker-pink">位置に依存したギャップスコア</span>を導入する。</p>
+<p>ギャップが起こる原因に関しては、<b>「挿入」</b>と<b>「欠失」</b>が考えられるが、これらは分けて取り扱う方が望ましい。</p>
+<p>そこで、各位置においてそれぞれの隠れ状態を持ったHMMである<span class="marker-pink">Prpfile HMM</span>を考える。</p>
+<p><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/05.02.png"></p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+  <h3>Profile HMMs</h3>
+  <li><span class="marker-pink">アラインメントされている</span>タンパク質ファミリーに特有の機能や構造のために保存されているモチーフ配列をモデルの形で<b>記憶</b>する。<b>（パラメータを求める。）</b></li>
+  <li>新しい入力配列がそのタンパク質ファミリーに属するかを<b>（Viterbi algorithm/forward algorithmで求めた最大確率をある閾値で）</b>判断する。</li>
+</div>
+
+<table>
+<thead>
+<tr>
+<th align="center">状態</th>
+<th align="left">意味</th>
+<th align="center">画像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M_i\)</span></td>
+<td align="left">一致状態</td>
+<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103t.png"></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(I_i\)</span></td>
+<td align="left">マルチプルアラインメントの <span class="math">\(i\)</span> 番目のカラムに一致した塩基の後の挿入を表現する。</td>
+<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103b.png"></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(D_i\)</span></td>
+<td align="left">ヌル状態。塩基を出力しない。欠失を表現するが、欠失のコストは <span class="math">\(M\rightarrow D\)</span> 遷移、それに続くいくつかの <span class="math">\(D\rightarrow D\)</span> 遷移、<span class="math">\(D\rightarrow M\)</span> 遷移の和になる。</td>
+<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p104b.png"></td>
+</tr>
+</tbody>
+</table>
+<h4>補足</h4>
+<ul>
+<li><span class="math">\(I_i\)</span> は出力分布 <span class="math">\(e_{I_i}(a)\)</span> を持つが、それらは普通バックグラウンドの分布 <span class="math">\(q(a)\)</span> が割り当てられる。</li>
+<li><span class="math">\(D\rightarrow I\)</span> や <span class="math">\(I\rightarrow D\)</span> の遷移は実際の配列解析ではめったに使われることがなく、<b>それらを取り除いても一致のスコアには大した影響は与えない。</b>（しかし、モデルの構築上の問題が生じてしまう）</li>
+</ul>
+<h2 id="anchor3">マルチプルアラインメントからのプロファイル HMM の導出</h2>
+
+<h3>プロファイルHMMのパラメータ</h3>
+<p>モデルの構造が定義できたので、各種パラメータの調整を考える。</p>
+<p>出力確率や遷移確率が<b>非ゼロ</b>だと仮定すると、<b>プロファイルHMMは与えられたアルファベットからの任意の塩基配列をモデル化することができる。</b></p>
+<p>そこで、<span class="marker-pink">プロファイルHMMが表す分布をファミリーの一員付近でピークに達するように、パラメータを調整したい。</span></p>
+<p>分布の形を調整するために利用できるパラメータは，<b>「確率パラメータ」</b>と<b>「モデル長」</b>である。これらを最適に設定する方法を数多くあるが、まずは<a href="https://www.ncbi.nlm.nih.gov/pubmed/8107089">Krogh, A. et al.1994</a>による基本的な方法を紹介する。</p>
+<h4>モデル長</h4>
+<p>これは非常に簡単で、<span class="marker-pink">「ギャップが半数より多いカラムは挿入」</span>としてモデリングする。</p>
+<h4>確率パラメータ</h4>
+<p>マルチプルアラインメントは与えられているので、<b>直接パラメータを推定する</b>ことができる。</p>
+<p>つまり，各遷移や出力が使われた回数を数え上げ、次式にしたがって確率を割り当てる。</p>
+<div class="math">$$
+\begin{aligned}
+a_{k l}
+&amp;=\frac{A_{k l}}{\sum_{l^{\prime}} A_{k l^{\prime}}}\\
+e_{k}(a)
+&amp;=\frac{E_{k}(a)}{\sum_{a^{\prime}} E_{k}\left(a^{\prime}\right)}
+\end{aligned}
+$$</div>
+<p>ここで、<span class="math">\(k,l\)</span> は状態の添え字であり、<span class="math">\(a_{kl},e_k\)</span> は遷移確率と出力確率、<span class="math">\(A_{kl},E_k\)</span> は対応する頻度である。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+<h4>問題点</h4>
+<p>学習データが多い場合、この確率パラメータの推定方法は正確で矛盾のない確率の推定方法となる。</p>
+<p>しかし、配列の数が少ない場合、ある遷移や出力が学習アラインメントに現れないとその確率が0になり、そのパスが未知の配列に対しても決して現れないことを意味する。</p>
+<p>これを防ぐよく使われる方法は、<b>「<span class="marker-pink">擬似度数(pseudocount)</span>を観察頻度に加える」</b>方法である。これは、<span class="marker-pink">事前分布を導入する</span>ことに対応する。</p>
+</div>
+
+<h2 id="anchor4">プロファイル HMM による検索</h2>
+
+<p>HMMに対する一致をスコア化するには、<span class="math">\(2\)</span> 通りの方法がある。つまり、<b>Viterbiアルゴリズム</b>と<b>前向きアルゴリズム</b>を利用することができる。</p>
+<ul>
+<li>前者では，配列 <span class="math">\(x\)</span> の最も尤らしいアラインメント <span class="math">\(\pi^{+}\)</span> が、その確率 <span class="math">\(P(x,\pi^{+}|M)\)</span> と共に得られる。</li>
+<li>後者では，全ての可能なパス <span class="math">\(P(x|M)\)</span> に渡って足し合わされた <span class="math">\(x\)</span> の確率が得られる。</li>
+</ul>
+<p>なお、いずれのケースでも、実用的な目的から、一致の候補を評価する時に考えるべき値は、標準的なランダムモデルが与える <span class="math">\(x\)</span> の確率</p>
+<div class="math">$$P(x|R) = \prod_iq_{x_i}$$</div>
+<p>に対する対数オッズ比である。</p>
+<h3>Viterbiアルゴリズム</h3>
+<p>動的計画法を回すために、以下の変数を定義する。</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(V_j^M(i)\)</span></td>
+<td align="left">状態 <span class="math">\(M_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(V_j^I(i)\)</span></td>
+<td align="left">状態 <span class="math">\(I_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(V_j^D(i)\)</span></td>
+<td align="left">状態 <span class="math">\(D_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
+</tr>
+</tbody>
+</table>
+<p>すると、次のような漸化式を導出することができる。</p>
+<h4>漸化式</h4>
+<div class="math">$$
+\begin{aligned}
+V_{j}^{M}(i)
+&amp;=\log \frac{e_{M_{j}}\left(x_{i}\right)}{q_{x_{i}}}+\max \left[\begin{array}{c}{V_{j-1}^{M}(i-1)+\log a\left(M_{j-1}, M_{j}\right)} \\ {V_{j-1}^{I}(i-1)+\log a\left(I_{j-1}, M_{j}\right)} \\ {V_{j-1}^{D}(i-1)+\log a\left(D_{j-1}, M_{j}\right)}\end{array}\right.\\
+V_{j}^{I}(i)
+&amp;=\log \frac{e_{I_{j}}\left(x_{i}\right)}{q_{x_{i}}}+\max \left[\begin{array}{c}{V_{j}^{M}(i-1)+\log a\left(M_{j}, I_{j}\right)} \\ {V_{j}^{I}(i-1)+\log a\left(I_{j}, I_{j}\right)} \\ {V_{j}^{D}(i-1)+\log a\left(D_{j}, I_{j}\right)}\end{array}\right.\\
+V_{j}^{I}(i)
+&amp;=\max \left[\begin{array}{l}{V_{j-1}^{M}(i)+\log a\left(M_{j-1}, D_{j}\right)} \\ {V_{j-1}^{I}(i)+\log a\left(I_{j-1}, D_{j}\right) V_{j-1}^{D}(i)+\log a\left(D_{j-1}, D_{j}\right)}\end{array}\right.
+\end{aligned}
+$$</div>
+<h4>初期条件</h4>
+<p>ここで気をつけるべきことは、<span class="marker-pink">「アラインメントが欠失状態や挿入状態から開始したり終了したりできるようにすること」</span>である。</p>
+<p>このことを機械的に保証する最も簡単な方法は、開始状態を <span class="math">\(M_0\)</span> とし、<span class="math">\(V_0^M(0) = 0\)</span> とすることである。<b>（<span class="math">\(M_0\)</span> から <span class="math">\(I_0\)</span> と <span class="math">\(D_1\)</span> への遷移は許す。）</b></p>
+<h3>前向きアルゴリズム</h3>
+<p>前向きアルゴリズムのための再帰式はViterbi式と似ているが、<span class="math">\(\max()\)</span> 操作が足し算によって置き換えられている。したがって、以下の変数を用いる。</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(F_j^M(i)\)</span></td>
+<td align="left"><span class="math">\(V_j^M(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(F_j^I(i)\)</span></td>
+<td align="left"><span class="math">\(V_j^I(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(F_j^D(i)\)</span></td>
+<td align="left"><span class="math">\(V_j^D(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
+</tr>
+</tbody>
+</table>
+<p>すると、次のような漸化式を導出することができる。</p>
+<h4>漸化式</h4>
+<div class="math">$$
+\begin{aligned}
+F_{j}^{M}(i)=\log
+&amp; \frac{e_{M_{j}}\left(x_{i}\right)}{q_{x_{i}}}+\log \left[a\left(M_{j-1}, M_{j}\right) \exp \left(F_{j-1}^{M}(i-1)\right)\right.\\
+&amp;+a\left(I_{j-1}, M_{j}\right) \exp \left(F_{j-1}^{I}(i-1)\right)+a\left(D_{j-1}, M_{j}\right) \exp \left(F_{j-1}^{D}(i-1)\right) ]\\
+F_{j}^{I}(i)=\log
+&amp; \frac{e_{l_{j}}\left(x_{i}\right)}{q_{x_{i}}}+\log \left[a\left(M_{j}, I_{j}\right) \exp \left(F_{j}^{M}(i-1)\right)\right.\\
+&amp;+a\left(I_{j}, I_{j}\right) \exp \left(F_{j}^{I}(i-1)\right)+a\left(D_{j}, I_{j}\right) \exp \left(F_{j}^{D}(i-1)\right) ]\\
+F_{j}^{D}(i)=\log
+&amp;\left[a\left(M_{j-1}, D_{j}\right) \exp \left(F_{j-1}^{M}(i)\right)\right.+a\left(I_{j-1}, D_{j}\right) \exp \left(F_{j-1}^{I}(i)\right)\\
+&amp;+a\left(D_{j-1}, D_{j}\right) \exp \left(F_{j-1}^{D}(i)\right) ]
+\end{aligned}
+$$</div>
+<h4>初期条件</h4>
+<p>初期化に関しては、<span class="math">\(F_0^M(0) = 0\)</span> と初期化し、Viterbiと同じように行えば良い。</p>
+<h3>対数オッズ以外のスコア</h3>
+<p>HMM に関する初期の論文では、<b>対数オッズスコア</b>よりも、モデルが与える配列の<b>対数尤度</b>が直接利用されていた。<b>（LLスコアと呼ばれている。<span class="math">\(LL(x) = \log P(x|M)\)</span>）</b></p>
+<p>LLスコアは当然ながら配列長に依存するため、直接比較するには適当ではない。（<b>配列長で割った値</b>を使う手法もあるが、これもLLと配列長の関係が線形でないことから厳密な方法ではない。）</p>
+<p>これを回避する方法は、<span class="marker-pink">配列長の関数として平均スコアと標準偏差を推定し、各配列の標準偏差を利用すること</span>である。これは<span class="marker-pink">Z-スコア</span>と呼ばれる。</p>
+<p>Z-スコアを計算するために、LLスコアまたは対数オッズスコアに滑らかな曲線を適合させる。（詳細は<a href="https://www.ncbi.nlm.nih.gov/pubmed/8107089">Krogh, A. et al.1994</a>を参照）</p>
+<p>そして、各配列長 (あるいは配列長周辺の短い区間) について標準偏差を推定し、標準偏差を単位として滑らかな曲線からの距離を各スコアについて計算する。これがZ-スコアである。</p>
+<h3>一致の検出</h3>
+<p>今や各配列がタンパク質ファミリーに属するかの閾値を見つけることが可能になった。</p>
+<p>また、判別には<b>対数オッズに基づくスコアがより適当である</b>ことも明確である。<b>（∵ランダムモデルの確率で割ることによって、配列の残基組成に合わせた調節が行なわれているから。これを行なわないと、単純に頻出する塩基で組成された配列のスコアが高くなり、ノイズの分散を増加させることになる。）</b></p>
+<h3>アラインメント</h3>
+<p>一致の検出から離れると、プロファイルHMMの他の主要な使い道は、ファミリーに対して配列をアラインメントすること、より正確には、<b>その配列をファミリーのマルチプルアラインメントに加えること</b>である。</b></p>
+<h2 id="anchor5">非大域アラインメントの変形としてのプロファイル HMM</h2>
+
+<p>ここでは、プロファイルHMMへの配列のViterbiアラインメントと、アフィンギャップコストを用いた2本の配列の大域DPによる配列比較に存在する密接な関連性を見た。（省略）</p>
+<h2 id="anchor6">確率推定についての再考</h2>
+
+<p>ここでは、パラメータ推定について深掘りし、網羅的に紹介する。</p>
+<p>なお、ここでは出力確率についてしか触れないが、類似の手法を遷移確率に対しても用いることができる。</p>
+<h3>最尤推定</h3>
+<p>最も素直なアプローチは、<span class="marker-pink">パラメータの最尤推定</span>だと思われる。</p>
+<p>少し表記を変えるが、<b>アラインメントの位置 <span class="math">\(j\)</span> における残基 <span class="math">\(a\)</span> の観察頻度 <span class="math">\(c_{ja}\)</span> </b>について、対応するモデルパラメータ <span class="math">\(e_{M_j(a)}\)</span> の最尤推定は次のようになる。</p>
+<div class="math">$$e_{M_j(a)} = \frac{c_{ja}}{\sum_{a'}c_{ja'}}$$</div>
+<p>この方法に関する明らかな問題点は、訓練データの中にある結果が観察されていなければその確率が <span class="math">\(0\)</span> と推定されてしまうことである。</p>
+<p>この問題に対する最も簡単な方法は先に述べた通り、観察度数 <span class="math">\(c_{ja}\)</span> に<span class="marker-pink">擬似度数</span>を加えることである。</p>
+<h4>単純擬似度数</h4>
+<p>非常に簡単でよく用いられる擬似度数は、全ての度数に一定値を足し合わせることである（一様分布を事前分布に用いる）。</p>
+<p>その一定値が <span class="math">\(1\)</span> の場合を特別に<span class="marker-pink">Laplaceルール</span>と呼ぶ。</p>
+<p>少しだけ洗練された方法は、<b>バックグラウンドの分布に比例した量を加えること</b>である。</p>
+<div class="math">$$e_{M_j(a)} = \frac{c_{ja} + Aq_a}{\sum_{a'}c_{ja'} + A}$$</div>
+<p>ここで、<span class="math">\(c_{ja}\)</span> は実際の度数、<span class="math">\(A\)</span> は実際の度数と比較して擬似度数に加える重みである。<span class="math">\(20\)</span> 辺りの <span class="math">\(A\)</span> の値がタンパク質のアラインメントには適しているとの意見もある。</p>
+<p>この正規化において</p>
+<ul>
+<li>利用可能なデータが非常に少ない場合、すなわち<b><span class="math">\(A\)</span> と比較して全ての実度数が非常に小さい場合に、<span class="math">\(e_{M_j(a)}\)</span> が近似的に <span class="math">\(q_a\)</span> となる。</b></li>
+<li>利用可能なデータが大量にある場合、この正規化の効果は有意ではなくなり、<span class="math">\(e_{M_j(a)}\)</span> は本質的に最解と同じになる。</li>
+</ul>
+<p>この擬似度数法は、<span class="marker-pink">ベイズの枠組みでは、パラメータ <span class="math">\(\alpha_a = Aq_a\)</span> のDirichlet事前分布を仮定していることに対応</span>している。</p>
+<h4>Dirichlet混合分布</h4>
+<p>この手法は、<a href="https://www.ncbi.nlm.nih.gov/pubmed/8617681">Brown, M. et al.1995</a>によって提案された。</p>
+<p>基本的なアイデアは、アラインメントの<b>環境の種類</b>に対応して、いくつかの異なる組の擬似度数 <span class="math">\(\alpha^1,\ldots,\alpha^K\)</span> が存在するべきだろうというものである。</p>
+<p>例えば、ひとつのパラメータの組みは、表面のループ環境に関係するもの、ひとつの組みは埋没した小さい残基の環境に関するもの、…といった具合いである。</p>
+<p>与えられた度数 <span class="math">\(c_{ja}\)</span> について、まず各事前分布がどれくらい観察データに適合しているかに基づいて尤もらしさを推定し、それらの事後確率にしたがってそれらの結果を結合する。</p>
+<div class="math">$$
+e_{M_{j}(a)}=\sum_{k} P\left(k | c_{j}\right) \frac{c_{j a}+\alpha_{a}^{k}}{\sum_{a^{\prime}}\left(c_{j a^{\prime}}+\alpha_{a^{\prime}}^{k}\right)}
+$$</div>
+<p>但し、<span class="math">\(P(k|c_j)\)</span> は<span class="marker-pink">事後混合係数(posterior mixture coefficient)</span>であり、ベイズの法則によって計算できる。</p>
+<div class="math">$$
+P\left(k | c_{j}\right)=\frac{p_{k} P\left(c_{j} | k\right)}{\sum_{k^{\prime}} p_{k^{\prime}} P\left(c_{j} | k^{\prime}\right)}
+$$</div>
+<p>ここで、<span class="math">\(p_k\)</span> は各混合要素の事前確率、<span class="math">\(P(c_j|k)\)</span> はDirichlet混合分布 <span class="math">\(k\)</span> に従った確率である。</p>
+<div class="math">$$
+P\left(c_{j} | k\right)=\frac{\left(\sum_{a} c_{j a}\right) !}{\prod_{a} c_{j a} !}
+\cdot\frac{\Gamma\left(\sum_{a} c_{j a}+\alpha_{a}^{k}\right)}{\prod_{a} \Gamma\left(c_{j a}+\alpha_{a}^{k}\right)}
+\cdot \frac{\Gamma\left(\sum_{a} \alpha_{a}^{k}\right)}{\prod_{a} \Gamma\left(\alpha_{a}^{k}\right)}
+$$</div>
+<h4>置換行列の混合</h4>
+<p>Dirichlet分布の混合を利用した別のアプローチは、<b>観察頻度</b>と<b>置換行列</b>を用いて単一のDirichlet定式化における類似度数を調節することである。</p>
+<p>これは理論的に的確に確かめられたアプローチではないが、<b>非確率プロファイル法とDirichlet擬似度数法の特徴を結合する</b>という直感的な意味を持つ。</p>
+<p>最初のステップは、置換行列の要素 <span class="math">\(s(a,b)\)</span> を条件付き確率 <span class="math">\(P(b|a)\)</span> に変換することである。</p>
+<p>これは、置換行列の要素が対数オッズ比として導出されている場合は <span class="math">\(s(a,b) = \left(\log P(a,b)/q_aq_b\right) = \log\left(P(b|a)/P(b)\right)\)</span> なので、<span class="math">\(P(b|a) = q_be^{s(a,b)}\)</span> となる。（対数オッズ比として導出されてない場合は後で紹介）</p>
+<p>すると、与えられた条件付き確率 <span class="math">\(P(b|a)\)</span> について</p>
+<div class="math">$$\alpha_{ja} = A\sum_b\frac{c_{ja}}{\sum_{a'}c_{ja'}}P(a|b)$$</div>
+<p>によって <span class="math">\(\alpha_{ja}\)</span> を求め、これを用いて</p>
+<div class="math">$$e_{M_j(a)} = \frac{c_{ja} + \alpha_{ja}}{\sum_{a'}c_{ja'} + \alpha_{ja'}}$$</div>
+<p>とすれば出力確率が求まる。</p>
+<p>この手法では、<b>「アミノ酸 <span class="math">\(i\)</span> の擬似度数 <span class="math">\(j\)</span> への寄与は、カラムでのそのアミノ酸の度数とアミノ酸 <span class="math">\(j\)</span> へ変化する確率に比例する」</b>としているが、これは到って直感的なアイデアである。</p>
+<h4>任意の行列からの <span class="math">\(P(b|a)\)</span> の導出</h4>
+<p>スコア行列 <span class="math">\(s(a,b)\)</span> が対数オッズ行列として導出されていなくても、条件</p>
+<ul>
+<li><b>行列が負に偏っていること：<span class="math">\(\sum_{ab}q_aq_bs(a,b)&lt;0\)</span></b></li>
+<li><b>少なくともひとつの正の要素を含んでいること</b></li>
+</ul>
+<p>が満たされている限り、対数オッズ行列として解釈すると <span class="math">\(\lambda s(a,b)\)</span> が正しく振る舞うようなスケール因子 <span class="math">\(\lambda\)</span> を見つけることができる。</p>
+<p>ここで求めたいのは、</p>
+<div class="math">$$s(a,b) = \frac{1}{\lambda}\log\frac{r_{ab}}{q_aq_b}$$</div>
+<p>についての値 <span class="math">\(r_{ab}\)</span> の組である。但し、<span class="math">\(r_{ab}\)</span> は <span class="math">\(a,b\)</span> ペアについての確率として解釈することができる。この式は簡単に逆をとることができ、<span class="math">\(r_{ab} = q_aq_be^{\lambda s(a,b)}\)</span> となる。</p>
+<p>確率として正しくするために <span class="math">\(r_{ab}\)</span> の和は <span class="math">\(1\)</span> としなければならないため、</p>
+<div class="math">$$f(\lambda) = \sum_{a,b}q_aq_be^{\lambda s(a,b)} = 1$$</div>
+<p>を満たす <span class="math">\(\lambda\)</span> を見つける必要がある。</p>
+<p>そのような <span class="math">\(\lambda\)</span> のひとつは <span class="math">\(\lambda = 0\)</span> だが、<b>これは明らかに求めたいものではない。</b>この式において、先に与えた二つの条件が別の明確な解の存在を保証する。</p>
+<ol>
+<li>負への偏りの条件を用いれば、<span class="math">\(f(\lambda)\)</span> が十分小さい <span class="math">\(\lambda\)</span> について負であることが示せる。（<span class="math">\(f'(0)\)</span> を計算し、<span class="math">\(\lambda =0\)</span> について <span class="math">\(f(\lambda)\)</span> を導出する）</li>
+<li>少なくともひとつは存在する正の <span class="math">\(s(a,b)\)</span> を用いて、<span class="math">\(f(\lambda)\)</span> が十分大きな <span class="math">\(\lambda\)</span> について正になることを示す。</li>
+<li><span class="math">\(f(\lambda)\)</span> の2次の導関数が正であることと1,2より、上式を満たす <span class="math">\(\lambda\)</span> の値が <span class="math">\(\lambda=0\)</span> の他にただひとつ存在することを示す。</li>
+</ol>
+<p>得られる <span class="math">\(\lambda\)</span> の値は、置換行列の自然スケーリング因子と呼ばれる。置換行列を確率的に捉えることによって <span class="math">\(\sum_{ab}r_{ab}\log(r_{ab}/q_aq_b)\)</span> という行列についてのエントロピースコアが導かれる。これは、置換行列を特徴付けたり比較するのに便利な量である。</p>
+<h3>進化的祖先に基づいた推定</h3>
+<p>これまでに説明したものより原理的で直接的な手法として、<b>「観察配列全てが共通の祖先から独立に派生していると仮定」</b>し、その共通祖先の与えられた位置に存在する残基を推定することで、そこからその祖先の子孫について、各残基が観察される確率を推定する、という方法がある。</p>
+<p>アラインメントのカラム <span class="math">\(j\)</span> における残基 <span class="math">\(x_j^k\)</span> を持つサンプル配列 <span class="math">\(x^k\)</span> があると仮定する。<b>（ギャップがある場合 <span class="math">\(x_j^k\)</span> は配列 <span class="math">\(x^k\)</span> における <span class="math">\(j\)</span> 番目の残基ではないことに注意）</b></p>
+<p>ここでも、置換行列から導出された条件付き確率 <span class="math">\(P(a|b)\)</span> が必要となる。共通祖先における残基を <span class="math">\(y_j\)</span> とすると、<span class="math">\(y_j = a\)</span> である事後確率を計算するためにベイズの法則を利用できる。</p>
+<div class="math">$$
+P\left(y_{j}=a | \text { alignment }\right)=\frac{q_{a} \Pi_{k} P\left(x_{j}^{k} | a\right)}{\sum_{a^{\prime}} q_{a^{\prime}} \prod_{k} P\left(x_{j}^{k} | a^{\prime}\right)}
+$$</div>
+<p><b>※単なる塩基配列しか情報がない場合、共通祖先における残基の事前分布はアミノ酸のバックグラウンド確率になるため、その分布が必要になることに注意！！</b></p>
+<p>この値を用いれば、HMMの出力確率を新しい配列に対する予測確率として計算することができる。</p>
+<div class="math">$$e_{M_{j}(a)}=\sum_{a^{\prime}} P\left(a | a^{\prime}\right) P\left(y_{j}=a^{\prime} | \text { alignment }\right)$$</div>
+<p>このアプローチに関するひとつの問題は、やはり<span class="marker-pink">「単一の置換行列を利用するため、カラム毎の保存度合いの違いを表現できない」</span>ことである。</p>
+<p>この問題に対する解決策として、置換行列を複数用意し、保存度合いの違いに応じて異なる置換行列を選択することである。</p>
+<p>行列の選択の仕方は観察データの尤度を最大化する方法が最も直感的である。</p>
+<p>ベイズ流のアプローチを用いることもできる。行列ファミリーパラメータ <span class="math">\(t\)</span> を用いて</p>
+<div class="math">$$P\left(x_{j}^{1}, \ldots, x_{j}^{N} | t\right)=\sum_{a} q_{a} \prod_{k} P\left(x_{j}^{k} | a, t\right)$$</div>
+<p>とし、これと <span class="math">\(t\)</span> についての事前分布を用いて <span class="math">\(t\)</span> の事後分布を得、それを先の <span class="math">\(e_{M_j(a)}\)</span> の式で足し合わせることも可能であるが、それだと非常に多くの計算量が必要になってしまう。</p>
+<hr>
+<p>講義はここまで。実際の本には以下の章が続く。</p>
+<ul>
+<li>5.7 最適モデルの構築</li>
+<li>5.8 学習配列の重み付け</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-07-08T00:00:00+09:00"> 7 8, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-07-08T00:00:00+09:00"> 7 8, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ
+                    <span>8</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

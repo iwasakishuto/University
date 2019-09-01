@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 生物情報科学特別講義Ⅲ, 生物情報科学特別講義Ⅲ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="生物情報科学特別講義Ⅲ part2-1 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生物情報科学特別講義Ⅲ-part2-1.html" />
+<meta property="og:description" content="エピゲノム解析" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-08-01T14:55:00+09:00" />
+<meta property="og:article:modified_time" content="2019-08-01T14:55:00+09:00" />
+<meta name="twitter:title" content="生物情報科学特別講義Ⅲ part2-1 ">
+<meta name="twitter:description" content="エピゲノム解析">
+
+        <title>生物情報科学特別講義Ⅲ part2-1  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/生物情報科学特別講義Ⅲ-part2-1.html"> 生物情報科学特別講義Ⅲ part2-1  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第4回 2019/8/1 4限</h1>
+<ul>
+<li>講師：<a href="https://www.lab.med.kyushu-u.ac.jp/biochem1/">伊藤隆司</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/%E3%82%B2%E3%83%8E%E3%83%A0%E7%A7%91%E5%AD%A6%E3%81%AE%E5%9F%BA%E7%A4%8E-%E7%8F%BE%E4%BB%A3%E7%94%9F%E7%89%A9%E7%A7%91%E5%AD%A6%E5%85%A5%E9%96%80-%E7%AC%AC1%E5%B7%BB-%E6%B5%85%E5%B3%B6-%E8%AA%A0/dp/4000069616">現代生物科学入門１：ゲノム科学の基礎</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/%E3%82%B2%E3%83%8E%E3%83%A0%E5%8C%BB%E5%AD%A6-%E3%82%B2%E3%83%8E%E3%83%A0%E6%83%85%E5%A0%B1%E3%82%92%E6%B4%BB%E3%81%8B%E3%81%99%E5%8C%BB%E7%99%82%E3%81%AE%E3%81%9F%E3%82%81%E3%81%AB-%E8%8F%85%E9%87%8E%E7%B4%94%E5%A4%AB/dp/4895928446">ゲノム医学　メディカルサイエンスインターナショナル</a></li>
+</ul>
+<h2>エピゲノム解析</h2>
+<ul>
+<li><a data-scroll href="#epigenetics">エピジェネティクス</a></li>
+<li><a data-scroll href="#methylation">DNAメチル化の網羅的解析</a></li>
+<li><a data-scroll href="https://iwasakishuto.github.io/study/notes/生物情報科学特別講義Ⅲ-part2-2.html#histone">ヒストン修飾の網羅的解析</a></li>
+<li><a data-scroll href="https://iwasakishuto.github.io/study/notes/生物情報科学特別講義Ⅲ-part2-2.html#chromatin">クロマチン構造の網羅的解析</a></li>
+<li><a data-scroll href="https://iwasakishuto.github.io/study/notes/生物情報科学特別講義Ⅲ-part2-2.html#nucleus">核内高次構造の網羅的解析</a></li>
+</ul>
+<h2 id="epigenetics">エピジェネティクス</h2>
+
+<ul>
+<li>Epigenesis：後成説</li>
+<li>DNA配列の変化に依らず、細胞分裂を経て伝達しうる遺伝子機能の変化。<ul>
+<li>細胞分化：リプログラミング（iPS細胞）</li>
+<li>神経活動・行動：記憶・学習・情動</li>
+<li>表現型可塑性：個体レベルでの環境応答</li>
+<li>進化の機構：エピジェネティックな遺伝</li>
+</ul>
+</li>
+<li>メカニズム<ul>
+<li>ヒストン修飾</li>
+<li>DNAメチル化</li>
+</ul>
+</li>
+<li>エピゲノム解析</li>
+</ul>
+<h3>エピジェネティック修飾の役者</h3>
+<table>
+<thead>
+<tr>
+<th align="left">役割</th>
+<th align="left">説明</th>
+<th align="left">例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Writer</td>
+<td align="left">修飾を書き込む酵素</td>
+<td align="left">DNAメチレース、ヒストンアセチル化酵素</td>
+</tr>
+<tr>
+<td align="left">Reader</td>
+<td align="left">修飾を認識するタンパク質</td>
+<td align="left">メチル化DNA結合タンパク質、クロモドメインんタンパク質</td>
+</tr>
+<tr>
+<td align="left">Eraser</td>
+<td align="left">修飾を消去する酵素</td>
+<td align="left">DNAデメチレース、ヒストン脱アセチル化酵素</td>
+</tr>
+<tr>
+<td align="left">Recruiter(Editor)</td>
+<td align="left">Writerを局所に導くもの</td>
+<td align="left">転写因子、ncRNA</td>
+</tr>
+</tbody>
+</table>
+<p><span class="marker-pink">※エピジェネティックな制御は代謝と密接に関わっている。</span></p>
+<h3>エピゲノムが関わる現象</h3>
+<ul>
+<li>分子レベル<ul>
+<li>遺伝子発現の制御</li>
+<li>トランスポゾンの抑制</li>
+<li>哺乳類X染色体の不活化</li>
+<li>ゲノムインプリンティング</li>
+<li>染色体の安定性保持</li>
+</ul>
+</li>
+<li>細胞レベル<ul>
+<li>環境応答</li>
+<li>細胞分化・リプログラミング</li>
+</ul>
+</li>
+<li>個体レベル<ul>
+<li>発生・老化</li>
+<li>記憶・学習</li>
+<li>行動</li>
+<li>表現型可塑性</li>
+<li>疾患</li>
+</ul>
+</li>
+<li>種レベル<ul>
+<li>適応進化</li>
+</ul>
+</li>
+</ul>
+<h3>表現型可塑性</h3>
+<ul>
+<li>非生物的環境の影響：
+水草のウキシバは、水位が低くなると斜め上に伸びる<b>「抽水型」</b>として生育するが、水位が高くなると水面に浮きながら匍匐して成長する<b>「浮葉型」</b>として生育する。</li>
+<li>捕食者の影響：
+ミジンコのなかには、捕食者のにおいを感知すると、捕食者から身を守るための突起を発達させるものがいる。</li>
+<li>同種個体の影響：
+ホンソメワケベラは、生まれながらにしてのオスが全く存在しない。オスがいなくなると、残ったメスの中から最も大きい個体がオスに性転換する。<b>（他個体との社会的関係に応じて性転換する。）</b></li>
+</ul>
+<h3>近未来に備えるゲノム？</h3>
+<ul>
+<li><span class="marker-info" aria-label="胎内での低栄養→エネルギー倹約型体質→生後の通常（相対的に過剰）栄養→肥満/糖尿病/心疾患">Barker仮説</span><ul>
+<li>Development Origin of Health and Disease (DOHaD)</li>
+</ul>
+</li>
+<li>Transgenerational Epigenetic Inheritance<ul>
+<li>世代を超えて伝わるエピゲノム変化</li>
+<li>獲得形質の遺伝？現代版<span class="marker-info" aria-label="動物がその生活の中でよく使う器官は、次第に発達する。逆に、はじめから存在する器官であっても、その生活の中で使われなければ、次第に衰え、機能を失う。このようにして生涯の間に身につけた形質（獲得形質）が、子孫に伝わる">ラマルキズム？</span></li>
+<li>体細胞系列と生殖系列のクロストーク？</li>
+<li>分子機構の解明へ</li>
+</ul>
+</li>
+</ul>
+<h3>エピジェネティクスの二大分子機構</h3>
+<ul>
+<li><span class="marker-pink">DNAメチル化</span>：
+DNA中のシトシン塩基にメチル基を付加。<br>→<span class="marker-pink">WGBS（全ゲノムバイサルファイトシーケンス法）</span></li>
+<li><span class="marker-pink">ヒストン修飾</span>：
+DNAと複合体を形成しているヒストンタンパク質の翻訳後修飾。<br>→<span class="marker-pink">ChIP-Seq（クロマチン免疫沈降シーケンス法）</span></li>
+</ul>
+<p>これらによって、各遺伝子を発現可能状態とそうでない状態とに仕分けることができる。（細胞のポテンシャルを規定する。）</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">メチル化</th>
+<th align="center">アセチル化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">由来</td>
+<td align="center"><span class="math">\(\mathrm{SAM}\)</span> のメチル基（グルコース(解糖系)）</td>
+<td align="center">アセチルCoA</td>
+</tr>
+<tr>
+<td align="center">外すのに必要な物質</td>
+<td align="center">αKG(α-ケトグルタル酸)</td>
+<td align="center">FAD,NAD</td>
+</tr>
+</tbody>
+</table>
+<h2 id="methylation">DNAメチル化の網羅的解析</h2>
+
+<h4>真核生物のDNAメチル化</h4>
+<ul>
+<li>Cytosineの5位をメチル化<ul>
+<li><span class="math">\(\mathrm{CpG}\)</span></li>
+<li><span class="math">\(\mathrm{CpHpG}\)</span></li>
+<li><span class="math">\(\mathrm{CpHpH}\)</span></li>
+</ul>
+</li>
+<li>遺伝子発現を抑制<ul>
+<li>元々は外来生遺伝子の抑制機構？</li>
+<li>内在性遺伝子の制御にも流用？</li>
+</ul>
+</li>
+<li>メチル化を（ほとんど）起こさない生物もいる。<ul>
+<li>パン酵母</li>
+<li>線虫</li>
+<li>（ショウジョウバエ）</li>
+</ul>
+</li>
+</ul>
+<h4>哺乳類のDNAメチル化</h4>
+<ul>
+<li>主としてCpG配列のCがメチル化される。</li>
+<li>CpG配列は少数派だが、<span class="marker-pink">CpGアイランド(CGI)</span>には集中する。</li>
+<li>
+<div class="math">$$5\mathrm{mC}\xrightarrow{-\text{NH}_2}\mathrm{U}$$</div>
+</li>
+<li>新規メチル化（<span class="math">\(\mathrm{DNMT3}\)</span>）と維持メチル化（<span class="math">\(\mathrm{DNMT1}\)</span>）</li>
+<li>能動的脱メチル化（<span class="math">\(\mathrm{TET}\)</span> が頑張る）と受動的脱メチル化（<span class="math">\(\mathrm{DNMT1}\)</span> がサボる）</li>
+<li><span class="math">\(\mathrm{MBD}\)</span> が <span class="math">\(5\mathrm{mCpG}\)</span> に結合して遺伝子発現を抑制</li>
+<li><span class="marker-pink">正常発生に必須</span>：<span class="math">\(\mathrm{DNMT}\)</span> のノックアウトマウスは致死</li>
+<li><span class="marker-pink">様々な病態にメチル化異常が関与</span><ul>
+<li>悪性腫瘍：がん抑制遺伝子プロモータのメチル化、染色体不安定性</li>
+<li>感染に対する応答：ピロリ菌</li>
+<li>遺伝性疾患：Rett症候群</li>
+<li>多因子性疾患：アトピー、糖尿病</li>
+</ul>
+</li>
+<li><span class="marker-info" aria-label="遺伝子が自分の由来を記憶していること。">ゲノム・インプリンティング</span></li>
+<li><span class="marker-info" aria-label="雌雄間でX染色体の遺伝子量（転写量）の差を補正するメカニズム">X染色体の不活性化</span></li>
+</ul>
+<h3>バイサルファイト変換</h3>
+<p><img src="http://catalog.takara-bio.co.jp/IMAGES/ge004b.gif"></p>
+<p><span class="marker-pink">バイサルファイト(bisulfite;重亜硫酸塩)</span>は、DNAのメチル化状態を解析するために使われる試薬であり、</p>
+<ul>
+<li>メチル化シトシン <span class="math">\(^{\mathrm{5m}}\mathrm{C}\)</span> は変換しない。</li>
+<li>非メチル化シトシン <span class="math">\(\mathrm{C}\)</span> を <span class="math">\(\mathrm{U}\)</span> に変換する。</li>
+</ul>
+<p>したがって、バイサルファイト処理を施したDNAの配列を決定して元々の配列と比較するば、個々のシトシンについてそのメチル化状態を知ることができる。<span class="marker-pink">（バイサルファイトシークエンシング,BS）</span></p>
+<h4>WGBS</h4>
+<p><span class="marker-pink">全ゲノムWGBSバイサルファイトシークエンシング(WGBS)</span>は、バイサルファイト処理を施したゲノムDNA全体を次世代シークエンサーを用いて配列決定する方法で、様々な細胞や組織についてWGBSが試みられている。</p>
+<h4>PBAT</h4>
+<p>ただし、次世代シークエンサーで配列決定を行うには、対象となるDNA断片の両端にアダプターを付加する必要があり、両端にアダプター配列を付加したDNAをバイサルファイト処理するとDNAの切断が起こってしまう。</p>
+<p>これは、<span class="marker-pink">収率の低下</span>を引き起こすだけでなく、<span class="marker-pink">細胞ごとに異なるメチル化状態から偏ったサンプリングをしてしまう</span>ことになる。</p>
+<p>この問題を「バイサルファイト処理後にアダプター付加を行う」という簡単なソリューションで解決したのが<span class="marker-pink">PBAT(Post-Bisulfite Adaptor Tagging)</span></p>
+<h3>変化点検出アルゴリズム(Changepoint detection: CPT)</h3>
+<p>ドメインごとのメチル化率の違いを調べるアルゴリズム。（<a href="https://www.researchgate.net/publication/280966682_Changepoint_detection_in_base-resolution_methylome_data_reveals_a_robust_signature_of_methylated_domain_landscape">論文link</a>）</p>
+<p>アルゴリズムは非常に簡単で、<b>新しいクラスターを作った方が、クラスターを作ることに対するペナルティ（定数）を加えたとしても、分散の和が小さくなるのであれば新しいクラスターを作る</b>、というだけ。</p>
+<p>ペナルティ（<span class="math">\(\beta\)</span>）を調節するだけで良く、幅広いサイズレンジをカバーできること、また隠れマルコフモデルを用いた解析と同程度の能力を持つことなどからよく使われている。</p>
+<h3>iPS細胞とエピジェネティック</h3>
+<p><b>ゲノム・インプリンティング</b>や<b>X染色体の不活化</b>は正常な個体発生に必須なエピジェネティクス制御であり、<b>これらの制御の異常がiPS細胞のリプログラミングの失敗を引き起こす</b>ことが報告されている。</p>
+<p>iPS細胞などの多能性幹細胞を評価する指標には主に以下の2つがあり、特に<b>有事の評価</b>の重要性が確認され始めている。</p>
+<ul>
+<li><b>平時の能力</b>：
+標準的な培養条件における評価（=先発メンバーはどう？？）</li>
+<li><b>有事の評価</b>：
+全部の細胞状態を調べるのは不可能なので、エピジェネティック制御がどれぐらいできるか？を見る。（=ベンチ入りメンバーはどう？？）</li>
+</ul>
+<h3>第6の塩基 5-hydroxymethylcytosine (5hmC)</h3>
+<ul>
+<li>Purkinje,ES細胞等で発見</li>
+<li><span class="math">\(\mathrm{5mC}\)</span> から <span class="math">\(\mathrm{TET}\)</span> （能動的脱メチル化）によって生成
+<div class="math">$$5\mathrm{mC}+\mathrm{O_2} + \text{2-oxoglutarate}\xrightarrow{\text{Fe}^{2+}}\mathrm{5hmC} + \mathrm{CO_2} + \text{succinate}$$</div>
+</li>
+<li><span class="marker-pink">脱メチル化の中間産物</span><ul>
+<li>維持メチル化酵素 <span class="math">\(\mathrm{DNMT1}\)</span> が認識しない（受動的脱メチル化）</li>
+<li><span class="math">\(\mathrm{5mC}\rightarrow\mathrm{5hmC}\rightarrow\mathrm{5fC}\rightarrow\mathrm{5caC}\Rightarrow\mathrm{C}\)</span>（能動的脱メチル化）</li>
+</ul>
+</li>
+<li><b>中間産物が有意に多く溜まっている。→何かのエピジェネティック・シグナル？？</b></li>
+<li>Bisulfiteで変換されないので、<span class="math">\(\mathrm{5mC}\)</span> と識別できない。<ul>
+<li>抗体を使ったマッピング<ul>
+<li>hMeDIP-Seq</li>
+<li>Anti-CMS(Cytosine 5-Methylene Sulphonate)</li>
+</ul>
+</li>
+<li>酵素修飾<ul>
+<li>GLucosylation, perIodate oxidation &amp; Biotinylation：
+<span class="math">\(\beta\text{-Glucosyltransferase}\)</span> により <span class="math">\(\mathrm{5hmC}\)</span> をグリコシル化した後に、<span class="math">\(\mathrm{5mC}\)</span> の <span class="math">\(\mathrm{Tet1}\)</span> による酸化と亜硫酸水素塩処理を組み合わせた手法で <span class="math">\(\mathrm{5hmC}\)</span> を検出する。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3>第9の塩基 N6-methyladenine(6mA)</h3>
+<ul>
+<li>ゲノムワイド解析がされるようになり、クラミドモナス、線虫、ショウジョウバエで報告されている。<ul>
+<li>クラミドモナスでは、転写開始点近傍に存在して発現と相関（<span class="math">\(\mathrm{5mC}\)</span> と逆の分布）</li>
+<li>線虫では、世代間エピジェネティック遺伝に関与</li>
+<li>ショウジョウバエでは、トランスポゾン発現に関与</li>
+</ul>
+</li>
+<li><span class="math">\(\mathrm{GATC}\)</span> という配列の <span class="math">\(\mathrm{A}\)</span> に多く起きている。</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-08-01T14:55:00+09:00"> 8 1, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-08-01T14:55:00+09:00"> 8 1, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-wu-qing-bao-ke-xue-te-bie-jiang-yi-iii-ref">生物情報科学特別講義Ⅲ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#sheng-wu-qing-bao-ke-xue-te-bie-jiang-yi-iii-ref">生物情報科学特別講義Ⅲ
+                    <span>7</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

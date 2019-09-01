@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 細胞分子生物学Ⅰ, 細胞分子生物学Ⅰ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="細胞分子生物学Ⅰ 第7回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/細胞分子生物学Ⅰ-7.html" />
+<meta property="og:description" content="核輸送と紡錘体形成（微小管と染色体の結合）" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-29T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-29T00:00:00+09:00" />
+<meta name="twitter:title" content="細胞分子生物学Ⅰ 第7回 ">
+<meta name="twitter:description" content="核輸送と紡錘体形成（微小管と染色体の結合）">
+
+        <title>細胞分子生物学Ⅰ 第7回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/細胞分子生物学Ⅰ-7.html"> 細胞分子生物学Ⅰ 第7回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第7回 2019/5/29</h1>
+<ul>
+<li>講師：<a href="http://park.itc.u-tokyo.ac.jp/ohsugilab2013/ohsugi.html">大杉 美穂</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/Molecular-Biology-Cell-Bruce-Alberts/dp/0815344643">Molecular Biology of the Cell</a>: Chapter 20</li>
+</ul>
+<h2>核膜輸送</h2>
+<h3>核膜孔を介したタンパク質輸送に必要な3大要素</h3>
+<ol>
+<li>運ばれる分子が持つ"印"<ul>
+<li>核局在化シグナル・核移行シグナル(NLS)</li>
+<li>核外輸送シグナル(NES)</li>
+</ul>
+</li>
+<li>運搬を担う分子<ul>
+<li>インポーチン</li>
+<li>エクスポーチン</li>
+</ul>
+</li>
+<li>運ばれる分子を運搬を担う分子の結合を制御する機構<ul>
+<li>GTP結合型Ran</li>
+<li>GDP結合型Ranの能動勾配</li>
+</ul>
+</li>
+</ol>
+<h3>1. 運ばれる分子が持つ"印"</h3>
+<h4>核局在化シグナル(NLS)</h4>
+<p>核から抽出したタンパク質を細胞質に入れてみると、極めて大型のタンパク質でも効率よく核内に戻って集積する。この核への<b>能動的</b>取り込み過程の選択性に関わっている選別シグナルが、<b>核局在化シグナル(NLS, nuclear localization signal)</b>である。</p>
+<p>核局在化シグナルは、<b>アミノ酸配列中のどこに位置してもよく</b>、核タンパクのアミノ酸配列中でのシグナルの正確な位置はそれほど重要ではないらしい。</p>
+<p>また、複数の成分を持つ複合体の場合、1つのサブユニットが核局在化シグナルを持っているだけで複合体全体が核へ搬入される。</p>
+<p>核内への取り込みが始まるには、核局在化シグナルが<b>核内輸送受容体(nuclear import receptor, importin)</b>に識別されなければならない。</p>
+<h4>核外輸送シグナル(NES)</h4>
+<p>新生のリボソーム・サブユニットやmRNA分子などの大型分子の核外への輸送も、核膜を貫通している<b>核膜孔複合体(NPC, nuclear pore complex)</b>を介し、選択的輸送系に依存している。</p>
+<p>この輸送系は、搬出される巨大分子上の<b>核外輸送シグナル(NES, nuclear export signal)</b>と、それに補助的に働く<b>核外輸送受容体(nuclear export receptor, exportin)</b>に依存する。</p>
+<h4>シグナル構造を持つ物質</h4>
+<p>そもそもNPCは中心に直径9~10 nmの水性チャネルを持つため、イオンなどの低分子や40 kDa未満の小さなタンパク質は<b>自由拡散</b>することができるため、シグナル構造が必要ないと考えられている。</p>
+<p>また、細胞質で作られ、細胞質内で働くRNAも同様に必要ないと考えられる。</p>
+<p>一方で、何かシグナル伝達が来た時のみ核内で一過的に働く、といった核内でも細胞質内でも働くタンパクはNESを持つ。</p>
+<h3>3. 運ばれる分子の結合を制御する機構</h3>
+<p><img src="http://www.biochemsoctrans.org/content/ppbiost/40/5/1074/F2.large.jpg"></p>
+<ul>
+<li>GDP結合型は、タンパクとしては不活性化型。</li>
+<li>GTP結合型は、タンパクとしては活性化型。</li>
+</ul>
+<p><b>GEF(guanine nucleotide exchange factor)</b>によるヌクレオチドの交換（GDPを出して、GTPを持ってくる）によって、不活性化型のGDP結合型から活性型のGTP結合型になる。</p>
+<p>RanのGTPaseのGEFは<b>RCC1</b>であり、RCC1は核に局在し、Ranを活性化してタンパク質を核外へ輸送させる。</p>
+<p>一方GTP結合型からGDP結合型になる反応は、三リン酸(Guanosine <b>tri</b>phosphate)であるGTPのリン酸が<b>加水分解</b>によって1つ外れて、二リン酸(Guanosine <b>di</b>phosphate)であるGDPになることであるが、これは、<b>GAP(GTPase-active protein)によるGTPase活性の活性化</b>によって行われる。</p>
+<p>Ranの場合、以下の変異体が見つかっている。</p>
+<ul>
+<li>RanT24N変異体： GEFによるヌクレオチドの交換が起こらなくなる変異。<b>常にGDP型</b></li>
+<li>RanQ69L変異体： GTPase活性のない変異体<b>常にGTP型</b></li>
+</ul>
+<p>RanのGuanine nucleotide Exchange factor(Ran GEF)はRCC1:
+乾期でも分裂期でも染色体に結合している。→核の中と細胞質でGTP型とGDP型の濃度勾配ができる。</p>
+<h3>2. 運搬を担う分子</h3>
+<p><img src="http://2ndnewworld.up.seesaa.net/image/B3CBCBECCDA2C1F7.jpg"></p>
+<h4>インポーチン</h4>
+<p>インポーチン（核内輸送運搬体）は、細胞質で核局在化シグナル(NLS)を持つ分子と結合し、核膜孔を通って核内に運び込む。核の中で活性化型(GTP型)の Ran と結合するとインポーチンは分子を離し、また細胞質に出ていく。</p>
+<h4>エクスポーチン</h4>
+<p>エクスポーチン（核外輸送運搬体）は核の中で核外輸送シグナル(NES)を持つ分子、活性化型(GTP型)の Ran と結合し、核膜孔を通って細胞質に出ていく。細胞質でGAPによって活性化型(GTP型)の Ran が不活性化型(GDP型)に変換されると、エクスポーチンは分子を離し、また核の中に戻る。</p>
+<h3>余談</h3>
+<p>Q: 典型的な核局在化シグナル(NLS)が見当たらないが、核に局在するタンパク質が存在する。それらはどういったメカニズムで核内に入り、存在すると考えられるか？</p>
+<p>Ans:
+- NLSをもっているタンパク質と複合体を作って働いている。
+- 分子量が小さく、核膜孔をdiffusionによって通過できる。
+- <b>Importin以外の分子機構によって核内に運ばれている。</b></p>
+<p>Importin以外の分子機構の例で言えば、たとえば熱ストレスが来る時には、Importin以外の原理で核内輸送が起こっていることが知られていた。<br>
+→ Hikeshiと呼ばれるタンパクが介在していることがわかった。</p>
+<h2>微小管(microtubule)</h2>
+<ul>
+<li>細胞骨格の１つ（一番太いもの）</li>
+<li>13本のプロトフィラメントからなる中空の管。</li>
+<li>tubulin自体がGTPase活性をもっている。</li>
+<li>β-tubulinのGTPがGDPへと変換される。</li>
+<li>α-tubulinはGTPのまま。</li>
+</ul>
+<h3>動的不安定性(dynamic instability)</h3>
+<p><iframe src="https://www.youtube.com/embed/tJKXNarWpqE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p>微小管は13本のプロトフィラメントが横方向に並んで直径25 nmの中空の管を形成したものであるが、この時隣り合うプロトフィラメントが微妙にずれることで、中空管を形成した時に1ラインだけ不連続な継ぎ目<b>(seam)</b>が生じる。</p>
+<p>なお、この構造によって微小管の構造が曲がって、プロトフィラメントが一本一本にならないと脱重合が進まない。</p>
+<p><img src="http://www.jscb.gr.jp/glossary/images/92/1.jpg"></p>
+<p>微小管全体が伸長から短縮へ変化することを<b>カタストロフィー</b>、その逆を<b>レスキュー</b>と呼ぶ。</p>
+<p><img src="https://d1yboe6750e2cu.cloudfront.net/i/cdbadf9e5e52856bde56d3af020a94d5a8d5127f"></p>
+<p>微小管はGTPに依存して重合しており、GTPキャップの部分がなくなると脱重合が進んでいく。試験管内では<b>重合速度は両端で異なり</b>、βチューブリンの位置する端でよりはやく重合が行われる。このため、<b>βチューブリンをプラス端（伸長側）、αチューブリンをマイナス端</b>と呼ぶ。</p>
+<h3>微小管重合中心</h3>
+<p>微小管の重合核形成は普通、細胞内の<b>微小管形成中心(microtubule-organizing center, MTOC)</b>という特定の場所で起こる。</p>
+<p>多くの場合、重合核は<b>γチューブリン環複合体(γ-tubulin ring complex, γ-TuRC)</b>に依存して形成される。この環は、13本のプロトフィラメントから1本の微小管を作る時の鋳型となる。</p>
+<p><img src="https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00709-016-1070-z/MediaObjects/709_2016_1070_Fig2_HTML.gif"></p>
+<p>なお、微小管が伸長開始するためには、重合の開始となる<b>γ-TuRC</b>はもちろんだが、<b>伸び始めた微小管が脱重合してしまうのを防ぐため</b>にTPX2, chTOGなどの補助タンパクも必要である。</p>
+<p>多くの動物細胞では、核の近傍にそれとわかるMTOCが1個あり、<b>中心体(centrosome)</b>と呼ばれている。とはいえ、重合開始点は他にもあり、以下の3つが大半を占めている。</p>
+<ol>
+<li>中心体</li>
+<li>染色体近傍(Ran-GTPase依存的)</li>
+<li>微小管(Augmin 依存的)</li>
+</ol>
+<h3>1.中心体</h3>
+<p>　中心体は，動物細胞を含む多くの真核生物において進化的に保存された細胞小器官であり，微小管形成中心として機能する。</p>
+<p><img src="https://seikagaku.jbsoc.or.jp/10.14952/SEIKAGAKU.2017.890489/data/figure1.img1.png"></p>
+<p>中心体には、<b>中心小体(centriole)</b>という円筒構造が1対、L字型に直交する形で埋まっている。中心小体は、修飾された短い微小管が円筒状に整列し、9回対称性の樽状構造になっている。中心小体は、多数の補助タンパクとともに<b>中心小体周辺物質(pericentriolar material)</b>を組み上げており、ここで微小管の重合核が形成される。</p>
+<hr>
+<p>今日はここで講義が終了。2からはまた今度。次回の<a href="http://park.itc.u-tokyo.ac.jp/ohsugilab2013/ohsugi.html">大杉 美穂</a>先生の講義は 7/3</p>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-29T00:00:00+09:00"> 5 29, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-29T00:00:00+09:00"> 5 29, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#xi-bao-fen-zi-sheng-wu-xue-i-ref">細胞分子生物学Ⅰ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#xi-bao-fen-zi-sheng-wu-xue-i-ref">細胞分子生物学Ⅰ
+                    <span>14</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

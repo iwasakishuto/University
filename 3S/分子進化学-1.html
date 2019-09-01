@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 分子進化学, 分子進化学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="分子進化学 第1回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/分子進化学-1.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-04-10T12:24:00+09:00" />
+<meta property="og:article:modified_time" content="2019-04-10T12:24:00+09:00" />
+<meta name="twitter:title" content="分子進化学 第1回 ">
+<meta name="twitter:description" content="">
+
+        <title>分子進化学 第1回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/分子進化学-1.html"> 分子進化学 第1回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第1回 2019/4/10</h1>
+<ul>
+<li>講師　　：<a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></li>
+</ul>
+<h2>講義概要</h2>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
+  <b>目標</b><br>
+  生物の塩基配列・アミノ酸配列とそれらの種内・種間相違の情報を利用して、生物進化・分子進化を調べる理論的背景と数理的解析手法について理解すること。
+</div>
+
+<ul>
+<li>講義形式：スライド、板書、プリント</li>
+<li>評価方法：レポートと学期末の試験<b>（持ち込み可）</b></li>
+<li>参考書　：<a href="https://link.springer.com/book/10.1007/978-3-319-92642-1">Introduction to Evolutionary Genomics Second edition in 2018</a></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>日程</th>
+<th align="left">内容</th>
+<th>講師</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>4/10(水)</td>
+<td align="left">突然変異</td>
+<td><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></td>
+</tr>
+<tr>
+<td>2</td>
+<td>4/17(水)</td>
+<td align="left">ハーディ・ワインバーグ平衡</td>
+<td><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></td>
+</tr>
+<tr>
+<td>3</td>
+<td>5/15(水)</td>
+<td align="left">対立遺伝子頻度の時間変化（前半）</td>
+<td><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></td>
+</tr>
+<tr>
+<td>4</td>
+<td>5/22(水)</td>
+<td align="left">塩基配列とアミノ酸配列の時間変化</td>
+<td><a href="https://www.nig.ac.jp/nig/ja/research/interviews/faculty-interviews/saitou">斎藤 成也</a></td>
+</tr>
+<tr>
+<td>5</td>
+<td>5/29(水)</td>
+<td align="left">生物進化の中立説</td>
+<td><a href="https://www.nig.ac.jp/nig/ja/research/interviews/faculty-interviews/saitou">斎藤 成也</a></td>
+</tr>
+<tr>
+<td>6</td>
+<td>6/12(水)</td>
+<td align="left">分子系統樹の作成法</td>
+<td><a href="https://www.nig.ac.jp/nig/ja/research/interviews/faculty-interviews/saitou">斎藤 成也</a></td>
+</tr>
+<tr>
+<td>7</td>
+<td>6/19(水)</td>
+<td align="left">同義置換速度と非同義置換速度</td>
+<td><a href="https://www.nig.ac.jp/nig/ja/research/interviews/faculty-interviews/saitou">斎藤 成也</a></td>
+</tr>
+<tr>
+<td>8</td>
+<td>6/26(水)</td>
+<td align="left">対立遺伝子頻度の時間変化（後半）</td>
+<td><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></td>
+</tr>
+<tr>
+<td>9</td>
+<td>7/3(水)</td>
+<td align="left">突然変異の固定確率</td>
+<td><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>7/10(水)</td>
+<td align="left">遺伝子系図理論(合祖過程)</td>
+<td><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a></td>
+</tr>
+<tr>
+<td></td>
+<td>7/17(水)</td>
+<td align="left">試験</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>突然変異</h2>
+<h3>単細胞生物と多細胞生物</h3>
+<p>単細胞生物は一細胞が一個体であり、細胞分裂が個体の増加（次世代の個体）につながる。</p>
+<p>多細胞生物は体細胞と<font color="red"><b>生殖細胞</b></font>を持ち、以下の<font color="red"><b>生殖細胞系列(germline)</b></font>からなる。</p>
+<ul>
+<li>有性生殖のための配偶子<font color="blue"><b>（卵子、卵細胞、精子、精細胞）</b></font></li>
+<li>無性生殖のための<font color="blue"><b>胞子</b></font></li>
+<li>それらの元となる細胞</li>
+</ul>
+<p>生殖細胞（胚細胞ともいう）は生殖において、<b>遺伝情報を次世代へ伝える</b>役割を持つ。</p>
+<h3>減数分裂と体細胞分裂</h3>
+<p>※以下の画像ではわかりやすくすために、一対の相同染色体のみを示している。</p>
+<table>
+<thead>
+<tr>
+<th align="left">減数分裂（Meiosis, 左）</th>
+<th align="left">体細胞分裂（Mitosis, 右）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">染色体倍加1回と、それに続いて染色体分離2回が起こる。ここで、第一分裂において、図に示されるように対合した相同染色体間で遺伝的組換え（交叉）が生じるため、各々の二倍体細胞は減数分裂で<b>4つの遺伝的に異なる一倍体核</b>を作り、細胞質分裂によって一倍体細胞に分配され、これが配偶子に分化する。</td>
+<td align="left">相同染色体は対合せず、姉妹染色分体が1回の分裂で分離するため体細胞分裂した各々の二倍体細胞は、<b>遺伝的に同一の二倍体核</b>を作り、細胞質分裂によって2つの娘細胞に分配される。</td>
+</tr>
+</tbody>
+</table>
+<p><img src="https://player.slideplayer.com/32/9981028/data/images/img6.jpg"></p>
+<h3>突然変異の種類</h3>
+<ul>
+<li><b>点突然変異(point mutation)</b>：1塩基の置換を起こす突然変異<ul>
+<li>ミスセンス突然変異(missense mutation)
+コドンの変化によりアミノ酸が置き換わる。</li>
+<li>ナンセンス突然変異(nonsense mutation)
+アミノ酸コドンを終始コドンに変える。</li>
+<li>サイレント変異(silent mutation)
+アミノ酸を変えない。</li>
+</ul>
+</li>
+<li><b>フレームシフト(frame shift)突然変異</b>：タンパクをコードする領域に塩基の挿入や欠失が起こると、コドン(codon)の読み枠がそれ以降のDNAやRNA上で変更される。<ul>
+<li>挿入(insertion)
+塩基配列が加わる。</li>
+<li>欠失(deletion)
+塩基配列が除かれる。</li>
+</ul>
+</li>
+<li><b>染色体突然変異(chromosome mutation)</b><ul>
+<li>逆位、転座、重複、欠失
+染色体の一部が失われたり入れ替わったりする。</li>
+<li>倍数性(polyploidy)
+染色体数が倍化する。</li>
+<li>異数性(heteroploidy)
+染色体セットのうち一部のみが増減する。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://blogimg.goo.ne.jp/user_image/29/02/30589e699d4fbbbc1e2fcf9380e2bc28.jpg"></p>
+<p>ここで、<font color="red"><b>体細胞分裂時</b></font>に塩基配列が起こることが知られている。したがって、突然変異にどちらの親由来の方が変異率が高い、などの偏りがあるのかが気になる。</p>
+<h2>突然変異率</h2>
+<p>結論から言うと、<a href="https://www.ncbi.nlm.nih.gov/pubmed/22914163">Rate of de novo mutations and the importance of father's age to disease risk.</a>の論文によると、ヒトの突然変異率は<b>父親の年齢が29.7歳で</b> <span class="math">\(1.20\times10^{-8}/\mathrm{site}/\mathrm{generation}\)</span> であることが示された。</p>
+<p>一塩基多型の突然変異率の多様性は子供の受胎時の父親の年齢に左右され、ランダムなポアソン変動と比較することで、父親の年齢が突然変異率の傾向を全て説明できてしまうほど強力であることが示された。（父親の年齢が <span class="math">\(1\)</span> 歳上がると突然変異数は <span class="math">\(2\)</span> 個増える。）</p>
+<p><img src="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3548427/bin/nihms391279f2.jpg"></p>
+<h3>調べ方</h3>
+<p>SNP変異に着目し、SNP変異の発端者の親と子供の3世代のゲノムをシークエンスすることで、各遺伝子型の2つの型を調べた。</p>
+<p>まず、両親の遺伝子型と発端者の遺伝子型を調べる。この時、発端者のハプロタイプが不明なため、一般にSNP変異がどちらの親由来かはわからない。</p>
+<p>そこで、発端者の配偶者と子供をさらに調べる。ここで、<font color="red"><b>「二度目の突然変異と組み替えは起きていない」</b></font>と仮定することで、全個体のハプロタイプの組み合わせが<b>（最も確率の高いものに）</b>確定する。</p>
+<p>この結果、前述の通り、<font color="red"><b>「突然変異は父親から多く伝わる」</b></font>ことが示された。</p>
+<h3>卵母細胞と精母細胞</h3>
+<h4>卵母細胞</h4>
+<ul>
+<li>哺乳類の卵母細胞の減数分裂は、<font color="red"><b>胎子（たいし）期</b></font>に始まり、その過程は個体が成熟するまで長期間にわたって進行する。</li>
+<li>この長い期間のほとんどは<b>第1分裂の前期の後半で<font color="red">休止</font>している</b></li>
+<li>ヒトでは、胎児期に卵母細胞が最大600万個程度あり、出生時は100万個程度、生殖年齢到達時には50万個程度と徐々に減っていき<b>（体細胞分裂しないため）</b>、生殖年齢に達すると1個ずつ排卵する（生涯で400個程度）</li>
+</ul>
+<h4>精母細胞</h4>
+<ul>
+<li>哺乳類の精原細胞は<font color="red"><b>絶えず体細胞分裂を起こし</b></font>精原細胞のストックを作るとともに、生殖年齢に達すると<b>一部が<font color="red">精母細胞</font>へと成熟する。</b></li>
+<li>ヒトでは、精子は生殖年齢に達した時点で作り始められ、その後連続的に作られる。</li>
+<li>一回の射精で億単位の精子が放出される。</li>
+</ul>
+<h2>オス駆動型進化</h2>
+<h3>Male-Driven Evolution Theory（オス駆動進化説）</h3>
+<ul>
+<li>突然変異が<b>進化の原動力</b></li>
+<li>突然変異の主な要因は<b>DNAの複製エラー</b></li>
+<li>生殖細胞系列で起きる<font color="red"><b>体細胞分裂数</b></font>には性差があり、<b>精子の分裂数は卵の分裂数に比べてはるかに多い</b></li>
+<li>細胞の分裂のたびに一定の頻度で複製エラーが生じるため、精子の突然変異率は卵の突然変異率に比べて圧倒的に高い</li>
+<li>突然変異の大部分は精子で作られる。</li>
+</ul>
+<h3>生殖細胞系列における体細胞分裂回数に関する性差と突然変異率の関係</h3>
+<ul>
+<li>常染色体、X染色体、Y染色体を、<span class="math">\(A,X,Y\)</span> と略記</li>
+<li>精子の分裂数と卵の分裂数の比率を <span class="math">\(a\)</span>（=精子の分裂数/卵の分裂数）</li>
+<li>突然変異率は生殖細胞の分裂数に比例</li>
+<li>ある染色体がオスを経由したら <span class="math">\(a\)</span> に比例し、メスを経由したら <span class="math">\(1\)</span> に比例するとおけるので、以下のようにおける。</li>
+<li>常染色体の突然変異率：
+  <div class="math">$$\begin{aligned}\mathrm{MA}&amp;=\mathrm{MA♂}+\mathrm{MA♀}\\&amp;\propto(1/2)\times a + (1/2)\times 1\\&amp;= (a+1)/2\end{aligned}$$</div>
+</li>
+<li>X染色体の突然変異率：
+  <div class="math">$$\begin{aligned}\mathrm{MX}&amp;\propto(1/3)\times a + (2/3)\times 1\\&amp;= (a+2)/3\end{aligned}$$</div>
+</li>
+<li>Y染色体の突然変異率：
+  <div class="math">$$\begin{aligned}\mathrm{MY}&amp;\propto1\times a + 0\times 1\\&amp;=a\end{aligned}$$</div>
+</li>
+</ul>
+<p>ここで、MA、MY、MXの比例常数がわからないので、MAに対する相対突然変異率を導入すると</p>
+<ul>
+<li><span class="math">\(\mathrm{RA} = \mathrm{MA}/\mathrm{MA} = 1\)</span></li>
+<li><span class="math">\(\mathrm{RX} = \mathrm{MX}/\mathrm{MA} = (2/3)(2+a)/(1+a)\)</span></li>
+<li><span class="math">\(\mathrm{RY} = \mathrm{MY}/\mathrm{MA} = (2a)/(1+a)\)</span></li>
+</ul>
+<p>したがって、</p>
+<ul>
+<li><span class="math">\(a=1\)</span> ならば <span class="math">\(\mathrm{RA}=\mathrm{RX}=\mathrm{RY}=1\)</span></li>
+<li><span class="math">\(a\rightarrow\infty\)</span> とすると<ul>
+<li><span class="math">\(\mathrm{RA}=1\)</span></li>
+<li><span class="math">\(\mathrm{RX}=2/3\)</span></li>
+<li><span class="math">\(\mathrm{RY}=2\)</span></li>
+</ul>
+</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-04-10T12:24:00+09:00"> 4 10, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-04-10T12:24:00+09:00"> 4 10, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#fen-zi-jin-hua-xue-ref">分子進化学
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

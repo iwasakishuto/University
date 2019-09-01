@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 細胞分子生物学Ⅱ, 細胞分子生物学Ⅱ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="細胞分子生物学Ⅱ 第2回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/細胞分子生物学Ⅱ-2.html" />
+<meta property="og:description" content="DNA 複製の機構" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-04-16T12:24:00+09:00" />
+<meta property="og:article:modified_time" content="2019-04-16T12:24:00+09:00" />
+<meta name="twitter:title" content="細胞分子生物学Ⅱ 第2回 ">
+<meta name="twitter:description" content="DNA 複製の機構">
+
+        <title>細胞分子生物学Ⅱ 第2回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/細胞分子生物学Ⅱ-2.html"> 細胞分子生物学Ⅱ 第2回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第2回 2019/4/16</h1>
+<ul>
+<li>講師：<a href="https://www.u-tokyo.ac.jp/focus/ja/people/people000296.html">須谷 尚史</a></li>
+<li>教科書：<a href="https://www.amazon.co.jp/Molecular-Biology-Cell-Bruce-Alberts/dp/0815344643">Molecular Biology of the Cell, 6th ed.</a></li>
+</ul>
+<h2>DNA複製（Chapter.5,17）</h2>
+<h3>DNA合成反応の基礎</h3>
+<p>DNA合成は、元の情報となる<b>鋳型鎖</b>がまず必要。ただ、鋳型鎖がただあるだけでは複製は始まらず、ちょっとだけ（18~22塩基程度）相補的なDNA（またはRNA）鎖が付いていないといけない。この短い配列を<b>プライマー</b>という。DNA合成を触媒するのが<b>DNAポリメラーゼ</b>という酵素。ここで、ポリメラーゼによる合成は、5'→3'の方向にしか反応が進まない。</p>
+<p><img src="https://player.slideplayer.com/26/8600673/data/images/img12.jpg"></p>
+<h4>校正機能(proofreading)</h4>
+<p>間違った塩基が入るとまず止まる。一個取り除いて、もう一回伸長。全体だとエラー率は <span class="math">\(10^{-9}\)</span> 以下！！</p>
+<table>
+<thead>
+<tr>
+<th>複製の段階</th>
+<th>誤りが入る確率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5'→3'重合反応</td>
+<td><span class="math">\(1/10^5\)</span></td>
+</tr>
+<tr>
+<td>3'→5'エキソヌクレアーゼによる校正反応</td>
+<td><span class="math">\(1/10^2\)</span></td>
+</tr>
+<tr>
+<td>不対合鎖の選択的修復</td>
+<td><span class="math">\(1/10^3\)</span></td>
+</tr>
+<tr>
+<td>全体</td>
+<td><span class="math">\(1/10^{10}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4>PCR反応</h4>
+<p><b>ポリメラーゼ連鎖反応(polymerase chain reaction, PCR)</b>は<b>任意の</b>塩基配列を<b>選択的に</b>増幅でき、<b>試験管の中(in vitro)で</b>反応を行える。この反応は、次の3段階に分かれている。</p>
+<ol>
+<li>二本鎖DNAを短時間<b>熱処理</b>して2本の鎖に分ける。</li>
+<li>増幅したDNA領域を囲むように設計した一対のプライマーを過剰に加えてから冷却して、プライマーに2本のDNA鎖中の相補的な配列とハイブリッドを形成させる。</li>
+<li>この混合物にDNAポリメラーゼと4種類のデオキシリボヌクレオチド三リン酸を加え、2つのプライマーからDNA合成を開始させる。</li>
+</ol>
+<p><img src="https://images.slideplayer.com/26/8656675/slides/slide_3.jpg"></p>
+<p>PCRの利点をまとめると、以下のようになる。</p>
+<ul>
+<li><b>指数関数的増幅</b>（数時間で１億倍以上）。</li>
+<li>クローニング、大腸菌への導入が不要（プラスミドベクターに制限酵素を使って入れる…とかがいらん）。</li>
+<li>ゲノムの中から特定の領域を選択的に増やすことも可能（プライマー配列の情報さえわかれば良い）。</li>
+<li>かなり感度が高いため、侵入してきた病原体の感染のごく初期の検出や、法医学の分野にも応用が効く。</li>
+<li>面白い応用としては犯罪捜査が挙げられる。ある染色体の長さが人によって異なるため、そのパターンを指紋のように使う捜査方法もある。</li>
+</ul>
+<p>PCR法の中核を成しているのはもちろんDNAポリメラーゼであり、伸長中のDNA鎖の3'末端にヌクレオチドを付加していくのだが、その際に合成を開始できる3'末端を提供する短い塩基配列であるプライマーを必要とする。</p>
+<h3>細胞内でのDNA複製反応</h3>
+<h4>DNAプライマーゼ</h4>
+<p>&gt;ラギング鎖って"Ragging"だと思ってたわ。"Lagging"なんだね。</p>
+<p><img src="https://player.slideplayer.com/26/8600673/data/images/img23.jpg"></p>
+<p>リーディング鎖では、複製開始時にだけプライマーがあればよい。一方ラギング鎖側では、DNAポリメラーゼは短いDNA、すなわち<b>岡崎フラグメント</b>の合成を終える（数秒）たびに、鋳型の前方の離れた場所で新たに断片の合成を開始しなければならない。</p>
+<p>この時DNAポリメラーゼが必要とする塩基対形成したプライマーを作るには<b>DNAプライマーゼ(DNA primase)</b>と呼ばれる専用の酵素があり、リボヌクレオシド三リン酸を素材として短い<b>プライマーRNA</b>を合成する。このプライマーは真核生物では長さが約10塩基で、ラギング鎖上ので100~200塩基の間隔で作られる。</p>
+<p><img src="https://player.slideplayer.com/26/8600673/data/images/img25.jpg"></p>
+<p>ここで、プライマーとして<b>除去が不要なDNAではなく除去が必要なRNAを使う</b>理由としては、<b>新しい鎖を一から作り始めることのできるDNAプライマーゼが、DNAポリメラーゼに比べてミスを起こしやすい</b>から、と考えられている。RNAを使うことで取り替えるべき"怪しいコピー"として認識させている。</p>
+<h4>DNAリガーゼ</h4>
+<p>DNAプライマーゼが作ったプライマーRNAの末端には正しく塩基対を形成したヌクレオチドの3'-OH基があるので、DNAポリメラーゼはここから岡崎フラグメントの合成を始められる。岡崎フラグメントの合成は、その前に合成されたDNA断片の5'末端にあるプライマーRNAにぶつかるまで続く。その後プライマーRNAは除去されてDNAに置換され、酵素<b>DNAリガーゼ(DNA ligase)</b>が新しいDNA断片の3'末端と1つ前の5'末端をつなぎ、全過程が終わる。</p>
+<table>
+<thead>
+<tr>
+<th align="center">ラギング鎖におけるDNA断片の合成</th>
+<th align="center">DNAリガーゼの触媒反応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://player.slideplayer.com/26/8600673/data/images/img26.jpg"></td>
+<td align="center"><img src="https://player.slideplayer.com/26/8600673/data/images/img27.jpg"></td>
+</tr>
+</tbody>
+</table>
+<h4>DNAポリメラーゼ</h4>
+<ul>
+<li>原核生物
+バクテリアの大腸菌は5種類ある。
+大事なのは以下。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pol Ⅰ</td>
+<td>DNA修復に関わる。5'→3'と3'→5'の両方のエキソヌクレアーゼ活性を持つ。</td>
+</tr>
+<tr>
+<td>Pol Ⅱ</td>
+<td>損傷DNAの複製に関わる。3'→5'エキソヌクレアーぜ活性を持つ。</td>
+</tr>
+<tr>
+<td><span class="marker-pink">Pol Ⅲ</span></td>
+<td>DNA複製に関わる中心的なポリメラーゼ。3'→5'エキソヌクレアーぜ活性を持つ。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>ヒト（真核細胞）には15以上のDNAポリメラーゼがある。
+大事なのは以下。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="marker-pink">Pol α</span></td>
+<td>最初はプライマーゼとしてRNAプライマーを合成し、その後DNAポリメラーゼとして働く。およそ20塩基ほど合成するとPolδないしはPolεに交代する</td>
+</tr>
+<tr>
+<td>Pol β</td>
+<td>DNA修復に関わる。</td>
+</tr>
+<tr>
+<td>Pol γ</td>
+<td>ミトコンドリアDNAを複製する。</td>
+</tr>
+<tr>
+<td><span class="marker-pink">Pol δ</span></td>
+<td>ラギング鎖でのDNA複製に関わる中心的なポリメラーゼ。効率が良く3'→5'エキソヌクレアーゼ活性を持つ。</td>
+</tr>
+<tr>
+<td><span class="marker-pink">Pol ε</span></td>
+<td>リーディング鎖でのDNA複製に関わる中心的なポリメラーゼ。効率が良く3'→5'エキソヌクレアーゼ活性を持つ。</td>
+</tr>
+<tr>
+<td>Pol η,ι,κ,ζ・Rev1</td>
+<td>損傷乗り越え複製に関わる。</td>
+</tr>
+</tbody>
+</table>
+<h4>DNA複製に関わるその他のタンパク質</h4>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>役割</th>
+<th>fig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DNAヘリカーゼ(DNA helicase)</td>
+<td>ATPを加水分解したエネルギーを元にDNAの二本鎖を開裂する。</td>
+<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDiEk919JMidtGk-qOC8bmqPZ-RH0DuIbJWUYnNEkK7DGO43X"></td>
+</tr>
+<tr>
+<td>Sliding clamp（留め金）＝ヒトPCNA</td>
+<td>DNAに沿ったポリメラーゼの素早い動きを妨げずに、複製フォークからの解離を防ぐ。</td>
+<td><img src="https://docplayer.net/docs-images/82/85963169/images/65-0.jpg"></td>
+</tr>
+<tr>
+<td>SSB（単鎖DNA結合タンパク質）</td>
+<td>DNAを直接開きはしないが、解けた一本鎖構造を安定化してヘリカーゼを助ける。</td>
+<td><img src="http://helicase.pbworks.com/f/1239242870/1239242870/SSB.gif"></td>
+</tr>
+<tr>
+<td>DNAトポイソメラーゼ</td>
+<td>複製や転写に伴ってDNAに生じるねじれや絡まりを解消する。</td>
+<td><img src="https://i.servimg.com/u/f18/17/30/76/23/sem_ty36.png"></td>
+</tr>
+</tbody>
+</table>
+<p>なお、上記のタンパク質群は複製フォークのところで揃って働くことが知られているが、具体的な構造はまだわかっていない。</p>
+<h3>細胞周期あたり1度だけ複製を起こす仕掛け</h3>
+<p>DNAの二重らせんは非常に安定である。そのため、複製を始めるには、まず二重らせんをほどいて2本の鎖を引き離し、塩基を露出させる必要がある。DNAの複製は、特異的な開始タンパク(initial protein)が二本鎖DNAに結合し、塩基間の水素結合を壊して二本鎖を引き離すところから始まる。なお、この時二本鎖が開き始める場所を<b>複製起点(replication origin)</b>という。</p>
+<h4>大腸菌</h4>
+<p>大腸菌のゲノムは環状DNA分子である。DNA複製は<b>1箇所</b>の複製起点で始まり、そこに形成された2個の複製フォークが逆向きに進み、染色体をほぼ半周したところで出会う。</p>
+<p><b>大腸菌にとってDNA複製を制御できるポイントは開始反応しかない</b>ため、複製起点への開始タンパクの結合は厳密に調整されていて、<b>複製を1サイクル完遂できるだけの十分な栄養素が得られない限り、複製は開始しない。</b></p>
+<p>また、複製の開始は、1回の細胞分裂の間にDNAが確実に1回だけ複製されるようにも調節されている。複製の開始後、<b>開始タンパクは結合していたATPの加水分解によって不活性</b>になり、複製起点は新たに取り込まれたAヌクレオチドのメチル化が遅れるために<b>"不応期"</b>が生じる。これらのAがメチル化され、開始タンパクがATPの結合した状態に戻るまで、次の複製は始まらない。</p>
+<h4>真核生物</h4>
+<p>細菌のゲノムは十分小さいので、2つの複製フォークによる複製終了には30分しかかからない。しかし、真核生物の染色体はこれよりはるかに大きいため、S期の間に複製を完了するためには、複製起点を複数持つ必要がある。</p>
+<p><b>オートラジオグラフィー法</b>や<b>DNAマイクロアレイ</b>を使った方法などから、ヒト細胞では、分裂のたびに約3万~5万個以上の複製起点が利用され、ヒトゲノムにはこれよりはるかに多くの複製起点が存在することがわかった。また、細胞の型によって利用される複製起点が異なる。</p>
+<p>哺乳類細胞では、複製フォークが動く速さと複製起点の最大距離から計算すると、隣り合う複製起点の間にあるDNAは、通常1時間ほどで複製し終わる計算になる。ところが、実際にはS期は8時間程度続く。</p>
+<p>ここから、<b>複製起点は全て同時に活性化されるのではない</b>ことが推測される。実際これは正しく、隣接する50個程度がまとまって活性化されることが知られている。</p>
+<p>複製起点が活性化される順序は、その<b>起点が存在する場所のクロマチン構造にある程度左右される</b>らしい。例えばヘテロクロマチンは高度に凝縮しているが、一方のユークロマチンは転写のほとんどが起こる領域で、凝縮度は低い。ヘテロクロマチンはS期の末期に複製される傾向が強いことから、複製の時期とクロマチンの折りたたまれ方との関連が示唆される。</p>
+<p>また、細胞周期1回ごとに全DNAを確実に1回だけコピーする上で、複製起点が複数あると、高度な制御が必要だと考えられる。</p>
+<p>これは、<b>「ヘリカーゼがまず複製起点に装着され、それが活性化してDNA複製を開始させる」</b>という順序にある。G1期には複製ヘリカーゼが<b>複製起点認識複合体(origin recognition complex, ORC)</b>を形成する。次に、細胞がG1期からS期へと進むと、特定のタンパクキナーゼが働いてヘリカーゼを活性化する。それによって二重らせんが開き、DNAポリメラーゼなど、他の複製タンパクが集合する。</p>
+<p>DNA複製の引き金となるタンパクキナーゼは同時に新しい複製前複合体の形成を防ぐので、再び全サイクルへ向けての初期状態に戻るのは次のM期になってからである。それは、リン酸化されることによってORCが新しいヘリカーゼを受容できなくなるのが一員である。</p>
+<p>このような戦略により、複製前複合体が形成される機会が1回（G1期）だけ生じ、次の段階でそれが活性化を経て分解される（S期）。細胞周期ではこの2つの状態は共存できず、しかも決まった順序で生じるので、複製起点はどれも1回の細胞周期につき必ず1回だけ発火する。</p>
+<h3>テロメア</h3>
+<p>染色体の末端では、ラギング鎖の合成を行うことができないため、この問題に対処する方法がなければ、染色体の末端から、細胞分裂のたびにDNAが減ってしまう。</p>
+<p>細菌は、この問題を染色体を環状DNAにすることで対処しており、一方の真核生物はテロメアという特殊な末端構造によって解決している。</p>
+<p>テロメアは短い塩基配列が何度も反復したもので、広範囲の生物で互いによく似ている。この構造を維持するのが<b>テロメアーゼ</b>という特定のヌクレオチド重合酵素で、これが細胞分裂のたびに反復配列を補充する。また、テロメアは染色体がたまたま切れた時などに誤って修復されないように、染色体の切断末端と区別できる特殊な構造をとっている。</p>
+<ul>
+<li>染色体末端は、"GGGTTA"という配列が繰り返し並んでいる。</li>
+<li>テロメアリピートは特別なタンパク質によって保護されている。</li>
+<li>テロメアリピートは「テロメアーゼ」によって鋳型非依存的に合成される。</li>
+</ul>
+<h2>Glossary</h2>
+<table>
+<thead>
+<tr>
+<th>Words</th>
+<th>Meanings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leading/lagging strand</td>
+<td></td>
+</tr>
+<tr>
+<td>Okazaki fragment</td>
+<td></td>
+</tr>
+<tr>
+<td>Helicase, MCM helicase</td>
+<td></td>
+</tr>
+<tr>
+<td>Ligase, topoisomerase</td>
+<td></td>
+</tr>
+<tr>
+<td>Replication fork</td>
+<td></td>
+</tr>
+<tr>
+<td>Replication origins</td>
+<td></td>
+</tr>
+<tr>
+<td>Orc</td>
+<td></td>
+</tr>
+<tr>
+<td>Telomere, telomerse</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2>Quizzes</h2>
+<p><input id="change-bg" type="button" value="See the answers"  style="display: block; background-color: rgba(68, 122, 178);; color: #fff; font-size: 1.2em; padding: 10px; border-radius: 3px;" onclick='document.body.style.backgroundColor="#C0C0C0";document.getElementById("change-bg").style.display="none";document.getElementById("return-bg").style.display="block";'>
+<input id="return-bg" type="button" value="Hide the answers" style="display: none; background-color: rgb(252, 92, 84); color: #fff; font-size: 1.2em; padding: 10px; border-radius: 3px;" onclick='window.location.reload();document.getElementById("change-bg").style.display="block";document.getElementById("return-bg").style.display="none";'></p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">Question</th>
+<th align="left">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="left">Explain leading and lagging DNA strands.<br><br>リーディング鎖とラギング鎖を説明せよ。</td>
+<td align="left"><font color="white">Leading strand is the strand of nascent DNA(新生鎖) which is being synthesized in the same direction as the moving replication fork. This strand is synthesized continuously.<br>Lagging strand is the strand of nascent DNA whose direction of synthesis opposite to the direction of the moving replication fork. This strand is synthesized in short, separated segments by DNA polymerases, and joined together by DNA ligase.<br><br>リーディング鎖：<br>DNA複製の際に、複製フォークの動きと同じ方向に伸長されていく側の新生鎖。連続的に合成される。<br>ラギング鎖：<br>DNA複製の際に、複製フォークの動きと反対向きに伸長されていく側の新生鎖。不連続で短い岡崎フラグメントと呼ばれる断片が複数でき、DNAリガーゼによってそれらは連結される。</font></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">Budding yeast <em>Cdc9</em> encodes DNA ligase Ⅰ. Inactivation of <em>Cdc9</em> was found to cause accumulation of nicked DNA.<br><br>出芽酵母におけるリガーゼⅠを発現させる <em>Cdc9</em> の不活性化は、DNAにニックの蓄積をもたらした。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">2.a</td>
+<td align="left">Explain why nicked DNA was formed.</td>
+<td align="left"><font color="white">Because ligase Ⅰ is required for sealing of nicks between Okazaki fragments.<br><br>ニックを連結する酵素であるリガーゼⅠが生産されなくなったから。</font></td>
+</tr>
+<tr>
+<td align="center">2.b</td>
+<td align="left">Assume that there is an active DNA replication origin at the middle of the chromosome region of interest. Indicate where we could observe DNA nicks.</td>
+<td align="left"><img src="https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/1950/2017/05/31183852/figure-09-02-03.png"><font color="white">Where the Okazaki Fragment is in both strands.</font></td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-04-16T12:24:00+09:00"> 4 16, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-04-16T12:24:00+09:00"> 4 16, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#xi-bao-fen-zi-sheng-wu-xue-ii-ref">細胞分子生物学Ⅱ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#xi-bao-fen-zi-sheng-wu-xue-ii-ref">細胞分子生物学Ⅱ
+                    <span>7</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

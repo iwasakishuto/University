@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 生命科学基礎実験, 生命科学基礎実験, " />
+<meta property="og:image" content="https://294305267s7hqfks2cfh08ip-wpengine.netdna-ssl.com/wp-content/uploads/2016/02/illumina_oxford_nanopore_lawsuit_patent_porin_Mycobaterium_smegmatis_minion_promethion_gridion_miniseq.jpg"/>
+
+<meta property="og:title" content="シークエンス解析実習2 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シークエンス解析-2.html" />
+<meta property="og:description" content="シークエンス解析" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-07-04T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-07-04T00:00:00+09:00" />
+<meta name="twitter:title" content="シークエンス解析実習2 ">
+<meta name="twitter:description" content="シークエンス解析">
+
+        <title>シークエンス解析実習2  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シークエンス解析-2.html"> シークエンス解析実習2  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>シークエンス解析実習2</h1>
+<p><b>〜第7日目：RNA-seq解析〜</b>
+- 担当：<a href="http://www.cb.k.u-tokyo.ac.jp/suzukilab/index.html">鈴木研究室</a></p>
+<h2>RNA-seq解析 illumina vs MinION</h2>
+<p>※ <code>group2</code> のようなファイル名が出てきますが、僕が2班だったというだけです。</p>
+<h3>謝辞</h3>
+<p>今回の実験では、<a href="http://hgc.jp/japanese/">東京大学 医科学研究所 ヒトゲノム解析センター</a>にスーパーコンピュータをお借りしました。この場を借りて御礼申し上げます。</p>
+<div class="highlight"><pre><span></span><span class="c1"># スパコンにログイン</span>
+$ ssh XXX@slogin.hgc.jp
+<span class="c1"># スパコンからファイルをコピー</span>
+$ scp XXX@slogin.hgc.jp:/path/to/file .
+</pre></div>
+
+
+<h3>原理</h3>
+<h4>illumina</h4>
+<p>以下の流れでシークエンスを行なっています。</p>
+<ol>
+<li>ターゲットとなるDNAを抽出後、断片化</li>
+<li>両端に2種類のアダプターを付与</li>
+<li>ブリッジPCR（ブリッジ結合→伸長→変性→ブリッジ結合→…）による増幅</li>
+<li>蛍光標識したdNTPの取り込みを蛍光顕微鏡により解析</li>
+</ol>
+<p>以下の動画（引用：<a href="https://jp.illumina.com/">illumina</a>） が参考になります。</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fCd6B5HRaZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h4>MinION</h4>
+<p>MinIONはロングリードを<b>ダイレクト</b>に読むシークエンサーであり、イルミナが100~200 bの配列を扱うのに対し、10 kb以上の配列を扱うことができます。しかし、<b>精度が <span class="math">\(90\)</span> %程度と低い</b>のが難点です。</p>
+<p>原理としては、<b><font color="red">ナノポア</font>と呼ばれるナノスケールの穴</b>の中や、ナノポア付近を生体分子が通過するときに発生する電流の変化を計測することで、その生体分子を特定するという仕組みです。以下の動画（引用：<a href="https://nanoporetech.com/">Oxford Nanopore Technologies</a>） が参考になります。</p>
+<iframe width="560" height="315" src="https://player.vimeo.com/video/208163139" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>MinIONの特徴として、以下の両方が行えることが挙げられます。</p>
+<ul>
+<li>cDNA sequencing（今回はこっち）
+RNAを逆転写してcDNAにしてから増幅してシークエンスする。少ないサンプルでシークエンスが可能。</li>
+<li>Direct RNA sequencing
+RNAをダイレクトにシークエンスする。多くのインプットが必要だが、増幅しないので、RNA修飾が解析可能。</li>
+</ul>
+<p>なお、<b>分子バーコーディングによる再構築</b>（長いDNAにバーコードを入れてからショートリードにして読み、バーコードを手がかりに再構築する）というアイデアでロングリードを読むシークエンサーもあります。</p>
+<h3>解析の流れ</h3>
+<h4>illumina</h4>
+<p>以下の流れに沿って解析を行います。</p>
+<div class="highlight"><pre><span></span><span class="n">graph</span> <span class="n">LR</span><span class="p">;</span>
+  <span class="n">A</span><span class="p">((</span><span class="n">BCL</span><span class="p">))</span><span class="c1">--&gt;B;</span>
+  <span class="n">B</span><span class="p">((</span><span class="n">fastq</span><span class="p">))</span><span class="c1">--&gt;C;</span>
+  <span class="k">C</span><span class="p">[</span><span class="err">マッピング</span><span class="p">]</span><span class="c1">--&gt;D;</span>
+  <span class="n">D</span><span class="p">((</span><span class="n">BAM</span><span class="p">))</span><span class="c1">--&gt;F[リードカウント];</span>
+</pre></div>
+
+
+<p>※ 6/28,7/2 の二日間でウェットの実験を行い、サンプルをアプライし、シークエンスを行いました。</p>
+<p>この時、生データファイルは<font color="red"><b>バイナリベースコール(BCL)形式</b></font>で生成されるようで、それを<a href="https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html">bcl2fastq</a>というソフトウェアを使って<font color="red"><b>FASTQ形式</b></font>という<b>NGSデータを保管する標準形式</b>（生シーケンスデータとクオリティスコアを保存）に変換します。（これは、研究室の方々にやっていただきました。）</p>
+<p>続いて、これを参照ゲノム配列（今回用いたのは<a href="https://genome-asia.ucsc.edu/cgi-bin/hgGateway?db=hg38&amp;redirect=manual&amp;source=genome.ucsc.edu">UCSCのhg38</a>）に<a href="https://github.com/alexdobin/STAR">STAR</a>というライブラリを用いてマッピングします。</p>
+<p>マッピングした結果は、<font color="red"><b>SAM形式</b></font>のファイルになります。このファイルはFASTQの中身も含み、数十ギガバイトの巨大なファイルとなるので、一般に<font color="red"><b>BAM形式</b></font>に圧縮して提供されます。</p>
+<p>この時特殊な圧縮のされ方をしてるため、専用のツール（<a href="http://www.htslib.org/"><code>samtools</code></a>）を用いて展開する必要がありますが、通常は<a href="http://software.broadinstitute.org/software/igv/">IGV</a>などの<b>ゲノムブラウザ</b>にそのまま読み込ませて結果を確認します。</p>
+<p>最後に、発現量を算出し、illuminaとMinIONの結果を比べます。これは <code>featureCounts</code> という、<a href="http://subread.sourceforge.net/">Subread</a>パッケージ内の、<b>BAMファイルを入力として各feature領域（gene,CDS,exon）ごとのリード数をカウントする</b>プログラムを利用します。</p>
+<h4>MinION</h4>
+<p>以下の流れに沿って解析を行います。</p>
+<p>illuminaと異なり、MinIONで得られるのはイオンシグナル情報なので、それを塩基配列の情報に変換するのに <code>Guppy</code> というツールを用いてベースコール情報を付加する必要があるのと、マッピング時に長いリードや高いエラー率に対応したツールを用いる必要がある点のみが異なります。</p>
+<div class="highlight"><pre><span></span><span class="n">graph</span> <span class="n">LR</span><span class="p">;</span>
+  <span class="n">A</span><span class="p">((</span><span class="n">fast5</span><span class="p">))</span><span class="c1">--&gt;G;</span>
+  <span class="k">G</span><span class="p">[</span><span class="err">ベースコール</span><span class="p">]</span><span class="c1">--&gt;B;</span>
+  <span class="n">B</span><span class="p">((</span><span class="n">fastq</span><span class="p">))</span><span class="c1">--&gt;C;</span>
+  <span class="k">C</span><span class="p">[</span><span class="err">マッピング</span><span class="p">]</span><span class="c1">--&gt;D;</span>
+  <span class="n">D</span><span class="p">((</span><span class="n">BAM</span><span class="p">))</span><span class="c1">--&gt;F[リードカウント];</span>
+</pre></div>
+
+
+<p>※ 6/26,6/27 の二日間でウェットの実験を行い、サンプルをアプライし、シークエンスを行いました。</p>
+<h3>マッピング</h3>
+<p>illuminaとMinIONでは扱うツールが異なりますが、ソフトウェア化されているので、ユーザー側からすれば大差がありません。</p>
+<p>何をやっているのかを理解したいので、できるだけいただいたスクリプトの中身を丁寧に見たいと思います。</p>
+<h4>STAR(illumina)</h4>
+<p><a href="https://github.com/alexdobin/STAR">STAR</a>を用いて、ヒトリファレンスゲノム配列へのマッピングを行います。</p>
+<p>なお、この際東大医科研HGCスパコンは複数のユーザーで利用しているため、キューイングシステムを利用しています。</p>
+<p>キューイングシステムは、実行したいプログラムを<b>必要なメモリやCPUの数と共に実行ファイル（基本的にはシェルスクリプト）に書き込んでキューイングシステムにサブミットし、キューイングシステムが総合判断して複数ユーザーが投入したジョブを円滑に実行する</b>、という仕組みです。</p>
+<p>今回用意していただいたスクリプトは以下のようになっていました。</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#$ -S /bin/bash</span>
+<span class="c1">#$ -l s_vmem=35G,mem_req=35G</span>
+<span class="c1">#$ -l os7</span>
+
+<span class="nb">source</span> /home/lect01/2019_jisyu.source <span class="c1"># ツールの場所を指定</span>
+
+STAR  --genomeDir /home/lect01/reference/STAR_hg38 <span class="se">\ </span><span class="c1"># リファレンスゲノムが置いてあるディレクトリ</span>
+    --readFilesIn 2_Read1.fastq 2_Read2.fastq <span class="se">\ </span><span class="c1"># 入力fastqファイル</span>
+    --chimSegmentMin <span class="m">30</span> <span class="se">\ </span><span class="c1"># リードの前半と後半で異なる染色体にマッピングされるキメラ(fusion)リードを検出するために指定。長さの短い方がこの値よりも長い時、そのリードをキメラリードとみなす。</span>
+    --chimOutType WithinBAM <span class="se">\ </span><span class="c1"># キメラリードのマッピング結果を通常のマッピング結果と同じファイルに保存する。（別ファイルの場合はSeparateSAMold）</span>
+    --outSAMtype BAM SortedByCoordinate <span class="se">\ </span><span class="c1"># 遺伝子座でソートされた、Aligned.sortedByCoord.out.bam というファイルで出力する</span>
+    --sjdbGTFfile /home/lect01/reference/STAR_hg38/genes.gtf <span class="se">\ </span><span class="c1"># 遺伝子のアノテーション情報</span>
+    --outFilterMultimapNmax <span class="m">1</span> <span class="se">\ </span><span class="c1"># 1つのリードがマッピングできる位置の最大値。Uniquely mapped readsのみを解析対象としているので、今回は1</span>
+    --outFileNamePrefix group2_ <span class="c1"># ファイルの接尾辞を追加</span>
+<span class="nb">exit</span>
+</pre></div>
+
+
+<p><summary></p>
+<p><code>2019_jisyu.source</code> ファイル</p>
+<details>
+
+<div class="highlight"><pre><span></span><span class="c1">#-----------------------------------------------------------</span>
+<span class="c1"># TOOLS</span>
+<span class="c1">#-----------------------------------------------------------</span>
+
+<span class="nv">TOOLS</span><span class="o">=</span>/home/lect01/tools/bin
+<span class="c1">#-----------------------------------------------------------</span>
+<span class="c1"># PATH</span>
+<span class="c1">#-----------------------------------------------------------</span>
+
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/PATH/to/where/STAR/is:<span class="si">${</span><span class="nv">TOOLS</span><span class="si">}</span>:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+
+<span class="nb">export</span> <span class="nv">PYTHONHOME</span><span class="o">=</span>/path/to/Python/home <span class="c1"># ex.) /usr/local/package/python/version/</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">PYTHONHOME</span><span class="si">}</span>/bin:<span class="si">${</span><span class="nv">PATH</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>:<span class="si">${</span><span class="nv">PYTHONHOME</span><span class="si">}</span>/lib:<span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span>
+</pre></div>
+
+
+
+</details>
+
+<p></summary></p>
+<p>なお、<code>group2_Aligned.sortedByCoord.out.bam</code> というファイルができたら、インデックス付けをします。</p>
+<div class="highlight"><pre><span></span>$ samtools index group2_Aligned.sortedByCoord.out.bam
+</pre></div>
+
+
+<p>これで、<code>group2_Aligned.sortedByCoord.out.bam.bai</code> というファイルが作成されます。</p>
+<h4>Minimap2(MinION)</h4>
+<p>ロングリードシークエンスデータをマッピングするツールは様々なものが開発されていますが、今回はMinimap2を利用しました。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名前</th>
+<th align="left">特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><a href="http://last.cbrc.jp/">LAST</a></td>
+<td align="left">我らが<a href="https://www.k.u-tokyo.ac.jp/pros-e/person/martin_frith/martin_frith.htm">Martin Frith</a>先生</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/lh3/minimap2">Minimap2</a></td>
+<td align="left">Direct RNA-seq用のパラメータが存在する。</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/ocxtal/minialign">Minialign</a></td>
+<td align="left">速くて正確</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/isovic/graphmap">GraphMap</a></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>今回用意していただいたスクリプトは以下のようになっていました。</p>
+<div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#$ -S /bin/bash</span>
+<span class="c1">#$ -l s_vmem=20G,mem_req=20G</span>
+<span class="c1">#$ -l os7</span>
+
+<span class="nb">source</span> /home/lect01/2019_jisyu.source <span class="c1"># ツールの場所を指定</span>
+
+minimap2 -ax splice --secondary<span class="o">=</span>no /home/lect01/reference/minimap2/genome.mmi <span class="m">2</span>.pass.fastq &gt; pass.sam
+<span class="c1"># /home/lect01/reference/minimap2/genome.mmi: リファレンスゲノム</span>
+<span class="c1"># 2.pass.fastq: 入力fastqファイル</span>
+
+<span class="nb">exit</span>
+</pre></div>
+
+
+<p>同様に、<code>pass_sort.bam</code> というファイルができたら、インデックス付けをします。なお、Minimap2では染色体順にソートがされていないので、ソートも行います。</p>
+<div class="highlight"><pre><span></span>$ samtools view -bS pass.sam <span class="p">|</span> samtools sort - pass_sort
+$ samtools index pass_sort.bam
+</pre></div>
+
+
+<p>これで、<code>pass_sort.bam.bai</code> というファイルが作成されます。</p>
+<h3>データの可視化</h3>
+<p>データの可視化には、<a href="http://software.broadinstitute.org/software/igv/">Integrative Genomics Viewer(IGV)</a>というツールを用います。IGVにBAMファイルを選択するだけで結果が可視化されます。</p>
+<p>今回は、「ヒト肺腺癌の培養細胞のうち各班に割り当てられたのが何だったのか？」を当てる実習であるので、<b>「各細胞で既知の変異が、自分の細胞に起こっているか？」</b>を調べることで推測を行いました。</p>
+<p>なお、既知の変異が染色体上のどこで起こっているのかは<a href="https://cancer.sanger.ac.uk/cosmic">Catalogue Of Somatic Mutations In Cancer(COSMIC)</a>を参照しました。</p>
+<h3>発現量の算出と比較</h3>
+<p>異なるプラットフォームの遺伝子発現量における相関を解析します。なお、使用する遺伝子についてだけでも様々な手法があります。</p>
+<ul>
+<li>全遺伝子を使う</li>
+<li>タンパク質コード遺伝子だけを使う</li>
+<li>どちらかで5以上発現している遺伝子を使う</li>
+</ul>
+<h4>正規化</h4>
+<p>リード数がデータによって異なるので、総リード数を用いて各遺伝子にマップされたリード数を正規化します。</p>
+<ul>
+<li><b>ppm</b>: parts per million reads</li>
+</ul>
+<div class="math">$$[\mathrm{ppm}] = [\mathrm{count}] / [\mathrm{total mapped reads}] \times 1,000,000$$</div>
+<p>なお、illuminaショートリードの場合、<b>遺伝子領域が長いほどより多くのリードがマップされる</b>ことが知られているので、遺伝子の長さでも補正する必要があります。</p>
+<ul>
+<li><b>rpkm</b>: reads per kilobase per million reads</li>
+</ul>
+<div class="math">$$[\mathrm{rpkm}] = [\mathrm{ppm}] / [\mathrm{gene\ length}] \times 1,000$$</div>
+<h4>illumina(rpkm)</h4>
+<div class="highlight"><pre><span></span>$ featureCounts -p -B -t exon -g gene_id <span class="se">\</span>
+      -a /home/lect01/reference/genes.gtf <span class="se">\</span>
+      -o illumina_counts.txt group2_Aligned.sortedByCoord.out.bam
+</pre></div>
+
+
+<p><summary>出力
+  <details></p>
+<div class="highlight"><pre><span></span>        <span class="o">==========</span>     _____ _    _ ____  _____  ______          <span class="nv">_____</span>
+        <span class="o">=====</span>         / ____<span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>  _ <span class="se">\|</span>  __ <span class="se">\|</span>  ____<span class="p">|</span>   /<span class="se">\ </span>  <span class="p">|</span>  __ <span class="se">\</span>
+          <span class="o">=====</span>      <span class="p">|</span> <span class="o">(</span>___ <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>__<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>__     /  <span class="se">\ </span> <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>
+            <span class="o">====</span>      <span class="se">\_</span>__ <span class="se">\|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>  _ &lt;<span class="p">|</span>  _  /<span class="p">|</span>  __<span class="p">|</span>   / /<span class="se">\ \ </span><span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>
+              <span class="o">====</span>    ____<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span> <span class="se">\ \|</span> <span class="p">|</span>____ / ____ <span class="se">\|</span> <span class="p">|</span>__<span class="p">|</span> <span class="p">|</span>
+        <span class="o">==========</span>   <span class="p">|</span>_____/ <span class="se">\_</span>___/<span class="p">|</span>____/<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_\_</span>_____/_/    <span class="se">\_\_</span>____/
+      v1.6.2
+
+//<span class="o">==========================</span> featureCounts <span class="nv">setting</span> <span class="o">===========================</span><span class="se">\\</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>             Input files : <span class="m">1</span> BAM file                                       <span class="o">||</span>
+<span class="o">||</span>                           P group2_Aligned.sortedByCoord.out.bam           <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>             Output file : illumina_counts.txt                              <span class="o">||</span>
+<span class="o">||</span>                 Summary : illumina_counts.txt.summary                      <span class="o">||</span>
+<span class="o">||</span>              Annotation : genes.gtf <span class="o">(</span>GTF<span class="o">)</span>                                  <span class="o">||</span>
+<span class="o">||</span>      Dir <span class="k">for</span> temp files : ./                                               <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>                 Threads : <span class="m">1</span>                                                <span class="o">||</span>
+<span class="o">||</span>                   Level : meta-feature level                               <span class="o">||</span>
+<span class="o">||</span>              Paired-end : yes                                              <span class="o">||</span>
+<span class="o">||</span>      Multimapping reads : not counted                                      <span class="o">||</span>
+<span class="o">||</span> Multi-overlapping reads : not counted                                      <span class="o">||</span>
+<span class="o">||</span>   Min overlapping bases : <span class="m">1</span>                                                <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>          Chimeric reads : counted                                          <span class="o">||</span>
+<span class="o">||</span>        Both ends mapped : required                                         <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="se">\\</span><span class="o">=====================</span> http://subread.sourceforge.net/ <span class="o">======================</span>//
+
+//<span class="o">=================================</span> <span class="nv">Running</span> <span class="o">==================================</span><span class="se">\\</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span> Load annotation file genes.gtf ...                                         <span class="o">||</span>
+<span class="o">||</span>    Features : <span class="m">535393</span>                                                       <span class="o">||</span>
+<span class="o">||</span>    Meta-features : <span class="m">26485</span>                                                   <span class="o">||</span>
+<span class="o">||</span>    Chromosomes/contigs : <span class="m">255</span>                                               <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span> Process BAM file group2_Aligned.sortedByCoord.out.bam...                   <span class="o">||</span>
+<span class="o">||</span>    Paired-end reads are included.                                          <span class="o">||</span>
+<span class="o">||</span>    Assign fragments <span class="o">(</span><span class="nb">read</span> pairs<span class="o">)</span> to features...                            <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>    WARNING: reads from the same pair were found not adjacent to each       <span class="o">||</span>
+<span class="o">||</span>             other in the input <span class="o">(</span>due to <span class="nb">read</span> sorting by location or         <span class="o">||</span>
+<span class="o">||</span>             reporting of multi-mapping <span class="nb">read</span> pairs<span class="o">)</span>.                        <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>    Pairing up the <span class="nb">read</span> pairs.                                              <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>    Total fragments : <span class="m">9265506</span>                                               <span class="o">||</span>
+<span class="o">||</span>    Successfully assigned fragments : <span class="m">6667566</span> <span class="o">(</span><span class="m">72</span>.0%<span class="o">)</span>                       <span class="o">||</span>
+<span class="o">||</span>    Running <span class="nb">time</span> : <span class="m">0</span>.55 minutes                                             <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>                         Read assignment finished.                          <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span> Summary of counting results can be found in file <span class="s2">&quot;illumina_counts.txt.sum  ||</span>
+<span class="s2">|| mary&quot;</span>                                                                      <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="se">\\</span><span class="o">=====================</span> http://subread.sourceforge.net/ <span class="o">======================</span>//
+</pre></div>
+
+
+<p></details>
+</summary></p>
+<h4>MinION(ppm)</h4>
+<div class="highlight"><pre><span></span>$ featureCounts -L -t exon -g gene_id <span class="se">\</span>
+      -a /home/lect01/reference/genes.gtf <span class="se">\</span>
+      -o minion_counts.txt pass_sort.bam
+</pre></div>
+
+
+<p><summary>出力
+  <details></p>
+<div class="highlight"><pre><span></span><span class="o">==========</span>     _____ _    _ ____  _____  ______          <span class="nv">_____</span>
+<span class="o">=====</span>         / ____<span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>  _ <span class="se">\|</span>  __ <span class="se">\|</span>  ____<span class="p">|</span>   /<span class="se">\ </span>  <span class="p">|</span>  __ <span class="se">\</span>
+  <span class="o">=====</span>      <span class="p">|</span> <span class="o">(</span>___ <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>__<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>__     /  <span class="se">\ </span> <span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>
+    <span class="o">====</span>      <span class="se">\_</span>__ <span class="se">\|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>  _ &lt;<span class="p">|</span>  _  /<span class="p">|</span>  __<span class="p">|</span>   / /<span class="se">\ \ </span><span class="p">|</span> <span class="p">|</span>  <span class="p">|</span> <span class="p">|</span>
+      <span class="o">====</span>    ____<span class="o">)</span> <span class="p">|</span> <span class="p">|</span>__<span class="p">|</span> <span class="p">|</span> <span class="p">|</span>_<span class="o">)</span> <span class="p">|</span> <span class="p">|</span> <span class="se">\ \|</span> <span class="p">|</span>____ / ____ <span class="se">\|</span> <span class="p">|</span>__<span class="p">|</span> <span class="p">|</span>
+<span class="o">==========</span>   <span class="p">|</span>_____/ <span class="se">\_</span>___/<span class="p">|</span>____/<span class="p">|</span>_<span class="p">|</span>  <span class="se">\_\_</span>_____/_/    <span class="se">\_\_</span>____/
+v1.6.2
+
+//<span class="o">==========================</span> featureCounts <span class="nv">setting</span> <span class="o">===========================</span><span class="se">\\</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>             Input files : <span class="m">1</span> BAM file                                       <span class="o">||</span>
+<span class="o">||</span>                           S pass_sort.bam                                  <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>             Output file : minion_counts.txt                                <span class="o">||</span>
+<span class="o">||</span>                 Summary : minion_counts.txt.summary                        <span class="o">||</span>
+<span class="o">||</span>              Annotation : genes.gtf <span class="o">(</span>GTF<span class="o">)</span>                                  <span class="o">||</span>
+<span class="o">||</span>      Dir <span class="k">for</span> temp files : ./                                               <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>                 Threads : <span class="m">1</span>                                                <span class="o">||</span>
+<span class="o">||</span>                   Level : meta-feature level                               <span class="o">||</span>
+<span class="o">||</span>              Paired-end : no                                               <span class="o">||</span>
+<span class="o">||</span>      Multimapping reads : not counted                                      <span class="o">||</span>
+<span class="o">||</span> Multi-overlapping reads : not counted                                      <span class="o">||</span>
+<span class="o">||</span>   Min overlapping bases : <span class="m">1</span>                                                <span class="o">||</span>
+<span class="o">||</span>          Long <span class="nb">read</span> mode : yes                                              <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="se">\\</span><span class="o">=====================</span> http://subread.sourceforge.net/ <span class="o">======================</span>//
+
+//<span class="o">=================================</span> <span class="nv">Running</span> <span class="o">==================================</span><span class="se">\\</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span> Load annotation file genes.gtf ...                                         <span class="o">||</span>
+<span class="o">||</span>    Features : <span class="m">535393</span>                                                       <span class="o">||</span>
+Status  pass_sort.bam
+<span class="o">||</span>    Meta-features : <span class="m">26485</span>                                                   <span class="o">||</span>
+<span class="o">||</span>    Chromosomes/contigs : <span class="m">255</span>                                               <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span> Process BAM file pass_sort.bam...                                          <span class="o">||</span>
+<span class="o">||</span>    Single-end reads are included.                                          <span class="o">||</span>
+<span class="o">||</span>    Assign reads to features...                                             <span class="o">||</span>
+<span class="o">||</span>    Total reads : <span class="m">515045</span>                                                    <span class="o">||</span>
+<span class="o">||</span>    Successfully assigned reads : <span class="m">369980</span> <span class="o">(</span><span class="m">71</span>.8%<span class="o">)</span>                            <span class="o">||</span>
+<span class="o">||</span>    Running <span class="nb">time</span> : <span class="m">0</span>.28 minutes                                             <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span>                         Read assignment finished.                          <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="o">||</span> Summary of counting results can be found in file <span class="s2">&quot;minion_counts.txt.summa  ||</span>
+<span class="s2">|| ry&quot;</span>                                                                        <span class="o">||</span>
+<span class="o">||</span>                                                                            <span class="o">||</span>
+<span class="se">\\</span><span class="o">=====================</span> http://subread.sourceforge.net/ <span class="o">======================</span>//
+</pre></div>
+
+
+<p></details>
+</summary></p>
+<h4>Pearson相関係数算出(R)</h4>
+<div class="highlight"><pre><span></span><span class="n">ILLUMINA</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;illumina/illumina_counts.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">total_illumina</span> <span class="o">&lt;-</span> <span class="m">9265506</span>
+<span class="n">ppm_i</span> <span class="o">&lt;-</span> <span class="n">ILLUMINA</span><span class="o">$</span><span class="n">group2_Aligned.sortedByCoord.out.bam</span> <span class="o">/</span> <span class="n">total_illumina</span> <span class="o">*</span> <span class="m">1000000</span>
+<span class="n">rpkm_i</span> <span class="o">&lt;-</span> <span class="n">ppm_i</span> <span class="o">/</span> <span class="n">ILLUMINA</span><span class="o">$</span><span class="n">Length</span> <span class="o">*</span> <span class="m">1000</span>
+<span class="n">MINION</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;minion/minion_counts.txt&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="n">total_minion</span> <span class="o">&lt;-</span> <span class="m">515045</span>
+<span class="n">ppm_m</span> <span class="o">&lt;-</span> <span class="n">MINION</span><span class="o">$</span><span class="n">pass_sort.bam</span> <span class="o">/</span> <span class="n">total_minion</span> <span class="o">*</span> <span class="m">1000000</span>
+<span class="n">log_rpkm_i</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">rpkm_i</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="n">log_ppm_m</span> <span class="o">&lt;-</span> <span class="nf">log2</span><span class="p">(</span><span class="n">ppm_m</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+<span class="nf">cor.test </span><span class="p">(</span><span class="n">log_rpkm_i</span><span class="p">,</span> <span class="n">log_ppm_m</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;pearson&quot;</span><span class="p">)</span>
+
+<span class="c1">#   Pearson&#39;s product-moment correlation</span>
+
+<span class="c1"># data:  log_rpkm_i and log_ppm_m</span>
+<span class="c1"># t = 309.92, df = 26483, p-value &lt; 2.2e-16</span>
+<span class="c1"># alternative hypothesis: true correlation is not equal to 0</span>
+<span class="c1"># 95 percent confidence interval:</span>
+<span class="c1">#  0.8827357 0.8879421</span>
+<span class="c1"># sample estimates:</span>
+<span class="c1">#       cor</span>
+<span class="c1"># 0.8853666</span>
+
+<span class="nf">pdf</span><span class="p">(</span><span class="s">&quot;comparison.pdf&quot;</span><span class="p">)</span>
+<span class="nf">plot</span><span class="p">(</span><span class="n">log_rpkm_i</span><span class="p">,</span> <span class="n">log_ppm_m</span><span class="p">,</span> <span class="n">xlab</span><span class="o">=</span><span class="s">&quot;illumina, log2 (rpkm+1)&quot;</span><span class="p">,</span> <span class="n">ylab</span><span class="o">=</span><span class="s">&quot;MinION, log2 (ppm+1)&quot;</span><span class="p">)</span>
+<span class="nf">dev.off</span><span class="p">()</span>
+<span class="c1"># null device</span>
+<span class="c1">#           1</span>
+</pre></div>
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-07-04T00:00:00+09:00"> 7 4, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-07-04T00:00:00+09:00"> 7 4, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

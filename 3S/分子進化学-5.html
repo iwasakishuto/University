@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3S, 分子進化学, 分子進化学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="分子進化学 第5回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3S/分子進化学-5.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="My Notes" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-05-29T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-05-29T00:00:00+09:00" />
+<meta name="twitter:title" content="分子進化学 第5回 ">
+<meta name="twitter:description" content="">
+
+        <title>分子進化学 第5回  · My Notes
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> My Notes</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>My Notes</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3S/分子進化学-5.html"> 分子進化学 第5回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h1>第5回 2019/5/29</h1>
+<ul>
+<li>講師：<a href="https://www.nig.ac.jp/nig/ja/research/interviews/faculty-interviews/saitou">斎藤 成也</a></li>
+<li>参考書：<a href="https://www.springer.com/gp/book/9783319926414">Introduction to Evolutionary Genomics
+ Second Edition</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/%E3%83%90%E3%82%A4%E3%82%AA%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%9E%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9%E3%81%AE%E6%95%B0%E7%90%86%E3%81%A8%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0-%E3%82%A2%E3%83%AB%E3%82%B4%E3%83%AA%E3%82%BA%E3%83%A0%E3%83%BB%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA%E2%80%95%E9%81%A9%E7%94%A8%E4%BA%8B%E4%BE%8B%E7%B7%A8-%E9%98%BF%E4%B9%85%E6%B4%A5-%E9%81%94%E4%B9%9F/dp/4320121783">バイオインフォマティクスの数理とアルゴリズム</a></li>
+</ul>
+<h2>17.1 Classification of tree-building hogehoge</h2>
+<p>進化距離は、基本的に距離と言っているだけあり、対象律が成り立っている。つまり、下三角行列のみが必要。</p>
+<p><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/410-Figure17.1-1.png"></p>
+<p>系統樹には根がある場合と根がない場合の2つのパターンがある。</p>
+<p><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/410-Figure17.2-1.png"></p>
+<h2>17.2 Distance matrix methods</h2>
+<p>進化系統樹の推定法にはいくつかの方法論があるが、最も広く利用されている方法論は、最初に何らかの方法で全ての葉間の距離（遺伝子配列間の距離）を計算したあとで、<b>その距離情報だけから系統樹を推定する方法</b>である。</p>
+<p>よく使われている方法には、<font color="red"><b>UPGMA(Unweighted Pair Group Method with Arithmetic mean)</b></font>と<font color="red"><b>近隣結合法(Neighbor-joining Method)</b></font>がある。</p>
+<p>以下では、<span class="math">\(n\)</span> 個の配列 <span class="math">\(s_1,\ldots,s_n\)</span> が最初に与えられ、<span class="math">\(i&lt;j\)</span> なる配列対（<span class="math">\(s_i,s_j\)</span>）全てについて、その間の距離 <span class="math">\(d_{ij}\)</span> が既に計算されているものとする。</p>
+<p>なお、ここで <span class="math">\(d_{ij}\)</span> は必ずしも距離の定義を満たす必要はないが、非負かつ <span class="math">\(d_{ij} = d_{ji}\)</span> という条件は満たすものとする。</p>
+<p>なお、配列間の距離は、一般に<font color="red"><b>Jukes-Cantor行列</b></font>を用いて以下のように表されることがほとんどである。（配列対(<span class="math">\(s_i,s_j\)</span>)において、同じ文字が並ぶ列の比率を <span class="math">\(f\)</span> とする。）</p>
+<div class="math">$$d_{ij} = \frac{3}{4}\log\left(1-\frac{4}{3}f\right)$$</div>
+<p>なお、この距離は <span class="math">\(f\)</span> が <span class="math">\(0.75\)</span> に近づくに従い、つまりランダムな置換に近づくに従い、無限大に発散することになることも確認できる。</p>
+<h3>UPGMA</h3>
+<p>UPGMA(Unweighted Pair Group Method with Arithmetic mean)は、最初は1個の配列からなるクラスタ（集合）をそれぞれ作り、距離が最も小さいクラスタを1つにまとめることを繰り返していくことによって、系統樹を構成していく。</p>
+<h4>アルゴリズム</h4>
+<ol>
+<li><span class="math">\(n\)</span> 個の入力配列 <span class="math">\(s_i(i=1,...,n)\)</span> のそれぞれに対して、<span class="math">\(i\)</span> のみを要素とする集合 <span class="math">\(C_i\)</span> を作り、それらをリスト <span class="math">\(L\)</span> に入れる。
+また、各配列 <span class="math">\(s_i\)</span> に対応する葉 <span class="math">\(i\)</span> を作り、それを高さ <span class="math">\(0\)</span> の位置に置く。そして、すべての <span class="math">\(i&lt;j\)</span> について <span class="math">\(D_{ij} = d_{ij}\)</span> とする。さらに、<span class="math">\(k\leftarrow n+1\)</span> とする。</li>
+<li><span class="math">\(L\)</span> から<font color="red"> <span class="math">\(D_{ij}\)</span> が</font>最小となる対 <span class="math">\((C_i,C_j)\)</span> の一つを求める。</li>
+<li><span class="math">\(C_k=C_i\cup C_j\)</span> によって新たなクラスタ <span class="math">\(C_k\)</span> を作る。</li>
+<li>節点 <span class="math">\(i,j\)</span> を子に持つ節点 <span class="math">\(k\)</span> を作り、<font color="red">高さ <span class="math">\(D_{ij}/2\)</span> の位置に</font>配置する。</li>
+<li><span class="math">\(L\)</span> から <span class="math">\(C_i\)</span> と <span class="math">\(C_j\)</span> を削除して <span class="math">\(C_k\)</span> を追加する。</li>
+<li><span class="math">\(C_k\)</span> と、全ての他のクラスタ <span class="math">\(C_l\)</span> に対して距離 <span class="math">\(D_{kl}\)</span> を計算し、<span class="math">\(k\leftarrow k+1\)</span> とする。</li>
+<li>ステップ <span class="math">\(2\sim6\)</span> を、<span class="math">\(L\)</span> の要素が <span class="math">\(1\)</span> 個になるまで繰り返す。</li>
+</ol>
+<p>なお、クラスタ間の距離 <span class="math">\(D_{kl}\)</span> は、<span class="math">\(C_k\)</span> の要素と <span class="math">\(C_j\)</span> の要素間の平均距離、すなわち次の式により定義されるものとする。</p>
+<div class="math">$$D_{kl} = \frac{1}{|C_k||C_l|}\sum_{s_i\in C_k,s_j\in C_l}d_{ij}$$</div>
+<p><span class="math">\(C_k=C_i\cup C_j\)</span> という操作によって新たなクラスタ <span class="math">\(C_k\)</span> が生成されるたびに、<span class="math">\(C_k\)</span> と他のクラスタ <span class="math">\(C_l\)</span> との距離を計算する必要があるが、クラスタ間の距離 <span class="math">\(D_{kl}\)</span> は以下の式によって効率的に求めることができる。（計算量 <span class="math">\(\mathrm{O}(n^2)\rightarrow\mathrm{O}(n))\)</span>）</p>
+<div class="math">$$D_{kl} = \frac{D_{il}|C_i| + D_{jl}|C_j|}{|C_i| + |C_j|}$$</div>
+<h4>正当性</h4>
+<p>UPGMA法によって推定される進化系統樹は、元の系統樹が<font color="red"><b>分子時計(molecular clock)仮説</b></font>（節点間の距離 <span class="math">\(d_{ij}\)</span> が節点間を結ぶパスに現れる枝長の和で与えられ、かつ根から葉までの距離が全て等しい）を満たす場合にのみ、元の系統樹と同じトポロジーとなる。</p>
+<p>なお、この仮説は<b>「系統樹のどの場所においても、配列の変異が同じ割合で起こる」</b>という仮説である。</p>
+<h2>17.3 Neighbor-joining Method (近隣結合法)</h2>
+<p>Neighbor-joining Method は距離行列法の一種であり、星型の木(a)から近隣結合を段階的に適用することで無根の系統樹を効率的に生成する手法である。</p>
+<p>UPGMA法では、距離が分子時計仮説に従って生成された場合にのみ、進化系統樹を正しく推定することが保証された。つまり、
+- 根から葉までの距離が等しい
+- 節点間の距離がそれらを結ぶパス中の辺の長さの和に等しい</p>
+<p>という条件を用いていたが、<b>近隣結合法</b>では、後者の条件のみを満たす場合でも進化系統樹を正しく推定することができる。</p>
+<p>基本的な発想はUPGMA法と同じで、「葉から根にという順番で木を生成していく。」</p>
+<p>相違点としては、<b>「根は定まらず無根系統樹が生成されていく」</b>ことと<b>「結合すべき対の選び方および新たに生成された節点と他の節点との距離の計算方法」</b>が異なることである。</p>
+<h4>距離の計算方法</h4>
+<p><b>「葉の間の距離がそれらを結ぶパス中の辺の長さの和に等しい」</b>という条件が成立するとき、その距離は<font color="red"><b>加法性(additivity)</b></font>を満たす、という。</p>
+<p>ここで、近隣の葉（同じ親を持つ葉）の対（<span class="math">\(i,j\)</span>）を何らかの方法で見つけたとする。次に、<span class="math">\(i,j\)</span> を隣接する節点として持つ節点 <span class="math">\(k\)</span> を新たに作成し、<span class="math">\(i,j\)</span> を削除して <span class="math">\(k\)</span> を新たな葉として扱う。</p>
+<p>この際にもちろん新しくできた <span class="math">\(k\)</span> から他の葉 <span class="math">\(m\)</span> までの距離を計算する必要があるが、これは加法性を用いると以下で計算できる。</p>
+<div class="math">$$d_{km} = \frac{1}{2}\left(d_{im} + d_{jm} -d_{ij}\right)$$</div>
+<p>なお、この式が成立することは以下から明らか</p>
+<div class="math">$$d_{im} = d_{ik} + d_{km},\quad d_{jm} = d_{jk} + d_{km},\quad d_{ij} = d_{jk} + d_{jk}$$</div>
+<h4>近隣の葉（<span class="math">\(i,j\)</span>）の選び方</h4>
+<p>次に、近隣の葉（<span class="math">\(i,j\)</span>）の選び方についてだが、単純に <span class="math">\(d_{ij}\)</span> が最小になるものを選んでしまうと誤った対を選ぶ場合があるので、<font color="red"><b>「他の葉までの平均距離を引く」</b></font>ことによって補正した距離を用いる。具体的には次で定義される。</p>
+<div class="math">$$d^{\prime}_{ij} = d_{ij} - (r_i + r_j),\quad r_i = \frac{1}{|L| - 2}\sum_{h\in L}d_{ih}$$</div>
+<p>なお、<span class="math">\(L\)</span> は（各時点での）葉の集合を表し、<span class="math">\(L\)</span> は葉の個数を表す。</p>
+<h4>アルゴリズム</h4>
+<ol>
+<li><span class="math">\(n\)</span> 個の入力配列 <span class="math">\(s_i(i=1,\ldots,n)\)</span> のそれぞれについて、孤立した節点（葉）<span class="math">\(i\)</span> をつくり、それらの節点の集合を <span class="math">\(L\)</span> とする。また、<span class="math">\(k\leftarrow n+1\)</span> とする。</li>
+<li><span class="math">\(L\)</span> から <font color="red"><span class="math">\(d^{\prime}\)</span> が</font>最小となる対（<span class="math">\(i,j\)</span>）の1つを求める。</li>
+<li>新しい節点 <span class="math">\(k\)</span> をつくり、<span class="math">\(L\)</span> 中の全ての <span class="math">\(m\)</span> について <span class="math">\(d_{km} = \frac{1}{2}\left(d_{im} + d_{jm} - d_{ij}\right)\)</span> を計算する。</li>
+<li>節点 <span class="math">\(k\)</span> と節点 <span class="math">\(i,j\)</span> を枝で結び、<span class="math">\(d_{ik} = \frac{1}{2}(d_{ij} + r_i - r_j), d_{jk} = \frac{1}{2}(d_{ij} - r_i + r_j)\)</span> とする。</li>
+<li><span class="math">\(L\)</span> から節点 <span class="math">\(i,j\)</span> を削除して節点 <span class="math">\(k\)</span> を追加し、<span class="math">\(k\leftarrow k+1\)</span> とする。</li>
+<li>ステップ <span class="math">\(2\sim5\)</span> を、<span class="math">\(L\)</span> の要素が2個になるまで繰り返し、最後に残った2個の節点を枝で結び、その長さを <span class="math">\(d_{ij}\)</span> とする。</li>
+</ol>
+<p>上のアルゴリズムでは、<span class="math">\(d_{ik}\)</span> を <span class="math">\(\frac{1}{2}(d_{ij} + r_i - r_j)\)</span> によって計算しているが、これは</p>
+<div class="math">$$
+\begin{aligned}
+d_{ik}
+&amp;=d_{im} - d_{km} = d_{im} - \frac{1}{2}(d_{im} + d_{jm} - d_{ij})\\
+&amp;= \frac{1}{2}(d_{im} - d_{jm} + d_{ij})\\
+&amp;= \frac{1}{2}\left(d_{ij} + \frac{1}{|L| - 2}\sum_{h\in L - \{i,j\}}(d_{ih} - d_{jh})\right)
+\end{aligned}
+$$</div>
+<p>によって正当性が確かめられる。</p>
+<h4>特徴</h4>
+<p>近隣結合法では、<b>距離の加法性</b>が満たされてさえいれば系統樹を正しく再構成できるという利点があるが、その一方で作成される系統樹が<b>無根系統樹</b>であるという欠点も持つ。</p>
+<p>この問題に対処するため、無根系統樹において根の位置を決定する方法がいくつか考案されている。その中で広く使われている方法として、<font color="red"><b>アウトグループ(outgroup)</b></font>を利用する、というものがある。</p>
+<p>これは、対象としている全ての種よりも明らかに遠い時期に枝分かれしたことがわかっている生物種を系統樹に追加し、<b>アウトグループと直接つながっている節点を根とする</b>という方法である。</p>
+<h2>17.7 Parsimony Method(最節約法)</h2>
+<p>ここまでは、配列間の<b>距離</b>情報を基に系統樹を推定する方法を説明してきたが、別のアプローチとして、<b>必要な置換の回数が最小となる</b>系統樹を推定する、という方法が提案されており、<font color="red"><b>最節約法(Parsimony Method)</b></font>と呼ばれている。</p>
+<p>最節約法では、基本的に文字の挿入・欠失は考えずに、<b>置換</b>のみを考える。そのため、全ての入力配列の長さは <span class="math">\(l\)</span> であると仮定し、内部節点に全体として置換の回数が最小となるように長さ <span class="math">\(l\)</span> の配列をそれぞれ割り当てていく。</p>
+<p>また、一般に文字 <span class="math">\(a\)</span> から文字 <span class="math">\(b\)</span> への置換コスト <span class="math">\(w(a,b)\)</span> を考え、コストの和の最小化を考える。節点 <span class="math">\(i\)</span> の親を <span class="math">\(p(i)\)</span> とし、根を <span class="math">\(2n-1\)</span> とすると、最節約法による進化系統樹推定問題は次のように定式化される。</p>
+<h3>定義</h3>
+<ul>
+<li>入力：長さ <span class="math">\(l\)</span> の <span class="math">\(n\)</span> 個の配列 <span class="math">\(s_i,\ldots,s_n\)</span></li>
+<li>出力：<span class="math">\(1,\ldots,n\)</span> を葉とし、次のコストが最小となる有根系統樹 <span class="math">\(T\)</span> と、内部節点 <span class="math">\(j\)</span> への配列割り当て <span class="math">\(s_j(j=nL1,\cdots, 2n-1)\)</span></li>
+</ul>
+<div class="math">$$\sum_{j=1}^{2n-2}\sum_{i=1}^lw(s_{p(j)}[i],s_j[i])$$</div>
+<p>この問題は、</p>
+<ul>
+<li>系統樹のトポロジーを固定した場合に、置換の回数が最小となる内部節点への配列の割り当て</li>
+<li>置換の回数が最小となるトポロジーの計算</li>
+</ul>
+<p>の二種類が必要だが、後者に関しては多項式時間アルゴリズムが存在していないため、一般に最節約法はNP困難であることが知られている。</p>
+<p>なお、前者に関しては動的計画法によって計算することが可能である。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-05-29T00:00:00+09:00"> 5 29, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-05-29T00:00:00+09:00"> 5 29, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                    <span>92</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3S/tags#fen-zi-jin-hua-xue-ref">分子進化学
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
