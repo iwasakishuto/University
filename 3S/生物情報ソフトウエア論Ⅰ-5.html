@@ -129,10 +129,12 @@
 
 <h3>Step1</h3>
 <h4>定義：L/S type</h4>
-<p>i番目のsuffixが(i+1)番目のsuffixより辞書式順序で
-- 小さい（S[i,n) &lt; S[i+1, n)）とき、S-type
-- 大きい（S[i,n) &gt; S[i+1, n)）とき、L-type</p>
-<p>なお、文字 "\<span class="math">\(" は最小の文字であり、suffix "\\)</span>" をS-typeと定義する。
+<p>i番目のsuffixが(i+1)番目のsuffixより辞書式順序で</p>
+<ul>
+<li>小さい（S[i,n) &lt; S[i+1, n)）とき、S-type</li>
+<li>大きい（S[i,n) &gt; S[i+1, n)）とき、L-type</li>
+</ul>
+<p>なお、文字 "＄" は最小の文字であり、suffix "＄" をS-typeと定義する。
 この時、以下が成り立つことは自明。</p>
 <div class="frame">
   <ul>
@@ -152,8 +154,7 @@
   </ul>
 </div>
 
-<p>https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_encoding.png?raw=true?raw=true
-これから、各suffixのtypeを <span class="math">\(\mathrm{O}(n)\)</span> 時間で決定することができる。</p>
+<p>これから、各suffixのtypeを <span class="math">\(\mathrm{O}(n)\)</span> 時間で決定することができる。</p>
 <table>
 <thead>
 <tr>
@@ -185,15 +186,17 @@
 <h4>有力な定理</h4>
 <p><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_theorem1.png?raw=true" width=50%></p>
 <h3>Step5</h3>
-<p>LMSをソートする。
-※あとでこのソートの説明を行う。ここでは、説明の流れ的に<b>ソートできたもの</b>とする。</p>
+<p>LMSをソートする。</p>
+<p>※あとでこのソートの説明を行う。ここでは、説明の流れ的に<b>ソートできたもの</b>とする。</p>
 <p><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step5.png?raw=true" width=50%></p>
 <h3>Step6</h3>
 <p>SAを正順に走査して L-type のsuffixを埋めていく。
 この時、S[(注目している番号)-1]がL-typeならば、相当するバケットの小さい順に入れていく。<b>この作業が"induced"の由来。LMSを利用して順番を推測している。</b></p>
-<p>頭文字が同じで、
-- L-type：S-typeよりは小さい
-- １つ右側が残りの中で最小</p>
+<p>頭文字が同じで、</p>
+<ul>
+<li>L-type：S-typeよりは小さい</li>
+<li>１つ右側が残りの中で最小</li>
+</ul>
 <p>なので、この作業で正しい場所に入れられることがわかる。</p>
 <table>
 <thead>
