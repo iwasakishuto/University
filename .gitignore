@@ -22,13 +22,16 @@ Icon?
 .DS_Store
 
 ## For-bug
-notes/index[0-9].html
-notes/index[0-9][0-9].html
-notes/tag/3s[0-9].html
-notes/tag/3s[0-9][0-9].html
-notes/author/shuto[0-9].html
-notes/author/shuto[0-9][0-9].html
-notes/category/javascript[0-9].html
-notes/category/javascript[0-9][0-9].html
-notes/tags/javascript[0-9].html
-notes/tags/javascript[0-9][0-9].html
+[0-9]S/index[0-9].html
+[0-9]S/index[0-9][0-9].html
+[0-9]S/tag/3s[0-9].html
+[0-9]S/tag/3s[0-9][0-9].html
+[0-9]S/author/shuto[0-9].html
+[0-9]S/author/shuto[0-9][0-9].html
+
+[0-9]A/index[0-9].html
+[0-9]A/index[0-9][0-9].html
+[0-9]A/tag/3s[0-9].html
+[0-9]A/tag/3s[0-9][0-9].html
+[0-9]A/author/shuto[0-9].html
+[0-9]A/author/shuto[0-9][0-9].html
