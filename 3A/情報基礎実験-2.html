@@ -204,6 +204,19 @@ c_{n+1} \widehat{\beta}\left(\mathbf{z}_{n}\right)
 &amp;= \frac{\gamma\left(\mathbf{z}_N\right)}{\widehat{\alpha}\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)}{p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} = 1 &amp; (13.30)
 \end{aligned}
 $$</div>
+<p>なお、ここで <span class="math">\((13.58)\)</span> でどのようにして <span class="math">\(c_n\)</span> を求めるかですが、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{R.H.S}\ (13.58)
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}}p\left(\mathbf{z}_{n-1}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\\
+&amp;=p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)
+\end{aligned}
+$$</div>
+<p>となることから、<span class="math">\((13.58)\)</span> の右辺を <span class="math">\(\mathbf{z}_n\)</span> について周辺化すれば、</p>
+<div class="math">$$\sum_{\mathbf{z}_{n}}p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = p\left(\mathbf{x}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = c_n$$</div>
+<p>となるので、<span class="math">\(c_n\)</span> が求められることがわかります。</p>
 <h3>おまけ（尤度関数）</h3>
 <p>尤度関数はスケーリング係数 <span class="math">\(c\)</span> を用いるだけで簡単に求められることがわかります。</p>
 <div class="math">$$p(\mathbf{X})=\prod_{n=1}^{N} c_{n}\qquad (13.63)$$</div>
