@@ -134,8 +134,7 @@ $$</div>
 <li>パラメータ <span class="math">\(\boldsymbol{\theta}^{\text {old }}\)</span> を用いて <span class="math">\(p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)\)</span> を最大化する。</li>
 <li>対数尤度関数の期待値 $Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)
 $ を求める。</li>
-<li><span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)
-$ を最大化するパラメータに更新する。\)</span>\boldsymbol{\theta}\rightarrow\boldsymbol{\theta}^{\text {old }}$</li>
+<li><span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)\)</span> を最大化するパラメータに更新する。<span class="math">\(\boldsymbol{\theta}\rightarrow\boldsymbol{\theta}^{\text {old }}\)</span></li>
 <li>1に戻る。</li>
 </ol>
 <div class="math">$$
@@ -151,7 +150,7 @@ $$</div>
 $$</div>
 <p>これらを用いると、<span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> が以下のように書き下せます。</p>
 <div class="math">$$
-\begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln \phi_{j k} \end{aligned}
+\begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln \phi_{j k} \end{aligned}\qquad (13.17)
 $$</div>
 <h3>Maximization step</h3>
 <p><b>※ 実際の計算の順番からは前後しますが、先にM stepを説明します。</b></p>
