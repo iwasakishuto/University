@@ -107,7 +107,7 @@
 <div class="row-fluid">
         <div class="span8 offset2 article-content">
 
-            
+
             <style type="text/css">/*!
 *
 * IPython notebook
@@ -829,8 +829,8 @@ div.output_area {
 div.output_area .MathJax_Display {
   text-align: left !important;
 }
-div.output_area 
-div.output_area 
+div.output_area
+div.output_area
 div.output_area img,
 div.output_area svg {
   max-width: 100%;
@@ -1060,7 +1060,7 @@ div.output_unrecognized a:hover {
 .rendered_html * + .alert {
   margin-top: 1em;
 }
-[dir="rtl"] 
+[dir="rtl"]
 div.text_cell {
   /* Old browsers */
   display: -webkit-box;
@@ -1110,10 +1110,10 @@ h6:hover .anchor-link {
 .text_cell.rendered .input_area {
   display: none;
 }
-.text_cell.rendered 
+.text_cell.rendered
 .text_cell.rendered .rendered_html tr,
 .text_cell.rendered .rendered_html th,
-.text_cell.rendered 
+.text_cell.rendered
 .text_cell.unrendered .text_cell_render {
   display: none;
 }
@@ -1222,13 +1222,14 @@ h6:hover .anchor-link {
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style><div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="第6回-2019/5/27--講師：浅井-潔">第6回 2019/5/27- 講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a><a class="anchor-link" href="#第6回-2019/5/27--講師：浅井-潔">¶</a></h1>
+<h1 id="第6回-2019/5/27">第6回 2019/5/27<a class="anchor-link" href="#第6回-2019/5/27">¶</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a></li>
 <p>　今回の講義は今までの復習であり、隠れマルコフモデルについて結構重点的に触れたので、<b>Baum-Welch アルゴリズムを用いて隠れマルコフモデルのパラメータを推定</b>し、<b>Viterbi アルゴリズムを用いて最大系列を推定</b>するプログラムを <code>Python</code> で実行して理解を深めます。なお、以下の説明で用いられている式番号はPRMLに基づいています。<br />
 　<code>Python</code> のコードだけ知りたい方は、<a href="#Program">ここ</a>まで飛ばしてください。</p>
 </div>
@@ -1687,7 +1688,7 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
         <span class="c1"># 放出確率</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phi</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="p">(</span><span class="n">M</span><span class="p">,</span> <span class="n">K</span><span class="p">))</span>       <span class="c1"># φの初期化</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">/=</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ITER_MAX</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ITER_MAX</span><span class="p">):</span>
             <span class="c1"># 更新前のパラメタを記録</span>
@@ -1698,7 +1699,7 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
             <span class="n">gamma</span><span class="p">,</span> <span class="n">xi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
             <span class="c1">#=== M step ===</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">M_step</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span><span class="n">xi</span><span class="p">)</span>
-            
+
             <span class="c1">#=== 終了条件(更新後のパラメータが近似的に等しいかを調べる) ===</span>
             <span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
                                 <span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span>
@@ -1706,16 +1707,16 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
             <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">past_params</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-08</span><span class="p">):</span>
                 <span class="k">break</span>
         <span class="k">return</span> <span class="n">it</span>
-            
+
     <span class="k">def</span> <span class="nf">E_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">)</span>
-        
+
         <span class="c1">#=== 前向き後向きアルゴリズムの漸化式 ===</span>
         <span class="n">alpha</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">])</span> <span class="c1"># 前向きアルゴリズムのαを記録</span>
         <span class="n">beta</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">N</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">])</span> <span class="c1"># 後向きアルゴリズムのβを記録</span>
         <span class="n">alpha</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1"># 初期化：α(z1) = p(x1|φ_z1)π_z1</span>
         <span class="n">beta</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>                                     <span class="c1"># 初期化：β(zN) = 1</span>
-        
+
         <span class="c1">#=== 動的計画法でαを計算 ===</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">)):</span>
             <span class="c1">#  α(zi) = ∑z_i−1 α(z_i−1) A_zi−1,zi * p(xi|ϕ_zi)</span>
@@ -1724,7 +1725,7 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
         <span class="c1">#=== 動的計画法でβを計算 ===</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
             <span class="c1"># β(zi)  = ∑β(z_i+1) p(x_i+1|ϕz_i+1) A_zi,zi+1</span>
-            <span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="o">=</span> <span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>        
+            <span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="o">=</span> <span class="p">(</span><span class="n">beta</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]])</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
 
         <span class="c1">#=== 上のα,βから、γを計算 α(zi)β(zi)/p(x) ===</span>
         <span class="n">gamma</span>  <span class="o">=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">beta</span>
@@ -1733,9 +1734,9 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
         <span class="c1">#=== 上のα,βから、ξを計算 ξ_i = α(z_i-1)β(zi)p(zi|φ_zi)A_z_i-1,zi / p(x) ===</span>
         <span class="n">xi</span>  <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">A</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">*</span> <span class="n">beta</span><span class="p">[</span><span class="mi">1</span><span class="p">:])[::,</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">alpha</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">xi</span> <span class="o">/=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">xi</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        
+
         <span class="k">return</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">xi</span>
-    
+
     <span class="k">def</span> <span class="nf">M_step</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">gamma</span><span class="p">,</span><span class="n">xi</span><span class="p">):</span>
         <span class="c1">#=== 初期状態のパラメタπを更新 πk=γ_1k/∑γ_1k ===</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pi</span> <span class="o">=</span> <span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1747,19 +1748,19 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
         <span class="c1">#=== 放出確率のパラメタφの更新 ϕ_kj=∑γ_ik*x_ij/∑∑γ_ik * x_ij ===</span>
         <span class="n">x</span>   <span class="o">=</span> <span class="n">gamma</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">M</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequences</span><span class="p">])[:,:,</span><span class="kc">None</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    
+
     <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">it</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
         <span class="n">gamma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
-        
+
         <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">gamma</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"state translation. (iteration=</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">it</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-        
+
     <span class="k">def</span> <span class="nf">plot_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
             <span class="nb">print</span><span class="p">(</span><span class="s2">"z(</span><span class="si">{}</span><span class="s2">): </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">pi</span><span class="p">[</span><span class="n">k</span><span class="p">]))</span>
-            
+
     <span class="k">def</span> <span class="nf">plot_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">"      【Before state】"</span><span class="p">)</span>
@@ -1775,7 +1776,7 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
                 <span class="n">A_form</span> <span class="o">+=</span> <span class="s2">"</span><span class="si">{:.3f}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">A_form</span><span class="p">)</span>
-        
+
     <span class="k">def</span> <span class="nf">plot_emission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
         <span class="n">z_format</span>  <span class="o">=</span> <span class="s2">" \ "</span>
@@ -1788,7 +1789,7 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">K</span><span class="p">):</span>
                 <span class="n">phi_form</span> <span class="o">+=</span> <span class="s2">"</span><span class="si">{:.3f}</span><span class="s2"> "</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">phi</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">k</span><span class="p">])</span>
             <span class="nb">print</span><span class="p">(</span><span class="n">phi_form</span><span class="p">)</span>
-            
+
     <span class="k">def</span> <span class="nf">plot_state_translation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
         <span class="n">gamma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
@@ -1796,8 +1797,8 @@ $$\omega(\mathbf{z}_{n+1}) = \ln p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1}) + \mathop{
             <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">gamma</span><span class="p">[:,</span><span class="n">k</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"z(</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
         <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
-            
+
+
     <span class="k">def</span> <span class="nf">plot_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
         <span class="n">gamma</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">E_step</span><span class="p">()</span>
@@ -2521,11 +2522,11 @@ DQwMDOIQQ7kbGBgYxCGGcjcwMDCIQwzlbmBgYBCH/H8/YPYiBHWACgAAAABJRU5ErkJggg==
 <div class="output_area">
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre> \ z(1)  z(2)  z(3)  
- A 0.000 0.392 0.127 
- T 0.370 0.000 0.309 
- G 0.000 0.608 0.256 
- C 0.630 0.000 0.308 
+<pre> \ z(1)  z(2)  z(3)
+ A 0.000 0.392 0.127
+ T 0.370 0.000 0.309
+ G 0.000 0.608 0.256
+ C 0.630 0.000 0.308
 </pre>
 </div>
 </div>
@@ -2653,10 +2654,10 @@ z(3): 0.000
 <div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>      【Before state】
-      z(1)  z(2)  z(3)  
- z(3) 0.821 0.080 0.046 
- z(3) 0.066 0.873 0.031 
- z(3) 0.113 0.048 0.923 
+      z(1)  z(2)  z(3)
+ z(3) 0.821 0.080 0.046
+ z(3) 0.066 0.873 0.031
+ z(3) 0.113 0.048 0.923
 </pre>
 </div>
 </div>
@@ -2785,8 +2786,8 @@ AABJRU5ErkJggg==
             <div>
 </div>
 
-            
-            
+
+
             <hr/>
         </div>
         <section>
@@ -2844,7 +2845,7 @@ AABJRU5ErkJggg==
         </script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
 
-    
+
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
     </body>
     <!-- Theme: Elegant built for Pelican

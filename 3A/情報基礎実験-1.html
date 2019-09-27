@@ -117,33 +117,37 @@ $$</div>
 <li><span class="math">\(\mathbf{Z} = \{\mathbf{z}_1,\ldots,\mathbf{z}_N\}\)</span></li>
 <li><span class="math">\(\boldsymbol{\theta}=\{\boldsymbol{\pi}, \mathbf{A}, \boldsymbol{\phi}\}\)</span></li>
 </ul>
+<p>※ 一般に放出確率 <span class="math">\(p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)\)</span> は、<b>二値のベクトル <span class="math">\(\mathbf{z}_n\)</span> の <span class="math">\(K\)</span> 個の可能な状態に対応した <span class="math">\(K\)</span> 個の要素を持つベクトルからなる任意の分布</b></p>
+<div class="math">$$
+p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \phi\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \phi_{k}\right)^{z_{n k}}\qquad (13.9)
+$$</div>
+<p>を考えることも可能ですが、今回は下記の離散多項分布を考えます。</p>
 <table>
 <thead>
 <tr>
-<th align="left"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="left">Name</th>
+<th align="center">Probability</th>
+<th align="center">Conditional Distribution</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="left">initial state</td>
 <td align="center"><span class="math">\(\pi_{k} \equiv p\left(z_{1 k}=1\right)\)</span></td>
-<td align="center"><span class="math">\(p\left(\mathbf{z}_{1} \mid \pi\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\)</span></td>
+<td align="center"><span class="math">\(p\left(\mathbf{z}_{1} \mid \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\quad (13.8)\)</span></td>
 </tr>
 <tr>
 <td align="left">transition probability</td>
 <td align="center"><span class="math">\(A_{j k} \equiv p\left(z_{n k}=1\mid z_{n-1, j}=1\right)\)</span></td>
-<td align="center"><span class="math">\(p\left(\mathbf{z}_{n} \mid \mathbf{z}_{n-1}, \mathbf{A}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\)</span></td>
+<td align="center"><span class="math">\(p\left(\mathbf{z}_{n} \mid \mathbf{z}_{n-1}, \mathbf{A}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\quad (13.7)\)</span></td>
 </tr>
 <tr>
 <td align="left">emission probability</td>
 <td align="center"><span class="math">\(\phi_{i k}\equiv p\left(x_{n i}=1 \mid z_{n k}=1\right)\)</span></td>
-<td align="center"><span class="math">\(p(\mathbf{x}_n \mid \mathbf{z}_n, \boldsymbol{\phi})=\prod_{i=1}^{D} \prod_{k=1}^{K} \phi_{i k}^{x_{ni} z_{nk}}\)</span></td>
+<td align="center"><span class="math">\(p(\mathbf{x}_n \mid \mathbf{z}_n, \boldsymbol{\phi})=\prod_{i=1}^{D} \prod_{k=1}^{K} \phi_{i k}^{x_{ni} z_{nk}}\quad (13.22)\)</span></td>
 </tr>
 </tbody>
 </table>
-<p><b>※ 一般に放出確率はどのような分布を考えることも可能ですが、今回は上記の離散多項分布を考えます。</b></p>
 <h3>尤度関数</h3>
 <p>ここで、データ集合 <span class="math">\(\mathbf{X}\)</span> が観測された際に、上記の同時分布を潜在変数 <span class="math">\(\mathbf{Z}\)</span> について周辺化することで、尤度関数は以下のように記述されます。</p>
 <div class="math">$$
