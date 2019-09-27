@@ -202,7 +202,7 @@ article ol a,
 blockquote a,
 article div.article-content ul:not(.articles-timeline):not(.related-posts-list) a {
     border-bottom: thin dashed #A9A9A9;
-    color: #000;
+    color: #3875d7;
 }
 article p a:hover,
 article ol a:hover,
