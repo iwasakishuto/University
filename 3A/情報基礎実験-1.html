@@ -19,8 +19,8 @@
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-09-26T00:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-09-26T00:00:00+09:00" />
+<meta property="og:article:published_time" content="2019-09-26T13:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-09-26T13:00:00+09:00" />
 <meta name="twitter:title" content="HMMの最適化 ">
 <meta name="twitter:description" content="">
 
@@ -108,21 +108,42 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>隠れマルコフモデルは、以下の式で表されます。</p>
+            <p>隠れマルコフモデルは、一般に以下の式で表されます。</p>
 <div class="math">$$
 p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)
 $$</div>
 <ul>
 <li><span class="math">\(\mathbf{X} = \{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span>:</li>
 <li><span class="math">\(\mathbf{Z} = \{\mathbf{z}_1,\ldots,\mathbf{z}_N\}\)</span></li>
-<li><span class="math">\(\boldsymbol{\theta}=\{\boldsymbol{\pi}, \mathbf{A}, \boldsymbol{\phi}\}\)</span><ul>
-<li><span class="math">\(\pi_{k} \equiv p\left(z_{1 k}=1\right)\)</span>: <font color="red"><b>initial state</b></font></li>
-<li><span class="math">\(A_{j k} \equiv p\left(z_{n k}=1 | z_{n-1, j}=1\right)\)</span>: <font color="red"><b>transition probability</b></font></li>
-<li><span class="math">\(\phi_{j k}\equiv p\left(x_{n k}=1 | z_{n j}=1\right)\)</span>: <font color="red"><b>emission probability</b></font></li>
+<li><span class="math">\(\boldsymbol{\theta}=\{\boldsymbol{\pi}, \mathbf{A}, \boldsymbol{\phi}\}\)</span></li>
 </ul>
-</li>
-</ul>
-<p><b>※ 一般に放出確率はどのような分布を考えることも可能ですが、今回は観測変数 <span class="math">\(\mathbf{x}\)</span> も離散の場合のみを考えます。</b></p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">initial state</td>
+<td align="center"><span class="math">\(\pi_{k} \equiv p\left(z_{1 k}=1\right)\)</span></td>
+<td align="center"><span class="math">\(p\left(\mathbf{z}_{1} \mid \pi\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\)</span></td>
+</tr>
+<tr>
+<td align="left">transition probability</td>
+<td align="center"><span class="math">\(A_{j k} \equiv p\left(z_{n k}=1\mid z_{n-1, j}=1\right)\)</span></td>
+<td align="center"><span class="math">\(p\left(\mathbf{z}_{n} \mid \mathbf{z}_{n-1}, \mathbf{A}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\)</span></td>
+</tr>
+<tr>
+<td align="left">emission probability</td>
+<td align="center"><span class="math">\(\phi_{i k}\equiv p\left(x_{n i}=1 \mid z_{n k}=1\right)\)</span></td>
+<td align="center"><span class="math">\(p(\mathbf{x}_n \mid \mathbf{z}_n, \boldsymbol{\phi})=\prod_{i=1}^{D} \prod_{k=1}^{K} \phi_{i k}^{x_{ni} z_{nk}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><b>※ 一般に放出確率はどのような分布を考えることも可能ですが、今回は上記の離散多項分布を考えます。</b></p>
 <h3>尤度関数</h3>
 <p>ここで、データ集合 <span class="math">\(\mathbf{X}\)</span> が観測された際に、上記の同時分布を潜在変数 <span class="math">\(\mathbf{Z}\)</span> について周辺化することで、尤度関数は以下のように記述されます。</p>
 <div class="math">$$
@@ -147,17 +168,18 @@ $$</div>
 <div class="math">$$
 \begin{aligned} \gamma\left(z_{n k}\right) &amp;=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n k} &amp;(13.15)\\ \xi\left(z_{n-1, j}, z_{n k}\right) &amp;=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n-1, j} z_{n k} &amp;(13.16)\end{aligned}
 $$</div>
-<p>これらを用いると、<span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> が以下のように書き下せます。</p>
+<p>これらを用いると、<span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> が以下のように書き下せます。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Qfunction">（計算過程）</a></p>
 <div class="math">$$
-\begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K} \gamma\left(z_{n k}\right) \ln \phi_{j k} \end{aligned}\qquad (13.17)
+\begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K}\gamma\left(z_{n k}\right) \sum_{i=1}^Dx_{ni} \ln \phi_{i k} \end{aligned}\qquad (13.17)
 $$</div>
 <h3>Maximization step</h3>
 <p><b>※ 実際の計算の順番からは前後しますが、先にM stepを説明します。</b></p>
-<p>上記の <span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> を各パラメータ <span class="math">\(\boldsymbol{\theta}\)</span> に関して最大化するのは（別ブロックに別れているから）簡単で、それぞれ<b>適当なラグランジュ乗数を導入する</b>ことで、以下のように求まります。</p>
+<p>上記の <span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> を各パラメータ <span class="math">\(\boldsymbol{\theta}\)</span> に関して最大化するのは（別ブロックに別れているから）簡単で、それぞれ<b>適当なラグランジュ乗数を導入する</b>ことで、以下のように求まります。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Mstep">（計算過程）</a></p>
 <div class="math">$$
 \begin{aligned}
-\pi_{k}&amp;= \frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)} &amp; (13.18)\\ A_{j k}&amp;= \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} &amp; (13.19)\\
-\mu_{i k}&amp;=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)} &amp; (13.23)
+\pi_{k}&amp;= \frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)} &amp; (13.18)\\
+A_{j k}&amp;= \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} &amp; (13.19)\\
+\phi_{i k}&amp;=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)} &amp; (13.23)
 \end{aligned}
 $$</div>
 <h3>Expectation step</h3>
@@ -165,8 +187,8 @@ $$</div>
 <div class="math">$$
 \begin{aligned}
 \gamma\left(\mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{z}_{n} | \mathbf{X}\right)=\frac{p\left(\mathbf{X} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (\because \text{Bayes' theorem}) &amp;(13.32)\\
-&amp;=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p(\mathbf{X})} \qquad (\because \text{conditional independence})\\
+&amp;=p\left(\mathbf{z}_{n} | \mathbf{X}\right)=\frac{p\left(\mathbf{X} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\quad (\because \text{Bayes' theorem}) &amp;(13.32)\\
+&amp;=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p(\mathbf{X})} \quad (\because \text{conditional independence})\\
 &amp;= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} &amp; (13.33)
 \end{aligned}
 $$</div>
@@ -176,7 +198,7 @@ $$</div>
 \beta\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) &amp; (13.35)
 \end{aligned}
 $$</div>
-<p>条件付き独立性を用いてそれぞれ変形すると、以下の再帰式を導くことができます。</p>
+<p>条件付き独立性を用いてそれぞれ変形すると、以下の再帰式を導くことができます。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Estep">（計算過程）</a></p>
 <div class="math">$$
 \begin{aligned}
 \alpha\left(\mathbf{z}_{n}\right)
@@ -190,7 +212,7 @@ $$</div>
 \end{aligned}
 $$</div>
 <p>※ なお、ここで <span class="math">\(\alpha\)</span> の再起式を<span class="marker-pink">forward-algorithm</span>、<span class="math">\(\beta\)</span> の再起式を<span class="marker-pink">backward-algorithm</span>と呼ぶことがあります。</p>
-<p>また、これらを用いて <span class="math">\(\xi\)</span> を記述することもでき、以下のように表せます。</p>
+<p>また、これらを用いて <span class="math">\(\xi\)</span> を記述することもでき、以下のように表せます。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#gamma-xi">（計算過程）</a></p>
 <div class="math">$$\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.43)$$</div>
 <p>以上でBaum-Welchに必要な計算式が求まりました。</p>
 <h3>おまけ（尤度関数）</h3>
@@ -276,20 +298,20 @@ $$</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-09-26T00:00:00+09:00">Sep 26, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-09-26T13:00:00+09:00">Sep 26, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-09-26T00:00:00+09:00">Sep 26, 2019</time>
+<time datetime="2019-09-26T13:00:00+09:00">Sep 26, 2019</time>
 
             <h5>Category</h5>
             <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>2</span>
+                    <span>3</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-ref">情報基礎実験
-                    <span>2</span>
+                    <span>3</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

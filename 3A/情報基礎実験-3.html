@@ -14,17 +14,17 @@
 <meta name="keywords" content="3A, 情報基礎実験, 情報基礎実験, " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="HMMの最適化の計算過程 "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html" />
+<meta property="og:title" content="HMMのスケーリング "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-3.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-09-26T14:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-09-26T14:00:00+09:00" />
-<meta name="twitter:title" content="HMMの最適化の計算過程 ">
+<meta property="og:article:published_time" content="2019-09-26T15:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-09-26T15:00:00+09:00" />
+<meta name="twitter:title" content="HMMのスケーリング ">
 <meta name="twitter:description" content="">
 
-        <title>HMMの最適化の計算過程  · 3A
+        <title>HMMのスケーリング  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html"> HMMの最適化の計算過程  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-3.html"> HMMのスケーリング  </a></h1>
     </header>
 </div>
 
@@ -108,96 +108,118 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>ここでは、<a href="https://iwasakishuto.github.io/University/3A/%E6%83%85%E5%A0%B1%E5%9F%BA%E7%A4%8E%E5%AE%9F%E9%A8%93-1.html">HMMの最適化</a>で省略した計算過程について記述します。</p>
-<div id="Qfunction"></div>
-
-<h3><span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)\)</span></h3>
-<div id="Mstep"></div>
-
-<h3>Maximization step</h3>
-<div class="math">$$
-\begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K}\gamma\left(z_{n k}\right) \sum_{i=1}^Dx_{ni} \ln \phi_{i k} \end{aligned}\qquad (13.17)
-$$</div>
-<h4><span class="math">\(\boldsymbol{\pi}\)</span></h4>
+            <p>HMMを実装する際に課題となるのが、forward-algorithm で <span class="math">\(\alpha\)</span> を再帰的に求める際に、<span class="math">\(\alpha\left(\mathbf{z}_{n-1}\right)\)</span> に <span class="math">\(p(\mathbf{z}_n|\mathbf{z}_{n-1})\)</span> と <span class="math">\(p(\mathbf{x}_n|\mathbf{z}_n)\)</span> をかけるため、値が非常に小さくなり、計算機の<span class="marker-info" aria-label="識別可能な信号の最小値と最大値の比率">ダイナミックレンジ</span>を超えてしまうことです。</p>
+<p>そこで、ここでは <span class="math">\(\alpha\left(\mathbf{z}_{n}\right)\)</span> と <span class="math">\(\beta\left(\mathbf{z}_{n}\right)\)</span> にスケーリングを施し、それらの値が <span class="math">\(1\)</span> のオーダーに止まるようにする手法を説明します。</p>
+<h3>forward-backward <span class="math">\(\alpha,\beta\)</span></h3>
+<p>forward-backward algorithm で用いられていた <span class="math">\(\alpha,\beta\)</span> は以下のように定義されていました。</p>
 <div class="math">$$
 \begin{aligned}
-L\left(\boldsymbol{\pi},\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right) &amp;= \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k} + \lambda_1\left(\sum_{k=1}^K\pi_k - 1\right)\\
-\frac{\partial L}{\partial \pi_k}&amp;=\frac{\gamma\left(z_{1 k}\right)}{\pi_k} + \lambda_1 = 0\quad \therefore \pi_k = -\frac{\gamma\left(z_{1 k}\right)}{\lambda_1}\\
-\frac{\partial L}{\partial \lambda_1}&amp;=\sum_{k=1}^K\pi_k - 1 = 0\quad \therefore\lambda_1 = -\sum_{k=1}^K\gamma\left(z_{1 k}\right)\\
-\therefore\pi_k^{\star} &amp;= \frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)}
-\end{aligned}
-$$</div>
-<h4><span class="math">\(\boldsymbol{A}\)</span></h4>
-<div class="math">$$\begin{aligned}
-L\left(\boldsymbol{A},\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)
-&amp; = \sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} + \sum_{j=1}^K\lambda_{2,j}\left(\sum_{k=1}^K A_{jk} - 1\right)\\
-\frac{\partial L}{\partial A_{jk}} &amp;= \sum_{n=2}^{N}\frac{\xi\left(z_{n-1, j}, z_{n k}\right)}{A_{jk}} + \lambda_{2,j} = 0\quad \therefore A_{jk} = -\frac{\sum_{n=2}^N\xi\left(z_{n-1, j}, z_{n k}\right)}{\lambda_{2,j}}\\
-\frac{\partial L}{\partial \lambda_{2,j}} &amp;= \sum_{k=1}^K A_{jk} - 1 = 0\quad \therefore \lambda_{2,j} = -\sum_{k=1}^K\sum_{n=2}^N\xi\left(z_{n-1, j}, z_{n k}\right)\\
-\therefore A_{jk}^{\star}&amp;=\frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)}
-\end{aligned}$$</div>
-<h4><span class="math">\(\boldsymbol{\phi}\)</span></h4>
-<div class="math">$$\begin{aligned}
-L\left(\boldsymbol{\phi},\boldsymbol{\theta}, \boldsymbol{\theta}^{\text { old }}\right)
-&amp; = \sum_{n=1}^{N} \sum_{k=1}^{K}\gamma\left(z_{n k}\right) \sum_{i=1}^Dx_{ni} \ln \phi_{i k} + \sum_{k=1}^K\lambda_{3,k}\left( \sum_{i=1}^D\phi_{ik} - 1\right)\\
-\frac{\partial L}{\partial\phi_{ik}} &amp;= \frac{\sum_{n=1}^N\gamma\left(z_{n k}\right)x_{ni}}{\phi_{ik}} + \lambda_{3,k}=0\quad \therefore \phi_{ik} = -\frac{\sum_{n=1}^N\gamma\left(z_{n k}\right)x_{ni}}{\lambda_{3,k}}\\
-\frac{\partial L}{\partial\lambda_{3,k}} &amp;= \sum_{i=1}^D\phi_{ik} - 1 = 0 \quad \therefore \lambda_{3,k} = -\sum_{i=1}^D\sum_{n=1}^N\gamma\left(z_{n k}\right)x_{ni} = -\sum_{i=1}^D\gamma\left(z_{n k}\right)\\
-\therefore \phi_{ik}^{\star} &amp;= \frac{\sum_{n=1}^N\gamma\left(z_{n k}\right)x_{ni}}{\sum_{i=1}^D\gamma\left(z_{n k}\right)}
-\end{aligned}$$</div>
-<div id="Estep"></div>
-
-<h3>Expectation step</h3>
-<div class="math">$$
-\begin{aligned}
-\gamma\left(\mathbf{z}_{n}\right) &amp;=p\left(\mathbf{z}_{n} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right) &amp;(13.13)\\ \xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right) &amp;=p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right) &amp;(13.14)\\
 \alpha\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) &amp; (13.34)\\
-\beta\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) &amp; (13.35)\\
+\beta\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) &amp; (13.35)
 \end{aligned}
 $$</div>
-<div id="forward-algorithm"></div>
-
-<h4>forward-algorithm <span class="math">\((\alpha)\)</span></h4>
-<div class="math">$$\begin{aligned}
-\alpha\left(\mathbf{z}_{n}\right)
-&amp; =p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) \\
-&amp; =p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right) \\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right) \quad (\because \text{conditional independence})\\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n}\right) \\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n-1}, \mathbf{z}_{n}\right) \quad (\because \text{demarginalization})\\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n-1}\right) \\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n-1}\right) \quad (\because \text{conditional independence})\\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}, \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \\
-&amp; =p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \alpha(\mathbf{z}_{n-1})p(\mathbf{z} | \mathbf{z}_{n-1})\\
-\end{aligned}$$</div>
-<div id="backward-algorithm"></div>
-
-<h4>backward-algorithm <span class="math">\((\beta)\)</span></h4>
-<div class="math">$$\begin{aligned}
-\beta\left(\mathbf{z}_{n}\right)
-&amp; =p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) \\
-&amp; =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N}, \mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \quad (\because \text{demarginalization})\\
-&amp; =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}, \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \\
-&amp; =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \quad (\because \text{conditional independence})\\
-&amp; =\sum_{\mathbf{z}_{n+1}} p\left(\mathbf{x}_{n+2}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) \quad (\because \text{conditional independence})\\
-&amp; =\sum_{\mathbf{z}_{n+1}} \beta(\mathbf{z}_{n+1})p(\mathbf{x}_{n+1}|\mathbf{z}_{n+1})p(\mathbf{z}_{n+1}|\mathbf{z}_n)\qquad (13.38)
-\end{aligned}$$</div>
-<div id="gamma-xi"></div>
-
-<h4><span class="math">\(\gamma,\xi\)</span></h4>
+<h3>Scaling factors</h3>
+<p>まず、スケーリングされた <span class="math">\(\alpha,\beta\)</span> は以下のように表されます。スケーリングによって、<span class="marker-pink"><span class="math">\(\alpha\)</span> は高々 <span class="math">\(K\)</span> 個の変数上の確率分布</span>、<span class="marker-pink"><span class="math">\(\beta\)</span> は2つの条件付き確率の比</span>になることがわかります。</p>
+<div class="math">$$
+\begin{aligned}
+\widehat{\alpha}\left(\mathbf{z}_{n}\right)
+&amp;=p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} &amp; (13.55)\\
+\widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp;=\frac{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)}=\frac{\beta\left(\mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} &amp; (13.61)
+\end{aligned}
+$$</div>
+<p>ここで、これらと <span class="math">\(\alpha,\beta\)</span> を関連付けるためのスケーリング係数 <span class="math">\(c\)</span> を導入します。</p>
+<div class="math">$$
+c_{n}=p\left(\mathbf{x}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}\right)\qquad (13.56)
+$$</div>
+<p>すると、</p>
+<div class="math">$$
+\begin{aligned}
+p\left(\mathbf{x}_1,\ldots,\mathbf{x}_n\right)
+&amp;= p\left(\mathbf{x}_n | \mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\cdots p\left(\mathbf{x}_3 | \mathbf{x}_1,\mathbf{x}_{2}\right)p\left(\mathbf{x}_2 | \mathbf{x}_1\right)p(\mathbf{x}_1)\\
+&amp;= c_n\cdots c_3c_2c_1\\
+&amp;= \prod_{m=1}^{n} c_{m}
+\end{aligned}\qquad (13.58)
+$$</div>
+<p>と展開することができるので、</p>
+<div class="math">$$
+\begin{aligned}
+\alpha\left(\mathbf{z}_{n}\right)&amp;=p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)=\left(\prod_{m=1}^{n} c_{m}\right) \widehat{\alpha}\left(\mathbf{z}_{n}\right) &amp; (13.58)\\
+\beta\left(\mathbf{z}_{n}\right)&amp;=p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)\widehat{\beta}\left(\mathbf{z}_{n}\right) = \left(\prod_{m=n+1}^{N} c_{m}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right) &amp; (13.60)
+\end{aligned}
+$$</div>
+<p>と対応関係がわかります。</p>
+<h3><span class="math">\(\gamma,\xi\)</span></h3>
+<p>続いて、<span class="math">\(\gamma,\xi\)</span> と <span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span> の対応関係を求めます。</p>
+<h4><span class="math">\(\alpha,\beta\)</span></h4>
+<p><span class="math">\(\alpha,\beta\)</span> を用いると、以下のように表されていました。</p>
 <div class="math">$$
 \begin{aligned}
 \gamma\left(\mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{z}_{n} | \mathbf{X}\right)=\frac{p\left(\mathbf{X} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\quad (\because \text{Bayes' theorem}) &amp;(13.32)\\
-&amp;=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p(\mathbf{X})} \quad (\because \text{conditional independence})\\
-&amp;= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} &amp; (13.33)
+&amp;= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
+&amp; (13.33)\\
+\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
+&amp;=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
+&amp;(13.43)
+\end{aligned}$$</div>
+<h4><span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span></h4>
+<p>先の対応関係を用いれば、<span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span> を用いると、</p>
+<div class="math">$$
+\begin{aligned}
+\gamma\left(\mathbf{z}_{n}\right) &amp;=\widehat{\alpha}\left(\mathbf{z}_{n}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp; (13.64)\\
+\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
+&amp;=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{-1}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp; (13.65)
 \end{aligned}
 $$</div>
-<div class="math">$$\begin{aligned}
-\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n} | \mathbf{X}\right) \\
-&amp;=\frac{p(\mathbf{X} | \mathbf{z}_{n-1}, \mathbf{z}_{n}) p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)}{p(\mathbf{X})} \quad (\because \text{Bayes' theorem})\\
-&amp;=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1} | \mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n-1}\right)}{p(\mathbf{X})} \quad (\because \text{conditional independence})\\
-&amp;=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{x}_{n}\right)}{p(\mathbf{X})}\qquad (13.43)
-\end{aligned}$$</div>
+<p>と表されることがわかります。</p>
+<h3>Recursion</h3>
+<p>最後に、再帰式の対応関係も求めます。</p>
+<h4><span class="math">\(\alpha,\beta\)</span></h4>
+<div class="math">$$
+\begin{aligned}
+\alpha\left(\mathbf{z}_{n}\right)
+&amp;=p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) &amp; (13.36)\\
+\alpha\left(\mathbf{z}_{1}\right)
+&amp;=p\left(\mathbf{x}_{1}, \mathbf{z}_{1}\right)=p\left(\mathbf{z}_{1}\right) p\left(\mathbf{x}_{1} | \mathbf{z}_{1}\right)=\prod_{k=1}^{K}\left\{\pi_{k} p\left(\mathbf{x}_{1} | \boldsymbol{\phi}_{k}\right)\right\}^{z_{1 k}} &amp; (13.37)\\
+\beta\left(\mathbf{z}_{n}\right)
+&amp;=\sum_{\mathbf{z}_{n+1}} \beta\left(\mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) &amp; (13.38)\\
+\beta\left(\mathbf{z}_{N}\right)
+&amp;= \frac{\gamma\left(\mathbf{z}_N\right)p\left(\mathbf{X}\right)}{\alpha\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)p(\mathbf{X})}{p\left(\mathbf{X}, \mathbf{z}_{N}\right)} = 1 &amp; (13.30)
+\end{aligned}
+$$</div>
+<h4><span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span></h4>
+<div class="math">$$
+\begin{aligned}
+c_{n} \widehat{\alpha}\left(\mathbf{z}_{n}\right)
+&amp;=p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)
+&amp; (13.58)\\
+\widehat{\alpha}\left(\mathbf{z}_{1}\right)
+&amp;=p\left(\mathbf{z}_{1}| \mathbf{x}_{1}\right)=\frac{p\left(\mathbf{z}_{1}\right)p\left(\mathbf{x}_{1}| \mathbf{z}_{1}\right)}{p\left(\mathbf{x}_{1}\right)} = \frac{\prod_{k=1}^{K}\left\{\pi_{k} p\left(\mathbf{x}_{1} | \boldsymbol{\phi}_{k}\right)\right\}^{z_{1 k}}}{p\left(\mathbf{x}_{1}\right)}\\
+c_{n+1} \widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp;=\sum_{\mathbf{z}_{n+1}} \widehat{\beta}\left(\mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right)
+&amp;(13.62)\\
+\widehat{\beta}\left(\mathbf{z}_{N}\right)
+&amp;= \frac{\gamma\left(\mathbf{z}_N\right)}{\widehat{\alpha}\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)}{p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} = 1 &amp; (13.30)
+\end{aligned}
+$$</div>
+<p>なお、ここで <span class="math">\((13.58)\)</span> でどのようにして <span class="math">\(c_n\)</span> を求めるかですが、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{R.H.S}\ (13.58)
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}}p\left(\mathbf{z}_{n-1}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\\
+&amp;=p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)
+\end{aligned}
+$$</div>
+<p>となることから、<span class="math">\((13.58)\)</span> の右辺を <span class="math">\(\mathbf{z}_n\)</span> について周辺化すれば、</p>
+<div class="math">$$\sum_{\mathbf{z}_{n}}p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = p\left(\mathbf{x}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = c_n$$</div>
+<p>となるので、<span class="math">\(c_n\)</span> が求められることがわかります。</p>
+<h3>おまけ（尤度関数）</h3>
+<p>尤度関数はスケーリング係数 <span class="math">\(c\)</span> を用いるだけで簡単に求められることがわかります。</p>
+<div class="math">$$p(\mathbf{X})=\prod_{n=1}^{N} c_{n}\qquad (13.63)$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -269,10 +291,10 @@ $$</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-09-26T14:00:00+09:00">Sep 26, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-09-26T15:00:00+09:00">Sep 26, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-09-26T14:00:00+09:00">Sep 26, 2019</time>
+<time datetime="2019-09-26T15:00:00+09:00">Sep 26, 2019</time>
 
             <h5>Category</h5>
             <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
