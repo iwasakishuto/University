@@ -108,16 +108,49 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>ここでは、<a href="https://iwasakishuto.github.io/University/3A/%E6%83%85%E5%A0%B1%E5%9F%BA%E7%A4%8E%E5%AE%9F%E9%A8%93-1.html">HMMの最適化</a>で省略した計算過程について記述します。</p>
+            <p>ここでは、<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-1.html">HMMの最適化</a>で省略した計算過程について記述します。</p>
 <div id="Qfunction"></div>
 
 <h3><span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)\)</span></h3>
-<div id="Mstep"></div>
-
-<h3>Maximization step</h3>
+<div class="math">$$
+\begin{aligned}
+p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})&amp;=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)\\
+&amp;=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\left[ \prod_{n=2}^{N}\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}} \right] \prod_{m=1}^{N}\prod_{i=1}^{D} \prod_{k=1}^{K} \phi_{i k}^{x_{ni} z_{nk}}\\
+\therefore\ln p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta}) &amp;=\sum_{k=1}^Kz_{1k}\ln\pi_k\left[\sum_{n=2}^N\sum_{k=1}^K\sum_{j=1}^Kz_{n-1,j}z_{nk}\ln A_{jk}\right]\sum_{m=1}^N\sum_{i=1}^D\sum_{k=1}^Kx_{ni}z_{nk}\ln\phi_{ik}
+\end{aligned}
+$$</div>
+<p>であるから、これを <span class="math">\((13.12)\)</span> に代入して、</p>
+<div class="math">$$
+\begin{aligned}
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=&amp;\sum_{\mathbf{Z}} p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right) \ln p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})\qquad (13.12)\\
+=&amp; \sum_{\mathbf{Z}} p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)\sum_{k=1}^Kz_{1k}\ln\pi_k+\sum_{\mathbf{Z}} p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)\sum_{n=2}^N\sum_{k=1}^K\sum_{j=1}^Kz_{n-1,j}z_{nk}\ln A_{jk}\\
+&amp;+\sum_{\mathbf{Z}} p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)\sum_{m=1}^N\sum_{i=1}^D\sum_{k=1}^Kx_{ni}z_{nk}\ln\phi_{ik}
+\end{aligned}
+$$</div>
+<p>ここで、<span class="math">\(\sum_{\mathbf{Z}} = \sum_{\mathbf{z_1},\mathbf{z_2},\ldots,\mathbf{z_N}}\)</span> なので、それぞれ<span class="marker-pink">関係の無い部分を周辺化</span>でき、</p>
+<div class="math">$$
+\begin{aligned}
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=&amp; \sum_{k=1}^K\sum_{\mathbf{z_1}} p\left(\mathbf{z_1} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)z_{1k}\ln\pi_k+\sum_{n=2}^N\sum_{k=1}^K\sum_{j=1}^K\sum_{\mathbf{z_{n-1},z_n}}p\left(\mathbf{z_{n-1},z_n} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)z_{n-1,j}z_{nk}\ln A_{jk}\\
+&amp;+\sum_{m=1}^N\sum_{i=1}^D\sum_{k=1}^K\sum_{\mathbf{z_n}}p\left(\mathbf{z_n} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)x_{ni}z_{nk}\ln\phi_{ik}\\
+\end{aligned}$$</div>
+<p>となります。また、<a href="#Estep"><span class="math">\(\gamma,\xi\)</span> の定義</a>を用いることで</p>
+<div class="math">$$\begin{aligned}
+Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=&amp; \sum_{k=1}^K\left(\sum_{\mathbf{z_1}} \gamma\left(\mathbf{z}_1\right)z_{1k}\right)\ln\pi_k+\sum_{n=2}^N\sum_{k=1}^K\sum_{j=1}^K\left(\sum_{\mathbf{z_{n-1},z_n}}\xi\left(\mathbf{z_{n-1},z_{n}}\right) z_{n-1,j}z_{nk}\right)\ln A_{jk}\\
+&amp;+\sum_{m=1}^N\sum_{i=1}^D\sum_{k=1}^K\left(\sum_{\mathbf{z_n}}\gamma\left(\mathbf{z}_n\right)x_{ni}z_{nk}\right)\ln\phi_{ik}
+\end{aligned}
+$$</div>
+<p>と書き直せます。この時、潜在変数が離散なので、<span class="math">\(\gamma,\xi\)</span> はそれぞれ和が <span class="math">\(1\)</span> となる <span class="math">\(K,\left(K\times K\right)\)</span> 個の非負の数の集合を用いて以下のように記述できます。</p>
+<div class="math">$$
+\begin{aligned} \gamma\left(z_{n k}\right) &amp;=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n k} &amp;(13.15)\\ \xi\left(z_{n-1, j}, z_{n k}\right) &amp;=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n-1, j} z_{n k} &amp;(13.16)\end{aligned}
+$$</div>
+<p>したがって、これらを用いて上記の式を書き直すと、</p>
 <div class="math">$$
 \begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K}\gamma\left(z_{n k}\right) \sum_{i=1}^Dx_{ni} \ln \phi_{i k} \end{aligned}\qquad (13.17)
 $$</div>
+<div id="Mstep"></div>
+
+<h3>Maximization step</h3>
+<p>ここでは、上記の <span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> 関数を各パラメータ <span class="math">\(\boldsymbol{\theta}\)</span> に関して最大化する際の<span class="marker-info" aria-label="制約付きの関数最大化，最小化問題で用いられる手法。不等式制約にも適用でき、SVMの導出でも用いられる。">ラグランジュの未定乗数法</span>を書き下します。</p>
 <h4><span class="math">\(\boldsymbol{\pi}\)</span></h4>
 <div class="math">$$
 \begin{aligned}
