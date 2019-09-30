@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 生物データマイニング論, 生物データマイニング論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="生物データマイニング論 第1回（補足） "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-2.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-09-30T16:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-09-30T16:00:00+09:00" />
+<meta name="twitter:title" content="生物データマイニング論 第1回（補足） ">
+<meta name="twitter:description" content="">
+
+        <title>生物データマイニング論 第1回（補足）  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-2.html"> 生物データマイニング論 第1回（補足）  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Maximization\ step">生物データマイニング論 第1回</a>で省略した、混合ガウス分布のEMアルゴリズムの計算過程を記述します。</p>
+<h2>EMアルゴリズム</h2>
+<p>観測データ <span class="math">\(\mathbf{X}=\{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span> に対する対数尤度関数は、<span class="math">\((9.7)\)</span> から以下のように書けるます。<b>（※明示的にパラメータを記載しています。）</b></p>
+<div class="math">$$\ln p\left(\mathbf{X}|\boldsymbol{\pi,\mu,\Sigma}\right) = \sum_{n=1}^N\ln\left\{\sum_{k=1}^K\pi_k\mathcal{N}\left(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k\right)\right\}\qquad (9.14)$$</div>
+<h3>E step</h3>
+<div class="math">$$\begin{aligned}
+p(z_{k}=1|\mathbf{x})
+&amp;\equiv \frac{p(z_{k}=1)p(\mathbf{x}|z_{k}=1)}{p(\mathbf{x})}\qquad (\because\text{Bayes' theorem})\\
+&amp;\propto p(z_{k}=1)p(\mathbf{x}|z_{k}=1) \\
+&amp;=\pi_k\mathcal{N}(\mathbf{x}|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)
+\end{aligned}$$</div>
+<p>なので、総和が <span class="math">\(1\)</span> になるように正規化を行えば<span class="marker-pink">負担率</span>が以下のように求まります。</p>
+<div class="math">$$\gamma(z_{k})\equiv p(z_{k}=1|\mathbf{x})
+=\frac{\pi_{k}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{k}}}, \mathbf{\Sigma_{\rm{k}}})}{\sum_{j=1}^{K}\pi_{j}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{j}}}, \mathbf{\Sigma_{\rm{j}}})}\qquad (9.13)$$</div>
+<p><b>※ なお、この時分母である <span class="math">\(\sum_{j=1}^{K}\pi_{j}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{j}}}, \mathbf{\Sigma_{\rm{j}}})\)</span> が <span class="math">\(p(\mathbf{x})\)</span> であることは有用です。</b>（<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html">生物データマイニング論 第1回</a>では、これを用いて可視化していました。）</p>
+<h3>Maximization step</h3>
+<p>※ 対数尤度関数 <span class="math">\((9.14)\)</span> を <span class="math">\(\ln L\)</span> と記述します。</p>
+<h4><span class="math">\(\boldsymbol{\mu}_k\)</span></h4>
+<p>対数尤度 <span class="math">\((9.14)\)</span> を <span class="math">\(\boldsymbol{\mu}_k\)</span> で微分します。この時<b>正規分布は <span class="math">\(e^{\text{hoge}}\)</span></b> という形をしており、微分しても形が変わらないので、</p>
+<div class="math">$$\begin{aligned}
+\frac{\partial\ln L}{\partial\boldsymbol{\mu}_k}
+&amp;= \sum_{i=n}^N \frac{\pi_k\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)}{\sum_j \pi_j \mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)}\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)\\
+&amp;= \boldsymbol{\Sigma}_k^{-1}\sum_{n=1}^N \gamma_{nk}(\mathbf{x}_n-\boldsymbol{\mu}_k)\\
+&amp;= 0\\
+\therefore\boldsymbol{\mu}_k^{\star}
+&amp;= \frac{\sum_{n=1}^N\gamma(z_{nk})\mathbf{x}_n}{\sum_{n=1}^N\gamma(z_{nk})} \qquad (9.17)\\
+\end{aligned}$$</div>
+<p>と最適解が求まりました。</p>
+<h4><span class="math">\(\pi_k\)</span></h4>
+<p>パラメータ <span class="math">\(\pi_k\)</span> については、<span class="math">\(\sum_{k=1}^K \pi_k = 1\)</span> という制約に注意する必要があります。ですが、<a href="https://iwasakishuto.github.io/University/3A/%E6%83%85%E5%A0%B1%E5%9F%BA%E7%A4%8E%E5%AE%9F%E9%A8%93-2.html#Mstep">隠れマルコフモデルの最尤推定</a>で行なった能登同様に、ラグランジュの未定乗数 <span class="math">\(\lambda\)</span> を導入すればこの問題は解けます。</p>
+<div class="math">$$L_{\lambda} = \log L + \lambda\left(\sum_{c=1}^K \pi_c - 1\right)$$</div>
+<p>の導関数が <span class="math">\(0\)</span> となる条件を求める事になるので、</p>
+<div class="math">$$\begin{aligned}
+\frac{\partial L_{\lambda}}{\partial\pi_k}
+&amp;= \sum_{n=1}^N \frac{\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)}{\sum_k \pi_k \mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)} + \lambda\\
+&amp;= \sum_{n=1}^N \frac{\gamma_{nk}}{\pi_k} + \lambda = 0 &amp;\therefore \pi_k = -\frac{1}{\lambda}\sum_{n=1}^N \gamma_{ic}\\
+\frac{\partial L_{\lambda}}{\partial\lambda}
+&amp;= \sum_{k=1}^K \pi_k - 1\\
+&amp;= \left(-\frac{1}{\lambda}\sum_{k=1}^K\sum_{n=1}^N \gamma_{nk}\right) - 1 = 0  &amp;\therefore \lambda = -n
+\end{aligned}$$</div>
+<p>より、</p>
+<div class="math">$$\pi_k^{\star} = \frac{\sum_{n=1}^N\gamma(z_{nk})}{N} \qquad(9.22)$$</div>
+<p>と最適解が求まりました。</p>
+<div class="math">$$
+\begin{aligned}
+\boldsymbol{\Sigma}_k
+&amp;= \frac{\sum_{n=1}^N\gamma(z_{nk})\left(\mathbf{x}_n-\boldsymbol{\mu}_k\right)\left(\mathbf{x}_n-\boldsymbol{\mu}_k\right)^{\mathrm{T}}}{\sum_{n=1}^N\gamma(z_{nk})} &amp; (9.19)\\
+\pi_k &amp;= \frac{\sum_{n=1}^N\gamma(z_{nk})}{N} &amp; (9.22)
+\end{aligned}
+$$</div>
+<h4><span class="math">\(\boldsymbol{\Sigma}_k\)</span></h4>
+<p><span class="math">\(\boldsymbol{\mu}_k\)</span> と同様に、対数尤度 <span class="math">\((9.14)\)</span> を <span class="math">\(\boldsymbol{\Sigma}_k\)</span> で微分します。すると、</p>
+<div class="math">$$\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\log L = \sum_{n=1}^N\frac{\pi_k\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)}{\sum_j \pi_j \mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)}$$</div>
+<p>となります。ここで、<span class="math">\(\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\)</span> を計算すると、</p>
+<div class="math">$$\begin{aligned}
+&amp;\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\\
+=&amp;\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\frac{1}{(2\pi)^{D/2}}\frac{1}{|\boldsymbol{\Sigma}_k|^{1/2}}\exp\left\{-\frac{1}{2}(\mathbf{x}_n-\boldsymbol{\mu}_k)^T\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)\right\}\\
+=&amp;\frac{1}{(2\pi)^{D/2}}\biggl(\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\frac{1}{|\boldsymbol{\Sigma}_k|^{1/2}}\biggr)\exp\left\{-\frac{1}{2}(\mathbf{x}_n-\boldsymbol{\mu}_k)^T\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)\right\}\\
+&amp;+\frac{1}{(2\pi)^{D/2}}\frac{1}{|\boldsymbol{\Sigma}_k|^{1/2}}\left(\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\exp\left\{-\frac{1}{2}(\mathbf{x}_n-\boldsymbol{\mu}_k)^T\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)\right\}\right)\\
+=&amp;\frac{1}{(2\pi)^{D/2}}\biggl(-\frac{1}{2}\biggr)|\boldsymbol{\Sigma}_k|^{-1/2}\boldsymbol{\Sigma}_k^{-1}\exp\left\{-\frac{1}{2}(\mathbf{x}_n-\boldsymbol{\mu}_k)^T\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)\right\}\quad (\ast1)\\
+&amp;+\frac{1}{(2\pi)^{D/2}}\frac{1}{|\boldsymbol{\Sigma}_k|^{1/2}}\frac{1}{2}\exp\left\{-\frac{1}{2}(\mathbf{x}_n-\boldsymbol{\mu}_k)^T\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)\right\}\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)(\mathbf{x}_n-\boldsymbol{\mu}_k)^{T}\boldsymbol{\Sigma}_k^{-1}\quad (\ast2)\\
+=&amp;-\frac{1}{2}\boldsymbol{\Sigma}_k^{-1}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)+\frac{1}{2}\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)(\mathbf{x}_n-\boldsymbol{\mu}_k)^{T}\boldsymbol{\Sigma}_k^{-1}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\\
+=&amp;\frac{1}{2}\left\{\boldsymbol{\Sigma}_k^{-1}-\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)(\mathbf{x}_n-\boldsymbol{\mu}_k)^{T}\boldsymbol{\Sigma}_k^{-1}\right\}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)
+\end{aligned}$$</div>
+<p><b>※ <span class="math">\(\ast1,\ast2\)</span> の式変形は以下でより詳細に説明します。</b>が、その前にいくつか基本事項の定義を振り返ります。</p>
+<h5>行列式</h5>
+<div class="math">$$\det A=\displaystyle\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)\prod_{i=1}^na_{i\sigma(i)}=\displaystyle\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}$$</div>
+<ul>
+<li><span class="math">\(\sigma\)</span> は <span class="math">\(1\)</span> から <span class="math">\(n\)</span> の置換（順列）を表す。</li>
+<li><span class="math">\(\mathrm{sgn}(\sigma)\)</span> は置換の符号を表す。なお、置換の符号は<span class="marker-pink">互換の数</span>に注目しており、奇置換（互換の数が奇数個）なら <span class="math">\(-1\)</span>、偶置換なら <span class="math">\(+1\)</span> </li>
+</ul>
+<h5>余韻子</h5>
+<p><span class="math">\(n\)</span> 次正方行列 <span class="math">\(A := (a_{ij})\)</span> に対し、<span class="math">\(i\)</span> 行と <span class="math">\(i\)</span> 列を<span class="math">\(1\)</span>つずつ取り去って作られる小行列を <span class="math">\(M_{ij}\)</span> とする。つまり、</p>
+<div class="math">$$
+M_{ij} = \small \left[
+\begin{array}{ccc}
+a_{11} &amp; \cdots &amp;a_{1\hspace{1mm}j-1}  &amp; a_{1\hspace{1mm}j+1} &amp; \cdots &amp; a_{1n}
+\\
+\vdots &amp; &amp;\vdots &amp;  \vdots &amp; &amp;\vdots
+\\
+a_{i-1 \hspace{1mm} 1} &amp; \cdots &amp;a_{i-1\hspace{1mm}j-1}  &amp; a_{i-1\hspace{1mm}j+1} &amp; \cdots &amp; a_{i-1 \hspace{1mm}n}
+\\
+a_{i+1 \hspace{1mm} 1} &amp; \cdots &amp;a_{i+1\hspace{1mm}j-1}  &amp; a_{i+1\hspace{1mm}j+1} &amp; \cdots &amp; a_{i+1 \hspace{1mm}n}
+\\
+\vdots &amp; &amp;\vdots &amp; \vdots &amp; &amp;\vdots
+\\
+a_{n1} &amp;\cdots &amp;a_{n\hspace{1mm}j-1}  &amp; a_{n\hspace{1mm}j+1} &amp;\cdots &amp;a_{nn}
+\end{array}
+\right]
+$$</div>
+<p>です。ここで、<span class="math">\(\Delta_{ij}=(-1)^{i+j}|M_{ij}|\)</span> とすると、以下の<span class="marker-pink">余因子展開</span>ができます。</p>
+<ul>
+<li><span class="math">\(A\)</span> の行列式は <span class="math">\(j\)</span> 列に関して、以下のように展開されます。
+<div class="math">$$\det A=\Delta_{1j}a_{1j}+\Delta_{2j}a_{2j}+\cdots+\Delta_{nj}a_{nj}$$</div>
+</li>
+<li><span class="math">\(A\)</span> の行列式は <span class="math">\(i\)</span> 行に関して、以下のように展開されます。
+<div class="math">$$\det A=\Delta_{i1}a_{i1}+\Delta_{i2}a_{i2}+\cdots+\Delta_{in}a_{in}$$</div></li>
+</ul>
+<h5>余韻子行列</h5>
+<p><span class="math">\(n\)</span> 次正方行列 <span class="math">\(A := (a_{ij})\)</span> に対し、<span class="math">\((i, j)\)</span> 余因子を <span class="math">\((j, i)\)</span> 成分に持つ行列</p>
+<div class="math">$$\tilde{A} := \begin{pmatrix}&amp;\Delta_{11}&amp;\Delta_{21}&amp;\cdots&amp;\Delta_{n1}\\&amp;\Delta_{21}&amp;\Delta_{22}&amp;\ldots&amp;\Delta_{n2}\\&amp;\vdots&amp;\vdots&amp;\ddots&amp;\vdots\\&amp;\Delta_{n1}&amp;\Delta_{n2}&amp;\cdots&amp;\Delta_{nn}\end{pmatrix}$$</div>
+<p>を<span class="marker-pink">余韻子行列</span>と呼びます。ここで、余韻子展開を考えれば、余韻子行列に関して、</p>
+<div class="math">$$\tilde{A}A=A\tilde{A}=\det(A)I_n$$</div>
+<p>
+が成り立つことがわかります。</p>
+<h4><span class="math">\(\ast1\)</span> の変形</h4>
+<p>以上を踏まえると、<span class="math">\(\frac{\partial\det(A)}{\partial a_{ij}} = \Delta_{ij}\)</span> なので、</p>
+<div class="math">$$\frac{\partial|\Sigma|}{\partial\Sigma}
+=\tilde\Sigma = |\Sigma|\Sigma^{-1}$$</div>
+<p>が成り立ち、</p>
+<div class="math">$$\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\frac{1}{|\boldsymbol{\Sigma}_k|^{1/2}}
+=-\frac{1}{2}|\boldsymbol{\Sigma}_k|^{-\frac{3}{2}}\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\boldsymbol{\Sigma_k}=-\frac{1}{2}|\boldsymbol{\Sigma}_k|^{-1/2}\boldsymbol{\Sigma_k}^{-1}$$</div>
+<p>となることがわかります。</p>
+<h5>トレースと固有値の関係性</h5>
+<h6>【命題】</h6>
+<p>トレースには、<span class="math">\(Tr(A) = \sum_{k=1}^{n}\lambda_{k}\)</span> という関係がある。</p>
+<ul>
+<li>トレース：
+<span class="math">\(n\times n\)</span> の正方行列 <span class="math">\(A\)</span> に対して、対角成分の和 <span class="math">\(\sum_{k=1}^{n}a_{kk}\)</span> を <span class="math">\(A\)</span> のトレースと呼び、<span class="math">\(\mathrm{Tr}(A),\mathrm{tr}A\)</span>  と表す。</li>
+</ul>
+<h6>【証明】</h6>
+<p>まず、固有方程式は、</p>
+<div class="math">$$\phi(t) = |A-tI| = \left|\begin{array}{cccc}
+  a_{11}-t &amp; a_{12} &amp; \ldots &amp; a_{1n} \\
+  a_{21} &amp; a_{22}-t &amp; \ldots &amp; a_{2n} \\
+  \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+  a_{n1} &amp; a_{n2} &amp; \ldots &amp; a_{nn}-t
+\end{array}
+\right|$$</div>
+<p>である。ここで、<span class="math">\(t\)</span> の係数に着目する。</p>
+<ul>
+<li><span class="math">\(t^n\)</span> の係数
+これは、対角成分を全て掛け合わせた次の多項式<div class="math">$$(a_{11}-t)(a_{22}-t)\ldots(a_{nn}-t)$$</div>における <span class="math">\(t^n\)</span> の係数と等しくなる。よって、係数は「<span class="math">\((-1)^n\)</span>」</li>
+<li><span class="math">\(t^{n-1}\)</span> の係数
+これも、先ほどの多項式の <span class="math">\(t^{n-1}\)</span> の係数と等しくなる。（<span class="math">\(\because\)</span> 余韻子展開を考える。<span class="math">\(\sigma\)</span> が全単射のため、１行（列）対角成分ではないものがあると、少なくともあと１つは体格成分でないものがあることがわかる。）</li>
+<li>定数項
+これは、余韻子展開を考えれば <span class="math">\(|A|\)</span> そのもの。</li>
+</ul>
+<p>よって、係数は「<span class="math">\((-1)^{n-1}(a_{11}+a_{22}+\ldots+a_{nn})\)</span>」であり、これは対角和を用いて「<b>$(-1)^{n-1}\mathrm{Tr}(A) $</b>」とも書ける。</p>
+<p>一方先ほどの固有方程式は固有値を解に持つ。</p>
+<p>つまり、<span class="math">\(A\)</span>の固有値を<span class="math">\(\lambda_1\)</span>〜<span class="math">\(\lambda_n\)</span>として、</p>
+<div class="math">$$\phi(t)=(-1)^n(t-\lambda_1)(t-\lambda_2)\cdots(t-\lambda_n)$$</div>
+<p>とかける。（ <span class="math">\((-1)^n\)</span> によって、<span class="math">\(t^n\)</span> の係数を合わせている。）</p>
+<p>この式を展開すると、<span class="math">\(t^{n-1}\)</span> の係数が「<span class="math">\((-1)^{n-1}(\lambda_1+\lambda_2+\ldots+\lambda_n)\)</span>」であることから</p>
+<div class="math">$$\mathrm{Tr}(A) = \lambda_1+\lambda_2+\ldots+\lambda_n$$</div>
+<p>※ちなみに、<span class="math">\(\phi(t)=(-1)^n(t-\lambda_1)(t-\lambda_2)\cdots(t-\lambda_n)\)</span> の定数項を考えることで、</p>
+<div class="math">$$|A| = \lambda_1\lambda_2\ldots\lambda_n$$</div>
+<p>であることもわかる。</p>
+<h5>トレースの循環性</h5>
+<p><span class="math">\(A\)</span> を <span class="math">\(m \times n\)</span>、<span class="math">\(B\)</span> を <span class="math">\(n \times m\)</span> の行列とすると、<span class="math">\(AB\)</span> は <span class="math">\(m \times m\)</span> の行列であり、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Tr}[AB]&amp;= \sum_{i=1}^{m} (AB)_{ii}
+\\&amp;= \sum_{i=1}^{m}\sum_{j=1}^{n} A_{ij}B_{ji}
+\\&amp;= \sum_{j=1}^{n} \sum_{i=1}^{m} B_{ji} A_{ij}
+\\&amp;= \sum_{j=1}^{n} (BA)_{jj}
+\\&amp;= \mathrm{Tr}[BA]
+\end{aligned}
+$$</div>
+<p>となる。これを応用すれば、以下の<b>循環性</b>が証明できる。</p>
+<p><span class="math">\(A,B,C\)</span> をそれぞれ <span class="math">\(m\times n,n \times l,l \times m\)</span> の行列とするとき、</p>
+<div class="math">$$\begin{aligned}
+\mathrm{Tr}[ABC] =&amp; \mathrm{Tr}[BCA]
+\\=&amp; \mathrm{Tr}[CAB]
+\end{aligned}
+$$</div>
+<p>が成り立つ。（ <span class="math">\(\because\)</span> ２つの行列積をセットで考えれば明らか）</p>
+<h5>逆行列の微分</h5>
+<p>正則行列 <span class="math">\(A\)</span> に対して、<span class="math">\(A^{-1}A=I\)</span> が成立するので、この等式の両辺を <span class="math">\(A\)</span> で微分して、</p>
+<div class="math">$$\begin{aligned}
+\biggr(\frac{\partial }{\partial A}A^{-1}\biggl)A + A^{-1}\biggr(\frac{\partial }{\partial A}A\biggl) = 0\\
+\biggr(\frac{\partial A^{-1}}{\partial A}\biggl) = -A^{-1}\biggr(\frac{\partial }{\partial A}A\biggl)A^{-1}
+\end{aligned}$$</div>
+<h5>シングルエントリ行列</h5>
+<p><span class="math">\((i,j)\)</span> 成分のみが<span class="math">\(1\)</span> で、残りが全て <span class="math">\(0\)</span> の行列 <span class="math">\(\mathbf{J}^{ij}\)</span> を<b>シングルエントリ行列</b>と呼ぶ。なお、以下の式が成り立つ。</p>
+<div class="math">$$\mathrm{Tr}\bigr(\mathbf{AJ}^{ij}\bigl)=\mathbf{A}_{ji}$$</div>
+<p><span class="math">\(2 \times 2\)</span> の行列でこれを示す。</p>
+<div class="math">$$\begin{aligned}
+\mathrm{Tr}\bigr(\mathbf{AJ}^{12}\bigl)&amp;=\mathrm{Tr}\biggr(\begin{pmatrix}a_{11}&amp;a_{12}\\a_{21}&amp;a_{22}\end{pmatrix}\begin{pmatrix}0&amp;1\\0&amp;0\end{pmatrix}\biggl)\\
+&amp;=\mathrm{Tr}\begin{pmatrix}0&amp;a_{11}\\0&amp;a_{21}\end{pmatrix}\\
+&amp;=a_{21}\\
+&amp;=\mathbf{A}_{21}
+\end{aligned}$$</div>
+<h4><span class="math">\(\ast2\)</span> の変形</h4>
+<p>以上を踏まえれば、</p>
+<div class="math">$$\begin{aligned}
+\frac{\partial}{\partial\boldsymbol{\Sigma}_{ij}}(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})
+&amp;=\frac{\partial}{\partial\boldsymbol{\Sigma}_{ij}}\mathrm{Tr}\biggr((\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\biggl)\\
+&amp;=\frac{\partial}{\partial\boldsymbol{\Sigma}_{ij}}\mathrm{Tr}\biggr(\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\biggl)\\
+&amp;=\mathrm{Tr}\biggr(\frac{\partial}{\partial\boldsymbol{\Sigma}_{ij}}\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\biggl)\\
+&amp;=\mathrm{Tr}\biggr(-\boldsymbol{\Sigma}^{-1}\frac{\partial\boldsymbol{\Sigma}}{\partial\boldsymbol{\Sigma}_{ij}}\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\biggl)\\
+&amp;=\mathrm{Tr}\biggr(-\boldsymbol{\Sigma}^{-1}\mathbf{J}^{ij}\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\biggl)\\
+&amp;=-\mathrm{Tr}\biggr(\boldsymbol{\Sigma}^{-1}\mathbf{J}^{ij}\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\biggl)\\
+&amp;=-\mathrm{Tr}\biggr(\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\boldsymbol{\Sigma}^{-1}\mathbf{J}^{ij}\biggl)\\
+&amp;=-\left\{\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\boldsymbol{\Sigma}^{-1}\right\}_{ji}\\
+&amp;=-\left\{\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\boldsymbol{\Sigma}^{-1}\right\}_{ij}\\
+\end{aligned}$$</div>
+<p>よって、</p>
+<div class="math">$$\frac{\partial}{\partial\boldsymbol{\Sigma}}(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})=-\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})(\mathbf{x}-\boldsymbol{\mu})^{T}\boldsymbol{\Sigma}^{-1}$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-09-30T16:00:00+09:00">Sep 30, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-09-30T16:00:00+09:00">Sep 30, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-detamainingulun-ref">生物データマイニング論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>11</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
+                    <span>2</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
