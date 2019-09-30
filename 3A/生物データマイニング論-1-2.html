@@ -108,9 +108,9 @@
         <div class="span8 offset2 article-content">
 
             
-            <p><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Maximization\ step">生物データマイニング論 第1回</a>で省略した、混合ガウス分布のEMアルゴリズムの計算過程を記述します。</p>
+            <p><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html">生物データマイニング論 第1回</a>で省略した、混合ガウス分布のEMアルゴリズムの計算過程を記述します。</p>
 <h2>EMアルゴリズム</h2>
-<p>観測データ <span class="math">\(\mathbf{X}=\{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span> に対する対数尤度関数は、<span class="math">\((9.7)\)</span> から以下のように書けるます。<b>（※明示的にパラメータを記載しています。）</b></p>
+<p>観測データ <span class="math">\(\mathbf{X}=\{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span> に対する対数尤度関数は、<span class="math">\((9.7)\)</span> から以下のように書けます。<b>（※明示的にパラメータを記載しています。）</b></p>
 <div class="math">$$\ln p\left(\mathbf{X}|\boldsymbol{\pi,\mu,\Sigma}\right) = \sum_{n=1}^N\ln\left\{\sum_{k=1}^K\pi_k\mathcal{N}\left(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k\right)\right\}\qquad (9.14)$$</div>
 <h3>E step</h3>
 <div class="math">$$\begin{aligned}
@@ -122,7 +122,7 @@ p(z_{k}=1|\mathbf{x})
 <p>なので、総和が <span class="math">\(1\)</span> になるように正規化を行えば<span class="marker-pink">負担率</span>が以下のように求まります。</p>
 <div class="math">$$\gamma(z_{k})\equiv p(z_{k}=1|\mathbf{x})
 =\frac{\pi_{k}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{k}}}, \mathbf{\Sigma_{\rm{k}}})}{\sum_{j=1}^{K}\pi_{j}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{j}}}, \mathbf{\Sigma_{\rm{j}}})}\qquad (9.13)$$</div>
-<p><b>※ なお、この時分母である <span class="math">\(\sum_{j=1}^{K}\pi_{j}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{j}}}, \mathbf{\Sigma_{\rm{j}}})\)</span> が <span class="math">\(p(\mathbf{x})\)</span> であることは有用です。</b>（<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html">生物データマイニング論 第1回</a>では、これを用いて可視化していました。）</p>
+<p><b>※ なお、この時分母である <span class="math">\(\sum_{j=1}^{K}\pi_{j}\mathcal{N}(\mathbf{x}|\mathbf{\mu_{\rm{j}}}, \mathbf{\Sigma_{\rm{j}}})\)</span> が <span class="math">\(p(\mathbf{x})\)</span> であることは有用です。</b>（<a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html">生物データマイニング論 第1回</a>では、これを用いて可視化していました。）</p>
 <h3>Maximization step</h3>
 <p>※ 対数尤度関数 <span class="math">\((9.14)\)</span> を <span class="math">\(\ln L\)</span> と記述します。</p>
 <h4><span class="math">\(\boldsymbol{\mu}_k\)</span></h4>
@@ -151,13 +151,6 @@ p(z_{k}=1|\mathbf{x})
 <p>より、</p>
 <div class="math">$$\pi_k^{\star} = \frac{\sum_{n=1}^N\gamma(z_{nk})}{N} \qquad(9.22)$$</div>
 <p>と最適解が求まりました。</p>
-<div class="math">$$
-\begin{aligned}
-\boldsymbol{\Sigma}_k
-&amp;= \frac{\sum_{n=1}^N\gamma(z_{nk})\left(\mathbf{x}_n-\boldsymbol{\mu}_k\right)\left(\mathbf{x}_n-\boldsymbol{\mu}_k\right)^{\mathrm{T}}}{\sum_{n=1}^N\gamma(z_{nk})} &amp; (9.19)\\
-\pi_k &amp;= \frac{\sum_{n=1}^N\gamma(z_{nk})}{N} &amp; (9.22)
-\end{aligned}
-$$</div>
 <h4><span class="math">\(\boldsymbol{\Sigma}_k\)</span></h4>
 <p><span class="math">\(\boldsymbol{\mu}_k\)</span> と同様に、対数尤度 <span class="math">\((9.14)\)</span> を <span class="math">\(\boldsymbol{\Sigma}_k\)</span> で微分します。すると、</p>
 <div class="math">$$\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\log L = \sum_{n=1}^N\frac{\pi_k\frac{\partial}{\partial\boldsymbol{\Sigma}_k}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)}{\sum_j \pi_j \mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_j,\boldsymbol{\Sigma}_j)}$$</div>
@@ -172,6 +165,11 @@ $$</div>
 =&amp;-\frac{1}{2}\boldsymbol{\Sigma}_k^{-1}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)+\frac{1}{2}\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)(\mathbf{x}_n-\boldsymbol{\mu}_k)^{T}\boldsymbol{\Sigma}_k^{-1}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)\\
 =&amp;\frac{1}{2}\left\{\boldsymbol{\Sigma}_k^{-1}-\boldsymbol{\Sigma}_k^{-1}(\mathbf{x}_n-\boldsymbol{\mu}_k)(\mathbf{x}_n-\boldsymbol{\mu}_k)^{T}\boldsymbol{\Sigma}_k^{-1}\right\}\mathcal{N}(\mathbf{x}_n|\boldsymbol{\mu}_k,\boldsymbol{\Sigma}_k)
 \end{aligned}$$</div>
+<p>したがって、</p>
+<div class="math">$$
+\boldsymbol{\Sigma}_k^{\star}= \frac{\sum_{n=1}^N\gamma(z_{nk})\left(\mathbf{x}_n-\boldsymbol{\mu}_k\right)\left(\mathbf{x}_n-\boldsymbol{\mu}_k\right)^{\mathrm{T}}}{\sum_{n=1}^N\gamma(z_{nk})} \qquad (9.19)
+$$</div>
+<p>と最適解が求まりました。</p>
 <p><b>※ <span class="math">\(\ast1,\ast2\)</span> の式変形は以下でより詳細に説明します。</b>が、その前にいくつか基本事項の定義を振り返ります。</p>
 <h5>行列式</h5>
 <div class="math">$$\det A=\displaystyle\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)\prod_{i=1}^na_{i\sigma(i)}=\displaystyle\sum_{\sigma\in S_n}\mathrm{sgn}(\sigma)a_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}$$</div>
