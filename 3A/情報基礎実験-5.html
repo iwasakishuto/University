@@ -11,20 +11,20 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 映像メディア工学, 映像メディア工学, " />
+<meta name="keywords" content="3A, 情報基礎実験, 情報基礎実験, " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="映像メディア工学 第1回 "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/映像メディア工学-1.html" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="ペアワイズアラインメント "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-5.html" />
+<meta property="og:description" content="ペアワイズアラインメント" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-09-30T00:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-09-30T00:00:00+09:00" />
-<meta name="twitter:title" content="映像メディア工学 第1回 ">
-<meta name="twitter:description" content="">
+<meta property="og:article:published_time" content="2019-10-01T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-01T00:00:00+09:00" />
+<meta name="twitter:title" content="ペアワイズアラインメント ">
+<meta name="twitter:description" content="ペアワイズアラインメント">
 
-        <title>映像メディア工学 第1回  · 3A
+        <title>ペアワイズアラインメント  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-1.html"> 映像メディア工学 第1回  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-5.html"> ペアワイズアラインメント  </a></h1>
     </header>
 </div>
 
@@ -108,142 +108,43 @@
         <div class="span8 offset2 article-content">
 
             
-            <ul>
-<li>講師：<a href="https://www.hal.t.u-tokyo.ac.jp/~yamasaki/lecture/index.html">山崎俊彦</a></li>
-<li>参考書：<a href="https://www.cgarts.or.jp/book/img_engineer/">CG-ARTS協会発行「ディジタル画像処理」</a></li>
-<li>参考書：<a href="http://szeliski.org/Book/">R. Szeliski, Computer Vision Algorithms and Applications, Springer</a> (PDF版はインターネット上で無料公開)</li>
-</ul>
-<h2>講義予定</h2>
-<ul>
-<li>前半（山崎担当）<ul>
-<li>画像の操作</li>
-<li>画像の特徴抽出・内容理解・構造化</li>
-<li>機械学習一般</li>
-</ul>
-</li>
-<li>後半（相澤担当）<ul>
-<li>画像を撮る：カメラの内部処理・センサ・レンズ・標本化</li>
-<li>画像を表現する。色の知覚・表現</li>
-<li>画像の基礎的な処理。周波数変換、線形・非線形フィルタリング</li>
-</ul>
-</li>
-</ul>
+            <div class="frame">
+  <h2>ペアワイズアラインメントとは</h3>
+  <ul>
+    <li>2本のDNAの塩基配列（タンパク質のアミノ酸配列）を比較する方法の一つ</li>
+    <li>バイオインフォマティクスでは最も基本的な解析手法</li>
+  </ul>
+</div>
+
+<h3>なぜDNA配列の比較をするのか</h3>
+<ol>
+<li>DNAの機能を知りたい<b>（∵ DNAの配列が似ていると機能が似ている）</b></li>
+<li>DNAのどの部分が重要かを知りたい。<b>（∵ 「保存されている＝重要」だと考えられる）</b></li>
+<li>生物の進化系統樹を知りたい</li>
+<li>新型シーケンサーで読まれたDNAの由来を知りたい</li>
+</ol>
+<p><b>DNAの変異や新型シークエンサーの読み取りエラーでは<font color="red">長さが異なる</font>ことがあるので、<font color="red">長さの変化を考慮し効率の良い動的計画法</font>を用いる</b></p>
 <table>
 <thead>
 <tr>
-<th align="center">#</th>
-<th align="center">日付</th>
-<th align="center">担当</th>
-<th align="left">内容</th>
+<th align="center">アラインメントの種類</th>
+<th align="left">説明</th>
+<th align="left">例</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">1</td>
-<td align="center">9/30(月)</td>
-<td align="center">山崎</td>
-<td align="left">画像・映像を中心とした現在の技術動向の紹介、低次・領域・局所画像特徴</td>
+<td align="center">グローバルアラインメント</td>
+<td align="left">2本の配列の<b>全体</b>をアラインメントする。</td>
+<td align="left">Needleman-Wunsch</td>
 </tr>
 <tr>
-<td align="center">2</td>
-<td align="center">10/7(月)</td>
-<td align="center">山崎</td>
-<td align="left">特徴選択、特徴表現</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">10/21(月)</td>
-<td align="center">山崎</td>
-<td align="left">機械学習概論、教師なし学習、クラスタリング</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">10/28(月)</td>
-<td align="center">山崎</td>
-<td align="left">機械学習 (NN, SVM, RF)</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">11/7(木)</td>
-<td align="center">山崎</td>
-<td align="left">深層学習 (Deep Neural Networks)</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="center">11/11(月)</td>
-<td align="center">山崎</td>
-<td align="left">動画像処理 (ブロックマッチング、背景差分、オプティカルフロー)</td>
-</tr>
-<tr>
-<td align="center">7</td>
-<td align="center">11/13(水)</td>
-<td align="center">山崎</td>
-<td align="left">3次元空間情報の取得と処理</td>
-</tr>
-<tr>
-<td align="center">8</td>
-<td align="center">11/18(月)</td>
-<td align="center">相澤</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">9</td>
-<td align="center">11/25(月)</td>
-<td align="center">相澤</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">10</td>
-<td align="center">12/9(月)</td>
-<td align="center">相澤</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">11</td>
-<td align="center">12/16(月)</td>
-<td align="center">相澤</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">12</td>
-<td align="center">12/23(月)</td>
-<td align="center">相澤</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="center">13</td>
-<td align="center">1/@@</td>
-<td align="center">テスト</td>
-<td align="left"></td>
+<td align="center">ローカルアラインメント</td>
+<td align="left">2本の配列の<b>似ている部分を検出</b>し、その部分をアランメントする</td>
+<td align="left">Smith-Waterman</td>
 </tr>
 </tbody>
 </table>
-<h2>パターン認識一般</h2>
-<ul>
-<li>現在は、90%位が<b>学習ベース(data-driven)</b>。残りが解析的手法。最近はこのhybridも。</li>
-<li>全体的な流れ<ol>
-<li>学習(training)</li>
-<li>検証(validation)←パラメータ最適化</li>
-<li>推論(test, inference)</li>
-</ol>
-</li>
-<li>なぜ今<b>学習ベース</b>なのか？<ul>
-<li>データの大規模化：インターネット上から大量に収集可。</li>
-<li>計算機の進化：ムーアの法則による高速化。さらにはクラウド</li>
-<li>労働力のクラウド化</li>
-</ul>
-</li>
-</ul>
-<h2>画像特徴</h2>
-<ul>
-<li>低次特徴量<ul>
-<li>色ヒストグラム（RGB,HSV,L*a*b*）：単純計算すると <span class="math">\(256^3\)</span> 個binができるので、注意。</li>
-<li>色共起ヒストグラム（Correlogram）：隣接ピクセルの色を踏まえたヒストグラム</li>
-<li>円、コーナー直線の数・大きさ・長さ</li>
-<li>物体の円度、曲率等</li>
-</ul>
-</li>
-</ul>
 <style>
 .prompt {
   /* This is for jupyter blog.*/
@@ -352,68 +253,6 @@ span.qbox-wrapper:hover .qbox{
   left: -17px;
 }
 </style>
-
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
-
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
-
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
-
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        fonts: [['STIX', 'TeX']]," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
             <div>
 </div>
 
@@ -424,20 +263,20 @@ span.qbox-wrapper:hover .qbox{
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-09-30T00:00:00+09:00">Sep 30, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-10-01T00:00:00+09:00">Oct 1, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-09-30T00:00:00+09:00">Sep 30, 2019</time>
+<time datetime="2019-10-01T00:00:00+09:00">Oct 1, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#ying-xiang-medeiagong-xue-ref">映像メディア工学</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
                     <span>13</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
-                    <span>1</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-ref">情報基礎実験
+                    <span>6</span>
 </a></li>
             </ul>
 <h5>Contact</h5>
