@@ -11,20 +11,20 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 生物統計論, 生物統計論, " />
+<meta name="keywords" content="3A, 情報基礎実験, 情報基礎実験, " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="生物統計論 第1回 "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物統計論-1.html" />
-<meta property="og:description" content="Stastical Analysis" />
+<meta property="og:title" content="Pair HMM の最尤推定 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-7.html" />
+<meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-09-27T13:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-09-27T13:00:00+09:00" />
-<meta name="twitter:title" content="生物統計論 第1回 ">
-<meta name="twitter:description" content="Stastical Analysis">
+<meta property="og:article:published_time" content="2019-10-05T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-05T00:00:00+09:00" />
+<meta name="twitter:title" content="Pair HMM の最尤推定 ">
+<meta name="twitter:description" content="">
 
-        <title>生物統計論 第1回  · 3A
+        <title>Pair HMM の最尤推定  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/生物統計論-1.html"> 生物統計論 第1回  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-7.html"> Pair HMM の最尤推定  </a></h1>
     </header>
 </div>
 
@@ -108,171 +108,133 @@
         <div class="span8 offset2 article-content">
 
             
-            <ul>
-<li>講師：<a href="https://sites.google.com/edu.k.u-tokyo.ac.jp/kiryulab">木立尚孝</a></li>
-</ul>
-<h2>講義概要</h2>
+            <p><a href="https://www.researchgate.net/figure/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a_fig1_221912143"><img alt="PairHMM" src="https://www.researchgate.net/profile/Florian_Blaettler/publication/221912143/figure/fig1/AS:305340219445264@1449810189815/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a.png"></a></p>
+<h2>Baum-Welch</h2>
+<p>Pair HMMとは、二本の配列を受け取ってペアワイズアラインメントを出力するHMMで、<span class="marker-pink">「アラインメントの確率的な解釈が可能になる」</span><b>（アラインメントのどの部分が信頼できるかを確率的に評価できる）</b>という利点があります。</p>
+<p>このPair HMMは、一般的なHMMと同様にBaum-Welchアルゴリズムによってパラメータを最尤推定していきます。</p>
+<h3><span class="math">\(\xi\)</span></h3>
+<h4>HMM</h4>
+<p>一般的なHMMでは、例えば<b>遷移確率 <span class="math">\(A_{jk}\)</span>（状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する確率）</b>を最尤推定する際は、</p>
 <ol>
-<li>09/27 (Fri) 10:25-12:10</li>
-<li>10/04 (Fri) 10:25-12:10</li>
-<li>10/11 (Fri) 10:25-12:10</li>
-<li>10/18 (Fri) 10:25-12:10</li>
-<li>10/25 (Fri) 10:25-12:10</li>
-<li>11/08 (Fri) 10:25-12:10</li>
-<li>11/15 (Fri) 10:25-11:30(Lecture) / 11:30-12:10: <b>(Test)</b></li>
+<li>直感的には<b>「状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する回数」</b>を、<b>「状態 <span class="math">\(j\)</span> から遷移する回数」</b>で割れば最尤解が求まる。</li>
+<li>実際の隠れ状態の遷移が確定していないので、<b>「<font color="red">期待される</font>状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する回数」</b>を、<b>「<font color="red">期待される</font>状態 <span class="math">\(j\)</span> から遷移する回数」</b>で割れば良い。</li>
+<li><span class="math">\(\mathbf{z}_{n-1}\)</span> で状態 <span class="math">\(j\)</span> におり、<span class="math">\(\mathbf{z}_n\)</span> で状態 <span class="math">\(k\)</span> にいる確率 <span class="math">\(\xi\left(z_{n-1,j},z_{nk}\right)\)</span> は、forward-backward algorithmの <span class="math">\(\alpha,\beta\)</span> を用いれば以下のように求めることができる。
+<div class="math">$$\xi_n\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.43)$$</div>
+</li>
+<li><span class="math">\(\xi\)</span> を用いて、最尤推定を行う。
+<div class="math">$$A_{j k}= \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} \qquad (13.19)$$</div>
+</li>
 </ol>
-<h2>Section1.1 STATISTICAL ANALYSIS</h2>
-<ul>
-<li>Genomic data has recently become available, so the analyzing methods still its infancy at the century scale.</li>
-<li>It is very important how much information can be extracted from genomic and other omic data.</li>
-<li>Data-driven Research<ul>
-<li>Development of measurement, communication, computing technologies.</li>
-<li>data science, <span class="marker-info" aria-label="E-Science or eScience is computationally intensive science that is carried out in highly distributed network environments, or science that uses immense data sets that require grid computing (wiki)">e-science</span></li>
-<li>Statistics, computer skill, artificial intelligence, machine learning.</li>
-</ul>
-</li>
-<li>Statistical Analysis<ul>
-<li>Subjects and measurements are often conclude the <span class="marker-info" aria-label="A random event is something unpredictable.">random events</span>, such as noise.</li>
-<li>Aiming for finding the "True" distribution, and inferencing on that distribution.</li>
-</ul>
-</li>
-<li>Power of Statistical Methods<ul>
-<li>Amount of information we can extract "Many and high" / "Few or low" quality</li>
-<li>Event infinite number of data cannot answer all questions. ex) we couldn't answer "what is the number of eyes on the next dice."</li>
-<li>Data dependency.</li>
-</ul>
-</li>
-</ul>
-<h2>Section1.2 PROBABILITY DEFINITIONS</h2>
-<ul>
-<li>Probability:<ul>
-<li>Mathematical Probability:
-The probability of an event consisting of n out of m possible equally likely occurrences, defined to be n / m</li>
-<li>Statistical Probability:
-Each event is random, but if you repeat it a lot, you can see the probability that each event occurs.</li>
-<li>Subjective Probability:
-A type of probability derived from an individual's personal judgment or own experience about whether a specific outcome is likely to occur.</li>
-</ul>
-</li>
-<li><b>※ Mathematical Probability is the most strict and basic.</b></li>
-</ul>
-<h3>Probability space <span class="math">\(\left(\Omega, E, P\right)\)</span></h3>
+<p>という様に行いますが、Pair HMMは、<span class="marker-pink">挿入・欠失を考えるため、<span class="math">\(n\)</span> で配列 <span class="math">\(\mathbf{X,Y}\)</span> のどの要素（<span class="math">\(\mathbf{x}_u,\mathbf{y}_v\)</span>）を考えているのか一意に定まらない</span>という点で普通のHMMとは異なります。</p>
+<h4>Pair HMM</h4>
+<p>そこで、<span class="marker-pink">「<span class="math">\(n\)</span> ではなく <span class="math">\(u,v\)</span> に注目する」</span>ことで、 <span class="math">\((13.43)\)</span> の式を以下のように書き換えます。</p>
+<div class="math">$$\xi_{u,v}\left(i,j\right)=\frac{f_i\left(u,v\right)A_{ij}\phi_j\left(\diamond_1\right)b_j\left(\diamond_2,\diamond_3\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
+<p>ここで、分子に注目すると、各変数の意味が</p>
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="left"></th>
+<th align="center">variable</th>
+<th align="left">meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><img alt="0927_1.png" src="theme/img/3A_biostatistics/0927_1.png"></td>
-<td align="left">
-<div class="math">$$\begin{aligned}&amp;\Omega: \text{Set, Samplemspace}\\&amp;E: \text{Events,}\sigma\text{-algebra}\\&amp;P: \text{Probability measure}\end{aligned}$$</div>
-</td>
+<td align="center"><span class="math">\(f_i\left(u,v\right)\)</span></td>
+<td align="left">The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(A_{ij}\)</span></td>
+<td align="left">the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></td>
+<td align="left">the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></td>
+<td align="left">the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.</td>
 </tr>
 </tbody>
 </table>
-<h4>Sample Space</h4>
-<ul>
-<li>The sets of <span class="marker-pink">elementary events.</span>ex.)<ul>
-<li>The number of eyes on the dice.</li>
-<li>All possible genomes.</li>
-<li>All possible gene expression profiles</li>
-</ul>
-</li>
-<li><span class="math">\(\omega_i\in\Omega\)</span> is the <span class="marker-pink">identifier of possible individual stochastic phenomena.</span></li>
-</ul>
-<h4><span class="math">\(\sigma\)</span>-algebra</h4>
+<p>であるので、<span class="math">\(\diamond\)</span> は状態によって異なり、具体的に書き下すと以下のようになります。</p>
+<table>
+<thead>
+<tr>
+<th align="center">state\variable</th>
+<th align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></th>
+<th align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v+1\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(e\left(y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u,v+1\right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3><span class="math">\(\gamma\)</span></h3>
+<p>同様に <span class="math">\(\gamma\)</span> も考えると、</p>
 <div class="math">$$
-\begin{aligned}
-&amp;\varepsilon= \left\{E_1,E_2,\cdots|E_i\subseteq\Omega:\text{event}:\sigma\text{-algebra} \right\}\\
-&amp;\Rightarrow \varnothing,\Omega,\left(E_i\setminus E_j\right),\left(\bigcup_{i=1}^{\infty}E_i\right),\left(\bigcap_{i=1}^{\infty}E_i\right)\in\varepsilon
-\end{aligned}
-$$</div>
+\gamma_n\left(\mathbf{z}_{n}\right)= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} \qquad(13.33)$$</div>
+<p>から、</p>
+<div class="math">$$\gamma_i\left(u,v\right)=\frac{f_i\left(u,v\right)b_j\left(u,v\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
+<p>のように書き換えることになります。</p>
+<h3>Maximization step</h3>
+<p>ここまでで <span class="math">\(\gamma,\xi\)</span> が求まったので、M stepで各パラメータを更新します。なお、以下で <span class="math">\(w\)</span> は全ての記号の組を表します。</p>
+<div class="math">$$w\in\left\{(k_x,k_y)|k_x,k_y\in\left\{A,T,G,C,\epsilon
+\right\}\right\}\setminus(\epsilon,\epsilon)$$</div>
+<h4><span class="math">\(\pi_k\)</span></h4>
+<div class="math">$$\pi^{\star}_i = \sum_w\gamma_i^w(0,0)$$</div>
+<h4><span class="math">\(A_{ij}\)</span></h4>
+<div class="math">$$A^{\star}_{ij} = \frac{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\xi_{u,v}^{w}\left(i,j\right)}{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\sum_{j}^{K}\xi_{u,v}^{w}\left(i,j\right)}$$</div>
+<table>
+<thead>
+<tr>
+<th align="center">final emitting state</th>
+<th align="center"><span class="math">\(\tilde{U}\)</span></th>
+<th align="center"><span class="math">\(\tilde{V}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(U\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4><span class="math">\(\phi_{i}(k)\)</span></h4>
+<div class="math">$$\phi_i\left(k\right) = \frac{\sum_w\sum_{u=0}^{U\ast1}\sum_{v=0}^{V\ast2}\gamma_i^w\left(u,v\right)}{\sum_w\sum_{u=0}^U\sum_{v=0}^V\gamma_i^w\left(u,v\right)}$$</div>
 <ul>
-<li>The sets of Events.</li>
-<li>Each event <span class="math">\(E_i\subseteq\Omega\)</span></li>
-<li>Include Empty set <span class="math">\(\varnothing\)</span>, universal set <span class="math">\(\Omega\)</span></li>
-<li><span class="marker-info" aria-label="Closure is when an operation (such as 'adding') on members of a set (such as 'real numbers') always makes a member of the same set.">Closure</span> to variable "Set Operation". (ex. Union, intersection, complement)</li>
+<li><span class="math">\(\ast1\)</span>：<span class="math">\(x_u=k_x\)</span> and state <span class="math">\(i\)</span> equals the state <span class="math">\(M\)</span> or <span class="math">\(X\)</span>. (in the state <span class="math">\(Y\)</span>, a gap is present in observation stream <span class="math">\(x\)</span> therefore <span class="math">\(k_x\)</span> is not present.)</li>
+<li><span class="math">\(\ast2\)</span>：<span class="math">\(y_v=k_y\)</span> and state <span class="math">\(j\)</span> equals the state <span class="math">\(M\)</span> or <span class="math">\(Y\)</span>.</li>
 </ul>
-<h5>example)</h5>
-<table>
-<thead>
-<tr>
-<th align="center">discrete set</th>
-<th align="center">Real set</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><img src="theme/img/3A_biostatistics/0927_2.png"></td>
-<td align="center"><img src="theme/img/3A_biostatistics/0927_3.png"></td>
-</tr>
-<tr>
-<td align="center">Power set</td>
-<td align="center"><span class="marker-info" aria-label="Borel set is any set in a topological space that can be formed from open sets (or, equivalently, from closed sets) through the operations of countable union, countable intersection, and relative complement. (wiki)">Borel set</span> <span class="math">\(\mathcal{A}\)</span></td>
-</tr>
-</tbody>
-</table>
-<h4>Probability measure</h4>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><img alt="0927_4.png" src="theme/img/3A_biostatistics/0927_4.png"></td>
-<td align="center">
-<div class="math">$$\begin{aligned}&amp;\mathbb{P} : \mathcal{E} \rightarrow \mathbb{R} \\&amp; 0 \leq \mathbb{P}(E) \leq 1, E \in \mathcal{E} \\&amp;\mathbb{P}(\Omega)=1, \mathbb{P}(\varnothing)=0 \\&amp;\text { For } E_{1}, E_{2}, \cdots \in \mathcal{E}, \text{ s.t. } E_{i} \cap E_{j}=\varnothing, \forall i \neq j \\&amp;\mathbb{P}\left(\bigcup_{i=1}^{\infty} E_{i}\right)=\sum_{i=1}^{\infty} \mathbb{P}\left(E_{i}\right)\end{aligned}$$</div>
-</td>
-</tr>
-</tbody>
-</table>
-<p>Each event is assigned a value that indicates the likelihood or probability of occurrence.</p>
-<h3>Random variable</h3>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><img alt="0927_5.png" src="theme/img/3A_biostatistics/0927_5.png"></td>
-<td align="center">
-<div class="math">$$\begin{aligned}X: &amp;\text{random variable}\\\Leftrightarrow &amp;X : \Omega \rightarrow \mathbb{R} \\ &amp;\text { s.t. } X^{-1}(A) \in \mathcal{E}, \forall A \in \mathcal{A} \\&amp;X^{-1}(A) :=\{\omega \in \Omega \mid X(\omega) \in A\}\end{aligned}$$</div>
-</td>
-</tr>
-</tbody>
-</table>
-<h2>Section1.3 PROBABILITY TERMS AND PROPERTIES</h2>
+<h3>Reference</h3>
 <ul>
-<li>Probability distribution function <span class="math">\(F_x\)</span> (cumulative distribution)</li>
-<li>Probability density function <span class="math">\(f_x\)</span>
-<div class="math">$$F_x\left(x+dx\right)-F_x\left(x\right)=:f_x(x)dx$$</div>
-</li>
-<li>Conditional Probability</li>
-<li>Joint Probability distribution
-    <div class="math">$$(X,Y): \Omega\rightarrow\mathbb{R}^2; (X,Y)(\omega) = \left(X(\omega),Y(\omega)\right)\\\left(X,Y\right)^{-1}(A) = \left\{\omega\in\Omega|\left(X(\omega),Y(\omega)\right)\in A\right\}$$</div>
-</li>
-<li>Independent random variables</li>
-<li>Expected Value</li>
-<li>Variance</li>
-<li>Covariance:
-<div class="math">$$\begin{cases}X,Y: \text{independent random variables}\Rightarrow \mathrm{Cov}(X,Y) = 0\\X,Y: \text{independent random variables}\not\Leftarrow \mathrm{Cov}(X,Y) = 0 \end{cases}$$</div>
-</li>
-<li>Indicator Function:
-<div class="math">$$\mathbb{I}_A(x)=\begin{cases}1 &amp; x\in A\\0 &amp; x\notin A\end{cases},A\in\mathcal{A}$$</div>
-</li>
-<li>Marginalization</li>
+<li><a href="http://www.evolaemp.uni-tuebingen.de/pdf/Wahle(2013)_alignment_and_word_comparison_with_PHMM.pdf">Wahle, Johannes and Armin Buch. "Alignment and word comparison with Pair Hidden Markov Models." (2013).</a> pp.22-31</li>
+<li><a href="http://martijnwieling.nl/files/dialects.pdf">Martijn B. Wieling. "Comparison of Dutch Dialects" (2007)</a> pp.36-50</li>
 </ul>
-<h2>Section1.4 PROBABILITY DISTRIBUTIONS</h2>
-<p><a href="https://iwasakishuto.github.io/University/3A/生物統計論-0.html">Look Here!!</a></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -344,20 +306,20 @@ $$</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-09-27T13:00:00+09:00">Sep 27, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-10-05T00:00:00+09:00">Oct 5, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-09-27T13:00:00+09:00">Sep 27, 2019</time>
+<time datetime="2019-10-05T00:00:00+09:00">Oct 5, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-tong-ji-lun-ref">生物統計論</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
                     <span>18</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-tong-ji-lun-ref">生物統計論
-                    <span>2</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-ref">情報基礎実験
+                    <span>9</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

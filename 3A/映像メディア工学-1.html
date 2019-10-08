@@ -244,115 +244,6 @@
 </ul>
 </li>
 </ul>
-<style>
-.prompt {
-  /* This is for jupyter blog.*/
-  min-width: 0;
-  /* This padding is tuned to match the padding on the CodeMirror editor. */
-  padding: 0em 0.4em 0em 0em;
-  margin: 0px;
-  font-family: monaco;
-}
-/*蛍光ペン(pink)*/
-.marker-pink {
-  color: #c45a5a;
-  background: linear-gradient(transparent 70%, #ff66ff 60%);
-  font-weight: bold;
-}
-/*蛍光ペン(blue) & hover info*/
-.marker-info {
-    color: #5C7DC4;
-    background: linear-gradient(transparent 70%, #66FFCC 60%);
-    font-weight: bold;
-    position: relative;
-    cursor: pointer;
-}
-.marker-info:hover:before {
-    opacity: 1;
-    z-index: 2;
-}
-.marker-info:before {
-  content: attr(aria-label);
-  opacity: 0;
-  position: absolute;
-  top: 30px;
-  right: -90px;
-  font-size: 14px;
-  width: 300px;
-  padding: 10px;
-  color: #fff;
-  background-color: #555;
-  border-radius: 3px;
-  pointer-events: none;
-}
-/* 枠囲み */
-.frame {
-  border: solid 1.0px #000000;
-  padding: 0.5em 1em;
-  margin: 2em 0;
-}
-/* 暗記用 question box */
-span .qbox{
-  display: none;
-}
-span.qbox-wrapper:hover .qbox-default{
-  display: none;
-}
-span.qbox-wrapper:hover .qbox{
-  display: inline;
-}
-.qbox-wrapper{
-  font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: solid 2px #000000;
-  margin: 5px
-}
-.qbox-wrapper:hover{
-  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
-  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-  transition: all 0.4s ease 0s;
-}
-/* 画像吹き出し */
-.balloon {
-  display: table;
-  width: 100%;
-}
-.balloon_img {
-  display: table-cell;
-  vertical-align: middle;
-  width: 50%;
-  padding-right: 10px;
-}
-.balloon_comment {
-  border: #83274e solid 4px;
-  position: relative;
-  background: #fff;
-  padding: 12px;
-  border-radius: 13px;
-  display: block
-}
-.balloon_comment::before {
-  content: "";
-  position: absolute;
-  border-right: 23px solid #83274e;
-  border-bottom: 20px solid transparent;
-  border-top: 20px solid transparent;
-  top: 30%;
-  left: -23px;
-}
-.balloon_comment::after {
-  content: "";
-  position: absolute;
-  border-right: 24px solid #fff;
-  border-bottom: 20px solid transparent;
-  border-top: 20px solid transparent;
-  top: 30%;
-  left: -17px;
-}
-</style>
-
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -434,7 +325,7 @@ span.qbox-wrapper:hover .qbox{
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>14</span>
+                    <span>18</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
                     <span>1</span>
