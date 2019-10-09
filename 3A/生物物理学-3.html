@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 生物物理学, 生物物理学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="生物物理学 第3回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物物理学-3.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-09T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-09T00:00:00+09:00" />
+<meta name="twitter:title" content="生物物理学 第3回 ">
+<meta name="twitter:description" content="">
+
+        <title>生物物理学 第3回  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/生物物理学-3.html"> 生物物理学 第3回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h2>タンパク質の構造と安定性</h2>
+<div class="frame">
+  <h4>タンパク質の定義</h4>
+  <ol>
+    <li><span class="qbox">特定のアミノ酸（20種類）が重合した重合体である。</span></li>
+    <li><span class="qbox">特定の立体構造をとる。</span>（これがないと<b>ポリペプチド</b>）</li>
+  </ol>
+</div>
+
+<table>
+<thead>
+<tr>
+<th align="center">機能</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="qbox">分子認識</span></td>
+<td align="left">ミオグロビンは酸素を結合。抗体は抗原と結合。</td>
+</tr>
+<tr>
+<td align="center"><span class="qbox">触媒（酵素）</span></td>
+<td align="left">化学反応の反応速度は <span class="math">\(10^8\)</span>~<span class="math">\(10^{17}\)</span> 倍にも加速される。</td>
+</tr>
+<tr>
+<td align="center"><span class="qbox">制御</span></td>
+<td align="left">基質の結合や環境の変化に伴い構造を変化し、タンパク質の反応を制御する。</td>
+</tr>
+<tr>
+<td align="center"><span class="qbox">エネルギー変換</span></td>
+<td align="left">光を電位に換え、ATP分解を力に換える。</td>
+</tr>
+<tr>
+<td align="center"><span class="qbox">構造形成・維持</span></td>
+<td align="left">タンパク質重合体は細胞や細胞内器官の構造を支える。</td>
+</tr>
+</tbody>
+</table>
+<h3>タンパク質を構成するアミノ酸</h3>
+<p>d-グリセルアルデヒドの立体配置を基準として、この立体配置を崩さずにできる化合物をD-体、その鏡像異性体がL-体。</p>
+<p><span class="marker-pink">※ タンパク質はL体</span></p>
+<table>
+<thead>
+<tr>
+<th align="center">構造</th>
+<th align="center">名前</th>
+<th align="center">略（三文字）</th>
+<th align="center">略（一文字）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/L-alanine-skeletal.png/120px-L-alanine-skeletal.png"></td>
+<td align="center"><span class="qbox">アラニン</span></td>
+<td align="center"><span class="qbox">Ala</span></td>
+<td align="center"><span class="qbox">A</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/L-arginine-skeletal-%28tall%29.png/71px-L-arginine-skeletal-%28tall%29.png"></td>
+<td align="center"><span class="qbox">アルギニン</span></td>
+<td align="center"><span class="qbox">Arg</span></td>
+<td align="center"><span class="qbox">R</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/L-asparagine-skeletal.png/102px-L-asparagine-skeletal.png"></td>
+<td align="center"><span class="qbox">アスパラギン</span></td>
+<td align="center"><span class="qbox">Asn</span></td>
+<td align="center"><span class="qbox">N</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/L-aspartic-acid-skeletal.png/102px-L-aspartic-acid-skeletal.png"></td>
+<td align="center"><span class="qbox">アスパラギン酸</span></td>
+<td align="center"><span class="qbox">Asp</span></td>
+<td align="center"><span class="qbox">D</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/L-cysteine-skeletal.png/118px-L-cysteine-skeletal.png"></td>
+<td align="center"><span class="qbox">システイン</span></td>
+<td align="center"><span class="qbox">Cys</span></td>
+<td align="center"><span class="qbox">C</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/L-glutamic-acid-skeletal.png/120px-L-glutamic-acid-skeletal.png"></td>
+<td align="center"><span class="qbox">グルタミン酸</span></td>
+<td align="center"><span class="qbox">Glu</span></td>
+<td align="center"><span class="qbox">E</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/L-glutamine-skeletal.png/120px-L-glutamine-skeletal.png"></td>
+<td align="center"><span class="qbox">グルタミン</span></td>
+<td align="center"><span class="qbox">Gln</span></td>
+<td align="center"><span class="qbox">Q</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Glycine-skeletal.png/120px-Glycine-skeletal.png"></td>
+<td align="center"><span class="qbox">グリシン</span></td>
+<td align="center"><span class="qbox">Gly</span></td>
+<td align="center"><span class="qbox">G</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/L-histidine-skeletal.png/101px-L-histidine-skeletal.png"></td>
+<td align="center"><span class="qbox">ヒスチジン</span></td>
+<td align="center"><span class="qbox">His</span></td>
+<td align="center"><span class="qbox">H</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/L-isoleucine-skeletal.svg/120px-L-isoleucine-skeletal.svg.png"></td>
+<td align="center"><span class="qbox">イソロイシン</span></td>
+<td align="center"><span class="qbox">Ile</span></td>
+<td align="center"><span class="qbox">I</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/L-leucine-skeletal.png/113px-L-leucine-skeletal.png"></td>
+<td align="center"><span class="qbox">ロイシン</span></td>
+<td align="center"><span class="qbox">Leu</span></td>
+<td align="center"><span class="qbox">L</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/L-lysine-skeletal.png/120px-L-lysine-skeletal.png"></td>
+<td align="center"><span class="qbox">リシン</span></td>
+<td align="center"><span class="qbox">Lys</span></td>
+<td align="center"><span class="qbox">K</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/L-methionine-skeletal.png/120px-L-methionine-skeletal.png"></td>
+<td align="center"><span class="qbox">メチオニン</span></td>
+<td align="center"><span class="qbox">Met</span></td>
+<td align="center"><span class="qbox">M</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/L-phenylalanine-skeletal.png/118px-L-phenylalanine-skeletal.png"></td>
+<td align="center"><span class="qbox">フェニルアラニン</span></td>
+<td align="center"><span class="qbox">Phe</span></td>
+<td align="center"><span class="qbox">F</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/L-proline-skeletal.png/120px-L-proline-skeletal.png"></td>
+<td align="center"><span class="qbox">プロリン</span></td>
+<td align="center"><span class="qbox">Pro</span></td>
+<td align="center"><span class="qbox">P</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/L-serine-skeletal.png/120px-L-serine-skeletal.png"></td>
+<td align="center"><span class="qbox">セリン</span></td>
+<td align="center"><span class="qbox">Ser</span></td>
+<td align="center"><span class="qbox">S</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/L-threonine-skeletal.png/120px-L-threonine-skeletal.png"></td>
+<td align="center"><span class="qbox">トレオニン</span></td>
+<td align="center"><span class="qbox">Thr</span></td>
+<td align="center"><span class="qbox">T</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/L-tryptophan-skeletal.png/111px-L-tryptophan-skeletal.png"></td>
+<td align="center"><span class="qbox">トリプトファン</span></td>
+<td align="center"><span class="qbox">Trp</span></td>
+<td align="center"><span class="qbox">W</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/L-tyrosine-skeletal.png/120px-L-tyrosine-skeletal.png"></td>
+<td align="center"><span class="qbox">チロシン</span></td>
+<td align="center"><span class="qbox">Tyr</span></td>
+<td align="center"><span class="qbox">Y</span></td>
+</tr>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/L-valine-skeletal.png/120px-L-valine-skeletal.png"></td>
+<td align="center"><span class="qbox">バリン</span></td>
+<td align="center"><span class="qbox">Val</span></td>
+<td align="center"><span class="qbox">V</span></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><span class="c1"># 上記の表は以下のコードを応用して作成した。</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://ja.wikipedia.org/wiki/タンパク質を構成するアミノ酸&quot;</span>
+<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;gallerybox&quot;</span><span class="p">}):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">li</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">src</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;img.*src=&quot;(.+?)&quot;.*&gt;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">name</span><span class="p">,</span> <span class="n">l3</span><span class="p">,</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;p&gt;.*title=&quot;(.+?)&quot;.*&lt;br/&gt;\((.+?)\xa0\/\xa0(.+?)\)&lt;/p&gt;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<h2>理論的構造決定法</h2>
+<ul>
+<li><b>アミノ酸配列→量子力学→タンパク質の構造とエネルギー状態を決定</b></li>
+<li>シュレディンガー方程式は水素原子のみ解析的に解くことができ、それ以外は近似を行う必要がある。</li>
+<li>現在、高精度に計算（第一原理分子動力学法）できるのは1つの構造に対して100原子程度である。</li>
+<li>水分子を考慮しなければ、タンパク質の構造や電子軌道を精度よく求めることはできない。</li>
+<li>アミノ酸がポリペプチド結合した重合体から機能を持つ立体構造を創り構造を維持するためには、<b>立体構造が熱力学的に安定でなければならない。</b>→<span class="marker-pink">Gibbs自由エネルギー <span class="math">\(G\)</span> </span>を見る。<ul>
+<li>準安定なのは、<span class="math">\(G\)</span> が極小の時。</li>
+<li>最も安定なのは、<span class="math">\(G\)</span> が最小の時。</li>
+</ul>
+</li>
+</ul>
+<div class="frame">
+  <h4>まとめ</h4>
+  <ol>
+    <li>生体の機能を主に担っているのは、タンパク質である。（RNAも機能に重要である。）</li>
+    <li>タンパク質は分子認識・触媒・制御・エネルギー変換・構造形成維持などの機能を有している。</li>
+    <li>アミノ酸配列から計算によってタンパク質構造を決定することに成功していない。（部分構造はできている。）</li>
+    <li>酵素機能を行うとき、酵素の多くの場所が構造変化を行う。</li>
+  </ol>
+</div>
+
+<blockquote>
+<p>第6回目の講義(11/6)の小テスト
+指定課題：
+- 第1,2,3回の講義の中で、最も興味のある事柄について300~500字でまとめる。
+- この事柄と関連する内容を調べるなどして、自分の意見を300~500字で述べる。
+- 図や式を使いわかりやすく説明すること。図や式は文字数に含めない。</p>
+</blockquote>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-09T00:00:00+09:00">Oct 9, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-09T00:00:00+09:00">Oct 9, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-wu-li-xue-ref">生物物理学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>21</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-wu-li-xue-ref">生物物理学
+                    <span>3</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

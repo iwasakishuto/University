@@ -14,17 +14,17 @@
 <meta name="keywords" content="3A, 生物データマイニング論, 生物データマイニング論, " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="生物データマイニング論 第1回 "/>
+<meta property="og:title" content="クラスタリング "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html" />
 <meta property="og:description" content="講師：津田宏治 資料：生物データマイニング論(2019) 講義の方針¶ データ解析アルゴリズムは、生物学の研究に不可欠 R や python のパッケージとして、すぐダウンロードして使うことができる。 しかし、原理を知らずに使うと、アルゴリズムの出す結果を盲信することになり危険。 正しい理解：結果を疑えるようになること。 階層的クラスタリング¶ クラスタリング データ点をクラスタ（互いに類似したグループ）に分割する。 距離尺度：ユークリッド距離、コサイン距離など。 階層的クラスタリング 最初は各点がクラスタとなる。 二つのクラスタを選んで合併していく。 Single Link：二つのクラスタをまたぐ最近点の距離 chainingにより、ゆるいクラスタができる（非推奨） Complete Link：二つのクラスタをまたぐ最遠点の距離 最も固いクラスタができるが、細かく分け過ぎる傾向がある。 Average Link：二つのクラスタをまたぐ点対の平均距離 最もバランスがとれており、通常はこれを用いる。 最後は一つのクラスタになる。 デンドログラム：合併の過程を樹形図の形で表したもの。 K-Means¶分割的クラスタリングの一手法。$K$ クラスにデータ点を分割する。 以下を繰り返す。 各データ点 $\mathbf{x}$ を最も近い中心点 $\mu_k$ に割り当てて、クラスタ $c_1,\ldots,c_K$ を作成する。 割当を元に中心点を計算しなおす。 $$\mu_k = \sum_{j\in C_i} \mathbf{x}_j$$ 実装¶" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-09-30T15:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-09-30T15:00:00+09:00" />
-<meta name="twitter:title" content="生物データマイニング論 第1回 ">
+<meta name="twitter:title" content="クラスタリング ">
 <meta name="twitter:description" content="講師：津田宏治 資料：生物データマイニング論(2019) 講義の方針¶ データ解析アルゴリズムは、生物学の研究に不可欠 R や python のパッケージとして、すぐダウンロードして使うことができる。 しかし、原理を知らずに使うと、アルゴリズムの出す結果を盲信することになり危険。 正しい理解：結果を疑えるようになること。 階層的クラスタリング¶ クラスタリング データ点をクラスタ（互いに類似したグループ）に分割する。 距離尺度：ユークリッド距離、コサイン距離など。 階層的クラスタリング 最初は各点がクラスタとなる。 二つのクラスタを選んで合併していく。 Single Link：二つのクラスタをまたぐ最近点の距離 chainingにより、ゆるいクラスタができる（非推奨） Complete Link：二つのクラスタをまたぐ最遠点の距離 最も固いクラスタができるが、細かく分け過ぎる傾向がある。 Average Link：二つのクラスタをまたぐ点対の平均距離 最もバランスがとれており、通常はこれを用いる。 最後は一つのクラスタになる。 デンドログラム：合併の過程を樹形図の形で表したもの。 K-Means¶分割的クラスタリングの一手法。$K$ クラスにデータ点を分割する。 以下を繰り返す。 各データ点 $\mathbf{x}$ を最も近い中心点 $\mu_k$ に割り当てて、クラスタ $c_1,\ldots,c_K$ を作成する。 割当を元に中心点を計算しなおす。 $$\mu_k = \sum_{j\in C_i} \mathbf{x}_j$$ 実装¶">
 
-        <title>生物データマイニング論 第1回  · 3A
+        <title>クラスタリング  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html"> 生物データマイニング論 第1回  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html"> クラスタリング  </a></h1>
     </header>
 </div>
 
@@ -1803,7 +1803,7 @@ $$
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>18</span>
+                    <span>21</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
                     <span>3</span>
