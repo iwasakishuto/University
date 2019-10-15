@@ -235,7 +235,7 @@
     <span class="n">ax_K</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"K=</span><span class="si">{K}</span><span class="s2">"</span><span class="p">),</span> <span class="n">ax_K</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]),</span> <span class="n">ax_K</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
     
     <span class="n">n_col</span> <span class="o">=</span> <span class="mi">4</span>
-    <span class="n">n_row</span> <span class="o">=</span> <span class="n">K</span><span class="o">//</span><span class="n">n_col</span> <span class="k">if</span> <span class="n">N</span><span class="o">%</span><span class="k">n_col</span>==0 else N//n_col+1
+    <span class="n">n_row</span> <span class="o">=</span> <span class="n">K</span><span class="o">//</span><span class="n">n_col</span> <span class="k">if</span> <span class="n">K</span><span class="o">%</span><span class="k">n_col</span>==0 else K//n_col+1
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">imgsize</span><span class="o">*</span><span class="n">n_col</span><span class="p">,</span><span class="n">imgsize</span><span class="o">*</span><span class="n">n_row</span><span class="p">))</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">)):</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">n_row</span><span class="p">,</span><span class="n">n_col</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -511,7 +511,7 @@ $$\mathbf{y}^{s}_{j+1} = \frac{\sum_{i=1}^Ng_{i}^s\mathbf{x}_i^s}{\sum_{i=1}^Ng_
 <span class="n">ax_Mean</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"n_cluster=</span><span class="si">{K}</span><span class="s2">"</span><span class="p">),</span> <span class="n">ax_Mean</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([]),</span> <span class="n">ax_Mean</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([])</span>
 
 <span class="n">n_col</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">n_row</span> <span class="o">=</span> <span class="n">K</span><span class="o">//</span><span class="n">n_col</span> <span class="k">if</span> <span class="n">N</span><span class="o">%</span><span class="k">n_col</span>==0 else N//n_col+1
+<span class="n">n_row</span> <span class="o">=</span> <span class="n">K</span><span class="o">//</span><span class="n">n_col</span> <span class="k">if</span> <span class="n">K</span><span class="o">%</span><span class="k">n_col</span>==0 else K//n_col+1
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">imgsize</span><span class="o">*</span><span class="n">n_col</span><span class="p">,</span><span class="n">imgsize</span><span class="o">*</span><span class="n">n_row</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">K</span><span class="p">)):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">n_row</span><span class="p">,</span><span class="n">n_col</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
@@ -616,7 +616,7 @@ $$\mathbf{y}^{s}_{j+1} = \frac{\sum_{i=1}^Ng_{i}^s\mathbf{x}_i^s}{\sum_{i=1}^Ng_
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>21</span>
+                    <span>22</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
                     <span>3</span>
