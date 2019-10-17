@@ -1,0 +1,15 @@
+{
+  "qsub_q": "u-debug",
+  "n_node": 1,
+  "n_cpus": 1,
+  "n_MPIprocs": 1,
+  "n_OMPthreads": 8,
+  "walltime": "0:30:00",
+  "group_list": "gj29",
+
+  "ID": "ERR315326",
+
+  "RNAseqData": "ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra",
+  "MappingRefGenome": "https://cloud.biohpc.swmed.edu/index.php/s/grch38/download",
+  "GeneAnnotation": "ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz"
+}
