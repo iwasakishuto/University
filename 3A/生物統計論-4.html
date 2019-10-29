@@ -11,20 +11,20 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
+<meta name="keywords" content="3A, 生物統計論, 生物統計論, " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="イントロダクション "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-1.html" />
-<meta property="og:description" content="イントロダクション" />
+<meta property="og:title" content="生物統計論 第4回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物統計論-4.html" />
+<meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-10-03T12:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-10-03T12:00:00+09:00" />
-<meta name="twitter:title" content="イントロダクション ">
-<meta name="twitter:description" content="イントロダクション">
+<meta property="og:article:published_time" content="2019-10-18T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-18T00:00:00+09:00" />
+<meta name="twitter:title" content="生物統計論 第4回 ">
+<meta name="twitter:description" content="">
 
-        <title>イントロダクション  · 3A
+        <title>生物統計論 第4回  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-1.html"> イントロダクション  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/生物統計論-4.html"> 生物統計論 第4回  </a></h1>
     </header>
 </div>
 
@@ -108,180 +108,207 @@
         <div class="span8 offset2 article-content">
 
             
-            <h2>講義計画</h2>
+            <h2>Section4.1 Expectation Maximization Algorithm</h2>
+<h3>Properties</h3>
 <ul>
-<li><b>確率と統計の基礎</b>：
-最先端の機械学習技術の数学的基盤</li>
-<li><b>探索と最適化</b>：
-広大な探索空間から最適解を効率よく探索</li>
-<li><b>機械学習</b>：
-データの背後に潜む知識を発見</li>
-<li><b>自然言語処理</b>：
-人工知能技術の応用例</li>
+<li>Guaranteed    to  terminate<ul>
+<li>Likelihood    always  increases</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th align="center">#</th>
-<th align="center">日付</th>
-<th align="left">内容</th>
-<th align="center">担当</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">1</td>
-<td align="center">10/3</td>
-<td align="left">概要</td>
-<td align="center">杉山</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">10/10</td>
-<td align="left">最適化（連続1）</td>
-<td align="center">佐藤</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">10/17</td>
-<td align="left">最適化（連続2）</td>
-<td align="center">佐藤</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">10/24</td>
-<td align="left">最適化（探索）</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">10/31</td>
-<td align="left">確率と統計</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="center">11/14</td>
-<td align="left">確率と統計</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">7</td>
-<td align="center">11/21</td>
-<td align="left">確率と統計</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">8</td>
-<td align="center">11/28</td>
-<td align="left">機械学習（教師付き学習）</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">9</td>
-<td align="center">12/5</td>
-<td align="left">機械学習（教師付き学習）</td>
-<td align="center">佐藤</td>
-</tr>
-<tr>
-<td align="center">10</td>
-<td align="center">12/12</td>
-<td align="left">自然言語処理</td>
-<td align="center">宮尾</td>
-</tr>
-<tr>
-<td align="center">11</td>
-<td align="center">12/19</td>
-<td align="left">自然言語処理</td>
-<td align="center">宮尾</td>
-</tr>
-<tr>
-<td align="center">12</td>
-<td align="center">12/26</td>
-<td align="left">自然言語処理</td>
-<td align="center">宮尾</td>
-</tr>
-<tr>
-<td align="center">13</td>
-<td align="center">1/9</td>
-<td align="left">機械学習（強化学習）</td>
-<td align="center">杉山</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">1/16</td>
-<td align="left">試験</td>
-<td align="center">佐藤</td>
-</tr>
-</tbody>
-</table>
-<div class="frame">
-  <h4>人工知能とは</h4>
-  <p>1956年："The Dartmouth Summer Research Project on Artificial Intelligence" にて<span class="marker-pink">Artificial Intelligence</span>という言葉が提唱された。</p>
-</div>
+</li>
+<li>Solving   M-step  is  often   easy<ul>
+<li>No    need    to  traverse    the data</li>
+<li>Separation    of  parameter   dependency<ul>
+<li><span class="math">\(\log(pq)=\log(p)+\log(q)\)</span></li>
+</ul>
+</li>
+<li>Sometimes solved  exactly</li>
+</ul>
+</li>
+<li>Often a   few times   faster  than    gradient    descent (if stopping    condition   is  not too stringent)</li>
+<li>Expectation   values  characterize    the optimized model</li>
+</ul>
+<h3>Lower Bound of Likelihood</h3>
+<h2>Section4.2 Mixture Model</h2>
+<h3>Implementation</h3>
+<ul>
+<li><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html#混合ガウス分布">Gaussian Mixture Distribution</a></li>
+<li><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-1-1.html#K-Means">k-means clustering</a></li>
+<li>Empirical Distribution</li>
+</ul>
+<h3>Cross Entropy</h3>
+<h3>Cross Validation</h3>
+<h2>Section4.3 Linear Regression</h2>
+<h2>Section4.4 Bayesian Inference</h2>
+<style>
+.prompt {
+  /* This is for jupyter blog.*/
+  min-width: 0;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0em 0.4em 0em 0em;
+  margin: 0px;
+  font-family: monaco;
+}
+/*蛍光ペン(pink)*/
+.marker-pink {
+  color: #c45a5a;
+  background: linear-gradient(transparent 70%, #ff66ff 60%);
+  font-weight: bold;
+}
+/*蛍光ペン(blue) & hover info*/
+.marker-info {
+    color: #5C7DC4;
+    background: linear-gradient(transparent 70%, #66FFCC 60%);
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+.marker-info:hover:before {
+    opacity: 1;
+    z-index: 2;
+}
+.marker-info:before {
+  content: attr(aria-label);
+  opacity: 0;
+  position: absolute;
+  top: 30px;
+  right: -90px;
+  font-size: 14px;
+  width: 300px;
+  padding: 10px;
+  color: #fff;
+  background-color: #555;
+  border-radius: 3px;
+  pointer-events: none;
+}
+/* 枠囲み */
+.frame {
+  border: solid 1.0px #000000;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+}
+/* 暗記用 question box */
+span .qbox{
+  display: none;
+}
+span.qbox-wrapper:hover .qbox-default{
+  display: none;
+}
+span.qbox-wrapper:hover .qbox{
+  display: inline;
+}
+.qbox-wrapper{
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: solid 2px #000000;
+  margin: 5px
+}
+.qbox-wrapper:hover{
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+}
+/* 画像吹き出し */
+.balloon {
+  display: table;
+  width: 100%;
+}
+.balloon_img {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+  padding-right: 10px;
+}
+.balloon_comment {
+  border: #83274e solid 4px;
+  position: relative;
+  background: #fff;
+  padding: 12px;
+  border-radius: 13px;
+  display: block
+}
+.balloon_comment::before {
+  content: "";
+  position: absolute;
+  border-right: 23px solid #83274e;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  top: 30%;
+  left: -23px;
+}
+.balloon_comment::after {
+  content: "";
+  position: absolute;
+  border-right: 24px solid #fff;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  top: 30%;
+  left: -17px;
+}
+</style>
 
-<table>
-<thead>
-<tr>
-<th align="center">Watoson</th>
-<th align="center">Nature</th>
-<th align="center">AlphaGo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><iframe src="https://www.youtube.com/embed/YgYSv2KSyWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-<td align="center"><video  controls><source src="https://media.nature.com/original/nature-assets/nature/journal/v518/n7540/extref/nature14236-sv2.mov"></video></td>
-<td align="center"><iframe src="https://www.youtube.com/embed/jGyCsVhtW0M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-</tr>
-</tbody>
-</table>
-<h3>人工知能関連分野の発展</h3>
-<ul>
-<li>人工知能研究<ul>
-<li>1960年頃(1次ブーム)：記号処理、論理推論</li>
-<li>1980年頃(2次ブーム)：エキスパートシステム</li>
-</ul>
-</li>
-<li>ニューラルネット研究<ul>
-<li>1960年頃(1次ブーム)：パーセプトロン（１層）</li>
-<li>1990年頃(2次ブーム)：誤差逆伝播ほう（多層）</li>
-</ul>
-</li>
-<li>機械学習研究<ul>
-<li>1995年頃〜：統計・凸最適化</li>
-<li>1995年頃〜：ベイズ推論</li>
-<li>2010年頃〜：深層学習</li>
-</ul>
-</li>
-</ul>
-<h3>3種類の機械学習</h3>
-<ul>
-<li><b>教師付き学習</b>：人間が教師となり、コンピュータの学習を手伝う。</li>
-<li><b>教師なし学習</b>：コンピュータが人間の手を介さずに自発的に学習する。</li>
-<li><b>強化学習</b>：ロボットが人間の手を介さずに自発的に意思決定を行う。</li>
-</ul>
-<div class="frame">
-  <h3>まとめ</h3>
-  <ul>
-    <li><b>人工知能</b>：
-      <ul>
-        <li>知的なコンピュータシステムを作る</li>
-        <li>数学・プログラミング・実世界応用をつなぐ架け橋</li>
-      </ul>
-    </li>
-    <li><b>探索</b>：
-      <ul>
-        <li>広大な探索空間を効率よく探索</li>
-      </ul>
-    </li>
-    <li><b>機械学習</b>：
-      <ul>
-        <li>データの背後に潜む知識を発見</li>
-      </ul>
-    </li>
-  </ul>
-</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
@@ -292,20 +319,20 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-10-03T12:00:00+09:00">Oct 3, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-10-18T00:00:00+09:00">Oct 18, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-10-03T12:00:00+09:00">Oct 3, 2019</time>
+<time datetime="2019-10-18T00:00:00+09:00">Oct 18, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-tong-ji-lun-ref">生物統計論</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
                     <span>36</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
-                    <span>4</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-tong-ji-lun-ref">生物統計論
+                    <span>5</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 生物データマイニング論, 生物データマイニング論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="サポートベクターマシーン(SVM) "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-2.html" />
+<meta property="og:description" content="講師：津田宏治 資料：生物データマイニング論(2019)" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-14T16:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-14T16:00:00+09:00" />
+<meta name="twitter:title" content="サポートベクターマシーン(SVM) ">
+<meta name="twitter:description" content="講師：津田宏治 資料：生物データマイニング論(2019)">
+
+        <title>サポートベクターマシーン(SVM)  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-2.html"> サポートベクターマシーン(SVM)  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>講師：<a href="https://tsudalab.org/">津田宏治</a></li>
+<li>資料：<a href="https://tsudalab.org/ja/lectures/">生物データマイニング論(2019)</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="サポートベクターマシーン(SVM)">サポートベクターマシーン(SVM)<a class="anchor-link" href="#サポートベクターマシーン(SVM)">¶</a></h3><ul>
+<li><span class="marker-pink">マージン最大化</span>に基づく線形識別器</li>
+<li>カーネル関数と組み合わせることによって非線形な識別も可能</li>
+<li>サンプル間の類似度にしか依存しない<strong>（→非ベクトルデータの分類にも適用可能</strong>）</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="マージン最大化">マージン最大化<a class="anchor-link" href="#マージン最大化">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong>「個々のデータに関して確率計算をし、何らかの識別面を求める」</strong>のではなく、<span class="marker-pink">「汎化性能の最も高い識別面を直接考える」</span></li>
+<li>そこで、<span class="marker-pink">「マージン最大化」</span>という方針で識別面を最適化する。（正則化理論・VC理論により正当化されている。）</li>
+<li>最も近いデータ $\phi(\mathbf{x}_n)$ までの距離（<span class="marker-pink">マージン</span>）が最大となるような識別面を選ぶ。（ここでは、距離＝ユークリッド距離とする。）</li>
+<li>識別面からちょうどマージンの分だけ離れた面上に乗る特徴ベクトル（一般に複数）を、(広義の) <span class="marker-pink"> サポートベクトル (support vector) </span> と呼ぶ。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="学習法の定式化（2クラス分類）">学習法の定式化（2クラス分類）<a class="anchor-link" href="#学習法の定式化（2クラス分類）">¶</a></h4><p><span class="marker-pink">※ 二クラスが線形分離可能であると仮定する。</span></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>線形識別関数が $y(\mathbf{x}) = \mathbf{w}^T\phi(\mathbf{x})+b$
+で表され、$y(\mathbf{x})$ の正負でクラスを識別するとする。<ul>
+<li>$y(\mathbf{x})>0$ の時 $t=1$</li>
+<li>$y(\mathbf{x})<0$ の時 $t=-1$</li>
+</ul>
+</li>
+<li>したがって、<span class="marker-pink">$t_ny(\mathbf{x}_n)>0$</span> が全てのデータ $(\mathbf{x}_n,t_n)$ に対して成り立つ<strong>（∵特徴空間で線形分離可能）</strong></li>
+<li>学習の目的は「パラメータ $\mathbf{w}$ と $b$ を決定すること」。</li>
+<li>データと識別面の最小距離は $1 / \|\mathbf{w}\|$ で表される。（理由は以下）</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr />
+<p><strong>※ 記述を簡単にするために線形識別問題の場合で考えるが、非線形写像 $\phi$ を通しても同様の議論が成り立つ。</strong></p>
+<ul>
+<li>点 $\mathbf{x}_n$ から識別面に下ろした垂線の足を $\mathbf{x}_{n\perp}$</li>
+<li>点 $\mathbf{x}_n$ から識別面までの符号付き距離を $d_n$</li>
+</ul>
+<p>と定義すると、</p>
+<ul>
+<li>$\mathbf{w}$ が識別面の法ベクトルであるから、 $\mathbf{x}_{n\perp} = \mathbf{x}_n - d_n\frac{\mathbf{w}}{\|\mathbf{w}\|}$ と表せる。</li>
+<li>$\mathbf{x}_{n\perp}$ は識別面上にあるので、$\mathbf{w}^T\mathbf{x}_{n\perp} + b = 0$ が成り立つ。</li>
+</ul>
+<p>したがって、
+$$\mathbf{w}^T\left(\mathbf{x}_n - d_n\frac{\mathbf{w}}{\|\mathbf{w}\|}\right) + b = 0\qquad \therefore d_n = \frac{\mathbf{w}^T\mathbf{x}_n + b}{\|\mathbf{w}\|}$$
+として距離 $d_n$ が定義できる。ここで、$(\mathbf{w},b)\rightarrow(k\mathbf{w},kb)$ としても $d_n$ の値は不変なので、</p>
+$$t_n\left(\mathbf{w}^T\mathbf{x}_n + b \right)= 1\qquad (7.4)$$<p>とスケーリングしても一般性を失わない。
+なお、<span class="marker-pink">このスケーリング下では、全てのデータ $\mathbf{x}_n$ に対して</span></p>
+$$t_n\left(\mathbf{w}^T\mathbf{x}_n + b \right) \geq 1\qquad (7.5)$$<p>が成り立つ。</span></p>
+<hr />
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>☆ ここまでをまとめると、<strong>『$t_n\left(\mathbf{w}^T\mathbf{x}_n+b\right)\geq1\quad(i=1,\ldots,n)$ という条件下で、$\frac{1}{2}||\mathbf{w}||^2$ を最小化する』</strong>問題であると言える。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>この制約付き最適化問題を解くために、$(7.5)$ の各制約式ごとにラグランジュ乗数 $a_n\geq0$ を導入すると、次のラグランジュ関数が得られる。</p>
+$$L(\mathbf{w},b,\mathbf{a}) = \frac{1}{2}\|\mathbf{w}\|^2 - \sum_{n=1}^{N}a_n\left\{t_n\left(\mathbf{w}^T\phi(\mathbf{x}_n) + b\right) - 1\right\}\qquad (7.7)$$<p>よって、$\mathbf{w},b$ について微分して、</p>
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \mathbf{w}} &= \mathbf{w}-\sum_{n=1}^N a_nt_n\phi(\mathbf{x}_n) =0 \quad \therefore \mathbf{w}^{\ast}=\sum_{n=1}^N a_nt_n\phi(\mathbf{x}_n) & (7.8)\\
+\frac{\partial L}{\partial b} &= -\sum_{n=1}^N a_nt_n = 0 \quad\therefore\sum_{n=1}^Na_n^{\ast}t_n = 0 & (7.9)\\
+\end{aligned}
+$$<p>が得られる。これらの結果を $(7.7)$ に代入して $\mathbf{w},b$ を消去すると、元の問題は以下の<span class="marker-pink">双対問題</span>に変換される。</p>
+$$ \tilde{L}(\mathbf{a}) =\sum_n^Na_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^Na_na_mt_nt_mk(\mathbf{x}_n,\mathbf{x}_m)\qquad (7.10)$$<p>なお、$\mathbf{a}$ は以下の制約を満たす。</p>
+$$
+\begin{aligned}
+a_n & \geq 0,\quad n=1,\ldots,N & (7.11)\\
+\sum_{n=1}^Na_nt_n &= 0 & (7.12)
+\end{aligned}
+$$<p>また、カーネル関数 $k(\mathbf{x},\mathbf{x}^{\prime})$ は、$k(\mathbf{x},\mathbf{x}^{\prime}) = \phi(\mathbf{x})^T\phi(\mathbf{x})$ と定義される。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>この双対問題は二次計画問題であり、<span class="marker-pink"><a href="#SMO">逐次最小問題最適化法(SMO;sequential minimal optimization)</a></span>などで解くことができる。</p>
+<p>一旦最適な $\mathbf{a}$ が求まると、識別関数 $y(\mathbf{x})$ は、</p>
+$$y(\mathbf{x}) = \mathbf{w}^{\ast T}\phi(\mathbf{x})+b = \sum_{n=1}^N a_nt_nk(\mathbf{x},\mathbf{x}_n) + b \qquad (7.13)$$<p>として表すことができる。ここで、<span class="marker-pink">KKT条件より $a_n=0\Leftrightarrow t_ny(\mathbf{x}_n)-1>0$ のデータは識別関数に影響しないので、計算から除外することができる。（SVMが疎になる理由）</span></p>
+<p>なお、バイアスパタメータ $b$ は、任意のサポートベクトル $\mathbf{x}_n$ が $t_ny(\mathbf{x}_n) = 1$ を満たすことから、</p>
+$$
+\begin{aligned}
+&t;_n\left(\sum_{m\in\mathcal{S}}a_mt_mk(\mathbf{x}_n,\mathbf{x}_m) + b\right) = 1 & (7.17)\\
+&\therefore b^{\ast}= \frac{1}{N_{\mathcal{S}}}\sum_{n\in\mathcal{S}}\left(t_n-\sum_{n\in\mathcal{S}}a_mt_mk(\mathbf{x}_n,\mathbf{x}_m)\right)&(7.18)
+\end{aligned}
+$$<p>として求めることができる。（数値計算の誤差の影響を小さくするため、$(7.17)$ の両辺に $t_n$ をかけ、全てのサポートベクトルで平均をとった。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="ソフトマージン">ソフトマージン<a class="anchor-link" href="#ソフトマージン">¶</a></h3><p>ここまで、<span class="marker-pink">「二クラスが線形分離可能である」</span>という仮定を置いていたが、実際の問題では<strong>クラスの分布が重なる場合</strong>があり、そのような場合訓練データを完全に分離する解が汎化能力に優れるとは限らない（というより、過学習する。）</p>
+<p>そこで、各学習データ $(\mathbf{x}_n,t_n)$ に対して、<span class="marker-pink">スラック変数 (slack variable) </span> $\xi_n\geq 0$ を導入して、</p>
+$$ t_ny(\mathbf{x}_n) \geq 1 \Longrightarrow t_ny(\mathbf{x}_n) \geq 1 - \xi_n \qquad (7.20)$$<p>と条件を緩める。<strong>（ハードマージンの制約のソフトマージンへの緩和）</strong>つまり、<span class="marker-pink">$\xi_n > 1$ となるデータは誤識別している事になる。</span></p>
+<p>ここでの目標は<span class="marker-pink">『マージンよりも内側（$\xi_n>0$）のデータ $n$ に対してソフトにペナルティを与えつつマージンを最大化する』</span>ことである。したがって、次の目的関数を最小化する。</p>
+$$C\sum_{n=1}^N\xi_n + \frac{1}{2}\|\mathbf{x}_n\| \qquad (7.21)$$<p>なお、$C>0$ は スラック変数を用いて表されるペナルティとマージンの大きさの間の<strong>トレードオフを制御するパラメータ</strong>である。</p>
+<p>したがって、この最小化問題のラグランジュ関数は、新たにラグランジュ乗数 $\{\mu_n\}$ を導入して以下のようになる。</p>
+$$L(\mathbf{w},b,\boldsymbol{\xi},\mathbf{a},\boldsymbol{\mu}) = \frac{1}{2}\|\mathbf{w}\|^2 + C\sum_{n=1}^N\xi_n - \sum_{n=1}^{N}a_n\left\{t_n\left(\mathbf{w}^T\phi(\mathbf{x}_n) + b\right) - 1 + \xi_n\right\} - \sum_{n=1}^N\mu_n\xi_n\qquad (7.22)$$<p>先程同様 $\mathbf{w},b,\xi_n$ について微分して、</p>
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \mathbf{w}} &= \mathbf{w}-\sum_{n=1}^N a_nt_n\phi(\mathbf{x}_n) =0 \quad \therefore \mathbf{w}^{\ast}=\sum_{n=1}^N a_nt_n\phi(\mathbf{x}_n) & (7.29)\\
+\frac{\partial L}{\partial b} &= -\sum_{n=1}^N a_nt_n = 0 \quad\therefore\sum_{n=1}^Na_n^{\ast}t_n = 0 & (7.30)\\
+\frac{\partial L}{\partial \xi_n} &= C-a_n-\mu_n \quad\therefore a_n = C-\mu_n & (7.31)
+\end{aligned}
+$$<p>が得られる。これらの結果を $(7.22)$ に代入すると、以下の<strong>双対形のラグランジュ関数</strong>が得られる。</p>
+$$ \tilde{L}(\mathbf{a}) =\sum_n^Na_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^Na_na_mt_nt_mk(\mathbf{x}_n,\mathbf{x}_m)\qquad (7.32)$$<p>これは、先程の $(7.10)$ と同様の形である。なお、制約式は</p>
+$$
+\begin{aligned}
+&a;_n \geq 0,\mu_n\geq 0 \quad n=1,\ldots,N\\
+&\therefore 0\leq a_n \leq C & (7.33)\\
+&\sum_{n=1}^Na_nt_n = 0 & (7.34)
+\end{aligned}
+$$<p>である。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>なお、バイアスパタメータ $b$ は、サポートベクトルは $a_n>0$ を満たすが、KKT条件より</p>
+<table>
+<thead><tr>
+<th style="text-align:center">$a_n$</th>
+<th style="text-align:center">$\mu_n$</th>
+<th style="text-align:center">$\xi_n$</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$a_n=0$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:left">識別関数に影響を及ぼさない。</td>
+</tr>
+<tr>
+<td style="text-align:center">$a_n<c$&lt; td>
+<td style="text-align:center">$\mu_n>0$</td>
+<td style="text-align:center">$\xi_n=0$</td>
+<td style="text-align:left">ちょうどマージン境界上ある。</td>
+</tr>
+<tr>
+<td style="text-align:center">$a_n=C$</td>
+<td style="text-align:center">$\mu_n=0$</td>
+<td style="text-align:center">$\xi_n>0$</td>
+<td style="text-align:left">マージン内に侵入している。</td>
+</tr>
+</tbody>
+</table>
+<p>となることから、$0<a_n&lt;c$ がとなるサポートベクトルについては $t_ny(\mathbf{x}_n)="1$" が成立するので、&lt; p>
+$$
+\begin{aligned}
+&t;_n\left(\sum_{m\in\mathcal{S}}a_mt_mk(\mathbf{x}_n,\mathbf{x}_m) + b\right) = 1 & (7.36)\\
+&\therefore b^{\ast}= \frac{1}{N_{\mathcal{M}}}\sum_{n\in\mathcal{M}}\left(t_n-\sum_{n\in\mathcal{S}}a_mt_mk(\mathbf{x}_n,\mathbf{x}_m)\right)&(7.37)
+\end{aligned}
+$$<p>として求めることができる。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="多クラスSVM">多クラスSVM<a class="anchor-link" href="#多クラスSVM">¶</a></h3><p>SVMは本来2クラス識別の為の分類器であるが、これを複数組み合わせるなどの方法によって $K>2$クラスの識別に利用する事が出来る。最もよく用いられる方法は、<span class="marker-pink">one-versus-the-rest方式</span>と呼ばれる方法であり、「データ $\mathbf{x}$ が<span class="marker-pink">クラス $k$ かそれ以外であるか</span>を識別するSVM $y_k(\mathbf{x})$ を $K$ クラスそれぞれについて構築し、$ y(\mathbf{x}) = \mathop{\rm arg~max}\limits_{k}y_k(\mathbf{x})$ によって $\mathbf{x}$ のクラスを決定する」</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="SVM回帰">SVM回帰<a class="anchor-link" href="#SVM回帰">¶</a></h3><p>単純な線形回帰問題においては、次の式で定義される正則化された誤差関数を最小化する。</p>
+$$\frac{1}{2}\sum_{n=1}^N\{y_n-t_n\}^2 + \frac{\lambda}{2}\|\mathbf{w}\|^2\qquad (7.50)$$<p>疎な解を得るために、二条誤差関数を<span class="marker-pink"> $\epsilon$ 許容誤差関数($\epsilon$-insentive error function)</span>で置き換える。つまり、予測値 $y(\mathbf{x})$ と観測値 $t$ の差が $\epsilon(>0)$ 未満のときは、$\epsilon$ 許容誤差関数の値は $0$ となる。$\epsilon$ 許容誤差関数の簡単な例は、<strong>「許容範囲外の値に関しては線形のコストを生じさせる」</strong>ものである。</p>
+$$
+\begin{aligned}
+    E_{\epsilon}\left(y(\mathbf{x})-t\right) = 
+        \begin{cases}
+            0 & (\text{ when }|y(\mathbf{x} - t)| < \epsilon)\\
+            |y(\mathbf{x} - t)| - \epsilon & (\text{ otherwise })
+        \end{cases}\qquad (7.51)
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">squareError</span>  <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y_true</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y_true</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="c1"># Sum of Squares Error function</span>
+<span class="n">epsilonError</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y_true</span><span class="p">,</span><span class="n">epsilon</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y_true</span><span class="p">)</span><span class="o"><</span><span class="n">epsilon</span> <span class="k">else</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y_true</span><span class="p">)</span><span class="o">-</span><span class="n">epsilon</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,[</span><span class="n">squareError</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y_true</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"sum of squares error function"</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,[</span><span class="n">epsilonError</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y_true</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\epsilon$-insentive error function"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s2">"x"</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"y_true"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Error function comparison"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-.</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$x$"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">),</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$E(x)$"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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KsWOHTtYvnw506ZNY8GCBUycmFY3etyQNXXeI0eO8MEHHxAVFUWpUqXo2bPnDT9LcvccSUlJlCxZku3bt+Ns2rRpbNy4kR9++IGQkBC2bNlCmTJlUparKsOHD+f555+/Ybvo6Oibuv8oXLgwvr6+mToHme06JHULpLR+T8k53S31797X19ctv/v8btmyZZQtW5auXbu6db8F9goG7B88zZs3Z968ecTExFgdx0jl5MmTBAYG8tRTTzF06FC2bt0K2OsBtmzZAsCiRYuyvf8SJUpQqlSplBZPX331VcrVTFrOnj1LUlISXbp04Z133mHr1q2ULFmSkiVLsm7dOgC+/vrrlPXvuusutm/fTlJSEseOHWPTpk0A/P333xQtWpQSJUpw+vRp/ve//7k83i233ELlypVT6jtUlR07dgBw6NAhGjduzNixYylXrhzHjh27YduHH36YWbNmcfnyZQBOnDiRqff4PffcQ3R0NAcPHsz0eXHltttuY8+ePSQlJbF48eIM12/dujWzZ8/m6tWrgL3CGaB48eJcunTppvUbNWrEmjVrOHv2LDabjXnz5mUrp2H3wQcfsGPHjhsKf3co0FcwAAMHDmTq1KlMnz6dkSNHWh3HcNi5cydDhw5NuRr59NNPARg9ejTPPvssb775ZkoFf3Z98cUX9OvXj6tXr1KlShVmz56d7vonTpygV69eKVcl48aNA2D27Nn07t0bEaFNmzYp6zdt2pTKlStTs2ZN7r33XurXrw9AcHAw9erVo0aNGlSsWJGmTZumecyvv/6a/v37884775CQkMDjjz+e0pjgwIEDqCqtWrUiODj4hu3atGnDnj17uP/++wF7xfecOXMyvFIpXLgws2fPplu3biQmJtKwYUP69euX7jaujB8/ng4dOlCuXDkaNGiQUtClpW3btmzfvp0GDRoQEBBAu3bteO+99+jZsyf9+vWjSJEiN/S+cfvttzN+/HhatmyJqtK+fXs6duyY5ZwGJCYm4ufnl+Ou+V0xfZFh/2PcvXs3R44cMR3gOezZs4d7773X6hheJzo6mg4dOrBr1y6roxjpMO9vu2vXrnHPPffw5ptv0rdvX5frmL7Icuill17ixIkTfP/991ZHMQzDyDNz587l2LFjKY063K3A3yIDaNeuHf/73/9o3bq11VEML3fXXXeZqxfDK6gqU6ZMoXbt2m7pd8wVU8Bgr+xPbtJqGIZREPzyyy/8/vvvTJ8+Pdc6ADW3yFJ57733GDJkiNUxDMMwct2UKVMoXbo0TzzxRK4dw7ICRkRmiUiMiLi8nyAiQ0Vku2PaJSI2ESntWBYtIjsdy9w2gtiJEyf45JNPOHPmjLt2aRiG4ZHGjh3LzJkzUx5uzQ1WXsGEA2nel1LVCapaV1XrAsOBNap6PtUqLR3Ls9W6wZWBAwcSFxfH9OnT3bVLwzAMj1SzZk1CQ0Nz9RiWFTCquhY4n+GKdj2AebkYB4B7772X1q1bM3XqVJedIxqGYXi7a9eu0bt37zxpjOLxdTAiEoj9Sif1Y9sKrBCRLSLyXAbbPycim0Vkc2ZufSU3Wc7M08eGYRjeZu7cucyePTult4Tc5PEFDPBv4Fen22MPqGp94BFggIik2cZOVT9X1Qaq2qBcuXIZHqxdu3YMGDCAatWq5Ti4kTeaNGmS68eIjY1l6tSpeX7c3DBlyhTuvfdennzySbftMz+dn/wsuWlycHCwW8ftSYs3FDCP43R7TFVPOL7GAIuBRu46mI+PDx9//DH16tVz1y6NXLZ+/fpcP4arD9C8OC64HhjM1bzMbjt16lR+/PHHG/pNyykrz4+ReWvXruX333/npZdeyrWmyal5dAEjIiWA5sCSVPOKikjx5O+BNoDbbybu2bOHL7/80t27NbJo2bJl1K1bl7p169K4cWOXH6rFihUjOjqae++9l759+1KrVi3atGmTMvRrWoOXzZkzh0aNGqV0hW+z2dLcz7Bhwzh06BB169Zl6NChKccFGDZsGJ988klKnjFjxvDBBx+keQxnaeVwHhjM1byJEycSFBREUFAQkydPBlwPKpasX79+HD58mEceeYRJkyYRHR2dMkAa2Ds9HDNmTLrn88svv6ROnToEBwenDE+Q3vlxlTE5Z1rHMHLHlClTKFOmDD169MibA2Z3IJmcTtivSk4BCcBx4FmgH9Av1To9gW+ctqsC7HBMfwAjM3vM1AOOZeSFF17QgIAAPX36dKa3yU9SD8j08ssvuxxQLCdT8uBeGbn77rv15MmT6a5TtGhRPXLkiPr6+uq2bdtUVbVbt2761Vdfqarrwct2796tHTp00Pj4eFVV7d+/v37xxRdp7ufIkSMpA4mlPq6q6tatW7VZs2Yp8++99179888/0zyG83lOK4fzwGDO8zZv3qxBQUF6+fJlvXTpktasWVO3bt3qctvUUg/a5vxzTZgwQUePHp3medi1a5dWq1YtZfvkgcHSOj9pZUzeJq3fWW4riAOOJSUl6RtvvKHjx4/P0nZ444BjqtpDVW9XVX9VraCqM1V1mqpOS7VOuKo+7rTdYVUNdky1VPXd3Mj30ksvER8ff9Nlv5G32rVrR506dRg0aFCG61auXJm6desCNw405WrwspUrV7JlyxYaNmxI3bp1WblyJYcPH053P2mpV68eMTExnDx5kh07dlCqVCkqVqyY7jGSpbeO88BgzvPWrVtHp06dKFq0KMWKFaNz584pww+42jarXJ2Hn3/+mW7dulG2bFkg44HB0suY1jGM3CEivP322zcML53bTFcxabjnnnv497//zdSpU3n99dcpUqSI1ZEsk/q2Rl5av349qsqpU6fw87O/VT/55JOU55SWLl16Qxfjqcey8PX1Tbnd4mrwslKlShEWFpbS5X6y6OjoNPeTnm7duhEREcFff/2VMuqjqro8RmppreNqYDDI/IBfmV0vrUHRIO3z6U55cQzDPoLr2rVrad++PT4+eXdd4dF1MFYbPHgwZ86ccWtlqJF5CxcupHr16vj5+aGq/P333wwYMIDt27ezffv2TI9f4WrwslatWhEREZEyCNf58+c5evRomvtIa+CrZI899hjffPMNERERdOvWDSBTx8hqjtQefPBBIiMjuXr1KleuXGHx4sVZbhl02223ERMTw7lz54iLi8uwR/GHHnqIhQsXcu7cuZS8kPb5cUdGI+dmzJjBo48+yu+//56nxzUFTDqaN2/OAw88wNmzZ62OUiD16NGDzz77jDp16nDfffeljCmfVTt37kypRH/rrbd44403qFmzJu+88w5t2rShTp06tG7dOmW8e1fKlClD06ZNCQoKSqnETq1WrVpcunSJ8uXLc/vttwNk6hhZzZFa/fr16dmzJ40aNaJx48b06dMny60f/f39GTVqFI0aNaJ169bUqFEj3fVr1arFyJEjad68OcHBwQwePBhI+/y4I6ORM4mJiXz00Uc0b9485XZkXjEDjmUgKSkpTy8pPYUZkMnIzwrS+3v+/Pk8/vjjLFmyhEcffTTL25sBx3KRj48PqsrOnTutjmIYhpElqsqHH35ItWrV6NChQ54f3xQwmTB79mzq1KnDjh07rI5iGIaRaTEx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
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>この $\epsilon$ 許容誤差関数を用いると、結局次の正則化された誤差関数を最小化することになる。</p>
+$$C\sum_{n=1}^NE_{\epsilon}\left(y(\mathbf{x}_n)-t_n\right) + \frac{1}{2}\|\mathbf{w}\|^2\qquad (7.52)$$<p>分類問題と同様、この最適化問題をスラック変数 $\xi_n,\hat{\xi}_n$ を導入して表現する。</p>
+<p>$\epsilon$ チューブの中に位置するという条件は $y_n-\epsilon\leq t_n \leq y_n+\epsilon$ と表せるので、チューブの外側にデータ点が存在することを許すような制約条件は以下のようにかける。</p>
+$$
+\begin{aligned}
+t_n&\leq y(\mathbf{x}_n) + \epsilon + \xi_n & (7.53)\\
+t_n&\geq y(\mathbf{x}_n) - \epsilon - \xi_n & (7.54)\\
+\end{aligned}
+$$<p>よって、スラック変数を用いると、SVM回帰の誤差関数は次のようにかける。</p>
+$$C\sum_{n=1}^N\left(\xi_n + \hat{\xi}_n\right) + \frac{1}{2}\|\mathbf{w}\|^2\qquad (7.55)$$<p>したがって、この最小化問題のラグランジュ関数は、ラグランジュ乗数 $a_n,\hat{a}_n,\mu_n,\hat{\mu}_n$ を導入して以下のようになる。（$y(\mathbf{x}_n)= \mathbf{w}^T\phi(\mathbf{x}_n)+b$）</p>
+$$
+\begin{aligned}
+L
+&=C\sum_{n=1}^N\left(\xi_n+\hat{\xi}_n\right)+\frac{1}{2}\|\mathbf{w}\|^2-\sum_{n=1}^N\left(\mu_n\xi_n+\hat{\mu}_n\hat{\xi}_n\right)\\
+&-\sum_{n=1}^Na_n\left(\epsilon + \xi_n + y_n - t_n \right)-\sum_{n=1}^N\hat{a}_n\left(\epsilon + \hat{\xi}_n - y_n + t_n\right) \qquad (7.56)\\
+\end{aligned}
+$$<p>これまで同様 $\mathbf{w},b,\xi_n,\hat{\xi}_n$ について微分して、</p>
+$$
+\begin{aligned}
+\frac{\partial L}{\partial \mathbf{w}} &= \mathbf{w}-\sum_{n=1}^Na_n\phi(\mathbf{x}_n)-\sum_{n=1}^N\hat{a}_n\phi(\mathbf{x}_n)=0 \quad \therefore \mathbf{w}^{\ast}=\sum_{n=1}^N \left(a_n-\hat{a}_n\right)\phi(\mathbf{x}_n) & (7.57)\\
+\frac{\partial L}{\partial b} &= -\sum_{n=1}^N a_n + \sum_{n=1}^N\hat{a}_n = 0 \quad\therefore\sum_{n=1}^N\left(a_n-\hat{a}_n\right) = 0 & (7.58)\\
+\frac{\partial L}{\partial \xi_n} &= C-a_n-\mu_n \quad\therefore a_n + \mu_n = C & (7.59)\\
+\frac{\partial L}{\partial \hat{\xi}_n} &= C-\hat{a}_n-\hat{\mu}_n \quad\therefore \hat{a}_n + \hat{\mu}_n = C & (7.60)\\
+\end{aligned}
+$$<p>が得られる。これらの結果を $(7.56)$ に代入すると、以下の<strong>双対形のラグランジュ関数</strong>が得られる。</p>
+$$
+\begin{aligned}
+\tilde{L}(\mathbf{a},\hat{\mathbf{a}}) 
+&= -\frac{1}{2}\sum_{n=1}^N\sum_{m=1}^N\left(a_n-\hat{a}_n\right)\left(a_m-\hat{a}_m\right)k(\mathbf{x}_n,\mathbf{x}_m)\\
+&- \epsilon\sum_{n=1}^N\left(a_n + \hat{a}_n\right) + \sum_{n=1}^N\left(a_n-\hat{a}_n\right)t_n
+\end{aligned} \qquad (7.61)
+$$<p>なお、制約式は</p>
+$$
+\begin{aligned}
+0 \leq a_n &\leq C & (7.62)\\
+0 \leq \hat{a}_n &\leq C & (7.63)
+\end{aligned}
+$$<p>である。したがって、新しい入力に対する予測値は</p>
+$$y(\mathbf{x}) = \sum_{n=1}^N\left(a_n-\hat{a}_n\right)k(\mathbf{x},\mathbf{x}_n) + b\qquad (7.64)$$<p>とカーネル関数のみを用いて計算できることがわかる。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>なお、バイアスパタメータ $b$ は次のように計算できる。</p>
+<ul>
+<li>$0<a_n&lt;c$ が成り立つデータ点についてはkkt条件より $\xi_n="0" \quad \therefore \epsilon+y_n-t_n="0$" が成り立つ。よって、 $$ \begin{aligned} b &amp;="t_n" - \epsilon - \mathbf{w}^t\phi(\mathbf{x}_n)\\ &amp;="t_n" - \epsilon - \sum_{m="1}^N\left(a_m-\hat{a}_m\right)k(\mathbf{x}_n,\mathbf{x}_m)\qquad" (7.69) \end{aligned} $$&lt; li>
+<li>$0<\hat{a}_n<c$ が成り立つデータ点についてはkkt条件より $\hat{\xi}_n="0" \quad \therefore \epsilon+y_n-t_n="0$" が成り立つ。よって、 $$ \begin{aligned} b &amp;="t_n" - \epsilon - \mathbf{w}^t\phi(\mathbf{x}_n)\\ &amp;="t_n" - \epsilon - \sum_{m="1}^N\left(a_m-\hat{a}_m\right)k(\mathbf{x}_n,\mathbf{x}_m)\qquad" (7.69) \end{aligned} $$&lt; li>
+</ul>
+<p>なお、このようにして得られた $b$ の値を全て平均した結果を用いると数値誤差の影響を小さくできる。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-14T16:00:00+09:00">Oct 14, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-14T16:00:00+09:00">Oct 14, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-detamainingulun-ref">生物データマイニング論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>36</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
+                    <span>6</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
