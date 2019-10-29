@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 生物データマイニング論, 生物データマイニング論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="ラグランジュ双対問題 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-4.html" />
+<meta property="og:description" content="ラグランジュ双対問題" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-14T17:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-14T17:00:00+09:00" />
+<meta name="twitter:title" content="ラグランジュ双対問題 ">
+<meta name="twitter:description" content="ラグランジュ双対問題">
+
+        <title>ラグランジュ双対問題  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-4.html"> ラグランジュ双対問題  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <ul>
+<li>講師：<a href="https://tsudalab.org/">津田宏治</a></li>
+<li>資料：<a href="https://tsudalab.org/ja/lectures/">生物データマイニング論(2019)</a></li>
+</ul>
+<div class="frame">
+  <h4>はじめに</h4>
+  <p>このノートは、<a href="https://qiita.com/birdwatcher/items/b23209f06177373c6df4">Qiita記事『ラグランジュ双対問題について解説』</a>を引用しています。</p>
+</div>
+
+<h2>ラグランジアン</h2>
+<p>次の最小化問題を考える.</p>
+<div class="math">$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^n} &amp;~ f_0(x)\\
+\mathrm{s.t.} &amp;~ f_i(x)\le 0,~ i=1,\ldots,m\\
+              &amp;~ h_i(x)=0, ~i=1,\ldots, p
+\end{aligned}
+$$</div>
+<ul>
+<li>実行可能領域は<strong>空でない</strong>とする</li>
+<li>この最適化問題の<strong>最適値</strong>を<span class="math">\(p^\star\)</span>と書く</li>
+<li>凸性は特に仮定しない</li>
+<li><strong>主問題</strong> という</li>
+</ul>
+<p>ラグランジアンは次のように定義される。</p>
+<div class="math">$$L(x, \lambda, \nu):=f_0(x)+\sum_{i=1}^m\lambda_i f_i(x)+\sum_{i=1}^p\nu_i h_i(x)$$</div>
+<ul>
+<li><span class="math">\(\lambda_i, \nu_i\)</span> はラグランジュ未定乗数</li>
+</ul>
+<h2>ラグランジュ双対関数</h2>
+<p>ラグランジュ双対関数は次のように定義される.</p>
+<div class="math">$$
+\begin{aligned}
+g(\lambda,\nu)&amp;:=\inf_{x\in D} L(x, \lambda, \nu)\\
+&amp;=\inf_{x\in D} \left(f_0(x)+\sum_{i=1}^m\lambda_i f_i(x)+\sum_{i=1}^p\nu_i h_i(x)\right)
+\end{aligned}
+$$</div>
+<ul>
+<li><span class="math">\(D:=\bigcap_{i=0}^m \mathrm{dom}(f_i) \cap \bigcap_{i=1}^p \mathrm{dom}(h_i)\)</span></li>
+<li>双対関数は, <span class="math">\((\lambda,\nu)\)</span>のアフィン関数の各点でのinfになっているため, 必ずconcave(上に凸)となる (もとの問題が凸でなくても)</li>
+</ul>
+<p>証明してみた:</p>
+<div class="math">$$
+\begin{aligned}
+     &amp; g(t\lambda_a+(1-t)\lambda_b, t\nu_a+(1-t)\nu_b)\\
+    =&amp;\inf_{x\in\mathcal{D}}\left(tL(x,\lambda_a,\nu_a)+(1-t)L(x,\lambda_b,\nu_b)\right)\\
+    \ge&amp; t\inf_{x\in\mathcal{D}}L(x,\lambda_a,\nu_a)+(1-t)L(x,\lambda_b,\nu_b)\\
+    =&amp; tg(\lambda_a,\nu_a)+(1-t)g(\lambda_b,\nu_b)
+\end{aligned}
+$$</div>
+<p><img alt="concave.png" src="https://qiita-image-store.s3.amazonaws.com/0/294661/a3c1b2ed-50e7-5657-542a-b6f2f4d72423.png"></p>
+<h2>最適値の下限</h2>
+<p>任意の <span class="math">\(\lambda\ge0, \nu\)</span> に対して, 次が成り立つ.</p>
+<p><span class="math">\($g(\lambda,\nu)\le p^\star\)</span></p>
+<p>証明:</p>
+<ul>
+<li><span class="math">\(\tilde{x}\)</span>を実行可能解とする: <span class="math">\(f_i(\tilde{x})\le 0, h_i(\tilde{x}) = 0\)</span></li>
+<li><span class="math">\(\lambda\ge 0\)</span>を仮定</li>
+</ul>
+<p>このとき, <span class="math">\(L(\tilde{x},\lambda,\nu)\)</span>の値は, <span class="math">\(f_0(\tilde{x})\)</span>でおさえられる:</p>
+<div class="math">$$
+L(\tilde{x},\lambda,\nu)=f_0(\tilde{x})+\underbrace{\sum_{i=1}^{m}\lambda_if_i(\tilde{x})}_{\le0}+\underbrace{\sum_{i=1}^{p}\nu_ih_i(\tilde{x})}_{=0}\le f_0(\tilde{x})
+$$</div>
+<p>ゆえに, <span class="math">\(g(\lambda, \nu)\)</span> は <span class="math">\(f_0(\tilde{x})\)</span> でおさえられる:</p>
+<div class="math">$$
+\therefore~g(\lambda, \nu)=\inf_{x\in\mathcal{D}}L(x,\lambda,\nu)\le L(\tilde{x},\lambda,\nu)\le f_0(\tilde{x})
+$$</div>
+<p>任意の<span class="math">\(\tilde{x}\)</span>に対して, <span class="math">\(g(\lambda, \nu)\le f_0(\tilde{x})\)</span>が成り立つため, <span class="math">\(g(\lambda, \nu)\le p^\star\)</span>が成り立つ.</p>
+<p><strong>結論: 双対関数の値は, 主問題の最適値を超えない</strong></p>
+<h2>線形近似による解釈</h2>
+<p>元の主問題と等価な次の最小化問題を考える.</p>
+<div class="math">$$
+\min_{x}~f_0(x)+\sum_{i=1}^{m}I_-(f_i(x))+\sum_{i=1}^{p}I_0(h_i(x))
+$$</div>
+<p>ただし, <span class="math">\(I_{-},I_{0}\)</span>は<strong>指示関数</strong>:</p>
+<div class="math">$$
+I_-(u):=\begin{cases}
+0&amp;u\le 0\\
+\infty&amp; u&gt;0
+\end{cases},~~~
+I_0(u):=\begin{cases}
+0&amp;u = 0\\
+\infty&amp; u\ne 0
+\end{cases}
+$$</div>
+<p>最小化するのが目的であるが, 指示関数は制約を満たさないと無限大になってしまう.
+この指示関数は, <strong>制約違反に対する不満度</strong> を表していると解釈できる.</p>
+<p>ここで,</p>
+<ul>
+<li><span class="math">\(I_-(u)\)</span> を <span class="math">\(\lambda_i u (\lambda_i\ge 0)\)</span></li>
+<li><span class="math">\(I_0(u)\)</span> を <span class="math">\(\nu_iu\)</span></li>
+</ul>
+<p>というように指示関数を近似する.</p>
+<div class="math">$$
+\min_{x}~L(x,\lambda,\nu)=f_0(x)+\sum_{i=1}^{m}\lambda_i f_i(x)+\sum_{i=1}^{p}\nu_i h_i(x)
+$$</div>
+<ul>
+<li>これは制約違反をソフトに近似したものと考えられる</li>
+<li>もちろん, 制約を違反するほど不満度は上昇するようになっている</li>
+<li>不等式制約に関して, 違反しているとき<span class="math">\(f_i(x)&gt;0\)</span>であり, <span class="math">\(\lambda_if_i(x)\ge0\)</span></li>
+<li>任意の<span class="math">\(u\)</span>に関して, <span class="math">\(\lambda_iu \le I_-(u)\)</span> と <span class="math">\(\nu_iu \le I_0(u)\)</span> が成り立つため, 双対関数が元の主問題の下限を与えることがわかる</li>
+</ul>
+<h2>共役関数</h2>
+<p><span class="math">\(f\)</span>の共役関数<span class="math">\(f^\ast\)</span>は次で定義される.</p>
+<div class="math">$$
+f^*(y)=\sup_{x\in\mathrm{dom} f}(y^\top x-f(x)).
+$$</div>
+<p>共役関数と双対問題には密接な関係がある. (<a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%A7%E3%83%B3%E3%82%B7%E3%82%A7%E3%83%AB%E3%81%AE%E5%8F%8C%E5%AF%BE%E6%80%A7%E5%AE%9A%E7%90%86"><strong>フェンシェル双対定理</strong></a>)
+たとえば, 機械学習のよくある形</p>
+<div class="math">$$
+\min_{w\in\mathbb{R}^d} f(Xw)+g(w)
+$$</div>
+<p>の双対問題は,</p>
+<div class="math">$$
+\max_{\alpha\in\mathbb{R}^n} -f^\ast(-\alpha)-g^\ast(X^\top\alpha)
+$$</div>
+<p>というように共役関数を使って表現できる.
+そのため, <a href="https://ja.wikipedia.org/wiki/%E5%87%B8%E5%85%B1%E5%BD%B9%E6%80%A7#%E4%BB%A3%E8%A1%A8%E7%9A%84%E3%81%AA%E5%87%B8%E5%85%B1%E5%BD%B9%E3%81%AE%E8%A1%A8">凸共役</a>を覚えておけば, 形式的に双対問題を導出できる.</p>
+<p>証明は簡単で, ラグランジアン<span class="math">\(L(w,z,\alpha)=f(z)+g(w)+\alpha^\top(z-Xw)\)</span>を考えて, 双対関数の定義にしたがって<span class="math">\(w\in\mathbb{R}^d,z\in\mathbb{R}^n\)</span>に関して最小化するだけだ.
+ちなみに, このとき最適解<span class="math">\(w^\star,\alpha^\star\)</span>に関して</p>
+<div class="math">$$
+w^\star \in \partial g^\ast(X^\top \alpha^\star),
+\quad \alpha^\star \in -\partial f(Xw^\star)
+$$</div>
+<p>が成立する (KKT条件).</p>
+<h1>ラグランジュ双対問題</h1>
+<p>双対関数から双対問題へ.</p>
+<h2>ラグランジュ双対問題</h2>
+<p>ここまでで, 双対関数が主問題の下限を与えることを示した.
+自然な疑問は, 「ラグランジュ双対関数から得られる最も良い下限はどれくらいなのか?」ということだ.
+最も良い下限は次の最大化問題を解くことで得られる.</p>
+<div class="math">$$
+\begin{aligned}
+\max_{\lambda,\nu}~&amp;g(\lambda,\nu)\\
+\mathrm{s.t.} ~&amp;\lambda\ge0
+\end{aligned}
+$$</div>
+<p>$</p>
+<ul>
+<li>これは, <strong>ラグランジュ双対問題</strong> と呼ばれる</li>
+<li>双対実行可能領域: <span class="math">\((\lambda,\nu)\)</span> に関して, <span class="math">\(\lambda\ge0\)</span> かつ <span class="math">\(g(\lambda,\nu)&gt;-\infty\)</span></li>
+<li><span class="math">\((\lambda^\star,\nu^\star)\)</span>: 双対問題の最適解</li>
+<li><span class="math">\(d^\star\)</span>: 双対問題の最適値</li>
+<li>双対問題は必ず凸最適化問題<ul>
+<li>目的関数が必ずconcaveで, 制約が凸であるため</li>
+<li>これは, 主問題が凸最適化でなくても成り立つ</li>
+</ul>
+</li>
+</ul>
+<h2>弱双対性</h2>
+<div class="math">$$
+d^\star\le p^\star
+$$</div>
+<ul>
+<li>主問題の凸性にかかわらず, 成り立つ</li>
+<li>この不等式は, <span class="math">\(p^\star, d^\star\)</span>が発散しないときに成り立つ</li>
+<li><span class="math">\(p^\star - d^\star\)</span>を<strong>双対ギャップ</strong>という</li>
+<li>よく最適化アルゴリズムの停止条件に使われる</li>
+<li><span class="math">\(p^\star\)</span>を求めるのことが難しいときに<span class="math">\(d^\star\)</span>を求めることで, <span class="math">\(p^\star\)</span>の下限を知ることができる<ul>
+<li>双対問題は必ず凸であるため, 多くの場合効率的に解ける</li>
+</ul>
+</li>
+</ul>
+<h2>強双対性</h2>
+<div class="math">$$
+d^\star=p^\star
+$$</div>
+<ul>
+<li>主問題の最適値が双対問題の最適値と一致するという性質</li>
+<li>強双対性は常には成り立たない</li>
+</ul>
+<p>もし主問題が凸, すなわち:</p>
+<div class="math">$$
+\begin{aligned}
+\min_{x\in\mathbb{R}^n} &amp;~ f_0(x)\\
+\mathrm{s.t.} &amp;~ f_i(x)\le 0, ~i=1,\ldots,m\\
+              &amp;~ Ax=b
+\end{aligned}
+$$</div>
+<p>で<span class="math">\(f_0,\ldots,f_m\)</span>が<strong>凸なら, たいていは(いつもではない)強双対性が成り立つ.</strong></p>
+<p>たとえば, SVMの最適化問題は凸であり, 強双対性が成り立つため, 主問題/双対問題のどちらを解いてもよい.</p>
+<h2>スレーター条件</h2>
+<p>次を満たすような<span class="math">\(x\in\mathrm{relint}(D)\)</span>が存在することをいう.</p>
+<div class="math">$$
+f_i(x)&lt;0,~i=1,\ldots,m,~~~Ax=b
+$$</div>
+<p>$</p>
+<ul>
+<li><strong>主問題が凸でスレーター条件を満たすとき, 強双対性が成り立つ</strong></li>
+<li>スレーター条件は強双対性の十分条件である (必要十分ではない)</li>
+</ul>
+<p>もし, <span class="math">\(f_1,\ldots,f_k\)</span>がアフィンなら, より弱い条件が成り立てばよい:</p>
+<div class="math">$$
+f_i(x)\le 0,~i=1,\ldots,k,~~~f_i(x)&lt;0,~i=k+1,\ldots,m,~~~Ax=b
+$$</div>
+<ul>
+<li>言い換えれば, アフィンの不等式制約は等号を含んでもよい</li>
+</ul>
+<h3>補足: int(内部)とrelint(相対的内部)</h3>
+<p><span class="math">\(\mathrm{int}(S)\)</span>:</p>
+<ul>
+<li>Sに含まれる最大開集合</li>
+<li>Sから境界上の点を取り除いたもの</li>
+</ul>
+<p><span class="math">\(\mathrm{relint}(S)\)</span>:</p>
+<ul>
+<li>Sによって拘束される線形空間上で, Sから境界上の点を取り除いたもの.</li>
+</ul>
+<p>intとrelintの違いのイメージとしては, まっすぐな下敷きのような平面を考えたとき, intは下敷きの平面ごと取り除いてしまい空集合になるのに対して, relintは下敷きの縁を削って残った部分.</p>
+<p><strong>Example1</strong> <span class="math">\(S=\lbrace(x_1,x_2)\mid 0\le x_1\le 1,x_2=0\rbrace\)</span></p>
+<div class="math">$$
+\mathrm{int}(S)=\emptyset, \mathrm{relint}(S)=\{(x_1,x_2)\mid 0 &lt; x_1 &lt; 1,x_2=0\}, (\mathrm{aff}(S)=\{(x_1,x_2)\in\mathbb{R}^2\mid x_2=0\})
+$$</div>
+<p><strong>Example2</strong> <span class="math">\(S= \lbrace (x_1,x_2)\mid 0\le x_1\le 1,0\le x_2\le 1\rbrace\)</span></p>
+<div class="math">$$
+\mathrm{int}(S)=\mathrm{relint}(S)=\{(x_1,x_2)\mid 0 &lt; x_1 &lt; 1,0&lt;x_2&lt;1\}, (\mathrm{aff}(S)=\{(x_1,x_2)\in\mathbb{R}^2\})
+$$</div>
+<h1>最適性条件</h1>
+<p>特に主問題の凸性を仮定しない.</p>
+<h2>相補性条件</h2>
+<p>特に, 強双対性条件を満たすと仮定すると,</p>
+<div class="math">$$
+\begin{aligned}
+f_0(x^\star)&amp;=g(\lambda^\star,\nu^\star)\\
+&amp;=\inf_{x\in D} \left(f_0(x)+\sum_{i=1}^m\lambda_i^\star f_i(x)+\sum_{i=1}^p\nu_i^\star h_i(x)\right)\\
+&amp;\le f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star f_i(x^\star)+\sum_{i=1}^p\nu_i^\star h_i(x^\star)\\
+&amp;\le f_0(x^\star)
+\end{aligned}
+$$</div>
+<ul>
+<li>1行目: 強双対性</li>
+<li>2行目: 双対関数の定義</li>
+<li>3行目: <span class="math">\(\inf\)</span>の定義</li>
+<li>4行目: <span class="math">\(\lambda_i^\star\ge0, f_i(x^\star)\le0, ~i=1,\ldots,m\)</span>と<span class="math">\(h_i(x^\star)=0, ~i=1,\ldots,p\)</span></li>
+</ul>
+<p>1,3行目と3,4行目を考慮すると,</p>
+<div class="math">$$
+\sum_{i=1}^m\lambda_i^\star f_i(x^\star)=0.
+$$</div>
+<p>和の各項は非負であるため,</p>
+<div class="math">$$
+\lambda_i^\star f_i(x^\star)=0,~~~i=1,\ldots,m.
+$$</div>
+<ul>
+<li>これを相補性条件という</li>
+<li>もし<span class="math">\(\lambda_i^\star&gt;0\)</span>なら, <span class="math">\(f_i(x^\star)=0\)</span></li>
+<li>もし<span class="math">\(f_i(x^\star)&lt;0\)</span>なら, <span class="math">\(\lambda_i^\star=0\)</span></li>
+</ul>
+<h2>KKT条件 (Karush-Kuhn-Tucker条件)</h2>
+<p>強双対性を仮定すると, <span class="math">\(x^\star\)</span>は<span class="math">\(L(x,\lambda^\star,\nu^\star)\)</span>を最小化するため, <span class="math">\(x^\star\)</span>における勾配は0である:</p>
+<div class="math">$$
+\nabla f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p\nu_i^\star\nabla h_i(x^\star)=0
+$$</div>
+<p>ゆえに, 最適解で成り立つ式を列挙すると:</p>
+<ul>
+<li><span class="math">\(f_i(x^\star)\le 0,~i=1,\ldots,m\)</span></li>
+<li><span class="math">\(h_i(x^\star)= 0,~i=1,\ldots,p\)</span></li>
+<li><span class="math">\(\lambda_i\ge0,~i=1,\ldots,m\)</span></li>
+<li><span class="math">\(\lambda_i f_i(x^\star)= 0,~i=1,\ldots,m\)</span></li>
+<li><span class="math">\(\nabla f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p\nu_i^\star\nabla h_i(x^\star)=0\)</span></li>
+</ul>
+<p>これがいわゆる<strong>KKT条件</strong>である. (必要条件)
+まとめると, 強双対性を満たすなら, 最適解において主変数と双対変数はKKT条件を満たさなければならない.</p>
+<p>主問題が凸であるとき, KKT条件は十分条件にもなる.
+つまり, ある点<span class="math">\(\tilde{x},\tilde{\lambda}, \tilde{\nu}\)</span>がKKT条件を満たすなら, <span class="math">\(\tilde{x}=x^\star, \tilde{\lambda}=\lambda^\star, \tilde{\nu}=\nu^\star\)</span>.
+十分条件の証明:</p>
+<div class="math">$$
+\begin{aligned}
+g(\tilde{\lambda},\tilde{\nu})&amp;=L(\tilde{x},\tilde{\lambda},\tilde{\nu})\\
+&amp;= f_0(\tilde{x})+\sum_{i=1}^m\tilde{\lambda}_i f_i(\tilde{x})+\sum_{i=1}^p\tilde{\nu}_i h_i(\tilde{x})\\
+&amp;= f_0(\tilde{x})
+\end{aligned}
+$$</div>
+<ul>
+<li>1行目: <span class="math">\(\tilde{x}\)</span>がKKT条件の最後の条件を満たすため<ul>
+<li>主問題が凸であるため, <span class="math">\(L(x,\tilde{\lambda},\tilde{\nu})\)</span>は<span class="math">\(x\)</span>に関して凸である (<span class="math">\(\because\tilde{\lambda}_i\ge0\)</span>)</li>
+<li><span class="math">\(\therefore~L\)</span>を最小化する<span class="math">\(x\)</span>は, 勾配が0である</li>
+</ul>
+</li>
+<li>2行目: ラグランジアンの定義</li>
+<li>3行目: <span class="math">\(\tilde{x}\)</span>がKKT条件の2つ目と4つ目を満たすため</li>
+</ul>
+<p>この式は, 双対ギャップが0であることを意味するため, <span class="math">\(\tilde{x},\tilde{\lambda}, \tilde{\nu}\)</span>は最適解である.</p>
+<p><strong>結論: スレーター条件を満たすとき, KKT条件は最適性の必要十分条件となる</strong></p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-14T17:00:00+09:00">Oct 14, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-14T17:00:00+09:00">Oct 14, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-detamainingulun-ref">生物データマイニング論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>38</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
+                    <span>8</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

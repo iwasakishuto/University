@@ -411,7 +411,7 @@ $$k(x,x^{\prime}) = \boldsymbol{\phi}(x)^T\boldsymbol{\phi}(x^{\prime}) = \sum_{
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>※詳しくは、<a href="https://mitpress.mit.edu/books/kernel-methods-computational-biology">Kernel Methods in Computational Biology, MIT Press, 2004</a>を参照</p>
+<p>※ 詳しくは、<a href="https://mitpress.mit.edu/books/kernel-methods-computational-biology">Kernel Methods in Computational Biology, MIT Press, 2004</a>を参照</p>
 </div>
 </div>
 </div>
@@ -425,36 +425,7 @@ $$k(x,x^{\prime}) = \boldsymbol{\phi}(x)^T\boldsymbol{\phi}(x^{\prime}) = \sum_{
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li>条件なし最適化<ul>
-<li>ある関数 $f$ が与えられた時、それが最小値を取る点を見つけ出す。
-$$\underset{x}{\min}f(x)$$</li>
-<li>微分をとって $0$ になる点を見つければ良い。
-$$\frac{\partial}{\partial x}f(x) = 0\Longrightarrow x^{\ast}$$</li>
-</ul>
-</li>
-<li>条件付き最適化<ul>
-<li>条件を満たすもので、$f$ を最小にする点を見つけ出す。
-$$\underset{x}{\min}f(x), \text{ s.t. } g(x\leq0)$$</li>
-<li>ラグランジュ関数(Lagrangian)（$L(x,\lambda) \equiv f(x)+\lambda g(x)$）を <span class="marker-pink">$x,\lambda$ の両方に対する停留点（鞍点）を見つければ</span>、制約付き問題の最適解が得られる。（理由は以下）</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="ラグランジュの未定乗数法で制約付き問題の最適解が得られる理由">ラグランジュの未定乗数法で制約付き問題の最適解が得られる理由<a class="anchor-link" href="#ラグランジュの未定乗数法で制約付き問題の最適解が得られる理由">¶</a></h5><ul>
-<li>制約式の勾配 $\nabla g(\mathbf{x})$ は曲面（制約面） $g(\mathbf{x})=0$ に対して常に垂直である。
-∵）制約面 $g(\mathbf{x})$ 上の点 $\mathbf{x}$ と $\mathbf{x}+\boldsymbol{\varepsilon}$ を考える。
-すると、$\mathbf{x}$ の周りでの $g(\mathbf{x})$ のテイラー展開より、
-$$g(\mathbf{x} + \boldsymbol{\varepsilon}) \sim g(\mathbf{x}) + \boldsymbol{\varepsilon}^T\nabla g(\mathbf{x})\qquad (E.2)$$
-いま、$\mathbf{x}$ と $\mathbf{x}+\boldsymbol{\varepsilon}$ は共に制約面上に存在するので $g(\mathbf{x})=g(\mathbf{x}+\boldsymbol{\varepsilon})=0$ したがって、$\|\boldsymbol{\varepsilon}\|\rightarrow0$ の極限では $\boldsymbol{\varepsilon}^T\nabla g(\mathbf{x})\sim0$ が成り立ち、かつ $\boldsymbol{\varepsilon}^T$ は制約面上の接線であることから、ベクトル $\nabla g(\mathbf{x})$ は制約面に対して垂直である。</li>
-<li>制約面上の点で $f(\mathbf{x})$ を最大化する点 $\mathbf{x}^{\ast}$ においては、ベクトル $\nabla f(\mathbf{x})$ も制約面に対して垂直でなければならない。
-∵）垂直でないとすると、制約面にそって $f(\mathbf{x})$ の値がさらに大きくなるように点を動かすことができるから。</li>
-</ul>
+<p><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-2.html">ラグランジュ未定乗数法</a>に記載。</p>
 </div>
 </div>
 </div>
@@ -468,12 +439,12 @@ $$g(\mathbf{x} + \boldsymbol{\varepsilon}) \sim g(\mathbf{x}) + \boldsymbol{\var
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>詳しくは <a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-2.html">サポートベクターマシン(SVM)</a> に記載</p>
 <ul>
 <li><span class="marker-pink">マージン最大化</span>に基づく線形識別器</li>
 <li>カーネル関数と組み合わせることによって非線形な識別も可能</li>
 <li>サンプル間の類似度にしか依存しない<strong>（→非ベクトルデータの分類にも適用可能）</strong></li>
 </ul>
+<p>詳しくは <a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-3.html">サポートベクターマシン(SVM)</a> に記載。</p>
 </div>
 </div>
 </div>
@@ -537,10 +508,10 @@ $$g(\mathbf{x} + \boldsymbol{\varepsilon}) \sim g(\mathbf{x}) + \boldsymbol{\var
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>36</span>
+                    <span>38</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
-                    <span>6</span>
+                    <span>8</span>
 </a></li>
             </ul>
 <h5>Contact</h5>
