@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="逐次最小問題最適化法(SMO) "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-5.html" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="講師：津田宏治 資料：生物データマイニング論(2019)" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-10-14T19:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-10-14T19:00:00+09:00" />
 <meta name="twitter:title" content="逐次最小問題最適化法(SMO) ">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="講師：津田宏治 資料：生物データマイニング論(2019)">
 
         <title>逐次最小問題最適化法(SMO)  · 3A
 </title>
@@ -108,7 +108,196 @@
         <div class="span8 offset2 article-content">
 
             
-            <div class="cell border-box-sizing code_cell rendered">
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>講師：<a href="https://tsudalab.org/">津田宏治</a></li>
+<li>資料：<a href="https://tsudalab.org/ja/lectures/">生物データマイニング論(2019)</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="二次計画問題を解くアルゴリズム概観">二次計画問題を解くアルゴリズム概観<a class="anchor-link" href="#二次計画問題を解くアルゴリズム概観">¶</a></h3><table>
+<thead><tr>
+<th style="text-align:left">アルゴリズム</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">伝統的な二次計画法のアルゴリズム</td>
+<td style="text-align:left">計算コスト及びメモリ使用量の面で現実的には厳しい。</td>
+</tr>
+<tr>
+<td style="text-align:left"><span class="marker-pink">チャンキング(chunking)</span></td>
+<td style="text-align:left">カーネル行列からラグランジュ乗数が $0$ となるデータに対応する行および列を取り除いても、ラグランジュ関数が不変であることを利用し、元々の二次計画問題は、より次元数の小さな問題を順番に解くことで、最終的には $0$ とならないラグランジュ乗数だけを残す、という問題に帰着する。</td>
+</tr>
+<tr>
+<td style="text-align:left"><span class="marker-pink">射影共役勾配法(projected conjugate gradient method)</span></td>
+<td style="text-align:left">チャンキングを実装する手法</td>
+</tr>
+<tr>
+<td style="text-align:left"><span class="marker-pink">分解法(decomposition method)</span></td>
+<td style="text-align:left">チャンキングと同様<strong>サイズの小さな二次計画問題を繰り返し解く</strong>という手法だが、ここの部分問題の大きさが一定であるため、任意の大きさのデータに対応できる。</td>
+</tr>
+<tr>
+<td style="text-align:left"><span class="marker-pink">逐次最小問題最適化法(SMO;sequential minimal optimization)</span></td>
+<td style="text-align:left">分解法の計算コストを削減した手法。たった２つのラグランジュ乗数を含む部分問題を逐次解いていくことで最終的な解を得る。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="逐次最小問題最適化法(SMO;sequential-minimal-optimization)">逐次最小問題最適化法(SMO;sequential minimal optimization)<a class="anchor-link" href="#逐次最小問題最適化法(SMO;sequential-minimal-optimization)">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-3.html#dual">ラグランジュ双対問題</a>を以下のように定義する。</p>
+$$
+\begin{aligned}
+\tilde{L}(\mathbf{a}) &=\sum_n^Na_n - \frac{1}{2}\sum_{n=1}^{N}\sum_{m=1}^Na_na_mt_nt_mk(\mathbf{x}_n,\mathbf{x}_m)& (7.10)\\
+a_n & \geq 0,\quad n=1,\ldots,N & (7.11)\\
+\sum_{n=1}^Na_nt_n &= 0 & (7.12)
+\end{aligned}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><span class="marker-pink">逐次最小問題最適化法(SMO;sequential minimal optimization)</span>は反復法である。</li>
+<li>適当な初期値 $\mathbf{a}^{(0)}$ から出発して、更新 $\mathbf{a}^{(k)} \rightarrow \mathbf{a}^{(k+1)}$ を繰り返す。</li>
+<li>この際、<span class="marker-pink">１度には2つの成分しか動かさない。</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ここで、$a_p$ と $a_q$ だけ動かすことを考える。<span class="marker-pink">（他の $a_n$ は定数とみなす）</span></p>
+<p>この時、制約条件より</p>
+$$ a_pt_p + a_qt_q = 0-\sum_{n\neq p,q} a_nt_n = \mathrm{const.}$$<p>が成立する。したがって、</p>
+$$ \frac{\partial a_q}{\partial a_p} = -\frac{t_p}{t_q} =-t_pt_q \cdots (\ast)$$<p>と解析的に偏微分を求めることが可能である。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="目的関数-$\tilde{L}$-の変化量">目的関数 $\tilde{L}$ の変化量<a class="anchor-link" href="#目的関数-$\tilde{L}$-の変化量">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>以下、$K_{ij} = k\left(\mathrm{x}_i,\mathrm{x}_j\right)$ とおく。ここで、</p>
+$$a_p\mapsto a_p+\Delta_p, \quad a_q\mapsto a_q+\Delta_q$$<p>と更新した時、目的関数 $\tilde{L}$ の変化量 $\Delta\tilde{L}$ は、</p>
+$$
+\begin{aligned}
+\Delta\tilde{L} &= \Delta_p + \Delta_q - \Delta_pt_p\sum_{n=1}^Na_nt_nk(\mathbf{x}_p,\mathbf{x}_n) - \Delta_qt_q\sum_{n=1}^Na_nt_nk(\mathbf{x}_q,\mathbf{x}_n)\\
+&-\frac{1}{2}\left[\Delta_p^2k(\mathbf{x}_p,\mathbf{x}_p) + 2\Delta_p\Delta_qt_pt_qk(\mathbf{x}_p,\mathbf{x}_q) + \Delta_q^2k(\mathbf{x}_q,\mathbf{x}_q)\right]
+\end{aligned}
+$$<p>となる。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$(\ast)$ より $\Delta_q = -t_pt_q\Delta_p$ である。</li>
+<li>$t_p=t_q(\Longleftrightarrow\Delta_q=-\Delta_p)$ の時と $t_p\neq t_q$ の時に場合分けをし、それぞれ $\Delta_p$ で変化量を偏微分して $0$ とおく。</li>
+<li>結果は共に等しく、以下で表される。
+$$
+\begin{aligned}
+\Delta_p 
+&= \frac{1-t_pt_q + t_p\left(\sum_{n=1}^Na_nt_nK_{qn} - \sum_{n=1}^Na_nt_nK_{pn}\right)}{K_{pp} - 2K_{pq} + K_{qq}}\\
+&= \frac{1-t_pt_q + t_p\left(y(\mathbf{x_q}) - y(\mathbf{x}_q)\right)}{K_{pp} - 2K_{pq} + K_{qq}}\\
+\end{aligned}
+$$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="クリッピング">クリッピング<a class="anchor-link" href="#クリッピング">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>この時、</p>
+<ul>
+<li>$t_pa_p+t_qa_q=c$</li>
+<li>$a_p\geq0$</li>
+<li>$a_q\geq0$ </li>
+</ul>
+<p>が成立していなければならないので、以下を満たすように $\Delta_p$ の<b>クリッピング</b>を行う必要がある。</p>
+<ul>
+<li>$t_p=t_q$ のときは $ 0 \leq a_p + \Delta_p \leq c/t_p$</li>
+<li>$t_p=-t_q$ のときは $ \mathrm{max}\{0,c/t_p\}\leq a_p+\Delta_p$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="変数の選択方法">変数の選択方法<a class="anchor-link" href="#変数の選択方法">¶</a></h4><p>最後に、動かす $\mu_p,\mu_q$ の選択基準であるが、SMO法の発見者である $John C. Platt$ の論文に従うならば以下の様になる。</p>
+<ol>
+<li>$KTT$条件を破る$a_p$を$1$つ目に選ぶ。</li>
+<li>続いて、$\left|y\left(\mathbf{x_q}\right)-y\left(\mathbf{x_p}\right)\right|$ が最大となる$a_p$を次に選ぶ。</li>
+</ol>
+<p>これは、$\left|y\left(\mathbf{x_q}\right)-y\left(\mathbf{x_p}\right)\right|$ が大きければそれだけステップ幅も大きくなるため収束が早くなるというヒューリスティックス（直感）である。</p>
+<p>これを繰り返して、$\tilde{L}$ が収束するまで反復を繰り返せば学習完了である。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="実装例">実装例<a class="anchor-link" href="#実装例">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><a href="https://github.com/iwasakishuto/Kerasy/blob/7dcafb7e9d5ead4a1384bc41cd31e6993bd57e07/kerasy/ML/svm.py#L53"><code>kerasy.ML.svm.BaseSVM</code></a> に記載。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -168,7 +357,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
                     <span>8</span>

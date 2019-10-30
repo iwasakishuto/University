@@ -117,7 +117,8 @@
   <p>このノートは、<a href="https://qiita.com/birdwatcher/items/b23209f06177373c6df4">Qiita記事『ラグランジュ双対問題について解説』</a>を引用しています。</p>
 </div>
 
-<h2>ラグランジアン</h2>
+<h2>ラグランジュ双対関数</h2>
+<h3>ラグランジアン</h3>
 <p>次の最小化問題を考える.</p>
 <div class="math">$$
 \begin{aligned}
@@ -137,7 +138,7 @@ $$</div>
 <ul>
 <li><span class="math">\(\lambda_i, \nu_i\)</span> はラグランジュ未定乗数</li>
 </ul>
-<h2>ラグランジュ双対関数</h2>
+<h3>ラグランジュ双対関数</h3>
 <p>ラグランジュ双対関数は次のように定義される.</p>
 <div class="math">$$
 \begin{aligned}
@@ -159,7 +160,7 @@ $$</div>
 \end{aligned}
 $$</div>
 <p><img alt="concave.png" src="https://qiita-image-store.s3.amazonaws.com/0/294661/a3c1b2ed-50e7-5657-542a-b6f2f4d72423.png"></p>
-<h2>最適値の下限</h2>
+<h4>最適値の下限</h4>
 <p>任意の <span class="math">\(\lambda\ge0, \nu\)</span> に対して, 次が成り立つ.</p>
 <p><span class="math">\($g(\lambda,\nu)\le p^\star\)</span></p>
 <p>証明:</p>
@@ -177,7 +178,7 @@ $$</div>
 $$</div>
 <p>任意の<span class="math">\(\tilde{x}\)</span>に対して, <span class="math">\(g(\lambda, \nu)\le f_0(\tilde{x})\)</span>が成り立つため, <span class="math">\(g(\lambda, \nu)\le p^\star\)</span>が成り立つ.</p>
 <p><strong>結論: 双対関数の値は, 主問題の最適値を超えない</strong></p>
-<h2>線形近似による解釈</h2>
+<h4>線形近似による解釈</h4>
 <p>元の主問題と等価な次の最小化問題を考える.</p>
 <div class="math">$$
 \min_{x}~f_0(x)+\sum_{i=1}^{m}I_-(f_i(x))+\sum_{i=1}^{p}I_0(h_i(x))
@@ -210,7 +211,7 @@ $$</div>
 <li>不等式制約に関して, 違反しているとき<span class="math">\(f_i(x)&gt;0\)</span>であり, <span class="math">\(\lambda_if_i(x)\ge0\)</span></li>
 <li>任意の<span class="math">\(u\)</span>に関して, <span class="math">\(\lambda_iu \le I_-(u)\)</span> と <span class="math">\(\nu_iu \le I_0(u)\)</span> が成り立つため, 双対関数が元の主問題の下限を与えることがわかる</li>
 </ul>
-<h2>共役関数</h2>
+<h4>共役関数</h4>
 <p><span class="math">\(f\)</span>の共役関数<span class="math">\(f^\ast\)</span>は次で定義される.</p>
 <div class="math">$$
 f^*(y)=\sup_{x\in\mathrm{dom} f}(y^\top x-f(x)).
@@ -233,9 +234,9 @@ w^\star \in \partial g^\ast(X^\top \alpha^\star),
 \quad \alpha^\star \in -\partial f(Xw^\star)
 $$</div>
 <p>が成立する (KKT条件).</p>
-<h1>ラグランジュ双対問題</h1>
-<p>双対関数から双対問題へ.</p>
 <h2>ラグランジュ双対問題</h2>
+<p>双対関数から双対問題へ.</p>
+<h3>ラグランジュ双対問題</h3>
 <p>ここまでで, 双対関数が主問題の下限を与えることを示した.
 自然な疑問は, 「ラグランジュ双対関数から得られる最も良い下限はどれくらいなのか?」ということだ.
 最も良い下限は次の最大化問題を解くことで得られる.</p>
@@ -257,7 +258,7 @@ $$</div>
 </ul>
 </li>
 </ul>
-<h2>弱双対性</h2>
+<h4>弱双対性</h4>
 <div class="math">$$
 d^\star\le p^\star
 $$</div>
@@ -271,7 +272,7 @@ $$</div>
 </ul>
 </li>
 </ul>
-<h2>強双対性</h2>
+<h4>強双対性</h4>
 <div class="math">$$
 d^\star=p^\star
 $$</div>
@@ -289,7 +290,7 @@ $$</div>
 $$</div>
 <p>で<span class="math">\(f_0,\ldots,f_m\)</span>が<strong>凸なら, たいていは(いつもではない)強双対性が成り立つ.</strong></p>
 <p>たとえば, SVMの最適化問題は凸であり, 強双対性が成り立つため, 主問題/双対問題のどちらを解いてもよい.</p>
-<h2>スレーター条件</h2>
+<h4>スレーター条件</h4>
 <p>次を満たすような<span class="math">\(x\in\mathrm{relint}(D)\)</span>が存在することをいう.</p>
 <div class="math">$$
 f_i(x)&lt;0,~i=1,\ldots,m,~~~Ax=b
@@ -306,7 +307,7 @@ $$</div>
 <ul>
 <li>言い換えれば, アフィンの不等式制約は等号を含んでもよい</li>
 </ul>
-<h3>補足: int(内部)とrelint(相対的内部)</h3>
+<h4>補足: int(内部)とrelint(相対的内部)</h4>
 <p><span class="math">\(\mathrm{int}(S)\)</span>:</p>
 <ul>
 <li>Sに含まれる最大開集合</li>
@@ -325,9 +326,9 @@ $$</div>
 <div class="math">$$
 \mathrm{int}(S)=\mathrm{relint}(S)=\{(x_1,x_2)\mid 0 &lt; x_1 &lt; 1,0&lt;x_2&lt;1\}, (\mathrm{aff}(S)=\{(x_1,x_2)\in\mathbb{R}^2\})
 $$</div>
-<h1>最適性条件</h1>
+<h3>最適性条件</h3>
 <p>特に主問題の凸性を仮定しない.</p>
-<h2>相補性条件</h2>
+<h4>相補性条件</h4>
 <p>特に, 強双対性条件を満たすと仮定すると,</p>
 <div class="math">$$
 \begin{aligned}
@@ -356,7 +357,7 @@ $$</div>
 <li>もし<span class="math">\(\lambda_i^\star&gt;0\)</span>なら, <span class="math">\(f_i(x^\star)=0\)</span></li>
 <li>もし<span class="math">\(f_i(x^\star)&lt;0\)</span>なら, <span class="math">\(\lambda_i^\star=0\)</span></li>
 </ul>
-<h2>KKT条件 (Karush-Kuhn-Tucker条件)</h2>
+<h4>KKT条件 (Karush-Kuhn-Tucker条件)</h4>
 <p>強双対性を仮定すると, <span class="math">\(x^\star\)</span>は<span class="math">\(L(x,\lambda^\star,\nu^\star)\)</span>を最小化するため, <span class="math">\(x^\star\)</span>における勾配は0である:</p>
 <div class="math">$$
 \nabla f_0(x^\star)+\sum_{i=1}^m\lambda_i^\star \nabla f_i(x^\star)+\sum_{i=1}^p\nu_i^\star\nabla h_i(x^\star)=0
@@ -473,7 +474,7 @@ $$</div>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>38</span>
+                    <span>39</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
                     <span>8</span>
