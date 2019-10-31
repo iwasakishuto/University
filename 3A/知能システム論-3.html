@@ -11,20 +11,20 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 映像メディア工学, 映像メディア工学, " />
+<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="特徴選択 "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/映像メディア工学-3.html" />
-<meta property="og:description" content="" />
+<meta property="og:title" content="連続最適化(2)制約付き最適化 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-3.html" />
+<meta property="og:description" content="講師：佐藤一誠 参考書：最適化手法 参考書：機械学習のための連続最適化" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-10-21T00:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-10-21T00:00:00+09:00" />
-<meta name="twitter:title" content="特徴選択 ">
-<meta name="twitter:description" content="">
+<meta property="og:article:published_time" content="2019-10-17T12:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-17T12:00:00+09:00" />
+<meta name="twitter:title" content="連続最適化(2)制約付き最適化 ">
+<meta name="twitter:description" content="講師：佐藤一誠 参考書：最適化手法 参考書：機械学習のための連続最適化">
 
-        <title>特徴選択  · 3A
+        <title>連続最適化(2)制約付き最適化  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-3.html"> 特徴選択  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-3.html"> 連続最適化(2)制約付き最適化  </a></h1>
     </header>
 </div>
 
@@ -108,7 +108,131 @@
         <div class="span8 offset2 article-content">
 
             
-            <div class="cell border-box-sizing code_cell rendered">
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>講師：<a href="http://www.ms.k.u-tokyo.ac.jp/">佐藤一誠</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/最適化法-工系数学講座-17-田村-明久/dp/4320016165">最適化手法</a></li>
+<li>参考書：<a href="https://www.kspub.co.jp/book/detail/1529205.html">機械学習のための連続最適化</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h3>講義概要</h3>
+<ol>
+<li>
+<a href="#anchor1">等式制約付き最適化問題</a>
+<ol>
+<li><a href="#anchor1-1">ラグランジュ未定乗数法</a></li>
+<li><a href="#anchor1-2">双対上昇法</a></li>
+<li><a href="#anchor1-3">乗数法</a></li>
+</ol>
+</li>
+<li><a href="#anchor2">不等式制約付き最適化問題</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor1">等式制約付き最適化問題</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="anchor1-1">ラグランジュ未定乗数法</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="anchor1-2">双対上昇法</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="anchor1-3">乗数法</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor2">不等式制約付き最適化問題</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="まとめ">まとめ<a class="anchor-link" href="#まとめ">¶</a></h3><ul>
+<li>制約付き最適化問題：
+$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{minimization :  }}&f;(\mathbf{x})\\
+\text{subject to :  }&g;(\mathbf{x})=\mathbf{0}\\
+&h;(\mathbf{x})\leq\mathbf{0}
+\end{aligned}
+$$</li>
+<li>ラグランジュ関数：
+$$L\left(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}\right) = f(\mathbf{x}) + \boldsymbol{\lambda}^Tg(\mathbf{x}) + \boldsymbol{\mu}^Th(\mathbf{x})$$</li>
+<li>双対問題：
+$$
+\begin{aligned}
+\underset{\boldsymbol{\lambda,\mu},\ \mathbf{x}\in\mathcal{X}}{\text{maximization :  }}&L;\left(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}\right)\\
+\text{subject to :  }&\boldsymbol{\mu}\geq\mathbf{0}\\
+\end{aligned}
+$$</li>
+<li>KKT条件：
+$$
+\begin{aligned}
+\begin{cases}
+  \nabla_{\mathbf{x}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) = \mathbf{0}\\
+  \nabla_{\boldsymbol{\lambda}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) = \mathbf{0} & \boldsymbol{\mu}^{\ast}\geq\mathbf{0}\\
+  \nabla_{\boldsymbol{\mu}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) \leq \mathbf{0} & \mu_i^{\ast}h_i(\mathbf{x}^{\ast}) = 0,\ \forall i
+\end{cases}
+\end{aligned}
+$$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In [ ]:</div>
 <div class="inner_cell">
@@ -158,20 +282,20 @@
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-10-21T00:00:00+09:00">Oct 21, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-10-17T12:00:00+09:00">Oct 17, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-10-21T00:00:00+09:00">Oct 21, 2019</time>
+<time datetime="2019-10-17T12:00:00+09:00">Oct 17, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#ying-xiang-medeiagong-xue-ref">映像メディア工学</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
                     <span>46</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
-                    <span>5</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
+                    <span>10</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

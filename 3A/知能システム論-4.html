@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="探索 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-4.html" />
+<meta property="og:description" content="講師：本多 淳也 参考書：エージェントアプローチ人工知能 第2版 参考書：イラストで学ぶ 人工知能概論 講義概要 状態空間 15パズル 迷路 コスト無しグラフの探索 コスト付きグラフの探索 ゲーム木の探索 状態空間 ありうる局面の１つ１つを状態と言う。 状態全体からなる集合を状態空間と言う。 目的：初期状態から出発して、許される状態遷移を繰り返し、最終状態へたどり着くこと。 これは、グラフ(graph)の探索(search)問題と等価（ノードが状態に、エッジが状態遷移にそれぞれ対応する。） 15パズル ルール： 一度に動かせるのは1パネルのみ。 飽きますに隣のパネルをずらす操作のみ可能 目標： 「できるだけ少ない手数で」与えられた配置から元の配置に戻すこと。 元に戻すことが不可能な問題を識別する。 迷路 目的：スタートからゴールまで誘導する。 状態(state) $s$：移動できる場所 行動(action) $a$：進む方向 コスト無しグラフの探索 用語 意味 オープンリスト(open list) これから探索するノードの候補リスト クローズドリスト(closed list) 探索が終わったノードのリスト キュー(queue) 先入れ先出し スタック(stack) 後入れ先出し 探索の基本アルゴリズム¶open_list = [initial_state] # オープンリストは初期化状態のみ closed_list = [] # クローズドリストは空 while(open_list): # オープンリストが空になるまで以下を繰り返す。 state = getOptimalState(open_list) # オープンリストから（何らかの基準で）状態sを取り出す。 closed_list.append(state) # sをクローズドリストに追加する。 if state==last_state: break # sが最終状態ならば探索終了 open_list += [s for s in state.transibles() if" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-24T12:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-24T12:00:00+09:00" />
+<meta name="twitter:title" content="探索 ">
+<meta name="twitter:description" content="講師：本多 淳也 参考書：エージェントアプローチ人工知能 第2版 参考書：イラストで学ぶ 人工知能概論 講義概要 状態空間 15パズル 迷路 コスト無しグラフの探索 コスト付きグラフの探索 ゲーム木の探索 状態空間 ありうる局面の１つ１つを状態と言う。 状態全体からなる集合を状態空間と言う。 目的：初期状態から出発して、許される状態遷移を繰り返し、最終状態へたどり着くこと。 これは、グラフ(graph)の探索(search)問題と等価（ノードが状態に、エッジが状態遷移にそれぞれ対応する。） 15パズル ルール： 一度に動かせるのは1パネルのみ。 飽きますに隣のパネルをずらす操作のみ可能 目標： 「できるだけ少ない手数で」与えられた配置から元の配置に戻すこと。 元に戻すことが不可能な問題を識別する。 迷路 目的：スタートからゴールまで誘導する。 状態(state) $s$：移動できる場所 行動(action) $a$：進む方向 コスト無しグラフの探索 用語 意味 オープンリスト(open list) これから探索するノードの候補リスト クローズドリスト(closed list) 探索が終わったノードのリスト キュー(queue) 先入れ先出し スタック(stack) 後入れ先出し 探索の基本アルゴリズム¶open_list = [initial_state] # オープンリストは初期化状態のみ closed_list = [] # クローズドリストは空 while(open_list): # オープンリストが空になるまで以下を繰り返す。 state = getOptimalState(open_list) # オープンリストから（何らかの基準で）状態sを取り出す。 closed_list.append(state) # sをクローズドリストに追加する。 if state==last_state: break # sが最終状態ならば探索終了 open_list += [s for s in state.transibles() if">
+
+        <title>探索  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-4.html"> 探索  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>講師：<a href="http://www.ms.k.u-tokyo.ac.jp">本多 淳也</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/エージェントアプローチ人工知能-第2版-S-J-Russell/dp/4320122151">エージェントアプローチ人工知能 第2版</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/dp/B00TPL99ZW/">イラストで学ぶ　人工知能概論</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h3>講義概要</h3>
+<ol>
+<li>
+<a href="#anchor1">状態空間</a>
+<ol>
+<li><a href="#anchor1-1">15パズル</a></li>
+<li><a href="#anchor1-2">迷路</a></li>
+</ol>
+</li>
+<li><a href="#anchor2">コスト無しグラフの探索</a></li>
+<li><a href="#anchor3">コスト付きグラフの探索</a></li>
+<li><a href="#anchor4">ゲーム木の探索</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor1">状態空間</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>ありうる局面の１つ１つを<span class="marker-pink">状態</span>と言う。</li>
+<li>状態全体からなる集合を<span class="marker-pink">状態空間</span>と言う。</li>
+<li><strong>目的：</strong>初期状態から出発して、許される<strong>状態遷移</strong>を繰り返し、最終状態へたどり着くこと。</li>
+<li>これは、<span class="marker-pink">グラフ(graph)</span>の<span class="marker-pink">探索(search)</span>問題と等価<strong>（ノードが状態に、エッジが状態遷移にそれぞれ対応する。）</strong></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="anchor1-1">15パズル</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>ルール：<ul>
+<li>一度に動かせるのは1パネルのみ。</li>
+<li>飽きますに隣のパネルをずらす操作のみ可能</li>
+</ul>
+</li>
+<li>目標：<ul>
+<li><strong>「できるだけ少ない手数で」</strong>与えられた配置から元の配置に戻すこと。</li>
+<li>元に戻すことが不可能な問題を識別する。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="anchor1-2">迷路</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>目的：スタートからゴールまで誘導する。</li>
+<li>状態(state) $s$：移動できる場所</li>
+<li>行動(action) $a$：進む方向</li>
+</ul>
+<p><img alt="report4-1.png" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Intelligent_Systems/report4/report4-1.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor2">コスト無しグラフの探索</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">用語</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">オープンリスト(open list)</td>
+<td style="text-align:left">これから探索するノードの候補リスト</td>
+</tr>
+<tr>
+<td style="text-align:center">クローズドリスト(closed list)</td>
+<td style="text-align:left">探索が終わったノードのリスト</td>
+</tr>
+<tr>
+<td style="text-align:center">キュー(queue)</td>
+<td style="text-align:left">先入れ先出し</td>
+</tr>
+<tr>
+<td style="text-align:center">スタック(stack)</td>
+<td style="text-align:left">後入れ先出し</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="探索の基本アルゴリズム">探索の基本アルゴリズム<a class="anchor-link" href="#探索の基本アルゴリズム">¶</a></h3><div class="highlight"><pre><span></span><span class="n">open_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial_state</span><span class="p">]</span> <span class="c1"># オープンリストは初期化状態のみ</span>
+<span class="n">closed_list</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># クローズドリストは空</span>
+<span class="k">while</span><span class="p">(</span><span class="n">open_list</span><span class="p">):</span> <span class="c1"># オープンリストが空になるまで以下を繰り返す。</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">getOptimalState</span><span class="p">(</span><span class="n">open_list</span><span class="p">)</span> <span class="c1"># オープンリストから（何らかの基準で）状態sを取り出す。</span>
+    <span class="n">closed_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="c1"># sをクローズドリストに追加する。</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">==</span><span class="n">last_state</span><span class="p">:</span> <span class="k">break</span> <span class="c1"># sが最終状態ならば探索終了</span>
+    <span class="n">open_list</span> <span class="o">+=</span> <span class="p">[</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">transibles</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">closed_list</span><span class="p">]</span> <span class="c1"># sから遷移可能でまだクローズドリストに入っていない状態をオープンリストに追加する。</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="深さ優先探索">深さ優先探索<a class="anchor-link" href="#深さ優先探索">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>行き止まりに当たるまで進み、ゴールが見つからなかったら直近の分岐に戻って別の道を探す探索法。</p>
+<ul>
+<li>メモリ使用量が少ない</li>
+<li>ゴールが近くにあっても、他の深い別れ道に迷い込むと時間がかかる</li>
+<li>ゴールが複数ある時、一番近くのものが見つかるとは限らない</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>オープンリストは<span class="marker-pink">スタック</span><strong>（後入れ先出し）</strong>にする。</p>
+<div class="highlight"><pre><span></span><span class="n">open_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial_state</span><span class="p">]</span>
+<span class="n">closed_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span><span class="p">(</span><span class="n">open_list</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">open_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># オープンリストの先頭の状態sを取り出す。</span>
+    <span class="n">closed_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">==</span><span class="n">last_state</span><span class="p">:</span> <span class="k">break</span>
+    <span class="n">open_list</span><span class="o">.</span><span class="n">push</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">transibles</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">closed_list</span><span class="p">])</span> <span class="c1"># sから遷移可能でまだクローズドリストに入っていない状態をオープンリストの"先頭に"追加する。</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="幅優先探索">幅優先探索<a class="anchor-link" href="#幅優先探索">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>分かれ道に来たらそれぞれの道を一歩ずつ進み，ゴールが見つからなかったらそれぞれの道をもう一歩ずつ進む探索法。</p>
+<ul>
+<li>ゴールが近くにある時、早く見つかる。</li>
+<li>ゴールが複数ある時、一番近くのものが見つかる。</li>
+<li>分かれ道での分岐数が多いとメモリ使用量が多い。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>オープンリストは<span class="marker-pink">キュー</span><strong>（先入れ後出し）</strong>にする。</p>
+<div class="highlight"><pre><span></span><span class="n">open_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">initial_state</span><span class="p">]</span>
+<span class="n">closed_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span><span class="p">(</span><span class="n">open_list</span><span class="p">):</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="n">open_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># オープンリストの"末尾"の状態sを取り出す。</span>
+    <span class="n">closed_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">state</span><span class="o">==</span><span class="n">last_state</span><span class="p">:</span> <span class="k">break</span>
+    <span class="n">open_list</span><span class="o">.</span><span class="n">push</span><span class="p">([</span><span class="n">s</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">transibles</span><span class="p">()</span> <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">closed_list</span><span class="p">])</span> <span class="c1"># sから遷移可能でまだクローズドリストに入っていない状態をオープンリストの"先頭に"追加する。</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="反復深化探索">反復深化探索<a class="anchor-link" href="#反復深化探索">¶</a></h3><p>深さに制限をつけて深さ優先探索を行い、徐々に深さを深くしていく探索法</p>
+<ul>
+<li>ゴールが近くにある時、早く見つかる</li>
+<li>ゴールが複数ある時、一番近くのものが見つかる</li>
+<li>同じノードを何度も訪れる（分岐が多いと影響小）</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="まとめ">まとめ<a class="anchor-link" href="#まとめ">¶</a></h3><p>深さ優先探索・幅優先探索・反復深化探索は、グラフに関する特別な知識を使わずにオープンリストから状態を選択することから、<span class="marker-pink">ブラインド探索(blined search)</span>と呼ばれる。</p>
+<table>
+<thead><tr>
+<th style="text-align:center">#</th>
+<th style="text-align:center">探さ優先探索</th>
+<th style="text-align:center">幅優先探索</th>
+<th style="text-align:center">反復深化探索</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">完全性（必ず解が見つかるか）<br />(completeness)</td>
+<td style="text-align:center">$m$ が有限なら Yes</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td style="text-align:center">時間計算量<br />(time complexity)</td>
+<td style="text-align:center">$\mathrm{O}(b^m)$</td>
+<td style="text-align:center">$\mathrm{O}(b^d)$</td>
+<td style="text-align:center">$\mathrm{O}(b^d)$</td>
+</tr>
+<tr>
+<td style="text-align:center">空間計算量(space complexity)</td>
+<td style="text-align:center">$\mathrm{O}(bm)$</td>
+<td style="text-align:center">$\mathrm{O}(b^d)$</td>
+<td style="text-align:center">$\mathrm{O}(bd)$</td>
+</tr>
+<tr>
+<td style="text-align:center">最適性（一番近くの解が見つかるか）<nr>(optimality)</nr></td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">Yes</td>
+<td style="text-align:center">Yes</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>$b$：最大分岐数</li>
+<li>$d$：一番浅い解の深さ</li>
+<li>$m$：最大の深さ</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor3">コスト付きグラフの探索</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>各エッジに<span class="marker-pink">遷移コスト</span>が割り当てられている場合の最適遷移パス探索問題。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong>ブラインド探索</strong>：グラフに関する特別な知識を使わずにオープンリストから状態を選択。<ul>
+<li>貪欲探索(greedy search)：現在の状態からの遷移コストが最小の状態を選ぶ。<strong>（深さ優先探索に対応）</strong></li>
+<li>最適探索(optimal search)：初期状態からの遷移コスト和が最小の状態を選ぶ。<strong>（各コストが1だと幅優先探索になる。ダイクストラ法とも。）</strong></li>
+</ul>
+</li>
+<li><strong>ヒューリスティック探索（最良優先探索, best-first search）</strong>：グラフに関する何らかの知識を使ってオープンリストから適切と思われる状態を選択。<ul>
+<li>貪欲最良優先探索</li>
+<li>$A^{\ast}$ 探索</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="貪欲最良優先探索">貪欲最良優先探索<a class="anchor-link" href="#貪欲最良優先探索">¶</a></h3><ul>
+<li>$\hat{h}(s)$ を最小にする状態を選ぶ<ul>
+<li>$h(s)$：$s$ から最終状態までの遷移コスト和の最小値</li>
+<li>$\hat{h}(s)$：$h(s)$ の推定（ヒューリスティック関数）</li>
+<li><span class="marker-pink">一度オープンリストに入ったの評価値更新は不要</span></li>
+</ul>
+</li>
+<li>ヒューリスティック関数の選び方：<ul>
+<li>ユーザが<strong>事前知識</strong>により構築（例：直線距離）</li>
+<li>データから<strong>機械学習</strong>により自動構築</li>
+</ul>
+</li>
+<li>一般には完全性も最適性もないが、実用上は（そこそこ）うまくいくことが（それなりに）多い。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="$A^{\ast}$-探索(A-start-search)">$A^{\ast}$ 探索(A-start search)<a class="anchor-link" href="#$A^{\ast}$-探索(A-start-search)">¶</a></h3><ul>
+<li>$s$ を経由する場合の遷移コスト和の推定値 $\left(\hat{g}(s)+\hat{h}(s)\right)$ を最小にする状態を選ぶ。<ul>
+<li>$g(s)$：初期状態から $s$ までの遷移コスト和の最小値</li>
+<li>$\hat{g}(s)$：探索済みノードから $s$ に遷移する場合の最小値（ダイクストラ法と同じ）</li>
+<li><strong>ノード $s$ を訪れると隣接ノードの $\hat{g}(s^{\prime})$ が更新される。</strong></li>
+<li>$h(s)$：$s$ から最終状態までの遷移コスト和の最小値</li>
+<li>$\hat{h}(s)$：$h(s)$ のヒューリスティック推定値</li>
+</ul>
+</li>
+<li><strong>最適経路上の $s$ ではいずれも $g(s)+h(s)$ が最小、経路外の点ではそれより大きい値をとることを利用</strong></li>
+<li>$\forall s, 0\leq\hat{h}(s)\leq h(s)$ が成り立つ時、$\hat{h}(s)$ は<span class="marker-pink">許容的(admissible)</span>であるといい、この場合には $A^{\ast}$ 探索は最適性を持つ。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>※ 実装等は、<a href="https://iwasakishuto.github.io/University/3A/知能システム論-report4.html">レポート課題</a>に記載。</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.Astar</span> <span class="k">import</span> <span class="n">OptimalTransit</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">initial_str</span> <span class="o">=</span> <span class="s2">"2,-1,6,1,3,4,7,5,8"</span>
+<span class="n">last_str</span>    <span class="o">=</span> <span class="s2">"1,2,3,4,5,6,7,8,-1"</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">OptimalTransit</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">initial_str</span><span class="p">,</span><span class="n">last_str</span><span class="p">,</span><span class="n">heuristic_method</span><span class="o">=</span><span class="s2">"Manhattan_distance"</span><span class="p">,</span><span class="n">n_row</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>n_transition = 9
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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gAYYcQAAAAAaYMQBAAAAaIARBwAAAKABRhwAAACABhhxAAAAABpgxAEAAABogBEHAAAAoAFGHAAAAIAGGHEAAAAAGmDEAQAAAGhAEyPOVVddlZGRkSxatKjrU6bd97///SxfvjznnHNOFi5cmJtvvrnrk6bdyy+/nHe96105//zzs3Dhwlx//fVdn8QEbWpTm/0z5C4Tbeqyv7SpTW3SR9psr80mRpyPfexjue+++7o+oxMzZszI5z73uXznO9/Jo48+mltvvTXf+c53uj5rWh133HF58MEH8/jjj2fLli2577778uijj3Z9FtGmNrXZR0PuMtGmLvtLm9rUJn2kzfbabGLEufDCCzN79uyuz+jEaaedliVLliRJTjzxxCxYsCDPPPNMx1dNr1JKTjjhhCTJvn37sm/fvpRSOr6KRJva1GYfDbnLRJu67C9talOb9JE222uziRGHcU8//XQ2b96cCy64oOtTpt2BAwcyOjqakZGRXHTRRYP8Z0B/aVOb9NNQ29QlfadNbdJP2myjTSNOI1566aVceumluemmm3LSSSd1fc60O+aYY7Jly5Zs27YtGzZsyBNPPNH1SZBEm9qkr4bcpi7pM21qk37SZjttGnEasG/fvlx66aW54oorcskll3R9TqdmzZqV5cuXD/p7yukPbf4tbdIn2hynS/pGm+O0Sd9oc1wrbRpxeq7WmquvvjoLFizIpz71qa7P6cT27duzY8eOJMmePXvywAMPZP78+R1fxdBpU5v009Db1CV9pU1t0k/abK/NJkacNWvW5N3vfne2bt2auXPn5otf/GLXJ02bhx9+OLfffnsefPDBjI6OZnR0NF/96le7PmtaPfvss1m+fHnOO++8vPOd78xFF12UsbGxrs8i2tSmNvtoyF0m2tRlf2lTm9qkj7TZXpul1nrEb7xs2bK6cePGKTwH+mv27NlPPv/882d3fcfhaJMh62ubumToSimP1VqXdX3HobTJ0PW1zbPPPrveeOONXZ/Rmb4PB0y9I22ziWfiAAAAAAydEQcAAACgAUYcAAAAgAYYcQAAAAAaYMQBAAAAaIARBwAAAKABRhwAAACABhhxAAAAABpgxAEAAABogBEHAAAAoAFGHAAAAIAGGHEAAAAAGmDEAQAAAGiAEQcAAACgAUYcAAAAgAYYcQAAAAAaYMQBAAAAaIARBwAAAKABRhwAAACABhhxAAAAABpgxAEAAABogBEHAAAAoAFGHAAAAIAGGHEAAAAAGmDEAQAAAGiAEQcAAACgAUYcAAAAgAbM6PoAAOD1Z+3atV2f0KmxsbGuT+AX2Llz56A/Pn1s0lczZ8708QlHwDNxAAAAABpgxAEAAABogBEHAAAAoAFGHAAAAIAGGHEAAAAAGmDEAQAAAGiAEQcAAACgAUYcAAAAgAYYcQAAAAAaYMQBAAAAaIARBwAAAKABRhwAAACABhhxAAAAABpgxAEAAABogBEHAAAAoAFGHAAAAIAGGHEAAAAAGmDEAQAAAGiAEQcAAACgAUYcAAAAgAYYcQAAAAAaYMQBAAAAaIARBwAAAKABRhwAAACABhhxAAAAABpgxAEAAABogBEHAAAAoAHNjDgHDhzI4sWLMzY21vUpnZg3b17OPffcjI6OZtmyZV2fM+127NiR1atXZ/78+VmwYEEeeeSRrk9iwpDbHHqXiTb7bMhtDp0u6bMhPzZps5+uuuqqjIyMZNGiRV2f0iltttPmjK4POFI333xzFixYkB//+Mddn9KZr3/96zn55JO7PqMT1157bVauXJkvf/nL2bt3b3bv3t31SUwYeptD7jLRZp8Nvc0h0yV9NuTHJm3208c+9rH89m//dj7ykY90fUqntNlOm008E2fbtm255557cs0113R9Ch3YuXNn1q9fn6uvvjpJcuyxx2bWrFkdX0WizaHTZn9pc7h0SZ8N+bFJm/114YUXZvbs2V2f0SltttVmEyPOJz/5yXz2s5/NG97QxLlTopSSFStWZOnSpbntttu6PmdaPfXUU5kzZ06uvPLKLF68ONdcc0127drV9VlEm0PuMtFmnw29zSHTJX025McmbdJn2myrzd7/v7R27dqMjIxk6dKlXZ/SqYceeiibNm3Kvffem1tvvTXr16/v+qRps3///mzatCmf+MQnsnnz5hx//PG54YYbuj5r8LQ57C4TbfaVNodNl/TV0B+btElfabO9Nns/4jz88MO5++67M2/evHzoQx/Kgw8+mA9/+MNdnzXtTj/99CTJyMhIVq1alQ0bNnR80fSZO3du5s6dmwsuuCBJsnr16mzatKnjq9DmsLtMtNlX2hw2XdJXQ39s0iZ9pc322uz9iPOZz3wm27Zty9NPP5277ror73vf+3LHHXd0fda02rVrV1588cVX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
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor4">ゲーム木の探索</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>2人のプレイヤーが交互に遷移先を決めるゲーム（ex. 将棋・囲碁・リバーシ・◯×など）における最適遷移探索問題</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><strong>ミニマックス探索</strong><ul>
+<li>自分は一番良い（点数を最大化する）手を選ぶ</li>
+<li>相手は一番悪い（点数を最小化する）手を選ぶ</li>
+</ul>
+</li>
+<li><strong>アルファ・ベータ探索</strong><ul>
+<li>ミニ・マックス探索では、全ての局面に対する点数を求める必要があり、時間がかかる。</li>
+<li>不要な点数計算を省略することで効率化<ul>
+<li>$\alpha$：max計算の際の下界値</li>
+<li>$\beta$：min計算の際の上界値</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>モンテカルロ木探索</strong><ul>
+<li>アルファ・ベータ法を用いても、ゲーム木を深く探索するのは困難（$b^d$ が $b^{d/2}$ になる程度。）</li>
+<li>そこで、<strong>ランダムに</strong>手を打つ。</li>
+<li>囲碁やスケジューリングなどで活用されている。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h3>まとめ</h3>
+<ul>
+<li>広大な状態空間を効率よく探索したい</li>
+<ul>
+<li>コスト無しグラフの探索</li>
+<li>コスト付きグラフの探索</li>
+<li>ゲーム木の探索</li>
+</ul>
+<li>膨大な状態空間の探索には，近似的な手法が有用</li>
+<ul>
+<li>事前知識や機械学習によるヒューリスティック関数の構築</li>
+<li>モンテカル</li>
+<li>木探索</li>
+</ul>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-24T12:00:00+09:00">Oct 24, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-24T12:00:00+09:00">Oct 24, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>46</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
+                    <span>10</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

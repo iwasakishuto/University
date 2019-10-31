@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="確率と統計(1)基礎概念 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-5.html" />
+<meta property="og:description" content="講師：本多 淳也 参考書：エージェントアプローチ人工知能 第2版 参考書：イラストで学ぶ 人工知能概論" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-31T12:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-31T12:00:00+09:00" />
+<meta name="twitter:title" content="確率と統計(1)基礎概念 ">
+<meta name="twitter:description" content="講師：本多 淳也 参考書：エージェントアプローチ人工知能 第2版 参考書：イラストで学ぶ 人工知能概論">
+
+        <title>確率と統計(1)基礎概念  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-5.html"> 確率と統計(1)基礎概念  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>講師：<a href="http://www.ms.k.u-tokyo.ac.jp">本多 淳也</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/エージェントアプローチ人工知能-第2版-S-J-Russell/dp/4320122151">エージェントアプローチ人工知能 第2版</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/dp/B00TPL99ZW/">イラストで学ぶ　人工知能概論</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h3>講義概要</h3>
+<ol>
+<li><a href="#anchor1">確率変数と確率分布</a></li>
+<li><a href="#anchor2">確率分布の性質を表す指標</a></li>
+<li><a href="#anchor3">同時確率</a></li>
+<li><a href="#anchor4">条件付き確率</a></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor1">確率変数と確率分布</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">用語</th>
+<th style="text-align:left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">確率(probability)</td>
+<td style="text-align:left">事象の起こりやすさを定量的に示す $0$ から $1$ の値</td>
+</tr>
+<tr>
+<td style="text-align:center">確率変数(random variable)</td>
+<td style="text-align:left">その変数に関する任意の事象に対して確率が定義されている変数</td>
+</tr>
+<tr>
+<td style="text-align:center">確率分布(probability distribution)</td>
+<td style="text-align:left">確率変数に関する各事象に対してその確率を与える関数</td>
+</tr>
+<tr>
+<td style="text-align:center">離散型(discrete type)確率変数</td>
+<td style="text-align:left">ある可算集合 $\mathcal{X}$ の中のいずれかの値をとる確率変数</td>
+</tr>
+<tr>
+<td style="text-align:center">確率質量関数(probability mass function) $f(x)$</td>
+<td style="text-align:left">$$f(x)\geq0,\quad \sum_{x\in\mathcal{X}}f(x) = 1$$</td>
+</tr>
+<tr>
+<td style="text-align:center">連続型(continuous type)確率変数</td>
+<td style="text-align:left">連続値をとる確率変数</td>
+</tr>
+<tr>
+<td style="text-align:center">確率密度関数(probability density function) $f(x)$</td>
+<td style="text-align:left">$$f(x)\geq0,\quad\int_{-\infty}^{\infty}f(x)dx=1$$</td>
+</tr>
+<tr>
+<td style="text-align:center">累積分布関数(cumulative distribution function) $F(x)$</td>
+<td style="text-align:left">$$F(x) = P(X\leq x)=\int_{-\infty}^{x}f(u)du\ \text{ or } \sum_{i:i\leq x}f(i)$$</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor2">確率分布の性質を表す指標</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">用語</th>
+<th style="text-align:center">数式</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">期待値(expectation)</td>
+<td style="text-align:center">$$E(X) = \sum_xxf(x)\ \text{ or }\int xf(x)dx$$</td>
+<td style="text-align:left">確率変数の値の平均（正確には確率による重み付きの平均）<br /><span class="marker-pink">確率変数を代表する値を表す指標</span><br />※<span class="marker-pink">外れ値(outlier)に敏感</span></td>
+</tr>
+<tr>
+<td style="text-align:center">中央値(median)</td>
+<td style="text-align:center">$P(X\leq x)=1/2$ を満たす $x$</td>
+<td style="text-align:left">データを大きい順（または小さい順）に並べたときの真ん中の値。</td>
+</tr>
+<tr>
+<td style="text-align:center">最頻値(mode)</td>
+<td style="text-align:center">$f(x)$ を最大にする $x$</td>
+<td style="text-align:left">データの中で最も頻度が高い値</td>
+</tr>
+<tr>
+<td style="text-align:center">分散(variance)</td>
+<td style="text-align:center">$$\begin{aligned}V(X) &= E\left\{(X-E[X])^2\right\}\\&=E\left\{X^2-2E[X]X+(E[X])^2\right\}\\&=E[X^2]-E\left[2E[X]X\right]+(E[X])^2\\&=E[X^2]-2E[X]E[X]+(E[X])^2\\&=E[X^2]-(E[X])^2\end{aligned}$$</td>
+<td style="text-align:left">確率変数の散らばり具合を表す指標</td>
+</tr>
+<tr>
+<td style="text-align:center">標準偏差(standard devariation)</td>
+<td style="text-align:center">$\sqrt{V(X)}$</td>
+<td style="text-align:left">分散の平方根</td>
+</tr>
+<tr>
+<td style="text-align:center">標準化(standardization)</td>
+<td style="text-align:center">$$Z=\frac{X-E(X)}{\sqrt{V(X)}}$$</td>
+<td style="text-align:left">任意の確率変数 $X$ に対して、期待値 $0$、分散 $1$ の確率変数 $Z$ が定義できる。</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="#skewness">歪度(skewness)</a></td>
+<td style="text-align:center">$$\alpha_3 = \frac{E\left\{\left[X - E(X)\right]^3\right\}}{\left\{V(X)\right\}^{3/2}}$$</td>
+<td style="text-align:left">確率変数の非対称性を表す。</td>
+</tr>
+<tr>
+<td style="text-align:center"><a href="#kurtosis">劣度(kurtosis)</a></td>
+<td style="text-align:center">$$\beta_4 = \frac{E\left\{\left[X - E(X)\right]^4\right\}}{\left\{V(X)\right\}^{2}}-3$$</td>
+<td style="text-align:left">確率分布の尖り具合を表す。</td>
+</tr>
+<tr>
+<td style="text-align:center">積率(moment)</td>
+<td style="text-align:center">$$\mu_r = E\left[X^r\right]$$</td>
+<td style="text-align:left">期待値・分散・歪度・劣度などを表すパラメータ。全ての次数の積率を指定すれば、確率分布を一位に決定することができる。（左は $r$ 次の積率）</td>
+</tr>
+<tr>
+<td style="text-align:center">積率母関数(moment generating function)</td>
+<td style="text-align:center">$$M_X(t) = E[e^{tX}]=\begin{cases}\sum_xe^{tx}f(x)\\\int e^{tx}f(x)dx\end{cases},\quad M_X^{(r)}(0)=\mu_r$$</td>
+<td style="text-align:left">全ての次数の積率を生成する関数。存在しない（無限大に発散する）こともある。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">computation_variance</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span><span class="n">scale</span><span class="o">=</span><span class="n">sigma</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">EX</span>  <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">EX2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">X</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="c1"># Calculate variance in 3 ways.</span>
+    <span class="n">var1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">var2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">n</span>
+    <span class="n">var3</span> <span class="o">=</span> <span class="n">EX2</span> <span class="o">-</span> <span class="n">EX</span><span class="o">**</span><span class="mi">2</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"`np.var(X)`       ="</span><span class="p">,</span> <span class="n">var1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"E{(X - E[X])^2}   ="</span><span class="p">,</span> <span class="n">var2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"E[X^2] - (E[X])^2 ="</span><span class="p">,</span> <span class="n">var3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">computation_variance</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>`np.var(X)`       = 0.9752679753477969
+E{(X - E[X])^2}   = 0.9752679753477979
+E[X^2] - (E[X])^2 = 0.9752679752218683
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">computation_variance</span><span class="p">(</span><span class="n">mu</span><span class="o">=</span><span class="mf">1e8</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>`np.var(X)`       = 0.9975731614280597
+E{(X - E[X])^2}   = 0.9975731614281662
+E[X^2] - (E[X])^2 = -98.0
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>※ 「二乗の平均 - 平均の二乗」は丸め誤差の影響を受けやすい</strong></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="skewness">歪度(skewness)</h4><p>確率変数の非対称性を表す。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$\alpha_3 = \frac{E\left\{\left[X - E(X)\right]^3\right\}}{\left\{V(X)\right\}^{3/2}}$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_skewness</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ax</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">low</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">high</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">'left'</span><span class="p">)</span>
+    <span class="n">EX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">VX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">skewness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">VX</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"skewness = </span><span class="si">{skewness:.3f}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">seed</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="mi">44756</span><span class="p">,</span><span class="mi">96331</span><span class="p">,</span><span class="mi">76432</span><span class="p">]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_skewness</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="kurtosis">劣度(kurtosis)</h4><p>確率分布の尖り具合を表す。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$\beta_4 = \frac{E\left\{\left[X - E(X)\right]^4\right\}}{\left\{V(X)\right\}^{2}}-3$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">f1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="mi">1250</span><span class="o">*</span><span class="p">(</span><span class="mi">5</span><span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mi">4</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">mu</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">sigma</span><span class="o">=</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+<span class="n">f3</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o"><=</span><span class="mi">2</span> <span class="k">else</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_kurtosis</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">ax</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">X</span><span class="p">])</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">/=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">EX</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">VX</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">kurtosis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">VX</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"kurtosis = </span><span class="si">{kurtosis:.3f}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [10]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">func</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">f1</span><span class="p">,</span><span class="n">f2</span><span class="p">,</span><span class="n">f3</span><span class="p">]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plot_kurtosis</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">);</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor3">同時確率</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">用語</th>
+<th style="text-align:center">数式</th>
+<th style="text-align:left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">同時確率(joint probability)</td>
+<td style="text-align:center"></td>
+<td style="text-align:left">複数の確率変数が関わる確率</td>
+</tr>
+<tr>
+<td style="text-align:center">同時確率質量関数</td>
+<td style="text-align:center">$$P(X=x,Y=y) = f(x,y)\\f(x,y)\geq0,\quad\sum_{x\in\mathcal{X}}\sum_{y\in\mathcal{Y}}f(x,y)=1$$</td>
+<td style="text-align:left">離散型の同時確率</td>
+</tr>
+<tr>
+<td style="text-align:center">同時確率密度関数</td>
+<td style="text-align:center">$$P(a\leq X\leq b,c\leq Y\leq d) = \int_c^d\int_a^bf(x,y)dxdy\\f(x,y)\geq0,\quad\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x,y)dxdy=1$$</td>
+<td style="text-align:left">連続型の同時確率</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="共分散">共分散<a class="anchor-link" href="#共分散">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>$X$ と $X^{\prime}$ の<span class="marker-pink">共分散(covariance)</span>：
+$$\mathrm{Cov}(X,X^{\prime}) = E\left[(X-E[X])(X^{\prime}-E[X^{\prime}])\right]$$<ul>
+<li>$\mathrm{Cov}(X,X^{\prime})>0$ の時：$X$ と $X^{\prime}$ の増減は<strong>同傾向</strong></li>
+<li>$\mathrm{Cov}(X,X^{\prime})<0$ の時：$X$ と $X^{\prime}$ の増減は<strong>逆傾向</strong></li>
+<li>$\mathrm{Cov}(X,X^{\prime})=0$ の時：$X$ と $X^{\prime}$ の増減は<strong>無関係</strong></li>
+</ul>
+</li>
+<li>共分散は、以下の形でも表されるので、A社の株価を $X$、B社の株価を $X^{\prime}$ とすると、以下の解釈も可能
+$$V(X+X^{\prime}) = V(X) + V(X^{\prime}) + 2\mathrm{Cov}(X,X^{\prime})$$<ul>
+<li>$\mathrm{Cov}(X,X^{\prime})>0\Longleftrightarrow V(X+X^{\prime})>V(X)+V(X^{\prime})$ なので、A,B両者の株を買うと分散が<strong>拡大</strong>する → <span class="marker-pink">変動リスクが増大し、資産価値は不安定</span></li>
+<li>$\mathrm{Cov}(X,X^{\prime})<0\Longleftrightarrow V(X+X^{\prime})<v(x)+v(x^{\prime})$ なので、a,b両者の株を買うと分散が&lt;strong>縮小</strong>する → <span class="marker-pink">変動リスクが抑制され、資産価値は安定</span></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="独立性">独立性<a class="anchor-link" href="#独立性">¶</a></h3><ul>
+<li>全ての $(x,y)$ で $p_{X,Y}(x,y) = p_X(x)p_Y(y)$ の時、$X$ と $Y$ は互いに<span class="marker-pink">独立(independent)</span></li>
+<li>2つの確率変数が独立の時、<ul>
+<li>積の期待値は各々の期待値の積と一致
+$$E[XY] = E[X]E[Y]$$</li>
+<li>和の積率母関数は各々の積率母関数の積と一致
+$$M_{X+Y}(t) = M_X(t)M_Y(t)$$</li>
+<li>２つの確率変数は無相関
+$$\mathrm{Cov}(X,Y) = 0$$</li>
+</ul>
+</li>
+<li><span class="marker-pink">2つの確率変数が独立ならば無相関であるが、逆は一般には正しくない。</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="anchor4">条件付き確率</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>ベイズの定理(Bayes’ theorem)
+$$P(X|Y) = \frac{P(Y|X)P(X)}{P(Y)}$$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-31T12:00:00+09:00">Oct 31, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-31T12:00:00+09:00">Oct 31, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>46</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
+                    <span>10</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
