@@ -265,7 +265,7 @@
 </tr>
 <tr>
 <td style="text-align:center">積率母関数(moment generating function)</td>
-<td style="text-align:center">$$M_X(t) = E[e^{tX}]=\begin{cases}\sum_xe^{tx}f(x)\\\int e^{tx}f(x)dx\end{cases},\quad M_X^{(r)}(0)=\mu_r$$</td>
+<td style="text-align:center">$$M_X(t) = E[e^{tX}]=\begin{cases}\sum_xe^{tx}f(x)\\\int e^{tx}f(x)dx\end{cases}\\ M_X^{(r)}(0)=\mu_r$$</td>
 <td style="text-align:left">全ての次数の積率を生成する関数。存在しない（無限大に発散する）こともある。</td>
 </tr>
 </tbody>
@@ -552,7 +552,7 @@ $$\mathrm{Cov}(X,X^{\prime}) = E\left[(X-E[X])(X^{\prime}-E[X^{\prime}])\right]$
 <li>共分散は、以下の形でも表されるので、A社の株価を $X$、B社の株価を $X^{\prime}$ とすると、以下の解釈も可能
 $$V(X+X^{\prime}) = V(X) + V(X^{\prime}) + 2\mathrm{Cov}(X,X^{\prime})$$<ul>
 <li>$\mathrm{Cov}(X,X^{\prime})>0\Longleftrightarrow V(X+X^{\prime})>V(X)+V(X^{\prime})$ なので、A,B両者の株を買うと分散が<strong>拡大</strong>する → <span class="marker-pink">変動リスクが増大し、資産価値は不安定</span></li>
-<li>$\mathrm{Cov}(X,X^{\prime})<0\Longleftrightarrow V(X+X^{\prime})<v(x)+v(x^{\prime})$ なので、a,b両者の株を買うと分散が&lt;strong>縮小</strong>する → <span class="marker-pink">変動リスクが抑制され、資産価値は安定</span></li>
+<li>$0>\mathrm{Cov}(X,X^{\prime})\Longleftrightarrow V(X)+V(X^{\prime})>V(X+X^{\prime})$ なので、A,B両者の株を買うと分散が<strong>縮小</strong>する → <span class="marker-pink">変動リスクが抑制され、資産価値は安定</span></li>
 </ul>
 </li>
 </ul>

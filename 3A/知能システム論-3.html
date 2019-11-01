@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="連続最適化(2)制約付き最適化 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-3.html" />
-<meta property="og:description" content="講師：佐藤一誠 参考書：最適化手法 参考書：機械学習のための連続最適化" />
+<meta property="og:description" content="連続最適化(2)制約付き最適化" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-10-17T12:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-10-17T12:00:00+09:00" />
 <meta name="twitter:title" content="連続最適化(2)制約付き最適化 ">
-<meta name="twitter:description" content="講師：佐藤一誠 参考書：最適化手法 参考書：機械学習のための連続最適化">
+<meta name="twitter:description" content="連続最適化(2)制約付き最適化">
 
         <title>連続最適化(2)制約付き最適化  · 3A
 </title>
@@ -108,170 +108,399 @@
         <div class="span8 offset2 article-content">
 
             
-            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<ul>
+            <ul>
 <li>講師：<a href="http://www.ms.k.u-tokyo.ac.jp/">佐藤一誠</a></li>
 <li>参考書：<a href="https://www.amazon.co.jp/最適化法-工系数学講座-17-田村-明久/dp/4320016165">最適化手法</a></li>
 <li>参考書：<a href="https://www.kspub.co.jp/book/detail/1529205.html">機械学習のための連続最適化</a></li>
 </ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [1]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <div class="frame">
-<h3>講義概要</h3>
-<ol>
-<li>
-<a href="#anchor1">等式制約付き最適化問題</a>
-<ol>
-<li><a href="#anchor1-1">ラグランジュ未定乗数法</a></li>
-<li><a href="#anchor1-2">双対上昇法</a></li>
-<li><a href="#anchor1-3">乗数法</a></li>
-</ol>
-</li>
-<li><a href="#anchor2">不等式制約付き最適化問題</a></li>
-</ol>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="anchor1">等式制約付き最適化問題</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="anchor1-1">ラグランジュ未定乗数法</h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="anchor1-2">双対上昇法</h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="anchor1-3">乗数法</h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="anchor2">不等式制約付き最適化問題</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="まとめ">まとめ<a class="anchor-link" href="#まとめ">¶</a></h3><ul>
-<li>制約付き最適化問題：
-$$
-\begin{aligned}
-\underset{\mathbf{x}\in\mathcal{X}}{\text{minimization :  }}&f;(\mathbf{x})\\
-\text{subject to :  }&g;(\mathbf{x})=\mathbf{0}\\
-&h;(\mathbf{x})\leq\mathbf{0}
-\end{aligned}
-$$</li>
-<li>ラグランジュ関数：
-$$L\left(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}\right) = f(\mathbf{x}) + \boldsymbol{\lambda}^Tg(\mathbf{x}) + \boldsymbol{\mu}^Th(\mathbf{x})$$</li>
-<li>双対問題：
-$$
-\begin{aligned}
-\underset{\boldsymbol{\lambda,\mu},\ \mathbf{x}\in\mathcal{X}}{\text{maximization :  }}&L;\left(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}\right)\\
-\text{subject to :  }&\boldsymbol{\mu}\geq\mathbf{0}\\
-\end{aligned}
-$$</li>
-<li>KKT条件：
-$$
-\begin{aligned}
-\begin{cases}
-  \nabla_{\mathbf{x}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) = \mathbf{0}\\
-  \nabla_{\boldsymbol{\lambda}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) = \mathbf{0} & \boldsymbol{\mu}^{\ast}\geq\mathbf{0}\\
-  \nabla_{\boldsymbol{\mu}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) \leq \mathbf{0} & \mu_i^{\ast}h_i(\mathbf{x}^{\ast}) = 0,\ \forall i
-\end{cases}
-\end{aligned}
-$$</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
-</div>
-</div>
+  <h3>講義概要</h3>
+  <ol>
+    <li>
+        <a href="#anchor1">等式制約付き最適化問題</a>
+        <ol>
+          <li><a href="#anchor1-1">ラグランジュ未定乗数法</a></li>
+          <li><a href="#anchor1-2">ラグランジュ双対問題</a></li>
+          <li><a href="#anchor1-3">双対変数の最適化</a></li>
+        </ol>
+    </li>      
+    <li><a href="#anchor2">不等式制約付き最適化問題</a></li>
+    <ol>
+      <li><a href="#anchor2-1">制約なし最適化問題への変換</a></li>
+      <li><a href="#anchor2-2">双対問題</a></li>
+    </ol>
+    <li><a href="#anchor3">まとめ</a></li>
+  </ol>
 </div>
 
+<ul>
+<li><span class="marker-pink">制約付き最適化問題(constrained optimization problem)</span>
+<span class="math">\(\mathcal{X}\subset\mathbb{R}^d\)</span> 上に定義される関数 <span class="math">\(f:\mathcal{X}\rightarrow\mathbb{R}\)</span> の最小値を求める。
+<div class="math">$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{minimization :  }}&amp;f(\mathbf{x})\\
+\text{subject to :  }&amp;g(\mathbf{x})=\mathbf{0}\\
+&amp;h(\mathbf{x})\leq\mathbf{0}
+\end{aligned}
+$$</div>
+<ul>
+<li>"subject to"は、<strong>「…を条件として」</strong> という意味。</li>
+<li><span class="math">\(g_i,h_i\)</span> は互いに<span class="marker-pink">一次独立(linearly independent)</span>であると仮定。</li>
+</ul>
+</li>
+<li><span class="marker-pink">実行可能解(feasible solution)</span>：全ての制約条件を満たす <span class="math">\(\mathbf{x}\)</span></li>
+<li><span class="marker-pink">凸最適化問題(convex optimization problem)</span>：関数 <span class="math">\(f\)</span> が凸、集合 <span class="math">\(\mathcal{X}\)</span> が凸、制約条件 <span class="math">\(\mathbf{g},\mathbf{h}\)</span> が凸であれば、最適値が一意に定まる。</li>
+</ul>
+<p><strong>※ 以下、凸最適化問題を考える。</strong></p>
+<h2 id="anchor1">等式制約付き最適化問題</h2>
+
+<ul>
+<li>等式制約付き最適化問題
+<div class="math">$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{minimization :  }}&amp;f(\mathbf{x})\\
+\text{subject to :  }&amp;g(\mathbf{x})=\mathbf{0}\\
+\end{aligned}
+$$</div>
+</li>
+<li><span class="marker-pink>罰則法(penalty method)</span><ul>
+<li>初期値を <span class="math">\(\mathbf{x}_k\)</span> に設定して、勾配法や準ニュートン法などで以下の<span class="marker-pink>制約なし最適化問題</span>を解く。
+<div class="math">$$\mathbf{x}_{k+1} = \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}f(\mathbf{x}) + c_k\|\mathbf{g}(x)\|^2$$</div>
+</li>
+<li><span class="math">\(c_k\)</span> の値を徐々に増やしていく。
+<div class="math">$$0 &lt; c_1 &lt; c_2 &lt; \cdots$$</div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="anchor1-1">ラグランジュ未定乗数法</h3>
+
+<p>詳しくは<a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-2.html">ラグランジュ未定乗数法</a>に記載されているので、ここでは具体例を紹介する。</p>
+<h5>問題</h5>
+<div class="math">$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{min :  }}&amp;3x^2 + 2y^2\\
+\text{subject to :  }&amp;x+y=1\\
+\end{aligned}
+$$</div>
+<h5>解答</h5>
+<p>ラグランジュ関数は、
+</p>
+<div class="math">$$L(x,y,\lambda) = 3x^2 + 2y^2 + \lambda(x+y-1)$$</div>
+<p>となるから、</p>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial L}{\partial x} &amp;= 6x+\lambda=0 &amp;\therefore x = -\frac{1}{6}\lambda\\
+\frac{\partial L}{\partial y} &amp;= 4y+\lambda=0 &amp;\therefore y = -\frac{1}{4}\lambda\\
+\frac{\partial L}{\partial \lambda} &amp;= x+y-1=0 &amp;\therefore \lambda = -\frac{12}{5}\\
+\end{aligned}
+$$</div>
+<p>よって、<span class="math">\((x,y) = (0.4,0.6)\)</span></p>
+<h3 id="anchor1-2">ラグランジュ双対問題</h3>
+
+<p>これも、詳しくは<a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-4.html">ラグランジュ双対問題</a>に記載されているので、ここでは具体例を紹介する。</p>
+<h5>問題</h5>
+<div class="math">$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{min :  }}&amp;3x^2 + 2y^2\\
+\text{subject to :  }&amp;x+y=1\\
+\end{aligned}
+$$</div>
+<h4>解答</h4>
+<p>ラグランジュ関数は、
+</p>
+<div class="math">$$L(x,y,\lambda) = 3x^2 + 2y^2 + \lambda(x+y-1)$$</div>
+<p>となるから、</p>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial L}{\partial x} &amp;= 6x+\lambda=0 &amp;\therefore x = -\frac{1}{6}\lambda\\
+\frac{\partial L}{\partial y} &amp;= 4y+\lambda=0 &amp;\therefore y = -\frac{1}{4}\lambda
+\end{aligned}
+$$</div>
+<p>よって、これらを <span class="math">\(L(x,y,\lambda)\)</span> に代入して、</p>
+<div class="math">$$\omega(\lambda) = \underset{x,y\in\mathbb{R}}{\inf}L(x,y,\lambda) = -\frac{5}{24}\lambda^2-\lambda$$</div>
+<p>したがって、 <span class="math">\(\underset{\lambda\in\mathbb{R}}{\text{argmax}}\omega(\lambda) = -\frac{12}{5}\Longrightarrow(x,y) = (0.4,0.6)\)</span></p>
+<h3 id="anchor1-3">双対変数の最適化</h3>
+
+<p>上の問題では、双対変数 <span class="math">\(\lambda\)</span> の最適化問題を解析的に解けたが、解析的に解くことができない問題もある。その場合に使うのが<span class="marker-pink">双対上昇法</span>や<span class="marker-pink">乗数法</span>と呼ばれる<strong>双対変数の勾配上昇</strong>を行う手法である。</p>
+<table>
+<thead>
+<tr>
+<th>手法</th>
+<th>数式</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>双対上昇法</td>
+<td>
+<div class="math">$$\begin{aligned}\mathbf{x}_{k+1} &amp;= \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}L(\mathbf{x},\boldsymbol{\lambda}_{k})\\\boldsymbol{\lambda}_{k+1} &amp;= \boldsymbol{\lambda}_k + \varepsilon_k\nabla\omega(\mathbf{\boldsymbol{\lambda}}_k) \\&amp;= \boldsymbol{\lambda}_k + \varepsilon_k\mathbf{g}(\mathbf{x}_{k+1})\end{aligned}$$</div>
+</td>
+<td>適当な初期値から，ラグランジュ関数の最小化と双対変数の勾配上昇を交互に実行</td>
+</tr>
+<tr>
+<td>乗数法</td>
+<td>
+<div class="math">$$\begin{aligned}\mathbf{x}_{k+1} &amp;= \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}L_c(\mathbf{x},\boldsymbol{\lambda}_{k})\\\boldsymbol{\lambda}_{k+1} &amp;= \boldsymbol{\lambda}_k + c\nabla\omega(\mathbf{\boldsymbol{\lambda}}_k) \\&amp;= \boldsymbol{\lambda}_k + c\mathbf{g}(\mathbf{x}_{k+1})\end{aligned}$$</div>
+</td>
+<td>適当な初期値から，<span class="marker-pink">拡張ラグランジュ関数</span>の最小化と双対変数の勾配上昇を交互に実行</td>
+</tr>
+</tbody>
+</table>
+<p>なお、<span class="marker-pink">拡張ラグランジュ関数(augmented Lagrangian)</span>は、以下で表される関数で、二次の項を加えることで凸性を増している。</p>
+<div class="math">$$L_c(\mathbf{x},\boldsymbol{\lambda}) = f(\mathbf{x}) + \boldsymbol{\lambda}^T\mathbf{g}(\mathbf{x}) + \frac{c}{2}\|\mathbf{g}(\mathbf{x})\|^2$$</div>
+<p>※実装は<a href="https://iwasakishuto.github.io/University/3A/知能システム論-report3.html">レポート課題3</a>に記載。</p>
+<h2 id="anchor2">不等式制約付き最適化問題</h2>
+
+<div class="math">$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{minimization :  }}&amp;f(\mathbf{x})\\
+\text{subject to :  }&amp;h(\mathbf{x})\leq\mathbf{0}\\
+\end{aligned}
+$$</div>
+<ul>
+<li>実行可能解 <span class="math">\(\mathbf{x}\)</span> において <span class="math">\(h_i(\mathbf{x}) = 0\)</span> の時、この制約を<span class="marker-pink">有効制約(active constraint)</span>と呼ぶ。</li>
+<li>実行可能解 <span class="math">\(\mathbf{x}\)</span> においてそれ以外の時、この制約を<span class="marker-pink">無効制約(inactive constraint)</span>と呼ぶ。</li>
+</ul>
+<h3 id="anchor2-1">制約なし最適化問題への変換</h3>
+
+<ul>
+<li><span class="marker-pink">障壁法(barrier method)</span><ul>
+<li>初期値を <span class="math">\(\mathbf{x}_k\)</span> に設定して、勾配法や準ニュートン法などで以下の制約なし最適化問題を解く。
+<div class="math">$$\mathbf{x}_{k+1} = \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}f(\mathbf{x}) - c_k\log(-h(\mathbf{x}))$$</div>
+</li>
+<li><span class="math">\(c_k\)</span> の値を徐々に減らしていく。</li>
+<li>途中の解 <span class="math">\(\mathbf{x}_{k+1}\)</span> が常に <span class="math">\(h(\mathbf{x}_{k+1})\leq0\)</span> を満たす<span class="marker-pink">（つまり、実行可能領域の内側にある）</span>ことから、<span class="marker-pink">内点法(interior-point method)</span>ともよばれる。</li>
+<li><span class="math">\(c_k\)</span> の決め方が難しい。</li>
+</ul>
+</li>
+<li><span class="marker-pink">罰則法(penalty method)</span><ul>
+<li>初期値を <span class="math">\(\mathbf{x}_k\)</span> に設定して、勾配法や準ニュートン法などで以下の制約なし最適化問題を解く。
+<div class="math">$$\mathbf{x}_{k+1} = \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}f(\mathbf{x}) + c_k\max(0,h(\mathbf{x}))^2$$</div>
+</li>
+<li><span class="math">\(c_k\)</span> の値を徐々に増やしていく。</li>
+<li>途中の解 <span class="math">\(\mathbf{x}_{k+1}\)</span> が一般に <span class="math">\(h(\mathbf{x}_{k+1})&gt;0\)</span> を満たす<span class="marker-pink">（つまり、実行可能領域の外側にある）</span>ことから、<span class="marker-pink">外点法(exterior-point method)</span>ともよばれる。</li>
+<li><span class="math">\(c_k\)</span> の決め方が難しい。</li>
+</ul>
+</li>
+<li><span class="marker-pink">射影勾配法(projected gradient method)</span><ul>
+<li>勾配降下（<span class="math">\(\tilde{\mathbf{x}}_{k+1} = \mathbf{x}_k-\varepsilon_k\nabla f(\mathbf{x}_k)\)</span>）と実行可能領域への射影（<span class="math">\(\mathbf{x}_{k+1} = \mathbf{P}_k\tilde{\mathbf{x}}_{k+1}\)</span>）を繰り返す。</li>
+<li>まとめると
+<div class="math">$$\mathbf{x}_{k+1} = \mathbf{P}_k\left(\mathbf{x}_k - \varepsilon_k\nabla f(\mathbf{x}_k)\right)$$</div>
+</li>
+<li>射影が簡単に計算できる時、効率が良い。</li>
+</ul>
+</li>
+</ul>
+<h3 id="anchor2-2">双対問題</h3>
+
+<p>詳しくは<a href="https://iwasakishuto.github.io/University/3A/生物データマイニング論-3-2.html">ラグランジュ未定乗数法</a>に記載。</p>
+<h3 id="anchor3">まとめ</h3>
+
+<ul>
+<li>制約付き最適化問題：
+<div class="math">$$
+\begin{aligned}
+\underset{\mathbf{x}\in\mathcal{X}}{\text{minimization :  }}&amp;f(\mathbf{x})\\
+\text{subject to :  }&amp;g(\mathbf{x})=\mathbf{0}\\
+&amp;h(\mathbf{x})\leq\mathbf{0}
+\end{aligned}
+$$</div>
+</li>
+<li>ラグランジュ関数：
+<div class="math">$$L\left(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}\right) = f(\mathbf{x}) + \boldsymbol{\lambda}^Tg(\mathbf{x}) + \boldsymbol{\mu}^Th(\mathbf{x})$$</div>
+</li>
+<li>双対問題：
+<div class="math">$$
+\begin{aligned}
+\underset{\boldsymbol{\lambda,\mu},\ \mathbf{x}\in\mathcal{X}}{\text{maximization :  }}&amp;L\left(\mathbf{x},\boldsymbol{\lambda},\boldsymbol{\mu}\right)\\
+\text{subject to :  }&amp;\boldsymbol{\mu}\geq\mathbf{0}\\
+\end{aligned}
+$$</div>
+</li>
+<li>KKT条件：
+<div class="math">$$
+\begin{aligned}
+  \begin{cases}
+    \nabla_{\mathbf{x}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) = \mathbf{0}\\
+    \nabla_{\boldsymbol{\lambda}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) = \mathbf{0} &amp; \boldsymbol{\mu}^{\ast}\geq\mathbf{0}\\
+    \nabla_{\boldsymbol{\mu}}L\left(\mathbf{x}^{\ast},\boldsymbol{\lambda}^{\ast},\boldsymbol{\mu}^{\ast}\right) \leq \mathbf{0} &amp; \mu_i^{\ast}h_i(\mathbf{x}^{\ast}) = 0,\ \forall i
+  \end{cases}
+\end{aligned}
+$$</div>
+</li>
+</ul>
+<style>
+.prompt {
+  /* This is for jupyter blog.*/
+  min-width: 0;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0em 0.4em 0em 0em;
+  margin: 0px;
+  font-family: monaco;
+}
+/*蛍光ペン(pink)*/
+.marker-pink {
+  color: #c45a5a;
+  background: linear-gradient(transparent 70%, #ff66ff 60%);
+  font-weight: bold;
+}
+/*蛍光ペン(blue) & hover info*/
+.marker-info {
+    color: #5C7DC4;
+    background: linear-gradient(transparent 70%, #66FFCC 60%);
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+.marker-info:hover:before {
+    opacity: 1;
+    z-index: 2;
+}
+.marker-info:before {
+  content: attr(aria-label);
+  opacity: 0;
+  position: absolute;
+  top: 30px;
+  right: -90px;
+  font-size: 14px;
+  width: 300px;
+  padding: 10px;
+  color: #fff;
+  background-color: #555;
+  border-radius: 3px;
+  pointer-events: none;
+}
+/* 枠囲み */
+.frame {
+  border: solid 1.0px #000000;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+}
+/* 暗記用 question box */
+span .qbox{
+  display: none;
+}
+span.qbox-wrapper:hover .qbox-default{
+  display: none;
+}
+span.qbox-wrapper:hover .qbox{
+  display: inline;
+}
+.qbox-wrapper{
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: solid 2px #000000;
+  margin: 5px
+}
+.qbox-wrapper:hover{
+  text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
+  -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+  transition: all 0.4s ease 0s;
+}
+/* 画像吹き出し */
+.balloon {
+  display: table;
+  width: 100%;
+}
+.balloon_img {
+  display: table-cell;
+  vertical-align: middle;
+  width: 50%;
+  padding-right: 10px;
+}
+.balloon_comment {
+  border: #83274e solid 4px;
+  position: relative;
+  background: #fff;
+  padding: 12px;
+  border-radius: 13px;
+  display: block
+}
+.balloon_comment::before {
+  content: "";
+  position: absolute;
+  border-right: 23px solid #83274e;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  top: 30%;
+  left: -23px;
+}
+.balloon_comment::after {
+  content: "";
+  position: absolute;
+  border-right: 24px solid #fff;
+  border-bottom: 20px solid transparent;
+  border-top: 20px solid transparent;
+  top: 30%;
+  left: -17px;
+}
+</style>
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: 'center'," +
-        "    displayIndent: '0em'," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
         "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
         "    tex2jax: { " +
-        "        inlineMath: [ ['$','$'] ], " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
         "        displayMath: [ ['$$','$$'] ]," +
         "        processEscapes: true," +
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
-        "    } " +
-        "}); ";
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-
             <div>
 </div>
 
