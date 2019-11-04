@@ -11,20 +11,20 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 情報基礎実験, 情報基礎実験, " />
+<meta name="keywords" content="3A, 情報基礎実験(浅井), 情報基礎実験(浅井), " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="HMMの最尤推定 "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-1.html" />
+<meta property="og:title" content="HMMのスケーリング "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-3.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-09-26T13:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-09-26T13:00:00+09:00" />
-<meta name="twitter:title" content="HMMの最尤推定 ">
+<meta property="og:article:published_time" content="2019-09-26T15:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-09-26T15:00:00+09:00" />
+<meta name="twitter:title" content="HMMのスケーリング ">
 <meta name="twitter:description" content="">
 
-        <title>HMMの最尤推定  · 3A
+        <title>HMMのスケーリング  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-1.html"> HMMの最尤推定  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-3.html"> HMMのスケーリング  </a></h1>
     </header>
 </div>
 
@@ -108,102 +108,75 @@
         <div class="span8 offset2 article-content">
 
             
-            <p><b>※ かなり導出部分を省略しています。導出は適宜<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html">HMMの最尤推定の計算過程</a>を参照してください。</b></p>
-<p>隠れマルコフモデルは、一般に以下の式で表されます。</p>
-<div class="math">$$
-p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})=p\left(\mathbf{z}_{1} | \boldsymbol{\pi}\right)\left[\prod_{n=2}^{N} p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}, \mathbf{A}\right)\right] \prod_{m=1}^{N} p\left(\mathbf{x}_{m} | \mathbf{z}_{m}, \boldsymbol{\phi}\right)\qquad (13.10)
-$$</div>
-<ul>
-<li><span class="math">\(\mathbf{X} = \{\mathbf{x}_1,\ldots,\mathbf{x}_N\}\)</span>:</li>
-<li><span class="math">\(\mathbf{Z} = \{\mathbf{z}_1,\ldots,\mathbf{z}_N\}\)</span></li>
-<li><span class="math">\(\boldsymbol{\theta}=\{\boldsymbol{\pi}, \mathbf{A}, \boldsymbol{\phi}\}\)</span></li>
-</ul>
-<p>※ 一般に放出確率 <span class="math">\(p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \boldsymbol{\phi}\right)\)</span> は、<b>二値のベクトル <span class="math">\(\mathbf{z}_n\)</span> の <span class="math">\(K\)</span> 個の可能な状態に対応した <span class="math">\(K\)</span> 個の要素を持つベクトルからなる任意の分布</b></p>
-<div class="math">$$
-p\left(\mathbf{x}_{n} | \mathbf{z}_{n}, \phi\right)=\prod_{k=1}^{K} p\left(\mathbf{x}_{n} | \phi_{k}\right)^{z_{n k}}\qquad (13.9)
-$$</div>
-<p>を考えることも可能ですが、今回は下記の離散多項分布を考えます。</p>
-<table>
-<thead>
-<tr>
-<th align="left">Name</th>
-<th align="center">Probability</th>
-<th align="center">Conditional Distribution</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">initial state</td>
-<td align="center"><span class="math">\(\pi_{k} \equiv p\left(z_{1 k}=1\right)\)</span></td>
-<td align="center"><span class="math">\(p\left(\mathbf{z}_{1} \mid \boldsymbol{\pi}\right)=\prod_{k=1}^{K} \pi_{k}^{z_{1 k}}\quad (13.8)\)</span></td>
-</tr>
-<tr>
-<td align="left">transition probability</td>
-<td align="center"><span class="math">\(A_{j k} \equiv p\left(z_{n k}=1\mid z_{n-1, j}=1\right)\)</span></td>
-<td align="center"><span class="math">\(p\left(\mathbf{z}_{n} \mid \mathbf{z}_{n-1}, \mathbf{A}\right)=\prod_{k=1}^{K} \prod_{j=1}^{K} A_{j k}^{z_{n-1, j} z_{n k}}\quad (13.7)\)</span></td>
-</tr>
-<tr>
-<td align="left">emission probability</td>
-<td align="center"><span class="math">\(\phi_{i k}\equiv p\left(x_{n i}=1 \mid z_{n k}=1\right)\)</span></td>
-<td align="center"><span class="math">\(p(\mathbf{x}_n \mid \mathbf{z}_n, \boldsymbol{\phi})=\prod_{i=1}^{D} \prod_{k=1}^{K} \phi_{i k}^{x_{ni} z_{nk}}\quad (13.22)\)</span></td>
-</tr>
-</tbody>
-</table>
-<h3>尤度関数</h3>
-<p>ここで、データ集合 <span class="math">\(\mathbf{X}\)</span> が観測された際に、上記の同時分布を潜在変数 <span class="math">\(\mathbf{Z}\)</span> について周辺化することで、尤度関数は以下のように記述されます。</p>
-<div class="math">$$
-p(\mathbf{X} | \boldsymbol{\theta})=\sum_{\mathbf{Z}} p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})\qquad (13.11)
-$$</div>
-<p>しかし、この尤度関数は <span class="math">\(n\)</span> について分解できない（<span class="math">\(\mathbf{z}_n\)</span>）ごとに和を取れないので、<span class="marker-pink">条件付き独立</span>の性質を活かして<span class="marker-pink">尤度関数の対数の期待値</span>を最大化する<span class="marker-pink">Baum-Welch algorithm (EM algorithm)</span>を用います。</p>
-<h2>Baum-Welch (EM)</h2>
-<ol>
-<li>パラメータ <span class="math">\(\boldsymbol{\theta}^{\text {old }}\)</span> を用いて <span class="math">\(p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right)\)</span> を最大化する。</li>
-<li>対数尤度関数の期待値 <span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)\)</span> を求める。</li>
-<li><span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)\)</span> を最大化するパラメータに更新する。<span class="math">\(\boldsymbol{\theta}\rightarrow\boldsymbol{\theta}^{\text {old }}\)</span></li>
-<li>1に戻る。</li>
-</ol>
-<div class="math">$$
-Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\text {old }}\right)=\sum_{\mathbf{Z}} p\left(\mathbf{Z} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right) \ln p(\mathbf{X}, \mathbf{Z} | \boldsymbol{\theta})\qquad (13.12)
-$$</div>
-<p>ここで、表記を簡単にするために、<span class="marker-info" aria-label="潜在変数の周辺事後分布">γ</span>、<span class="marker-info" aria-label="2つの連続した潜在変数に対する同時事後分布">ξ</span>を導入します。</p>
-<div class="math">$$
-\begin{aligned} \gamma\left(\mathbf{z}_{n}\right) &amp;=p\left(\mathbf{z}_{n} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right) &amp;(13.13)\\ \xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right) &amp;=p\left(\mathbf{z}_{n-1}, \mathbf{z}_{n} | \mathbf{X}, \boldsymbol{\theta}^{\text {old }}\right) &amp;(13.14) \end{aligned}
-$$</div>
-<p>なお、潜在変数が離散なので、以下のように記述し直せます。（<span class="math">\(\pi_{k},A_{j k},\phi_{j k}\)</span> と同様。）</p>
-<div class="math">$$
-\begin{aligned} \gamma\left(z_{n k}\right) &amp;=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n k} &amp;(13.15)\\ \xi\left(z_{n-1, j}, z_{n k}\right) &amp;=\sum_{\mathbf{z}} \gamma(\mathbf{z}) z_{n-1, j} z_{n k} &amp;(13.16)\end{aligned}
-$$</div>
-<p>これらを用いると、<span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> が以下のように書き下せます。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Qfunction">（計算過程）</a></p>
-<div class="math">$$
-\begin{aligned} Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)=&amp; \sum_{k=1}^{K} \gamma\left(z_{1 k}\right) \ln \pi_{k}+\sum_{n=2}^{N} \sum_{j=1}^{K} \sum_{k=1}^{K} \xi\left(z_{n-1, j}, z_{n k}\right) \ln A_{j k} \\ &amp;+\sum_{n=1}^{N} \sum_{k=1}^{K}\gamma\left(z_{n k}\right) \sum_{i=1}^Dx_{ni} \ln \phi_{i k} \end{aligned}\qquad (13.17)
-$$</div>
-<h3>Maximization step</h3>
-<p><b>※ 実際の計算の順番からは前後しますが、先にM stepを説明します。</b></p>
-<p>上記の <span class="math">\(Q\left(\boldsymbol{\theta}, \boldsymbol{\theta}^{\mathrm{old}}\right)\)</span> を各パラメータ <span class="math">\(\boldsymbol{\theta}\)</span> に関して最大化するのは（別ブロックに別れているから）簡単で、それぞれ<b>適当なラグランジュ乗数を導入する</b>ことで、以下のように求まります。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Mstep">（計算過程）</a></p>
-<div class="math">$$
-\begin{aligned}
-\pi_{k}&amp;= \frac{\gamma\left(z_{1 k}\right)}{\sum_{j=1}^{K} \gamma\left(z_{1 j}\right)} &amp; (13.18)\\
-A_{j k}&amp;= \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} &amp; (13.19)\\
-\phi_{i k}&amp;=\frac{\sum_{n=1}^{N} \gamma\left(z_{n k}\right) x_{n i}}{\sum_{n=1}^{N} \gamma\left(z_{n k}\right)} &amp; (13.23)
-\end{aligned}
-$$</div>
-<h3>Expectation step</h3>
-<p>M step で必要となる <span class="math">\(\gamma,\xi\)</span> は、<span class="marker-info" aria-label="n番目の隠れ状態が決まったら、1~nまでとn+1~Nまでの観測変数xは独立に扱うことができる。">条件付き独立性</span>を用いることで効率的に計算することができます。</p>
-<div class="math">$$
-\begin{aligned}
-\gamma\left(\mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{z}_{n} | \mathbf{X}\right)=\frac{p\left(\mathbf{X} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\quad (\because \text{Bayes' theorem}) &amp;(13.32)\\
-&amp;=\frac{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p(\mathbf{X})} \quad (\because \text{conditional independence})\\
-&amp;= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} &amp; (13.33)
-\end{aligned}
-$$</div>
+            <p>HMMを実装する際に課題となるのが、forward-algorithm で <span class="math">\(\alpha\)</span> を再帰的に求める際に、<span class="math">\(\alpha\left(\mathbf{z}_{n-1}\right)\)</span> に <span class="math">\(p(\mathbf{z}_n|\mathbf{z}_{n-1})\)</span> と <span class="math">\(p(\mathbf{x}_n|\mathbf{z}_n)\)</span> をかけるため、値が非常に小さくなり、計算機の<span class="marker-info" aria-label="識別可能な信号の最小値と最大値の比率">ダイナミックレンジ</span>を超えてしまうことです。</p>
+<p>そこで、ここでは <span class="math">\(\alpha\left(\mathbf{z}_{n}\right)\)</span> と <span class="math">\(\beta\left(\mathbf{z}_{n}\right)\)</span> にスケーリングを施し、それらの値が <span class="math">\(1\)</span> のオーダーに止まるようにする手法を説明します。</p>
+<h3>forward-backward <span class="math">\(\alpha,\beta\)</span></h3>
+<p>forward-backward algorithm で用いられていた <span class="math">\(\alpha,\beta\)</span> は以下のように定義されていました。</p>
 <div class="math">$$
 \begin{aligned}
 \alpha\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) &amp; (13.34)\\
 \beta\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) &amp; (13.35)
 \end{aligned}
 $$</div>
-<p>条件付き独立性を用いてそれぞれ変形すると、以下の再帰式を導くことができます。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#Estep">（計算過程）</a></p>
+<h3>Scaling factors</h3>
+<p>まず、スケーリングされた <span class="math">\(\alpha,\beta\)</span> は以下のように表されます。スケーリングによって、<span class="marker-pink"><span class="math">\(\alpha\)</span> は高々 <span class="math">\(K\)</span> 個の変数上の確率分布</span>、<span class="marker-pink"><span class="math">\(\beta\)</span> は2つの条件付き確率の比</span>になることがわかります。</p>
+<div class="math">$$
+\begin{aligned}
+\widehat{\alpha}\left(\mathbf{z}_{n}\right)
+&amp;=p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} &amp; (13.55)\\
+\widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp;=\frac{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)}=\frac{\beta\left(\mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} &amp; (13.61)
+\end{aligned}
+$$</div>
+<p>ここで、これらと <span class="math">\(\alpha,\beta\)</span> を関連付けるためのスケーリング係数 <span class="math">\(c\)</span> を導入します。</p>
+<div class="math">$$
+c_{n}=p\left(\mathbf{x}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}\right)\qquad (13.56)
+$$</div>
+<p>すると、</p>
+<div class="math">$$
+\begin{aligned}
+p\left(\mathbf{x}_1,\ldots,\mathbf{x}_n\right)
+&amp;= p\left(\mathbf{x}_n | \mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\cdots p\left(\mathbf{x}_3 | \mathbf{x}_1,\mathbf{x}_{2}\right)p\left(\mathbf{x}_2 | \mathbf{x}_1\right)p(\mathbf{x}_1)\\
+&amp;= c_n\cdots c_3c_2c_1\\
+&amp;= \prod_{m=1}^{n} c_{m}
+\end{aligned}\qquad (13.58)
+$$</div>
+<p>と展開することができるので、</p>
+<div class="math">$$
+\begin{aligned}
+\alpha\left(\mathbf{z}_{n}\right)&amp;=p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)=\left(\prod_{m=1}^{n} c_{m}\right) \widehat{\alpha}\left(\mathbf{z}_{n}\right) &amp; (13.58)\\
+\beta\left(\mathbf{z}_{n}\right)&amp;=p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)\widehat{\beta}\left(\mathbf{z}_{n}\right) = \left(\prod_{m=n+1}^{N} c_{m}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right) &amp; (13.60)
+\end{aligned}
+$$</div>
+<p>と対応関係がわかります。</p>
+<h3><span class="math">\(\gamma,\xi\)</span></h3>
+<p>続いて、<span class="math">\(\gamma,\xi\)</span> と <span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span> の対応関係を求めます。</p>
+<h4><span class="math">\(\alpha,\beta\)</span></h4>
+<p><span class="math">\(\alpha,\beta\)</span> を用いると、以下のように表されていました。</p>
+<div class="math">$$
+\begin{aligned}
+\gamma\left(\mathbf{z}_{n}\right)
+&amp;= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
+&amp; (13.33)\\
+\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
+&amp;=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
+&amp;(13.43)
+\end{aligned}$$</div>
+<h4><span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span></h4>
+<p>先の対応関係を用いれば、<span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span> を用いると、</p>
+<div class="math">$$
+\begin{aligned}
+\gamma\left(\mathbf{z}_{n}\right) &amp;=\widehat{\alpha}\left(\mathbf{z}_{n}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp; (13.64)\\
+\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
+&amp;=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp; (13.65)
+\end{aligned}
+$$</div>
+<p>と表されることがわかります。</p>
+<h3>Recursion</h3>
+<p>最後に、再帰式の対応関係も求めます。</p>
+<h4><span class="math">\(\alpha,\beta\)</span></h4>
 <div class="math">$$
 \begin{aligned}
 \alpha\left(\mathbf{z}_{n}\right)
@@ -216,22 +189,37 @@ $$</div>
 &amp;= \frac{\gamma\left(\mathbf{z}_N\right)p\left(\mathbf{X}\right)}{\alpha\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)p(\mathbf{X})}{p\left(\mathbf{X}, \mathbf{z}_{N}\right)} = 1 &amp; (13.30)
 \end{aligned}
 $$</div>
-<p>※ なお、ここで <span class="math">\(\alpha\)</span> の再起式を<span class="marker-pink">forward-algorithm</span>、<span class="math">\(\beta\)</span> の再起式を<span class="marker-pink">backward-algorithm</span>と呼ぶことがあります。</p>
-<p>また、これらを用いて <span class="math">\(\xi\)</span> を記述することもでき、以下のように表せます。<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-2.html#gamma-xi">（計算過程）</a></p>
-<div class="math">$$\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.43)$$</div>
-<p>以上でBaum-Welchに必要な計算式が求まりました。</p>
-<h3>おまけ（尤度関数）</h3>
-<p>尤度関数は、アルゴリズムの停止条件に用いられるなど、値を求めることが非常に有用です。</p>
-<p>求める際は、</p>
+<h4><span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span></h4>
 <div class="math">$$
-\gamma\left(\mathbf{z}_{n}\right)= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} \qquad (13.33)
+\begin{aligned}
+c_{n} \widehat{\alpha}\left(\mathbf{z}_{n}\right)
+&amp;=p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)
+&amp; (13.58)\\
+\widehat{\alpha}\left(\mathbf{z}_{1}\right)
+&amp;=p\left(\mathbf{z}_{1}| \mathbf{x}_{1}\right)=\frac{p\left(\mathbf{z}_{1}\right)p\left(\mathbf{x}_{1}| \mathbf{z}_{1}\right)}{p\left(\mathbf{x}_{1}\right)} = \frac{\prod_{k=1}^{K}\left\{\pi_{k} p\left(\mathbf{x}_{1} | \boldsymbol{\phi}_{k}\right)\right\}^{z_{1 k}}}{p\left(\mathbf{x}_{1}\right)}\\
+c_{n+1} \widehat{\beta}\left(\mathbf{z}_{n}\right)
+&amp;=\sum_{\mathbf{z}_{n+1}} \widehat{\beta}\left(\mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right)
+&amp;(13.62)\\
+\widehat{\beta}\left(\mathbf{z}_{N}\right)
+&amp;= \frac{\gamma\left(\mathbf{z}_N\right)}{\widehat{\alpha}\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)}{p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} = 1 &amp; (13.30)
+\end{aligned}
 $$</div>
-<p>の両辺を <span class="math">\(\mathbf{z}_n\)</span> について周辺化すれば、左辺は</p>
-<div class="math">$$\sum_{\mathbf{z}_{n}} \gamma\left(\mathbf{z}_{n}\right) = \sum_{\mathbf{z}_{n}}p\left(\mathbf{z}_{n} | \mathbf{X}\right) = 1$$</div>
-<p>となることが明らかなので、以下のように求まります。</p>
-<div class="math">$$p(\mathbf{X})=\sum_{\mathbf{z}_{n}} \alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)\qquad (13.41)$$</div>
-<p>また、上記の式は任意の <span class="math">\(n\)</span> について成立するので、<span class="math">\(n=N\)</span> の場合を考えれば <span class="math">\(\alpha\)</span> のみを用いて求めることができます。</p>
-<div class="math">$$p(\mathbf{X})=\sum_{\mathbf{z}_{N}} \alpha\left(\mathbf{z}_{N}\right)\qquad (13.42)$$</div>
+<p>なお、ここで <span class="math">\((13.58)\)</span> でどのようにして <span class="math">\(c_n\)</span> を求めるかですが、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{R.H.S}\ (13.58)
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}}p\left(\mathbf{z}_{n-1}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
+&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\\
+&amp;=p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)
+\end{aligned}
+$$</div>
+<p>となることから、<span class="math">\((13.58)\)</span> の右辺を <span class="math">\(\mathbf{z}_n\)</span> について周辺化すれば、</p>
+<div class="math">$$\sum_{\mathbf{z}_{n}}p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = p\left(\mathbf{x}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = c_n$$</div>
+<p>となるので、<span class="math">\(c_n\)</span> が求められることがわかります。</p>
+<h3>おまけ（尤度関数）</h3>
+<p>尤度関数はスケーリング係数 <span class="math">\(c\)</span> を用いるだけで簡単に求められることがわかります。</p>
+<div class="math">$$p(\mathbf{X})=\prod_{n=1}^{N} c_{n}\qquad (13.63)$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -303,20 +291,20 @@ $$</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-09-26T13:00:00+09:00">Sep 26, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-09-26T15:00:00+09:00">Sep 26, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-09-26T13:00:00+09:00">Sep 26, 2019</time>
+<time datetime="2019-09-26T15:00:00+09:00">Sep 26, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>49</span>
+                    <span>50</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-ref">情報基礎実験
-                    <span>12</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)
+                    <span>13</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

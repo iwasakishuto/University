@@ -11,20 +11,20 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 情報基礎実験, 情報基礎実験, " />
+<meta name="keywords" content="3A, 情報基礎実験(浅井), 情報基礎実験(浅井), " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
-<meta property="og:title" content="HMMのスケーリング "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-3.html" />
+<meta property="og:title" content="Pair HMM の最尤推定 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-7.html" />
 <meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
-<meta property="og:article:published_time" content="2019-09-26T15:00:00+09:00" />
-<meta property="og:article:modified_time" content="2019-09-26T15:00:00+09:00" />
-<meta name="twitter:title" content="HMMのスケーリング ">
+<meta property="og:article:published_time" content="2019-10-05T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-05T00:00:00+09:00" />
+<meta name="twitter:title" content="Pair HMM の最尤推定 ">
 <meta name="twitter:description" content="">
 
-        <title>HMMのスケーリング  · 3A
+        <title>Pair HMM の最尤推定  · 3A
 </title>
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-3.html"> HMMのスケーリング  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-7.html"> Pair HMM の最尤推定  </a></h1>
     </header>
 </div>
 
@@ -108,118 +108,133 @@
         <div class="span8 offset2 article-content">
 
             
-            <p>HMMを実装する際に課題となるのが、forward-algorithm で <span class="math">\(\alpha\)</span> を再帰的に求める際に、<span class="math">\(\alpha\left(\mathbf{z}_{n-1}\right)\)</span> に <span class="math">\(p(\mathbf{z}_n|\mathbf{z}_{n-1})\)</span> と <span class="math">\(p(\mathbf{x}_n|\mathbf{z}_n)\)</span> をかけるため、値が非常に小さくなり、計算機の<span class="marker-info" aria-label="識別可能な信号の最小値と最大値の比率">ダイナミックレンジ</span>を超えてしまうことです。</p>
-<p>そこで、ここでは <span class="math">\(\alpha\left(\mathbf{z}_{n}\right)\)</span> と <span class="math">\(\beta\left(\mathbf{z}_{n}\right)\)</span> にスケーリングを施し、それらの値が <span class="math">\(1\)</span> のオーダーに止まるようにする手法を説明します。</p>
-<h3>forward-backward <span class="math">\(\alpha,\beta\)</span></h3>
-<p>forward-backward algorithm で用いられていた <span class="math">\(\alpha,\beta\)</span> は以下のように定義されていました。</p>
+            <p><a href="https://www.researchgate.net/figure/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a_fig1_221912143"><img alt="PairHMM" src="https://www.researchgate.net/profile/Florian_Blaettler/publication/221912143/figure/fig1/AS:305340219445264@1449810189815/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a.png"></a></p>
+<h2>Baum-Welch</h2>
+<p>Pair HMMとは、二本の配列を受け取ってペアワイズアラインメントを出力するHMMで、<span class="marker-pink">「アラインメントの確率的な解釈が可能になる」</span><b>（アラインメントのどの部分が信頼できるかを確率的に評価できる）</b>という利点があります。</p>
+<p>このPair HMMは、一般的なHMMと同様にBaum-Welchアルゴリズムによってパラメータを最尤推定していきます。</p>
+<h3><span class="math">\(\xi\)</span></h3>
+<h4>HMM</h4>
+<p>一般的なHMMでは、例えば<b>遷移確率 <span class="math">\(A_{jk}\)</span>（状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する確率）</b>を最尤推定する際は、</p>
+<ol>
+<li>直感的には<b>「状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する回数」</b>を、<b>「状態 <span class="math">\(j\)</span> から遷移する回数」</b>で割れば最尤解が求まる。</li>
+<li>実際の隠れ状態の遷移が確定していないので、<b>「<font color="red">期待される</font>状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する回数」</b>を、<b>「<font color="red">期待される</font>状態 <span class="math">\(j\)</span> から遷移する回数」</b>で割れば良い。</li>
+<li><span class="math">\(\mathbf{z}_{n-1}\)</span> で状態 <span class="math">\(j\)</span> におり、<span class="math">\(\mathbf{z}_n\)</span> で状態 <span class="math">\(k\)</span> にいる確率 <span class="math">\(\xi\left(z_{n-1,j},z_{nk}\right)\)</span> は、forward-backward algorithmの <span class="math">\(\alpha,\beta\)</span> を用いれば以下のように求めることができる。
+<div class="math">$$\xi_n\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.43)$$</div>
+</li>
+<li><span class="math">\(\xi\)</span> を用いて、最尤推定を行う。
+<div class="math">$$A_{j k}= \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} \qquad (13.19)$$</div>
+</li>
+</ol>
+<p>という様に行いますが、Pair HMMは、<span class="marker-pink">挿入・欠失を考えるため、<span class="math">\(n\)</span> で配列 <span class="math">\(\mathbf{X,Y}\)</span> のどの要素（<span class="math">\(\mathbf{x}_u,\mathbf{y}_v\)</span>）を考えているのか一意に定まらない</span>という点で普通のHMMとは異なります。</p>
+<h4>Pair HMM</h4>
+<p>そこで、<span class="marker-pink">「<span class="math">\(n\)</span> ではなく <span class="math">\(u,v\)</span> に注目する」</span>ことで、 <span class="math">\((13.43)\)</span> の式を以下のように書き換えます。</p>
+<div class="math">$$\xi_{u,v}\left(i,j\right)=\frac{f_i\left(u,v\right)A_{ij}\phi_j\left(\diamond_1\right)b_j\left(\diamond_2,\diamond_3\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
+<p>ここで、分子に注目すると、各変数の意味が</p>
+<table>
+<thead>
+<tr>
+<th align="center">variable</th>
+<th align="left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(f_i\left(u,v\right)\)</span></td>
+<td align="left">The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(A_{ij}\)</span></td>
+<td align="left">the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></td>
+<td align="left">the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></td>
+<td align="left">the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.</td>
+</tr>
+</tbody>
+</table>
+<p>であるので、<span class="math">\(\diamond\)</span> は状態によって異なり、具体的に書き下すと以下のようになります。</p>
+<table>
+<thead>
+<tr>
+<th align="center">state\variable</th>
+<th align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></th>
+<th align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v+1\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(e\left(y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u,v+1\right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3><span class="math">\(\gamma\)</span></h3>
+<p>同様に <span class="math">\(\gamma\)</span> も考えると、</p>
 <div class="math">$$
-\begin{aligned}
-\alpha\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}, \mathbf{z}_{n}\right) &amp; (13.34)\\
-\beta\left(\mathbf{z}_{n}\right) &amp; \equiv p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right) &amp; (13.35)
-\end{aligned}
-$$</div>
-<h3>Scaling factors</h3>
-<p>まず、スケーリングされた <span class="math">\(\alpha,\beta\)</span> は以下のように表されます。スケーリングによって、<span class="marker-pink"><span class="math">\(\alpha\)</span> は高々 <span class="math">\(K\)</span> 個の変数上の確率分布</span>、<span class="marker-pink"><span class="math">\(\beta\)</span> は2つの条件付き確率の比</span>になることがわかります。</p>
-<div class="math">$$
-\begin{aligned}
-\widehat{\alpha}\left(\mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} &amp; (13.55)\\
-\widehat{\beta}\left(\mathbf{z}_{n}\right)
-&amp;=\frac{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)}=\frac{\beta\left(\mathbf{z}_{n}\right)}{p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} &amp; (13.61)
-\end{aligned}
-$$</div>
-<p>ここで、これらと <span class="math">\(\alpha,\beta\)</span> を関連付けるためのスケーリング係数 <span class="math">\(c\)</span> を導入します。</p>
-<div class="math">$$
-c_{n}=p\left(\mathbf{x}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n-1}\right)\qquad (13.56)
-$$</div>
-<p>すると、</p>
-<div class="math">$$
-\begin{aligned}
-p\left(\mathbf{x}_1,\ldots,\mathbf{x}_n\right)
-&amp;= p\left(\mathbf{x}_n | \mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\cdots p\left(\mathbf{x}_3 | \mathbf{x}_1,\mathbf{x}_{2}\right)p\left(\mathbf{x}_2 | \mathbf{x}_1\right)p(\mathbf{x}_1)\\
-&amp;= c_n\cdots c_3c_2c_1\\
-&amp;= \prod_{m=1}^{n} c_{m}
-\end{aligned}\qquad (13.58)
-$$</div>
-<p>と展開することができるので、</p>
-<div class="math">$$
-\begin{aligned}
-\alpha\left(\mathbf{z}_{n}\right)&amp;=p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right) p\left(\mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)=\left(\prod_{m=1}^{n} c_{m}\right) \widehat{\alpha}\left(\mathbf{z}_{n}\right) &amp; (13.58)\\
-\beta\left(\mathbf{z}_{n}\right)&amp;=p\left(\mathbf{x}_{n+1}, \ldots, \mathbf{x}_{N} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)\widehat{\beta}\left(\mathbf{z}_{n}\right) = \left(\prod_{m=n+1}^{N} c_{m}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right) &amp; (13.60)
-\end{aligned}
-$$</div>
-<p>と対応関係がわかります。</p>
-<h3><span class="math">\(\gamma,\xi\)</span></h3>
-<p>続いて、<span class="math">\(\gamma,\xi\)</span> と <span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span> の対応関係を求めます。</p>
-<h4><span class="math">\(\alpha,\beta\)</span></h4>
-<p><span class="math">\(\alpha,\beta\)</span> を用いると、以下のように表されていました。</p>
-<div class="math">$$
-\begin{aligned}
-\gamma\left(\mathbf{z}_{n}\right)
-&amp;= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
-&amp; (13.33)\\
-\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
-&amp;=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}
-&amp;(13.43)
-\end{aligned}$$</div>
-<h4><span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span></h4>
-<p>先の対応関係を用いれば、<span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span> を用いると、</p>
-<div class="math">$$
-\begin{aligned}
-\gamma\left(\mathbf{z}_{n}\right) &amp;=\widehat{\alpha}\left(\mathbf{z}_{n}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right)
-&amp; (13.64)\\
-\xi\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)
-&amp;=\left(c_{n}\right)^{-1} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \widehat{\beta}\left(\mathbf{z}_{n}\right)
-&amp; (13.65)
-\end{aligned}
-$$</div>
-<p>と表されることがわかります。</p>
-<h3>Recursion</h3>
-<p>最後に、再帰式の対応関係も求めます。</p>
-<h4><span class="math">\(\alpha,\beta\)</span></h4>
-<div class="math">$$
-\begin{aligned}
-\alpha\left(\mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) &amp; (13.36)\\
-\alpha\left(\mathbf{z}_{1}\right)
-&amp;=p\left(\mathbf{x}_{1}, \mathbf{z}_{1}\right)=p\left(\mathbf{z}_{1}\right) p\left(\mathbf{x}_{1} | \mathbf{z}_{1}\right)=\prod_{k=1}^{K}\left\{\pi_{k} p\left(\mathbf{x}_{1} | \boldsymbol{\phi}_{k}\right)\right\}^{z_{1 k}} &amp; (13.37)\\
-\beta\left(\mathbf{z}_{n}\right)
-&amp;=\sum_{\mathbf{z}_{n+1}} \beta\left(\mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right) &amp; (13.38)\\
-\beta\left(\mathbf{z}_{N}\right)
-&amp;= \frac{\gamma\left(\mathbf{z}_N\right)p\left(\mathbf{X}\right)}{\alpha\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)p(\mathbf{X})}{p\left(\mathbf{X}, \mathbf{z}_{N}\right)} = 1 &amp; (13.30)
-\end{aligned}
-$$</div>
-<h4><span class="math">\(\widehat{\alpha},\widehat{\beta}\)</span></h4>
-<div class="math">$$
-\begin{aligned}
-c_{n} \widehat{\alpha}\left(\mathbf{z}_{n}\right)
-&amp;=p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)
-&amp; (13.58)\\
-\widehat{\alpha}\left(\mathbf{z}_{1}\right)
-&amp;=p\left(\mathbf{z}_{1}| \mathbf{x}_{1}\right)=\frac{p\left(\mathbf{z}_{1}\right)p\left(\mathbf{x}_{1}| \mathbf{z}_{1}\right)}{p\left(\mathbf{x}_{1}\right)} = \frac{\prod_{k=1}^{K}\left\{\pi_{k} p\left(\mathbf{x}_{1} | \boldsymbol{\phi}_{k}\right)\right\}^{z_{1 k}}}{p\left(\mathbf{x}_{1}\right)}\\
-c_{n+1} \widehat{\beta}\left(\mathbf{z}_{n}\right)
-&amp;=\sum_{\mathbf{z}_{n+1}} \widehat{\beta}\left(\mathbf{z}_{n+1}\right) p\left(\mathbf{x}_{n+1} | \mathbf{z}_{n+1}\right) p\left(\mathbf{z}_{n+1} | \mathbf{z}_{n}\right)
-&amp;(13.62)\\
-\widehat{\beta}\left(\mathbf{z}_{N}\right)
-&amp;= \frac{\gamma\left(\mathbf{z}_N\right)}{\widehat{\alpha}\left(\mathbf{z}_N\right)} = \frac{p\left(\mathbf{z}_{N} | \mathbf{X}\right)}{p\left(\mathbf{z}_{n} | \mathbf{x}_{1}, \ldots, \mathbf{x}_{n}\right)} = 1 &amp; (13.30)
-\end{aligned}
-$$</div>
-<p>なお、ここで <span class="math">\((13.58)\)</span> でどのようにして <span class="math">\(c_n\)</span> を求めるかですが、</p>
-<div class="math">$$
-\begin{aligned}
-\mathrm{R.H.S}\ (13.58)
-&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}} \widehat{\alpha}\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
-&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) \sum_{\mathbf{z}_{n-1}}p\left(\mathbf{z}_{n-1}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right)\\
-&amp;= p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)\\
-&amp;=p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right)
-\end{aligned}
-$$</div>
-<p>となることから、<span class="math">\((13.58)\)</span> の右辺を <span class="math">\(\mathbf{z}_n\)</span> について周辺化すれば、</p>
-<div class="math">$$\sum_{\mathbf{z}_{n}}p\left(\mathbf{x}_{n},\mathbf{z}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = p\left(\mathbf{x}_{n}|\mathbf{x}_1,\ldots,\mathbf{x}_{n-1}\right) = c_n$$</div>
-<p>となるので、<span class="math">\(c_n\)</span> が求められることがわかります。</p>
-<h3>おまけ（尤度関数）</h3>
-<p>尤度関数はスケーリング係数 <span class="math">\(c\)</span> を用いるだけで簡単に求められることがわかります。</p>
-<div class="math">$$p(\mathbf{X})=\prod_{n=1}^{N} c_{n}\qquad (13.63)$$</div>
+\gamma_n\left(\mathbf{z}_{n}\right)= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} \qquad(13.33)$$</div>
+<p>から、</p>
+<div class="math">$$\gamma_i\left(u,v\right)=\frac{f_i\left(u,v\right)b_j\left(u,v\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
+<p>のように書き換えることになります。</p>
+<h3>Maximization step</h3>
+<p>ここまでで <span class="math">\(\gamma,\xi\)</span> が求まったので、M stepで各パラメータを更新します。なお、以下で <span class="math">\(w\)</span> は全ての記号の組を表します。</p>
+<div class="math">$$w\in\left\{(k_x,k_y)|k_x,k_y\in\left\{A,T,G,C,\epsilon
+\right\}\right\}\setminus(\epsilon,\epsilon)$$</div>
+<h4><span class="math">\(\pi_k\)</span></h4>
+<div class="math">$$\pi^{\star}_i = \sum_w\gamma_i^w(0,0)$$</div>
+<h4><span class="math">\(A_{ij}\)</span></h4>
+<div class="math">$$A^{\star}_{ij} = \frac{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\xi_{u,v}^{w}\left(i,j\right)}{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\sum_{j}^{K}\xi_{u,v}^{w}\left(i,j\right)}$$</div>
+<table>
+<thead>
+<tr>
+<th align="center">final emitting state</th>
+<th align="center"><span class="math">\(\tilde{U}\)</span></th>
+<th align="center"><span class="math">\(\tilde{V}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(U\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4><span class="math">\(\phi_{i}(k)\)</span></h4>
+<div class="math">$$\phi_i\left(k\right) = \frac{\sum_w\sum_{u=0}^{U\ast1}\sum_{v=0}^{V\ast2}\gamma_i^w\left(u,v\right)}{\sum_w\sum_{u=0}^U\sum_{v=0}^V\gamma_i^w\left(u,v\right)}$$</div>
+<ul>
+<li><span class="math">\(\ast1\)</span>：<span class="math">\(x_u=k_x\)</span> and state <span class="math">\(i\)</span> equals the state <span class="math">\(M\)</span> or <span class="math">\(X\)</span>. (in the state <span class="math">\(Y\)</span>, a gap is present in observation stream <span class="math">\(x\)</span> therefore <span class="math">\(k_x\)</span> is not present.)</li>
+<li><span class="math">\(\ast2\)</span>：<span class="math">\(y_v=k_y\)</span> and state <span class="math">\(j\)</span> equals the state <span class="math">\(M\)</span> or <span class="math">\(Y\)</span>.</li>
+</ul>
+<h3>Reference</h3>
+<ul>
+<li><a href="http://www.evolaemp.uni-tuebingen.de/pdf/Wahle(2013)_alignment_and_word_comparison_with_PHMM.pdf">Wahle, Johannes and Armin Buch. "Alignment and word comparison with Pair Hidden Markov Models." (2013).</a> pp.22-31</li>
+<li><a href="http://martijnwieling.nl/files/dialects.pdf">Martijn B. Wieling. "Comparison of Dutch Dialects" (2007)</a> pp.36-50</li>
+</ul>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -291,20 +306,20 @@ $$</div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
             <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-09-26T15:00:00+09:00">Sep 26, 2019</time>
+            <time itemprop="dateCreated" datetime="2019-10-05T00:00:00+09:00">Oct 5, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-09-26T15:00:00+09:00">Sep 26, 2019</time>
+<time datetime="2019-10-05T00:00:00+09:00">Oct 5, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>49</span>
+                    <span>50</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-ref">情報基礎実験
-                    <span>12</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)
+                    <span>13</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

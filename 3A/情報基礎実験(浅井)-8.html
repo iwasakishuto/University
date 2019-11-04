@@ -11,11 +11,11 @@
         <meta property="og:type" content="article" />
         <meta name="twitter:card" content="summary">
 
-<meta name="keywords" content="3A, 情報基礎実験, 情報基礎実験, " />
+<meta name="keywords" content="3A, 情報基礎実験(浅井), 情報基礎実験(浅井), " />
 <meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
 
 <meta property="og:title" content="Nussinov Algorithm "/>
-<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験-8.html" />
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-8.html" />
 <meta property="og:description" content="Nussinov Algorithmは、最もシンプルな二次構造予測アルゴリズムである。 「最大いくつの塩基対を作ることができるか」を調べる。 動的計画法を用いて効率的に調べるために、以下のようなPseudoknotは無視している。様々な重要なRNAが、Pseudoknotの形をとることが確認されているが、相対的にこのような構造をとる確率は低いので、計算の効率を優先し、これらを無視する。 Algorithm¶ ※「$i$ から $j$ までの部分塩基配列で最大幾つの塩基対が作れるか」を $\gamma(i,j)$ が保持している。 今回の実装では $j-i-1 ポイントはRecursionの最後の式で、「$i$ から $k$ までの部分塩基配列」と「$k+1$ から $j$ までの部分塩基配列」を足し合わせる操作を行う。（Bifurcation） Initialization:¶$$\begin{aligned} \gamma(i,i)&amp;=0&amp;\text{ for }i=1\text{ to }L\\ \gamma(i,i-1)&amp;=0&amp;\text{ for }i=2\text{ to }L \end{aligned}$$Recursion:¶$$ \gamma(i,j) = \max \begin{cases} \gamma(i+1,j)\\ \gamma(i,j-1)\\ \gamma(i+1,j-1)+\delta(i,j)\\ \max_{i\leq k\verb|TraceBack¶基本的なアルゴリズムは同じですが、Bifurcationが起きた際にトレースバックポインターを複数用意する必要があることには注意が必要です。 bp = [] stack = [(0,N-1)] while(stack): i,j = stack.pop(0) delta = 1 if self._is_bp(sequence[i],sequence[j]) and (j-i&gt;3) else" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
@@ -100,7 +100,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-8.html"> Nussinov Algorithm  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-8.html"> Nussinov Algorithm  </a></h1>
     </header>
 </div>
 
@@ -659,14 +659,14 @@ A - - - - - - - - - - - - - - 0
 <time datetime="2019-10-06T00:00:00+09:00">Oct 6, 2019</time>
 
             <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-ref">情報基礎実験</a>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)</a>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>49</span>
+                    <span>50</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-ref">情報基礎実験
-                    <span>12</span>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)
+                    <span>13</span>
 </a></li>
             </ul>
 <h5>Contact</h5>
