@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="Pro.1 配列モチーフ探索 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-16.html" />
-<meta property="og:description" content="問題設定 転写因子の結合領域を含む配列が多数得られた時に、共通する配列的特徴（モチーフ）を発見する。 DeepBind¶ link: Paper Software tool 深層学習を用いた転写因子結合モチーフ発見。 従来のものより性能が良い。 色々なハイパーパラメータ、構造パラメータを自動的に調節するような便利なシステムを作っている。 Summary of the Paper¶ da" />
+<meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-11-05T12:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-11-05T12:00:00+09:00" />
 <meta name="twitter:title" content="Pro.1 配列モチーフ探索 ">
-<meta name="twitter:description" content="問題設定 転写因子の結合領域を含む配列が多数得られた時に、共通する配列的特徴（モチーフ）を発見する。 DeepBind¶ link: Paper Software tool 深層学習を用いた転写因子結合モチーフ発見。 従来のものより性能が良い。 色々なハイパーパラメータ、構造パラメータを自動的に調節するような便利なシステムを作っている。 Summary of the Paper¶ da">
+<meta name="twitter:description" content="">
 
         <title>Pro.1 配列モチーフ探索  · 3A
 </title>
@@ -108,12 +108,13 @@
         <div class="span8 offset2 article-content">
 
             
-            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div class="frame">
-<h3>問題設定</h3>
-<p>転写因子の結合領域を含む配列が多数得られた時に、共通する<span class="marker-pink">配列的特徴（モチーフ）</span>を発見する。</p>
+            <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
 </div>
 </div>
 </div>
@@ -121,15 +122,45 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="DeepBind">DeepBind<a class="anchor-link" href="#DeepBind">¶</a></h4><ul>
-<li>link:<ul>
+<div class="frame">
+<h2>Problem Setting</h2>
+<p>Identify the <span class="marker-pink">common sequencial features(sequence motif)</span> from large amount of sequences data containing tf-binding regions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="DeepBind">DeepBind<a class="anchor-link" href="#DeepBind">¶</a></h3><ul>
+<li>Link:<ul>
 <li><a href="https://www.nature.com/articles/nbt.3300">Paper</a></li>
 <li><a href="http://tools.genes.toronto.edu/deepbind/">Software tool</a></li>
 </ul>
 </li>
-<li>深層学習を用いた転写因子結合モチーフ発見。</li>
-<li>従来のものより性能が良い。</li>
-<li>色々なハイパーパラメータ、構造パラメータを自動的に調節するような便利なシステムを作っている。</li>
+<li><strong>"Deep Learning"</strong> techniques to ascertain the sequence specificities of DNA- and RNA-binding proteins <strong>from experimental data</strong>.</li>
+<li>outperforms other state-of-the-art methods. (Published: 27 July 2015)</li>
+<li>Results are readily visualized as <ul>
+<li>a weighted ensemble of <a href="https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-9863-7_439"><span aria-label="In a position weight matrix, each row corresponds to one symbol of the alphabet, e.g., amino acids or nucleic acids, and each column corresponds to one position in the pattern." class="marker-info">position weight matrices(PWMs)</span></a></li>
+<li>a <strong>mutation map</strong> that indicates how variations affect binding within a specific sequence.</li>
+</ul>
+</li>
+<li>computes a binding score $f(s)$ using four stages:
+$$f(s) = \text{Neural Network}_W\left(\text{pool}\left(\text{rect}_b\left(\text{conv}_M(s)\right)\right)\right)$$<ol>
+<li><strong>Convolution</strong>:
+Scan a set of motif detectors (length=$L$) with parameters $M^{(j)}$
+$$\text{conv}_M(s)_{ij} = \sum_{k=0}^{K-1}\sum_{l=0}^{L-1}M^{(j)}_{k,i+l}s_{ki}$$</li>
+<li><strong>Rectification</strong>: Extract some positions
+$$\text{rect}_b(x_{ij}) =\begin{cases} x_{ij} + b & (\text{if }x_{ij} + b>0)\\0 & (\text{otherwise})\end{cases}$$</li>
+<li><strong>Pooling</strong>: Compute the <strong>maximum</strong> and <strong>average</strong> of each $\text{rect}_b\left(\cdot\right)$ across the sequence.<ul>
+<li><strong>Maximizing</strong>: identify the presence of <strong>longer motifs</strong>.</li>
+<li><strong>Averaging</strong>: identify cumulative effects of <strong>short motifs</strong>
+$$\text{pool}_{\alpha}(x_{ij}) = \alpha\max_i\left(x_{ij}\right) + \left(1-\alpha\right)\underset{i}{\text{ave}}\left(x_{ij}\right)$$</li>
+</ul>
+</li>
+<li><strong>Neural Network</strong>: Combines the responses to produce a score.</li>
+</ol>
+</li>
 </ul>
 </div>
 </div>
@@ -137,9 +168,108 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Summary-of-the-Paper">Summary of <a href="https://www.nature.com/articles/nbt.3300">the Paper</a><a class="anchor-link" href="#Summary-of-the-Paper">¶</a></h3><ul>
-<li>da</li>
+<p><img alt="Figure 2" src="https://media.nature.com/lw926/nature-assets/nbt/journal/v33/n8/images/nbt.3300-F2.jpg" /></p>
+<blockquote><ul>
+<li>a: Five independent sequences being processed in parallel by single DeepBind model.</li>
+<li>b: The calibration, training and testing procedure.</li>
 </ul>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Implementation">Implementation<a class="anchor-link" href="#Implementation">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [11]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># from kerasy.Bio.deepbind import DeepBind</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">nuc</span>      <span class="o">=</span> <span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"G"</span><span class="p">,</span> <span class="s2">"T"</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">nuc_to_code</span><span class="p">(</span><span class="n">nuc</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">'A'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="s1">'C'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="s1">'G'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="s1">'T'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nuc</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+
+<span class="k">def</span> <span class="nf">generate_dataset</span><span class="p">(</span><span class="n">n_p</span><span class="p">,</span> <span class="n">n_n</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">motif</span><span class="p">,</span> <span class="n">nuc</span><span class="p">):</span>
+    <span class="n">m</span>    <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">motif</span><span class="p">)</span>
+    <span class="n">y</span>    <span class="o">=</span> <span class="p">([</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_p</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_n</span><span class="p">)</span>
+    <span class="n">x</span>    <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n_p</span> <span class="o">+</span> <span class="n">n_n</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_p</span> <span class="o">+</span> <span class="n">n_n</span><span class="p">):</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nuc</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">length</span><span class="p">)</span> <span class="c1"># random seq</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o"><</span> <span class="n">n_p</span><span class="p">:</span> <span class="c1"># embed motif at random position</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">length</span> <span class="o">-</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                <span class="n">seq</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">nuc</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">motif</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="s1">''</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="n">motif</span>    <span class="o">=</span> <span class="p">[[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># C</span>
+            <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="c1"># A/T</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># C/G</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="c1"># G</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]]</span> <span class="c1"># T</span>
+
+<span class="n">seq_len</span>  <span class="o">=</span> <span class="mi">20</span>
+<span class="n">np_train</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">nn_train</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">np_test</span>  <span class="o">=</span> <span class="mi">100</span>
+<span class="n">nn_test</span>  <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">generate_dataset</span><span class="p">(</span><span class="n">np_train</span><span class="p">,</span> <span class="n">nn_train</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">motif</span><span class="p">,</span> <span class="n">nuc</span><span class="p">)</span>
+<span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span>   <span class="o">=</span> <span class="n">generate_dataset</span><span class="p">(</span><span class="n">np_test</span><span class="p">,</span> <span class="n">nn_test</span><span class="p">,</span> <span class="n">seq_len</span><span class="p">,</span> <span class="n">motif</span><span class="p">,</span> <span class="n">nuc</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">-</span> <span class="p">[</span><span class="n">Enhanced</span><span class="p">](</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">arxiv</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pdf</span><span class="o">/</span><span class="mf">1611.05777</span><span class="o">.</span><span class="n">pdf</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -203,7 +333,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>70</span>
+                    <span>71</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>
