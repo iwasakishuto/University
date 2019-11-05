@@ -110,6 +110,148 @@
             
             <p><img alt="Q1" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q1.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$
+\begin{aligned}
+\mathbb{E}\left(\left(X-\mu_X\right)\left(Y-\mu_Y\right)\right)
+&amp;= \mathbb{E}\left(XY - \mu_YX-\mu_XY + \mu_X\mu_Y\right)\\
+&amp;= \mathbb{E}\left(XY\right) - \mu_Y\mathbb{E}(X) - \mu_X\mathbb{E}(Y) + \mu_X\mu_Y\\
+&amp;= \mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)\quad (\because\mu_X=\mathbb{E}(X),\mu_Y=\mathbb{E}(Y))
+\end{aligned}
+$$</div>
+<h4>2</h4>
+<p>連続型確率変数の場合で証明する。（離散型は <span class="math">\(\int\rightarrow\sum\)</span>）</p>
+<div class="math">$$
+\begin{aligned}
+\mathbb{E}(XY)
+&amp;= \int_{x}\int_{y} xy\mathbb{P}(X=x,Y=y)dxdy\\
+&amp;= \int_{x}\int_{y} xy\mathbb{P}(X=x)\mathbb{P}(Y=y)dxdy\quad(\because X,Y: \text{independent})\\
+&amp;= \int_{x} x\mathbb{P}(X=x)dx\int_{y}y\mathbb{P}(Y=y)dy\\
+&amp;= \mathbb{E}(X)\mathbb{E}(Y)
+\end{aligned}
+$$</div>
+<p>となるので、<span class="math">\((1)\)</span> より、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Cov}(X,Y)
+&amp;= \mathbb{E}\left(\left(X-\mu_X\right)\left(Y-\mu_Y\right)\right)\\
+&amp;=\mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)\\
+&amp;=0
+\end{aligned}
+$$</div>
+<h4>3</h4>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Var}(X+Y)
+&amp;= \mathbb{E}\left((X+Y)^2\right) - \left(\mathbb{E}\left(X+Y\right)\right)^2\\
+&amp;= \mathbb{E}\left(X^2 + 2XY + Y^2\right) - \left(\mathbb{E}(X) + \mathbb{E}(Y)\right)^2 \\
+&amp;= \left(\mathbb{E}(X^2) - \mathbb{E}(X)^2\right) + \left(\mathbb{E}(Y^2) - \mathbb{E}(Y)^2\right) + 2\left(\mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)\right)\\
+&amp;= \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y)
+\end{aligned}
+$$</div>
+<h4>4</h4>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Cov}\left(aX+bY,cZ+dW\right)
+&amp;= \mathbb{E}\left(\left(aX+bY\right)\left(cZ+dW\right)\right) - \mathbb{E}\left(aX+bY\right)\mathbb{E}\left(cZ+dW\right)\\
+&amp;= \left(\mathbb{E}\left(aXcZ\right) + \cdots + \mathbb{E}\left(bYdW\right)\right) - \left(\mathbb{E}(aX)\mathbb{E}(cZ) + \cdots + \mathbb{E}(bY)\mathbb{E}(dW) \right)\\
+&amp;= \left\{\mathbb{E}\left(aXcZ\right) - \mathbb{E}(aX)\mathbb{E}(cZ) \right\} + \cdots + \left\{\mathbb{E}\left(bYdW\right) - \mathbb{E}(bY)\mathbb{E}(dW) \right\}\\
+&amp;= ac\left\{\mathbb{E}\left(XZ\right) - \mathbb{E}(X)\mathbb{E}(Z)\right\} + \cdots + bd\left\{\mathbb{E}\left(YW\right) - \mathbb{E}(Y)\mathbb{E}(W)\right\}\\
+&amp;= ac\mathrm{Cov}(X,Z) + ad\mathrm{Cov}(X,W) + bc\mathrm{Cov}(Y,Z) + bd\mathrm{Cov}(Y,W)
+\end{aligned}
+$$</div>
+<h4>5</h4>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Cov}\left(X,Y\right)^2
+&amp;= \left(\sum_{x,y}(x-\mu_X)(y-\mu_Y)\mathbb{P}(X=x,Y=y)\right)^2\\
+&amp;= \left(\sum_{z,w}zw\mathbb{P}(X=x,Y=y)\right)^2\\
+&amp;= \left(\sum_{z,w}zwP_{zw}\right)\left(\sum_{z^{\prime},w^{\prime}}z^{\prime}w^{\prime}P_{z^{\prime}w^{\prime}}\right)\\
+&amp;=\sum_{z,w,z^{\prime},w^{\prime}}zwz^{\prime}w^{\prime}P_{zw}P_{z^{\prime}w^{\prime}}\quad\left(\because\text{expansion}\right)\\
+\mathrm{Var}(X)\mathrm{Var}(Y)
+&amp;= \left(\sum_{x}\left(x-\mu_X\right)^2\mathbb{P}(X=x)\right)\left(\sum_{y}\left(y-\mu_Y\right)^2\mathbb{P}(Y=y)\right)\\
+&amp;= \left(\sum_{x,y}\left(x-\mu_X\right)^2\mathbb{P}(X=x,Y=y)\right)\left(\sum_{x,y}\left(y-\mu_Y\right)^2\mathbb{P}(X=x,Y=y)\right)\\
+&amp;= \left(\sum_{z,w}z^2P_{x,y}\right)\left(\sum_{z,w}w^2P_{x,y}\right)\\
+&amp;=\sum_{z,w,z^{\prime},w^{\prime}}z^2w^{\prime 2}P_{x,y}P_{x^{\prime},y^{\prime}}\left(=\sum_{z,w,z^{\prime},w^{\prime}}z^{\prime 2}w^2P_{x,y}P_{x^{\prime},y^{\prime}}\right)\\
+&amp;=\frac{1}{2}\sum_{z,w,z^{\prime},w^{\prime}}z^2w^{\prime 2}P_{x,y}P_{x^{\prime},y^{\prime}}+\frac{1}{2}\sum_{z,w,z^{\prime},w^{\prime}}z^{\prime 2}w^2P_{x,y}P_{x^{\prime},y^{\prime}}
+\end{aligned}
+$$</div>
+<p>と変形できるので、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Var}(X)\mathrm{Var}(Y) - \mathrm{Cov}\left(X,Y\right)^2
+&amp;= \left(\frac{1}{2}\sum_{z,w,z^{\prime},w^{\prime}}z^2w^{\prime 2}P_{x,y}P_{x^{\prime},y^{\prime}}+\frac{1}{2}\sum_{z,w,z^{\prime},w^{\prime}}z^{\prime 2}w^2P_{x,y}P_{x^{\prime},y^{\prime}}\right) - \sum_{z,w,z^{\prime},w^{\prime}}zwz^{\prime}w^{\prime}P_{zw}P_{z^{\prime}w^{\prime}}\\
+&amp;= \frac{1}{2}\sum_{z,w,z^{\prime},w^{\prime}}\left(z^2w^{\prime2} + z^{\prime2}w^2 - 2zwz^{\prime}w^{\prime}\right)P_{x,y}P_{x^{\prime},y^{\prime}}\\
+&amp;=\frac{1}{2}\sum_{z,w,z^{\prime},w^{\prime}}\left(zw^{\prime} - z^{\prime}w\right)^2P_{x,y}P_{x^{\prime},y^{\prime}}\\
+&amp;\geq0\\
+\therefore\mathrm{Var}(X)\mathrm{Var}(Y) &amp;\geq \mathrm{Cov}\left(X,Y\right)^2
+\end{aligned}
+$$</div>
+<hr>
+<h5>memo</h5>
+<p>任意の <span class="math">\(n,m\)</span> に対して以下が成り立つ時、等号条件が成立（？）</p>
+<div class="math">$$\mathbb{P}\left(X=x_n,Y=y_m\right) = \mathbb{P}\left(X=x_n\right)\delta_{nm}$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
@@ -130,7 +272,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>65</span>
+                    <span>70</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-1-ref">情報基礎実験(木立)-1
                     <span>1</span>
