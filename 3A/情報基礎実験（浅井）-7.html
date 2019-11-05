@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 情報基礎実験（浅井）, 情報基礎実験（浅井）, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="Pair HMM の最尤推定 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験（浅井）-7.html" />
+<meta property="og:description" content="" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-05T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-05T00:00:00+09:00" />
+<meta name="twitter:title" content="Pair HMM の最尤推定 ">
+<meta name="twitter:description" content="">
+
+        <title>Pair HMM の最尤推定  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験（浅井）-7.html"> Pair HMM の最尤推定  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p><a href="https://www.researchgate.net/figure/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a_fig1_221912143"><img alt="PairHMM" src="https://www.researchgate.net/profile/Florian_Blaettler/publication/221912143/figure/fig1/AS:305340219445264@1449810189815/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a.png"></a></p>
+<h2>Baum-Welch</h2>
+<p>Pair HMMとは、二本の配列を受け取ってペアワイズアラインメントを出力するHMMで、<span class="marker-pink">「アラインメントの確率的な解釈が可能になる」</span><b>（アラインメントのどの部分が信頼できるかを確率的に評価できる）</b>という利点があります。</p>
+<p>このPair HMMは、一般的なHMMと同様にBaum-Welchアルゴリズムによってパラメータを最尤推定していきます。</p>
+<h3><span class="math">\(\xi\)</span></h3>
+<h4>HMM</h4>
+<p>一般的なHMMでは、例えば<b>遷移確率 <span class="math">\(A_{jk}\)</span>（状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する確率）</b>を最尤推定する際は、</p>
+<ol>
+<li>直感的には<b>「状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する回数」</b>を、<b>「状態 <span class="math">\(j\)</span> から遷移する回数」</b>で割れば最尤解が求まる。</li>
+<li>実際の隠れ状態の遷移が確定していないので、<b>「<font color="red">期待される</font>状態 <span class="math">\(j\)</span> から状態 <span class="math">\(k\)</span> に遷移する回数」</b>を、<b>「<font color="red">期待される</font>状態 <span class="math">\(j\)</span> から遷移する回数」</b>で割れば良い。</li>
+<li><span class="math">\(\mathbf{z}_{n-1}\)</span> で状態 <span class="math">\(j\)</span> におり、<span class="math">\(\mathbf{z}_n\)</span> で状態 <span class="math">\(k\)</span> にいる確率 <span class="math">\(\xi\left(z_{n-1,j},z_{nk}\right)\)</span> は、forward-backward algorithmの <span class="math">\(\alpha,\beta\)</span> を用いれば以下のように求めることができる。
+<div class="math">$$\xi_n\left(\mathbf{z}_{n-1}, \mathbf{z}_{n}\right)=\frac{\alpha\left(\mathbf{z}_{n-1}\right) p\left(\mathbf{x}_{n} | \mathbf{z}_{n}\right) p\left(\mathbf{z}_{n} | \mathbf{z}_{n-1}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})}\qquad (13.43)$$</div>
+</li>
+<li><span class="math">\(\xi\)</span> を用いて、最尤推定を行う。
+<div class="math">$$A_{j k}= \frac{\sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n k}\right)}{\sum_{l=1}^{K} \sum_{n=2}^{N} \xi\left(z_{n-1, j}, z_{n l}\right)} \qquad (13.19)$$</div>
+</li>
+</ol>
+<p>という様に行いますが、Pair HMMは、<span class="marker-pink">挿入・欠失を考えるため、<span class="math">\(n\)</span> で配列 <span class="math">\(\mathbf{X,Y}\)</span> のどの要素（<span class="math">\(\mathbf{x}_u,\mathbf{y}_v\)</span>）を考えているのか一意に定まらない</span>という点で普通のHMMとは異なります。</p>
+<h4>Pair HMM</h4>
+<p>そこで、<span class="marker-pink">「<span class="math">\(n\)</span> ではなく <span class="math">\(u,v\)</span> に注目する」</span>ことで、 <span class="math">\((13.43)\)</span> の式を以下のように書き換えます。</p>
+<div class="math">$$\xi_{u,v}\left(i,j\right)=\frac{f_i\left(u,v\right)A_{ij}\phi_j\left(\diamond_1\right)b_j\left(\diamond_2,\diamond_3\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
+<p>ここで、分子に注目すると、各変数の意味が</p>
+<table>
+<thead>
+<tr>
+<th align="center">variable</th>
+<th align="left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(f_i\left(u,v\right)\)</span></td>
+<td align="left">The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(A_{ij}\)</span></td>
+<td align="left">the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></td>
+<td align="left">the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></td>
+<td align="left">the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.</td>
+</tr>
+</tbody>
+</table>
+<p>であるので、<span class="math">\(\diamond\)</span> は状態によって異なり、具体的に書き下すと以下のようになります。</p>
+<table>
+<thead>
+<tr>
+<th align="center">state\variable</th>
+<th align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></th>
+<th align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v+1\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(e\left(y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u,v+1\right)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3><span class="math">\(\gamma\)</span></h3>
+<p>同様に <span class="math">\(\gamma\)</span> も考えると、</p>
+<div class="math">$$
+\gamma_n\left(\mathbf{z}_{n}\right)= \frac{\alpha\left(\mathbf{z}_{n}\right) \beta\left(\mathbf{z}_{n}\right)}{p(\mathbf{X})} \qquad(13.33)$$</div>
+<p>から、</p>
+<div class="math">$$\gamma_i\left(u,v\right)=\frac{f_i\left(u,v\right)b_j\left(u,v\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
+<p>のように書き換えることになります。</p>
+<h3>Maximization step</h3>
+<p>ここまでで <span class="math">\(\gamma,\xi\)</span> が求まったので、M stepで各パラメータを更新します。なお、以下で <span class="math">\(w\)</span> は全ての記号の組を表します。</p>
+<div class="math">$$w\in\left\{(k_x,k_y)|k_x,k_y\in\left\{A,T,G,C,\epsilon
+\right\}\right\}\setminus(\epsilon,\epsilon)$$</div>
+<h4><span class="math">\(\pi_k\)</span></h4>
+<div class="math">$$\pi^{\star}_i = \sum_w\gamma_i^w(0,0)$$</div>
+<h4><span class="math">\(A_{ij}\)</span></h4>
+<div class="math">$$A^{\star}_{ij} = \frac{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\xi_{u,v}^{w}\left(i,j\right)}{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\sum_{j}^{K}\xi_{u,v}^{w}\left(i,j\right)}$$</div>
+<table>
+<thead>
+<tr>
+<th align="center">final emitting state</th>
+<th align="center"><span class="math">\(\tilde{U}\)</span></th>
+<th align="center"><span class="math">\(\tilde{V}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(U\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+</tbody>
+</table>
+<h4><span class="math">\(\phi_{i}(k)\)</span></h4>
+<div class="math">$$\phi_i\left(k\right) = \frac{\sum_w\sum_{u=0}^{U\ast1}\sum_{v=0}^{V\ast2}\gamma_i^w\left(u,v\right)}{\sum_w\sum_{u=0}^U\sum_{v=0}^V\gamma_i^w\left(u,v\right)}$$</div>
+<ul>
+<li><span class="math">\(\ast1\)</span>：<span class="math">\(x_u=k_x\)</span> and state <span class="math">\(i\)</span> equals the state <span class="math">\(M\)</span> or <span class="math">\(X\)</span>. (in the state <span class="math">\(Y\)</span>, a gap is present in observation stream <span class="math">\(x\)</span> therefore <span class="math">\(k_x\)</span> is not present.)</li>
+<li><span class="math">\(\ast2\)</span>：<span class="math">\(y_v=k_y\)</span> and state <span class="math">\(j\)</span> equals the state <span class="math">\(M\)</span> or <span class="math">\(Y\)</span>.</li>
+</ul>
+<h3>Reference</h3>
+<ul>
+<li><a href="http://www.evolaemp.uni-tuebingen.de/pdf/Wahle(2013)_alignment_and_word_comparison_with_PHMM.pdf">Wahle, Johannes and Armin Buch. "Alignment and word comparison with Pair Hidden Markov Models." (2013).</a> pp.22-31</li>
+<li><a href="http://martijnwieling.nl/files/dialects.pdf">Martijn B. Wieling. "Comparison of Dutch Dialects" (2007)</a> pp.36-50</li>
+</ul>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-05T00:00:00+09:00">Oct 5, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-05T00:00:00+09:00">Oct 5, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験（浅井）</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>70</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験（浅井）
+                    <span>13</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <!-- Custom JS -->
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
