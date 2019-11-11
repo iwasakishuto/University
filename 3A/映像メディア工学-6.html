@@ -45,7 +45,6 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
-        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <!-- LaTex -->
         <!-- Github env -->
         <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
@@ -150,16 +149,29 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img alt="sin_fps10_play.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps10_play.gif" />
-<img alt="sin_fps25_play.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps25_play.gif" />
-<img alt="sin_fps50_play.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps50_play.gif" /></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">10[fps]</th>
+<th style="text-align:left">25[fps]</th>
+<th style="text-align:left">50[fps]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img alt="sin_fps10_still.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps10_still.gif" /></td>
+<td style="text-align:center"><img alt="sin_fps25_still.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps25_still.gif" /></td>
+<td style="text-align:center"><img alt="sin_fps50_still.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps50_still.gif" /></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<button onclick="SimultaneousStart()">Start</button><button onclick="SimultaneousEnd()">End</button>
+<button onclick="gifStart();">Start</button><button onclick="gifEnd();">End</button>
 </div>
 </div>
 </div>
@@ -414,6 +426,7 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
                 return (query.length > 0);
             }
         </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
 
     
