@@ -12,9 +12,9 @@ def symbol2units(symbol):
     else: return ""
 
 class SingleNeuralModel():
-    def __init__(self, model_name, neuron_verbose="", display=True):
+    def __init__(self, model_name, neuron_verbose="", display=True, reset=True):
         self.display = display
-        nest.ResetKernel() # reset simulation kernel
+        if reset: nest.ResetKernel() # reset simulation kernel
         #=== These Nodes only return the tuple of the ids. ===
         self.neuron = nest.Create(model_name) # id=(1,)
         if self.display: print(neuron_verbose)
@@ -30,13 +30,13 @@ class SingleNeuralModel():
     def set_params(self, node, **kwargs):
         nest.SetStatus(self.__dict__[node], kwargs)
 
-    def build(self, weight=1e3):
+    def build(self, **kwargs):
         """ Connect the spike generator and voltmeter to the neuron. """
         if self.built:
             print("Requirement already satisfied.")
         else:
-            nest.Connect(self.spikegenerator, self.neuron, syn_spec={"weight": weight})
-            if self.display: print(f"Connect spike generator with a given synaptic specification (weight={weight})")
+            nest.Connect(self.spikegenerator, self.neuron, syn_spec=kwargs)
+            if self.display: print(f"Connect spike generator with a given synaptic specification ({kwargs})")
             nest.Connect(self.voltmeter, self.neuron)
             if self.display: print("Connected voltmeter to the neuron for measurements.")
             nest.Connect(self.neuron, self.spikedetector)
@@ -77,16 +77,17 @@ class SingleNeuralModel():
 
 
 class LIFmodel(SingleNeuralModel):
-    def __init__(self, display=True):
+    def __init__(self, display=True, reset=True):
         super().__init__(model_name='iaf_psc_alpha',
                          neuron_verbose="Created LIF neuron with alpha-function shaped synaptic currents.",
-                         display=display)
+                         display=display,
+                         reset=reset)
         self.neuron_disparams = ["C_m", "E_L", "tau_m", "V_m", "V_reset", "V_th", "I_e"]
 
-
 class HHmodel(SingleNeuralModel):
-    def __init__(self, display=True):
+    def __init__(self, display=True, reset=True):
         super().__init__(model_name="hh_psc_alpha",
                          neuron_verbose="Create Hodgkin-Huxley neuron with delta-shaped synaptic currents.",
-                         display=display)
+                         display=display,
+                         reset=reset)
         self.neuron_disparams = ["C_m", "E_K", "E_L", "E_Na", "g_K", "g_L", "g_Na", "I_e", "V_m", "t_ref"]
