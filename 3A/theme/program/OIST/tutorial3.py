@@ -140,7 +140,7 @@ class BrunelNetwork():
         self.n_rec_volt = N_rec_volt
         self.n_rec = N_rec
         if len(neuron_params)==0:
-            print(f"Using default neuron parameters for `iaf_psc_delta` model. If you want to know more, please look at ''")
+            print(f"Using default neuron parameters for `iaf_psc_delta` model. If you want to know more, please look at 'https://github.com/iwasakishuto/University/blob/gh-pages/3A/theme/program/OIST/tutorial3.py#L67'")
             neuron_params = Default_Neuron_Params
 
         #=== Initialization of the parameters =========
@@ -187,7 +187,7 @@ class BrunelNetwork():
                      "inhibitory")
         self.nodes_ex = nodes_ex
         self.nodes_in = nodes_in
-        print(f"Building time     : {time.time()-start} s")
+        print(f"Building time     : {time.time()-start:.2f} s")
 
     def simulate(self, T=300., memorize=True):
         self.T = T
@@ -218,9 +218,9 @@ class BrunelNetwork():
             self.memb_potential_in = memb_potential_in
             self.memb_times_in = memb_times_in
             print("Completed. Please use following methods to plot results.",
-                  "- `plotVoltageEx(n)`, `plotVoltageIn(n)`",
-                  "- `plotVoltageCompare(idx=0)`",
-                  "- `plotRaster()`")
+                  "\n- `plotVoltageEx(n)`, `plotVoltageIn(n)`",
+                  "\n- `plotVoltageCompare(idx=0)`",
+                  "\n- `plotRaster()`")
 
     def plotVoltageEx(self, n=None):
         n = self.n_rec_volt if n is None else n
