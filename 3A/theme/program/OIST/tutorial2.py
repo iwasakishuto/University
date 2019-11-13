@@ -28,10 +28,10 @@ class SingleNeuralModel():
                  voltmeter=True, spike_detector=True, display=True, reset=True):
         if reset: nest.ResetKernel()
         #=== These Nodes only return the tuple of the ids. ===
-        self.neuron         = nest.Create(model_name) # id=(1,)
-        self.spikegenerator = nest.Create(spike_generator)  if spike_generator else None
-        self.voltmeter      = nest.Create('voltmeter')      if voltmeter       else None
-        self.spikedetector  = nest.Create('spike_detector') if spike_detector  else None
+        self.neuron          = nest.Create(model_name) # id=(1,)
+        self.spike_generator = nest.Create(spike_generator)  if spike_generator else None
+        self.voltmeter       = nest.Create('voltmeter')      if voltmeter       else None
+        self.spike_detector  = nest.Create('spike_detector') if spike_detector  else None
         if display:
             print(model2verbose(model_name))
             if spike_generator: print(f"Created a {spike_generator}.")
@@ -47,23 +47,23 @@ class SingleNeuralModel():
         """ Connect the spike generator and voltmeter to the neuron. """
         if self.built: print("Requirement already satisfied.")
         else:
-            # SpikeGenerator to Neuron.
-            if self.spikegenerator is not None:
-                nest.Connect(self.spikegenerator, self.neuron, syn_spec=kwargs)
+            # spike_generator to Neuron.
+            if self.spike_generator is not None:
+                nest.Connect(self.spike_generator, self.neuron, syn_spec=kwargs)
                 if display: print(f"Connect spike generator with a given synaptic specification ({kwargs})")
             # Voltmeter to Neuron.
             if self.voltmeter is not None:
                 nest.Connect(self.voltmeter, self.neuron)
                 if display: print("Connected voltmeter to the neuron for measurements.")
             # Neuron to Spike detector.
-            if self.spikedetector is not None:
-                nest.Connect(self.neuron, self.spikedetector)
-                if display: print("Connected the neuron to spikedetector for measurements.")
+            if self.spike_detector is not None:
+                nest.Connect(self.neuron, self.spike_detector)
+                if display: print("Connected the neuron to spike detector for measurements.")
             self.built=True
 
     def spike_params(self, *keys):
-        if keys: return nest.GetStatus(self.spikegenerator, keys)
-        else: return nest.GetStatus(self.spikegenerator)
+        if keys: return nest.GetStatus(self.spike_generator, keys)
+        else: return nest.GetStatus(self.spike_generator)
 
     def voltage_params(self, *key):
         if keys: return nest.GetStatus(self.voltmeter, keys)
@@ -73,7 +73,7 @@ class SingleNeuralModel():
         if ax==None and plot==True: fig, ax = plt.subplots()
         nest.Simulate(float(ms))
         # Read out recording time and voltage from voltmeter (check the parameter list!)
-        self.spikes = nest.GetStatus(self.spikedetector, "n_events")[0]
+        self.spikes = nest.GetStatus(self.spike_detector, "n_events")[0]
         if self.voltmeter is not None:
             results = nest.GetStatus(self.voltmeter)[0]['events']
             times = results['times']
@@ -115,14 +115,14 @@ def mkMultiDetectors(num, display=True):
     multimeters = nest.Create('multimeter', num)
     nest.SetStatus(multimeters, {'record_from': ['V_m']})
     if display: print(f"Created {num} multimeter to record membrane potential of the neurons.")
-    spikedetectors = nest.Create('spike_detector', num)
-    nest.SetStatus(spikedetectors, [{'withtime': True,'withgid': True,'to_file': False}])
+    spike_detectors = nest.Create('spike_detector', num)
+    nest.SetStatus(spike_detectors, [{'withtime': True,'withgid': True,'to_file': False}])
     if display: print(f"Created {num} spike detectors to record spikes times and neuron identifiers, but not record from file.")
-    return multimeters,spikedetectors
+    return multimeters,spike_detectors
 
-def plotMultResults(multimeters, spikedetectors, rate=False, **plotkwargs):
+def plotMultResults(multimeters, spike_detectors, rate=False, **plotkwargs):
     num = len(multimeters)
-    if num != len(spikedetectors): raise ValueError(f"'multimeters' and 'spikedetectors' should be the same lengths ({num}!={len(spikedetectors)})")
+    if num != len(spike_detectors): raise ValueError(f"'multimeters' and 'spike detectors' should be the same lengths ({num}!={len(spike_detectors)})")
 
     fig = plt.figure(figsize=(14,4))
     axL = fig.add_subplot(1,2,1)
@@ -131,7 +131,7 @@ def plotMultResults(multimeters, spikedetectors, rate=False, **plotkwargs):
         data   = nest.GetStatus([multimeters[i]])[0]['events']
         V_mem  = data["V_m"]
         times  = data["times"]
-        spikes = nest.GetStatus([spikedetectors[i]])[0]['events']['times']
+        spikes = nest.GetStatus([spike_detectors[i]])[0]['events']['times']
         plot_info = dict([(k,vals[i]) for k,vals in plotkwargs.items()])
         if rate:
             plot_info["label"] += f" (Rate of neuron stimulated: {float(len(spikes))/max(times)*1e3:.3f})"
@@ -151,7 +151,7 @@ def FiringRate(model_name, I_e, T_sim=1e3, **kwargs):
     model = SingleNeuralModel(model_name=model_name, voltmeter=False, display=False)
     model.set_params("neuron", **kwargs)
     model.set_params("neuron", I_e=I_e)
-    model.set_params("spikedetector", withtime=True, withgid=True, to_file=False)
+    model.set_params("spike_detector", withtime=True, withgid=True, to_file=False)
     model.build(display=False)
     model.simulate(T_sim, plot=False)
     return model.spikes
