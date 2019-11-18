@@ -110,6 +110,117 @@
             
             <p><img alt="Q2" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q2.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$\varphi_{X}(0) = \mathbb{E}\left(e^{i\cdot0\cdot X}\right) = \mathbb{E}(1) = 1$$</div>
+<h4>2</h4>
+<div class="math">$$
+\begin{aligned}
+\frac{d^m\varphi_{X}}{dt^m}
+&amp;= \underset{\text{m個}}{0+\cdots+0} + \frac{m!\cdot i^m}{m!}\mathbb{E}\left(X^m\right) \\&amp;+\frac{\left\{(m+1)\cdot m\cdots 3\cdot2\right\} i^m\cdot(it)}{(m+1)!}\mathbb{E}\left(X^{m+1}\right) + \frac{\left\{(m+2)\cdot (m+1)\cdots 4\cdot3\right\}i^m\cdot(it)^2}{(m+2)!}\mathbb{E}\left(X^{m+2}\right)+\cdots\\
+&amp;= \frac{m!\cdot i^m}{m!}\mathbb{E}\left(X^m\right) + \sum_{n}^{\infty}\frac{i^m(it)^n}{n!}\mathbb{E}\left(m+n\right)\\
+\therefore\left.\frac{d^{m} \varphi_{x}}{d t^{m}}\right|_{t=0}
+&amp;= i^m \mathbb{E}\left(X^m\right) + 0\qquad \\
+\therefore \frac{1}{i^m}\left.\frac{d^{m} \varphi_{x}}{d t^{m}}\right|_{t=0}
+&amp;=\mathbb{E}\left(X^m\right)\\
+\end{aligned}
+$$</div>
+<h3>3</h3>
+<div class="math">$$\begin{aligned}
+\varphi_X(t) &amp;= \sum_{n=0}^{\infty}\frac{\lambda^k}{k!}e^{-\lambda}e^{itk}\\
+&amp;=\sum_{n=0}^{\infty}\frac{\left(\lambda e^{it}\right)^k}{k!}e^{-\lambda}\\
+&amp;= e^{\lambda e^{it}}e^{-\lambda}\\
+&amp;= e^{\lambda\left(e^{it}-1\right)}
+\end{aligned}$$</div>
+<h3>4</h3>
+<p>オイラーの公式より、
+</p>
+<div class="math">$$e^{it} = \cos t+i\sin t$$</div>
+<p>
+が成り立つので、
+</p>
+<div class="math">$$
+\begin{aligned}
+e^{it\left(aX+bY\right)} =&amp; e^{itaX}e^{itbY}\\
+=&amp; \left(\cos \left(taX\right) + i\sin\left(taX\right)\right)\left(\cos \left(tbY\right) + i\sin\left(tbY\right)\right)\\
+=&amp; \left(\cos\left(taX\right)\cos\left(tbY\right) - \sin\left(taX\right)\sin\left(tbY\right)\right) \\
+&amp;+ i\left(\cos \left(taX\right)\sin\left(tbY\right) + \sin\left(taX\right)\cos \left(tbY\right)\right)
+\end{aligned}
+$$</div>
+<p>
+と分解できる。したがって、<span class="math">\(X,Y\)</span> が独立なので、
+</p>
+<div class="math">$$
+\begin{aligned}
+\varphi_{aX+bY}(t)
+=&amp;\mathbb{E}\left(e^{it\left(aX+bY\right)}\right)\\
+=&amp; \mathbb{E}\left(\cos\left(taX\right)\right)\mathbb{E}\left(\cos\left(tbY\right)\right) - \mathbb{E}\left(\sin\left(taX\right)\right)\mathbb{E}\left(\sin\left(tbY\right)\right) \\
+&amp;+ i\left(\mathbb{E}\left(\cos \left(taX\right)\right)\mathbb{E}\left(\sin\left(tbY\right)\right) + \mathbb{E}\left(\sin\left(taX\right)\right)\mathbb{E}\left(\cos \left(tbY\right)\right)\right)\\
+=&amp; \left(\mathbb{E}\left(\cos taX\right) + i\mathbb{E}\left(\sin taX\right)\right)\cdot\left(\mathbb{E}\left(\cos tbY\right) + i\mathbb{E}\left(\sin tbY\right)\right)\\
+=&amp;\mathbb{E}\left(e^{itaX}\right)\cdot\mathbb{E}\left(e^{itbY}\right)\\
+=&amp;\varphi_{X}(at)\varphi_{Y}(bt)
+\end{aligned}
+$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
@@ -130,7 +241,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>78</span>
+                    <span>79</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>

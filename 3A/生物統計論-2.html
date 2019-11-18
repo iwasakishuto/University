@@ -766,13 +766,13 @@ $$0\leq P\left(|\bar{\mathbf{X}}_n - \mu|>\varepsilon\right)\leq\frac{1}{\vareps
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Proof.">Proof.<a class="anchor-link" href="#Proof.">¶</a></h4><ol>
 <li>p-value is the probability of obtaining more or equally extreme value than observed value under the null distribution.
-$$p = \mathbb{P}\left(S\geq s|H_0\right) = 1-\mathbb{P}\left(S<s|h_0\right)$$&lt; li>
+$$p = \mathbb{P}\left(S\geq s|H_0\right) = 1-\mathbb{P}\left(S< s|H_0\right)$$</li>
 <li>By noting $F_0$ the cumulative distribution function of $S$ under $H_0$, we obtain:
 $$p = 1-F_0(s)$$</li>
 <li>Thanks to the fact that the cdf is monotonic, increasing and (left-)continuous:
 $$\mathbb{P}\left(S\geq s|H_0\right) = \mathbb{P}\left(F_0\left(S\right)\geq F_0\left(s\right)\right) = 1-\mathbb{P}\left(F_0\left(S\right)< F_0\left(s\right)\right)$$</li>
 <li>Therefore, we have:
-$$\mathbb{P}\left(F_0\left(S\right)<f_0\left(s\right)\right) = f_0\left(s\right)$$&lt; li>
+$$\mathbb{P}\left(F_0\left(S\right)< F_0\left(s\right)\right) = F_0\left(s\right)$$</li>
 </ol>
 <p>Which means that $F_0\left(S\right)$ is following a uniform distribution. And, as this means also that $1-F_0\left(S\right)$ is following a uniform distributed, then we can conclude that p-value are uniformly distributed under the null hypothesis.</p>
 </div>
@@ -1257,7 +1257,7 @@ $$</li>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>78</span>
+                    <span>79</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-tong-ji-lun-ref">生物統計論
                     <span>6</span>
