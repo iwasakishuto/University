@@ -110,6 +110,103 @@
             
             <p><img alt="Q3" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q3.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$
+\begin{aligned}
+\varphi_{Z}(t) &amp;= \int_{-\infty}^{\infty}e^{itz}\delta\left(z-\mu\right)dz\\
+&amp;= e^{it\mu}
+\end{aligned}
+$$</div>
+<h4>2</h4>
+<div class="math">$$
+\begin{aligned}
+\varphi_{\bar{X}^{(n)}}(t)
+&amp;= \varphi_{\frac{X_1 + \cdots + X_n}{n}}(t)\\
+&amp;= \varphi_X\left(\frac{X_1}{n}\right)\cdots\varphi_X\left(\frac{X_n}{n}\right)\\
+&amp;= \left[\varphi_X\left(\frac{X}{n}\right)\right]^n\\
+&amp;= \exp\left(n\log\left(\varphi_X\left(\frac{X}{n}\right)\right)\right)\\
+&amp;= \exp\left(n\log\left(1 + \mathbb{E}\left(X\right)\frac{1}{1!}\left(\frac{it}{n}\right)^1 + \mathcal{O}\left(\frac{1}{n^2}\right)\right)\right)\\
+\end{aligned}
+$$</div>
+<p>ここで、</p>
+<div class="math">$$
+\begin{aligned}
+&amp;\log\left(1 + \mathbb{E}\left(X\right)\frac{1}{1!}\left(\frac{it}{n}\right)^1 + \mathcal{O}\left(\frac{1}{n^2}\right)\right)\\
+&amp;= \sum_{k=1}^{\infty}\left(-1\right)^{k+1}\cdot\frac{\left(\mathbb{E}\left(X\right)\frac{it}{n} + \mathcal{O}\left(\frac{1}{n^2}\right)\right)^k}{k}\\
+&amp;= \mathbb{E}\left(X\right)\frac{it}{n} + \mathcal{O}\left(\frac{1}{n^2}\right)
+\end{aligned}
+$$</div>
+<p>だから、
+</p>
+<div class="math">$$
+\begin{aligned}
+\varphi_{\bar{X}^{(n)}}(t)
+&amp;= \exp\left(n\cdot\mathbb{E}\left(X\right)\frac{it}{n} + \mathcal{O}\left(\frac{1}{n}\right)\right)\\
+&amp;= \exp\left(it\mu + \mathcal{O}\left(\frac{1}{n}\right)\right)\\
+&amp;\underset{n\rightarrow\infty}{\longrightarrow}e^{it\mu} = \varphi_{\bar{X}^{(n)}}(t)
+\end{aligned}
+$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
