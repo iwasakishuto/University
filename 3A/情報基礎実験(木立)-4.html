@@ -110,6 +110,91 @@
             
             <p><img alt="Q4" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q4.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$
+\int_0^{\infty}f_X(x)dx = \int_0^{\infty}\lambda e^{-\lambda x}dx = \left[-e^{-\lambda x}\right]_0^{\infty} = 1
+$$</div>
+<h4>2</h4>
+<div class="math">$$\begin{aligned}
+\mathbb{E}\left(X\right)
+&amp;= \int_0^{\infty}xf_X(x)dx = \int_0^{\infty}x\lambda e^{-\lambda x}dx\\
+&amp;= \int_0^{\infty}x\left(-e^{-\lambda x}\right)^{\prime}dx\\
+&amp;= \left[-xe^{-\lambda x}\right]_0^{\infty} - \int_0^{\infty}-e^{-\lambda x} dx\\
+&amp;= \left[-\frac{1}{\lambda}e^{-\lambda x}\right]_0^{\infty}\\
+&amp;= \frac{1}{\lambda}
+\end{aligned}$$</div>
+<h4>3</h4>
+<div class="math">$$
+\mathbb{P}\left(X&gt;t\right) = \int_t^{\infty}f(x)dx = \left[-e^{-\lambda x}\right]_t^{\infty}  = e^{-\lambda t}
+$$</div>
+<h4>4</h4>
+<div class="math">$$\begin{aligned}
+\mathbb{P}\left(X&gt;s+t|X&gt;s\right) &amp;= \frac{\mathbb{P}\left(X&gt;s+t\right)}{\mathbb{P}\left(X&gt;s\right)}\\
+&amp;= \frac{\int_{s+t}^{\infty}f_X(x)dx}{\int_s^{\infty}f_X(x)dx}\\
+&amp;= \frac{e^{-\lambda\left(s+t\right)}}{e^{-\lambda s}}\\
+&amp;= e^{-\lambda t} = \mathbb{P}\left(X&gt;t\right) 
+\end{aligned}$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
