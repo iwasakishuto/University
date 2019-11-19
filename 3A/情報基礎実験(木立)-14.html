@@ -110,6 +110,116 @@
             
             <p><img alt="Q14" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q14.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<p><span class="math">\(n=n\)</span> の時に以下が成立すると仮定する。</p>
+<div class="math">$$p\left(x_n|x_0\right) = \frac{1}{\sqrt{2\pi\sigma_s^2n}}\exp\left(-\frac{1}{2\sigma_s^2n}\left(x_n-x_0\right)^2\right)$$</div>
+<p>すると、</p>
+<div class="math">$$
+\begin{aligned}
+p\left(x_{n+1}|x_0\right)
+&amp;= \int_{-\infty}^{\infty}dx_np\left(x_{n+1}|x_n\right)p\left(x_n|x_0\right)\\
+&amp;= \int_{-\infty}^{\infty}dx_n\left(\frac{1}{\sqrt{2\pi\sigma_s^2}}\exp\left(-\frac{1}{2\sigma_s^2}\left(x_{n+1}-x_n\right)^2\right)\right)\left(\frac{1}{\sqrt{2\pi\sigma_s^2n}}\exp\left(-\frac{1}{2\sigma_s^2n}\left(x_n-x_0\right)^2\right)\right)\\
+&amp;= \frac{1}{\sqrt{2\pi\sigma_s^2}}\frac{1}{\sqrt{2\pi\sigma_s^2n}}\int_{-\infty}^{\infty}dx_n\exp\left\{-\frac{1}{2\sigma_s^2}\left(\left(x_{n+1}-x_n\right)^2 +\frac{1}{n}\left(x_n-x_0\right)^2\right)\right\}\\
+\end{aligned}
+$$</div>
+<p>ここで、<span class="math">\(\exp\)</span> の内部を <span class="math">\(x_n\)</span> に注目すると、</p>
+<div class="math">$$
+\begin{aligned}
+&amp;\left(x_{n+1}-x_n\right)^2 +\frac{1}{n}\left(x_n-x_0\right)^2\\
+&amp;=\frac{n+1}{n}x_n^2 + 2\left(x_{n+1}+\frac{x_0}{n}\right)x_n + \left(x_{n+1}^2 + \frac{1}{n}x_0^2\right)\\
+&amp;=\frac{n+1}{n}\left(x_n-\frac{n}{n+1}\left(x_{n+1}+\frac{x_0}{n}\right)\right)^2 + \frac{1}{n+1}\left(x_{n+1}-x_0\right)^2
+\end{aligned}
+$$</div>
+<p>と整理できる。また、ガウス積分より上式の第1項は、</p>
+<div class="math">$$
+\int_{-\infty}^{\infty}dx_n\exp\left(-\frac{1}{2\sigma_s^2}\frac{n+1}{n}\left(x_n-\frac{n}{n+1}\left(x_{n+1}+\frac{x_0}{n}\right)\right)^2\right) = \sqrt{2\pi\sigma_s^2\frac{n}{n+1}}
+$$</div>
+<p>と積分できる。したがって、これらを代入して、</p>
+<div class="math">$$
+\begin{aligned}
+p\left(x_{n+1}|x_0\right)
+&amp;= \frac{1}{\sqrt{2\pi\sigma_s^2}}\frac{1}{\sqrt{2\pi\sigma_s^2n}}\int_{-\infty}^{\infty}dx_n\exp\left\{-\frac{1}{2\sigma_s^2}\left(\left(x_{n+1}-x_n\right)^2 +\frac{1}{n}\left(x_n-x_0\right)^2\right)\right\}\\
+&amp;= \frac{1}{\sqrt{2\pi\sigma_s^2}}\frac{1}{\sqrt{2\pi\sigma_s^2n}}\left(\sqrt{2\pi\sigma_s^2\frac{n}{n+1}}\right)\exp\left\{-\frac{1}{2\sigma_s^2}\frac{1}{n+1}\left(x_{n+1}-x_0\right)^2\right\}\\
+&amp;=\frac{1}{\sqrt{2\pi\sigma_s^2\left(n+1\right)}}\exp\left(-\frac{1}{2\sigma_s^2\left(n+1\right)}\left(x_{n+1}-x_0\right)^2\right)
+\end{aligned}
+$$</div>
+<p>以上より、帰納法から題意が示せた。</p>
+<h4>2</h4>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial p}{\partial t}
+&amp;=\frac{1}{\sqrt{2\pi\sigma^2}}\left(-\frac{1}{2}t^{-\frac{3}{2}} + \frac{\left(x-y\right)^2}{2\sigma^2}t^{-\frac{5}{2}}\right)\exp\left(-\frac{1}{2\sigma^2t}\left(x-y\right)^2\right)\\
+\frac{\partial p}{\partial x}
+&amp;= \frac{1}{\sqrt{2\pi\sigma^2t}}\left(-\frac{1}{\sigma^2t}\left(x-y\right)\right)\exp\left(-\frac{1}{2\sigma^2t}\left(x-y\right)^2\right)\\
+\frac{\partial^2 p}{\partial x^2}
+&amp;= \frac{1}{\sqrt{2\pi\sigma^2t}}\left(-\frac{1}{\sigma^2t}-\frac{1}{\sigma^2t}\left(x-y\right)\left(-\frac{x-y}{\sigma^2t}\right)\right)\exp\left(-\frac{1}{2\sigma^2t}\left(x-y\right)^2\right)\\
+&amp;=\frac{1}{\sqrt{2\pi\sigma^2}}\frac{1}{\sqrt{t}}\left(\frac{1}{\sigma^2t}\right)\left(-1 + \frac{\left(x-y\right)^2}{\sigma^2t}\right)\exp\left(-\frac{1}{2\sigma^2t}\left(x-y\right)^2\right)\\
+&amp;=\frac{1}{\sqrt{2\pi\sigma^2}}\left(\frac{1}{\sigma^2}\right)\left(-t^{-\frac{3}{2}} + \frac{\left(x-y\right)^2}{\sigma^2}t^{-\frac{5}{2}}\right)\exp\left(-\frac{1}{2\sigma^2t}\left(x-y\right)^2\right)\\
+&amp;=\frac{2}{\sigma^2}\frac{\partial p}{\partial t}
+\end{aligned}
+$$</div>
+<p>より、題意が示された。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
