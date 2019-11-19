@@ -12,7 +12,7 @@
         <meta name="twitter:card" content="summary">
 
 <meta name="keywords" content="3A, 情報基礎実験(木立), 情報基礎実験(木立), " />
-<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+<meta property="og:image" content="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q7.png"/>
 
 <meta property="og:title" content="Ex.7 Positive Definite Symmetric Matrix "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-7.html" />
@@ -128,8 +128,10 @@
 &amp;= x^2A_{kk} + xyA_{kl} + yxA_{lk} + y^2A_{ll}\\
 &amp;= \left(\begin{array}{ccc}x\\y\end{array}\right)^T\left(\begin{array}{ccc}A_{kk} &amp; A_{kl}\\A_{lk} &amp; A_{ll}\end{array}\right)\left(\begin{array}{ccc}x\\y\end{array}\right) &gt; 0
 \end{aligned}$$</div>
-<p>したがって、行列 <span class="math">\(A^{(kl)} = \left(<div class="math">\begin{array}{ccc}A_{kk} &amp; A_{kl}\\A_{lk} &amp; A_{ll}\end{array}</div>\right)\)</span> は正定値行列であることがわかる。ゆえに、<span class="math">\((1)\)</span> より、行列 <span class="math">\(A^{(kl)}\)</span> の固有値（<span class="math">\(\lambda^{(kl)}_1,\lambda^{(kl)}_2\)</span>）は全て非負。</p>
-<p>すると、行列式は固有値の積でかけるので、以下の関係が成り立つ。</p>
+<p>したがって、行列</p>
+<div class="math">$$A^{(kl)} = \left(\begin{array}{ccc}A_{kk} &amp; A_{kl}\\A_{lk} &amp; A_{ll}\end{array}\right)$$</div>
+<p>は正定値行列であることがわかる。ゆえに、<span class="math">\((1)\)</span> より、行列 <span class="math">\(A^{(kl)}\)</span> の固有値（<span class="math">\(\lambda^{(kl)}_1,\lambda^{(kl)}_2\)</span>）は全て非負。</p>
+<p>一方、行列式は固有値の積でかけるので、以下の関係が成り立つ。</p>
 <div class="math">$$\left|A^{(kl)}\right| = A_{kk}A_{ll} - A_{kl}A_{lk} = \lambda^{(kl)}_1\lambda^{(kl)}_2 &gt; 0$$</div>
 <p>また、<span class="math">\(A^T=A\)</span> より <span class="math">\(A_{kl} = A_{lk}\)</span> なので、上より、</p>
 <div class="math">$$A_{kk}A_{ll} - A_{kl}^2 &gt; 0\Longleftrightarrow\sqrt{A_{kk}A_{ll}} &gt; \left|A_{kl}\right|$$</div>

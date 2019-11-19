@@ -12,7 +12,7 @@
         <meta name="twitter:card" content="summary">
 
 <meta name="keywords" content="3A, 情報基礎実験(木立), 情報基礎実験(木立), " />
-<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+<meta property="og:image" content="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q13.png"/>
 
 <meta property="og:title" content="Ex.13 Sparse Modeling "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-13.html" />
@@ -110,6 +110,130 @@
             
             <p><img alt="Q13" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q13.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial}{\partial\mathbf{w}}L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right)
+&amp;=\frac{\partial}{\partial\mathbf{w}}\left(\frac{1}{2}\|\mathbf{y}-\mathbf{Xw}\|_{\text{L2}}^2 + \lambda\|\mathbf{z}\|_{\text{L1}} + \boldsymbol{\alpha}^T\left(\mathbf{w}-\mathbf{z}\right) + \frac{\rho}{2}\|\mathbf{w}-\mathbf{z}\|^2_{\text{L2}}\right)\\
+&amp;=\left(-\mathbf{X}^T\mathbf{y} + \mathbf{X}^T\mathbf{Xw}\right) + \boldsymbol{\alpha} + \rho\left(\mathbf{w}-\mathbf{z}\right)\\
+&amp;= 0\\
+\therefore\left(\mathbf{X}^T\mathbf{X} + \rho\mathbf{I}\right)\mathbf{w}
+&amp;= \mathbf{X}^T\mathbf{y} - \boldsymbol{\alpha} + \rho\mathbf{z}\\
+\therefore\underset{\mathbf{w}}{\text{argmin}}L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right)
+&amp;= \left(\mathbf{X}^T\mathbf{X} + \rho\mathbf{I}\right)^{-1}\left(\mathbf{X}^T\mathbf{y} - \boldsymbol{\alpha} + \rho\mathbf{z}\right)
+\end{aligned}
+$$</div>
+<h4>2</h4>
+<p><span class="math">\(z\)</span> の正負で場合分けをすれば、</p>
+<div class="math">$$
+\begin{aligned}
+\underset{z}{\text{argmin}}\left\{c|z| + \frac{1}{2}\left(z-z_0\right)\right\}
+&amp;= \begin{cases}z_0-c &amp; \left(z&gt;0\right)\\0&amp;\left(\text{otherwise.}\right)\\z_0+c &amp; \left(z&lt;0\right)\end{cases}\\
+&amp;= \begin{cases}z_0-c &amp; \left(c&lt;z_0\right)\\0&amp;\left(\text{otherwise.}\right)\\z_0+c &amp; \left(z_0&lt;-c\right)\end{cases}\\
+\end{aligned}
+$$</div>
+<h4>3</h4>
+<div class="math">$$
+\begin{aligned}
+\underset{z_i}{\text{argmin}}L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right)
+&amp;= \underset{z_i}{\text{argmin}}\left\{\lambda\|z_i\|_{\text{L1}} - \alpha_iz_i + \frac{\rho}{2}\left(-2w_iz_i + z_i^2\right)\right\}\\
+&amp;= \underset{z_i}{\text{argmin}}\left\{\lambda\|z_i\|_{\text{L1}} + \frac{\rho}{2}\left(z^2_i - 2\left(w_i + \frac{\alpha_i}{\rho}\right)z_i\right)\right\}\\
+&amp;= \underset{z_i}{\text{argmin}}\left\{\frac{\lambda}{\rho}\|z_i\|_{\text{L1}} + \frac{1}{2}\left(z_i-\left(w_i + \frac{\alpha_i}{\rho}\right)\right)^2\right\}\\
+\end{aligned}
+$$</div>
+<p>これは、<span class="math">\(2\)</span> の式において</p>
+<div class="math">$$
+\begin{cases}
+\begin{aligned}
+c&amp;\longrightarrow\frac{\lambda}{\rho}\\
+z_0&amp;\longrightarrow w_i + \frac{\alpha_i}{\rho}
+\end{aligned}
+\end{cases}
+$$</div>
+<p>とした場合に対応する。以上より、</p>
+<div class="math">$$\underset{\mathbf{z}}{\text{argmin}}L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right) = \text{prox}_{\frac{\lambda}{\rho}|\ast|}\left(w_i + \frac{\alpha_i}{\rho}\right)$$</div>
+<hr>
+<p>ここでは、<strong>「L1正則化項の下での線形回帰問題」</strong> を考えた。全体の流れは以下</p>
+<ol>
+<li>二乗和誤差関数 <span class="math">\(\frac{1}{2}\|\mathbf{y}-\mathbf{Xw}\|^2\)</span> にL1正則化項を加えた誤差関数を定義する。（<span class="math">\(\lambda\)</span> は手動で決定。）</li>
+<li>解析的に最小解を求めるのが難しいので、新しい変数 <span class="math">\(\mathbf{z}\)</span> を代入してそれぞれ独立の変数としてみる。</li>
+<li>とはいえ <span class="math">\(\mathbf{z}=\mathbf{w}\)</span> という関係は成り立っているので、ラグランジュ乗数 <span class="math">\(\{\alpha_i\}\)</span> を導入して、制約条件を付け加える。
+<div class="math">$$L\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right) = \frac{1}{2}\|\mathbf{y}-\mathbf{Xw}\|_{\text{L2}}^2 + \lambda\|\mathbf{z}\|_{\text{L1}} + \boldsymbol{\alpha}^T\left(\mathbf{w}-\mathbf{z}\right)$$</div>
+</li>
+<li>このままでも良いが、凸性を増すために、制約条件を二次の形で加える。この式を<span class="marker-pink">拡張ラグランジュ関数(Augmented Lagrangian)</span>と呼ぶ。<a href="https://iwasakishuto.github.io/University/3A/知能システム論-3.html">[参考:知能システム論 第3回]</a>
+<div class="math">$$L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right) = \frac{1}{2}\|\mathbf{y}-\mathbf{Xw}\|_{\text{L2}}^2 + \lambda\|\mathbf{z}\|_{\text{L1}} + \boldsymbol{\alpha}^T\left(\mathbf{w}-\mathbf{z}\right) + \rho\|\mathbf{w}-\mathbf{z}\|_{\text{L2}}^2$$</div>
+</li>
+<li>解析的に求めることができないので、拡張ラグランジュ関数の最小化と双対変数の勾配上昇を繰り返す。<ul>
+<li>拡張ラグランジュ関数の最小化
+<div class="math">$$\begin{aligned}\mathbf{w}&amp;\longleftarrow \underset{\mathbf{w}}{\text{argmin}}L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right)\quad \text{with fixed $\mathbf{z},\boldsymbol{\alpha}$}\\\mathbf{z}&amp;\longleftarrow \underset{\mathbf{z}}{\text{argmin}}L_{\rho}\left(\mathbf{w},\mathbf{z},\boldsymbol{\alpha}\right)\quad \text{with fixed $\mathbf{w},\boldsymbol{\alpha}$}\\\end{aligned}$$</div>
+</li>
+<li>双対変数の勾配上昇
+<div class="math">$$\boldsymbol{\alpha}\longleftarrow\boldsymbol{\alpha} + \rho\nabla\omega\left(\boldsymbol{\alpha}\right) = \boldsymbol{\alpha} + \rho\left(\mathbf{w}-\mathbf{z}\right)$$</div>
+</li>
+</ul>
+</li>
+</ol>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 

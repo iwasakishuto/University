@@ -12,7 +12,7 @@
         <meta name="twitter:card" content="summary">
 
 <meta name="keywords" content="3A, 情報基礎実験(木立), 情報基礎実験(木立), " />
-<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+<meta property="og:image" content="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q10.png"/>
 
 <meta property="og:title" content="Ex.10 Expectation Maximization Algorithm "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-10.html" />
@@ -110,6 +110,107 @@
             
             <p><img alt="Q10" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q10.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$
+\begin{aligned}
+&amp;\mathcal{Q}_{\text{EM}}\left(\theta|\theta^{\prime}\right) + H\left(\theta^{\prime}\right) + \mathrm{KL}\left(\theta^{\prime}\|\theta\right)\\
+=&amp;\sum_{h=1}^n\sum_{z_h}\log\left(p\left(x_h,z_h|\theta\right)\right)\frac{p\left(x_h,z_h|\theta^{\prime}\right)}{p\left(x_h|\theta^{\prime}\right)} - \sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\log\left(p\left(z_h|x_h,\theta^{\prime}\right)\right)\\
+&amp;+ \sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\log\left(\frac{p\left(z_h|x_h,\theta^{\prime}\right)}{p\left(z_h|x_h,\theta\right)}\right)\\
+=&amp;\sum_{h=1}^n\sum_{z_h}\log\left(p\left(x_h,z_h|\theta\right)\right)\frac{p\left(x_h,z_h|\theta^{\prime}\right)}{p\left(x_h|\theta^{\prime}\right)} - \sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\log\left(p\left(z_h|x_h,\theta\right)\right)\\
+=&amp;\sum_{h=1}^n\sum_{z_h}\log\left(p\left(x_h,z_h|\theta\right)\right)p\left(z_h|x_h,\theta^{\prime}\right) - \sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\log\left(p\left(z_h|x_h,\theta\right)\right)\quad\left(\because\text{
+Conditional probability}\right)\\
+=&amp;\sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\log\left(p\left(x_h|\theta\right)\right)\quad\left(\because\text{
+Conditional probability}\right)\\
+=&amp;\sum_{h=1}^n\log\left(p\left(x_h|\theta\right)\right)\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\\
+=&amp;\sum_{h=1}^n\log\left(p\left(x_h|\theta\right)\right)\quad\left(\because\text{
+Marginalization}\right)\\
+=&amp;l\left(\theta|D\right)
+\end{aligned}
+$$</div>
+<h4>2</h4>
+<div class="math">$$
+\begin{aligned}
+\mathrm{KL}\left(\theta^{\prime}\|\theta\right)|_{\theta=\theta^{\prime}}
+&amp;= \sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\log\left(\frac{p\left(z_h|x_h,\theta^{\prime}\right)}{p\left(z_h|x_h,\theta^{\prime}\right)}\right)\\
+&amp;= \sum_{h=1}^n\sum_{z_h}p\left(z_h|x_h,\theta^{\prime}\right)\cdot\log(1) = 0\\
+\end{aligned}
+$$</div>
+<p>より、<span class="math">\(\theta=\theta^{\prime}\)</span> で <span class="math">\(l\left(\theta|D\right) = \mathcal{Q}_{\text{EM}}\left(\theta|\theta^{\prime}\right)+H\left(\theta^{\prime}\right)\)</span></p>
+<p>また、</p>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial}{\partial\theta}l\left(\theta|D\right)|_{\theta=\theta^{\prime}}
+&amp;= \sum_{h=1}^n\frac{\partial}{\partial\theta}\left(\log\left(p\left(x_h|\theta\right)\right)\right)|_{\theta=\theta^{\prime}}\\
+&amp;=\sum_{h=1}^n\frac{1}{p\left(x_h|\theta^{\prime}\right)}\frac{\partial}{\partial\theta}\left(p\left(x_h|\theta\right)\right)|_{\theta=\theta^{\prime}}\\
+\frac{\partial}{\partial\theta}\left(\mathcal{Q}_{\text{EM}}\left(\theta|\theta^{\prime}\right) + H\left(\theta^{\prime}\right)\right)|_{\theta=\theta^{\prime}}
+&amp;=\sum_{h=1}^n\sum_{z_h}\frac{\frac{\partial}{\partial\theta}\left(p\left(x_h,z_h|\theta\right)\right)}{p\left(x_h,z_h|\theta\right)}|_{\theta=\theta^{\prime}}\frac{p\left(x_h,z_h|\theta^{\prime}\right)}{p\left(x_h|\theta^{\prime}\right)}\\
+&amp;= \sum_{h=1}^n\frac{1}{p\left(x_h|\theta^{\prime}\right)}\sum_{z_h}\frac{\partial}{\partial\theta}\left(p\left(x_h,z_h|\theta\right)\right)|_{\theta=\theta^{\prime}}\\
+&amp;=\sum_{h=1}^n\frac{1}{p\left(x_h|\theta^{\prime}\right)}\frac{\partial}{\partial\theta}\left(p\left(x_h|\theta\right)\right)|_{\theta=\theta^{\prime}}
+\end{aligned}
+$$</div>
+<p>となるので、<span class="math">\(\theta\)</span> に関する一階微分に関しても先の等式が成り立つ。</p>
+<p>ゆえに、題意が成り立つ。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
