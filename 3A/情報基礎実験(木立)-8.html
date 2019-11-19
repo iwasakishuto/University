@@ -110,12 +110,137 @@
             
             <p><img alt="Q8" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q8.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$
+\begin{aligned}
+\int_{\mathbb{R}^m}f_X(\mathbf{x})d^mx
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\left|\boldsymbol{\Sigma}\right|^{1/2}}\exp\left(-\frac{1}{2}\left(\mathbf{x} - \boldsymbol{\mu}\right)^T\boldsymbol{\Sigma}^{-1}\left(\mathbf{x} - \boldsymbol{\mu}\right)\right)d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}}\exp\left(-\frac{1}{2}\left(x_1^2 + \cdots + x_m^2\right)\right)d^mx\\
+&amp;=\prod_{k=1}^m\int_{\mathbb{R}}\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{1}{2}x_k^2\right)dx_k\\
+&amp;=1
+\end{aligned}
+$$</div>
+<hr>
+<p>上では、以下の<span class="marker-pink">ガウス積分</span>を用いた。</p>
+<div class="math">$$I = \int_{-\infty}^{\infty}e^{-ax^2}dx = \int_{-\infty}^{\infty}e^{-ay^2}dy$$</div>
+<p>を考える。ここで、</p>
+<div class="math">$$\begin{aligned}
+I^2
+&amp;= \left(\int_{-\infty}^{\infty}e^{-ax^2}dx\right)^2\\
+&amp;= \left(\int_{-\infty}^{\infty}e^{-ax^2}dx\right)\left(\int_{-\infty}^{\infty}e^{-ay^2}dy\right)\\
+&amp;=\int_{\infty}^{\infty}dx\int_{-\infty}^{\infty}dye^{-a(x^2+y^2)}\\
+&amp;= \int_0^{\infty}rdr\int_0^{2\pi}d\theta e^{-ar^2}\\
+&amp;= 2\pi\left[-\frac{1}{2a}e^{-ar^2}\right]_0^{\infty}\\
+&amp;= \frac{\pi}{a}\\
+\therefore I&amp;= \sqrt{\frac{\pi}{a}}
+\end{aligned}$$</div>
+<hr>
+<h4>2</h4>
+<p><span class="math">\(\Sigma\)</span> が実対称行列なので、実直交行列 <span class="math">\(O\)</span> を用いて <span class="math">\(\Sigma = O\Lambda O^T\)</span> と対角化できる。（<span class="math">\(\Lambda = \left(\lambda_1,\ldots,\lambda_m\right)\)</span>）</p>
+<p>したがって、</p>
+<div class="math">$$
+\begin{aligned}
+\int_{\mathbb{R}^m}f_X(\mathbf{x})d^mx
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\left|\Sigma\right|^{1/2}}\exp\left(-\frac{1}{2}\left(\mathbf{x} - \boldsymbol{\mu}\right)^T\Sigma^{-1}\left(\mathbf{x} - \boldsymbol{\mu}\right)\right)d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\left|O\Lambda O^T\right|^{1/2}}\exp\left(-\frac{1}{2}\left(\mathbf{x} - \boldsymbol{\mu}\right)^T\left(O\Lambda O^T\right)^{-1}\left(\mathbf{x} - \boldsymbol{\mu}\right)\right)d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\left|\Lambda\right|^{1/2}}\exp\left(-\frac{1}{2}\left(O^{-1}\left(\mathbf{x} - \boldsymbol{\mu}\right)\right)^T\Lambda^{-1}\left(O^{-1}\left(\mathbf{x} - \boldsymbol{\mu}\right)\right)\right)d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\left|\Lambda\right|^{1/2}}\exp\left(\sum_{k=1}^m-\frac{1}{2}\mathbf{o}_k^{-1T}(x_k-\mu_k)\lambda_k^{-1}\mathbf{o}_k^{-1}(x_k-\mu_k)\right)d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\sum_{k=1}^m\lambda_k^{1/2}}\exp\left(\sum_{k=1}^m-\frac{1}{2}(x_k-\mu_k)\lambda_k^{-1}(x_k-\mu_k)\right)d^mx\\
+&amp;= \prod_{k=1}^m\int_{\mathbb{R}}\frac{1}{(2\pi)^{1/2}\lambda_k^{(1/2)}}\exp\left(-\frac{1}{2}\lambda_k^{-1}y_k^2\right)dy_k\\
+&amp;= \prod_{k=1}^m\frac{1}{(2\pi)^{1/2}\lambda_k^{(1/2)}}\sqrt{\frac{2\pi}{\lambda_k^{-1}}}\\
+&amp;= 1
+\end{aligned}
+$$</div>
+<h4>3</h4>
+<p><span class="math">\(2\)</span> と同様に考えて、</p>
+<div class="math">$$
+\begin{aligned}
+\mathbb{E}\left(X_k\right)
+&amp;= \int_{\mathbb{R}^m}x_kf_X(\mathbf{x})d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\sum_{k=1}^m\lambda_k^{1/2}}x_k\exp\left(\sum_{k=1}^m-\frac{1}{2}(x_k-\mu_k)\lambda_k^{-1}(x_k-\mu_k)\right)d^mx\\
+&amp;= \int_{\mathbb{R}^m}\frac{1}{\left(2\pi\right)^{m/2}\lambda_k^{1/2}}x_k\exp\left(-\frac{1}{2}\left(x_k-\mu_k\right)\lambda_k^{-1}\left(x_k-\mu_k\right)\right)dx_k\\
+&amp;=\frac{1}{\left(2\pi\right)^{m/2}\lambda_k^{1/2}}\int_{\mathbb{R}^m}\left(y_k + \mu_k\right)\exp\left(-\frac{1}{2}\lambda_k^{-1}y_k^2\right)dy_k\\
+&amp;= \frac{1}{\left(2\pi\right)^{m/2}\lambda_k^{1/2}}\left[-\frac{1}{\lambda_k^{-1}}\exp\left(-\frac{1}{2}\lambda_k^{-1}y_k^2\right)\right]_{-\infty}^{\infty} + \mu_k\\
+&amp;=\mu_k
+\end{aligned}
+$$</div>
+<h4>4</h4>
+<p><span class="math">\(2\)</span> と同様に考えて、</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
             
             
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-7.html" title="Previous: Ex.7 Positive Definite Symmetric Matrix">Ex.7 Positive Definite Symmetric Matrix</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-9.html" title="Next: Ex.9 Kullback-Leibler Divergence">Ex.9 Kullback-Leibler Divergence</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">

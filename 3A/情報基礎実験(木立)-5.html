@@ -110,12 +110,96 @@
             
             <p><img alt="Q5" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q5.png"></p>
 <h3>解答</h3>
+<h4>1</h4>
+<div class="math">$$\mathbb{E}\left(1\right) = \sum_{k=1}^m 1\cdot q_k = 1$$</div>
+<h4>2</h4>
+<div class="math">$$\mathbb{E}\left(X\right) = \sum_{k=1}^m k\mathbb{P}\left(X=k\right) = \sum_{k=1}^mkq_k$$</div>
+<h4>3</h4>
+<div class="math">$$\mathbb{E}\left(Y_k\right) = \sum_{k^{\prime}=1}^m \mathbb{I}\left(X=k\right) \mathbb{P}\left(X=k^{\prime}\right)=\mathbb{P}\left(X=k\right) = q_k$$</div>
+<h4>4</h4>
+<p><a href="情報基礎実験(木立)-1.html">EX1. Covariance</a> より、</p>
+<div class="math">$$
+\begin{aligned}
+\mathrm{Cov}\left(Y_k,Y_l\right) &amp;= \mathbb{E}\left(Y_kY_l\right) - \mathbb{E}\left(Y_k\right)\mathbb{E}\left(Y_l\right)\\
+&amp;= \sum_{k^{\prime},l^{\prime}}\mathbb{I}\left(X=k,X=l\right)\mathbb{P}\left(X=k^{\prime},X=l^{\prime}\right) - q_kq_l\\
+&amp;=\delta_{kl}q_k - q_kq_l
+\end{aligned}
+$$</div>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
             <div>
 </div>
 
             
             
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-4.html" title="Previous: Ex4. Exponential Distribution">Ex4. Exponential Distribution</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-6.html" title="Next: Ex.6 Multinomial Distribution">Ex.6 Multinomial Distribution</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">

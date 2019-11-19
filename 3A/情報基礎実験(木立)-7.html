@@ -115,6 +115,24 @@
 <p>ここで、<span class="math">\(O=\left(\mathbf{u}_1,\cdots\mathbf{u}_m\right)\)</span> と分解できるので、<span class="math">\(O\)</span> の第 <span class="math">\(k\)</span> 列ベクトル <span class="math">\(\mathbf{u}_k\)</span> に注目すると、</p>
 <div class="math">$$\lambda_k = \mathbf{u}_k^TA\mathbf{u}_k &gt; 0\quad\left(\because\text{positive definite}\right)$$</div>
 <h4>2</h4>
+<p><span class="math">\(k\)</span> 成分のみゼロではない次のベクトルを考える。</p>
+<div class="math">$$\mathbf{e}_k = \left(\begin{array}{ccc}0\\\vdots\\1\\\vdots\\0\end{array}\right)$$</div>
+<p>すると、</p>
+<div class="math">$$A_{kk} = \mathbf{e}_k^TA\mathbf{e}_k &gt; 0\quad\left(\because\text{positive definite}\right)$$</div>
+<h4>3</h4>
+<p><span class="math">\(k,l\)</span> 成分のみゼロではないベクトル <span class="math">\(\mathbf{v}\)</span> を考える。ここで、</p>
+<div class="math">$$v_k = x,v_l=y \qquad \forall x,y\in\mathbb{R},x.y\neq0$$</div>
+<p>とする。すると、</p>
+<div class="math">$$\begin{aligned}
+\mathbf{v}^TA\mathbf{v}
+&amp;= x^2A_{kk} + xyA_{kl} + yxA_{lk} + y^2A_{ll}\\
+&amp;= \left(\begin{array}{ccc}x\\y\end{array}\right)^T\left(\begin{array}{ccc}A_{kk} &amp; A_{kl}\\A_{lk} &amp; A_{ll}\end{array}\right)\left(\begin{array}{ccc}x\\y\end{array}\right) &gt; 0
+\end{aligned}$$</div>
+<p>したがって、行列 <span class="math">\(A^{(kl)} = \left(<div class="math">\begin{array}{ccc}A_{kk} &amp; A_{kl}\\A_{lk} &amp; A_{ll}\end{array}</div>\right)\)</span> は正定値行列であることがわかる。ゆえに、<span class="math">\((1)\)</span> より、行列 <span class="math">\(A^{(kl)}\)</span> の固有値（<span class="math">\(\lambda^{(kl)}_1,\lambda^{(kl)}_2\)</span>）は全て非負。</p>
+<p>すると、行列式は固有値の積でかけるので、以下の関係が成り立つ。</p>
+<div class="math">$$\left|A^{(kl)}\right| = A_{kk}A_{ll} - A_{kl}A_{lk} = \lambda^{(kl)}_1\lambda^{(kl)}_2 &gt; 0$$</div>
+<p>また、<span class="math">\(A^T=A\)</span> より <span class="math">\(A_{kl} = A_{lk}\)</span> なので、上より、</p>
+<div class="math">$$A_{kk}A_{ll} - A_{kl}^2 &gt; 0\Longleftrightarrow\sqrt{A_{kk}A_{ll}} &gt; \left|A_{kl}\right|$$</div>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -182,6 +200,14 @@
             
             
             <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-6.html" title="Previous: Ex.6 Multinomial Distribution">Ex.6 Multinomial Distribution</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-8.html" title="Next: Ex.8 Multivariate Normal Distribution">Ex.8 Multivariate Normal Distribution</a> »</li>
+            </ul>
+            </nav>
+            </aside>
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
