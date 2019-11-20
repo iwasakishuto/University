@@ -111,9 +111,42 @@
             <p><img alt="Q11" src="theme/img/3A_Basic_Laboratory/Kiryu_CalculationExercise/Q11.png"></p>
 <h3>解答</h3>
 <h4>1</h4>
-<p>ある <span class="math">\(\theta\)</span> の下での最適な <span class="math">\(x_i,\lambda_i\)</span> の列の下では、</p>
-<div class="math">$$\frac{\partial L}{\partial x_i} = -2\left(y_i-x_i\right) - \lambda_i = 0$$</div>
+<p>最適性条件より、最適な <span class="math">\(\{x_i\},\{\lambda_i\},\theta\)</span> の下では、</p>
+<div class="math">$$
+\begin{cases}
+  \begin{aligned}
+    \frac{\partial L}{\partial x_i} &amp;= 0 &amp; (i=1,\ldots,n+1)\\
+    \frac{\partial L}{\partial \lambda_i} &amp;= 0 &amp; (i=1,\ldots,n+1)\\
+    \frac{\partial L}{\partial\theta} &amp;= 0
+  \end{aligned}
+\end{cases}
+$$</div>
 <p>が成り立つので、</p>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial L}{\partial x_i}
+&amp;= \frac{\partial J_D\left(x_1,\ldots,x_n\right)}{\partial x_i} - \left(\lambda_i - \lambda_{i+1}\frac{\partial F\left(x_i,\theta\right)}{\partial x_i}\right) = 0\\
+\therefore \lambda_i &amp;= \lambda_{i+1}\frac{\partial F\left(x_i,\theta\right)}{\partial x_i} + \frac{\partial J_D\left(x_1,\ldots,x_n\right)}{\partial x_i}
+\end{aligned}
+$$</div>
+<p>となる。特に、<span class="math">\(i=n+1\)</span> に関しては、</p>
+<div class="math">$$
+\begin{aligned}
+\frac{\partial L}{\partial x_{n+1}}
+&amp;= \frac{\partial J_D\left(x_1,\ldots,x_n\right)}{\partial x_{n+1}} - \lambda_{n+1} = -\lambda_{n+1} = 0\\
+\therefore \lambda_{n+1} &amp;= 0
+\end{aligned}
+$$</div>
+<p>が成り立つ。</p>
+<h4>2</h4>
+<div class="math">$$
+\begin{aligned}
+x_{i+1} &amp;= F\left(x_i;\theta\right)\\
+\frac{\partial x_{i+1}}{\partial\theta} &amp;= \frac{\partial F\left(x_i;\theta\right)}{\partial\theta}\\
+&amp;= \frac{\partial F}{\partial x}\left(x_i;\theta\right)\frac{}{}
+\end{aligned}
+$$</div>
+<p>a</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -203,7 +236,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>79</span>
+                    <span>80</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>
