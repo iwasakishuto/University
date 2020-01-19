@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="機械学習(1)教師付き学習 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-8.html" />
+<meta property="og:description" content="講師：杉山将 講師：本多淳也 参考書：エージェントアプローチ人工知能 第2版 参考書：イラストで学ぶ 人工知能概論 講義概要 回帰 モデル 最小二乗回帰 正則化最小二乗回帰 交差確認法 分類 超平面分類器 サポートベクトルマシン 非線形化 最適化 回帰 回帰の目標は、「訓練標本から真の関数にできるだけ近い関数を求めること」である。 モデル モデル：学習結果の関数を探す候補集合。パラメータ $\boldsymbol{\theta}$ の値を指定すると関数が一つ決まる。 $$\left\{f_{\boldsymbol{\theta}}(\mathbf{x}) | \boldsymbol{\theta} = (\theta_1,\ldots,\theta_b)^T\right\}$$ 線形モデル：$f_{\boldsymbol{\theta}}(\mathbf{x})$ が「 $\boldsymbol{\theta}$ に関して」 線形 $$f_{\boldsymbol{\theta}}(\mathbf{x}) = \sum_{j=1}^b\theta_j\phi_j(\mathbf{x})\quad \mathbf{x}\in\mathbb{R}^d$$ 非線形モデル：それ以外。 カーネルモデル¶$$f_{\boldsymbol{\theta}}\mathbf{x}) = \sum_{j=1}^n\theta_jK(\mathbf{x},\mathbf{x}_j)$$ 線形モデルの一種。 基底関数が入力に依存する。 $K(\mathbf{x},\mathbf{c})$ はカーネル関数であり、$\phi_j(\cdot) = K(\cdot,\mathbf{x}_j)$ に対応する。（入力に依存している！！） カーネル関数として最も一般的なものはガウスカーネル ガウス関数を各訓練入力標本の場所に配置 $$K(\mathbf{x},\mathbf{c}) = \exp\left(-\frac{\|\mathbf{x}-\mathbf{c}\|^2}{2h^2}\right),\quad h(&gt;0)$$ 訓練標本が入力空間上に偏って分布している時、ガウスカーネルモデルは訓練入力標本が存在しない領域を無視する関数が学習される。→ある種の次元削減効果が得られる（？） 最小二乗回帰 訓練出力との二乗誤差を最小にすることを目的とした回帰。 $$\min_{\boldsymbol{\theta}}\left[\frac{1}{2}\sum_{i=1}^n\left(y_i-f_{\boldsymbol{\theta}}(\mathbf{x}_i)\right)^2\right]$$ 正則化最小二乗回帰 過学習を抑えるため、「回帰係数 $\boldsymbol{\theta}$ の各要素の絶対値が大きくなることに罰則を加えた」最小二乗回帰。 $$\min_{\boldsymbol{\theta}}\left[\frac{1}{2}\sum_{i=1}^n\left(y_i-f_{\boldsymbol{\theta}}(\mathbf{x}_i)\right)^2 + \frac{\lambda}{2}\sum_{j=1}^n\theta_j^2\right]\quad \lambda&gt;0$$ 交差確認法 正則化パラメータ $\lambda$ や、ガウスカーネルのバンド幅 $h$ などは、設計者が 独断で決定する。 より汎化性能の高いモデルを選択するため、訓練標本を $k$ 分割し、「そのうち一つを検証用。残りを訓練用」に分ける方法が一般的。この作業を $k$ 回繰り返して平均スコアを比較する。 分類 分類の目標は、「クラス間の分離境界を求めること」である。 超平面分類器 標本空間を超平面 $f_{\mathbf{w},b} = \mathbf{w}^T\mathbf{x} + b = 0$ で分離する。 サポートベクトルマシン 二つのクラスを分類する超平面はいくつかあるが、「二つのクラス間の隙間（マージン）の大きさが最大」なものが汎化性能が高いという考えから マージン最大化 を目標とする手法。 標本が線形分離可能でない時には、マージンを定義することができないので、標本毎に少しの誤差 $\xi_i$ を許す。 $$ \begin{aligned} \min_{\mathbf{w},b,\boldsymbol{\xi}} \quad&amp;\|\mathbf{w}\|^2 + C\sum_{i=1}^n\xi_i,\quad f_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w}^T\mathbf{x} + b\\ \text{subject to }\quad&amp;y;_if_{\mathbf{w},b}(\mathbf{x}_i)\geq1-\xi_i\Longleftrightarrow\xi_i\geq1-y_if_{\mathbf{w},b}(\mathbf{x}_i)\\ &amp;\xi_i\geq0\quad\text{for $i=1,\ldots,n$} \end{aligned} $$" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-11-28T12:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-11-28T12:00:00+09:00" />
+<meta name="twitter:title" content="機械学習(1)教師付き学習 ">
+<meta name="twitter:description" content="講師：杉山将 講師：本多淳也 参考書：エージェントアプローチ人工知能 第2版 参考書：イラストで学ぶ 人工知能概論 講義概要 回帰 モデル 最小二乗回帰 正則化最小二乗回帰 交差確認法 分類 超平面分類器 サポートベクトルマシン 非線形化 最適化 回帰 回帰の目標は、「訓練標本から真の関数にできるだけ近い関数を求めること」である。 モデル モデル：学習結果の関数を探す候補集合。パラメータ $\boldsymbol{\theta}$ の値を指定すると関数が一つ決まる。 $$\left\{f_{\boldsymbol{\theta}}(\mathbf{x}) | \boldsymbol{\theta} = (\theta_1,\ldots,\theta_b)^T\right\}$$ 線形モデル：$f_{\boldsymbol{\theta}}(\mathbf{x})$ が「 $\boldsymbol{\theta}$ に関して」 線形 $$f_{\boldsymbol{\theta}}(\mathbf{x}) = \sum_{j=1}^b\theta_j\phi_j(\mathbf{x})\quad \mathbf{x}\in\mathbb{R}^d$$ 非線形モデル：それ以外。 カーネルモデル¶$$f_{\boldsymbol{\theta}}\mathbf{x}) = \sum_{j=1}^n\theta_jK(\mathbf{x},\mathbf{x}_j)$$ 線形モデルの一種。 基底関数が入力に依存する。 $K(\mathbf{x},\mathbf{c})$ はカーネル関数であり、$\phi_j(\cdot) = K(\cdot,\mathbf{x}_j)$ に対応する。（入力に依存している！！） カーネル関数として最も一般的なものはガウスカーネル ガウス関数を各訓練入力標本の場所に配置 $$K(\mathbf{x},\mathbf{c}) = \exp\left(-\frac{\|\mathbf{x}-\mathbf{c}\|^2}{2h^2}\right),\quad h(&gt;0)$$ 訓練標本が入力空間上に偏って分布している時、ガウスカーネルモデルは訓練入力標本が存在しない領域を無視する関数が学習される。→ある種の次元削減効果が得られる（？） 最小二乗回帰 訓練出力との二乗誤差を最小にすることを目的とした回帰。 $$\min_{\boldsymbol{\theta}}\left[\frac{1}{2}\sum_{i=1}^n\left(y_i-f_{\boldsymbol{\theta}}(\mathbf{x}_i)\right)^2\right]$$ 正則化最小二乗回帰 過学習を抑えるため、「回帰係数 $\boldsymbol{\theta}$ の各要素の絶対値が大きくなることに罰則を加えた」最小二乗回帰。 $$\min_{\boldsymbol{\theta}}\left[\frac{1}{2}\sum_{i=1}^n\left(y_i-f_{\boldsymbol{\theta}}(\mathbf{x}_i)\right)^2 + \frac{\lambda}{2}\sum_{j=1}^n\theta_j^2\right]\quad \lambda&gt;0$$ 交差確認法 正則化パラメータ $\lambda$ や、ガウスカーネルのバンド幅 $h$ などは、設計者が 独断で決定する。 より汎化性能の高いモデルを選択するため、訓練標本を $k$ 分割し、「そのうち一つを検証用。残りを訓練用」に分ける方法が一般的。この作業を $k$ 回繰り返して平均スコアを比較する。 分類 分類の目標は、「クラス間の分離境界を求めること」である。 超平面分類器 標本空間を超平面 $f_{\mathbf{w},b} = \mathbf{w}^T\mathbf{x} + b = 0$ で分離する。 サポートベクトルマシン 二つのクラスを分類する超平面はいくつかあるが、「二つのクラス間の隙間（マージン）の大きさが最大」なものが汎化性能が高いという考えから マージン最大化 を目標とする手法。 標本が線形分離可能でない時には、マージンを定義することができないので、標本毎に少しの誤差 $\xi_i$ を許す。 $$ \begin{aligned} \min_{\mathbf{w},b,\boldsymbol{\xi}} \quad&amp;\|\mathbf{w}\|^2 + C\sum_{i=1}^n\xi_i,\quad f_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w}^T\mathbf{x} + b\\ \text{subject to }\quad&amp;y;_if_{\mathbf{w},b}(\mathbf{x}_i)\geq1-\xi_i\Longleftrightarrow\xi_i\geq1-y_if_{\mathbf{w},b}(\mathbf{x}_i)\\ &amp;\xi_i\geq0\quad\text{for $i=1,\ldots,n$} \end{aligned} $$">
+
+        <title>機械学習(1)教師付き学習  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-8.html"> 機械学習(1)教師付き学習  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>講師：<a href="http://www.ms.k.u-tokyo.ac.jp/sugi/index-jp.html">杉山将</a></li>
+<li>講師：<a href="http://www.ms.k.u-tokyo.ac.jp/honda/index.html">本多淳也</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/エージェントアプローチ人工知能-第2版-S-J-Russell/dp/4320122151">エージェントアプローチ人工知能 第2版</a></li>
+<li>参考書：<a href="https://www.amazon.co.jp/dp/B00TPL99ZW/">イラストで学ぶ　人工知能概論</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h3>講義概要</h3>
+<ol>
+<li><a href="#回帰">回帰</a>
+<ol>
+<li><a href="#モデル">モデル</a></li>
+<li><a href="#最小二乗回帰">最小二乗回帰</a></li>
+<li><a href="#正則化最小二乗回帰">正則化最小二乗回帰</a></li>
+<li><a href="#交差確認法">交差確認法</a></li>
+</ol>
+</li>
+<li><a href="#分類">分類</a>
+<ol>
+<li><a href="#超平面分類器">超平面分類器</a></li>
+<li><a href="#サポートベクトルマシン">サポートベクトルマシン</a></li>
+<li><a href="#非線形化">非線形化</a></li>
+<li><a href="#最適化">最適化</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="回帰">回帰</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>回帰の目標は、<strong>「訓練標本から真の関数にできるだけ近い関数を求めること」</strong>である。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="モデル">モデル</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>モデル：学習結果の関数を探す候補集合。パラメータ $\boldsymbol{\theta}$ の値を指定すると関数が一つ決まる。
+$$\left\{f_{\boldsymbol{\theta}}(\mathbf{x}) | \boldsymbol{\theta} = (\theta_1,\ldots,\theta_b)^T\right\}$$<ul>
+<li>線形モデル：$f_{\boldsymbol{\theta}}(\mathbf{x})$ が<strong>「 $\boldsymbol{\theta}$ に関して」</strong> 線形
+$$f_{\boldsymbol{\theta}}(\mathbf{x}) = \sum_{j=1}^b\theta_j\phi_j(\mathbf{x})\quad \mathbf{x}\in\mathbb{R}^d$$</li>
+<li>非線形モデル：それ以外。</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="カーネルモデル">カーネルモデル<a class="anchor-link" href="#カーネルモデル">¶</a></h4>$$f_{\boldsymbol{\theta}}\mathbf{x}) = \sum_{j=1}^n\theta_jK(\mathbf{x},\mathbf{x}_j)$$<ul>
+<li><strong>線形モデル</strong>の一種。</li>
+<li>基底関数が入力に依存する。</li>
+<li>$K(\mathbf{x},\mathbf{c})$ はカーネル関数であり、$\phi_j(\cdot) = K(\cdot,\mathbf{x}_j)$ に対応する。<span class="marker-pink">（入力に依存している！！）</span></li>
+<li>カーネル関数として最も一般的なものは<strong>ガウスカーネル</strong><ul>
+<li>ガウス関数を各訓練入力標本の場所に配置
+$$K(\mathbf{x},\mathbf{c}) = \exp\left(-\frac{\|\mathbf{x}-\mathbf{c}\|^2}{2h^2}\right),\quad h(>0)$$</li>
+<li>訓練標本が入力空間上に偏って分布している時、ガウスカーネルモデルは<span aria-label="各訓練標本を中心としたガウス関数を考えるから。" class="marker-info">訓練入力標本が存在しない領域を無視する</span>関数が学習される。→ある種の<span class="marker-pink">次元削減効果</span>が得られる（？）</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="最小二乗回帰">最小二乗回帰</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>訓練出力との二乗誤差を最小にすることを目的とした回帰。</p>
+$$\min_{\boldsymbol{\theta}}\left[\frac{1}{2}\sum_{i=1}^n\left(y_i-f_{\boldsymbol{\theta}}(\mathbf{x}_i)\right)^2\right]$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="正則化最小二乗回帰">正則化最小二乗回帰</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>過学習を抑えるため、<strong>「回帰係数 $\boldsymbol{\theta}$ の各要素の絶対値が大きくなることに罰則を加えた」</strong>最小二乗回帰。</p>
+$$\min_{\boldsymbol{\theta}}\left[\frac{1}{2}\sum_{i=1}^n\left(y_i-f_{\boldsymbol{\theta}}(\mathbf{x}_i)\right)^2 + \frac{\lambda}{2}\sum_{j=1}^n\theta_j^2\right]\quad \lambda>0$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="交差確認法">交差確認法</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>正則化パラメータ $\lambda$ や、ガウスカーネルのバンド幅 $h$ などは、設計者が <strong>独断で決定する</strong>。</p>
+<p>より汎化性能の高いモデルを選択するため、<strong>訓練標本を $k$ 分割し、「そのうち一つを検証用。残りを訓練用」に分ける</strong>方法が一般的。この作業を $k$ 回繰り返して平均スコアを比較する。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="分類">分類</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>分類の目標は、<strong>「クラス間の分離境界を求めること」</strong>である。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="超平面分類器">超平面分類器</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>標本空間を超平面 $f_{\mathbf{w},b} = \mathbf{w}^T\mathbf{x} + b = 0$ で分離する。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="サポートベクトルマシン">サポートベクトルマシン</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>二つのクラスを分類する超平面はいくつかあるが、<strong>「二つのクラス間の<span class="marker-pink">隙間（マージン）</span>の大きさが最大」</strong>なものが汎化性能が高いという考えから <strong>マージン最大化</strong> を目標とする手法。</li>
+<li>標本が線形分離可能でない時には、マージンを定義することができないので、標本毎に少しの誤差 $\xi_i$ を許す。
+$$
+\begin{aligned}
+\min_{\mathbf{w},b,\boldsymbol{\xi}} \quad&\|\mathbf{w}\|^2 + C\sum_{i=1}^n\xi_i,\quad f_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w}^T\mathbf{x} + b\\
+\text{subject to }\quad&y;_if_{\mathbf{w},b}(\mathbf{x}_i)\geq1-\xi_i\Longleftrightarrow\xi_i\geq1-y_if_{\mathbf{w},b}(\mathbf{x}_i)\\
+&\xi_i\geq0\quad\text{for $i=1,\ldots,n$}
+\end{aligned}
+$$</li>
+<li>$\xi_i$ が小さいほど目的関数が減るので、結局必要な計算は
+$$\min_{\mathbf{w},b}\left[\|\mathbf{w}\|^2 + C\sum_{i=1}^n\max\left\{0,1-y_if_{\mathbf{w},b}(\mathbf{x}_i)\right\}\right]$$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="非線形化">非線形化</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>非線形関数 $\phi(\mathbf{x})$ で標本を特徴空間へ写像し、特徴空間内でマージン最大の超平面を求める。</p>
+$$f_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w}^T\mathbf{x} + b \rightarrow f_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w}^T\phi(\mathbf{x}) + b$$<p>これをそのまま解く場合 $\phi(\mathbf{x})$ の次元が大きい場合は計算が大変なので、<span class="marker-pink">カーネルトリック</span>を用いる。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="カーネルトリック">カーネルトリック<a class="anchor-link" href="#カーネルトリック">¶</a></h4><ul>
+<li>線形モデルにおける多くの回帰・分類手法では、特徴量 $\phi(\mathbf{x}_i)$ を<span class="marker-pink">直接求めなくても、その内積 $\phi(\mathbf{x}_i)^T\phi(\mathbf{x}_j)$ さえわかれば実装可能。</span></li>
+<li>→ 特徴空間上の内積を<strong>カーネル関数</strong>で直接表現する。</li>
+<li>計算量が特徴空間の次元によらない！</li>
+<li><strong>【サポートベクターマシンの場合】</strong><ul>
+<li><strong>仮定</strong>：
+$$\mathbf{w}=\sum_{j=1}^n\theta_j\phi(\mathbf{x}_j),b=0$$</li>
+<li>最小化したい目的関数は、以下の形で表される。
+$$
+\begin{cases}
+  \begin{aligned}
+  &\min_{\mathbf{w},b}\left[\|\mathbf{w}\|^2 + C\sum_{i=1}^n\max\left\{0,1-y_if_{\mathbf{w},b}(\mathbf{x_i})\right\}\right]\\
+  &f;_{\mathbf{w},b}(\mathbf{x}) = \mathbf{w}^T\phi(\mathbf{x}) + b
+  \end{aligned}
+\end{cases}
+\rightarrow
+\begin{cases}
+  \begin{aligned}
+  &\min_{\boldsymbol{\theta}}\left[\boldsymbol{\theta}^T\mathbf{K}\boldsymbol{\theta} + C\sum_{i=1}^n\max\left\{0,1-y_if_{\mathbf{w},b}(\mathbf{x_i})\right\}\right]\\
+  &f;_{\mathbf{w},b}(\mathbf{x}) = \sum_{j=1}^n\theta_jK(\mathbf{x},\mathbf{x}_j),\quad\phi(\mathbf{x}_i)^T\phi(\mathbf{x}_j) = K(\mathbf{x}_i,\mathbf{x}_j)
+  \end{aligned}
+\end{cases}
+$$</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="最適化">最適化</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="劣勾配">劣勾配<a class="anchor-link" href="#劣勾配">¶</a></h4><ul>
+<li>凸関数 $f$ の $\mathbf{x}^{\prime}$ での<span class="marker-pink">劣勾配(sub-gradient)</span>とは、全ての $\mathbf{x}\in\mathbb{R}^d$ に対して次式を満たす $\boldsymbol{\xi}$：
+$$f(\mathbf{x}) \geq f(\mathbf{x^{\prime}}) + \boldsymbol{\xi}^T(\mathbf{x}-\mathbf{x}^{\prime})$$<ul>
+<li>$f$ が微分可能なとき、$\boldsymbol{\xi} = \nabla f(\mathbf{x}^{\prime})$</li>
+<li>上式を満たす $\boldsymbol{\xi}$ 全体を $\partial f(\mathbf{x}^{\prime})$ で表し、<span class="marker-pink">劣微分(sub-differential)</span>とよぶ。</li>
+</ul>
+</li>
+<li>劣勾配法：勾配法において、微分不可能な点では、劣微分のどれかの値を用いる。</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="https://qiita-user-contents.imgix.net/https%3A%2F%2Fqiita-image-store.s3.amazonaws.com%2F0%2F232874%2Fad1cc381-5be5-f8a2-68f8-0a070ac264c3.gif?ixlib=rb-1.2.2&amp;auto=compress%2Cformat&amp;gif-q=60&amp;w=1400&amp;fit=max&amp;s=65fe719a0d4c1bbd72323d9859b9f7fc" /></p>
+<center><b>【引用】</b><a href="https://qiita.com/wosugi/items/8d5a407a0a0434aaabeb">Qiita: 劣微分・劣勾配と共役関数の可視化</a></center>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="サポートベクトルマシン">サポートベクトルマシン<a class="anchor-link" href="#サポートベクトルマシン">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>※ 仮定：$\mathbf{w}=\sum_{j=1}^n\theta_j\phi(\mathbf{x}_j),b=0$</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+$$
+\begin{cases}
+    \begin{aligned}
+    &\min_{\boldsymbol{\theta}}\left[\boldsymbol{\theta}^T\mathbf{K}\boldsymbol{\theta} + C\sum_{i=1}^n\max\left\{0,1-y_if_{\mathbf{w},b}(\mathbf{x_i})\right\}\right]\\
+    &f;_{\mathbf{w},b}(\mathbf{x}) = \sum_{j=1}^n\theta_jK(\mathbf{x},\mathbf{x}_j),\quad\phi(\mathbf{x}_i)^T\phi(\mathbf{x}_j) = K(\mathbf{x}_i,\mathbf{x}_j)
+    \end{aligned}
+\end{cases}
+$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\min$ の中身を劣微分すれば、</p>
+$$
+\partial_{\theta_j}\max\left(0, 1-f_{\boldsymbol{\theta}}(\mathbf{x}_i)y_i\right)= 
+\begin{cases}
+    \begin{aligned}
+        &-y_iK(\mathbf{x}_i,\mathbf{x}_j) & \left(\text{if $1-f_{\boldsymbol{\theta}}(\mathbf{x}_i)y_i > 0$ }\right)\\
+        &0 & (\text{otherwise.})
+    \end{aligned}
+\end{cases}
+$$<p>となるので、劣勾配法による実装時は以下で表せる。</p>
+$$\boldsymbol{\theta}\longleftarrow\boldsymbol{\theta} - \varepsilon\left(C\sum_{i=1}^n\partial_{\boldsymbol{\theta}}\max\left(0,1-f_{\boldsymbol{\theta}}(\mathbf{x}_i)y_i\right) + 2\mathbf{K}\boldsymbol{\theta}\right)$$
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="まとめ">まとめ<a class="anchor-link" href="#まとめ">¶</a></h3><ul>
+<li><span class="marker-pink">教師付き学習</span>：訓練データ（入出力の組）から、その背後に潜む関数を学習</li>
+<li>回帰も分類も、<strong>「損失*正則化(regularization)」の最小化</strong>を目標としている。
+$$\min_{\boldsymbol{\theta}}\left[\sum_{i=1}^n\text{loss}\left(f_{\boldsymbol{\theta}}(\mathbf{x}_i),y_i\right) + \lambda\text{Reg}(\boldsymbol{\theta})\right]$$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/知能システム論-report7.html" title="Previous: レポート課題7(11/21出題)">レポート課題7(11/21出題)</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/知能システム論-report8.html" title="Next: レポート課題8(11/28出題)">レポート課題8(11/28出題)</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-11-28T12:00:00+09:00">Nov 28, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-11-28T12:00:00+09:00">Nov 28, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>96</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
+                    <span>20</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

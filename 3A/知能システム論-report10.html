@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="レポート課題10(12/12出題) "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-report10.html" />
+<meta property="og:description" content="レポート課題1¶ 問題¶遷移確率が直前 $m$ 個の状態に依存する場合のビタビアルゴリズムを考え、その時間計算量を求めよ。 $$\text{transition probability: } p(|s_{t-m+1}, \ldots, s_{t-1}, s_t) = a_{t-m+1, \ldots, t-1,t,k}$$ 解答¶$1$ 次のマルコフ性を仮定した場合に $q_t$ が $K\times 1$ の行列（$K$ 次元ベクトル）で表されていたが、$m$ 次の場合、条件付き独立性を用いても $m$ 個前の状態は必要であるため、$q_{t-m+1,\ldots,t}$ となり、 $K\times m$ の行列で表されることになる。 したがって、再起式は以下で表される。 $$ \begin{cases} \begin{aligned} q_{t-m+2,\ldots,t+1}(k_2,k_3,\ldots,k_m,k) &amp;= \max_{k_1,k_2,\ldots,k_m}\left[q_{t-m+1,\ldots,t}(k_1,k_2,\ldots,k_m)a_{k_1,k_2,\ldots,k_m, k}\right]b_{k,o_{t+1}}\\ \xi_{t-m+2,\ldots,t+1}(k_2,k_3,\ldots,k_m,k) &amp;= \underset{k_1,k_2,\ldots,k_m}{\mathrm{arg~max}}\left[q_{t-m+1,\ldots,t}(k_1,k_2,\ldots,k_m)a_{k_1,k_2,\ldots,k_m, k}\right]\\ \end{aligned} \end{cases} $$また、この時、最適経路は以下によって復元される。 $$ \begin{cases} \left(s_{T-m+1}^{\ast},s_{T-m+2}^{\ast},\cdots,s_T^{\ast}\right) &amp;= \underset{k_1,k_2,\ldots,k_m}{\mathrm{arg~max}}\left\{q_{T-m+1,\ldots,T}(k_1,k_2,\ldots,k_m)\right\}\\ \left(s_{t-m+1}^{\ast},s_{t-m+2}^{\ast},\cdots,s_{t}^{\ast}\right) &amp;= \xi_{t-m+2,t-m+3,\ldots,t+1}\left(s_{t-m+2}^{\ast},s_{t-m+3}^{\ast},\cdots,s_{t+1}^{\ast}\right) \end{cases} $$によって求められる。" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-12-12T13:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-12-12T13:00:00+09:00" />
+<meta name="twitter:title" content="レポート課題10(12/12出題) ">
+<meta name="twitter:description" content="レポート課題1¶ 問題¶遷移確率が直前 $m$ 個の状態に依存する場合のビタビアルゴリズムを考え、その時間計算量を求めよ。 $$\text{transition probability: } p(|s_{t-m+1}, \ldots, s_{t-1}, s_t) = a_{t-m+1, \ldots, t-1,t,k}$$ 解答¶$1$ 次のマルコフ性を仮定した場合に $q_t$ が $K\times 1$ の行列（$K$ 次元ベクトル）で表されていたが、$m$ 次の場合、条件付き独立性を用いても $m$ 個前の状態は必要であるため、$q_{t-m+1,\ldots,t}$ となり、 $K\times m$ の行列で表されることになる。 したがって、再起式は以下で表される。 $$ \begin{cases} \begin{aligned} q_{t-m+2,\ldots,t+1}(k_2,k_3,\ldots,k_m,k) &amp;= \max_{k_1,k_2,\ldots,k_m}\left[q_{t-m+1,\ldots,t}(k_1,k_2,\ldots,k_m)a_{k_1,k_2,\ldots,k_m, k}\right]b_{k,o_{t+1}}\\ \xi_{t-m+2,\ldots,t+1}(k_2,k_3,\ldots,k_m,k) &amp;= \underset{k_1,k_2,\ldots,k_m}{\mathrm{arg~max}}\left[q_{t-m+1,\ldots,t}(k_1,k_2,\ldots,k_m)a_{k_1,k_2,\ldots,k_m, k}\right]\\ \end{aligned} \end{cases} $$また、この時、最適経路は以下によって復元される。 $$ \begin{cases} \left(s_{T-m+1}^{\ast},s_{T-m+2}^{\ast},\cdots,s_T^{\ast}\right) &amp;= \underset{k_1,k_2,\ldots,k_m}{\mathrm{arg~max}}\left\{q_{T-m+1,\ldots,T}(k_1,k_2,\ldots,k_m)\right\}\\ \left(s_{t-m+1}^{\ast},s_{t-m+2}^{\ast},\cdots,s_{t}^{\ast}\right) &amp;= \xi_{t-m+2,t-m+3,\ldots,t+1}\left(s_{t-m+2}^{\ast},s_{t-m+3}^{\ast},\cdots,s_{t+1}^{\ast}\right) \end{cases} $$によって求められる。">
+
+        <title>レポート課題10(12/12出題)  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-report10.html"> <i class="fas fa-lock"></i> レポート課題10(12/12出題)  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div id="pec-encrypted-content" style="display:none">n/SHcM4vrSd/WGo3aMS9NA==;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;^</div>
+<div id="pec-decrypted-content">
+    <h4>This content is encrypted.</h4>
+</div>
+
+<form id="pec-decrypt-form">
+    <label for="pec-content-password">Password</label>
+    <input type="password" id="pec-content-password" placeholder="Password" />
+    <button type="button" id="pec-decrypt-content" style="margin-bottom: 10px;">Decrypt <i class="fa fa-unlock"></i></button>
+</form>
+
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/cipher-core.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/pad-nopadding.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/md5.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/aes.js"></script>
+
+
+<script type="text/javascript">
+    (function () {
+        var strip_padding = function (padded_content, padding_char) {
+            /*
+             * Strips the padding character from decrypted content.
+             */
+            for (var i = padded_content.length; i > 0; i--) {
+                if (padded_content[i-1] !== padding_char) {
+                    return padded_content.slice(0, i);
+                }
+            }
+        };
+
+        var decrypt_content = function (password, iv_b64, ciphertext_b64, padding_char) {
+            /*
+             * Decrypts the content from the ciphertext bundle.
+             */
+            var key = CryptoJS.MD5(password),
+                iv = CryptoJS.enc.Base64.parse(iv_b64),
+                ciphertext = CryptoJS.enc.Base64.parse(ciphertext_b64),
+                bundle = {
+                    key: key,
+                    iv: iv,
+                    ciphertext: ciphertext
+                };
+
+            var plaintext = CryptoJS.AES.decrypt(bundle, key, {iv: iv, padding: CryptoJS.pad.NoPadding});
+
+            try {
+                return strip_padding(plaintext.toString(CryptoJS.enc.Utf8), padding_char);
+            }
+            catch (err) {
+                // encoding failed; wrong password
+                return false;
+            }
+        };
+
+        var init_decryptor = function() {
+            var decrypt_btn = document.getElementById('pec-decrypt-content'),
+                password_input = document.getElementById('pec-content-password'),
+                encrypted_content = document.getElementById('pec-encrypted-content'),
+                decrypted_content = document.getElementById('pec-decrypted-content'),
+                decrypt_form = document.getElementById('pec-decrypt-form');
+
+            decrypt_btn.addEventListener('click', function () {
+                // grab the ciphertext bundle
+                var parts = encrypted_content.innerHTML.split(';');
+
+                // decrypt it
+                var content = decrypt_content(
+                    password_input.value,
+                    parts[0],
+                    parts[1],
+                    parts[2]
+                );
+
+                if (content) {
+                    // success; display the decrypted content
+                    decrypted_content.innerHTML = content;
+                    decrypt_form.parentNode.removeChild(decrypt_form);
+                    encrypted_content.parentNode.removeChild(encrypted_content);
+
+                    // any post processing on the decrypted content should be done here
+                }
+                else {
+                    // ¯\_(ツ)_/¯
+                    password_input.value = '';
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', init_decryptor);
+    })();
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-0.html" title="Previous: 英語論文">英語論文</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-4.html" title="Next: Boosting">Boosting</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-12-12T13:00:00+09:00">Dec 12, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-12-12T13:00:00+09:00">Dec 12, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>96</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
+                    <span>20</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

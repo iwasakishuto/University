@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 知能システム論, 知能システム論, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="試験問題例 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/知能システム論-glossary.html" />
+<meta property="og:description" content="試験問題例" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2020-01-16T10:00:00+09:00" />
+<meta property="og:article:modified_time" content="2020-01-16T10:00:00+09:00" />
+<meta name="twitter:title" content="試験問題例 ">
+<meta name="twitter:description" content="試験問題例">
+
+        <title>試験問題例  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/知能システム論-glossary.html"> 試験問題例  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <h3>導入</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.01: <b>汎化能力について説明せよ</b></p>
+</div>
+
+<p>学習した問題とその答えの情報などを用い、<strong>未知の問題に対して</strong>正しい答えを導く能力のこと。</p>
+<h3>確率統計</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.02: <b>確率統計外れ値がある場合の期待値の問題点と他の統計量との違いを具体例を交えて説明せよ</b></p>
+</div>
+
+<p>年収の平均値が400万円、中央値が350万円の合計50人の集団50人に、年収10億円の人が1人加わったとする。すると、その集団の平均年収は約2350万円となるが、一方の中央値はほとんど変わらない。</p>
+<p>このように、外れ値がある場合、期待値はごく一部の外れ値に強く影響され、データを代表とする値とならないことがある。一方で、中央値や最頻値ではそのようなことが起こらない。このことを、<span class="marker-pink">「外れ値に対してロバストである（頑健性がある）」</span>と呼ぶ。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.03: <b>２つの確率変数の和の分散を各々の分散と共分散を用いて表せ</b></p>
+</div>
+
+<div class="math">$$ V(X+Y) = V(X)+V(Y)+2Cov(X,Y) $$</div>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.04: <b>分散共分散行列について説明せよ</b></p>
+</div>
+
+<p>分散の概念を多次元確率変数に拡張して行列としたもの。</p>
+<ul>
+<li>N個の確率変数について、各確率変数同士の共分散を並べたN×N行列。</li>
+<li>対角には分散が、非対角には共分散が並ぶ。</li>
+<li>半正定値対称。</li>
+<li>各確率変数が独立なら対角行列。</li>
+</ul>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.05: <b>相関係数及び正の相関・負の相関・無相関について説明せよ</b></p>
+</div>
+
+<p>2つの確率変数X,Yの相関係数は</p>
+<div class="math">$$\frac{Cov(X,Y)}{\sqrt{V(X)}\sqrt{V(Y)}}$$</div>
+<p>で定義され、この値は<span class="math">\(-1\)</span>以上<span class="math">\(1\)</span>以下となる。相関係数が正、負、<span class="math">\(0\)</span>のときそれぞれ正の相関がある、負の相関がある、無相関であるという。</p>
+<div id="q2" class="frame" style="background-color: #fff78f">
+    <p>No.06: <b>独立と無相関性について説明せよ</b></p>
+</div>
+
+<ul>
+<li>2つの連続型/離散型の確率変数<span class="math">\(X,Y\)</span>は同時確率密度/質量関数がそれぞれの周辺確率密度/質量関数の積で表されるとき独立であるという。</li>
+<li>2つの確率変数<span class="math">\(X,Y\)</span>が独立な時、<ul>
+<li>積の期待値はそれぞれの期待値の積と一致する。（<span class="math">\(E[XY] = E[X]E[y]\)</span>）</li>
+<li>和の積率母関数はそれぞれの積率母関数の積と一致する。（<span class="math">\(M_{X+Y}(t) = M_X(t)M_Y(t)\)</span>）</li>
+<li>無相関である。<strong>（逆は成り立たない。）</strong></li>
+</ul>
+</li>
+</ul>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.07: <b>畳み込みについて説明せよ</b></p>
+</div>
+
+<p>2つの独立な確率変数<span class="math">\(X,Y\)</span>の周辺確率密度関数を<span class="math">\(p_x,p_y\)</span>とすると<span class="math">\(X\)</span>と<span class="math">\(Y\)</span>の和<span class="math">\(Z\)</span>の確率密度関数は</p>
+<div class="math">$$p_z(z) = \int p_x(x) p_y(z-x) dx$$</div>
+<p>と計算できる。このように、<span class="marker-pink">関数 <span class="math">\(g(=p_x)\)</span> を平行移動しながら関数 <span class="math">\(f(=p_y)\)</span> に重ね足し合わせる二項演算（<span class="math">\(f\ast g\)</span>）のことを畳み込み(convolution)</span>と呼ぶ。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.08: <b>２項分布の積率母関数を求め、期待値と分散を導出せよ</b></p>
+</div>
+
+<p>成功する確率<span class="math">\(p\)</span>、失敗する確率<span class="math">\(1-p\)</span>の実験を同じ条件で独立に繰り返すことを<strong>ベルヌーイ試行</strong>という。このベルヌーイ試行を<span class="math">\(n\)</span>回行った時の成功回数を確率変数とする<strong>離散確率分布</strong>を<span class="marker-pink">二項分布(binomial distribution)</span>と呼ぶ。</p>
+<div class="math">$$
+P(X=k)=\left(\begin{array}{l}{n} \\ {k}\end{array}\right) p^{k}(1-p)^{n-k}
+$$</div>
+<p>積率母関数<span class="math">\(M_X(t)\)</span>は、</p>
+<div class="math">$$
+\begin{align}
+  M_X(t)
+  &amp;= E\left(e^{tX}\right) \\
+  &amp;= \sum_{x=0}^n e^{tx} P(X=x)\\
+  &amp;= \sum_{x=0}^n e^{tx} \left(\begin{array}{l}{n} \\ {x}\end{array}\right) p^{x}(1-p)^{n-x}\\
+  &amp;= \sum_{x=0}^n e^{tx} \left(\begin{array}{l}{n} \\ {x}\end{array}\right) \left(pe^t\right)^{x}(1-p)^{n-x}\\
+  &amp;= (pe^t+q)^n \quad (\because \text{
+Binomial theorem})
+\end{align}
+$$</div>
+<p>これを用いると、期待値<span class="math">\(E(X)\)</span>は</p>
+<div class="math">$$
+\begin{aligned}
+    E(X)
+    &amp;=\left.\frac{d M_{X}(t)}{d t}\right|_{t=0} \\
+    &amp;=\left.n\left(\mathrm{e}^{t} p+1-p\right)^{n-1} p \mathrm{e}^{t}\right|_{t=0} \\
+    &amp;=n(1-p+p)^{n-1} p \\
+    &amp;=n p
+\end{aligned}
+$$</div>
+<p>同様にして、分散<span class="math">\(V(X)\)</span>は</p>
+<div class="math">$$
+\begin{aligned}
+    E\left(X^{2}\right)
+    &amp;=\left.\frac{d^{2} M_{x}(t)}{d t^{2}}\right|_{t=0} \\
+    &amp;=\left.\left(n p\left(\mathrm{e}^{t} p+1-p\right)^{n-1} \mathrm{e}^{t}\right)^{\prime}\right|_{t=0} \\
+    &amp;=n(n-1) p\left(\mathrm{e}^{t} p+1-p\right)^{n-2} p \mathrm{e}^{t}+n p\left(\mathrm{e}^{t} p+1-p\right)^{n-1} \mathrm{e}^{t} \\
+    &amp;=n(n-1) p^{2}+n p \\
+    V\left(X\right)
+    &amp;=E\left(X^{2}\right)-E\left(X\right)\\
+    &amp;=np\left(1-p\right)
+\end{aligned}
+$$</div>
+<p>と求められる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.09: <b>ポアソン分布の積率母関数を求め、期待値と分散を導出せよ</b></p>
+</div>
+
+<p><strong>ポアソン分布(Poisson distribution)</strong>は、単位時間中に平均<span class="math">\(\lambda\)</span>回起こる事象の生起回数の確率分布で、確率質量関数は<span class="math">\(\dfrac{e^{-\lambda} \lambda^x}{x!}\)</span>と表される。</p>
+<p>ここで、積率母関数<span class="math">\(M_X(t)\)</span>とその微分が</p>
+<div class="math">$$
+\begin{align}
+  M_X(t) &amp;= \sum_{x=0}^\infty e^{tx} \cdot \frac{e^{-\lambda} \lambda^x}{x!} \\
+  &amp;= e^{-\lambda} \sum_{x=0}^\infty \frac{(\lambda e^t)^x}{x!} \\
+  &amp;= e^{-\lambda} e^{\lambda e^t} \quad \left(\because \text{ McLaughlin expansion : } e^t=\sum_{x=0}^\infty \frac{t^x}{x!}\right) \\
+  &amp;= e^{\lambda (e^t-1)}\\
+  M_X^\prime(t) &amp;= \lambda e^t e^{\lambda (e^t-1)} \\
+  M_X^{\prime\prime}(t) &amp;= \lambda e^t e^{\lambda (e^t-1)} + \lambda^2 e^{2t} e^{\lambda (e^t-1)}
+\end{align}
+$$</div>
+<p>であるから、期待値<span class="math">\(E(X)\)</span>と分散<span class="math">\(V(X)\)</span>はそれぞれ以下で表される。</p>
+<div class="math">$$ \begin{align}
+  E(X) &amp;= M_X^\prime(0) = \lambda \\
+  V(X) &amp;= M_X^{\prime\prime}(0) - M_X^\prime(0)^2 = \lambda
+\end{align}
+$$</div>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.10: <b>正規分布の積率母関数を求め、期待値と分散を導出せよ</b></p>
+</div>
+
+<p><strong>正規分布(normal distribution)</strong>の確率密度関数は</p>
+<div class="math">$$f(x) = \dfrac{1}{\sigma \sqrt{2 \pi}} \exp \left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$</div>
+<p>で表されるので、積率母関数<span class="math">\(M_X(t)\)</span>は</p>
+<div class="math">$$ \begin{align}
+  M_X(t)
+  &amp;= \int_{-\infty}^\infty e^{tx} f(x) dx \\
+  &amp;= \exp \left(\mu t+\frac{\sigma^2 t^2}{2} \right) \underbrace{\int_{-\infty}^{\infty} \frac{1}{\sigma \sqrt{2 \pi}} \exp \left(- \frac{\{x-(\mu+\sigma^2t)\}^2}{2\sigma^2} \right) dx}_{=\int_{-\infty}^{\infty}\mathcal{N}\left(\mu+\sigma^2 t, \sigma^2\right) = 1} \\
+  &amp;= \exp \left(\mu t+ \frac{\sigma^2 t^2}{2} \right)
+\end{align} $$</div>
+<p>期待値は<span class="math">\(\mu\)</span>、分散は<span class="math">\(\sigma^2\)</span>となる。（導出は省略。）</p>
+<div id="q1" class="frame" style="background-color: #fff78f">
+    <p>No.11: <b>ガンマ分布の積率母関数を求め、期待値と分散を導出せよ</b></p>
+</div>
+
+<p>ガンマ分布は、<strong>ガンマ関数 <span class="math">\(\Gamma(\alpha) = \int_0^\infty x^{\alpha-1} e^{-x} dx \quad (&gt;0)\)</span></strong>を用いて</p>
+<div class="math">$$ \begin{align}
+  f(x) =
+  \begin{cases}
+    \dfrac{\lambda^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\lambda x} &amp; (x \geq 0) \\
+    0 &amp; (x &lt; 0)
+  \end{cases}
+\end{align}
+$$</div>
+<p>と表される。したがって、積率母関数は</p>
+<div class="math">$$ \begin{align}
+  M_X(t) &amp;= \int_0^\infty e^{tx} \frac{\lambda^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\lambda x} dx \\
+  &amp;= \frac{\lambda^\alpha}{\Gamma(\alpha)} \int_0^\infty \left(\frac{y}{\lambda - t} \right)^{\alpha -1} \exp(-y) \frac{1}{\lambda -t} dy \quad \left(\because y = (\lambda -t)x\right) \\
+  &amp;= \frac{\lambda^{\alpha}}{\Gamma(\alpha)}\frac{1}{\left(\lambda-t\right)^{\alpha}}\int_0^{\infty}y^{\alpha-1}e^{-y}dy\\
+  &amp;= \frac{\lambda^\alpha}{\Gamma(\alpha)} \frac{\Gamma(\alpha)}{(\lambda -t)^\alpha}\\
+  &amp;= \lambda^\alpha (\lambda -t)^{-\alpha}
+\end{align} $$</div>
+<p>となるので、</p>
+<div class="math">$$
+\begin{align}
+M_X(t)^{\prime}
+&amp;= \frac{\alpha}{\lambda-t}M_X(t)\\
+&amp;= \frac{\alpha\lambda^{\alpha}}{\left(\lambda-t\right)^{\alpha+1}}\\
+M_X(t)^{\prime\prime}
+&amp;= \frac{\left(\alpha + 1\right)}{\lambda-t}M_X(t)^{\prime}\\
+&amp;= \frac{\alpha\left(\alpha + 1\right)\lambda^{\alpha}}{\left(\lambda-t\right)^{\alpha+2}}
+\end{align}
+$$</div>
+<p>から、<span class="unRed">期待値は<span class="math">\(\dfrac{\alpha}{\lambda}\)</span>、分散は<span class="math">\(\dfrac{\alpha}{\lambda^2}\)</span></span>となる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.12: <b>独立同一分布について説明せよ</b></p>
+</div>
+
+<p><span class="math">\(n\)</span>個の確率変数<span class="math">\(X_1,\cdots,X_n\)</span>が<strong>「独立に」</strong>、<strong>「同じ分布に」</strong>従うとき、<strong>独立同一分布に従う</strong>という。</p>
+<p>このとき、同時確率密度関数は、各標本の確率密度関数を<span class="math">\(g(x)\)</span>とすると</p>
+<div class="math">$$ f(x_1,x_2,\cdots,x_n) = g(x_1)g(x_2)\cdots g(x_n) $$</div>
+<p>で表される。ここでこれらが期待値<span class="math">\(\mu\)</span>、分散<span class="math">\(\sigma^2\)</span>の独立同一分布に従う標本だとすると、標本平均<span class="math">\(\overline{X}_n = \displaystyle \frac{1}{n} \sum_{i=1}^n X_i\)</span>の期待値と分散は、期待値が<span class="math">\(\mu\)</span>のままである一方、分散は<span class="math">\(\dfrac{\sigma^2}{n}\)</span>と減少する。</p>
+<p>つまり<span class="marker-pink">標本数を増やすことで、母集団の標本平均値が安定する</span>ことが分かる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.13: <b>チェビシェフの不等式について説明せよ</b></p>
+</div>
+
+<p><span class="marker-pink">分散を持つ確率分布</span>に従う任意の確率変数に対して、<span class="math">\(k&gt;0\)</span>のとき</p>
+<div class="math">$$P(|X-E(X)| \geq k) \leq \frac{V(X)}{k^2}$$</div>
+<p>が成り立つ。この不等式を使うことで、<strong>「確率分布の具体的な形はわからないが、期待値と分散がわかる」</strong>といった場合に、確率の上限を計算することが可能になる。</p>
+<p>なお、この不等式は以下のように証明できる。</p>
+<div class="math">$$ \begin{align}
+  V(X) &amp;= \int_{-\infty}^{\infty} (x-E(X))^2 f(x) dx \\
+  &amp;\geq \int_I  (x-E(X))^2 f(x) dx \quad (I = \{ x: |x-E(X)| \geq k \}) \\
+  &amp;\geq k^2 \int_I f(x) dx \\
+  &amp;= k^2 P(|X-E(X)| \geq k)
+\end{align} $$</div>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.14: <b>大数の弱法則について説明せよ</b></p>
+</div>
+
+<p>標本平均<span class="math">\(\overline{X}_n\)</span>が期待値に確率収束するということ。</p>
+<div class="math">$$ \forall \varepsilon &gt; 0 \lim_{n \to \infty} P(|\overline{X}_n - \mu| \geq \varepsilon) = 0 $$</div>
+<p>これより，標本を十分に多く取れば標本平均を真の期待値とみなしてよいことがわかる。これは各標本の期待値を<span class="math">\(\mu\)</span>、分散を<span class="math">\(\dfrac{\sigma^2}{n}\)</span>とすると、チェビシェフの不等式より、</p>
+<div class="math">$$ \left(0\leq\right)P(|\overline{X}_n - \mu| \geq \varepsilon) \leq \frac{\sigma^2/n}{\varepsilon^2} $$</div>
+<p>であり、<span class="math">\(n \to \infty\)</span>のときに右辺が0に収束することから、左辺も0に収束することにより示される。</p>
+<p>この法則は、<strong>実際には分散が存在しなくても成り立つ。</strong></p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.15: <b>大数の強法則について説明せよ</b></p>
+</div>
+
+<p>標本平均が<span class="marker-pink">概収束(almost sure convergence)</span>するということ。つまり、無限列<span class="math">\(\{X_n\}\)</span>の確率分布が<span class="math">\(\mu\)</span>に収束する。</p>
+<div class="math">$$ \overline{X}_n \to \mu \quad \textrm{with probability } 1 $$</div>
+<p>これにより、<strong>標本平均が母平均に収束する</strong>ことが分かる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.16: <b>確率収束と概収束の違いについて説明せよ</b></p>
+</div>
+
+<p><strong>確率収束は<span class="math">\(X_n\)</span>の確率分布を<span class="math">\(n\)</span>ごとに考えるのに対し，概収束は無限列<span class="math">\(\{ X_n \}\)</span>の確率分布を考える。</strong></p>
+<div class="math">$$ \begin{align}
+  X_n =
+  \begin{cases}
+    0 &amp; \textrm{with probability } 1-\frac{1}{n} \\
+    1 &amp; \textrm{with probability } \frac{1}{n}
+  \end{cases}
+\end{align} $$</div>
+<p>
+となるような確率分布を考えると、 \
+</p>
+<div class="math">$$ \begin{align}
+  \lim_{n \to \infty} \textrm{Pr}(|X_n| - 1 &gt; \varepsilon) &amp;= 0 \\
+  \sum_{n=1}^\infty \textrm{Pr}(|X_n| = 1) &amp;= \infty
+\end{align} $$</div>
+<p>となり、0に<strong>確率収束する</strong>が、<strong>概収束はしない</strong>ことが分かる。厳密には<strong>「ボレル・カンテリの補題」</strong>を用いて示される。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.17: <b>中心極限定理について説明せよ</b></p>
+</div>
+
+<p>標本平均を標準化する。</p>
+<div class="math">$$ \overline{Z}_n = \dfrac{\overline{X}_n-\mu}{\sigma / \sqrt{n}} $$</div>
+<p>このとき、任意に固定した<span class="math">\(a &lt; b\)</span>に対して<span class="math">\(n \to \infty\)</span>のとき、次式が成り立つ。</p>
+<div class="math">$$ P(a \leq \overline{Z}_n \leq b) \to \int_a^b \dfrac{1}{\sqrt{2\pi}} e^{-x^2/2} dx $$</div>
+<p>これを、<strong>「<span class="math">\(\overline{Z}_n\)</span>の分布が標準正規分布に弱収束（または分布収束）する」</strong>と言ったり、<span class="math">\(\overline{Z}_n\)</span>は漸近的に標準正規分布に従うと言ったりする。ここで、</p>
+<div class="math">$$ \overline{Z}_n \to Z (\text{ weakly }) \Longleftrightarrow \lim_{n \to \infty} M_{\overline{Z}_n}(t) = M_Z(t) $$</div>
+<p>つまり、<span class="marker-pink">「弱収束すること」と「積率母関数が各点収束すること」は同値</span>である。</p>
+<p>まとめると、<span class="math">\(n\)</span>が大きいとき、<span class="unRed">標本平均は期待値<span class="math">\(\mu\)</span>、分散<span class="math">\(\frac{σ^2}{n}\)</span>の正規分布にほぼ従う。</span></p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.18: <b>弱収束・分布収束について説明せよ</b></p>
+</div>
+
+<p>弱収束・分布収束は</p>
+<div class="math">$$ \lim_{n \to \infty} M_{\overline{Z}_n}(t) = M_Z(t) $$</div>
+<p>と同値であり、積率母関数が各点収束することである。これは、<strong>確率収束や概収束よりも弱い収束</strong>である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.19: <b>仮説検定について説明し、社会・科学における利用例とその役割について自由に述べよ</b></p>
+</div>
+
+<p>仮説検定とは、<strong>「母集団についての何らかの命題を標本に基づいて検証すること」</strong>である。</p>
+<p>帰無仮説の元で成り立つ確率が高々<span class="math">\(\alpha\)</span>であるような事象を考える。ここで<span class="math">\(\alpha\)</span>は<strong>有意水準</strong>と呼ばれ、5%か1%に設定されることが多い。（検定を行う前に決める。）</p>
+<p>次に、標本を観測してその事象が成り立っているかを調べる。</p>
+<ul>
+<li>成り立っていれば、帰無仮説がほとんど起こらないことを証明しているので、<strong>帰無仮説を棄却する。</strong></li>
+<li>成り立っていなければ、帰無仮説が現実と矛盾することを証明するだけの<strong>「十分な根拠がない」</strong>として帰無仮説を採択する。</li>
+</ul>
+<p>社会においては、例えば新たに開発した薬に効能が本当にあるのかどうかを検証する時などに用いられる。プラセボに対する薬の試験を考える（「薬の効果を有意的に主張できるか」を調べる）と、</p>
+<ul>
+<li>帰無仮説は、「薬の効果を主張できない」に当たり、「薬に対する反応の平均がプラセボに対するそれと等しい。」という仮説</li>
+<li>対立仮説は、「薬の効果を主張できる」に当たり、「薬に対する反応の平均がプラセボに対するそれとは異なる。」という仮説</li>
+</ul>
+<p>である。(Wikipedia より)</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.20: <b>帰無仮説と対立仮説について説明せよ</b></p>
+</div>
+
+<p>帰無仮説は元の仮説で、何の関係もない、差異はみられない、仮説などそもそもなかった、などを意味する仮説で、対立仮説と排反な仮説である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.21: <b>有意水準について説明せよ</b></p>
+</div>
+
+<p>仮説検定において、帰無仮説を棄却する基準となる確率のこと。検定を行う前に決められ、通常1%か5%に設定される。なお、有意水準は<strong>「帰無仮説が正しいのに、謝って棄却してしまう確率（第一種の過誤）」</strong>でもある。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.22: <b>正規分布の片側検定・両側検定について説明せよ</b></p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">検定方法</th>
+<th align="left">例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">両側検定</td>
+<td align="left"><strong>あるパラメータが目標値と等しいかを調べる検定方法</strong></td>
+<td align="left">ある装置の複製を作ったときに、元の装置と同じ性能が得られるかを調べるときなどに使用される。正規分布においては、有意水準<span class="math">\(\alpha\)</span>に対して、確率分布の両端の面積が<span class="math">\(\frac{\alpha}{2}\)</span>の領域を棄却域とし、現実の正規化標本平均<span class="math">\(Z\)</span>が棄却域に入ったら、帰無仮説を棄却する。</td>
+</tr>
+<tr>
+<td align="center">片側検定</td>
+<td align="left"><strong>あるパラメータが比較対象より大きいかどうかを調べる検定方法</strong></td>
+<td align="left">新しく開発した装置の性能が従来の装置よりも良いかどうかを調べるときなどに使用される。正規分布においては、有意水準<span class="math">\(\alpha\)</span>に対して、確率分布の右端の面積が<span class="math">\(\alpha\)</span>の領域を棄却域とし、現実の正規化標本平均<span class="math">\(Z\)</span>が棄却域に入ったら、帰無仮説を棄却する。</td>
+</tr>
+</tbody>
+</table>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.23: <b>二標本検定について例を交えて説明せよ</b></p>
+</div>
+
+<p>期待値がそれぞれ<span class="math">\(\mu_X, \mu_Y\)</span>の二つの分布に従って取り出した独立同一分布に従う標本</p>
+<div class="math">$$ \{X_i\}_{i=1}^{n_X}, \{Y_i\}_{i=1}^{n_Y} $$</div>
+<p>から帰無仮説<span class="math">\(\mu_X = \mu_Y\)</span>を検定するような手法。</p>
+<p>例えば、ある反応での化合物の生成量を予測する問題を考える。</p>
+<p>触媒Xと触媒Yでそれぞれ何度か実験を行い、それぞれの生成量を調べると、触媒Xの方が平均生成量が少なかった。このとき、触媒Yの方が優れていると結論付けてよいかはわからないので、<strong>「触媒Xとの平均生成量の差が有意であるかどうか」</strong>を二標本検定で調べる。</p>
+<p>二つの標本はそれぞれ<span class="math">\(\mathcal{N}\left(\mu_X,\sigma^2\right),\mathcal{N}\left(\mu_Y,\sigma^2\right)\)</span>に従うとすると、標本平均の差<span class="math">\(\overline{X}-\overline{Y}\)</span>は平均<span class="math">\(\mu_X-\mu_Y\)</span>、分散<span class="math">\(\frac{\sigma^2}{n_X}+\frac{\sigma^2}{n_Y}\)</span>の正規分布に従う。</p>
+<ul>
+<li>母分散が既知の時：
+標本平均の差を標準化すると標準正規分布に従うので、棄却域を計算することができる。</li>
+<li>母分散が未知の時：
+<span class="math">\(t\)</span>検定を行う。まず、分散<span class="math">\(\sigma^2\)</span>を標本から以下のように推定する。
+<div class="math">$$ \hat{\sigma}^2 = \dfrac{\sum_{i=1}^{n_X} (X_i - \overline{X})^2 + \sum_{i=1}^{n_Y} (Y_i - \overline{Y})^2}{n_X + n_Y - 2} $$</div>
+このとき、<span class="math">\(\hat{Z}\)</span>は自由度<span class="math">\(\phi = n_X + n_Y - 2\)</span>の<span class="math">\(t\)</span>分布に従うので、その<span class="math">\(t\)</span>分布の棄却域を計算すればよい。</li>
+</ul>
+<h3>制約なし最適化</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.24: <b>制約なし最適化最適化問題における最適性条件について説明せよ</b></p>
+</div>
+
+<p>最適化問題の最適解であるための<strong>必要条件</strong>を最適性条件という。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.25: <b>制約なし最適化問題の最適性条件について説明せよ</b></p>
+</div>
+
+<p><span class="math">\(x^{\ast}\)</span>が(局所)最適解であるための必要条件は</p>
+<div class="math">$$\frac{\partial}{\partial x} f(x^{\ast}) = 0$$</div>
+<p>である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.26: <b>凸関数の定義を述べよ</b></p>
+</div>
+
+<p>任意の<span class="math">\(\theta \in [0, 1]\)</span>と<span class="math">\(x, y \in dom(f)\)</span>に対して</p>
+<div class="math">$$f(\theta x + (1 - \theta) y) \leq \theta f(x) + (1 - \theta)f(y)$$</div>
+<p>が成立するとき、<span class="math">\(f\)</span>を凸関数という</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.27: <b>fが１階微分可能なときfが凸関数であるための必要十分条件について説明せよ</b></p>
+</div>
+
+<p>任意の<span class="math">\(x, y\)</span>に対して</p>
+<div class="math">$$f(x) \ge f(y) + \nabla f (x)^T (x - y)$$</div>
+<p>が成立することである。なお、このとき接線の方程式を<span class="math">\(g\)</span>として<span class="math">\(g \leq f\)</span>が成立する</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.28: <b>fが２階微分可能なときfが凸関数であるための必要十分条件について説明せよ</b></p>
+</div>
+
+<p>ヘッセ行列が半正定値であること。すなわち、任意の<span class="math">\(x\)</span>に関して</p>
+<div class="math">$$\nabla^2 f(x) \ge 0$$</div>
+<p>が成立することである。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.29: <b>凸集合について説明せよ</b></p>
+</div>
+
+<p>任意の<span class="math">\(\theta \in [0, 1]\)</span>と<span class="math">\(x, y \in S\)</span>に対して<span class="math">\(\theta x + (1 - \theta) y \in S\)</span>となるとき、<span class="math">\(S\)</span>を凸集合という。このとき、<span class="math">\(x\)</span>と<span class="math">\(y\)</span>を結ぶ線分上の全ての点が<span class="math">\(S\)</span>に属する。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.30: <b>凸最適化問題における最適解の必要十分条件について説明せよ</b></p>
+</div>
+
+<p>凸関数 <span class="math">\(f\)</span> において、<span class="math">\(x^{\ast}\)</span>が(局所)最適解であるための必要十分条件は</p>
+<div class="math">$$\frac{\partial}{\partial x} f(x^{\ast}) = 0$$</div>
+<p>である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.31: <b>劣勾配と劣微分について説明せよ</b></p>
+</div>
+
+<p>任意の<span class="math">\(x\)</span>に対して<span class="math">\(f(x) \ge f(x^{\prime}) + \theta^T (x - x^{\prime})\)</span>を満たすような<span class="math">\(a\)</span>を(点<span class="math">\(x^{\prime}\)</span>における)劣勾配といい、劣勾配全体の集合を(点<span class="math">\(x^{\prime}\)</span>における)劣微分といい、<span class="math">\(\partial f(x^\prime)\)</span>で表す。</p>
+<p>なお、<span class="math">\(f\)</span>が微分可能であれば、劣勾配は<span class="math">\(f\)</span>の微分に一致する。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.32: <b>ヘッセ行列とニュートン法について説明せよ</b></p>
+</div>
+
+<p>2回微分可能な関数<span class="math">\(f\)</span>に対して<span class="math">\(H(x) = \nabla^2 f (x)\)</span>を点<span class="math">\(x\)</span>におけるヘッセ行列という。つまり、</p>
+<div class="math">$$ [\nabla^2 f(x)]_{j,j^\prime} = \dfrac{\partial^2 f(x)}{\partial x^{(j)} \partial x^{(j^\prime)}} $$</div>
+<p>である。ニュートン法は　、ステップ幅を<span class="math">\(\varepsilon_k \in (0,1]\)</span>として、</p>
+<div class="math">$$x_{n+1} = x_n - \varepsilon_k H(x_n)^{-1} \nabla f(x_n)$$</div>
+<p>という更新式によって(最適性条件を満たす)最適解<span class="math">\(x^{\ast}\)</span>を求めるアルゴリズムである。一般の勾配降下法が一次微分の情報のみを用いるのに対し、二次微分の情報も用いるため、効率よく最適解に達することができるとされている。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.33: <b>正割条件を導出し準ニュートン法との関係について説明せよ</b></p>
+</div>
+
+<p>目的関数<span class="math">\(f(x)\)</span>の<span class="math">\(x_k\)</span>周りでの二次近似<span class="math">\(f_k(x)\)</span>は</p>
+<div class="math">$$ f_k(x) = f(x_k) + \nabla f(x_k)^T(x-x_k) + \frac{1}{2}(x-x_k)^T \nabla ^2 f(x_k)(x-x_k) $$</div>
+<p>であり、これを<span class="math">\(x\)</span>で微分すると、その勾配<span class="math">\(\nabla f_k(x)\)</span>は</p>
+<div class="math">$$ \nabla f_k(x) = \nabla f(x_k)+\nabla^2 f(x_k)(x-x_k) $$</div>
+<p>となる。<span class="math">\(x=x_{k-1}\)</span>とすると、<span class="math">\(\nabla f(x_{k-1}) = \nabla f_k(x_{k-1})\)</span>のとき、</p>
+<div class="math">$$ \nabla^2 f(x_k)(x_k-x_{k-1}) = \nabla f(x_k) - \nabla f(x_{k-1}) $$</div>
+<p>を得る。これを<span class="marker-pink">正割条件(secant condition)</span>という。</p>
+<p>なお、準ニュートン法では、正割条件を満たす<span class="math">\(H_k\)</span>の中で性質の良いものを選ぶ。</p>
+<h3>制約付き最適化</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.34: <b>制約付き最適化等式制約付き最適化問題の最適性条件について説明せよ</b></p>
+</div>
+
+<p>等式制約付き最適化問題</p>
+<div class="math">$$ \min_{x \in dom(f)} f(x) \quad \textrm{subject} \ \textrm{to} \ g(x) = 0 $$</div>
+<p>の最適性条件は、<strong><span class="math">\(x^\ast\)</span>が最適解のとき、<span class="math">\(\nabla f(x^\ast)\)</span>と<span class="math">\(\nabla g(x^\ast)\)</span>が平行になること</strong>である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.35: <b>ラグランジュ未定乗数法について説明せよ</b></p>
+</div>
+
+<p><span class="math">\(\min_x \{ f(x) \mid g(x)=0 \}\)</span>という等式制約付き最適化問題があったときに、ラグランジュ関数<span class="math">\(L(x, \lambda) = f(x) + \lambda^T g(x)\)</span>を最適化することでこの最適化問題を解く方法をラグランジュの未定乗数法という。</p>
+<p>このとき、<span class="math">\(\dfrac{\partial }{\partial x}L = 0, \dfrac{\partial}{\partial \lambda}L = 0\)</span>が最適性条件となる。</p>
+<div id="q3" class="frame" style="background-color: #fff78f">
+    <p>No.36: <b>双対上昇法について説明せよ</b></p>
+</div>
+
+<p>適当な初期値から<span class="marker-pink">ラグランジュ関数の最小化と双対変数の勾配上昇を交互に実行することで主変数を最適化する方法</span>である。このときに扱う問題はラグランジュ双対問題で、</p>
+<div class="math">$$ \begin{align}
+  f^\ast &amp;= \max_{\lambda \in \mathbb{R}^m} \omega(\lambda) \\
+  \omega(\lambda) &amp;= \inf_{x \in \chi} L(x,\lambda) \\
+  L(x,\lambda) &amp;= f(x) + \lambda^T g(x)
+\end{align} $$</div>
+<p>
+更新式は<span class="math">\(\varepsilon_k (&gt;0)\)</span>をステップ幅として
+</p>
+<div class="math">$$ \begin{align}
+  x_{k+1} &amp;= \textrm{argmin}_{x \in \chi} L(x,\lambda_k) \\
+  \lambda_{k+1} &amp;= \lambda_k + \varepsilon_k g(x_{k+1})
+\end{align} $$</div>
+<p>となる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.37: <b>射影勾配法について説明せよ</b></p>
+</div>
+
+<p>射影勾配法(gradient projection method)は、不等式制約付き最適化問題</p>
+<div class="math">$$ \min_{x \in \chi} f(x) \ \textrm{subject} \ \textrm{to} \ h(x) \leq 0 $$</div>
+<p>を解く手法の一つであり、</p>
+<ul>
+<li>勾配降下<span class="math">\(\tilde{x}_{k+1} = x_k - \varepsilon_k \nabla f(x_k)\)</span></li>
+<li>実行可能領域への射影<span class="math">\(x_{k+1}=P_k \tilde{x}_{k+1}\)</span></li>
+</ul>
+<p>を繰り返して最適化を行う。これらをまとめると、更新式は、<span class="math">\(x_{k+1}=P_k(x_k-\varepsilon \nabla f(x_k))\)</span>となる。射影が簡単に計算できる時には効率が良い。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.38: <b>KKT条件について説明せよ</b></p>
+</div>
+
+<p>不等式制約付き最適化問題における最適性条件である。一般には必要条件だが、凸最適化問題では必要十分条件となる。</p>
+<p><span class="math">\(\min_x \{ f(x) \mid g(x) = 0, h(x) \le 0 \}\)</span>なる最適化問題において、条件式は</p>
+<ul>
+<li><span class="math">\(\nabla f(x^{\ast}) + \nabla g(x^{\ast})^T \lambda^{\ast}  + \nabla h(x^{\ast})^T \mu^{\ast} = 0\)</span></li>
+<li><span class="math">\(g(x^{\ast}) = 0\)</span></li>
+<li><span class="math">\(h(x^{\ast}) \le 0\)</span></li>
+<li><span class="math">\(\mu^{\ast} \ge 0\)</span></li>
+<li><span class="math">\(\mu_i^{\ast} h_i(x^{\ast}) = 0 \quad i = 1, \dots, n\)</span></li>
+</ul>
+<p>である。</p>
+<h3>教師あり学習</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.39: <b>教師あり学習教師あり学習について説明し、独自の応用例とその実現可能性・社会的影響について自由に述べよ</b></p>
+</div>
+
+<p><strong>手持ちの正解付きデータを使って新たなデータに対する正解を予測するような機械学習の手法</strong>のこと。</p>
+<p>代表的な統計手法はとしては回帰と分類がある。前者は降水量の予測、後者は文字画像の認識などに使用される。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.40: <b>最小二乗回帰について説明せよ</b></p>
+</div>
+
+<p>訓練出力との二乗誤差</p>
+<div class="math">$$E_D(\mathbf{w}) = \frac{1}{2}\sum_{n=1}^N\left\|\mathbf{t}_n-\mathbf{y}\left(\mathbf{x}_n, \mathbf{w}\right)\right\|^2$$</div>
+<p>を最小にするモデルパラメータ<span class="math">\(\mathbf{w}\)</span>を求める手法。</p>
+<p>ここで、<span class="math">\(y\left(\mathbf{x}_n, \mathbf{w}\right)\)</span>が<span class="math">\(\mathbf{w}\)</span>に関して線形な線形モデル<span class="math">\(\left(y\left(\mathbf{x}_n, \mathbf{w}\right) = \mathbf{w}^T\boldsymbol{\phi}(\mathbf{x}_n)\right)\)</span>のとき、</p>
+<div class="math">$$
+\begin{aligned}
+\mathbf{w}_{\text{ML}}&amp;=\left(\boldsymbol{\Phi}^T\boldsymbol{\Phi}\right)^{-1}\boldsymbol{\Phi}^T\mathbf{t}\\
+\boldsymbol{\Phi}_{nj}&amp;= \phi_j(\mathbf{x}_n)
+\end{aligned}
+$$</div>
+<p>と解が解析的に求まるという利点があるが、ノイズを含む訓練標本に過剰に適合する<strong>過適合</strong>という現象が起こるという欠点もある。
+<div class="frame" style="background-color: #fff78f">
+    <p>No.41: <b>正則化の役割と具体例について説明せよ</b></p>
+</div></p>
+<p>モデルの複雑さに罰則を科すことで、不良設定問題を解いたり過学習を防いだりする手法のこと。理論的正当化はオッカムの剃刀にある。</p>
+<p>具体的には正則化最小二乗回帰という手法があり、</p>
+<div class="math">$$
+E_D(\mathbf{w}) + \lambda E_{\mathbf{w}}(\mathbf{w}) = \frac{1}{2}\sum_{n=1}^N\left\|\mathbf{t}_n-\mathbf{y}\left(\mathbf{x}_n, \mathbf{w}\right)\right\|^2 + \frac{\lambda}{2}\mathbf{w}^T\mathbf{w}
+$$</div>
+<p>を計算する。最小二乗回帰と同様に解析的に解を求めると、</p>
+<div class="math">$$
+\mathbf{w}_{\text{ML}} = \left(\lambda\mathbf{I} + \boldsymbol{\Phi}^T\boldsymbol{\Phi}\right)^{-1}\boldsymbol{\Phi}^T\mathbf{t}
+$$</div>
+<p>となる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.42: <b>交差確認法の役割と具体例について説明せよ</b></p>
+</div>
+
+<p>採用した正則化パラメータ<span class="math">\(\lambda\)</span>やガウス幅<span class="math">\(h\)</span>などのハイパーパラメータの精度を判断するために交差確認法を行う。訓練データセットサイズが小さい場合でも適用することができる。</p>
+<p>具体的には訓練標本<span class="math">\(Z = \{(x_i,y_i)\}_{i=1}^n\)</span>を<span class="math">\(k\)</span>分割して、<span class="math">\(\{Z_i\}_{i=1}^k\)</span>を作る。<span class="math">\(Z_i\)</span>以外を使ってモデルを学習し、残った<span class="math">\(Z_i\)</span>を使ってテスト誤差を確認する。これをすべての組み合わせに対して繰り返し、その平均を出力する。</p>
+<p>最終的には、この平均が最も小さくなるようなハイパーパラメータを採用することにする。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.43: <b>マージンについて説明せよ</b></p>
+</div>
+
+<p>サポートベクターマシンなどにおいて、<strong>分類境界から最も近いデータ点までの距離</strong>をマージンという。</p>
+<ul>
+<li>データが線形分離できる場合：
+マージンの逆数の2乗であるハードマージンを最小化(マージンを最大化)するように分類境界を定める。</li>
+<li>そうでない場合：
+ペナルティを加えたソフトマージンを最小化するように境界を定める。</li>
+</ul>
+<p><strong>マージンが大きい分類器は訓練データのずれに対して頑健であり、汎化誤差が小さくなりやすい。</strong></p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.44: <b>教師あり学習におけるカーネルトリックの役割と具体例を述べよ</b></p>
+</div>
+
+<p>モデルの学習のための式中に現れる<span class="math">\(\phi(x)\)</span>などの特徴量を<strong>直接</strong>計算しなくても、その内積<span class="math">\(\phi(x_i)^T \phi(x_j)(=K(x_i,x_j))\)</span>さえわかれば式を計算することができる。</p>
+<p>そこで、カーネル関数を用いて式を書き直すと、標本数に対する計算量は悪化するが、<strong>特徴空間が高次元の場合であっても(無限次元であっても)計算量は変わらない。</strong></p>
+<p>例えばカーネルトリックを使えば、非線形の基底を用いる分類問題</p>
+<div class="math">$$
+\min_\theta [C\sum_i \max (0,1-f_\theta (x_i) y_i) + \theta^T K \theta ]
+$$</div>
+<p>をステップ幅<span class="math">\(\varepsilon (&gt;0)\)</span>で、更新式を</p>
+<div class="math">$$
+\theta \leftarrow \theta - \varepsilon \left( C\sum_i \partial_\theta \max (0,1-f_\theta (x_i) y_i) + 2 K \theta \right)
+$$</div>
+<p>とする劣勾配法を適用して解くことができる。</p>
+<h3>探索</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.45: <b>探索深さ優先探索について説明し、完全性・計算量・最適性に関して述べよ</b></p>
+</div>
+
+<p><strong>行き止まりになるまで進み、ゴールが見つからなかったら直前の分岐に戻って別の道を探すアルゴリズム</strong>である。探索時のオープンリストをスタックにすることで実現できる。</p>
+<p>最大分岐数を<span class="math">\(b\)</span>、最大の深さを<span class="math">\(m\)</span>として、</p>
+<ul>
+<li>完全性(必ず解が見つかるか): (<span class="math">\(m\)</span>が有限ならば)Yes</li>
+<li>時間計算量: <span class="math">\(O(b^m)\)</span></li>
+<li>空間計算量: <span class="math">\(O(bm)\)</span></li>
+<li>最適性(一番近くの解が見つかるか): No</li>
+</ul>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.46: <b>幅優先探索について説明し、完全性・計算量・最適性に関して述べよ</b></p>
+</div>
+
+<p><strong>分かれ道にきたらそれぞれの道を一歩ずつ進み、ゴールが見つからなかったらそれぞれの道をもう一歩ずつ進むアルゴリズム</strong>である。探索時のオープンリストを待ち行列にすることで実現できる。</p>
+<p>最大分岐数を<span class="math">\(b\)</span>，一番浅い解の深さを<span class="math">\(d\)</span>として，</p>
+<ul>
+<li>完全性: Yes</li>
+<li>時間計算量: <span class="math">\(O(b^d)\)</span></li>
+<li>空間計算量: <span class="math">\(O(b^d)\)</span></li>
+<li>最適性: Yes</li>
+</ul>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.47: <b>反復深化探索について説明し、完全性・計算量・最適性に関して述べよ</b></p>
+</div>
+
+<p><strong>深さに制限をつけて深さ優先探索を行い、徐々に深さを深くしていくアルゴリズム</strong>である。</p>
+<p>最大分岐数を<span class="math">\(b\)</span>，一番浅い解の深さを<span class="math">\(d\)</span>として，</p>
+<ul>
+<li>完全性: Yes</li>
+<li>時間計算量: <span class="math">\(O(b^d)\)</span></li>
+<li>空間計算量: <span class="math">\(O(bd)\)</span></li>
+<li>最適性: Yes</li>
+</ul>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.48: <b>A*探索について説明せよ</b></p>
+</div>
+
+<p>A*探索は、グラフ探索アルゴリズムの1つであり、あるノード<span class="math">\(n\)</span>を経由する場合のコストを</p>
+<div class="math">$$
+f(n) \equiv g(n) + h(n)
+$$</div>
+<p>と分割する。ここで<span class="math">\(g(n)\)</span>はスタートから<span class="math">\(n\)</span>までに要するコストを表し、<span class="math">\(h(n)\)</span>は<span class="math">\(n\)</span>からゴールまでに要するコストを表している。最適値については<span class="math">\(\ast\)</span>をつけて表すことにすれば</p>
+<div class="math">$$
+f^{\ast}(n) \equiv g^{\ast}(n) + h^{\ast}(n)
+$$</div>
+<p>となる。最適経路上の任意のノード<span class="math">\(n^{\ast}\)</span>では<span class="math">\(f(n^{\ast}) = f^{\ast}(n^{\ast})\)</span>であることを利用し、<span class="marker-pink"><span class="math">\(f^{\ast}(n)\)</span>の推定値<span class="math">\(\hat{f}(n) \equiv \hat{g}(n) + \hat{h}(n)\)</span>がより小さくなるノードを優先的に探索する。</span></p>
+<p>ここで、<span class="math">\(\hat{g}(n)\)</span>は探索済みノードから<span class="math">\(n\)</span>に遷移する場合の最小値、<span class="math">\(\hat{h}(n)\)</span>は<span class="math">\(h(n)\)</span>のヒューリスティック推定値であり、8パズル問題などではマンハッタン距離などが使われる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.49: <b>ミニマックス探索について説明せよ</b></p>
+</div>
+
+<p><strong>想定される最大の損害が最小になるように決断を行う戦略</strong>のことである。</p>
+<p>ゲーム木のすべての局面のうち、</p>
+<ul>
+<li>自分の手番では評価を最大化するような手</li>
+<li>相手の手番では評価を最小化するような手</li>
+</ul>
+<p>を選択するとして、最も評価を最大化できるような手を選ぶ探索手法を<strong>ミニマックス探索</strong>という。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.50: <b>アルファ・ベータ探索について説明せよ</b></p>
+</div>
+
+<ul>
+<li><code>max</code> 計算の下界を<span class="math">\(\alpha\)</span></li>
+<li><code>min</code> 計算の上界を<span class="math">\(\beta\)</span></li>
+</ul>
+<p>として、ミニマックス探索における不要な部分を枝刈りして探索効率を上げた探索手法をアルファ・ベータ法という。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.51: <b>モンテカルロ木探索について説明せよ</b></p>
+</div>
+
+<ul>
+<li>適当な深さ（一定回数以上試行した局面についてはより深く探索するようにする）まで</li>
+<li>その時点の評価値に基づいて</li>
+</ul>
+<p>手を進め、それ以降はランダムにプレイ(ロールアウトを行う)して、勝敗判定を行い、勝率や試行回数などから計算される評価値を得る。</p>
+<p>モンテカルロ木探索とは、これを繰り返すことで最適手順を探索する方法であり、UCBスコアを用いれば、無限回の試行で最適手順に収束することが知られている。</p>
+<h3>強化学習</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.52: <b>強化学習強化学習について説明し、独自の応用例とその実現可能性・社会的影響について自由に述べよ</b></p>
+</div>
+
+<p>ある環境内におけるエージェントが、現在の状態を観測し、取るべき行動を決定する問題を扱う機械学習の一種。エージェントは行動を選択することで環境から報酬を得、それを基に方策(policy)を学習する。</p>
+<p>具体的には、ロボットの障害物回避などに用いられる。</p>
+<div id="q4" class="frame" style="background-color: #fff78f">
+    <p>No.53: <b>マルコフ決定問題および期待割引報酬和最大化について説明せよ</b></p>
+</div>
+
+<p>現在の状態<span class="math">\(s\)</span>を観測して行動<span class="math">\(a\)</span>を選択するマルコフ決定過程において、<strong>得られる報酬が最大となるような方策を求める問題</strong>をマルコフ決定問題という。よく用いられる指標として期待割引報酬和があり、次の式で表される。</p>
+<div class="math">$$
+E\left( \sum_{t=0}^\infty \gamma^t R(s_t, a_t, s_{t+1}) \right)
+$$</div>
+<p>ここで<span class="math">\(\gamma\)</span>は0以上1未満の値をとり、割引率と呼ばれる。<span class="math">\(\gamma\)</span>を大きくするとより長期的な視点で報酬を最大化し、<span class="math">\(\gamma\)</span>を小さくするとより短期的な視点で報酬を最大化する。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.54: <b>ベルマン方程式について説明せよ</b></p>
+</div>
+
+<p>状態<span class="math">\(s\)</span>で行動<span class="math">\(a\)</span>をとり、その後政策<span class="math">\(\pi\)</span>に従って行動を続けたときに得られる割引報酬の期待値を表す状態行動価値関数<span class="math">\(Q^\pi(s,a)\)</span>の定義式</p>
+<div class="math">$$
+Q^\pi(s,a) = E \left(\sum_{t=0}^\infty \gamma^t R(s_t,a_t,s_{t+1}) | s_0=s,a_0=a \right)
+$$</div>
+<p>から導かれる方程式であり、具体的には「次に得られる報酬」と「その後に得られる報酬和」の期待値である。</p>
+<div class="math">$$
+Q^\pi(s, a) = E\left(R(s, a, s^{\prime}) + \gamma Q^\pi(s^{\prime}, a^{\prime})\right)
+$$</div>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.55: <b>政策反復法の欠点について説明せよ</b></p>
+</div>
+
+<p>ベルマン方程式ではすべての状態<span class="math">\(s\)</span>、行動<span class="math">\(a\)</span>に対して<span class="math">\(Q^\pi(s,a)\)</span>を計算する必要があるため、計算量が大きくなってしまう。</p>
+<p>特に状態や行動が連続値をとる場合には厳密に計算することができなかったり、ノイズを含む標本に過適合しやすかったりといった問題がある。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.56: <b>ベルマン二乗残差の最小化について説明せよ</b></p>
+</div>
+
+<p>状態行動価値関数<span class="math">\(Q^\pi\)</span>を何らかのモデルで近似し、ベルマン方程式の両辺の値の差(残差)を2乗したもの</p>
+<div class="math">$$
+[E(R(s, a, s') + \gamma Q^\pi(s', a'))-Q^\pi(s, a)]^2
+$$</div>
+<p>をベルマン二乗残差という。これを最小化する問題は通常の回帰問題になっている。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.57: <b>逆強化学習について説明せよ</b></p>
+</div>
+
+<p><strong>報酬関数も未知であるときに、それをデータから学習するような強化学習</strong>を<span class="marker-pink">逆強化学習(Inverse Reinforcement Learning; IRL)</span>という。</p>
+<p>報酬関数を<span class="math">\(R_\beta (s_t,a_t,s_{t+1})\)</span>のようにモデル化し、<strong>"良い"</strong>行動例をいくつか教えて良い行動に対する報酬が大きくなるようにパラメータ<span class="math">\(\beta\)</span>を学習する。</p>
+<h3>教師なし学習</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.58: <b>教師なし学習教師なし学習について説明し、独自の応用例とその実現可能性・社会的影響について自由に述べよ</b></p>
+</div>
+
+<p>正解の与えられていないデータのみから意味のある情報を取り出すような機械学習の手法の一つ。クラスタリングという手法がよく用いられる。音声信号の分離などに用いられる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.59: <b>主成分分析について説明せよ</b></p>
+</div>
+
+<p>射影誤差が最小となるような射影によって、高次元データを低次元データに圧縮する変換を<span class="marker-pink">主成分分析(Principal component analysis; PCA)</span>という。<span class="math">\(d\)</span>次元のデータを<span class="math">\(m\)</span>次元に射影することを考える(<span class="math">\(1 \leq m \ll d\)</span>)。</p>
+<p>すると、射影誤差が最小となる射影<span class="math">\(T\)</span>が"良い"射影だと考えることができる。つまり、</p>
+<div class="math">$$
+T_{PCA} = \textrm{argmin}_{T \in \mathbb{R}^{m \times d}} \left[ \sum_i \| T^TTx_i-x_i\|^2\right] \quad \textrm{subject to } T^TT=I_m
+$$</div>
+<p>が最も良い射影だと言える。このとき、</p>
+<div class="math">$$
+\sum_i \| T^TTx_i-x_i\|^2 = -\textrm{tr} (TCT^T) - \textrm{tr} (C) \quad (C = \sum_i x_i x_i^T)
+$$</div>
+<p>となるので、</p>
+<div class="math">$$
+T_{PCA} = \textrm{argmax}_{T \in \mathbb{R}^{m \times d}} \ \textrm{tr}(TCT^T) \quad \textrm{subject to } T^TT=I_m
+$$</div>
+<p>という関係が導ける。つまり、<span class="math">\(C\)</span>の固有ベクトルを正規化して固有値の大きいものから<span class="math">\(\xi_1,\dots, \xi_d\)</span>と選べば</p>
+<div class="math">$$
+T_{PCA} = (\xi_1,\dots, \xi_m)^T
+$$</div>
+<p>が求められる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.60: <b>固有値問題について説明せよ</b></p>
+</div>
+
+<p>行列<span class="math">\(C\)</span>の固有値<span class="math">\(\lambda_i\)</span>および固有ベクトル<span class="math">\(\xi_i\)</span>を求める問題を固有値問題という。これらは固有方程式</p>
+<div class="math">$$
+C\xi = \lambda \xi
+$$</div>
+<p>の解として与えられる。固有ベクトルはすべて互いに直交し、内積はゼロになる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.61: <b>ｋ-平均クラスタリングについて説明せよ</b></p>
+</div>
+
+<p>クラスタ中心<span class="math">\(\{\mu_y\}_{y=1}^c\)</span>を適当に初期化した後、</p>
+<ul>
+<li>各データ点が属するクラスの割当て
+<div class="math">$$
+\mu_y \leftarrow \dfrac{1}{n_y} \sum_{i:y_i=y} x_i \quad (i=1,\dots,c)
+$$</div>
+</li>
+<li>各クラスのクラスタ中心の更新
+<div class="math">$$
+y_i \leftarrow \textrm{argmin}_{y \in \{1,\dots,c\}} \|x_i-\mu_y\|^2 \quad (i=1,\dots c)
+$$</div>
+</li>
+</ul>
+<p>を交互に行うことで、ラベルなしのデータ点にクラスラベルをつけるアルゴリズム。</p>
+<p>これはクラスタ内散布和の最小化問題の局所最適解を求めるアルゴリズムになっていて、k-平均クラスタリングによって得られたクラスタは凸になっている。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.62: <b>ｋ-平均クラスタリングにおけるカーネルトリックについて説明せよ</b></p>
+</div>
+
+<p>非線形な基底関数<span class="math">\(\phi\)</span>によってデータ点<span class="math">\(x_i\)</span>を<span class="math">\(\phi(x_i)\)</span>に変換することで、非線形なクラスタの分類を行うことが可能になる。また、この<span class="math">\(\phi\)</span>の内積などをカーネル関数に置き換えることで、特徴量を直接計算することなくk-平均クラスタリングを適用できる。</p>
+<h3>自然言語処理</h3>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.63: <b>自然言語処理について独自の応用例とその実現可能性・社会的影響について自由に述べよ</b></p>
+</div>
+
+<div class="frame" style="background-color: #fff78f">
+    <p>No.64: <b>系列ラベリングが適用できる具体的な応用例を挙げ、定式化を与えよ</b></p>
+</div>
+
+<p>系列ラベリングの応用例として</p>
+<ul>
+<li>形態素解析</li>
+<li>固有名認識</li>
+<li>DNA解析</li>
+<li>音声解析</li>
+<li>動作認識</li>
+</ul>
+<p>などがある。このとき、<strong>入力は記号列</strong>で<strong>出力はラベル列</strong>である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.65: <b>隠れマルコフモデルの定義を与え、それを用いて品詞タグ付けを行う方法を説明せよ</b></p>
+</div>
+
+<p>隠れマルコフモデル(以下HMMとする)は、</p>
+<ul>
+<li>状態集合<span class="math">\(S\)</span></li>
+<li>出力記号集合<span class="math">\(\Sigma\)</span></li>
+<li>初期状態分布<span class="math">\(\pi_i\)</span></li>
+<li>状態遷移確率<span class="math">\(a_{ij}\)</span></li>
+<li>出力確率<span class="math">\(b_{io}\)</span></li>
+</ul>
+<p>の組で表現される。品詞タグ付けの例では、状態集合は品詞の集合、出力記号集合は単語の集合となっている。</p>
+<p>パラメータ<span class="math">\(\pi_i, a_{ij}, b_{io}\)</span>が与えられたとき、生成確率</p>
+<div class="math">$$
+p(s_{1:T}, o_{1:T}) = \pi \Pi_{t=T-1} a_{s_t,s_{t+1}} b_{s_t,o_t}
+$$</div>
+<p>が最大となるような状態系列をビタビアルゴリズム等で求めることで品詞タグ付けを行う。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.66: <b>トレリス構造について説明し、品詞タグ付けとの関係を説明せよ</b></p>
+</div>
+
+<p>トレリス構造は、<strong>生成確率が最も高くなるような状態系列を求めるための枠組み</strong>である。縦軸は各状態、横軸は時刻に対応しており、トレリス上のパスは状態系列を表す。品詞タグ付けでは、縦軸は品詞、横軸は単語列となっている。</p>
+<div id="q5" class="frame" style="background-color: #fff78f">
+    <p>No.67: <b>隠れマルコフモデルのビタビアルゴリズムを説明せよ</b></p>
+</div>
+
+<p>ビタビアルゴリズムとは、（観測データ系列の）生成確率が最大となるような状態系列を動的計画法によって求めるアルゴリズムである。時刻<span class="math">\(t\)</span>で状態<span class="math">\(s_t=k\)</span>にいたる状態系列の最大確率を</p>
+<div class="math">$$
+q_t(k) \equiv \max_{s_{1:t-1}} p(s_{1:t-1}, o_{1:t}, s_t=k)
+$$</div>
+<p>と定義すると、</p>
+<div class="math">$$
+q_{t+1}(k) = \max_{i} [ q_t(i) a_{i, k} ] b_{k, o_{t+1}}
+$$</div>
+<p>と書けるので、動的計画法によって<span class="math">\(q_t(k)\)</span>を順に求めることができる。</p>
+<p>状態数を<span class="math">\(K\)</span>、系列の長さを<span class="math">\(T\)</span>とすると、素朴に計算すると計算量<span class="math">\(O(K^T)\)</span>かかるが、ビタビアルゴリズムでは<span class="math">\(O(TK^2)\)</span>で済む。これは各系列位置で各状態への最適経路は一つ前の系列位置での各状態への最適経路とそこからの遷移確率を用いて<span class="math">\(O(K)\)</span>で計算でき、これが状態数と系列の長さ分だけあるので、合計で<span class="math">\(O(TK^2)\)</span>の計算量になるからである。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.68: <b>隠れマルコフモデルのパラメータの教師付き学習方法を説明せよ</b></p>
+</div>
+
+<p>訓練データの状態系列が既知であるときには人手で正解を付与したデータであるタグ付きコーパスなどから教師つき学習によってパラメータを推定することができる。パラメータの推定方法の1つに最尤推定法がある。最尤推定法では、学習データの尤度(生成確率)を最大化するようにパラメータを決定する。</p>
+<p>HMMのパラメータ<span class="math">\(\pi_i,a_{i,j},b_{i,o}\)</span>を求めるためには</p>
+<div class="math">$$ \begin{align}
+p(o_{1:T},s_{1:T})&amp;=p(s_1) \prod_{t=1}^T p(s_{t+1}|s_t)p(o_t|s_t)=\pi_{s_1} \prod_{t=1}^T a_{s_t,s_{t+1}}b_{s_t,o_t} \\
+&amp;\textrm{s.t. } \sum_{i \in S} \pi_i = 1, \sum_{j \in S} a_{i,j} = 1, \sum_{a \in \Sigma} b_{i,o} = 1
+\end{align} $$</div>
+<p>を最大化すれば良いので、これを計算すると、結果は</p>
+<div class="math">$$ \begin{align}
+\pi_i &amp;= \dfrac{C(s_1=i)}{\sum_{i \in S} C(s_1=i)} \\
+a_{i,j} &amp;= \dfrac{C(i,j)}{\sum_{j \in S} C(i,j)} \\
+b_{i,o} &amp;= \dfrac{C(i,o)}{\sum_{o \in \Sigma} C(i,o)}
+\end{align} $$</div>
+<p>となる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.69: <b>前向き・後向き確率の定義を与え、効率的な計算方法を説明せよ</b></p>
+</div>
+
+<ul>
+<li>時刻<span class="math">\(t\)</span>・状態<span class="math">\(i\)</span>にいたる全ての系列の確率の和を前向き確率</li>
+<li>時刻<span class="math">\(t\)</span>・状態<span class="math">\(i\)</span>から最後に至る全ての系列の確率の和を後ろ向き確率</li>
+</ul>
+<p>という。それぞれ</p>
+<div class="math">$$ \begin{align}
+\alpha_t(i) &amp;\equiv p(o_{1:t}, s_t=i | \theta^{old}) \\
+\beta_t(i) &amp;\equiv p(o_{t+1:T} | s_t=i, \theta^{old})
+\end{align} $$</div>
+<p>で表される。これは動的計画法で再帰的に計算できて</p>
+<div class="math">$$ \begin{align}
+\alpha_{t+1}(i) &amp;= \sum_{j \in S} [a_{j,i} \alpha_t(j)] b_{i, o_{t+1}} \\
+\beta_{t-1}(i) &amp;= \sum_{j \in S} [a_{i,j} b_{j, o_t} \beta_t(j)]
+\end{align} $$</div>
+<p>となる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.70: <b>Baum-Welch アルゴリズムについて説明せよ</b></p>
+</div>
+
+<p>訓練データの状態列が未知であるときに、状態および状態遷移の期待値とパラメータを交互に推定していくアルゴリズムである。詳しく言えば、「現在のパラメータ<span class="math">\(\theta^{old}\)</span>によって状態の期待値を計算する」「状態の期待値を使ってパラメータを更新する」を収束するまで繰り返す。ここで、状態の期待値は</p>
+<div class="math">$$ \begin{align}
+\gamma_t(i) &amp;\equiv p(s_t=i| o_{1:T},\theta^{old}) \\
+\xi_t(i,j) &amp;\equiv p(s_t=i, s_{t+1}=j| o_{1:T},\theta^{old})
+\end{align} $$</div>
+<p>と定義される。これらは前向き確率・後ろ向き確率を用いて効率的に計算できる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.71: <b>ビタビアルゴリズムと前向き・後向きアルゴリズムの関係について説明せよ</b></p>
+</div>
+
+<ul>
+<li>ビタビアルゴリズムは<strong>「積の最大値」</strong></li>
+<li>前向き・後ろ向きアルゴリズムは<strong>「積の和」</strong></li>
+</ul>
+<p>を順に求めている点で類似している。両方とも分配法則を利用しているので、半環なら同じアルゴリズムが適用できる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.72: <b>ログ線形モデルによる品詞タグ付け方法について説明せよ</b></p>
+</div>
+
+<p>ログ線形モデルでは、特徴ベクトルを<span class="math">\(\boldsymbol{\phi}\)</span>として</p>
+<div class="math">$$
+p(y|x) \propto exp(\mathbf{w}^T \boldsymbol{\phi}(\mathbf{x}, y))
+$$</div>
+<p>という生成分布を考えて、パラメータ<span class="math">\(\mathbf{w}\)</span>を最尤推定する。ここで<span class="math">\(\mathbf{x}\)</span>はデータであり、<span class="math">\(y\)</span>はそのラベルである。</p>
+<p>品詞タグ付けの場面では、<span class="math">\(\mathbf{x}\)</span>は入力された単語列、<span class="math">\(y\)</span>はその品詞列(隠れ状態)であり、<span class="math">\(\mathbf{w}^T \boldsymbol{\phi}(\mathbf{x}, y)\)</span>を最大化するような<span class="math">\(y\)</span>を求める問題となる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.73: <b>条件付き確率場の定義を与え、隠れマルコフモデルに対する優位性を説明せよ</b></p>
+</div>
+
+<p>条件付き確率場とは、ログ線形モデルによる構造予測において用いられる枠組みである。</p>
+<p>単純なログ線形モデルでは<span class="math">\(\mathbf{w}^T \phi(\mathbf{x}, y)\)</span>を最大化するような<span class="math">\(y\)</span>を求めるのが困難であるが、特徴ベクトルを状態・遷移に分解できると仮定することでHMMで行うような動的計画法のアルゴリズムが利用できる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.74: <b>条件付き確率場のビタビアルゴリズムを説明せよ</b></p>
+</div>
+
+<p>HMMのビタビアルゴリズムとほぼ同様である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.75: <b>条件付き確率場のパラメータ推定アルゴリズムを説明せよ</b></p>
+</div>
+
+<p>HMMのアルゴリズムとほぼ同様である。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.76: <b>CKY法について具体例（曖昧性のある文脈自由文法）を挙げて説明せよ</b></p>
+</div>
+
+<p>Chomsky標準形(CNF)のCFGの構文解析アルゴリズム。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.77: <b>確率文脈自由文法(PCFG)の定義を与え、それを用いて構文解析を行う方法を説明せよ</b></p>
+</div>
+
+<p>CFG(文脈自由文法)に生成規則が適用される確率を導入したものをPCFGという。</p>
+<p>入力された単語列に対して、それを生成するような構文木のうち確率が最大となるものを単語列に対応する構文木とする。確率を導入することで曖昧性が解消される。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.78: <b>確率文脈自由文法(PCFG)による構文解析のビタビアルゴリズムを説明せよ</b></p>
+</div>
+
+<p>通常の(CFGにおける)のCKY法ではCKY表の各セルに<strong>「生成される非終端記号」</strong>を書き込んでいくが、PCFGにおけるCKY法では、各セルに<strong>「非終端記号とそれを生成する確率の最大値」</strong>を書き込んでいく。これによって、効率的に生成確率を求めることができる。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.79: <b>確率文脈自由文法(PCFG)の学習方法について説明せよ</b></p>
+</div>
+
+<p>構文木のデータセット(ツリーバンク)を利用して学習を行う。ツリーバンクにおける品詞の出現頻度に基づいて生成規則の確率を推定する。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.80: <b>確率文脈自由文法(PCFG)による自然言語構文解析の精度が低い原因を具体例を挙げて説明し、構文解析精度を上げる方法を議論せよ</b></p>
+</div>
+
+<p>同じ品詞列でも単語によって構文木の形が変わるから。例えば We applied the algorithm to parsing. と We selected the approach to parsing. がその一例である。そのため、品詞だけでなく単語の意味や熟語なども使って構文解析を行う必要がある。</p>
+<div class="frame" style="background-color: #fff78f">
+    <p>No.81: <b>確率文脈自由文法(PCFG)の応用例(自然言語の構文解析以外)を挙げ、その実現可能性・社会的影響について自由に述べよ</b></p>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-4.html" title="Previous: Boosting">Boosting</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/知能システム論-test.html" title="Next: 試験問題例">試験問題例</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2020-01-16T10:00:00+09:00">Jan 16, 2020</time>
+
+<h5>Last Updated</h5>
+<time datetime="2020-01-16T10:00:00+09:00">Jan 16, 2020</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#zhi-neng-shisutemulun-ref">知能システム論</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>96</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
+                    <span>20</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

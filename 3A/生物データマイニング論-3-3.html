@@ -398,7 +398,7 @@ $$<p>として求めることができる。（数値計算の誤差の影響を
 <p>そこで、各学習データ $(\mathbf{x}_n,t_n)$ に対して、<span class="marker-pink">スラック変数 (slack variable) </span> $\xi_n\geq 0$ を導入して、</p>
 $$ t_ny(\mathbf{x}_n) \geq 1 \Longrightarrow t_ny(\mathbf{x}_n) \geq 1 - \xi_n \qquad (7.20)$$<p>と条件を緩める。<strong>（ハードマージンの制約のソフトマージンへの緩和）</strong>つまり、<span class="marker-pink">$\xi_n > 1$ となるデータは誤識別している事になる。</span></p>
 <p>ここでの目標は<span class="marker-pink">『マージンよりも内側（$\xi_n>0$）のデータ $n$ に対してソフトにペナルティを与えつつマージンを最大化する』</span>ことである。したがって、次の目的関数を最小化する。</p>
-$$C\sum_{n=1}^N\xi_n + \frac{1}{2}\|\mathbf{x}_n\| \qquad (7.21)$$<p>なお、$C>0$ は スラック変数を用いて表されるペナルティとマージンの大きさの間の<strong>トレードオフを制御するパラメータ</strong>である。</p>
+$$C\sum_{n=1}^N\xi_n + \frac{1}{2}\|\mathbf{w}\| \qquad (7.21)$$<p>なお、$C>0$ は スラック変数を用いて表されるペナルティとマージンの大きさの間の<strong>トレードオフを制御するパラメータ</strong>である。</p>
 <p>したがって、この最小化問題のラグランジュ関数は、新たにラグランジュ乗数 $\{\mu_n\}$ を導入して以下のようになる。</p>
 $$L(\mathbf{w},b,\boldsymbol{\xi},\mathbf{a},\boldsymbol{\mu}) = \frac{1}{2}\|\mathbf{w}\|^2 + C\sum_{n=1}^N\xi_n - \sum_{n=1}^{N}a_n\left\{t_n\left(\mathbf{w}^T\phi(\mathbf{x}_n) + b\right) - 1 + \xi_n\right\} - \sum_{n=1}^N\mu_n\xi_n\qquad (7.22)$$<p>先程同様 $\mathbf{w},b,\xi_n$ について微分して、</p>
 $$
@@ -439,7 +439,7 @@ $$<p>である。</p>
 <td style="text-align:left">識別関数に影響を及ぼさない。</td>
 </tr>
 <tr>
-<td style="text-align:center">$a_n<c$&lt; td>
+<td style="text-align:center">$0 < a_n < C$</td>
 <td style="text-align:center">$\mu_n>0$</td>
 <td style="text-align:center">$\xi_n=0$</td>
 <td style="text-align:left">ちょうどマージン境界上ある。</td>
@@ -452,7 +452,7 @@ $$<p>である。</p>
 </tr>
 </tbody>
 </table>
-<p>となることから、$0<a_n&lt;c$ となるサポートベクトルについては $t_ny(\mathbf{x}_n)="1$" が成立するので、&lt; p>
+<p>となることから、$0 < a_n < C$ となるサポートベクトルについては $t_ny(\mathbf{x}_n) = 1$ が成立するので、</p>
 $$
 \begin{aligned}
 &t;_n\left(\sum_{m\in\mathcal{S}}a_mt_mk(\mathbf{x}_n,\mathbf{x}_m) + b\right) = 1 & (7.36)\\
@@ -752,7 +752,7 @@ $$</li>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>83</span>
+                    <span>96</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
                     <span>10</span>
