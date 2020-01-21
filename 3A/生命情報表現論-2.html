@@ -110,7 +110,92 @@
             
             <h2 id="BioKnowledge3">非構造化知識の処理</h2>
 
+<p><b>〜情報検索から電子カルテまで〜</b></p>
+
+<h4>情報検索</h4>
+<p><span class="marker-pink">情報検索</span>とは、<strong>大量のデータ群から目的に合うものを取り出すこと</strong> であり、文書、画像、音声、映像など、検索の対象は多岐にわたる。</p>
+<p>基本的な流れとしては、</p>
+<ol>
+<li>データベースには、検索対象のデータが蓄積・管理されている。</li>
+<li>検索対象のデータからメタデータ（索引語）が作成・管理されている。</li>
+<li>検索の利用者は、ユーザインターフェースを通して検索質問をする。</li>
+<li>検索アルゴリズムが、検索質問をメタデータに照合し、それに対応するデータをデータベースから選択する。</li>
+<li>選択されたメタデータに対応する検索対象のデータをユーザインターフェイスを通して利用者に返答する。</li>
+</ol>
+<p>となっている。（メタデータを使わない直接検索もありうる。）</p>
+<p>検索技術に関しては</p>
+<ul>
+<li><strong>検索対象データの抽象度</strong><ul>
+<li>直接検索（特に全文検索）</li>
+<li>関節検索：<ol>
+<li>データベースに蓄積されたデータからメタデータを生成して保管する。</li>
+<li>検索時は、検索質問をメタデータの表現形式に変換する。</li>
+<li>それをメタデータに対して照合、照合結果に紐づいたデータを取得。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>検索入力の種類</strong><ul>
+<li>単語：キーワードで検索</li>
+<li>検索言語：システム特有の検索言語を使う。論理和・論理積など。</li>
+<li>直接入力：例えば画像を入力し、類似した画像を検索する。</li>
+<li>自然文：人が使う言葉そのもので検索する。後述の自然言語処理が必要。</li>
+<li>文書：文書そのものを入力し、入力文書と類似する文書を検索する。</li>
+</ul>
+</li>
+</ul>
+<p>などの種類があり、主要なアルゴリズムは</p>
+<ul>
+<li><strong>パターンマッチング</strong></li>
+<li><strong>ブール論理</strong>：
+パターンマッチングの検索に加え、メタデータの属性ごとの絞り込み条件を論理和・論理積などで組み合わせて併用する。</li>
+<li><strong>ベクトル空間モデル</strong>：
+ユーザーからの検索質問やデータベース中の各データを高次元のベクトルで表現し、それらの類似度を元に関係の強さを計算する。</li>
+</ul>
+<h4>質疑応答システム</h4>
+<h4>自然言語処理</h4>
+<h4>テキストマイニング</h4>
+<h4>電子カルテ</h4>
 <h2 id="BioKnowledge4">ゲノム配列、ゲノムアノテーションと遺伝子進化</h2>
+
+<p><b>〜ゲノムデータの表現、系統樹、アノテーションまで〜</b></p>
+
+<h4>ゲノム配列データの表現と解析の概要</h4>
+<h4>系統樹</h4>
+<p><span class="marker-pink">系統樹</span>とは、<strong>生物の類縁関係を表現する際に、分類群を樹枝状の線でつなぐ形で示したもの</strong> であり、枝分かれは系統の分岐を、枝の長さ・高さは進化の程度や時間経過を表す。</p>
+<p>主な作成法としては、</p>
+<ul>
+<li>近隣結合法(Neighbor-joining method)　　<ul>
+<li>複数のOTUの近隣を段階的に見いだし、最終的に無根系統樹を得る方法。</li>
+<li>本法は各OTU間の距離行列を計算し、これを星状系統樹に配置した後、二つのOTUを結合したときにもっとも星状系統樹の枝長の総和を小さくするのに都合のよい系統樹を選択する。</li>
+<li>この操作を段階的に繰り返すことによって最終的な系統樹を得る。</li>
+<li>この方法は段階的クラスター法に属し、他の方法よりもはるかに短い計算時間で系統樹を作成できる利点がある。</li>
+<li>進化速度を一定と仮定しないため、進化速度が異なる系統であっても、比較的正しく系統樹を作成することが可能である。</li>
+<li>サイトごとに異なる進化速度は結果に反映されない。</li>
+</ul>
+</li>
+<li>最大節約法(Maximum parsimony method)<ul>
+<li>塩基配列上に有意な塩基置換の起こった座位を抽出し、これらがもっとも少ない置換回数で説明できる系統関係を選択する方法。</li>
+<li>プリン塩基同士あるいはピリミジン塩基同士などの置換の起こりやすさを反映させることが可能。</li>
+<li>系統学的に深い位置で分岐したもの同士を含む場合や特定の系統で進化速度が速くなっている場合には同じ座位で起こる多重置換を無視することができず、偏った推測をしてしまう可能性もある。</li>
+<li>複数得られた系統関係の中からもっとも置換が少ない関係を選び出す目的には有用。</li>
+</ul>
+</li>
+<li>最尤法(Maximum likelihood method)<ul>
+<li>塩基置換における何らかのモデルを仮定し、そのモデルに基づいて、対象とする塩基配列が時間経過に伴って先祖配列から子孫配列へ塩基置換する確率を計算し、もっとも尤度（確率）の高い樹形を導く方法。</li>
+<li>最尤法は網羅的探索法に属する。</li>
+<li>探索のアルゴリズムやデータによってはきわめて計算時間がかかることがある。</li>
+</ul>
+</li>
+<li>ベイズ法<ul>
+<li>マルコム連鎖モンテカルロ法に基づいて大量の系統樹を作成し、単系統群の出現頻度（事後確率）を求める方法。</li>
+<li>初期系統樹を攪乱し、得られた系統樹が初期系統樹の置換モデル・樹形・枝の長さから導かれる確率によって受理・棄却されるかを決定し、受理される場合は新たな系統樹に対してこの操作を繰り返す（棄却された場合はもとの系統樹に対して再度この操作を行う）。</li>
+<li>このマルコフ連鎖を繰り返し、定常状態に達した時に単系統群の出現頻度が事後確率に相当する。</li>
+<li>ベイズ法は比較的新しい系統解析法で今後に注目されているが、一方で計算時間がかかることや事後確率が過大評価されるなどの問題がある。</li>
+</ul>
+</li>
+</ul>
+<h4>ゲノムアノテーション</h4>
             <div>
 </div>
 
@@ -120,7 +205,7 @@
             <aside>
             <nav>
             <ul class="articles-timeline">
-                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/生命情報表現論-3.html" title="Previous: 生命情報表現論 第3回">生命情報表現論 第3回</a></li>
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/知能システム論-report7.html" title="Previous: レポート課題7(11/21出題)">レポート課題7(11/21出題)</a></li>
                 <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/知能システム論-8.html" title="Next: 機械学習(1)教師付き学習">機械学習(1)教師付き学習</a> »</li>
             </ul>
             </nav>
@@ -128,6 +213,9 @@
         </div>
         <section>
         <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Table of Contents</h5>
+            <div id="toc"></div>
+
             <h5>Published</h5>
             <time itemprop="dateCreated" datetime="2019-11-25T00:00:00+09:00">Nov 25, 2019</time>
 
@@ -139,7 +227,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>103</span>
+                    <span>104</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-ming-qing-bao-biao-xian-lun-ref">生命情報表現論
                     <span>7</span>
@@ -168,8 +256,8 @@
         <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
 </div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
@@ -178,6 +266,13 @@
         </script>
         <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content', 
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
 
     
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">

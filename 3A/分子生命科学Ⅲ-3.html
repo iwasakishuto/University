@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 分子生命科学Ⅲ, 分子生命科学Ⅲ, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="分子生命科学Ⅲ 第3回 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-3.html" />
+<meta property="og:description" content="感覚神経系(1)体性感覚・神経伝達物質" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-10-10T00:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-10-10T00:00:00+09:00" />
+<meta name="twitter:title" content="分子生命科学Ⅲ 第3回 ">
+<meta name="twitter:description" content="感覚神経系(1)体性感覚・神経伝達物質">
+
+        <title>分子生命科学Ⅲ 第3回  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-3.html"> 分子生命科学Ⅲ 第3回  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <ul>
+<li>講師：<a href="https://www.u-tokyo.ac.jp/focus/ja/people/people002493.html">饗場篤</a></li>
+<li>参考文献：<a href="https://www.amazon.com/Neuroscience-Exploring-Mark-F-Bear/dp/0781760038">Neuroscience: Exploring the Brain, 3rd Edition</a></li>
+<li>参考文献：<a href="https://www.amazon.com/Principles-Neurobiology-Liqun-Luo-ebook/dp/B01248D9G2">Principles of Neurobiology</a></li>
+<li>参考文献：<a href="http://119.245.210.133/book/archives/2921">カラー版　神経科学　−脳の探求−</a></li>
+</ul>
+<h2>感覚神経系(1)</h2>
+<div class="frame">
+  <h4>感覚系の構成</h4>
+  <ul>
+    <li>@感覚受容器@：外界や内界からの感覚刺激を電気信号に変換する装置</li>
+    <li>@感覚路@：感覚細胞で生じた電気信号は、一次感覚ニューロンに始まる感覚神経のリレーにより中枢に伝達される。種々の感覚情報は、特定の伝達路を通り、大部分が@視床(thalamus)@を経由して特定の@大脳皮質(cerebral cortex)@に到達する。</li>
+    <li>@感覚野(sensory area)@（@大脳皮質(cerebral cortex)@）：感覚情報は、@大脳皮質(cerebral cortex)@の@感覚野(sensory area)@（体性@感覚野(sensory area)@、視覚野等…）を興奮させる</li>
+  </ul>
+  <img src="theme/img/3A_Life_Science3/1010_1.png" alt="slide2">
+</div>
+
+<h3>体性感覚</h3>
+<p>¬体性感覚系(somatosensory system)¬は、</p>
+<ol>
+<li><strong>受容体が体の一部ではなく、全身に分布</strong> しており、皮膚・粘膜・関節・筋・腱など様々な場所から感覚を受け取る。</li>
+<li>多様な刺激に対応するため、<strong>単一の感覚というよりも、少なくとも4つの感覚（@痛覚(pain)@・@温度覚(thermal sensation)@・@触覚(touch)@・@固有感覚(proprioception)@）によって構成されている。</strong><ul>
+<li>@痛覚(pain)@・@温度覚(thermal sensation)@の刺激は機械的、もしくは熱・寒冷・化学物質</li>
+<li>@触覚(touch)@の刺激は機械的刺激</li>
+<li>@固有感覚(proprioception)@は、関節の屈曲度や筋の収縮度に関する感覚情報で、脳はこの感覚により身体各部の位置感覚、運動の状態、体に加わる抵抗感覚、重量感覚等の情報を得る。</li>
+</ul>
+</li>
+</ol>
+<p>という点で他の感覚系と異なっている。</p>
+<h4>感覚ニューロン</h4>
+<p>体性感覚系は、皮膚および筋肉全体から構成される最大の感覚器を有している。</p>
+<p>体性感覚系の全ての感覚ニューロンの細胞体は、ヒトでは</p>
+<ul>
+<li>@31@対の@後根神経節(dorsal root ganglion)@：同じく@31@対の@脊髄分節(spinal segment)@と一対一の関係になっている。ただし、1つの@後根神経節(dorsal root ganglion)@が切断されても、隣接する@後根神経節(dorsal root ganglion)@が重複する領域を神経支配しているため、対応する@皮膚分節(dermatome)@と同側の感覚が全て失われるわけではない。（3つの隣接する@後根神経節(dorsal root ganglion)@が切断されると1つの@皮膚分節(dermatome)@の感覚が消失する。）</li>
+<li>@1@対の@三叉神経節(trigeminal nerve)@：脳幹に隣接しており、顔の体性感覚を担っている。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">皮膚の分節構造</th>
+<th align="center">脊髄の分節構造</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="theme/img/3A_Life_Science3/1010_2.png" alt="slide4"></td>
+<td align="center"><img src="theme/img/3A_Life_Science3/1010_3.png" alt="slide5"></td>
+</tr>
+</tbody>
+</table>
+<p><small>※ @31@対の@脊髄分節(spinal segment)@は、神経の始まる椎骨にちなんで名付けられている。</small></p>
+<p>のいずれかに位置している。</p>
+<h4>皮膚の機械受容器</h4>
+<p>体性感覚系の受容器の多くは@機械受容器(mechanoreceptor)@であり、それぞれの受容器の中心部には無髄の神経突起の枝がある。これらの神経突起の終末は@機械感受性イオンチャネル(mechanosensitive ion channel)@を持っている。これらのイオンチャネルの開閉は、チャネル周囲の細胞膜の伸展や張力の変化に依存する。</p>
+<p><img src="theme/img/3A_Life_Science3/1010_4.png" alt="https://image.jimcdn.com/app/cms/image/transf/dimension=325x1024:format=jpg/path/sc98ddff6dcd9af1a/image/i51a19f29b2a46c8d/version/1541212949/%E6%9C%89%E6%AF%9B%E9%83%A8%E3%81%AE%E7%9A%AE%E8%86%9A%E5%9B%B3.jpg"></p>
+<p>皮膚の機械受容器を上図に示した。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="left">役割</th>
+<th align="center">受容野の大きさ</th>
+<th align="center">順応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">@パチニ小体(Pacinian corpuscle)@</td>
+<td align="left">真皮の深くに位置し、最大で2mm、多くは1mm程度であり、裸眼で見ることができるほど大きい</td>
+<td align="center">大きい</td>
+<td align="center">@速い順応(rapidly adapting)@</td>
+</tr>
+<tr>
+<td align="center">@ルフィニ終末(Ruffini's ending)@</td>
+<td align="left">有毛部および無毛部に見られ、@パチニ小体(Pacinian corpuscle)@よりわずかに小さい。</td>
+<td align="center">大きい</td>
+<td align="center">@遅い順応(slowly adapting)@</td>
+</tr>
+<tr>
+<td align="center">@マイスネル小体(Meissner's corpuscle)@</td>
+<td align="left">@パチニ小体(Pacinian corpuscle)@の1/10程度の大きさで、無毛皮膚の隆起部（ex.指紋の隆起部）にある。</td>
+<td align="center">小さい</td>
+<td align="center">@速い順応(rapidly adapting)@</td>
+</tr>
+<tr>
+<td align="center">@メルケル盤(Merkel's disk)@</td>
+<td align="left">表皮内にあり、神経終末と扁平な非神経性の上皮細胞からなる。</td>
+<td align="center">小きい</td>
+<td align="center">@遅い順応(slowly adapting)@</td>
+</tr>
+</tbody>
+</table>
+<p>なお、刺激の詳細な性質を識別する能力は、体の部分によって大きく異なっており、<span class="marker-info" aria-label="対になった2点で同時に体表を刺激した際に、2点が識別される最小の距離を示す。">2点識別覚</span>の結果は以下のようになる。指先が最も分解能が高い。これは、</p>
+<ul>
+<li>指先の機械受容器の密度が体のどの部分よりも高い。</li>
+<li>指先には小さな受容野を持つ受容器が多い。</li>
+<li>多くの脳組織が、体の他の部分より指先の感覚の分析に充てられている。</li>
+<li>脳には高分解能の識別を担う特別な神経機構がある。</li>
+</ul>
+<p>などの理由が挙げられる。</p>
+<p><img src="theme/img/3A_Life_Science3/1010_5.png" alt="slide13"></p>
+<h4>一次求心性軸索</h4>
+<ul>
+<li>皮膚は豊富な神経支配を受けており、この軸索は¬末梢神経系¬の膨大なネットワークを形成し、中枢神経系に達している。</li>
+<li>体性感覚受容器から脊髄、あるいは脳幹に情報を伝播する軸索は、体性感覚の@一次求心性軸索(primary afferent axon)@である。</li>
+<li>@一次求心性軸索(primary afferent axon)@の径は様々であり、その太さは接続している感覚受容器の種類に関係している。</li>
+</ul>
+<p><img src="theme/img/3A_Life_Science3/1010_6.png" alt="slide15"></p>
+<ul>
+<li>太い有髄神経線維（<span class="math">\(A\alpha,A\beta\)</span>線維）は、伝達速度30-120m/sで速く、@固有感覚(proprioception)@と@触覚(touch)@を運ぶ。</li>
+<li>細い有髄神経線維（<span class="math">\(A\delta\)</span>線維;伝達速度4-30m/s ）、無髄神経線維（<span class="math">\(C\)</span>線維;伝達速度0.5-2m/s）は@温度覚(thermal sensation)@・@痛覚(pain)@と一部の@触覚(touch)@（優しく撫でる等の快楽的な接触等）を運ぶ。</li>
+</ul>
+<h4>体性感覚野</h4>
+<p>全ての感覚野と同様に、体性感覚の処理の最も複雑な段階は¬大脳皮質¬で起こる。なお、体性感覚系に関連する皮質の大部分は、@頭頂葉(parietal lobe)@にある。</p>
+<p><span class="marker-info" aria-label="ブロードマンの脳地図、あるいは、ブロードマン領野とは、コルビニアン・ブロードマンによる大脳新皮質の解剖学・細胞構築学的区分の通称である。(wiki: https://ja.wikipedia.org/wiki/%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%83%9E%E3%83%B3%E3%81%AE%E8%84%B3%E5%9C%B0%E5%9B%B3)">ブロードマン3b野</span>は現在、@一次体性感覚野(primary somatosensory cortex)@とされており、中心溝のすぐ後ろにある中心後回と呼ばれる皮質に存在する。</p>
+<p><img src="theme/img/3A_Life_Science3/1010_7.png" alt="slide20"></p>
+<p>S1野の皮質表面の電気刺激により、体の特定の部位の体性感覚を生じさせることができるので、これを用いて <strong>皮質の体性感覚の体表面地図</strong>（@体部位局在地図(somatotopy map)@） を作ることができる。また、皮質の単一ニューロンの活動を記録して、そのニューロンの体性感覚受容野の体表面上の部位を明らかにする方法でも、これを作ることは可能である。</p>
+<p><img src="theme/img/3A_Life_Science3/1010_8.png" alt="slide21"></p>
+<p>上記の@体部位局在地図(somatotopy map)@からは、</p>
+<ul>
+<li>地図は必ずしも連続しているのではなく、分離されていることもあること。（ex.手の部位再現は顔や頭からは分離している。また、外陰部は足指の下にあり、最も深い隠された位置にある。）</li>
+<li>体性感覚地図を立体で表現した@ホムンクルス(homunculus)@を見ると、@ホムンクルス(homunculus)@はヒトの体の相似形ではなく、むしろ戯画のように見えること。体のそれぞれの部位に当てられる皮膚の相対的な大きさは、その部位からの感覚入力の¬密度¬（≒重要性）に関係を持っている。</li>
+</ul>
+<p>がわかる。なお、皮質地図は感覚 <strong>経験</strong> の量に応じて動的に変化することが知られている。（刺激を消失させると、その場所に与えられていた皮膚部位は隣接部位に当てられる/刺激が増加された場合、刺激された部位が拡大。）</p>
+<h3>シナプス伝達</h3>
+<p>シナプスには2つの面、@シナプス前(presynaptic)@と@シナプス後(postsynaptic)@がある。シナプス前側は一般に軸索終末で、直径約50nmのシナプス小胞が多数含まれている。シナプス小胞は@神経伝達物質(neurotransmitter)@を含み、これを用いて <strong>他のニューロンの樹状突起や細胞体</strong> からなるシナプス後側と情報伝達を行なっている。シナプス前膜とシナプス後膜の間は、20-50nmの@シナプス間隙（かんげき）(synaptic cleft)@がある。</p>
+<p>@神経伝達物質(neurotransmitter)@のシナプス前からの放出によって引き起こされる <strong>短時間の</strong> シナプス後膜の</p>
+<ul>
+<li>@脱分極(Depolarization)@は、@興奮性シナプス後電位(excitatory postsynaptic potential; EPSP)@と呼ばれている。これは、アセチルコリンおよびグルタミン酸動性イオンチャネルで、リガンドが結合すると、非選択的陽イオンチャネルが開口し、<span class="math">\(\mathrm{Na}^{+}\)</span>や<span class="math">\(\mathrm{K}^{+}\)</span>の陽イオンを通過させる。</li>
+<li>@過分極(Hyperpolarization)@は、@抑制性シナプス後電位(inhibitory postsynaptic potential; IPSP)@と呼ばれている。<span class="marker-info" aria-label="γ-アミノ酪酸。主に脳幹よりも吻側の中枢神経系の抑制性シナプス伝達を担うアミノ酸">GABA</span>、グリシン作動性チャネルはリガンドの結合により、陰イオン、主に<span class="math">\(\mathrm{Cl}^{-}\)</span>を選択的に通過させる。</li>
+</ul>
+<h4>神経伝達物質</h4>
+<div class="frame">
+  <h5>@デールの法則@</h5>
+  <p>多くのニューロンはただ1つの神経伝達物質（アミノ酸、アセチルコリン、モノアミン）を持つ。一方、神経ペプチドを含む多くのニューロンは、アミノ酸、アセチルコリンあるいはモノアミンと神経ペプチドを放出する。</p>
+</div>
+
+<p>主要な神経伝達物質としては以下が挙げられる。</p>
+<table>
+<thead>
+<tr>
+<th align="center">種類</th>
+<th align="left">神経伝達物質</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">アミノ酸</td>
+<td align="left">グルタミン酸(Glu)</td>
+<td align="left">中枢神経系の@興奮性@ニューロンのほとんど、感覚ニューロンのほとんど</td>
+</tr>
+<tr>
+<td align="center">アミノ酸</td>
+<td align="left">GABA(γ-アミノ酸)</td>
+<td align="left">中枢神経系の@抑制性@ニューロンのほとんど</td>
+</tr>
+<tr>
+<td align="center">アミノ酸</td>
+<td align="left">グリシン(Gly)</td>
+<td align="left">中枢神経系の@抑制性@ニューロンの一部（脳幹や脊髄に存在）</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">アセチルコリン(Ach)</td>
+<td align="left">筋肉を興奮させる運動ニューロン、自律神経系のニューロン（交感神経の節後以外全て）、中枢神経系の興奮性および調節性ニューロン</td>
+</tr>
+<tr>
+<td align="center">モノアミン(monoamine)</td>
+<td align="left">セロトニン(5-HT)</td>
+<td align="left">中枢神経系の@調節性@ニューロン</td>
+</tr>
+<tr>
+<td align="center">モノアミン(monoamine)</td>
+<td align="left">ドーパミン(DA)</td>
+<td align="left">中枢神経系の@調節性@ニューロン</td>
+</tr>
+<tr>
+<td align="center">モノアミン(monoamine)</td>
+<td align="left">ノルアドレナリン(NA)</td>
+<td align="left">中枢神経系の@調節性@ニューロン、自律神経系のニューロン（交感神経の節後ニューロン）</td>
+</tr>
+<tr>
+<td align="center">モノアミン(monoamine)</td>
+<td align="left">ヒスタミン</td>
+<td align="left">中枢神経系の@調節性@ニューロン</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="left">神経ペプチド</td>
+<td align="left">@興奮性@、@抑制性@、@調節性@のニューロンから共放出、神経内分泌細胞</td>
+</tr>
+</tbody>
+</table>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-9.html" title="Previous: Zuker Algorithm">Zuker Algorithm</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/知能システム論-2.html" title="Next: 連続最適化(1)制約なし最適化">連続最適化(1)制約なし最適化</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+        <div class="span2" style="float:right;font-size:0.9em;">
+            <h5>Table of Contents</h5>
+            <div id="toc"></div>
+
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-10-10T00:00:00+09:00">Oct 10, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-10-10T00:00:00+09:00">Oct 10, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#fen-zi-sheng-ming-ke-xue-iii-ref">分子生命科学Ⅲ</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>104</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#fen-zi-sheng-ming-ke-xue-iii-ref">分子生命科学Ⅲ
+                    <span>4</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content', 
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
