@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 映像メディア工学, 映像メディア工学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="表色系 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/映像メディア工学-9.html" />
+<meta property="og:description" content="デジタルカメラ系" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-11-18T13:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-11-18T13:00:00+09:00" />
+<meta name="twitter:title" content="表色系 ">
+<meta name="twitter:description" content="デジタルカメラ系">
+
+        <title>表色系  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-9.html"> 表色系  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <p>色を定量的に表す体系を¬表色系(color specification system)¬と呼ぶ。</p>
+<p><strong>表色系</strong> には、人間が知覚した色を記号や<span class="marker-info" aria-label="物体の表面色の色名を決める基準とする色の見本。多数の色票を色の性質に従って分類し、記号をつけて国際的に協約したものを標準色票といい、マンセル色票やオストワルト色票などがある。色票を適当な順序に立体配列したものを色立体という。">色票</span>などで <strong>定性的</strong> に扱う¬顕色系(color appearance system)¬と、実験に基づいて色を心理物理量として <strong>定量的</strong> に扱う¬混色系(color mixing system)¬がある。</p>
+<h3>色空間</h3>
+<ul>
+<li>¬加法混色(additive colour mixing)¬と¬減法混色(subtractive colour mixing)¬。</li>
+<li>表色系：<ul>
+<li>RGB(CIE-RGB)</li>
+<li>CIE-XYZ表色系</li>
+<li>CIE-L*a*b*</li>
+<li>HSV(HSI)表色系</li>
+<li>マンセル表色系</li>
+<li>YCbCr</li>
+</ul>
+</li>
+</ul>
+<h3>加法混色と減法混色</h3>
+<p>波長が約 <strong>400~800nm</strong> の¬電磁波(electromagnetic wave)¬を人間の眼に入力すると、<strong>電磁波の波長によって定まる色</strong> の光として知覚する。したがって、ある色の光を作る際には、その色に対応する波長の電磁波を用意すれば良いことになる。</p>
+<p>しかし、互いに<span class="marker-info" aria-label="他の2色をどのような比率で混ぜても再現できない色の光の組み合わせ">独立した3つの色の光</span>（¬原刺激(reference color stimuli)¬）を混ぜることでも、任意の色を再現できるという経験則が知られている。これは、人間の眼の波長に対する感度の異なる3種類の¬錐体¬の存在で説明できると考えられている。</p>
+<p>ここで、複数の色の光を混ぜ合わせることで別の色の光をつくることを¬混色(colour mixing)¬と呼ぶが、これには以下の2つの方法がある。</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center"><strong>加法混色(additive colour mixing)</strong></th>
+<th align="center"><strong>減法混色(subtractive colour mixing)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">画像</td>
+<td align="center"><img alt="加法混色" src="http://www.dataplan.jp/blog/wp-content/uploads/2014/11/color_konsyoku1.png"></td>
+<td align="center"><img alt="減法混色" src="http://www.dataplan.jp/blog/wp-content/uploads/2014/11/color_konsyoku2.png"></td>
+</tr>
+<tr>
+<td align="center">混色方法</td>
+<td align="center">白いスクリーン上に異なる色の光を重ねて投影する。</td>
+<td align="center">白い紙の上で絵の具を混ぜ合わせる。または、色付きフィルタを通して白色光を見る。</td>
+</tr>
+<tr>
+<td align="center">原色</td>
+<td align="center"><font color="red">赤(red)</font>・<font color="green">緑(green)</font>・<font color="blue">青(blue)</font></td>
+<td align="center"><font color="cyan">シアン(cyan)</font>・<font color="magenta">マゼンタ(magenta)</font>・<font color="yellow">黄(yellow)</font></td>
+</tr>
+</tbody>
+</table>
+<h3>表色系</h3>
+<p>撮影対象の色を測定する際に、3種類の原刺激を用意して <strong>加法混色</strong> し、色が一致した際に両者は¬等色(color match)¬したという。</p>
+<div class="math">$$\mathbf{C} \underset{=}{\text{color match}} R\mathbf{R} + G\mathbf{G} + B\mathbf{B}$$</div>
+<p>測定対象からの反射光 <span class="math">\(\mathbf{C}\)</span> は一般に¬連続した分光強度分布を持つ¬が、右辺の3種類の原色光の混色と区別できない。</p>
+<p>この方法で対象の光 <span class="math">\(\mathbf{C}\)</span> を表現するとき、三刺激値を調整する前に、原刺激それ自体の大きさを決める必要がある。これは、白色光 <span class="math">\(\mathbf{W}\)</span>（これを¬基礎刺激¬と呼ぶ）に等色するような原刺激の強度を求め、それを単位量とすることで達成されるが、波長 <span class="math">\(\lambda\)</span> に依存する。よって、単位放射量を発行する仮装光 <span class="math">\(\mathbf{U}(\lambda)\)</span>（等エネルギー白色光）を用いて、</p>
+<div class="math">$$\mathbf{U}(\lambda) = \bar{r}(\lambda)\mathbf{R} + \bar{g}(\lambda)\mathbf{G} + \bar{b}(\lambda)\mathbf{B}$$</div>
+<p>の式が成り立つ三値刺激の分布（<span class="math">\(\bar{r}(\lambda), \bar{g}(\lambda), \bar{b}(\lambda)\)</span>）を考える。なお、これらを用いれば、先ほどの反射光 <span class="math">\(\mathbf{C}\)</span> の分光エネルギー分布 <span class="math">\(L(\lambda)\)</span> から、次のように三値刺激（<span class="math">\(R,G,B\)</span>）を計算できる。</p>
+<div class="math">$$
+\begin{cases}
+  \begin{aligned}
+    R &amp;= \int_VL(\lambda)\bar{r}(\lambda)d\lambda\\
+    G &amp;= \int_VL(\lambda)\bar{g}(\lambda)d\lambda\\
+    B &amp;= \int_VL(\lambda)\bar{b}(\lambda)d\lambda
+  \end{aligned}
+\end{cases}
+$$</div>
+<p>ただし、積分範囲 <span class="math">\(V\)</span> は可視光の波長範囲を表す。この <span class="math">\(\bar{r}(\lambda), \bar{g}(\lambda), \bar{b}(\lambda)\)</span> を¬等色関数(color matching function)¬と呼ぶ。つまり、</p>
+<ul>
+<li>原刺激 <span class="math">\(\mathbf{R},\mathbf{G},\mathbf{B}\)</span></li>
+<li>基礎刺激 <span class="math">\(\mathbf{W}\)</span> に等色する原刺激の強度</li>
+<li>原刺激に対応した等色関数 <span class="math">\(\bar{r}(\lambda), \bar{g}(\lambda), \bar{b}(\lambda)\)</span></li>
+</ul>
+<p>がわかれば、任意の分光強度分布を持つ光の色彩を3つの数値で表すことができる。</p>
+<h4>CIE-RGB</h4>
+<p><img alt="CIE-RGB" src="https://www.cybernet.co.jp/optical/images/course/word/t14_03.png"></p>
+<p>原刺激を（R:700.0nm, G:546.1nm, B:435.8nm）として上記の等色関数を用いたもの。等色関数には一部に負の値の領域があるが、この領域では、左辺の反射光 <span class="math">\(\mathbf{C}\)</span> に一定量の原刺激を加えることで等色させる。</p>
+<h4>CIE-XYZ</h4>
+<p><img alt="CIE-XYZ" src="https://www.cybernet.co.jp/optical/images/course/word/t14_03.png"></p>
+<p><strong>CIE-XYZ</strong> 表色系は、<strong>CIE-RGB</strong> 表式系と同時に採用された標準表色系である。<strong>CIE-RGB</strong> 表色系の等色関数は、部分的に負の値があり、扱いにくかったので、¬等色関数が非負となる¬ように仮想的な原刺激を設定し、¬CIE-RGB表式系の等色関数から線形変換によって¬求めた等色関数 <span class="math">\(\bar{x}(\lambda),\bar{y}(\lambda),\bar{z}(\lambda)\)</span> を用いて三値刺激 <span class="math">\(X,Y,Z\)</span> を求めて色を定量的に表現する。</p>
+<div class="math">$$
+\left[\begin{array}{l}{X} \\ {Y} \\ {Z}\end{array}\right]=\left[\begin{array}{ccc}{2.7689} &amp; {1.7518} &amp; {1.1302} \\ {1.0000} &amp; {4.5907} &amp; {0.0601} \\ {0} &amp; {0.0565} &amp; {5.5943}\end{array}\right]\left[\begin{array}{l}{R} \\ {G} \\ {B}\end{array}\right]
+$$</div>
+<p>ここで、<strong>明るさを無視する</strong> と、任意の色は¬色度座標(trichromatic coodinates)¬で表現できる。さらに、<span class="math">\(X+Y+Z=1\)</span> の制約を用いてこれを平面表示することも可能である。</p>
+<p><img alt="" src="https://www.cybernet.co.jp/optical/images/course/word/t14_06.png"></p>
+<p>上図の <span class="math">\(xy\)</span> 色度図中で釣鐘状の曲線を¬スペクトル軌跡(spectrum locus)¬と呼び、軌跡に沿って最も純度の高い単色光が並ぶ。人間が知覚できる全ての色は、380~780nmの点に至るスペクトル軌跡と、その両端を結ぶ直線（¬純紫軌跡(purple lines)¬）で囲まれた領域内にある。</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/生命情報表現論-1.html" title="Previous: 生命情報表現論 第1回">生命情報表現論 第1回</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-8.html" title="Next: デジタルカメラ系">デジタルカメラ系</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+
+        <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+            <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+        </div>
+
+        <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+            <h5>Table of Contents</h5>
+            <div id="toc"></div>
+
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-11-18T13:00:00+09:00">11 18, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-11-18T13:00:00+09:00">11 18, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#ying-xiang-medeiagong-xue-ref">映像メディア工学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>120</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
+                    <span>16</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content', 
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
