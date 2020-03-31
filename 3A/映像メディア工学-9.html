@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -127,32 +280,11 @@
 <p>波長が約 <strong>400~800nm</strong> の¬電磁波(electromagnetic wave)¬を人間の眼に入力すると、<strong>電磁波の波長によって定まる色</strong> の光として知覚する。したがって、ある色の光を作る際には、その色に対応する波長の電磁波を用意すれば良いことになる。</p>
 <p>しかし、互いに<span class="marker-info" aria-label="他の2色をどのような比率で混ぜても再現できない色の光の組み合わせ">独立した3つの色の光</span>（¬原刺激(reference color stimuli)¬）を混ぜることでも、任意の色を再現できるという経験則が知られている。これは、人間の眼の波長に対する感度の異なる3種類の¬錐体¬の存在で説明できると考えられている。</p>
 <p>ここで、複数の色の光を混ぜ合わせることで別の色の光をつくることを¬混色(colour mixing)¬と呼ぶが、これには以下の2つの方法がある。</p>
-<table>
-<thead>
-<tr>
-<th align="center">#</th>
-<th align="center"><strong>加法混色(additive colour mixing)</strong></th>
-<th align="center"><strong>減法混色(subtractive colour mixing)</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">画像</td>
-<td align="center"><img alt="加法混色" src="http://www.dataplan.jp/blog/wp-content/uploads/2014/11/color_konsyoku1.png"></td>
-<td align="center"><img alt="減法混色" src="http://www.dataplan.jp/blog/wp-content/uploads/2014/11/color_konsyoku2.png"></td>
-</tr>
-<tr>
-<td align="center">混色方法</td>
-<td align="center">白いスクリーン上に異なる色の光を重ねて投影する。</td>
-<td align="center">白い紙の上で絵の具を混ぜ合わせる。または、色付きフィルタを通して白色光を見る。</td>
-</tr>
-<tr>
-<td align="center">原色</td>
-<td align="center"><font color="red">赤(red)</font>・<font color="green">緑(green)</font>・<font color="blue">青(blue)</font></td>
-<td align="center"><font color="cyan">シアン(cyan)</font>・<font color="magenta">マゼンタ(magenta)</font>・<font color="yellow">黄(yellow)</font></td>
-</tr>
-</tbody>
-</table>
+<p>|#|<strong>加法混色(additive colour mixing)</strong>|<strong>減法混色(subtractive colour mixing)</strong>|
+|:-:|:-:|:-:|
+|画像|<img alt="加法混色" src="http://www.dataplan.jp/blog/wp-content/uploads/2014/11/color_konsyoku1.png" />|<img alt="減法混色" src="http://www.dataplan.jp/blog/wp-content/uploads/2014/11/color_konsyoku2.png" />|
+|混色方法|白いスクリーン上に異なる色の光を重ねて投影する。|白い紙の上で絵の具を混ぜ合わせる。または、色付きフィルタを通して白色光を見る。|
+|原色|<font color="red">赤(red)</font>・<font color="green">緑(green)</font>・<font color="blue">青(blue)</font>|<font color="cyan">シアン(cyan)</font>・<font color="magenta">マゼンタ(magenta)</font>・<font color="yellow">黄(yellow)</font>|</p>
 <h3>表色系</h3>
 <p>撮影対象の色を測定する際に、3種類の原刺激を用意して <strong>加法混色</strong> し、色が一致した際に両者は¬等色(color match)¬したという。</p>
 <div class="math">$$\mathbf{C} \underset{=}{\text{color match}} R\mathbf{R} + G\mathbf{G} + B\mathbf{B}$$</div>
@@ -177,16 +309,16 @@ $$</div>
 </ul>
 <p>がわかれば、任意の分光強度分布を持つ光の色彩を3つの数値で表すことができる。</p>
 <h4>CIE-RGB</h4>
-<p><img alt="CIE-RGB" src="https://www.cybernet.co.jp/optical/images/course/word/t14_03.png"></p>
+<p><img alt="CIE-RGB" src="https://www.cybernet.co.jp/optical/images/course/word/t14_03.png" /></p>
 <p>原刺激を（R:700.0nm, G:546.1nm, B:435.8nm）として上記の等色関数を用いたもの。等色関数には一部に負の値の領域があるが、この領域では、左辺の反射光 <span class="math">\(\mathbf{C}\)</span> に一定量の原刺激を加えることで等色させる。</p>
 <h4>CIE-XYZ</h4>
-<p><img alt="CIE-XYZ" src="https://www.cybernet.co.jp/optical/images/course/word/t14_03.png"></p>
+<p><img alt="CIE-XYZ" src="https://www.cybernet.co.jp/optical/images/course/word/t14_03.png" /></p>
 <p><strong>CIE-XYZ</strong> 表色系は、<strong>CIE-RGB</strong> 表式系と同時に採用された標準表色系である。<strong>CIE-RGB</strong> 表色系の等色関数は、部分的に負の値があり、扱いにくかったので、¬等色関数が非負となる¬ように仮想的な原刺激を設定し、¬CIE-RGB表式系の等色関数から線形変換によって¬求めた等色関数 <span class="math">\(\bar{x}(\lambda),\bar{y}(\lambda),\bar{z}(\lambda)\)</span> を用いて三値刺激 <span class="math">\(X,Y,Z\)</span> を求めて色を定量的に表現する。</p>
 <div class="math">$$
 \left[\begin{array}{l}{X} \\ {Y} \\ {Z}\end{array}\right]=\left[\begin{array}{ccc}{2.7689} &amp; {1.7518} &amp; {1.1302} \\ {1.0000} &amp; {4.5907} &amp; {0.0601} \\ {0} &amp; {0.0565} &amp; {5.5943}\end{array}\right]\left[\begin{array}{l}{R} \\ {G} \\ {B}\end{array}\right]
 $$</div>
 <p>ここで、<strong>明るさを無視する</strong> と、任意の色は¬色度座標(trichromatic coodinates)¬で表現できる。さらに、<span class="math">\(X+Y+Z=1\)</span> の制約を用いてこれを平面表示することも可能である。</p>
-<p><img alt="" src="https://www.cybernet.co.jp/optical/images/course/word/t14_06.png"></p>
+<p><img alt="spectrum locus" src="https://www.cybernet.co.jp/optical/images/course/word/t14_06.png" /></p>
 <p>上図の <span class="math">\(xy\)</span> 色度図中で釣鐘状の曲線を¬スペクトル軌跡(spectrum locus)¬と呼び、軌跡に沿って最も純度の高い単色光が並ぶ。人間が知覚できる全ての色は、380~780nmの点に至るスペクトル軌跡と、その両端を結ぶ直線（¬純紫軌跡(purple lines)¬）で囲まれた領域内にある。</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -285,10 +417,10 @@ $$</div>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
-                    <span>16</span>
+                    <span>17</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

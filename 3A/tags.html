@@ -63,6 +63,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -107,7 +260,7 @@
         </form>
         <ul class="list-of-tags">
             <li>
-            <a href="#3a-ref">3A<span>120</span></a>
+            <a href="#3a-ref">3A<span>123</span></a>
             </li>
             <li>
             <a href="#fen-zi-sheng-ming-ke-xue-iii-ref">分子生命科学Ⅲ<span>14</span></a>
@@ -125,7 +278,7 @@
             <a href="#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)<span>13</span></a>
             </li>
             <li>
-            <a href="#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)<span>3</span></a>
+            <a href="#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)<span>4</span></a>
             </li>
             <li>
             <a href="#sheng-ming-qing-bao-biao-xian-lun-ref">生命情報表現論<span>7</span></a>
@@ -137,10 +290,10 @@
             <a href="#sheng-wu-tong-ji-lun-ref">生物統計論<span>6</span></a>
             </li>
             <li>
-            <a href="#sheng-wu-wu-li-xue-ref">生物物理学<span>5</span></a>
+            <a href="#sheng-wu-wu-li-xue-ref">生物物理学<span>6</span></a>
             </li>
             <li>
-            <a href="#ying-xiang-medeiagong-xue-ref">映像メディア工学<span>16</span></a>
+            <a href="#ying-xiang-medeiagong-xue-ref">映像メディア工学<span>17</span></a>
             </li>
             <li>
             <a href="#zhi-neng-shisutemulun-ref">知能システム論<span>20</span></a>
@@ -153,6 +306,7 @@
     <div class="span8 offset2">
         <h3 id="3a-ref" class="tag-title">3A</h3>
         <ul class="articles-in-tag list-articles-category">
+            <li itemscope><time itemprop="dateCreated" datetime="2020-01-27T13:00:00+09:00">2020-01-27(月)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-2020.html">2020年試験問題  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2020-01-23T00:00:00+09:00">2020-01-23(木)</time><a href="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-H26.html">分子生命科学Ⅲ 試験問題H26  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2020-01-16T11:00:00+09:00">2020-01-16(木)</time><a href="https://iwasakishuto.github.io/University/3A/知能システム論-test.html">試験問題  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2020-01-16T10:00:00+09:00">2020-01-16(木)</time><a href="https://iwasakishuto.github.io/University/3A/知能システム論-glossary.html">試験問題例  </a></li>
@@ -161,6 +315,7 @@
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-26T00:00:00+09:00">2019-12-26(木)</time><a href="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-12.html">分子生命科学Ⅲ 第12回  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-25T00:00:00+09:00">2019-12-25(水)</time><a href="https://iwasakishuto.github.io/University/3A/生命情報表現論-7.html">生命情報表現論 第7回  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-23T00:00:00+09:00">2019-12-23(月)</time><a href="https://iwasakishuto.github.io/University/3A/生命情報表現論-6.html">生命情報表現論 第6回  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-12-19T13:00:00+09:00">2019-12-19(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-6.html"><i class="fas fa-lock"></i> Boosting  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-19T00:00:00+09:00">2019-12-19(木)</time><a href="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-11.html">分子生命科学Ⅲ 第11回  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-16T00:00:00+09:00">2019-12-16(月)</time><a href="https://iwasakishuto.github.io/University/3A/生命情報表現論-5.html">生命情報表現論 第5回  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-12T13:00:00+09:00">2019-12-12(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-4.html"><i class="fas fa-lock"></i> Boosting  </a></li>
@@ -192,10 +347,10 @@
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-09T14:00:00+09:00">2019-11-09(土)</time><a href="https://iwasakishuto.github.io/University/3A/SkillPillPlus-tutorial-2.html">2.Introduction to NEST Simulator  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-09T13:00:00+09:00">2019-11-09(土)</time><a href="https://iwasakishuto.github.io/University/3A/SkillPillPlus-tutorial-1.html">1.Mathematical Models and Numerical Methods of Computational Neuroscience  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-06T00:00:00+09:00">2019-11-06(水)</time><a href="https://iwasakishuto.github.io/University/3A/生物物理学-7-quiz.html"><i class="fas fa-lock"></i> 生物物理学 第7回(小テスト)  </a></li>
-            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T15:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html"><i class="fas fa-lock"></i> Pro.4 Itemset mining algorithm  </a></li>
-            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T14:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-18.html"><i class="fas fa-lock"></i> Pro.3 Gene Network Inference  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T15:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html">Pro.4 Itemset mining algorithm  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T14:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-18.html">Pro.3 Gene Network Inference  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T13:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-17.html"><i class="fas fa-lock"></i> Pro.2 最適行動列アルゴリズム  </a></li>
-            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T12:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-16.html"><i class="fas fa-lock"></i> Pro.1 配列モチーフ探索  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T12:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-16.html">Pro.1 配列モチーフ探索  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-04T12:20:00+09:00">2019-11-04(月)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-15.html">Ex.15 Neural Network  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-04T12:10:00+09:00">2019-11-04(月)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-14.html">Ex.14 Brownian motion  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-04T12:00:00+09:00">2019-11-04(月)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-13.html">Ex.13 Sparse Modeling  </a></li>
@@ -268,6 +423,7 @@
             <li itemscope><time itemprop="dateCreated" datetime="2019-09-26T13:00:00+09:00">2019-09-26(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-1.html">HMMの最尤推定  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-09-26T12:00:00+09:00">2019-09-26(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-0.html">Numpyの行列計算チートシート  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-09-26T00:00:00+09:00">2019-09-26(木)</time><a href="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-1.html">分子生命科学Ⅲ 第1回  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-02-06T00:00:00+09:00">2019-02-06(水)</time><a href="https://iwasakishuto.github.io/University/3A/生物物理学-report-latter.html">生物物理学 2019年度レポート（能瀬担当分）  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2018-01-01T10:00:00+09:00">2018-01-01(月)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-2018.html">2018年過去問  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2017-01-01T10:00:00+09:00">2017-01-01(日)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-2017.html">2017年過去問  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2016-01-01T10:00:00+09:00">2016-01-01(金)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-2016.html">2016年過去問  </a></li>
@@ -309,10 +465,10 @@
 
         <h3 id="qing-bao-ji-chu-shi-yan-mu-li-ref" class="tag-title">情報基礎実験(木立)</h3>
         <ul class="articles-in-tag list-articles-category">
-            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T15:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html"><i class="fas fa-lock"></i> Pro.4 Itemset mining algorithm  </a></li>
-            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T14:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-18.html"><i class="fas fa-lock"></i> Pro.3 Gene Network Inference  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T15:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html">Pro.4 Itemset mining algorithm  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T14:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-18.html">Pro.3 Gene Network Inference  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T13:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-17.html"><i class="fas fa-lock"></i> Pro.2 最適行動列アルゴリズム  </a></li>
-            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T12:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-16.html"><i class="fas fa-lock"></i> Pro.1 配列モチーフ探索  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-11-05T12:00:00+09:00">2019-11-05(火)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-16.html">Pro.1 配列モチーフ探索  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-04T12:20:00+09:00">2019-11-04(月)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-15.html">Ex.15 Neural Network  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-04T12:10:00+09:00">2019-11-04(月)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-14.html">Ex.14 Brownian motion  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-04T12:00:00+09:00">2019-11-04(月)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-13.html">Ex.13 Sparse Modeling  </a></li>
@@ -350,6 +506,7 @@
 
         <h3 id="qing-bao-ji-chu-shi-yan-sen-xia-ref" class="tag-title">情報基礎実験(森下)</h3>
         <ul class="articles-in-tag list-articles-category">
+            <li itemscope><time itemprop="dateCreated" datetime="2019-12-19T13:00:00+09:00">2019-12-19(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-6.html"><i class="fas fa-lock"></i> Boosting  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-12T13:00:00+09:00">2019-12-12(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-4.html"><i class="fas fa-lock"></i> Boosting  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-06T13:00:00+09:00">2019-12-06(金)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-0.html"><i class="fas fa-lock"></i> 英語論文  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-12-05T13:00:00+09:00">2019-12-05(木)</time><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下).html">Introduction  </a></li>
@@ -397,10 +554,12 @@
             <li itemscope><time itemprop="dateCreated" datetime="2019-10-09T00:00:00+09:00">2019-10-09(水)</time><a href="https://iwasakishuto.github.io/University/3A/生物物理学-3.html">生物物理学 第3回  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-10-02T00:00:00+09:00">2019-10-02(水)</time><a href="https://iwasakishuto.github.io/University/3A/生物物理学-2.html">生物物理学 第2回  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-09-30T00:00:00+09:00">2019-09-30(月)</time><a href="https://iwasakishuto.github.io/University/3A/生物物理学-1.html">生物物理学 第1回  </a></li>
+            <li itemscope><time itemprop="dateCreated" datetime="2019-02-06T00:00:00+09:00">2019-02-06(水)</time><a href="https://iwasakishuto.github.io/University/3A/生物物理学-report-latter.html">生物物理学 2019年度レポート（能瀬担当分）  </a></li>
         </ul>
 
         <h3 id="ying-xiang-medeiagong-xue-ref" class="tag-title">映像メディア工学</h3>
         <ul class="articles-in-tag list-articles-category">
+            <li itemscope><time itemprop="dateCreated" datetime="2020-01-27T13:00:00+09:00">2020-01-27(月)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-2020.html">2020年試験問題  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-18T13:00:00+09:00">2019-11-18(月)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-8.html">デジタルカメラ系  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-18T13:00:00+09:00">2019-11-18(月)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-9.html">表色系  </a></li>
             <li itemscope><time itemprop="dateCreated" datetime="2019-11-13T10:00:00+09:00">2019-11-13(水)</time><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-7.html">3次元空間情報の取得と処理  </a></li>

@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -108,7 +261,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <p><a href="https://www.researchgate.net/figure/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a_fig1_221912143"><img alt="PairHMM" src="https://www.researchgate.net/profile/Florian_Blaettler/publication/221912143/figure/fig1/AS:305340219445264@1449810189815/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a.png"></a></p>
+            <p><a href="https://www.researchgate.net/figure/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a_fig1_221912143"><img alt="PairHMM" src="https://www.researchgate.net/profile/Florian_Blaettler/publication/221912143/figure/fig1/AS:305340219445264@1449810189815/A-simple-pair-HMM-for-alignment-after-Durbin-1998-and-alignments-produced-by-it-a.png" /></a></p>
 <h2>Baum-Welch</h2>
 <p>Pair HMMとは、二本の配列を受け取ってペアワイズアラインメントを出力するHMMで、<span class="marker-pink">「アラインメントの確率的な解釈が可能になる」</span><b>（アラインメントのどの部分が信頼できるかを確率的に評価できる）</b>という利点があります。</p>
 <p>このPair HMMは、一般的なHMMと同様にBaum-Welchアルゴリズムによってパラメータを最尤推定していきます。</p>
@@ -130,59 +283,18 @@
 <p>そこで、<span class="marker-pink">「<span class="math">\(n\)</span> ではなく <span class="math">\(u,v\)</span> に注目する」</span>ことで、 <span class="math">\((13.43)\)</span> の式を以下のように書き換えます。</p>
 <div class="math">$$\xi_{u,v}\left(i,j\right)=\frac{f_i\left(u,v\right)A_{ij}\phi_j\left(\diamond_1\right)b_j\left(\diamond_2,\diamond_3\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
 <p>ここで、分子に注目すると、各変数の意味が</p>
-<table>
-<thead>
-<tr>
-<th align="center">variable</th>
-<th align="left">meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(f_i\left(u,v\right)\)</span></td>
-<td align="left">The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(A_{ij}\)</span></td>
-<td align="left">the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></td>
-<td align="left">the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></td>
-<td align="left">the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.</td>
-</tr>
-</tbody>
-</table>
+<p>|variable|meaning|
+|:-:|:-|
+|<span class="math">\(f_i\left(u,v\right)\)</span>|The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.|
+|<span class="math">\(A_{ij}\)</span>|the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.|
+|<span class="math">\(\phi_j\left(\diamond_1\right)\)</span>|the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.|
+|<span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span>|the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.|</p>
 <p>であるので、<span class="math">\(\diamond\)</span> は状態によって異なり、具体的に書き下すと以下のようになります。</p>
-<table>
-<thead>
-<tr>
-<th align="center">state\variable</th>
-<th align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></th>
-<th align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(M\)</span></td>
-<td align="center"><span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span></td>
-<td align="center"><span class="math">\(b_j\left(u+1,v+1\right)\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(X\)</span></td>
-<td align="center"><span class="math">\(e\left(x_{u+1}\right)\)</span></td>
-<td align="center"><span class="math">\(b_j\left(u+1,v\right)\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(Y\)</span></td>
-<td align="center"><span class="math">\(e\left(y_{v+1}\right)\)</span></td>
-<td align="center"><span class="math">\(b_j\left(u,v+1\right)\)</span></td>
-</tr>
-</tbody>
-</table>
+<p>|state\variable|<span class="math">\(\phi_j\left(\diamond_1\right)\)</span>|<span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span>|
+|:-:|:-:|:-:|
+|<span class="math">\(M\)</span>|<span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span>|<span class="math">\(b_j\left(u+1,v+1\right)\)</span>|
+|<span class="math">\(X\)</span>|<span class="math">\(e\left(x_{u+1}\right)\)</span>|<span class="math">\(b_j\left(u+1,v\right)\)</span>|
+|<span class="math">\(Y\)</span>|<span class="math">\(e\left(y_{v+1}\right)\)</span>|<span class="math">\(b_j\left(u,v+1\right)\)</span>|</p>
 <h3><span class="math">\(\gamma\)</span></h3>
 <p>同様に <span class="math">\(\gamma\)</span> も考えると、</p>
 <div class="math">$$
@@ -198,32 +310,11 @@
 <div class="math">$$\pi^{\star}_i = \sum_w\gamma_i^w(0,0)$$</div>
 <h4><span class="math">\(A_{ij}\)</span></h4>
 <div class="math">$$A^{\star}_{ij} = \frac{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\xi_{u,v}^{w}\left(i,j\right)}{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\sum_{j}^{K}\xi_{u,v}^{w}\left(i,j\right)}$$</div>
-<table>
-<thead>
-<tr>
-<th align="center">final emitting state</th>
-<th align="center"><span class="math">\(\tilde{U}\)</span></th>
-<th align="center"><span class="math">\(\tilde{V}\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(M\)</span></td>
-<td align="center"><span class="math">\(U-1\)</span></td>
-<td align="center"><span class="math">\(V-1\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(X\)</span></td>
-<td align="center"><span class="math">\(U-1\)</span></td>
-<td align="center"><span class="math">\(V\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(Y\)</span></td>
-<td align="center"><span class="math">\(U\)</span></td>
-<td align="center"><span class="math">\(V-1\)</span></td>
-</tr>
-</tbody>
-</table>
+<p>|final emitting state|<span class="math">\(\tilde{U}\)</span>|<span class="math">\(\tilde{V}\)</span>|
+|:-:|:-:|:-:|
+|<span class="math">\(M\)</span>|<span class="math">\(U-1\)</span>|<span class="math">\(V-1\)</span>|
+|<span class="math">\(X\)</span>|<span class="math">\(U-1\)</span>|<span class="math">\(V\)</span>|
+|<span class="math">\(Y\)</span>|<span class="math">\(U\)</span>|<span class="math">\(V-1\)</span>|</p>
 <h4><span class="math">\(\phi_{i}(k)\)</span></h4>
 <div class="math">$$\phi_i\left(k\right) = \frac{\sum_w\sum_{u=0}^{U\ast1}\sum_{v=0}^{V\ast2}\gamma_i^w\left(u,v\right)}{\sum_w\sum_{u=0}^U\sum_{v=0}^V\gamma_i^w\left(u,v\right)}$$</div>
 <ul>
@@ -332,7 +423,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)
                     <span>13</span>

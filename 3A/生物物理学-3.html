@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -120,181 +273,47 @@
   </ol>
 </div>
 
-<table>
-<thead>
-<tr>
-<th align="center">機能</th>
-<th align="left">説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="qbox">分子認識</span></td>
-<td align="left">ミオグロビンは酸素を結合。抗体は抗原と結合。</td>
-</tr>
-<tr>
-<td align="center"><span class="qbox">触媒（酵素）</span></td>
-<td align="left">化学反応の反応速度は <span class="math">\(10^8\)</span>~<span class="math">\(10^{17}\)</span> 倍にも加速される。</td>
-</tr>
-<tr>
-<td align="center"><span class="qbox">制御</span></td>
-<td align="left">基質の結合や環境の変化に伴い構造を変化し、タンパク質の反応を制御する。</td>
-</tr>
-<tr>
-<td align="center"><span class="qbox">エネルギー変換</span></td>
-<td align="left">光を電位に換え、ATP分解を力に換える。</td>
-</tr>
-<tr>
-<td align="center"><span class="qbox">構造形成・維持</span></td>
-<td align="left">タンパク質重合体は細胞や細胞内器官の構造を支える。</td>
-</tr>
-</tbody>
-</table>
+<p>|機能|説明|
+|:-:|:-|
+|<span class="qbox">分子認識</span>|ミオグロビンは酸素を結合。抗体は抗原と結合。|
+|<span class="qbox">触媒（酵素）</span>|化学反応の反応速度は <span class="math">\(10^8\)</span>~<span class="math">\(10^{17}\)</span> 倍にも加速される。|
+|<span class="qbox">制御</span>|基質の結合や環境の変化に伴い構造を変化し、タンパク質の反応を制御する。|
+|<span class="qbox">エネルギー変換</span>|光を電位に換え、ATP分解を力に換える。|
+|<span class="qbox">構造形成・維持</span>|タンパク質重合体は細胞や細胞内器官の構造を支える。|</p>
 <h3>タンパク質を構成するアミノ酸</h3>
 <p>d-グリセルアルデヒドの立体配置を基準として、この立体配置を崩さずにできる化合物をD-体、その鏡像異性体がL-体。</p>
 <p><span class="marker-pink">※ タンパク質はL体</span></p>
-<table>
-<thead>
-<tr>
-<th align="center">構造</th>
-<th align="center">名前</th>
-<th align="center">略（三文字）</th>
-<th align="center">略（一文字）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/L-alanine-skeletal.png/120px-L-alanine-skeletal.png"></td>
-<td align="center"><span class="qbox">アラニン</span></td>
-<td align="center"><span class="qbox">Ala</span></td>
-<td align="center"><span class="qbox">A</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/L-arginine-skeletal-%28tall%29.png/71px-L-arginine-skeletal-%28tall%29.png"></td>
-<td align="center"><span class="qbox">アルギニン</span></td>
-<td align="center"><span class="qbox">Arg</span></td>
-<td align="center"><span class="qbox">R</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/L-asparagine-skeletal.png/102px-L-asparagine-skeletal.png"></td>
-<td align="center"><span class="qbox">アスパラギン</span></td>
-<td align="center"><span class="qbox">Asn</span></td>
-<td align="center"><span class="qbox">N</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/L-aspartic-acid-skeletal.png/102px-L-aspartic-acid-skeletal.png"></td>
-<td align="center"><span class="qbox">アスパラギン酸</span></td>
-<td align="center"><span class="qbox">Asp</span></td>
-<td align="center"><span class="qbox">D</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/L-cysteine-skeletal.png/118px-L-cysteine-skeletal.png"></td>
-<td align="center"><span class="qbox">システイン</span></td>
-<td align="center"><span class="qbox">Cys</span></td>
-<td align="center"><span class="qbox">C</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/L-glutamic-acid-skeletal.png/120px-L-glutamic-acid-skeletal.png"></td>
-<td align="center"><span class="qbox">グルタミン酸</span></td>
-<td align="center"><span class="qbox">Glu</span></td>
-<td align="center"><span class="qbox">E</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/L-glutamine-skeletal.png/120px-L-glutamine-skeletal.png"></td>
-<td align="center"><span class="qbox">グルタミン</span></td>
-<td align="center"><span class="qbox">Gln</span></td>
-<td align="center"><span class="qbox">Q</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Glycine-skeletal.png/120px-Glycine-skeletal.png"></td>
-<td align="center"><span class="qbox">グリシン</span></td>
-<td align="center"><span class="qbox">Gly</span></td>
-<td align="center"><span class="qbox">G</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/L-histidine-skeletal.png/101px-L-histidine-skeletal.png"></td>
-<td align="center"><span class="qbox">ヒスチジン</span></td>
-<td align="center"><span class="qbox">His</span></td>
-<td align="center"><span class="qbox">H</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/L-isoleucine-skeletal.svg/120px-L-isoleucine-skeletal.svg.png"></td>
-<td align="center"><span class="qbox">イソロイシン</span></td>
-<td align="center"><span class="qbox">Ile</span></td>
-<td align="center"><span class="qbox">I</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/L-leucine-skeletal.png/113px-L-leucine-skeletal.png"></td>
-<td align="center"><span class="qbox">ロイシン</span></td>
-<td align="center"><span class="qbox">Leu</span></td>
-<td align="center"><span class="qbox">L</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/L-lysine-skeletal.png/120px-L-lysine-skeletal.png"></td>
-<td align="center"><span class="qbox">リシン</span></td>
-<td align="center"><span class="qbox">Lys</span></td>
-<td align="center"><span class="qbox">K</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/L-methionine-skeletal.png/120px-L-methionine-skeletal.png"></td>
-<td align="center"><span class="qbox">メチオニン</span></td>
-<td align="center"><span class="qbox">Met</span></td>
-<td align="center"><span class="qbox">M</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/L-phenylalanine-skeletal.png/118px-L-phenylalanine-skeletal.png"></td>
-<td align="center"><span class="qbox">フェニルアラニン</span></td>
-<td align="center"><span class="qbox">Phe</span></td>
-<td align="center"><span class="qbox">F</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/L-proline-skeletal.png/120px-L-proline-skeletal.png"></td>
-<td align="center"><span class="qbox">プロリン</span></td>
-<td align="center"><span class="qbox">Pro</span></td>
-<td align="center"><span class="qbox">P</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/L-serine-skeletal.png/120px-L-serine-skeletal.png"></td>
-<td align="center"><span class="qbox">セリン</span></td>
-<td align="center"><span class="qbox">Ser</span></td>
-<td align="center"><span class="qbox">S</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/L-threonine-skeletal.png/120px-L-threonine-skeletal.png"></td>
-<td align="center"><span class="qbox">トレオニン</span></td>
-<td align="center"><span class="qbox">Thr</span></td>
-<td align="center"><span class="qbox">T</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/L-tryptophan-skeletal.png/111px-L-tryptophan-skeletal.png"></td>
-<td align="center"><span class="qbox">トリプトファン</span></td>
-<td align="center"><span class="qbox">Trp</span></td>
-<td align="center"><span class="qbox">W</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/L-tyrosine-skeletal.png/120px-L-tyrosine-skeletal.png"></td>
-<td align="center"><span class="qbox">チロシン</span></td>
-<td align="center"><span class="qbox">Tyr</span></td>
-<td align="center"><span class="qbox">Y</span></td>
-</tr>
-<tr>
-<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/L-valine-skeletal.png/120px-L-valine-skeletal.png"></td>
-<td align="center"><span class="qbox">バリン</span></td>
-<td align="center"><span class="qbox">Val</span></td>
-<td align="center"><span class="qbox">V</span></td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre><span></span><span class="c1"># 上記の表は以下のコードを応用して作成した。</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://ja.wikipedia.org/wiki/タンパク質を構成するアミノ酸&quot;</span>
-<span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s1">&#39;lxml&#39;</span><span class="p">)</span>
-<span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;class&quot;</span><span class="p">:</span> <span class="s2">&quot;gallerybox&quot;</span><span class="p">}):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">li</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
-    <span class="n">src</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;img.*src=&quot;(.+?)&quot;.*&gt;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">name</span><span class="p">,</span> <span class="n">l3</span><span class="p">,</span> <span class="n">l1</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;p&gt;.*title=&quot;(.+?)&quot;.*&lt;br/&gt;\((.+?)\xa0\/\xa0(.+?)\)&lt;/p&gt;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-
+<p>|構造|名前|略（三文字）|略（一文字）|
+|:-:|:-:|:-:|:-:|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/L-alanine-skeletal.png/120px-L-alanine-skeletal.png">|<span class="qbox">アラニン</span>|<span class="qbox">Ala</span>|<span class="qbox">A</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/L-arginine-skeletal-%28tall%29.png/71px-L-arginine-skeletal-%28tall%29.png">|<span class="qbox">アルギニン</span>|<span class="qbox">Arg</span>|<span class="qbox">R</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/L-asparagine-skeletal.png/102px-L-asparagine-skeletal.png">|<span class="qbox">アスパラギン</span>|<span class="qbox">Asn</span>|<span class="qbox">N</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/L-aspartic-acid-skeletal.png/102px-L-aspartic-acid-skeletal.png">|<span class="qbox">アスパラギン酸</span>|<span class="qbox">Asp</span>|<span class="qbox">D</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/L-cysteine-skeletal.png/118px-L-cysteine-skeletal.png">|<span class="qbox">システイン</span>|<span class="qbox">Cys</span>|<span class="qbox">C</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/L-glutamic-acid-skeletal.png/120px-L-glutamic-acid-skeletal.png">|<span class="qbox">グルタミン酸</span>|<span class="qbox">Glu</span>|<span class="qbox">E</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/L-glutamine-skeletal.png/120px-L-glutamine-skeletal.png">|<span class="qbox">グルタミン</span>|<span class="qbox">Gln</span>|<span class="qbox">Q</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Glycine-skeletal.png/120px-Glycine-skeletal.png">|<span class="qbox">グリシン</span>|<span class="qbox">Gly</span>|<span class="qbox">G</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/L-histidine-skeletal.png/101px-L-histidine-skeletal.png">|<span class="qbox">ヒスチジン</span>|<span class="qbox">His</span>|<span class="qbox">H</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/L-isoleucine-skeletal.svg/120px-L-isoleucine-skeletal.svg.png">|<span class="qbox">イソロイシン</span>|<span class="qbox">Ile</span>|<span class="qbox">I</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/L-leucine-skeletal.png/113px-L-leucine-skeletal.png">|<span class="qbox">ロイシン</span>|<span class="qbox">Leu</span>|<span class="qbox">L</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/L-lysine-skeletal.png/120px-L-lysine-skeletal.png">|<span class="qbox">リシン</span>|<span class="qbox">Lys</span>|<span class="qbox">K</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/L-methionine-skeletal.png/120px-L-methionine-skeletal.png">|<span class="qbox">メチオニン</span>|<span class="qbox">Met</span>|<span class="qbox">M</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/L-phenylalanine-skeletal.png/118px-L-phenylalanine-skeletal.png">|<span class="qbox">フェニルアラニン</span>|<span class="qbox">Phe</span>|<span class="qbox">F</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/L-proline-skeletal.png/120px-L-proline-skeletal.png">|<span class="qbox">プロリン</span>|<span class="qbox">Pro</span>|<span class="qbox">P</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/L-serine-skeletal.png/120px-L-serine-skeletal.png">|<span class="qbox">セリン</span>|<span class="qbox">Ser</span>|<span class="qbox">S</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/L-threonine-skeletal.png/120px-L-threonine-skeletal.png">|<span class="qbox">トレオニン</span>|<span class="qbox">Thr</span>|<span class="qbox">T</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/L-tryptophan-skeletal.png/111px-L-tryptophan-skeletal.png">|<span class="qbox">トリプトファン</span>|<span class="qbox">Trp</span>|<span class="qbox">W</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/L-tyrosine-skeletal.png/120px-L-tyrosine-skeletal.png">|<span class="qbox">チロシン</span>|<span class="qbox">Tyr</span>|<span class="qbox">Y</span>|
+|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/L-valine-skeletal.png/120px-L-valine-skeletal.png">|<span class="qbox">バリン</span>|<span class="qbox">Val</span>|<span class="qbox">V</span>|</p>
+<p>```python</p>
+<h1>上記の表は以下のコードを応用して作成した。</h1>
+<p>url = "https://ja.wikipedia.org/wiki/タンパク質を構成するアミノ酸"
+soup = BeautifulSoup(requests.get(url).content, 'lxml')
+for li in soup.findAll("li", {"class": "gallerybox"}):
+    text = str(li).replace('\n', '')
+    src = re.findall(r'<img.*src="(.+?)".*>', text)[0]
+    name, l3, l1 = re.findall(r'<p>.<em>title="(.+?)".</em><br/>((.+?)\xa0\/\xa0(.+?))</p>', text)[0]
+```</p>
 <h2>理論的構造決定法</h2>
 <ul>
 <li><b>アミノ酸配列→量子力学→タンパク質の構造とエネルギー状態を決定</b></li>
@@ -424,10 +443,10 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-wu-li-xue-ref">生物物理学
-                    <span>5</span>
+                    <span>6</span>
 </a></li>
             </ul>
 <h5>Contact</h5>

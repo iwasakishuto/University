@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -108,7 +261,7 @@
         <div class="span8 offset2 article-content">
 
             
-            <div id="pec-encrypted-content" style="display:none">j+a/a11ZlFwKPIeK0ogDpw==;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;^</div>
+            <div id="pec-encrypted-content" style="display:none">NXJ7CRTxlH7QXI0G/1FAcQ==;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;^</div>
 <div id="pec-decrypted-content">
     <h4>This content is encrypted.</h4>
 </div>
@@ -243,7 +396,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>

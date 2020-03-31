@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -144,62 +297,21 @@
 <li><span class="qbox" aria-label="31">10</span>対の<span class="qbox" aria-label="後根神経節(dorsal root ganglion)">11</span>：同じく<span class="qbox" aria-label="31">10</span>対の<span class="qbox" aria-label="脊髄分節(spinal segment)">12</span>と一対一の関係になっている。ただし、1つの<span class="qbox" aria-label="後根神経節(dorsal root ganglion)">11</span>が切断されても、隣接する<span class="qbox" aria-label="後根神経節(dorsal root ganglion)">11</span>が重複する領域を神経支配しているため、対応する<span class="qbox" aria-label="皮膚分節(dermatome)">13</span>と同側の感覚が全て失われるわけではない。（3つの隣接する<span class="qbox" aria-label="後根神経節(dorsal root ganglion)">11</span>が切断されると1つの<span class="qbox" aria-label="皮膚分節(dermatome)">13</span>の感覚が消失する。）</li>
 <li><span class="qbox" aria-label="1">14</span>対の<span class="qbox" aria-label="三叉神経節(trigeminal nerve)">15</span>：脳幹に隣接しており、顔の体性感覚を担っている。</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th align="center">皮膚の分節構造</th>
-<th align="center">脊髄の分節構造</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><img src="theme/img/3A_Life_Science3/1010_2.png" alt="slide4"></td>
-<td align="center"><img src="theme/img/3A_Life_Science3/1010_3.png" alt="slide5"></td>
-</tr>
-</tbody>
-</table>
+<p>|皮膚の分節構造|脊髄の分節構造|
+|:-:|:-:|
+|<img src="theme/img/3A_Life_Science3/1010_2.png" alt="slide4">|<img src="theme/img/3A_Life_Science3/1010_3.png" alt="slide5">|</p>
 <p><small>※ <span class="qbox" aria-label="31">10</span>対の<span class="qbox" aria-label="脊髄分節(spinal segment)">12</span>は、神経の始まる椎骨にちなんで名付けられている。</small></p>
 <p>のいずれかに位置している。</p>
 <h4>皮膚の機械受容器</h4>
 <p>体性感覚系の受容器の多くは<span class="qbox" aria-label="機械受容器(mechanoreceptor)">16</span>であり、それぞれの受容器の中心部には無髄の神経突起の枝がある。これらの神経突起の終末は<span class="qbox" aria-label="機械感受性イオンチャネル(mechanosensitive ion channel)">17</span>を持っている。これらのイオンチャネルの開閉は、チャネル周囲の細胞膜の伸展や張力の変化に依存する。</p>
 <p><img src="theme/img/3A_Life_Science3/1010_4.png" alt="https://image.jimcdn.com/app/cms/image/transf/dimension=325x1024:format=jpg/path/sc98ddff6dcd9af1a/image/i51a19f29b2a46c8d/version/1541212949/%E6%9C%89%E6%AF%9B%E9%83%A8%E3%81%AE%E7%9A%AE%E8%86%9A%E5%9B%B3.jpg"></p>
 <p>皮膚の機械受容器を上図に示した。</p>
-<table>
-<thead>
-<tr>
-<th align="center">名称</th>
-<th align="left">役割</th>
-<th align="center">受容野の大きさ</th>
-<th align="center">順応</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="qbox" aria-label="パチニ小体(Pacinian corpuscle)">18</span></td>
-<td align="left">真皮の深くに位置し、最大で2mm、多くは1mm程度であり、裸眼で見ることができるほど大きい</td>
-<td align="center">大きい</td>
-<td align="center"><span class="qbox" aria-label="速い順応(rapidly adapting)">19</span></td>
-</tr>
-<tr>
-<td align="center"><span class="qbox" aria-label="ルフィニ終末(Ruffini's ending)">20</span></td>
-<td align="left">有毛部および無毛部に見られ、<span class="qbox" aria-label="パチニ小体(Pacinian corpuscle)">18</span>よりわずかに小さい。</td>
-<td align="center">大きい</td>
-<td align="center"><span class="qbox" aria-label="遅い順応(slowly adapting)">21</span></td>
-</tr>
-<tr>
-<td align="center"><span class="qbox" aria-label="マイスネル小体(Meissner's corpuscle)">22</span></td>
-<td align="left"><span class="qbox" aria-label="パチニ小体(Pacinian corpuscle)">18</span>の1/10程度の大きさで、無毛皮膚の隆起部（ex.指紋の隆起部）にある。</td>
-<td align="center">小さい</td>
-<td align="center"><span class="qbox" aria-label="速い順応(rapidly adapting)">19</span></td>
-</tr>
-<tr>
-<td align="center"><span class="qbox" aria-label="メルケル盤(Merkel's disk)">23</span></td>
-<td align="left">表皮内にあり、神経終末と扁平な非神経性の上皮細胞からなる。</td>
-<td align="center">小きい</td>
-<td align="center"><span class="qbox" aria-label="遅い順応(slowly adapting)">21</span></td>
-</tr>
-</tbody>
-</table>
+<p>|名称|役割|受容野の大きさ|順応|
+|:-:|:-|:-:|:-:|
+|<span class="qbox" aria-label="パチニ小体(Pacinian corpuscle)">18</span>|真皮の深くに位置し、最大で2mm、多くは1mm程度であり、裸眼で見ることができるほど大きい|大きい|<span class="qbox" aria-label="速い順応(rapidly adapting)">19</span>|
+|<span class="qbox" aria-label="ルフィニ終末(Ruffini's ending)">20</span>|有毛部および無毛部に見られ、<span class="qbox" aria-label="パチニ小体(Pacinian corpuscle)">18</span>よりわずかに小さい。|大きい|<span class="qbox" aria-label="遅い順応(slowly adapting)">21</span>|
+|<span class="qbox" aria-label="マイスネル小体(Meissner's corpuscle)">22</span>|<span class="qbox" aria-label="パチニ小体(Pacinian corpuscle)">18</span>の1/10程度の大きさで、無毛皮膚の隆起部（ex.指紋の隆起部）にある。|小さい|<span class="qbox" aria-label="速い順応(rapidly adapting)">19</span>|
+|<span class="qbox" aria-label="メルケル盤(Merkel's disk)">23</span>|表皮内にあり、神経終末と扁平な非神経性の上皮細胞からなる。|小きい|<span class="qbox" aria-label="遅い順応(slowly adapting)">21</span>|</p>
 <p>なお、刺激の詳細な性質を識別する能力は、体の部分によって大きく異なっており、<span class="marker-info" aria-label="対になった2点で同時に体表を刺激した際に、2点が識別される最小の距離を示す。">2点識別覚</span>の結果は以下のようになる。指先が最も分解能が高い。これは、</p>
 <ul>
 <li>指先の機械受容器の密度が体のどの部分よりも高い。</li>
@@ -246,62 +358,17 @@
 </div>
 
 <p>主要な神経伝達物質としては以下が挙げられる。</p>
-<table>
-<thead>
-<tr>
-<th align="center">種類</th>
-<th align="left">神経伝達物質</th>
-<th align="left">説明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">アミノ酸</td>
-<td align="left">グルタミン酸(Glu)</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="興奮性">38</span>ニューロンのほとんど、感覚ニューロンのほとんど</td>
-</tr>
-<tr>
-<td align="center">アミノ酸</td>
-<td align="left">GABA(γ-アミノ酸)</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="抑制性">39</span>ニューロンのほとんど</td>
-</tr>
-<tr>
-<td align="center">アミノ酸</td>
-<td align="left">グリシン(Gly)</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="抑制性">39</span>ニューロンの一部（脳幹や脊髄に存在）</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="left">アセチルコリン(Ach)</td>
-<td align="left">筋肉を興奮させる運動ニューロン、自律神経系のニューロン（交感神経の節後以外全て）、中枢神経系の興奮性および調節性ニューロン</td>
-</tr>
-<tr>
-<td align="center">モノアミン(monoamine)</td>
-<td align="left">セロトニン(5-HT)</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン</td>
-</tr>
-<tr>
-<td align="center">モノアミン(monoamine)</td>
-<td align="left">ドーパミン(DA)</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン</td>
-</tr>
-<tr>
-<td align="center">モノアミン(monoamine)</td>
-<td align="left">ノルアドレナリン(NA)</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン、自律神経系のニューロン（交感神経の節後ニューロン）</td>
-</tr>
-<tr>
-<td align="center">モノアミン(monoamine)</td>
-<td align="left">ヒスタミン</td>
-<td align="left">中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン</td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="left">神経ペプチド</td>
-<td align="left"><span class="qbox" aria-label="興奮性">38</span>、<span class="qbox" aria-label="抑制性">39</span>、<span class="qbox" aria-label="調節性">40</span>のニューロンから共放出、神経内分泌細胞</td>
-</tr>
-</tbody>
-</table>
+<p>|種類|神経伝達物質|説明|
+|:-:|:-|:-|
+|アミノ酸|グルタミン酸(Glu)|中枢神経系の<span class="qbox" aria-label="興奮性">38</span>ニューロンのほとんど、感覚ニューロンのほとんど|
+|アミノ酸|GABA(γ-アミノ酸)|中枢神経系の<span class="qbox" aria-label="抑制性">39</span>ニューロンのほとんど|
+|アミノ酸|グリシン(Gly)|中枢神経系の<span class="qbox" aria-label="抑制性">39</span>ニューロンの一部（脳幹や脊髄に存在）|
+||アセチルコリン(Ach)|筋肉を興奮させる運動ニューロン、自律神経系のニューロン（交感神経の節後以外全て）、中枢神経系の興奮性および調節性ニューロン|
+|モノアミン(monoamine)|セロトニン(5-HT)|中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン|
+|モノアミン(monoamine)|ドーパミン(DA)|中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン|
+|モノアミン(monoamine)|ノルアドレナリン(NA)|中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン、自律神経系のニューロン（交感神経の節後ニューロン）|
+|モノアミン(monoamine)|ヒスタミン|中枢神経系の<span class="qbox" aria-label="調節性">40</span>ニューロン|
+||神経ペプチド|<span class="qbox" aria-label="興奮性">38</span>、<span class="qbox" aria-label="抑制性">39</span>、<span class="qbox" aria-label="調節性">40</span>のニューロンから共放出、神経内分泌細胞|</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -399,7 +466,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#fen-zi-sheng-ming-ke-xue-iii-ref">分子生命科学Ⅲ
                     <span>14</span>

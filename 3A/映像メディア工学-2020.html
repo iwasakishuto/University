@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 映像メディア工学, 映像メディア工学, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="2020年試験問題 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/映像メディア工学-2020.html" />
+<meta property="og:description" content="イントロダクション" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2020-01-27T13:00:00+09:00" />
+<meta name="twitter:title" content="2020年試験問題 ">
+<meta name="twitter:description" content="イントロダクション">
+
+        <title>2020年試験問題  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/映像メディア工学-2020.html"> 2020年試験問題  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="frame" style="background-color: #fff78f">
+    <p style="text-align: center"><b>前半</b>：<a href="http://www.hal.t.u-tokyo.ac.jp/~aizawa/">相澤先生</a></p>
+</div>
+
+<div class="red-tag"><b>（問１）</b></div>
+
+<ol>
+<li>蛍光灯や。</li>
+<li>レンズ口径が同じで薄いレンズと厚いレンズがある。これらを用いたとき、先に焦げるのはどちらか。</li>
+<li><span class="math">\(\gamma\)</span> 補正について説明せよ。</li>
+</ol>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<ol>
+<li>カメラの <strong>ホワイトバランス</strong> 機能を用いずに撮影したためと考えられる。
+照明とカメラの温度関係によって、画像に青みがかかったり（照明の温度がカメラよりも@高い@時）、赤みがかかったり（その逆）する。</li>
+</ol>
+<div class="red-tag"><b>（問２）</b></div>
+
+<p>周波数領域において、原信号を <span class="math">\(X(\omega)\)</span>、出力信号を <span class="math">\(Y(\omega)\)</span>、ノイズを <span class="math">\(N(\omega)\)</span>、フィルタを <span class="math">\(H(\omega)\)</span> と記述する。この時、これらの間には</p>
+<div class="math">$$Y(\omega) = H(\omega)X(\omega) + N(\omega)$$</div>
+<p>という関係性が成立している。</p>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<div class="red-tag"><b>（問３）</b></div>
+
+<ol>
+<li>ハリスの</li>
+<li>SIFT特徴量</li>
+</ol>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<div class="red-tag"><b>（問４）</b></div>
+
+<p>次のような（人間うじゃうじゃ）</p>
+<ol>
+<li>ハリスの</li>
+<li>SIFT特徴量</li>
+</ol>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<div class="frame" style="background-color: #fff78f">
+    <p style="text-align: center"><b>後半</b>：<a href="http://www.hal.t.u-tokyo.ac.jp/~yamasaki/">山崎先生</a></p>
+</div>
+
+<div class="red-tag"><b>（問５）</b></div>
+
+<p>下記手法について説明せよ。</p>
+<ol>
+<li>アンサンブル学習</li>
+<li>8点アルゴリズム</li>
+</ol>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<div class="red-tag"><b>（問６）</b></div>
+
+<p>Principle Component Analysis (PCA; 主成分分析法) について。</p>
+<ol>
+<li>どのような用途で用いられるのか説明せよ。</li>
+<li>具体的なアルゴリズムについて数式を用いて説明せよ。</li>
+</ol>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<div class="red-tag"><b>（問７）</b></div>
+
+<p>ニューラルネットワークについて。</p>
+<ol>
+<li>パーセプトロンの学習方法について数式を用いて説明せよ。</li>
+<li>他の機械学習と比較してニューラルネットワークの学習アルゴリズムには特徴がある。その特徴と、それを生かした実用例を2つ答えよ。</li>
+</ol>
+<div class="blue-tag"><b>（解答）</b></div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/分子生命科学Ⅲ-H26.html" title="Previous: 分子生命科学Ⅲ 試験問題H26">分子生命科学Ⅲ 試験問題H26</a></li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+
+        <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+            <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+        </div>
+
+        <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+            <h5>Table of Contents</h5>
+            <div id="toc"></div>
+
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2020-01-27T13:00:00+09:00"> 1 27, 2020</time>
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#ying-xiang-medeiagong-xue-ref">映像メディア工学</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>123</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#ying-xiang-medeiagong-xue-ref">映像メディア工学
+                    <span>17</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content', 
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

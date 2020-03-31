@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -173,27 +326,10 @@ $$</div>
 <p>ただし、<span class="marker-pink"><span class="math">\(-\nabla f(\mathbf{x}^{\ast})\)</span> は <span class="math">\(g(\mathbf{x})&lt;0\)</span> の外側へと向かうはず</span>だから、<span class="marker-pink">あるパラメータ <span class="math">\(\lambda&gt;0\)</span> </span>が存在して、</p>
 <div class="math">$$\nabla f(\mathbf{x}) = -\lambda\nabla g (\mathbf{x})$$</div>
 <p>が成立しなければならない。</p>
-<table>
-<thead>
-<tr>
-<th align="center">勾配</th>
-<th align="left">意味</th>
-<th align="left">最適化問題における問題における意味</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(\nabla f(\mathbf{x})\)</span></td>
-<td align="left"><span class="math">\(f\)</span> が大きくなる方向</td>
-<td align="left">目的とは別の方向</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(\nabla g(\mathbf{x})\)</span></td>
-<td align="left"><span class="math">\(g\)</span> が大きくなる方向</td>
-<td align="left"><span class="math">\(g(\mathbf{x})&lt;0\)</span> の外側へと向かう方向</td>
-</tr>
-</tbody>
-</table>
+<p>|勾配|意味|最適化問題における問題における意味|
+|:-:|:-|:-|
+|<span class="math">\(\nabla f(\mathbf{x})\)</span>|<span class="math">\(f\)</span> が大きくなる方向|目的とは別の方向|
+|<span class="math">\(\nabla g(\mathbf{x})\)</span>|<span class="math">\(g\)</span> が大きくなる方向|<span class="math">\(g(\mathbf{x})&lt;0\)</span> の外側へと向かう方向|</p>
 <h3>KKT条件</h3>
 <p>上記の無効制約・有効制約のどちらの場合にせよ、<span class="math">\(\lambda g(\mathbf{x})=0\)</span> が成立することがわかる。</p>
 <p>したがって、<span class="math">\(g(\mathbf{x})\leq0\)</span> という制約の下で <span class="math">\(f(\mathbf{x})\)</span> を最小化するには、以下の<span class="marker-pink">Karush-Kuhn-Tucker(KKT)条件</span>のもとで、<span class="math">\(\mathbf{x},\lambda\)</span> に関して<a href="#Lagrangian">ラグランジュ関数 <span class="math">\((E.4)\)</span> </a>の停留点を求めれば良い。</p>
@@ -207,37 +343,12 @@ $$</div>
 \end{aligned}
 $$</div>
 <p>なお、当然ではあるが、「制約条件の符号の向き」と「目的関数の最大化・最小化」には以下の関係がある。（<span class="math">\(\lambda\geq0\)</span>）</p>
-<table>
-<thead>
-<tr>
-<th align="center">目的関数 <span class="math">\(f(\mathbf{x})\)</span></th>
-<th align="center">制約条件 <span class="math">\(g(\mathbf{x})\)</span></th>
-<th align="center">ラグランジュ関数 <span class="math">\(L(\mathbf{x},\lambda)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(\min f(\mathbf{x})\)</span></td>
-<td align="center"><span class="math">\(g(\mathbf{x})\leq0\)</span></td>
-<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(\min f(\mathbf{x})\)</span></td>
-<td align="center"><span class="math">\(g(\mathbf{x})\geq0\)</span></td>
-<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(\max f(\mathbf{x})\)</span></td>
-<td align="center"><span class="math">\(g(\mathbf{x})\leq0\)</span></td>
-<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(\max f(\mathbf{x})\)</span></td>
-<td align="center"><span class="math">\(g(\mathbf{x})\geq0\)</span></td>
-<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span></td>
-</tr>
-</tbody>
-</table>
+<p>|目的関数 <span class="math">\(f(\mathbf{x})\)</span>|制約条件 <span class="math">\(g(\mathbf{x})\)</span>|ラグランジュ関数 <span class="math">\(L(\mathbf{x},\lambda)\)</span>|
+|:-:|:-:|:-:|
+|<span class="math">\(\min f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\leq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span>|
+|<span class="math">\(\min f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\geq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span>|
+|<span class="math">\(\max f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\leq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span>|
+|<span class="math">\(\max f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\geq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span>|</p>
 <h3>一般化</h3>
 <div class="math">$$
 \begin{aligned}
@@ -356,7 +467,7 @@ $$</div>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
                     <span>10</span>

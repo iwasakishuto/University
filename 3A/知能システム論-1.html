@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -119,123 +272,30 @@
 <li><b>自然言語処理</b>：
 人工知能技術の応用例</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th align="center">#</th>
-<th align="center">日付</th>
-<th align="left">内容</th>
-<th align="center">担当</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">1</td>
-<td align="center">10/3</td>
-<td align="left">概要</td>
-<td align="center">杉山</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">10/10</td>
-<td align="left">最適化（連続1）</td>
-<td align="center">佐藤</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">10/17</td>
-<td align="left">最適化（連続2）</td>
-<td align="center">佐藤</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">10/24</td>
-<td align="left">最適化（探索）</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">10/31</td>
-<td align="left">確率と統計</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="center">11/14</td>
-<td align="left">確率と統計</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">7</td>
-<td align="center">11/21</td>
-<td align="left">確率と統計</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">8</td>
-<td align="center">11/28</td>
-<td align="left">機械学習（教師付き学習）</td>
-<td align="center">本多</td>
-</tr>
-<tr>
-<td align="center">9</td>
-<td align="center">12/5</td>
-<td align="left">機械学習（教師付き学習）</td>
-<td align="center">佐藤</td>
-</tr>
-<tr>
-<td align="center">10</td>
-<td align="center">12/12</td>
-<td align="left">自然言語処理</td>
-<td align="center">宮尾</td>
-</tr>
-<tr>
-<td align="center">11</td>
-<td align="center">12/19</td>
-<td align="left">自然言語処理</td>
-<td align="center">宮尾</td>
-</tr>
-<tr>
-<td align="center">12</td>
-<td align="center">12/26</td>
-<td align="left">自然言語処理</td>
-<td align="center">宮尾</td>
-</tr>
-<tr>
-<td align="center">13</td>
-<td align="center">1/9</td>
-<td align="left">機械学習（強化学習）</td>
-<td align="center">杉山</td>
-</tr>
-<tr>
-<td align="center">1</td>
-<td align="center">1/16</td>
-<td align="left">試験</td>
-<td align="center">佐藤</td>
-</tr>
-</tbody>
-</table>
+<p>|#|日付|内容|担当|
+|:-:|:-:|:-|:-:|
+|1|10/3|概要|杉山|
+|2|10/10|最適化（連続1）|佐藤|
+|3|10/17|最適化（連続2）|佐藤|
+|4|10/24|最適化（探索）|本多|
+|5|10/31|確率と統計|本多|
+|6|11/14|確率と統計|本多|
+|7|11/21|確率と統計|本多|
+|8|11/28|機械学習（教師付き学習）|本多|
+|9|12/5|機械学習（教師付き学習）|佐藤|
+|10|12/12|自然言語処理|宮尾|
+|11|12/19|自然言語処理|宮尾|
+|12|12/26|自然言語処理|宮尾|
+|13|1/9|機械学習（強化学習）|杉山|
+|1|1/16|試験|佐藤|</p>
 <div class="frame">
   <h4>人工知能とは</h4>
   <p>1956年："The Dartmouth Summer Research Project on Artificial Intelligence" にて<span class="marker-pink">Artificial Intelligence</span>という言葉が提唱された。</p>
 </div>
 
-<table>
-<thead>
-<tr>
-<th align="center">Watoson</th>
-<th align="center">Nature</th>
-<th align="center">AlphaGo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><iframe src="https://www.youtube.com/embed/YgYSv2KSyWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-<td align="center"><video  controls><source src="https://media.nature.com/original/nature-assets/nature/journal/v518/n7540/extref/nature14236-sv2.mov"></video></td>
-<td align="center"><iframe src="https://www.youtube.com/embed/jGyCsVhtW0M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
-</tr>
-</tbody>
-</table>
+<p>|Watoson|Nature|AlphaGo|
+|:-:|:-:|:-:|
+|<iframe src="https://www.youtube.com/embed/YgYSv2KSyWg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>|<video  controls><source src="https://media.nature.com/original/nature-assets/nature/journal/v518/n7540/extref/nature14236-sv2.mov"></video>|<iframe src="https://www.youtube.com/embed/jGyCsVhtW0M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>|</p>
 <h3>人工知能関連分野の発展</h3>
 <ul>
 <li>人工知能研究<ul>
@@ -318,7 +378,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
                     <span>20</span>

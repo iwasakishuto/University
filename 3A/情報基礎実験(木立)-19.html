@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="Pro.4 Itemset mining algorithm "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html" />
-<meta property="og:description" content="" />
+<meta property="og:description" content="Problem Setting Implement the &#34;Itemset mining algorithm (LCM)&#34; to find out the most frequent closed patterns. Frequent Itemset Mining¶ Finding all **&#34;frequent&#34;** sets of elements(items) appearing $\sigma$ times or more in a database. Terminology¶ Name description Itemset $$I = \left\{1,\ldots,M\right\}$$ Transaction $$t\subset I$$ Transaction database $$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$ Pattern $$P \subset I$$ Occurrence $$P\subset\exists t\in\mathcal{T}$$ Denotation $$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$ Support/Frequency $$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$ Implementation¶ data¶" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-11-05T15:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-11-05T15:00:00+09:00" />
 <meta name="twitter:title" content="Pro.4 Itemset mining algorithm ">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="Problem Setting Implement the &#34;Itemset mining algorithm (LCM)&#34; to find out the most frequent closed patterns. Frequent Itemset Mining¶ Finding all **&#34;frequent&#34;** sets of elements(items) appearing $\sigma$ times or more in a database. Terminology¶ Name description Itemset $$I = \left\{1,\ldots,M\right\}$$ Transaction $$t\subset I$$ Transaction database $$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$ Pattern $$P \subset I$$ Occurrence $$P\subset\exists t\in\mathcal{T}$$ Denotation $$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$ Support/Frequency $$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$ Implementation¶ data¶">
 
         <title>Pro.4 Itemset mining algorithm  · 3A
 </title>
@@ -68,6 +68,159 @@
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        <script src="https://iwasakishuto.github.io/University/3A/ace-build/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script><style>td.linenos {
+    display: none;
+}
+
+pre {
+    box-sizing: content-box;
+    padding: 0;
+    border-radius: 0;
+}
+
+.ace_gutter-cell {
+    cursor: pointer;
+}
+
+.ace_layer {
+    height: 100% !important;
+}
+
+.ace-chrome .ace_marker-layer .ace_selection {
+    border-radius: 0;
+}
+
+span.o {
+    display: block;
+}</style><script>var ACE_EDITOR_SCROLL_TOP_MARGIN = 0;var ACE_EDITOR_THEME = 'chrome';var ACE_EDITOR_MAXLINES = 50;var ACE_EDITOR_READONLY = true;var ACE_EDITOR_AUTOSCROLL = true;var ACE_EDITOR_SHOW_INVISIBLE = true;var Range = ace.require("ace/range").Range;
+
+var editor_array = {};
+
+var correlationDic = {
+    'bash': 'sh'
+}
+
+// inspiration : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt#A_stricter_parse_function
+filterInt = function (value) {
+  if(/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+    return Number(value);
+  return NaN;
+}
+
+function linesInAnchor(anchor) {
+  anchorObject = {};
+  anchorObject.first = 0;
+  anchorObject.last = 0;
+  anchorObject.anchor = "";
+  var firstLineIndex = anchor.indexOf("-L");
+  var firstResult = anchor.substring(
+    firstLineIndex + 2
+  );
+  if(filterInt(firstResult)) {
+    anchorObject.first = filterInt(firstResult) - 1;
+    anchorObject.last = anchorObject.first;
+    anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult;
+    return anchorObject;
+  }
+  var secondLineIndex = firstResult.indexOf("-L");
+
+  if (!filterInt(firstResult.substring(0, secondLineIndex))) {
+    return anchorObject;
+  }
+  anchorObject.anchor = anchor.substring(0, firstLineIndex + 2) + firstResult.substring(0, secondLineIndex);
+
+  anchorObject.first = filterInt(firstResult.substring(0, secondLineIndex)) - 1;
+  var secondResult = firstResult.substring(
+    secondLineIndex + 2
+  );
+  if (!filterInt(secondResult)) {
+    anchorObject.last = anchorObject.first;
+    return anchorObject;
+  }
+  anchorObject.last = filterInt(secondResult) - 1;
+  return anchorObject;
+}
+
+var selectionCallback = function (event, editor) {
+    var editor_id = $(editor.container).attr('id');
+    var range = editor.selection.getRange();
+    location.hash = editor_id + '-L' + parseInt(range.start.row + 1);
+    if ($(editor.container).data().hasOwnProperty("id")) {
+        event.preventDefault();
+    }
+    else if (range.start.row != range.end.row) {
+        location.hash += '-L' + parseInt(range.end.row + 1);
+    }
+    $(editor.container).removeData();
+};
+
+function hightlights() {
+    var $pre_filter = $('pre.highlight');
+    var pre_len = $pre_filter.length;
+    $pre_filter.each(function(item) {
+        var lang = $(this).find("code").attr('class').substring(9);
+        if (lang in correlationDic) {
+            lang = correlationDic[lang];
+        }
+        var one_render = true;
+        var nb_of_lines = $(this).text().search('\n');
+        // avoid the last carriage return
+        $(this).text($(this).text().substring(0, $(this).text().length));
+
+        // Give a unique id on all editor
+        var editor_id = 'editor' + parseInt(item + 1);
+        $(this).attr('id', editor_id);
+        var editor = ace.edit(editor_id);
+        editor_array[editor_id] = editor;
+        editor.setTheme("ace/theme/" + ACE_EDITOR_THEME);
+        editor.setShowInvisibles(ACE_EDITOR_SHOW_INVISIBLE);
+        editor.setOptions({
+            mode: "ace/mode/" + lang,
+            maxLines: ACE_EDITOR_MAXLINES,
+            readOnly: ACE_EDITOR_READONLY,
+            autoScrollEditorIntoView: ACE_EDITOR_AUTOSCROLL
+        });
+        editor.$blockScrolling = Infinity;
+        if (nb_of_lines === -1) {
+            editor.renderer.setShowGutter(false);
+        }
+
+        editor.renderer.on("afterRender", function(event) {
+            var anchor = linesInAnchor(location.hash);
+            var hash_editor = location.hash.substring(1, location.hash.indexOf("-"));
+            var line = $($(editor.container).find(".ace_gutter-cell")[parseInt(editor_id.substring(6))]);
+            if (hash_editor == editor_id && one_render) {
+                var offset = line.offset();
+                if (offset) {
+                    $(document).scrollTop(offset.top - ACE_EDITOR_SCROLL_TOP_MARGIN);
+                    editor.selection.setRange(new Range(
+                        anchor.first, 0, anchor.last,  Number.MAX_VALUE)
+                    );
+                    one_render = false;
+                }
+            }
+        });
+
+        editor.resize(true);
+        editor.selection.on("changeSelection", function(event) {
+            selectionCallback(event, editor);
+        });
+    });
+
+    $(".ace_gutter-cell").on("click", function(event) {
+        var editor_id = $(this).closest('pre.ace_editor').attr('id');
+        var editor = editor_array[editor_id];
+        var line = parseInt($(this).text()) - 1;
+        editor.selection.setRange(new Range(line, 0, line, Number.MAX_VALUE));
+        $(this).closest('.ace_editor').data({'id': parseInt($(this).text())});
+        selectionCallback(event, editor);
+    });
+}
+
+$(function() {
+  hightlights();
+});
+</script>
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -100,7 +253,7 @@
 <article itemscope>
 <div class="row-fluid">
     <header class="page-header span10 offset2">
-    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html"> <i class="fas fa-lock"></i> Pro.4 Itemset mining algorithm  </a></h1>
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html"> Pro.4 Itemset mining algorithm  </a></h1>
     </header>
 </div>
 
@@ -108,105 +261,471 @@
         <div class="span8 offset2 article-content">
 
             
-            <div id="pec-encrypted-content" style="display:none">KxfzLzKhFoW+2wvdzOdnQw==;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;^</div>
-<div id="pec-decrypted-content">
-    <h4>This content is encrypted.</h4>
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h2>Problem Setting</h2>
+<p>Implement the <b>"Itemset mining algorithm (LCM)"</b> to find out the most frequent closed patterns.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Frequent-Itemset-Mining">Frequent Itemset Mining<a class="anchor-link" href="#Frequent-Itemset-Mining">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Finding <font color="red">all **"frequent"** sets of elements</font>(items) <strong>appearing <font color="blue">$\sigma$ times or more</font></strong></font> in a database.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Terminology">Terminology<a class="anchor-link" href="#Terminology">¶</a></h4><table>
+<thead><tr>
+<th style="text-align:center">Name</th>
+<th style="text-align:center">description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Itemset</td>
+<td style="text-align:center">$$I = \left\{1,\ldots,M\right\}$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Transaction</td>
+<td style="text-align:center">$$t\subset I$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Transaction database</td>
+<td style="text-align:center">$$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Pattern</td>
+<td style="text-align:center">$$P \subset I$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Occurrence</td>
+<td style="text-align:center">$$P\subset\exists t\in\mathcal{T}$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Denotation</td>
+<td style="text-align:center">$$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$</td>
+</tr>
+<tr>
+<td style="text-align:center">Support/Frequency</td>
+<td style="text-align:center">$$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Implementation">Implementation<a class="anchor-link" href="#Implementation">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="data">data<a class="anchor-link" href="#data">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="k">import</span> <span class="n">flatten_dual</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># retail_1based_500.txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"itemset_mining/retail_1based_500.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">retail_500</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">" </span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of transactions: {len(retail_500)}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of unique items: {len(set(flatten_dual(retail_500)))}"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The number of transactions: 500
+The number of unique items: 2058
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># retail_1based_1000.txt</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"itemset_mining/retail_1based_1000.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">retail_1000</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">" </span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of transactions: {len(retail_1000)}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of unique items: {len(set(flatten_dual(retail_1000)))}"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The number of transactions: 1000
+The number of unique items: 3182
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="k">import</span> <span class="n">FrequentSet</span>
+<span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="k">import</span> <span class="n">create_one_hot</span>
+
+<span class="k">def</span> <span class="nf">mine</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s2">"500"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">retail</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">"500"</span>  <span class="p">:</span> <span class="n">retail_500</span><span class="p">,</span>
+        <span class="s2">"1000"</span> <span class="p">:</span> <span class="n">retail_1000</span><span class="p">,</span>
+    <span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">data_name</span><span class="p">)</span>
+    <span class="n">database</span><span class="p">,</span> <span class="n">idx2data</span> <span class="o">=</span> <span class="n">create_one_hot</span><span class="p">(</span><span class="n">retail</span><span class="p">)</span>
+    
+    <span class="n">model</span> <span class="o">=</span> <span class="n">FrequentSet</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"num frequent sets: {len(model.all)-1}"</span><span class="p">)</span>
+    
+    <span class="n">fn</span> <span class="o">=</span> <span class="n">f</span><span class="s2">"tree_structure-retail_</span><span class="si">{data_name}</span><span class="s2">-</span><span class="si">{method}</span><span class="s2">.png"</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="n">idx2data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"Graph image was saved at: `</span><span class="si">{fn}</span><span class="s2">`"</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Graph was not generated."</span><span class="p">)</span>
+        
+    <span class="nb">print</span><span class="p">()</span><span class="n">itemset_mining</span><span class="o">/</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">¶</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mine</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"all"</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s2">"500"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>num frequent sets: 68
+Graph image was saved at: `tree_structure-retail_500-all.png`
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="500-all" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_500-all.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mine</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"all"</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s2">"1000"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>num frequent sets: 217
+Graph image was saved at: `tree_structure-retail_1000-all.png`
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="1000-all" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_1000-all.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="frame">
+<h4>Summary</h4>
+<ul>
+<li>Itemset mining is the simplest of all mining algorithms.</li>
+<li>Need to maintain occurrence of each pattern in database.</li>
+<li>Tree by lexicographical order is (implicitly) used.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Closed-Itemset-mining">Closed Itemset mining<a class="anchor-link" href="#Closed-Itemset-mining">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="PROBLEM-in-Frequent-Pattern-Mining"><span style="color: red; text-decoration: underline;">PROBLEM</span> in Frequent Pattern Mining<a class="anchor-link" href="#PROBLEM-in-Frequent-Pattern-Mining">¶</a></h5><ul>
+<li><span class="marker-pink">Huge Number of frequent itemsets</span></li>
+<li>Hard to analyze</li>
+<li>Most of them are <span class="marker-pink">similar</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="SOLUTION-in-Frequent-Pattern-Mining"><span style="color: blue; text-decoration: underline;">SOLUTION</span> in Frequent Pattern Mining<a class="anchor-link" href="#SOLUTION-in-Frequent-Pattern-Mining">¶</a></h5><ul>
+<li>Find <strong>only closed patterns</strong></li>
+<li><strong>Observation</strong>: Most frequent itemset $X$ can be extended without changing occurrence by adding new elements.</li>
+<li><strong>definition</strong>: An itemset $X$ is a <strong>"closed set"</strong> iff there is <span class="marker-pink">no proper superset of $X$ with the same frequency</span> (thus the same occurrence set).</li>
+<li>A closed itemset is <span class="marker-pink">the maximal set</span> among all itemsets with the same occurrences.</li>
+<li>Equivalence class $[X] =\left\{Y | \mathrm{Occ}(X)=\mathrm{Occ}(Y)\right\}$</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Implementation-(LCM)">Implementation (LCM)<a class="anchor-link" href="#Implementation-(LCM)">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mine</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"closed"</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s2">"500"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>num frequent sets: 59
+Graph image was saved at: `tree_structure-retail_500-closed.png`
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="500-closed" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_500-closed.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mine</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s2">"closed"</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s2">"1000"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>num frequent sets: 213
+Graph image was saved at: `tree_structure-retail_1000-closed.png`
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img alt="1000-closed" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_1000-closed.png" /></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Compare">Compare<a class="anchor-link" href="#Compare">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">#</th>
+<th style="text-align:center">all</th>
+<th style="text-align:center">closed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><code>retail_1based_500.txt</code></td>
+<td style="text-align:center"><img alt="500-all" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_500-all.png" /></td>
+<td style="text-align:center"><img alt="500-closed" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_500-closed.png" /></td>
+</tr>
+<tr>
+<td style="text-align:center"><code>retail_1based_1000.txt</code></td>
+<td style="text-align:center"><img alt="1000-all" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_1000-all.png" /></td>
+<td style="text-align:center"><img alt="1000-closed" src="https://iwasakishuto.github.io/University/3A/theme/img/3A_Basic_Laboratory/Kiryu_Programming/itemset_mining/tree_structure-retail_1000-closed.png" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Optimization">Optimization<a class="anchor-link" href="#Optimization">¶</a></h3><ul>
+<li>[ ] Occurrence deliver<ul>
+<li>when <code>num_items</code> large and sparse transaction.</li>
+<li>Exclude many potential children.</li>
+</ul>
+</li>
+<li>database reduction<ul>
+<li>[x] Create small transaction database in any iteration by removing.</li>
+<li>[ ] transaction not containing $C$.</li>
+<li>[ ] items of $C$.</li>
+<li>[x] items with frequency less than minimal support.</li>
+<li>[x] transaction id and item id re-indexing.</li>
+<li>[ ] duplicated transactions are merged with weight factor.</li>
+</ul>
+</li>
+<li>[x] Bit matrix</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reference">Reference<a class="anchor-link" href="#Reference">¶</a></h3><ul>
+<li><a href="http://ceur-ws.org/Vol-90/uno.pdf">LCM: An Efficient Algorithm for
+Enumerating Frequent Closed Item Sets</a></li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/23882073">Statistical significance of combinatorial regulations.</a></li>
+<li><a href="https://link.springer.com/chapter/10.1007/978-3-662-44851-9_27">A Fast Method of Statistical Assessment for Combinatorial Hypotheses Based on Frequent Itemset Enumeration</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 
-<form id="pec-decrypt-form">
-    <label for="pec-content-password">Password</label>
-    <input type="password" id="pec-content-password" placeholder="Password" />
-    <button type="button" id="pec-decrypt-content" style="margin-bottom: 10px;">Decrypt <i class="fa fa-unlock"></i></button>
-</form>
-
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/cipher-core.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/pad-nopadding.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/md5.js"></script>
-
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/aes.js"></script>
-
-
-<script type="text/javascript">
-    (function () {
-        var strip_padding = function (padded_content, padding_char) {
-            /*
-             * Strips the padding character from decrypted content.
-             */
-            for (var i = padded_content.length; i > 0; i--) {
-                if (padded_content[i-1] !== padding_char) {
-                    return padded_content.slice(0, i);
-                }
-            }
-        };
-
-        var decrypt_content = function (password, iv_b64, ciphertext_b64, padding_char) {
-            /*
-             * Decrypts the content from the ciphertext bundle.
-             */
-            var key = CryptoJS.MD5(password),
-                iv = CryptoJS.enc.Base64.parse(iv_b64),
-                ciphertext = CryptoJS.enc.Base64.parse(ciphertext_b64),
-                bundle = {
-                    key: key,
-                    iv: iv,
-                    ciphertext: ciphertext
-                };
-
-            var plaintext = CryptoJS.AES.decrypt(bundle, key, {iv: iv, padding: CryptoJS.pad.NoPadding});
-
-            try {
-                return strip_padding(plaintext.toString(CryptoJS.enc.Utf8), padding_char);
-            }
-            catch (err) {
-                // encoding failed; wrong password
-                return false;
-            }
-        };
-
-        var init_decryptor = function() {
-            var decrypt_btn = document.getElementById('pec-decrypt-content'),
-                password_input = document.getElementById('pec-content-password'),
-                encrypted_content = document.getElementById('pec-encrypted-content'),
-                decrypted_content = document.getElementById('pec-decrypted-content'),
-                decrypt_form = document.getElementById('pec-decrypt-form');
-
-            decrypt_btn.addEventListener('click', function () {
-                // grab the ciphertext bundle
-                var parts = encrypted_content.innerHTML.split(';');
-
-                // decrypt it
-                var content = decrypt_content(
-                    password_input.value,
-                    parts[0],
-                    parts[1],
-                    parts[2]
-                );
-
-                if (content) {
-                    // success; display the decrypted content
-                    decrypted_content.innerHTML = content;
-                    decrypt_form.parentNode.removeChild(decrypt_form);
-                    encrypted_content.parentNode.removeChild(encrypted_content);
-
-                    // any post processing on the decrypted content should be done here
-                }
-                else {
-                    // ¯\_(ツ)_/¯
-                    password_input.value = '';
-                }
-            });
-        };
-
-        document.addEventListener('DOMContentLoaded', init_decryptor);
-    })();
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
 </script>
+
             <div>
 </div>
 
@@ -243,7 +762,7 @@
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>120</span>
+                    <span>123</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>
