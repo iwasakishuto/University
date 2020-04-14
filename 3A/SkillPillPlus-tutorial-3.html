@@ -367,7 +367,7 @@ create <strong>synaptic potentiation</strong> (stronger weights) when <strong>ca
             <span class="s2">"delay"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">}</span>
 <span class="n">nest</span><span class="o">.</span><span class="n">Connect</span><span class="p">(</span><span class="n">epop1</span><span class="p">,</span> <span class="n">neuron</span><span class="p">,</span> <span class="s2">"all_to_all"</span><span class="p">,</span> <span class="n">syn_dict</span><span class="p">)</span>
 <span class="c1"># Synapse information can be retrieved</span>
-<span class="k">print</span><span class="p">(</span><span class="n">nest</span><span class="o">.</span><span class="n">GetConnections</span><span class="p">(</span><span class="n">epop1</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">epop2</span><span class="p">,</span> <span class="n">synapse_model</span><span class="o">=</span><span class="s2">"stdp_synapse"</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">nest</span><span class="o">.</span><span class="n">GetConnections</span><span class="p">(</span><span class="n">epop1</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="n">epop2</span><span class="p">,</span> <span class="n">synapse_model</span><span class="o">=</span><span class="s2">"stdp_synapse"</span><span class="p">))</span>
 <span class="c1"># We can then extract the data using `GetStatus()`. </span>
 <span class="c1"># Specific information can be retrieved by providing a list of desired parameters.</span>
 <span class="n">conns</span> <span class="o">=</span> <span class="n">nest</span><span class="o">.</span><span class="n">GetConnections</span><span class="p">(</span><span class="n">epop1</span><span class="p">,</span> <span class="n">synapse_model</span><span class="o">=</span><span class="s2">"stdp_synapse"</span><span class="p">)</span>
@@ -427,7 +427,7 @@ create <strong>synaptic potentiation</strong> (stronger weights) when <strong>ca
 <div class="prompt input_prompt">In [3]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">OIST.tutorial3</span> <span class="k">import</span> <span class="n">NeuronA</span><span class="p">,</span> <span class="n">NeuronB</span><span class="p">,</span> <span class="n">plotMultipleNeurons</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">OIST.tutorial3</span> <span class="kn">import</span> <span class="n">NeuronA</span><span class="p">,</span> <span class="n">NeuronB</span><span class="p">,</span> <span class="n">plotMultipleNeurons</span>
 </pre></div>
 </div>
 </div>
@@ -828,7 +828,7 @@ $$I_i(t) = \tau \sum_j J_j \sum_k \delta(t-\delta-t_j^k)$$<ul>
 <div class="prompt input_prompt">In [15]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">OIST.tutorial3</span> <span class="k">import</span> <span class="n">BrunelNetwork</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">OIST.tutorial3</span> <span class="kn">import</span> <span class="n">BrunelNetwork</span>
 </pre></div>
 </div>
 </div>
@@ -1210,7 +1210,7 @@ Completed. Please use following methods to plot results.
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>123</span>
+                    <span>126</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#oist-ref">OIST
                     <span>4</span>

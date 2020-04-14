@@ -376,7 +376,7 @@ $$\alpha_3 = \frac{E\left\{\left[X - E(X)\right]^3\right\}}{\left\{V(X)\right\}^
     <span class="n">EX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="n">VX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="n">skewness</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span><span class="o">/</span><span class="n">VX</span><span class="o">**</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"skewness = </span><span class="si">{skewness:.3f}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"skewness = </span><span class="si">{</span><span class="n">skewness</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
 </div>
@@ -460,7 +460,7 @@ $$\beta_4 = \frac{E\left\{\left[X - E(X)\right]^4\right\}}{\left\{V(X)\right\}^{
     <span class="n">EX</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="n">X</span><span class="p">)</span>
     <span class="n">VX</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">kurtosis</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">Y</span><span class="o">*</span><span class="p">(</span><span class="n">X</span><span class="o">-</span><span class="n">EX</span><span class="p">)</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="n">VX</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">3</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"kurtosis = </span><span class="si">{kurtosis:.3f}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"kurtosis = </span><span class="si">{</span><span class="n">kurtosis</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
 </div>
@@ -672,7 +672,7 @@ $$P(X|Y) = \frac{P(Y|X)P(X)}{P(Y)}$$</li>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>123</span>
+                    <span>126</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#zhi-neng-shisutemulun-ref">知能システム論
                     <span>20</span>

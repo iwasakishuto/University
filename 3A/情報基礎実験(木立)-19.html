@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="Pro.4 Itemset mining algorithm "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(木立)-19.html" />
-<meta property="og:description" content="Problem Setting Implement the &#34;Itemset mining algorithm (LCM)&#34; to find out the most frequent closed patterns. Frequent Itemset Mining¶ Finding all **&#34;frequent&#34;** sets of elements(items) appearing $\sigma$ times or more in a database. Terminology¶ Name description Itemset $$I = \left\{1,\ldots,M\right\}$$ Transaction $$t\subset I$$ Transaction database $$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$ Pattern $$P \subset I$$ Occurrence $$P\subset\exists t\in\mathcal{T}$$ Denotation $$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$ Support/Frequency $$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$ Implementation¶ data¶" />
+<meta property="og:description" content="Problem Setting Implement the &#34;Itemset mining algorithm (LCM)&#34; to find out the most frequent closed patterns. Frequent Itemset Mining¶ Finding all &#34;frequent&#34; sets of elements(items) appearing $\sigma$ times or more in a database. Terminology¶ Name description Itemset $$I = \left\{1,\ldots,M\right\}$$ Transaction $$t\subset I$$ Transaction database $$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$ Pattern $$P \subset I$$ Occurrence $$P\subset\exists t\in\mathcal{T}$$ Denotation $$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$ Support/Frequency $$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$ Implementation¶ data¶" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-11-05T15:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-11-05T15:00:00+09:00" />
 <meta name="twitter:title" content="Pro.4 Itemset mining algorithm ">
-<meta name="twitter:description" content="Problem Setting Implement the &#34;Itemset mining algorithm (LCM)&#34; to find out the most frequent closed patterns. Frequent Itemset Mining¶ Finding all **&#34;frequent&#34;** sets of elements(items) appearing $\sigma$ times or more in a database. Terminology¶ Name description Itemset $$I = \left\{1,\ldots,M\right\}$$ Transaction $$t\subset I$$ Transaction database $$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$ Pattern $$P \subset I$$ Occurrence $$P\subset\exists t\in\mathcal{T}$$ Denotation $$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$ Support/Frequency $$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$ Implementation¶ data¶">
+<meta name="twitter:description" content="Problem Setting Implement the &#34;Itemset mining algorithm (LCM)&#34; to find out the most frequent closed patterns. Frequent Itemset Mining¶ Finding all &#34;frequent&#34; sets of elements(items) appearing $\sigma$ times or more in a database. Terminology¶ Name description Itemset $$I = \left\{1,\ldots,M\right\}$$ Transaction $$t\subset I$$ Transaction database $$\mathcal{T}=\left\{t_1,\ldots,t_N\right\}$$ Pattern $$P \subset I$$ Occurrence $$P\subset\exists t\in\mathcal{T}$$ Denotation $$\mathcal{T}(P) = \left\{t\in\mathcal{T}\mid P\subset t\right\}$$ Support/Frequency $$n_{\mathcal{T}}(P) = \mid\mathcal{T}(P)\mid$$ Implementation¶ data¶">
 
         <title>Pro.4 Itemset mining algorithm  · 3A
 </title>
@@ -129,7 +129,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Finding <font color="red">all **"frequent"** sets of elements</font>(items) <strong>appearing <font color="blue">$\sigma$ times or more</font></strong></font> in a database.</p>
+<p>Finding <font color="red">all <b>"frequent"</b> sets of elements</font>(items) <strong>appearing <font color="blue">$\sigma$ times or more</font></strong></font> in a database.</p>
 </div>
 </div>
 </div>
@@ -195,7 +195,7 @@
 <div class="prompt input_prompt">In [1]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="k">import</span> <span class="n">flatten_dual</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="kn">import</span> <span class="n">flatten_dual</span>
 </pre></div>
 </div>
 </div>
@@ -209,8 +209,8 @@
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># retail_1based_500.txt</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"itemset_mining/retail_1based_500.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">retail_500</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">" </span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of transactions: {len(retail_500)}"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of unique items: {len(set(flatten_dual(retail_500)))}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The number of transactions: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">retail_500</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The number of unique items: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">flatten_dual</span><span class="p">(</span><span class="n">retail_500</span><span class="p">)))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -236,8 +236,8 @@ The number of unique items: 2058
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># retail_1based_1000.txt</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"itemset_mining/retail_1based_1000.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">retail_1000</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">" </span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" "</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of transactions: {len(retail_1000)}"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"The number of unique items: {len(set(flatten_dual(retail_1000)))}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The number of transactions: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">retail_1000</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The number of unique items: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">flatten_dual</span><span class="p">(</span><span class="n">retail_1000</span><span class="p">)))</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -260,8 +260,8 @@ The number of unique items: 3182
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="k">import</span> <span class="n">FrequentSet</span>
-<span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="k">import</span> <span class="n">create_one_hot</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="kn">import</span> <span class="n">FrequentSet</span>
+<span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="kn">import</span> <span class="n">create_one_hot</span>
 
 <span class="k">def</span> <span class="nf">mine</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">data_name</span><span class="o">=</span><span class="s2">"500"</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
     <span class="n">retail</span> <span class="o">=</span> <span class="p">{</span>
@@ -272,12 +272,12 @@ The number of unique items: 3182
     
     <span class="n">model</span> <span class="o">=</span> <span class="n">FrequentSet</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">database</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"num frequent sets: {len(model.all)-1}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"num frequent sets: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">all</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     
-    <span class="n">fn</span> <span class="o">=</span> <span class="n">f</span><span class="s2">"tree_structure-retail_</span><span class="si">{data_name}</span><span class="s2">-</span><span class="si">{method}</span><span class="s2">.png"</span>
+    <span class="n">fn</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"tree_structure-retail_</span><span class="si">{</span><span class="n">data_name</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">.png"</span>
     <span class="n">ret</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">fn</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="n">idx2data</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">ret</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"Graph image was saved at: `</span><span class="si">{fn}</span><span class="s2">`"</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Graph image was saved at: `</span><span class="si">{</span><span class="n">fn</span><span class="si">}</span><span class="s2">`"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Graph was not generated."</span><span class="p">)</span>
         
@@ -610,7 +610,7 @@ Enumerating Frequent Closed Item Sets</a></li>
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>123</span>
+                    <span>126</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>

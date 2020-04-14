@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="3A, 情報基礎実験(森下), 情報基礎実験(森下), " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="繰返し構造 "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-1.html" />
+<meta property="og:description" content="定義：タンデムリピート 記号の集合を $\Sigma$（例えば $\{A,C,G,T\}$）、長さ1以上の記号列の集合を $\Sigma^{+}$ と表記する。記号列 $p\in\Sigma^{+}$ が $k(\geq1)$ 回連続して出現する記号列を、正確なタンデムリピート(tandem repeat)と呼び、$p^k$ と表記する。ある記号列を正確なタンデムリピートとアラインメントした時に、ある閾値以上の配列類似度を持つ時、タンデムリピートと呼ぶ。 Ref: Kerasy Documentation: Tandem Repeats 演習問題1(必須) 記号列 $q$ が正確なタンデムリピート $p^k$ を部分列として含むとする。$p$ と $k$ を検出するアルゴリズムを考えよ。 例題として $10$ 個の配列を与えるので、各配列から $p$ と $k$ を決定せよ。 解答" />
+<meta property="og:site_name" content="3A" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2019-12-06T13:00:00+09:00" />
+<meta property="og:article:modified_time" content="2019-12-06T13:00:00+09:00" />
+<meta name="twitter:title" content="繰返し構造 ">
+<meta name="twitter:description" content="定義：タンデムリピート 記号の集合を $\Sigma$（例えば $\{A,C,G,T\}$）、長さ1以上の記号列の集合を $\Sigma^{+}$ と表記する。記号列 $p\in\Sigma^{+}$ が $k(\geq1)$ 回連続して出現する記号列を、正確なタンデムリピート(tandem repeat)と呼び、$p^k$ と表記する。ある記号列を正確なタンデムリピートとアラインメントした時に、ある閾値以上の配列類似度を持つ時、タンデムリピートと呼ぶ。 Ref: Kerasy Documentation: Tandem Repeats 演習問題1(必須) 記号列 $q$ が正確なタンデムリピート $p^k$ を部分列として含むとする。$p$ と $k$ を検出するアルゴリズムを考えよ。 例題として $10$ 個の配列を与えるので、各配列から $p$ と $k$ を決定せよ。 解答">
+
+        <title>繰返し構造  · 3A
+</title>
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3A/theme/css/jupyter.css" media="screen">
+    </head>
+    <body>
+        
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 3A</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/3A/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>3A</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/3A/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/3A/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+    <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-1.html"> 繰返し構造  </a></h1>
+    </header>
+</div>
+
+<div class="row-fluid">
+        <div class="span8 offset2 article-content">
+
+            
+            <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="padding: 0.25em 0.5em; border-left: solid 5px black; background-color: rgb(255,243,184,0.5)"><b>定義：タンデムリピート</b>
+
+記号の集合を $\Sigma$（例えば $\{A,C,G,T\}$）、長さ1以上の記号列の集合を $\Sigma^{+}$ と表記する。記号列 $p\in\Sigma^{+}$ が $k(\geq1)$ 回連続して出現する記号列を、正確な<span class="marker-pink">タンデムリピート(tandem repeat)</span>と呼び、$p^k$ と表記する。ある記号列を正確なタンデムリピートとアラインメントした時に、ある閾値以上の配列類似度を持つ時、タンデムリピートと呼ぶ。
+
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ref: <a href="https://iwasakishuto.github.io/Kerasy/doc/BioInformatics/Tandem%20Repeats/">Kerasy Documentation: Tandem Repeats</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="q1" style="padding: 0.25em 0.5em; border-left: solid 5px red; background-color: rgba(255,192,203,0.5)">演習問題1(必須)</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　記号列 $q$ が正確なタンデムリピート $p^k$ を部分列として含むとする。$p$ と $k$ を検出するアルゴリズムを考えよ。</p>
+<p>　例題として $10$ 個の配列を与えるので、各配列から $p$ と $k$ を決定せよ。</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="a1" style="padding: 0.25em 0.5em; border-left: solid 5px blue; background-color: rgba(130,192,255,0.5)">解答</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [1]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [2]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.Bio.tandem</span> <span class="kn">import</span> <span class="n">find_tandem</span>
+<span class="kn">from</span> <span class="nn">kerasy.Bio.string</span> <span class="kn">import</span> <span class="n">StringSearch</span>
+<span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="kn">import</span> <span class="n">readMultiSeq</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [3]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sequences</span> <span class="o">=</span> <span class="n">readMultiSeq</span><span class="p">(</span><span class="s2">"exact.fasta"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [4]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">len_sequences</span> <span class="o">=</span> <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Results">Results<a class="anchor-link" href="#Results">¶</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [8]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax_sais</span><span class="p">,</span> <span class="n">ax_dp</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+
+<span class="n">ax_sais</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">len_sequences</span><span class="p">,</span> <span class="n">pt_sais</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span>
+<span class="n">ax_sais</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"the length of sequence"</span><span class="p">),</span> <span class="n">ax_sais</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Processing time."</span><span class="p">),</span> <span class="n">ax_sais</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Suffix Array"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">ax_dp</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">len_sequences</span><span class="p">,</span> <span class="n">pt_dp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"b"</span><span class="p">)</span>
+<span class="n">ax_dp</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"the length of sequence"</span><span class="p">),</span> <span class="n">ax_dp</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Processing time."</span><span class="p">),</span> <span class="n">ax_dp</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Dynamic Programming"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAGoCAYAAABbkkSYAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBodHRwOi8vbWF0cGxvdGxpYi5vcmcv7US4rQAAIABJREFUeJzs3X+4ZWVd9/H3ZyDQoyY/nAjBmQGlH1QmOqJlmQkImolPKaFHA6WmUlNDS3ym0qwpzdL0SdOjEOhzFA0tyVBCxUp7RAYkEAgdgRkhkFEQrVER+D5/rHVkz+bMmX3OWfvs8+P9uq59rb3uda+9v3vNnn2f71r3fa9UFZIkSZKk+Vs16gAkSZIkabkwwZIkSZKkjphgSZIkSVJHTLAkSZIkqSMmWJIkSZLUERMsSZIkSeqICZY0D0l+PslnknwzSSU5uS0/JMk/JNnelp/Zln/vuSRJc5Hkk0muH3Ucmr8kZybxnknLjAmWlr0khyaZSPKfSXYkuS3J1UnOSvLz83jdfYEPAvcDXgY8F/jXdvOZwM8Br2vL3z6vDzF4TE9uk7i7kqxZiPeUpIWU5Ant71z1/N7dluTz7e/6cUky6jiXmr5jWkm+neSLSd6QZL9RxyctJfFGw1rOkqwH/gX4LvAu4ErgvsBhwJOA86vqRXN87ScB5wO/XFUf7CnfG/gW8NdV9eK+fe4D3FVV353Lew4Q0znAkcABwJ9W1R8N430kaVSSPAG4EHgvcB4Q4AHADwNPB9YAHwOeWVVfH1GYQ5VkL5q/4b7T4WsWcBnwl23RfsBTgGOBzwOPqqo7uno/NZJ8H7BHVX171LGoO3uOOgBpyF4FjAGPqKr/6N+Y5Afn8dpT+97aV34ATYPfX84wf0CTrAaeBvwxcARwcpLX1ABnUdqzvferqv/exfYHVNU3Ow1Ykubn0qr6v70FSU4F/hw4lSYBe/IoAhu2ISY6N/Yd0zcn+UfgqcDxwN9Nt9Pu2pBhSbIHsHdV7VjI9+1Se8J1KCddNTp2EdRydxjwtemSK4CqunnqeZJ1bbeIV/fXS/Lqdtu6dv164Kx284U9XSrOBLa25a/qKX9Cu99OY7CSvKAt+4O+93twO37r6iT3G/CzPpfmpMm7aboorgOOmuazTHWvOTnJC5NcBXwbeHm7/ZNJrm+7Vp6T5FbgG+22VUk2JvnXJDcnuSPJtiR/k2T/nvf4gXbb5HSBJnlLkrunjqckdaGq7qqqlwGfAo5L8jMASX6n/d07pn+fJHsn+VqST/SUXd/+Fv5Ikn9qx9ne3v4m/mDf/g9O8pdJLmu7Kn47yVVJXtEmAL11T27jOCrJHybZmuRbSS5K8ti2zs8l+VSS/0lyU3/70NaZdgxWkocl+dskN7S/wf+V5ENJHjXHQwpNTw2Ah7XvMWMb0tZ5fJIL2mP2rSSXJjlluhdP8stJ/qM9btuSvCrJ0ekZ19x37I5O8gdJvtS+7wnt9icleV+Sa9v3/HqSf07yc9O851Q7ty7J37d1b0szHur+bVv3v5Nc18Z1aZLH9b1G73F4QZJr2rpXJHlqW+cnknw0yTfa79ib01yx6n2de43BmipL8sC2fb2lfe1PJ3nMNJ9n/yRntO/x30k+keSIXX1PNHxewdJy9yXgh5P8Um83vg68lObM6AbgT4Gre97vMuCNwN/TjNGiZ/tOquqtSY6iScYurKpPJVkFTNJ0eTm6qv5nwJieD/xLVV2f5AbglrbsYzN8hv2BdwA3A1/u2XZ/mq6VnwY2Aj/Qlu8F/C7wAeBDwP8AjwZOAX4myaOq6o6quiXJucAvJdmnt5tOmm6SzwY+VlXXD/jZJGk2Tgd+BvgFmmTrXcCf0fwmXtBX93/RdId7Z1/5QcAnaX7Lfxf4SeA3gO+n6WI+5eHAL7X1vgR8H3Ac8Frg0Haffq8F9gDeRPO7+jLgn5P8ahv7BE07cALwmiTX9V+t65emS/zH2/c/naZb334044F/Grhkpv1ncFi7/Gpf+bRtSJJfpDkWN9N0N/wmcCLwziSHVtXGnph/heZK45eAPwLuBE4CfnGGeP6i/YzvoDn5d01bfjLN530XcAPNv9+vAR9P8vNV9W99r3M/4BM0bd1pNG3Z84H7AF8DHgP8n/a9Xg78Y5K10/TmeCGwL83359vAi4G/T/LMNsb3Av9A8535bZq2+U9m+Hy9zge2A6+hOdanAv+U5JCpONIMS/gY8Aiak6ufpflOfoxpetJogVSVDx/L9gH8FHAHUMAXgDOA3wJ+dJq669p6r55m26vbbet6yk5uy54wi9cp4My+sn2B64Ft7fM/aOu9aBaf8zHtPif3lL2RZizYvn11n9DWvRX4gWle65Pt9j+ZZluA+05Tfkq7zwk9ZU9qy17QV3e8v64PHz58DPro+Q17+Qx1HtnW+UBP2Xto/gDer6/uBe3v4X16yq6f7ncKeEtb/sM9ZfelHdPeV/fdwF3AgT1lU+3GpcBePeVPa8u/C6zvKd8LuAn4f32v/Ung+p710CRU3wYePk0sqwY4rkXzB/2D2sdhwO/QtKFfn2ovZmpDaJLGrW39B/d9jk+3x+OwtmxP4EbgK73tFM0JvmunadOmjt01wNg08d9vmrIDaBLD86Y5fgX8bl/5B4G7gc3A903z7/Mb03wPbwQe2FP+8Lb8buCX+l7/EuCmvrIzgZquDHhrX/kzp4njBW3Zxr66U+XX95b7WJiHXQS1rFXV/wMeRdOd74HA84C3Alel6eZ26CjjA6iq22iu6BwIfIRm3Ni5VfXXs3iZU2iuJp3TU3YmzZm4Z+9in3dV1S0zvOZfTBNrVdW3oOn7nmSfJA+iOQsITaI35QLguja2/li/RnNGT5KG4Rvt8vt7yiaAvWlO8gBN13CartSTde8xsv9VVe/vK5v6rZu6qkNVfavav2iT7JVkv/Z38XyaoRjrp4nvb2rncVRTV1cuqqrNPa99B80VicOY2SOAHwP+tqou799YVXfvZv8pT6K5YrKd5qTkG4CrgCdN015M14Y8imaSkTOq6r/6Psef0xyP43vqPpjmpONtPXX/G3jbDDH+TU0z5qp6enu03fz2p0noLmLntmnKXTRXqHr9G02y+rbaeTKqqX+f6f4dzqyq23viuJzm+/dfde+eM58CfjDJ/af9ZPf2xr71e33/aK723UVzNbTXO4Hb0UiYYGnZq6orqurkqjqA5urSSTQ/lj8LfCjNbEwjVVX/TjOl+2NoGrbnD7pvmjFaJ9KckfvBtg/+w2gSri3cO8GZ8oUZXnZ77WL2rSQnJLmI5urYbW2817ab9+35TEXzA//IJI9o9z2U5qzfu8vZqCQNz1RiNZVoUVWfpPnd6/1NfB7NH9T93QPhnt+1Xl9rl71jTvdM8vtJvkBzBelrNL+L726r7Mu97fTaPQnGddPUva33/XZh6g/uz+2m3u5cBBzTPh4PrK2qR1TVZ6epO10bcki7vHKabVNlh/bVvWaautOVzfS+JHlokrOT3EbTLfGrNP8OT2H6f4Obpkmqp/136Pn3me7fYbrvyW39r9H3+rv795z2tavqXt8/muP4X9U3wUjbxk4XgxaACZZWlKraWlXvoumT/mngx2mmNYfmUvquDHW8YpvkHduu7kdzBnBQz6QZr/ULwBf7Hg8DjphKcPrMNOvStNuS/BLwvnb1JTRnzo6hGW8A9/5NOYOmT/3UHzTPZ9d/zEhSVx7eLvv/UH8H8JNJHtWOdz0Z2FzTT4R01wyv33ufrTfQzN56KU3C9hSa38VXtNun+1trV68903suhK9W1cfax79V1bYZ6o5q5r57vW97RehfadqiNwHPoGlTj6G56jPdfdFmOta72jab1xn0+7NLVTWbOLSIOMmFVqSqqvYqzONoBsLCPYNBp7uh4rC7Ev4ZTTeS32sfZyd5ZA02wcXzgf+iSXj67UUz4PcUmsG18/VcmjO0P9/bRSPJj0xXuapuTjPF73iS02j+mLmoqqY7uylJXZk6qfNPfeVnApva7R+iOZn1Z/N8r+cC/1pVJ/YWtj0JFsrUVZ3pTqYtpKkrLj82zbbD++pc3y5/eJq605XN5Cia7obPr6q/7d2QZNAJJZaq64Gjk9y/9ypWO1vhITTj4bTAvIKlZS3JMUnudSIhyX25ZxaoqwCqmZHnZuCJSdJT91Cam1cOK8Yn0wwkPquqXk9zBvSHgN2OwUryQzRdHT9QVedM83gPTXfIZ7czDc3XXTRX+r7329Eeq9+fYZ930HTPeBtNMuvVK0lD0Y4N/QuaGQTPq6pP926vqq/SjP98NvAimqsh75nn295F3xWFtuv278zzdWfjP2i64D0/yb2Sm942bcgupZmw6Xnpmc6+/WP/d2najw+1xZtpJvA4Ocm+PXXvD/zmLN936kpP/7/Dk5h+/NVy8o80k4v0n2T9dZqx5xoBr2BpuXsjsH87ZfgVNI3pQ2ga1x+iGaR7RU/9v6aZPvUjSf6B5ozYb9LMzvToroNLciDNBBxfpGnsqaoPJ3kT8JIk51fV2TO8xNRYrQ/MUOcDNOOe/hcw02sN4hzgl4FPJHkXzfS1T6e5mfOunE8zq9RzgP/uIAZJgmZ853Pa5w+guerxdGAt8M/seoKfCZrpz59Kc2LrG7uoN6hzgN9I8j6aqbEPoPlt/tqMe3Wo7ZXxPJpp2j+bZGqa9n1ousR/lHtP6DCMOO5K8iKaadovTjJBMx7qV4DHAn9aVV9s696Z5OU009FPxXwnTU+Hr9FcfZmp636vT9FOC99OXHIDzdW859K0/T/RxedbpN5JcyuAP2mvmk5N034CzThs/9YfAQ+6lrtTaWYs+hmaxGAfmll1LqeZVOLMvvqvoznj81yapOQqmq4kj6LjBKvt//9u2nuq9A1Q/T2aAcZvT3JRVd1roGqaG1j+Ks0g3v77e/T6e+DNNA3+vJKbqjo7yQNozsz+Bc2A3X+kuYfItH9MVNXdbcP5GuD9/QNxJWmOntU+7qY5eXMDzT2N3ltVH51hv0/Q/OH5MJr7Rc3XqTRJxAk07c2XaZK4i9n1fQg7V1UXJ3k0za0+TqA5OfhVmj+4Pz3Tvh3H8Y/t/R1/n+aq1V4094L8tao6va/ue5J8t435j2imbD+dpo3+IM1kSoO859eTHEszU+Fv0/x9ewnNeLhTWMYJVlV9pz3er6f5/p1AM1nJUTTJ10wnQDUkaWcWlaShSfJ7NMnrT7dT50vSyCS5EtijqqYdP6rRSvIympN4P1VVnxl1PEtRexL2qzTjno/bXX11yzFYkoaqHQP3G8AVJleSRi3JE2kmXHjHqGNZ6dr7hu3RV3Z/4IU0vSIuHUlgS0w7rrzfb9L02rlggcMRdhGUNCRJDgF+iqbLwqE0XXkkaSTaxOqhwCtpulabYI3eoTRjns+muWfTgTT3qjwE+C3vlziwdyS5D/DvwHdo2t5n03SFnRhlYCuVXQQlDUWSk4G/pemi8NaqetVoI5K0kiX5JM143KuAF1bVTGNXtQCS7E8zudTjgB+gmeTiCuCNVfX+Uca2lCT5VZqrfj8E3J9mLNt5wB9U1VdGGdtKZYIlSZIkSR0ZahfBJFN31N4DeGdVvbZv+6nAr9GcsdhOc4O4re22u2jOYgBsq6qnzfReD3rQg2rdunXdfgBJ0oK65JJLvlpVq0cdR9dsoyRp6Ru0jRpagtUOWnwLcAzN1KkXJzm3qq7qqfY5YH1V7UjyWzTTa/5Ku+1bVTXwHcnXrVvH5s2bO4pekjQKSbaOOoZhsI2SpKVv0DZqmLMIHglsqapr20GKZ9MMdv+eqrqwqna0q58BDh5iPJIkSZI0VMNMsA6iudnelBvasl05BfhIz/p9kmxO8pkkT59uhyQb2jqbt2/fPv+IJUmSJGkeFsU07UmeA6wHfq6neG1V3ZjkUOATSa6oqi/17ldVE7TTT65fv97ZOiRJkiSN1DCvYN0IPKRn/eC2bCdJjgY2Ak+rqu9MlVfVje3yWuCTwBFDjFWSJEmS5m2YCdbFwGFJDkmyF3AicG5vhSRHAG+nSa5u6SnfN8ne7fMH0dwfoXdyDEmSJEladIbWRbCq7kzyIuB8mmnaz6iqK5O8BthcVecCr6e5IdrfJYF7pmP/UeDtSe6mSQJf2zf7oCRJkiQtOkMdg1VV59HcSbq37A97nh+9i/3+HfiJYcYmSZIkSV0bZhdBSZIkSVpRTLAkSZIkqSMmWJIkSZLUERMsSZIkSeqICZYkSZIkdcQES5IkSdKyNDkJ69bBqlXNcnJy+O9pgiVJWvGSnJHkliSf7yl7fZL/THJ5kr9Psk/Ptlcm2ZLkmiTHjiZqSdJMJidhwwbYuhWqmuWGDcNPskywJEmCM4Hj+souAH68qh4OfAF4JUCSw4ETgR9r93lrkj0WLlRJ0iA2boQdO3Yu27GjKR8mEyxJ0opXVf8K3NpX9s9VdWe7+hng4Pb58cDZVfWdqroO2AIcuWDBSpIGsm3b7Mq7YoIlSdLuPR/4SPv8IODLPdtuaMt2kmRDks1JNm/fvn0BQpQk9VqzZnblXTHBkiRpBkk2AncCs+q1X1UTVbW+qtavXr16OMFJknZp0yYYG9u5bGysKR8mEyxJknYhycnAU4Hxqqq2+EbgIT3VDm7LJEmLyPg4TEzA2rWQNMuJiaZ8mPYc7stLkrQ0JTkO+D3g56qqd5j0ucB7krwBeDBwGPDZEYQoSdqN8fHhJ1T9TLAkSStekvcCTwAelOQG4FU0swbuDVyQBOAzVfWbVXVlkvcDV9F0HXxhVd01msglSYuNCZYkacWrqmdNU3z6DPU3AUPuxS9JWoocgyVJkiRJHTHBkiRJkqSOmGBJkuZnchLWrYNVq5rl5KxmM5ckaVlxDJYkae4mJ2HDBtjRTrK3dWuzDgs/bZMkSYuAV7AkSXO3ceM9ydWUHTuackmSViATLEnS3G3bNrtySZKWORMsSdLcrVkzu3JJkpY5EyxJ0txt2gRjYzuXjY015ZIkrUAmWJKkuRsfh4kJWLsWkmY5MeEEF5KkFctZBCVJ8zM+bkIlSVLLK1iSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1JGhJlhJjktyTZItSU6bZvupSa5KcnmSjydZ27PtpCRfbB8nDTNOSZIkSerC0BKsJHsAbwGeDBwOPCvJ4X3VPgesr6qHA+cAf97uux/wKuAxwJHAq5LsO6xYJUmSJKkLw7yCdSSwpaqurao7gLOB43srVNWFVbWjXf0McHD7/Fjggqq6tapuAy4AjhtirJKkFSzJGUluSfL5nrL9klzQ9qS4YOpEXxpvbntnXJ7kkaOLXJK02AwzwToI+HLP+g1t2a6cAnxkNvsm2ZBkc5LN27dvn2e4kqQV7EzufSLvNODjVXUY8PF2HZqeGYe1jw3A3yxQjJKkJWBRTHKR5DnAeuD1s9mvqiaqan1VrV+9evVwgpMkLXtV9a/ArX3FxwNntc/PAp7eU/6uanwG2CfJgQsTqSRpsRtmgnUj8JCe9YPbsp0kORrYCDytqr4zm30lSRqiA6rqpvb5zcAB7fPZ9tCQJK0gw0ywLgYOS3JIkr2AE4FzeyskOQJ4O01ydUvPpvOBJyXZt+3z/qS2TJKkBVdVBdRs9rEbuyStTENLsKrqTuBFNInR1cD7q+rKJK9J8rS22uuB+wN/l+SyJOe2+94K/DFNknYx8Jq2TJKkhfKVqa5/7XLqROBAvSzsxi5JK9Oew3zxqjoPOK+v7A97nh89w75nAGcMLzpJkmZ0LnAS8Np2+aGe8hclOZvmdiK393QllCStcENNsCRJWgqSvBd4AvCgJDfQ3IvxtcD7k5wCbAVOaKufBzwF2ALsAJ634AFLkhYtEyxJ0opXVc/axaajpqlbwAuHG5EkaalaFNO0S5IkSdJyYIIlSZIkSR0xwZIkSZKkjphgSZIkSVJHTLAkSZIkqSMmWJIkSZLUERMsSZIkSeqICZYkSZIkdcQES5IkSZI6YoIlSZIkSR0xwZIkSZKkjphgSZIkSVJHTLAkSZIkqSMmWJIkSZLUERMsSZIkSeqICZYkSZIkdcQES5IkSZI6YoIlSZIkSR0xwZIkSZKkjphgSZIkSVJHTLAkSZIkqSMmWJIkSZLUERMsSZIkSeqICZYkSZIkdcQES5IkSZI6YoIlSZIkSR0xwZIkSZKkjphgSZIkSSvE5CSsWwerVjXLyclRR7T87DnqACRJkiQN3+QkbNgAO3Y061u3NusA4+Oji2u58QqWJEmStAJs3HhPcjVlx46mXN0xwZIkSZJWgG3bZleuuTHBkiRJklaANWtmV665McGSJEmSVoBNm2BsbOeysbGmXN0xwZIkSZJWgPFxmJiAtWshaZYTE05w0TVnEZQkSZJWiPFxE6ph8wqWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJGkGSX4nyZVJPp/kvUnuk+SQJBcl2ZLkfUn2GnWckqTFwQRLkoZhchLWrYNVq5rl5OSoI9IcJDkIeDGwvqp+HNgDOBF4HfDGqnoYcBtwyuiilCQtJiZYktS1yUnYsAG2boWqZrlhg0nW0rUncN8kewJjwE3AE4Fz2u1nAU8fUWySpEXGBEuSurZxI+zYsXPZjh1NuZaUqroR+AtgG01idTtwCfD1qrqzrXYDcFD/vkk2JNmcZPP27dsXKmRJ0oiZYElS17Ztm125Fq0k+wLHA4cADwbuBxw3yL5VNVFV66tq/erVq4cYpSRpMTHBkqSurVkzu3ItZkcD11XV9qr6LvBB4HHAPm2XQYCDgRtHFaAkaXExwZKkrm3aBGNjO5eNjTXlWmq2AY9NMpYkwFHAVcCFwDPaOicBHxpRfJKkRcYES5K6Nj4OExOwdi0kzXJioinXklJVF9FMZnEpcAVNuzkBvAI4NckWYH/g9JEFKUlaVPbcfRVJ0qyNj5tQLRNV9SrgVX3F1wJHjiAcSdIiN9QrWEmOS3JNeyPG06bZ/vgklya5M8kz+rbdleSy9nHuMOOUJEmSpC4M7QpWkj2AtwDH0Exhe3GSc6vqqp5q24CTgZdP8xLfqqpHDCs+SZIkSeraMLsIHglsqaprAZKcTTPV7fcSrKq6vt129xDjkCRJkqQFMcwuggcBX+5Zn/ZGjDO4T3uDxs8keXq3oUmSJElS9xbzJBdrq+rGJIcCn0hyRVV9qbdCkg3ABoA13l9GkiRJ0ogN8wrWjcBDetZndSPGqrqxXV4LfBI4Ypo6E1W1vqrWr169en7RSpIkSdI8DTPBuhg4LMkhSfYCTgQGmg0wyb5J9m6fPwh4HD1jtyRJkiRpMRpaglVVdwIvAs4HrgbeX1VXJnlNkqcBJHl0khuAZwJvT3Jlu/uPApuT/AdwIfDavtkHJUmSJGnRmdMYrCSvrqpX765eVZ0HnNdX9oc9zy+m6TrYv9+/Az8xl9gkSZoyaHslSVJX5noF65JOo5AkaThsryRJC2pOCVZV/WPXgUiS1DXbK0nSQtttgpXkh5J8PMnn2/WHJ/n94YcmDdHkJKxbB6tWNcvJyVFHJGmebK8kSYvBIFew3gG8EvguQFVdTjMjoLQ0TU7Chg2wdStUNcsNG0yypKXP9kqSNHKDJFhjVfXZvrI7hxGMtCA2boQdO3Yu27GjKZe0lNleSZJGbpAE66tJHgoUQJJnADcNNSppmLZtm125pKXC9kqSNHKDTNP+QmAC+JEkNwLXAc8ZalTSMK1Z03QLnK5c0lJmeyVJGrndJlhVdS1wdJL7Aauq6pvDD0saok2bmjFXvd0Ex8aacklLlu2VJGkx2G2ClWQf4FeBdcCeSQCoqhcPNTJpWMbHm+XGjU23wDVrmuRqqlzSkmR7JUlaDAbpInge8BngCuDu4YYjLZDxcRMqafmxvZIkjdwgCdZ9qurUoUciSdL82F5JkkZukFkE353k15McmGS/qcfQI5MkaXZsryRJIzfIFaw7gNcDG2mnvm2Xhw4rKEmS5sD2SpI0coMkWC8DHlZVXx12MJIkzYPtlSRp5AbpIrgF2LHbWpIkjZbtlSRp5Aa5gvU/wGVJLgS+M1XotLeSpEXG9kqSNHKDJFj/0D4kSVrMbK8kSSO32wSrqs5aiEAkSZoP2ytJ0mKwywQryfur6oQkV3DPbEzfU1UPH2pkkiQNwPZKkrSYzHQF6yXt8qkLEYgkSXNkeyVJWjR2OYtgVd3UPn1BVW3tfQAvWJjwJEmame2VJGkxGWSa9mOmKXty14FIkjRPtleSpJGbaQzWb9Gc+Ts0yeU9mx4AfHrYgUmSNAjbK0nSYjLTGKz3AB8B/gw4raf8m1V161CjkiRpcLZXkqRFY5cJVlXdDtwOPGvhwpEkaXZsryRJi8kgY7AkSZIkSQMwwZIkSZKkjphgSZIkSVJHZprkAoAk3wSqr/h2YDPwsqq6dhiBSZI0G7ZXkqTFYLcJFvBXwA00szQFOBF4KHApcAbwhGEFJ0nSLNheSZJGbpAugk+rqrdX1Ter6htVNQEcW1XvA/YdcnySJA3K9kqSNHKDJFg7kpyQZFX7OAH4drutvyuGJEmjYnslSRq5QRKsceC5wC3AV9rnz0lyX+BFQ4xNkqTZsL2SJI3cbsdgtYOCf3EXmz/VbTiSJM2N7ZUkaTEYZBbB1cCvA+t661fV84cXliRJs2N7JUlaDAaZRfBDwL8BHwPuGm44kiTNme2VJGnkBkmwxqrqFUOPRJKk+RlKe5VkH+CdwI/TTJaWhXEnAAAcsElEQVTxfOAa4H00V8uuB06oqtu6fm9J0tIzyCQXH07ylKFHIknS/AyrvXoT8NGq+hHgJ4GrgdOAj1fVYcDH23VJkgZKsF5C02h9K8k3knwzyTeGHZgkSbPUeXuV5IHA44HTAarqjqr6OnA8cFZb7Szg6fN5H0nS8jHILIIPWIhAJEmajyG1V4cA24G/TfKTwCU0idwBVXVTW+dm4ID+HZNsADYArFmzZgihSZIWo10mWEl+pKr+M8kjp9teVZcOLyxJkgYz5PZqT+CRwG9X1UVJ3kRfd8CqqiT3upFxVU0AEwDr16/3RseStELMdAXrVJozb385zbYCnjiUiCRJmp1htlc3ADdU1UXt+jk0CdZXkhxYVTclOZDm5saSJO06waqqDe3y5xcuHEmSZmeY7VVV3Zzky0l+uKquAY4CrmofJwGvbZcf6vq9JUlL024nuUjyzCQPaJ//fpIPJjli+KFJkjS4IbZXvw1MJrkceATwpzSJ1TFJvggc3a5LkjTQfbD+oKr+LsnP0DQirwfeBjxmqJFJkjQ7Q2mvquoyYP00m46az+tKkpanQaZpv6td/gIwUVX/BOw1vJAkSZoT2ytJ0sgNkmDdmOTtwK8A5yXZe8D9JElaSLZXkqSRG6ThOQE4Hzi2vbnifsDvDjUqSZJmz/ZKkjRyg4zBOhD4p6r6TpInAA8H3jXUqCRJmj3bK0nSyA1yBesDwF1JHkZzw8SHAO8ZalSSJM2e7ZUkaeQGSbDurqo7gV8C/k9V/S7NWUJJkhYT2ytJ0sgNkmB9N8mzgF8FPtyWfd/wQpIkaU5sryRJIzdIgvU84KeATVV1XZJDgHcPNyxJkmbN9kqSNHK7neSiqq5K8gpgTbt+HfC6YQcmSdJs2F5JkhaD3V7BSvKLwGXAR9v1RyQ5d9iBSZI0G7ZXkqTFYJAugq8GjgS+DlBVlwGHDjEmSZLm4tXYXkmSRmygSS6q6va+sruHEYwkSfNgeyVJGrlBbjR8ZZJnA3skOQx4MfDvww1LkqRZs72SJI3cIFewfhv4MeA7NDdsvB146SAvnuS4JNck2ZLktGm2Pz7JpUnuTPKMvm0nJfli+zhpkPeTJK1oc26vJEnqyiCzCO4ANraPgSXZA3gLcAxwA3BxknOr6qqeatuAk4GX9+27H/AqYD1QwCXtvrfNJgZJ0sox1/ZKkqQuDTKL4AVJ9ulZ3zfJ+QO89pHAlqq6tqruAM4Gju+tUFXXV9Xl3LuP/LHABVV1a5tUXQAcN8B7SpJWqHm0V5IkdWaQLoIPqqqvT620Cc8PDLDfQcCXe9ZvaMsGMdC+STYk2Zxk8/bt2wd8aUnSMjXX9kqSpM4MkmDdnWTN1EqStTTd9kauqiaqan1VrV+9evWow5Ekjdaiba8kSSvHILMIbgQ+leRfgAA/C2wYYL8bgYf0rB/clg3iRuAJfft+csB9JUkr01zbK0mSOjPIJBcfTfJI4LFt0Uur6qsDvPbFwGFJDqFJmE4Enj1gXOcDf5pk33b9ScArB9xXkrQCzaO9kiSpM4NcwQL4aeDxPesf3t0OVXVnkhfRJEt7AGdU1ZVJXgNsrqpzkzwa+HtgX+AXk/xRVf1YVd2a5I9pkjSA11TVrYN+KEnSijXr9kqSpC7tNsFK8lrg0cBkW/SSJD9dVf97d/tW1XnAeX1lf9jz/GKa7n/T7XsGcMbu3kOSJJhfeyVJUlcGuYL1FOARVXU3QJKzgM8BNliSpMXE9kqSNHKDzCIIsE/P8wcOIxBJkjpgeyVJGqlBrmD9GfC5JBfSzMr0eOC0oUYlSdLs2V5JkkZuxgQrSYBP0czI9Oi2+BVVdfOwA5MkaVC2V5KkxWLGBKuqKsl5VfUTwLkLFJMkSbNieyVJWiwGGYN1aTuduiRJi5ntlSRp5AYZg/UY4DlJrgf+h6Zfe1XVw4cZmCRJs2R7JUkauUESrGOHHoUkSfNneyVJGrldJlhJ7gP8JvAw4Arg9Kq6c6ECkyRpELZXkqTFZKYxWGcB62kaqycDf7kgEUmSNDu2V5KkRWOmLoKHt7MxkeR04LMLE5IkSbNieyVJWjRmuoL13akndrWQJC1itleSpEVjpitYP5nkG+3zAPdt16dmZfr+oUcnSdLu2V5JkhaNXSZYVbXHQgYiSdJc2F5JkhaTQW40LEmSJEkagAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1BETLEmSJEnqiAmWJEkzSLJHks8l+XC7fkiSi5JsSfK+JHuNOkZJ0uJhgqWlb3IS1q2DVaua5eTkqCOStLy8BLi6Z/11wBur6mHAbcApI4lKkrQomWBpaZuchA0bYOtWqGqWGzaYZEnqRJKDgV8A3tmuB3gicE5b5Szg6aOJTpK0GJlgaWnbuBF27Ni5bMeOplyS5u+vgN8D7m7X9we+XlV3tus3AAdNt2OSDUk2J9m8ffv24UcqSVoUTLC0tG3bNrtySRpQkqcCt1TVJXPZv6omqmp9Va1fvXp1x9FJkharPUcdgDQva9Y03QKnK5ek+Xkc8LQkTwHuA3w/8CZgnyR7tlexDgZuHGGMkqRFxitYWto2bYKxsZ3Lxsaackmah6p6ZVUdXFXrgBOBT1TVOHAh8Iy22knAh0YUoiRpETLB0tI2Pg4TE7B2LSTNcmKiKZek4XgFcGqSLTRjsk4fcTySpEXELoJa+sbHTagkDVVVfRL4ZPv8WuDIUcYjSVq8vIIlSZIkSR0xwdJoeHNgSZIkLUN2EdTCm7o58NT9q6ZuDgx29ZMkSdKS5hUsLTxvDixJkqRlygRLC8+bA0uSJGmZMsHSwtvVTYC9ObAkSZKWOBMsLTxvDixJkqRlygRLC8+bA0uSJGmZchZBjYY3B5YkSdIy5BUsSZIkSeqICZYkSZIkdcQES5IkSZI6YoIlSZIkSR0xwZIkSZKkjphgSZIkSVJHTLAkSZIkqSMmWJIkSZLUERMsSZIkSeqICZYkSZIkdcQES5IkSZI6YoIlSZIkSR0xwZIkSZKkjphgSZIkSVJHTLAkSZIkqSMmWJIkSZLUERMsSZIkSerIUBOsJMcluSbJliSnTbN97yTva7dflGRdW74uybeSXNY+3jbMOCVJkiSpC3sO64WT7AG8BTgGuAG4OMm5VXVVT7VTgNuq6mFJTgReB/xKu+1LVfWIYcUnSZIkSV0b5hWsI4EtVXVtVd0BnA0c31fneOCs9vk5wFFJMsSYtNAmJ2HdOli1qllOTo46IkmSJGlohplgHQR8uWf9hrZs2jpVdSdwO7B/u+2QJJ9L8i9Jfna6N0iyIcnmJJu3b9/ebfSav8lJ2LABtm6Fqma5YYNJliRJkpatxTrJxU3Amqo6AjgVeE+S7++vVFUTVbW+qtavXr16wYPUbmzcCDt27Fy2Y0dTLkmSJC1Dw0ywbgQe0rN+cFs2bZ0kewIPBL5WVd+pqq8BVNUlwJeAHxpirBqGbdtmVy5JkiQtccNMsC4GDktySJK9gBOBc/vqnAuc1D5/BvCJqqokq9tJMkhyKHAYcO0QY9UwrFkzu3JJkiRpiRtagtWOqXoRcD5wNfD+qroyyWuSPK2tdjqwf5ItNF0Bp6ZyfzxweZLLaCa/+M2qunVYsWpINm2CsbGdy8bGmnJJkiRpGRraNO0AVXUecF5f2R/2PP828Mxp9vsA8IFhxqYFMD7eLDdubLoFrlnTJFdT5ZIkSdIyM9QES2J83IRKkiRJK8ZinUVQkiRJkpYcEyxJkiRJ6ogJliRJkiR1xARLkiRJkjpigiVJkiRJHTHBkiRJkqSOmGBJkiRJUkdMsCRJkiSpIyZYkiRJktQREyxJknYhyUOSXJjkqiRXJnlJW75fkguSfLFd7jvqWCVJi4MJliRJu3Yn8LKqOhx4LPDCJIcDpwEfr6rDgI+365IkmWAtCZOTsG4drFrVLCcnRx2RJK0IVXVTVV3aPv8mcDVwEHA8cFZb7Szg6aOJUJK02JhgLXaTk7BhA2zdClXNcsMGkyxJWmBJ1gFHABcBB1TVTe2mm4EDpqm/IcnmJJu3b9++YHFq6fO8qrS0mWAtdhs3wo4dO5ft2NGUS5IWRJL7Ax8AXlpV3+jdVlUFVP8+VTVRVeurav3q1asXKFItdZ5XlZY+E6zFbtu22ZVLkjqV5PtokqvJqvpgW/yVJAe22w8EbhlVfFpePK8qLX0mWIvdmjWzK5ckdSZJgNOBq6vqDT2bzgVOap+fBHxooWPT8uR5VWnpM8Fa7DZtgrGxncvGxppySdKwPQ54LvDEJJe1j6cArwWOSfJF4Oh2XZo3z6tKS9+eow5AuzE+3iw3bmxOX61Z0yRXU+WSpKGpqk8B2cXmoxYyFq0MmzY1Y656uwl6XlVaWkywloLxcRMqSZJWAM+rSkufCZYkSdIi4nlVaWlzDJYkSZIkdcQES5IkSZI6YoIlSZIkSR0xwZIkSZKkjphgSZIkSVJHTLAkSZKGZHIS1q2DVaua5eTkqCOSNGxO0y5JkjQEk5M73zR469ZmHZyGXVrOvIIlSZI0BBs33pNcTdmxoymXtHyZYEmSJA3Btm2zK5e0PJhgSZIkDcGaNbMrl7Q8mGB1zdGskiQJ2LQJxsZ2Lhsba8olLV8mWF2aGs26dStU3TOa1SRLkqQVZ3wcJiZg7VpImuXEhBNcSMudCVaXHM0qSZJ6jI/D9dfD3Xc3S5MrafkzweqSo1klSZKkFc0Eq0uOZpUkSZJWNBOsLjmaVZIkSVrRTLC65GhWSZIkaUUzwRrUoNOvO5pVkqQlzTuuSJqPPUcdwJIwNf361AyBU9OvgwmUJEnLiE2+pPnyCtYgnH5dkqQVwSZf0nyZYA3C6dclSVp2pusKaJMvab5MsAbh9OuSJC0rU10Bt26Fqnu6Au633/T1bfIlDcoEaxBOvy5J0rKyq66AYJMvaX5MsAbh9OuSJC0ru+ryd+utNvmS5sdZBAc1Pu6vqyRJy8SaNU23wOnKbfIlzYdXsCRJ0opj739Jw2KCJUmSVhx7/0saFrsISpKkFcmugJKGwStYkiRJktQREyxJkiRJ6ogJliRJkiR1xAQLmtu5r1sHq1Y1y8nJUUckSZIkaQlykovJSdiw4Z7bt2/d2qyDI18lSZIkzYpXsDZuvCe5mrJjR1MuSZIkSbNggrVt2+zKJUmSJGkXTLDWrJlduSRJkiTtwlATrCTHJbkmyZYkp02zfe8k72u3X5RkXc+2V7bl1yQ5dmhBbtoEY2M7l42NNeWSJEmSNAtDS7CS7AG8BXgycDjwrCSH91U7Bbitqh4GvBF4Xbvv4cCJwI8BxwFvbV+ve+PjMDEBa9dC0iwnJpzgQpIkSdKsDfMK1pHAlqq6tqruAM4Gju+rczxwVvv8HOCoJGnLz66q71TVdcCW9vWGY3wcrr8e7r67WZpcSZI0EO90Ikk7G2aCdRDw5Z71G9qyaetU1Z3A7cD+A+4rSZJGaOpOJ1u3QtU9dzoxyZK0ki3pSS6SbEiyOcnm7du3jzocSZJWFO90Ikn3NswE60bgIT3rB7dl09ZJsifwQOBrA+5LVU1U1fqqWr969eoOQ5ckSbvjnU4k6d6GmWBdDByW5JAke9FMWnFuX51zgZPa588APlFV1Zaf2M4yeAhwGPDZIcYqSdKyNoyxUt7pRJLubWgJVjum6kXA+cDVwPur6sokr0nytLba6cD+SbYApwKntfteCbwfuAr4KPDCqrprWLFKkjRbu7sVSVcGSYx2V2dYY6W804kk3VuaC0ZL3/r162vz5s2jDkOSNA9JLqmq9aOOY3faW4d8ATiGZiKmi4FnVdVV09Wfaxs1lRj1jnMaG9v5biKD1Fm3rkmq+q1d20yeOx+Tk82Yq23bmitXmzY5Ga+k5WnQNsoES5K0aCyhBOungFdX1bHt+isBqurPpqs/1zZqkMRokDqrVjVXrvolzR1KJEm7N2gbtaRnEZQkaUR2ezuRLma6HWQSiUHqOFZKkhaOCZYkSUPQxUy3gyRGg9RxrJQkLRwTLEmSZm+g24nM1yCJ0SB1xsebMVlr1zbdAteu3XmMliSpOyZYkiTN3iC3Ipm3QRKjQZOn8fFmTNbddzdLkytJGo49Rx2AJElLTVXdmWTqViR7AGe0txjp3Pj47pOhQepIkhaGCZYkSXNQVecB5406DknS4mIXQUmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCJUmSJEkdMcGSJEmSpI6YYEmSJElSR0ywJEmSJKkjJliSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOpKqGnUMnUiyHdg6h10fBHy143BWEo/f3Hns5s5jN3eL/ditrarVow6ia7ZRI+PxmzuP3dx57OZusR+7gdqoZZNgzVWSzVW1ftRxLFUev7nz2M2dx27uPHZLi/9e8+PxmzuP3dx57OZuuRw7uwhKkiRJUkdMsCRJkiSpIyZYMDHqAJY4j9/ceezmzmM3dx67pcV/r/nx+M2dx27uPHZztyyO3YofgyVJkiRJXfEKliRJkiR1xARLkiRJkjqyohOsJMcluSbJliSnjTqexSDJQ5JcmOSqJFcmeUlbvl+SC5J8sV3u25YnyZvbY3h5kkf2vNZJbf0vJjlpVJ9poSXZI8nnkny4XT8kyUXtMXpfkr3a8r3b9S3t9nU9r/HKtvyaJMeO5pMsrCT7JDknyX8muTrJT/m9G0yS32n/v34+yXuT3Mfv3dJnG3VvtlHzZxs1N7ZRc7ci26iqWpEPYA/gS8ChwF7AfwCHjzquUT+AA4FHts8fAHwBOBz4c+C0tvw04HXt86cAHwECPBa4qC3fD7i2Xe7bPt931J9vgY7hqcB7gA+36+8HTmyfvw34rfb5C4C3tc9PBN7XPj+8/T7uDRzSfk/3GPXnWoDjdhbwa+3zvYB9/N4NdNwOAq4D7tvzfTvZ793SfthG7fK42EbN/xjaRs3tuNlGze24rcg2aiVfwToS2FJV11bVHcDZwPEjjmnkquqmqrq0ff5N4Gqa/xzH0/y40C6f3j4/HnhXNT4D7JPkQOBY4IKqurWqbgMuAI5bwI8yEkkOBn4BeGe7HuCJwDltlf5jN3VMzwGOausfD5xdVd+pquuALTTf12UryQOBxwOnA1TVHVX1dfzeDWpP4L5J9gTGgJvwe7fU2UZNwzZqfmyj5sY2at5WXBu1khOsg4Av96zf0Jap1V6WPQK4CDigqm5qN90MHNA+39VxXKnH96+A3wPubtf3B75eVXe2673H4XvHqN1+e1t/JR67Q4DtwN+2XVfemeR++L3braq6EfgLYBtNo3U7cAl+75Y6/z12wzZqTmyj5sY2ao5Wahu1khMszSDJ/YEPAC+tqm/0bqvmWq3z+/dJ8lTglqq6ZNSxLEF7Ao8E/qaqjgD+h6a7xff4vZte2+f/eJo/AB4M3I+VcUZUK5ht1OzZRs2LbdQcrdQ2aiUnWDcCD+lZP7gtW/GSfB9NwzVZVR9si7/SXt6mXd7Slu/qOK7E4/s44GlJrqfpzvNE4E00XQP2bOv0HofvHaN2+wOBr7Eyj90NwA1VdVG7fg5NY+b3bveOBq6rqu1V9V3ggzTfRb93S5v/HrtgGzVntlFzZxs1dyuyjVrJCdbFwGHtLCZ70QykO3fEMY1c28/1dODqqnpDz6ZzganZbk4CPtRT/qvtjDmPBW5vL5efDzwpyb7t2YsntWXLVlW9sqoOrqp1NN+nT1TVOHAh8Iy2Wv+xmzqmz2jrV1t+YjuTziHAYcBnF+hjjERV3Qx8OckPt0VHAVfh924Q24DHJhlr//9OHTu/d0ubbdQ0bKPmzjZq7myj5mVltlHznSVjKT9oZnn5As1MJBtHHc9ieAA/Q3OJ+3LgsvbxFJr+rx8Hvgh8DNivrR/gLe0xvAJY3/Naz6cZhLgFeN6oP9sCH8cncM8MTYfS/AhsAf4O2Lstv0+7vqXdfmjP/hvbY3oN8ORRf54FOmaPADa3371/oJlhye/dYMfuj4D/BD4PvJtmliW/d0v8YRs17TGxjermONpGzf6Y2UbN/dituDYqbcCSJEmSpHlayV0EJUmSJKlTJliSJEmS1BETLEmSJEnqiAmWJEmSJHXEBEuSJEmSOmKCpWUhyT5JXtCz/oQkH57H6706ycu7iW6n131pkrGe9f+ex2vtneRjSS5L8ivdRChJ6pptlG2UVhYTLC0X+wAv2G2t0XspMLbbWoM5AqCqHlFV7+voNSVJ3bONklYQEywtF68FHtqeKXt9W3b/JOck+c8kk+0dxEnyqCT/kuSSJOcnOXCmF07y0CQfbev/W5IfacvPTPLmJP+e5Nokz2jLVyV5a/u+FyQ5L8kzkrwYeDBwYZILe15/U5L/SPKZJAdM8/77JfmHJJe3dR6e5AeA/ws8uv3MD+3b58VJrmr3Obstu1+SM/L/27ub0LiqMIzj/ye1UrHW0ibUhYobF7bVKha0NkgRdSO1SFIEK7pw46ZdiKCgYLAo6sJFXQguJOAHQihmUcUPjFVpxPjRNDYJFcEuilZpNWoXpn68Lu475KbOTGKYEHLz/OCQM2fOnHNyCHm5d97DlYYkHZa0I9svkPSGpHFJb0r6TNLmfO9MacxuSb1Z75C0X9LnWbZme0/OcTD3ZE/p8/fleo5IeqXZOGZmFeMYNf0zjlFWbQv9pGMXl1YU4ArgaOn1NuBX4FKKGwmfAp3AcmAQ6Mh+dwMv1xmvB3g46x8AV2b9BmAg670UTxtvA9YD32Z7N/B2tl8C/AJ053vHgfbSPAFsz/pzwON11vIC8ETWbwGGS7/jgQb78T1TT0VfnT+fBu6ttQHfABcCD9X2ALgG+It86jxwpjRmN9Cb9deBzqxfDoyX9m2Q4int7cDp3PMNOV979lvTbBwXFxeXKhXHqP98xjHKpdLlPMyqaygiTgBIGqYIcBPARuD9vFm4DPih0QCSVgI3AX3ZH4p/zDX9EfEPMFa6s9cJ9GX7yfKdwDrOArU8/C+B2+r06QS6ACJiQNJaSauajAkwArwmqR/oz7bbgTs1lbe/giJg3Azsy/FHJI3MMDbArcD60p6syr0CeCsiJoFJST8B6yiCbl9EnMp5fm42TkTMOe/fzGyRcIxyjLKK8gWWVdlkqf43xd+7gNGI2DLLMdqAiYi4dhZzqEGfZv6MiDhnja1wB0VQ2g48JunqXF9XRBwrdywFjnqiVF9RqrcBN0bEH3XGqrfvjdQdx8xsCXCMcoyyivIZLKuK34GLZtHvGNAhaQuApOWSNjTqHBG/Ad9J2pn9JWnTDHMcAroyz30dRZrE/11n2SfArpx/G3Aq11WXpDbgsoj4EHgEuBhYCbwL7C7l+V+XH/kYuCfbNlKkYNT8KOmqHPOuUvt7wO7SnI2Ce80AsFPS2uy/Zo7jmJktRo5RyTHKlgJfYFklRMRp4JCko5o6QFyv31mKPO1nJR0BhinSK5rZBTyQ/UeBHTP03w+cAMYoDvl+RZFrD/AS8M4MKRnn6gGuz7SIZ4D7Z+i/DHhV0tfAYWBfREwAeylyzUckjeZrgBcpDluPA09SpIHUPEqRHjLI9DSVPcDmPBA8BjzYbEERMQo8BXyU+/j8XMYxM1uMHKOmcYyyytPUN79m1iq1HO28GzYEbI2Ikwu9rtmQdJDi8PQXC70WMzNrPccos/nlM1hm8+OApNXA+cDexRK4zMxsSXCMMptH/gbLzMzMzMysRXwGy8zMzMzMrEV8gWVmZmZmZtYivsAyMzMzMzNrEV9gmZmZmZmZtYgvsMzMzMzMzFrkX6YP82UDRmxZAAAAAElFTkSuQmCC
+" />
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th style="text-align:center">Suffix Array</th>
+<th style="text-align:center">Dynamic Programming</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$$O(n)$$</td>
+<td style="text-align:center">$$O(n^2)$$</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="find-tandem-repeat-DP">find tandem repeat DP<a class="anchor-link" href="#find-tandem-repeat-DP">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [5]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pt_dp</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">score</span><span class="p">,</span> <span class="n">tandems</span> <span class="o">=</span> <span class="n">find_tandem</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"DP"</span><span class="p">)</span>
+    <span class="n">pt_dp</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">s</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"score : </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2"><4</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"tandem:</span><span class="se">\n</span><span class="si">{</span><span class="n">tandems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>score : 33  
+tandem:
+TTG
+
+score : 259 
+tandem:
+TTTTGCC
+
+score : 493 
+tandem:
+ATCAGTTTAAATTACCA
+
+score : 3127
+tandem:
+TCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGC
+
+score : 1001
+tandem:
+ACTGGTATATGGAGAGTACCACGCCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTG
+
+score : 2369
+tandem:
+CCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCG
+
+score : 2869
+tandem:
+CGTTCTGATTTTACTTGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCACGGAAGATTATGAGCACTTCGCGG
+
+score : 2223
+tandem:
+TAAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGAGC
+
+score : 8517
+tandem:
+CATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGAC
+
+score : 7007
+tandem:
+ATTAGTACCCCATCGGTTTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTCGGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCGTACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACTTCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGACCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAAAAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGGCGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGGGCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTTTGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGCAGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCTGTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGATCCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGTATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAACCAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACACGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGGTCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAAGATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTGCTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGAACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGTGCTACAGTCTTACTCCCCCTATAGCTGGGTGACT
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="find-tandem-repeat-using-Suffix-Array">find tandem repeat using Suffix Array<a class="anchor-link" href="#find-tandem-repeat-using-Suffix-Array">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [6]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pt_sais</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">score</span><span class="p">,</span> <span class="n">tandems</span> <span class="o">=</span> <span class="n">find_tandem</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"SAIS"</span><span class="p">)</span>
+    <span class="n">pt_sais</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span><span class="o">-</span><span class="n">s</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"score : </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2"><4</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"tandem:</span><span class="se">\n</span><span class="si">{</span><span class="n">tandems</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>score : 33  
+tandem:
+TGT
+
+score : 259 
+tandem:
+TTTGCCT
+
+score : 493 
+tandem:
+TCAGTTTAAATTACCAA
+
+score : 3127
+tandem:
+TCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGC
+
+score : 1001
+tandem:
+GTATATGGAGAGTACCACGCCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTGACTG
+
+score : 2369
+tandem:
+CCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCG
+
+score : 2869
+tandem:
+GTTCTGATTTTACTTGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCACGGAAGATTATGAGCACTTCGCGGC
+
+score : 2223
+tandem:
+TAAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGAGC
+
+score : 8517
+tandem:
+CATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGAC
+
+score : 7007
+tandem:
+ATTAGTACCCCATCGGTTTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTCGGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCGTACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACTTCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGACCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAAAAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGGCGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGGGCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTTTGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGCAGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCTGTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGATCCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGTATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAACCAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACACGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGGTCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAAGATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTGCTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGAACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGTGCTACAGTCTTACTCCCCCTATAGCTGGGTGACT
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="display-tandem-repeat">display tandem repeat<a class="anchor-link" href="#display-tandem-repeat">¶</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [7]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">seq</span> <span class="ow">in</span> <span class="n">sequences</span><span class="p">:</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">StringSearch</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">tandem</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">find_tandem</span><span class="p">()</span>
+    <span class="n">db</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">tandem</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">11</span>
+Query: TGT
+===============================================================
+S: [00] GCCCCTGCACTCTCGAGTTGCGCAAAGTCTTGTTGTTGTTGTTGTTGTTG [50]
+ : [00]                               <-><-><-><-><-><-><- [50]
+
+S: [50] TTGTTGTTGTTGTGGGAATTGGC [72]
+ : [50] ><-><-><-><->           [72]
+===============================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">37</span>
+Query: TTTGCCT
+=================================================================
+S: [000] ATTACTATTCGCCGATGGTTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTT [050]
+ : [000]                     <-----><-----><-----><-----><- [050]
+
+S: [050] TGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTT [100]
+ : [050] ----><-----><-----><-----><-----><-----><-----><-- [100]
+
+S: [100] GCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTG [150]
+ : [100] ---><-----><-----><-----><-----><-----><-----><--- [150]
+
+S: [150] CCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGC [200]
+ : [150] --><-----><-----><-----><-----><-----><-----><---- [200]
+
+S: [200] CTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCCTTTTGCC [250]
+ : [200] -><-----><-----><-----><-----><-----><-----><----- [250]
+
+S: [250] TTTTGCCTTTTGCCTTTTGCCTTTTGCCTCAGTGTTTGCCCATGTAATG [298]
+ : [250] ><-----><-----><-----><----->                     [298]
+=================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">29</span>
+Query: TCAGTTTAAATTACCAA
+=================================================================
+S: [000] GATAGACGGATCAGTTTAAATTACCAATCAGTTTAAATTACCAATCAGTT [050]
+ : [000]           <---------------><---------------><----- [050]
+
+S: [050] TAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCAATCAGT [100]
+ : [050] ----------><---------------><---------------><---- [100]
+
+S: [100] TTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCAATCAG [150]
+ : [100] -----------><---------------><---------------><--- [150]
+
+S: [150] TTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCAATCA [200]
+ : [150] ------------><---------------><---------------><-- [200]
+
+S: [200] GTTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCAATC [250]
+ : [200] -------------><---------------><---------------><- [250]
+
+S: [250] AGTTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCAAT [300]
+ : [250] --------------><---------------><--------------->< [300]
+
+S: [300] CAGTTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCAA [350]
+ : [300] ---------------><---------------><---------------> [350]
+
+S: [350] TCAGTTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACCA [400]
+ : [350] <---------------><---------------><--------------- [400]
+
+S: [400] ATCAGTTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTACC [450]
+ : [400] ><---------------><---------------><-------------- [450]
+
+S: [450] AATCAGTTTAAATTACCAATCAGTTTAAATTACCAATCAGTTTAAATTAC [500]
+ : [450] -><---------------><---------------><------------- [500]
+
+S: [500] CAACTATAGGAGCAAGGTTGGTTTCTAACTCCT [532]
+ : [500] -->                               [532]
+=================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">53</span>
+Query: TCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGC
+===================================================================
+S: [0000] ACCACTACGGTTTGATGAAAGTAGTCAAGGAGGTCGACGTGTAGGGCGTG [0050]
+ : [0000]                                                    [0050]
+
+S: [0050] TCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCT [0100]
+ : [0050] <------------------------------------------------- [0100]
+
+S: [0100] CCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTG [0150]
+ : [0100] --------><---------------------------------------- [0150]
+
+S: [0150] ACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCC [0200]
+ : [0150] -----------------><------------------------------- [0200]
+
+S: [0200] CGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAG [0250]
+ : [0200] --------------------------><---------------------- [0250]
+
+S: [0250] GCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTA [0300]
+ : [0250] -----------------------------------><------------- [0300]
+
+S: [0300] GGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCAC [0350]
+ : [0300] --------------------------------------------><---- [0350]
+
+S: [0350] CCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATC [0400]
+ : [0350] -------------------------------------------------- [0400]
+
+S: [0400] ATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTC [0450]
+ : [0400] ---><--------------------------------------------- [0450]
+
+S: [0450] AGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGG [0500]
+ : [0450] ------------><------------------------------------ [0500]
+
+S: [0500] CCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGC [0550]
+ : [0500] ---------------------><--------------------------- [0550]
+
+S: [0550] AGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAAC [0600]
+ : [0550] ------------------------------><------------------ [0600]
+
+S: [0600] GAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGA [0650]
+ : [0600] ---------------------------------------><--------- [0650]
+
+S: [0650] CTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCT [0700]
+ : [0650] ------------------------------------------------>< [0700]
+
+S: [0700] CCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTC [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] CATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGA [0800]
+ : [0750] -------><----------------------------------------- [0800]
+
+S: [0800] CGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCC [0850]
+ : [0800] ----------------><-------------------------------- [0850]
+
+S: [0850] GTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGG [0900]
+ : [0850] -------------------------><----------------------- [0900]
+
+S: [0900] CAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAG [0950]
+ : [0900] ----------------------------------><-------------- [0950]
+
+S: [0950] GAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACC [1000]
+ : [0950] -------------------------------------------><----- [1000]
+
+S: [1000] CCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCA [1050]
+ : [1000] -------------------------------------------------- [1050]
+
+S: [1050] TGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCA [1100]
+ : [1050] --><---------------------------------------------- [1100]
+
+S: [1100] GCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGC [1150]
+ : [1100] -----------><------------------------------------- [1150]
+
+S: [1150] CTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCA [1200]
+ : [1150] --------------------><---------------------------- [1200]
+
+S: [1200] GCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACG [1250]
+ : [1200] -----------------------------><------------------- [1250]
+
+S: [1250] AAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGAC [1300]
+ : [1250] --------------------------------------><---------- [1300]
+
+S: [1300] TTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTC [1350]
+ : [1300] -----------------------------------------------><- [1350]
+
+S: [1350] CACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCC [1400]
+ : [1350] -------------------------------------------------- [1400]
+
+S: [1400] ATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGAC [1450]
+ : [1400] ------><------------------------------------------ [1450]
+
+S: [1450] GTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCG [1500]
+ : [1450] ---------------><--------------------------------- [1500]
+
+S: [1500] TGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGC [1550]
+ : [1500] ------------------------><------------------------ [1550]
+
+S: [1550] AGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGG [1600]
+ : [1550] ---------------------------------><--------------- [1600]
+
+S: [1600] AACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCC [1650]
+ : [1600] ------------------------------------------><------ [1650]
+
+S: [1650] CGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCAT [1700]
+ : [1650] -------------------------------------------------- [1700]
+
+S: [1700] GCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAG [1750]
+ : [1700] -><----------------------------------------------- [1750]
+
+S: [1750] CTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCC [1800]
+ : [1750] ----------><-------------------------------------- [1800]
+
+S: [1800] TGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAG [1850]
+ : [1800] -------------------><----------------------------- [1850]
+
+S: [1850] CCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGA [1900]
+ : [1850] ----------------------------><-------------------- [1900]
+
+S: [1900] AGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACT [1950]
+ : [1900] -------------------------------------><----------- [1950]
+
+S: [1950] TAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCC [2000]
+ : [1950] ----------------------------------------------><-- [2000]
+
+S: [2000] ACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCA [2050]
+ : [2000] -------------------------------------------------- [2050]
+
+S: [2050] TCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACG [2100]
+ : [2050] -----><------------------------------------------- [2100]
+
+S: [2100] TCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGT [2150]
+ : [2100] --------------><---------------------------------- [2150]
+
+S: [2150] GGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCA [2200]
+ : [2150] -----------------------><------------------------- [2200]
+
+S: [2200] GCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGA [2250]
+ : [2200] --------------------------------><---------------- [2250]
+
+S: [2250] ACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCC [2300]
+ : [2250] -----------------------------------------><------- [2300]
+
+S: [2300] GACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATG [2350]
+ : [2300] -------------------------------------------------- [2350]
+
+S: [2350] CTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGC [2400]
+ : [2350] ><------------------------------------------------ [2400]
+
+S: [2400] TCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCT [2450]
+ : [2400] ---------><--------------------------------------- [2450]
+
+S: [2450] GACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGC [2500]
+ : [2450] ------------------><------------------------------ [2500]
+
+S: [2500] CCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAA [2550]
+ : [2500] ---------------------------><--------------------- [2550]
+
+S: [2550] GGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTT [2600]
+ : [2550] ------------------------------------><------------ [2600]
+
+S: [2600] AGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCA [2650]
+ : [2600] ---------------------------------------------><--- [2650]
+
+S: [2650] CCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCAT [2700]
+ : [2650] -------------------------------------------------- [2700]
+
+S: [2700] CATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGT [2750]
+ : [2700] ----><-------------------------------------------- [2750]
+
+S: [2750] CAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTG [2800]
+ : [2750] -------------><----------------------------------- [2800]
+
+S: [2800] GCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAG [2850]
+ : [2800] ----------------------><-------------------------- [2850]
+
+S: [2850] CAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAA [2900]
+ : [2850] -------------------------------><----------------- [2900]
+
+S: [2900] CGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGCTCCACCCCG [2950]
+ : [2900] ----------------------------------------><-------- [2950]
+
+S: [2950] ACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCTCCATCATGC [3000]
+ : [2950] -------------------------------------------------> [3000]
+
+S: [3000] TCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTGACGTCAGCT [3050]
+ : [3000] <------------------------------------------------- [3050]
+
+S: [3050] CCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCCCGTGGCCTG [3100]
+ : [3050] --------><---------------------------------------- [3100]
+
+S: [3100] ACGTCAGCTCCATCATGCTCCACCCCGACTTAGGAACGAAGGCAGCAGCC [3150]
+ : [3100] -----------------><------------------------------- [3150]
+
+S: [3150] CGTGGCCTGACGTCAGCTCCATCATGCATTGGCGACTTCGTTATTGCTAC [3200]
+ : [3150] -------------------------->                        [3200]
+
+S: [3200] CACCTGTCTTACAGAGG [3216]
+ : [3200]                   [3216]
+===================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">11</span>
+Query: GTATATGGAGAGTACCACGCCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTGACTG
+===================================================================
+S: [0000] TATTCAATCAATCCGTCGTTTTAACAACACTCAGAAGCCAACTGGTATAT [0050]
+ : [0000]                                             <----- [0050]
+
+S: [0050] GGAGAGTACCACGCCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAG [0100]
+ : [0050] -------------------------------------------------- [0100]
+
+S: [0100] TTTTACTCATCTTGCAATTGGGACGTCCCTGACTGGTATATGGAGAGTAC [0150]
+ : [0100] ----------------------------------><-------------- [0150]
+
+S: [0150] CACGCCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCA [0200]
+ : [0150] -------------------------------------------------- [0200]
+
+S: [0200] TCTTGCAATTGGGACGTCCCTGACTGGTATATGGAGAGTACCACGCCACA [0250]
+ : [0200] -------------------------><----------------------- [0250]
+
+S: [0250] AAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCATCTTGCAAT [0300]
+ : [0250] -------------------------------------------------- [0300]
+
+S: [0300] TGGGACGTCCCTGACTGGTATATGGAGAGTACCACGCCACAAAACGTTCT [0350]
+ : [0300] ----------------><-------------------------------- [0350]
+
+S: [0350] CGTGAACGGGCCGCATTAACAAGTTTTACTCATCTTGCAATTGGGACGTC [0400]
+ : [0350] -------------------------------------------------- [0400]
+
+S: [0400] CCTGACTGGTATATGGAGAGTACCACGCCACAAAACGTTCTCGTGAACGG [0450]
+ : [0400] -------><----------------------------------------- [0450]
+
+S: [0450] GCCGCATTAACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTGACTGG [0500]
+ : [0450] ------------------------------------------------>< [0500]
+
+S: [0500] TATATGGAGAGTACCACGCCACAAAACGTTCTCGTGAACGGGCCGCATTA [0550]
+ : [0500] -------------------------------------------------- [0550]
+
+S: [0550] ACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTGACTGGTATATGGAG [0600]
+ : [0550] ---------------------------------------><--------- [0600]
+
+S: [0600] AGTACCACGCCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTT [0650]
+ : [0600] -------------------------------------------------- [0650]
+
+S: [0650] ACTCATCTTGCAATTGGGACGTCCCTGACTGGTATATGGAGAGTACCACG [0700]
+ : [0650] ------------------------------><------------------ [0700]
+
+S: [0700] CCACAAAACGTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCATCTT [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] GCAATTGGGACGTCCCTGACTGGTATATGGAGAGTACCACGCCACAAAAC [0800]
+ : [0750] ---------------------><--------------------------- [0800]
+
+S: [0800] GTTCTCGTGAACGGGCCGCATTAACAAGTTTTACTCATCTTGCAATTGGG [0850]
+ : [0800] -------------------------------------------------- [0850]
+
+S: [0850] ACGTCCCTGACTGGTATATGGAGAGTACCACGCCACAAAACGTTCTCGTG [0900]
+ : [0850] ------------><------------------------------------ [0900]
+
+S: [0900] AACGGGCCGCATTAACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTG [0950]
+ : [0900] -------------------------------------------------- [0950]
+
+S: [0950] ACTGGTATATGGAGAGTACCACGCCACAAAACGTTCTCGTGAACGGGCCG [1000]
+ : [0950] ---><--------------------------------------------- [1000]
+
+S: [1000] CATTAACAAGTTTTACTCATCTTGCAATTGGGACGTCCCTGACTGCATAG [1050]
+ : [1000] -------------------------------------------->      [1050]
+
+S: [1050] AACAGACATACATCCGTATAA [1070]
+ : [1050]                       [1070]
+===================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">23</span>
+Query: CCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCG
+===================================================================
+S: [0000] GTATAAAACTGAAGTAGTGAATCCAGTGATCCCGGGTTAAGTCATCATTC [0050]
+ : [0000]                               <------------------- [0050]
+
+S: [0050] AACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTT [0100]
+ : [0050] -------------------------------------------------- [0100]
+
+S: [0100] CTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATCA [0150]
+ : [0100] --------------------------------><---------------- [0150]
+
+S: [0150] TTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAA [0200]
+ : [0150] -------------------------------------------------- [0200]
+
+S: [0200] GTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCA [0250]
+ : [0200] -----------------------------------><------------- [0250]
+
+S: [0250] TCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACG [0300]
+ : [0250] -------------------------------------------------- [0300]
+
+S: [0300] AAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAG [0350]
+ : [0300] --------------------------------------><---------- [0350]
+
+S: [0350] TCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAG [0400]
+ : [0350] -------------------------------------------------- [0400]
+
+S: [0400] ACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTT [0450]
+ : [0400] -----------------------------------------><------- [0450]
+
+S: [0450] AAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACT [0500]
+ : [0450] -------------------------------------------------- [0500]
+
+S: [0500] AAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGG [0550]
+ : [0500] --------------------------------------------><---- [0550]
+
+S: [0550] GTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGC [0600]
+ : [0550] -------------------------------------------------- [0600]
+
+S: [0600] ACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCC [0650]
+ : [0600] -----------------------------------------------><- [0650]
+
+S: [0650] CGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCT [0700]
+ : [0650] -------------------------------------------------- [0700]
+
+S: [0700] CGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCC [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] GCCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGAT [0800]
+ : [0750] ><------------------------------------------------ [0800]
+
+S: [0800] CCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCG [0850]
+ : [0800] -------------------------------------------------- [0850]
+
+S: [0850] GCCGCCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTG [0900]
+ : [0850] ---><--------------------------------------------- [0900]
+
+S: [0900] GATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAG [0950]
+ : [0900] -------------------------------------------------- [0950]
+
+S: [0950] TCGGCCGCCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTAT [1000]
+ : [0950] ------><------------------------------------------ [1000]
+
+S: [1000] TTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGC [1050]
+ : [1000] -------------------------------------------------- [1050]
+
+S: [1050] GAGTCGGCCGCCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCACGG [1100]
+ : [1050] ---------><--------------------------------------- [1100]
+
+S: [1100] TATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGGAAC [1150]
+ : [1100] -------------------------------------------------- [1150]
+
+S: [1150] TGCGAGTCGGCCGCCCGGGTTAAGTCATCATTCAACCCGAGTAATACGCA [1200]
+ : [1150] ------------><------------------------------------ [1200]
+
+S: [1200] CGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATACTGG [1250]
+ : [1200] -------------------------------------------------- [1250]
+
+S: [1250] AACTGCGAGTCGGCCGCCCGGGTTAAGTCATCATTCAACCCGAGTAATAC [1300]
+ : [1250] ---------------><--------------------------------- [1300]
+
+S: [1300] GCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGATAC [1350]
+ : [1300] -------------------------------------------------- [1350]
+
+S: [1350] TGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATCATTCAACCCGAGTAA [1400]
+ : [1350] ------------------><------------------------------ [1400]
+
+S: [1400] TACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACAAGA [1450]
+ : [1400] -------------------------------------------------- [1450]
+
+S: [1450] TACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATCATTCAACCCGAG [1500]
+ : [1450] ---------------------><--------------------------- [1500]
+
+S: [1500] TAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTTACA [1550]
+ : [1500] -------------------------------------------------- [1550]
+
+S: [1550] AGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATCATTCAACCC [1600]
+ : [1550] ------------------------><------------------------ [1600]
+
+S: [1600] GAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCTTTT [1650]
+ : [1600] -------------------------------------------------- [1650]
+
+S: [1650] ACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATCATTCAA [1700]
+ : [1650] ---------------------------><--------------------- [1700]
+
+S: [1700] CCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGTTCT [1750]
+ : [1700] -------------------------------------------------- [1750]
+
+S: [1750] TTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATCATT [1800]
+ : [1750] ------------------------------><------------------ [1800]
+
+S: [1800] CAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAAAGT [1850]
+ : [1800] -------------------------------------------------- [1850]
+
+S: [1850] TCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTCATC [1900]
+ : [1850] ---------------------------------><--------------- [1900]
+
+S: [1900] ATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGACGAA [1950]
+ : [1900] -------------------------------------------------- [1950]
+
+S: [1950] AGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAAGTC [2000]
+ : [1950] ------------------------------------><------------ [2000]
+
+S: [2000] ATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAAGAC [2050]
+ : [2000] -------------------------------------------------- [2050]
+
+S: [2050] GAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGTTAA [2100]
+ : [2050] ---------------------------------------><--------- [2100]
+
+S: [2100] GTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCACTAA [2150]
+ : [2100] -------------------------------------------------- [2150]
+
+S: [2150] GACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCGGGT [2200]
+ : [2150] ------------------------------------------><------ [2200]
+
+S: [2200] TAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCGCAC [2250]
+ : [2200] -------------------------------------------------- [2250]
+
+S: [2250] TAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGCCCG [2300]
+ : [2250] ---------------------------------------------><--- [2300]
+
+S: [2300] GGTTAAGTCATCATTCAACCCGAGTAATACGCACGGTATTTGGATCCTCG [2350]
+ : [2300] -------------------------------------------------- [2350]
+
+S: [2350] CACTAAGACGAAAGTTCTTTTACAAGATACTGGAACTGCGAGTCGGCCGT [2400]
+ : [2350] ------------------------------------------------>  [2400]
+
+S: [2400] AGATTCAATTCTGTCTGAG [2418]
+ : [2400]                     [2418]
+===================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">19</span>
+Query: GTTCTGATTTTACTTGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCACGGAAGATTATGAGCACTTCGCGGC
+===================================================================
+S: [0000] TACTAGCGACATTACGCGTACGTTCTGATTTTACTTGCCATGCAACCACG [0050]
+ : [0000]                      <---------------------------- [0050]
+
+S: [0050] CACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAGATT [0100]
+ : [0050] -------------------------------------------------- [0100]
+
+S: [0100] TTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCACGG [0150]
+ : [0100] -------------------------------------------------- [0150]
+
+S: [0150] AAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGCAACCAC [0200]
+ : [0150] ---------------------><--------------------------- [0200]
+
+S: [0200] GCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAGAT [0250]
+ : [0200] -------------------------------------------------- [0250]
+
+S: [0250] TTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCACG [0300]
+ : [0250] -------------------------------------------------- [0300]
+
+S: [0300] GAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGCAACCA [0350]
+ : [0300] ----------------------><-------------------------- [0350]
+
+S: [0350] CGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAGA [0400]
+ : [0350] -------------------------------------------------- [0400]
+
+S: [0400] TTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCAC [0450]
+ : [0400] -------------------------------------------------- [0450]
+
+S: [0450] GGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGCAACC [0500]
+ : [0450] -----------------------><------------------------- [0500]
+
+S: [0500] ACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTAG [0550]
+ : [0500] -------------------------------------------------- [0550]
+
+S: [0550] ATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATCA [0600]
+ : [0550] -------------------------------------------------- [0600]
+
+S: [0600] CGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGCAAC [0650]
+ : [0600] ------------------------><------------------------ [0650]
+
+S: [0650] CACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTTA [0700]
+ : [0650] -------------------------------------------------- [0700]
+
+S: [0700] GATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAATC [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] ACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGCAA [0800]
+ : [0750] -------------------------><----------------------- [0800]
+
+S: [0800] CCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGTT [0850]
+ : [0800] -------------------------------------------------- [0850]
+
+S: [0850] AGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAAT [0900]
+ : [0850] -------------------------------------------------- [0900]
+
+S: [0900] CACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGCA [0950]
+ : [0900] --------------------------><---------------------- [0950]
+
+S: [0950] ACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAGT [1000]
+ : [0950] -------------------------------------------------- [1000]
+
+S: [1000] TAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAAA [1050]
+ : [1000] -------------------------------------------------- [1050]
+
+S: [1050] TCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATGC [1100]
+ : [1050] ---------------------------><--------------------- [1100]
+
+S: [1100] AACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAAG [1150]
+ : [1100] -------------------------------------------------- [1150]
+
+S: [1150] TTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGAA [1200]
+ : [1150] -------------------------------------------------- [1200]
+
+S: [1200] ATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCATG [1250]
+ : [1200] ----------------------------><-------------------- [1250]
+
+S: [1250] CAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTAA [1300]
+ : [1250] -------------------------------------------------- [1300]
+
+S: [1300] GTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATGA [1350]
+ : [1300] -------------------------------------------------- [1350]
+
+S: [1350] AATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCAT [1400]
+ : [1350] -----------------------------><------------------- [1400]
+
+S: [1400] GCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGTA [1450]
+ : [1400] -------------------------------------------------- [1450]
+
+S: [1450] AGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTATG [1500]
+ : [1450] -------------------------------------------------- [1500]
+
+S: [1500] AAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCCA [1550]
+ : [1500] ------------------------------><------------------ [1550]
+
+S: [1550] TGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAGT [1600]
+ : [1550] -------------------------------------------------- [1600]
+
+S: [1600] AAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTAT [1650]
+ : [1600] -------------------------------------------------- [1650]
+
+S: [1650] GAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGCC [1700]
+ : [1650] -------------------------------><----------------- [1700]
+
+S: [1700] ATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGAG [1750]
+ : [1700] -------------------------------------------------- [1750]
+
+S: [1750] TAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATTA [1800]
+ : [1750] -------------------------------------------------- [1800]
+
+S: [1800] TGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTGC [1850]
+ : [1800] --------------------------------><---------------- [1850]
+
+S: [1850] CATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAGA [1900]
+ : [1850] -------------------------------------------------- [1900]
+
+S: [1900] GTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACATT [1950]
+ : [1900] -------------------------------------------------- [1950]
+
+S: [1950] ATGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTTG [2000]
+ : [1950] ---------------------------------><--------------- [2000]
+
+S: [2000] CCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTAG [2050]
+ : [2000] -------------------------------------------------- [2050]
+
+S: [2050] AGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACAT [2100]
+ : [2050] -------------------------------------------------- [2100]
+
+S: [2100] TATGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACTT [2150]
+ : [2100] ----------------------------------><-------------- [2150]
+
+S: [2150] GCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCTA [2200]
+ : [2150] -------------------------------------------------- [2200]
+
+S: [2200] GAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGACA [2250]
+ : [2200] -------------------------------------------------- [2250]
+
+S: [2250] TTATGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTACT [2300]
+ : [2250] -----------------------------------><------------- [2300]
+
+S: [2300] TGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCCT [2350]
+ : [2300] -------------------------------------------------- [2350]
+
+S: [2350] AGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGAC [2400]
+ : [2350] -------------------------------------------------- [2400]
+
+S: [2400] ATTATGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTAC [2450]
+ : [2400] ------------------------------------><------------ [2450]
+
+S: [2450] TTGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGCC [2500]
+ : [2450] -------------------------------------------------- [2500]
+
+S: [2500] TAGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACGA [2550]
+ : [2500] -------------------------------------------------- [2550]
+
+S: [2550] CATTATGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTTA [2600]
+ : [2550] -------------------------------------><----------- [2600]
+
+S: [2600] CTTGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTGC [2650]
+ : [2600] -------------------------------------------------- [2650]
+
+S: [2650] CTAGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTACG [2700]
+ : [2650] -------------------------------------------------- [2700]
+
+S: [2700] ACATTATGAAATCACGGAAGATTATGAGCACTTCGCGGCGTTCTGATTTT [2750]
+ : [2700] --------------------------------------><---------- [2750]
+
+S: [2750] ACTTGCCATGCAACCACGCACCTATATAATAGAGAACACCCCTCCATGTG [2800]
+ : [2750] -------------------------------------------------- [2800]
+
+S: [2800] CCTAGAGTAAGTTAGATTTTCCAAGTACCTTAGTACCTCATGGCTGTTAC [2850]
+ : [2800] -------------------------------------------------- [2850]
+
+S: [2850] GACATTATGAAATCACGGAAGATTATGAGCACTTCGCGGCTGCATGCCC [2898]
+ : [2850] --------------------------------------->          [2898]
+===================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">13</span>
+Query: TAAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGAGC
+===================================================================
+S: [0000] GTCGCACCAATAAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGC [0050]
+ : [0000]           <--------------------------------------- [0050]
+
+S: [0050] GGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGG [0100]
+ : [0050] -------------------------------------------------- [0100]
+
+S: [0100] GCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCG [0150]
+ : [0100] -------------------------------------------------- [0150]
+
+S: [0150] TACCTGATGCATCACTGATTGATTGGAGAGCTAAACACATTCACGGCATA [0200]
+ : [0150] ------------------------------><------------------ [0200]
+
+S: [0200] GCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCA [0250]
+ : [0200] -------------------------------------------------- [0250]
+
+S: [0250] GGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACA [0300]
+ : [0250] -------------------------------------------------- [0300]
+
+S: [0300] ATAGCTACCATCCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGA [0350]
+ : [0300] -------------------------------------------------- [0350]
+
+S: [0350] GCTAAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAA [0400]
+ : [0350] -><----------------------------------------------- [0400]
+
+S: [0400] GACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAAC [0450]
+ : [0400] -------------------------------------------------- [0450]
+
+S: [0450] AGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGAT [0500]
+ : [0450] -------------------------------------------------- [0500]
+
+S: [0500] GCATCACTGATTGATTGGAGAGCTAAACACATTCACGGCATAGCATTTAA [0550]
+ : [0500] ----------------------><-------------------------- [0550]
+
+S: [0550] AGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTA [0600]
+ : [0550] -------------------------------------------------- [0600]
+
+S: [0600] GAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTAC [0650]
+ : [0600] -------------------------------------------------- [0650]
+
+S: [0650] CATCCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGAGCTAAACA [0700]
+ : [0650] -------------------------------------------><----- [0700]
+
+S: [0700] CATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCC [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] GCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACG [0800]
+ : [0750] -------------------------------------------------- [0800]
+
+S: [0800] CAACCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGATGCATCACT [0850]
+ : [0800] -------------------------------------------------- [0850]
+
+S: [0850] GATTGATTGGAGAGCTAAACACATTCACGGCATAGCATTTAAAGTGACCG [0900]
+ : [0850] --------------><---------------------------------- [0900]
+
+S: [0900] CGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCG [0950]
+ : [0900] -------------------------------------------------- [0950]
+
+S: [0950] GGCGGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTC [1000]
+ : [0950] -------------------------------------------------- [1000]
+
+S: [1000] TGGCGTACCTGATGCATCACTGATTGATTGGAGAGCTAAACACATTCACG [1050]
+ : [1000] -----------------------------------><------------- [1050]
+
+S: [1050] GCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGC [1100]
+ : [1050] -------------------------------------------------- [1100]
+
+S: [1100] GTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCA [1150]
+ : [1100] -------------------------------------------------- [1150]
+
+S: [1150] CTACAATAGCTACCATCCGTCTGGCGTACCTGATGCATCACTGATTGATT [1200]
+ : [1150] -------------------------------------------------- [1200]
+
+S: [1200] GGAGAGCTAAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGC [1250]
+ : [1200] ------><------------------------------------------ [1250]
+
+S: [1250] AGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCC [1300]
+ : [1250] -------------------------------------------------- [1300]
+
+S: [1300] AGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCGTAC [1350]
+ : [1300] -------------------------------------------------- [1350]
+
+S: [1350] CTGATGCATCACTGATTGATTGGAGAGCTAAACACATTCACGGCATAGCA [1400]
+ : [1350] ---------------------------><--------------------- [1400]
+
+S: [1400] TTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGA [1450]
+ : [1400] -------------------------------------------------- [1450]
+
+S: [1450] TGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACAATA [1500]
+ : [1450] -------------------------------------------------- [1500]
+
+S: [1500] GCTACCATCCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGAGCT [1550]
+ : [1500] ------------------------------------------------>< [1550]
+
+S: [1550] AAACACATTCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGAC [1600]
+ : [1550] -------------------------------------------------- [1600]
+
+S: [1600] TTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGA [1650]
+ : [1600] -------------------------------------------------- [1650]
+
+S: [1650] GCACGCAACCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGATGCA [1700]
+ : [1650] -------------------------------------------------- [1700]
+
+S: [1700] TCACTGATTGATTGGAGAGCTAAACACATTCACGGCATAGCATTTAAAGT [1750]
+ : [1700] -------------------><----------------------------- [1750]
+
+S: [1750] GACCGCGGGCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAA [1800]
+ : [1750] -------------------------------------------------- [1800]
+
+S: [1800] GACCGGGCGGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCAT [1850]
+ : [1800] -------------------------------------------------- [1850]
+
+S: [1850] CCGTCTGGCGTACCTGATGCATCACTGATTGATTGGAGAGCTAAACACAT [1900]
+ : [1850] ----------------------------------------><-------- [1900]
+
+S: [1900] TCACGGCATAGCATTTAAAGTGACCGCGGGCGGCAGTAAGACTTGCCGCG [1950]
+ : [1900] -------------------------------------------------- [1950]
+
+S: [1950] CTTGCGTGCAGGATGGTAGAAGACCGGGCGGGCCAGAACAGAGCACGCAA [2000]
+ : [1950] -------------------------------------------------- [2000]
+
+S: [2000] CCCCACTACAATAGCTACCATCCGTCTGGCGTACCTGATGCATCACTGAT [2050]
+ : [2000] -------------------------------------------------- [2050]
+
+S: [2050] TGATTGGAGAGCTAAACACATTCACGGCATAGCATTTAAAGTGACCGCGG [2100]
+ : [2050] -----------><------------------------------------- [2100]
+
+S: [2100] GCGGCAGTAAGACTTGCCGCGCTTGCGTGCAGGATGGTAGAAGACCGGGC [2150]
+ : [2100] -------------------------------------------------- [2150]
+
+S: [2150] GGGCCAGAACAGAGCACGCAACCCCACTACAATAGCTACCATCCGTCTGG [2200]
+ : [2150] -------------------------------------------------- [2200]
+
+S: [2200] CGTACCTGATGCATCACTGATTGATTGGAGAGCCACAATACTCTTGCTAA [2250]
+ : [2200] -------------------------------->                  [2250]
+
+S: [2250] GGA [2252]
+ : [2250]     [2252]
+===================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">17</span>
+Query: CATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGAC
+===================================================================
+S: [0000] CGCGCATGCCTGGGCCTGAAGGCAGTCCCCATTTGGCTGACATGGAGCTT [0050]
+ : [0000]                                         <--------- [0050]
+
+S: [0050] GTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAGGCT [0100]
+ : [0050] -------------------------------------------------- [0100]
+
+S: [0100] AACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATCACA [0150]
+ : [0100] -------------------------------------------------- [0150]
+
+S: [0150] AACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAGACC [0200]
+ : [0150] -------------------------------------------------- [0200]
+
+S: [0200] CGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAATGC [0250]
+ : [0200] -------------------------------------------------- [0250]
+
+S: [0250] CGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTCGGT [0300]
+ : [0250] -------------------------------------------------- [0300]
+
+S: [0300] GCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTGACA [0350]
+ : [0300] -------------------------------------------------- [0350]
+
+S: [0350] CGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTTCGT [0400]
+ : [0350] -------------------------------------------------- [0400]
+
+S: [0400] AGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATAAAG [0450]
+ : [0400] -------------------------------------------------- [0450]
+
+S: [0450] ACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCTTCC [0500]
+ : [0450] -------------------------------------------------- [0500]
+
+S: [0500] ATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCATGGAGCT [0550]
+ : [0500] ----------------------------------------><-------- [0550]
+
+S: [0550] TGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAGGC [0600]
+ : [0550] -------------------------------------------------- [0600]
+
+S: [0600] TAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATCAC [0650]
+ : [0600] -------------------------------------------------- [0650]
+
+S: [0650] AAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAGAC [0700]
+ : [0650] -------------------------------------------------- [0700]
+
+S: [0700] CCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAATG [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] CCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTCGG [0800]
+ : [0750] -------------------------------------------------- [0800]
+
+S: [0800] TGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTGAC [0850]
+ : [0800] -------------------------------------------------- [0850]
+
+S: [0850] ACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTTCG [0900]
+ : [0850] -------------------------------------------------- [0900]
+
+S: [0900] TAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATAAA [0950]
+ : [0900] -------------------------------------------------- [0950]
+
+S: [0950] GACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCTTC [1000]
+ : [0950] -------------------------------------------------- [1000]
+
+S: [1000] CATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCATGGAGC [1050]
+ : [1000] -----------------------------------------><------- [1050]
+
+S: [1050] TTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAGG [1100]
+ : [1050] -------------------------------------------------- [1100]
+
+S: [1100] CTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATCA [1150]
+ : [1100] -------------------------------------------------- [1150]
+
+S: [1150] CAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAGA [1200]
+ : [1150] -------------------------------------------------- [1200]
+
+S: [1200] CCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAAT [1250]
+ : [1200] -------------------------------------------------- [1250]
+
+S: [1250] GCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTCG [1300]
+ : [1250] -------------------------------------------------- [1300]
+
+S: [1300] GTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTGA [1350]
+ : [1300] -------------------------------------------------- [1350]
+
+S: [1350] CACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTTC [1400]
+ : [1350] -------------------------------------------------- [1400]
+
+S: [1400] GTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATAA [1450]
+ : [1400] -------------------------------------------------- [1450]
+
+S: [1450] AGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCTT [1500]
+ : [1450] -------------------------------------------------- [1500]
+
+S: [1500] CCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCATGGAG [1550]
+ : [1500] ------------------------------------------><------ [1550]
+
+S: [1550] CTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGAG [1600]
+ : [1550] -------------------------------------------------- [1600]
+
+S: [1600] GCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACATC [1650]
+ : [1600] -------------------------------------------------- [1650]
+
+S: [1650] ACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAAG [1700]
+ : [1650] -------------------------------------------------- [1700]
+
+S: [1700] ACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTAA [1750]
+ : [1700] -------------------------------------------------- [1750]
+
+S: [1750] TGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACTC [1800]
+ : [1750] -------------------------------------------------- [1800]
+
+S: [1800] GGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTTG [1850]
+ : [1800] -------------------------------------------------- [1850]
+
+S: [1850] ACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCTT [1900]
+ : [1850] -------------------------------------------------- [1900]
+
+S: [1900] CGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTATA [1950]
+ : [1900] -------------------------------------------------- [1950]
+
+S: [1950] AAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCCT [2000]
+ : [1950] -------------------------------------------------- [2000]
+
+S: [2000] TCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCATGGA [2050]
+ : [2000] -------------------------------------------><----- [2050]
+
+S: [2050] GCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTGA [2100]
+ : [2050] -------------------------------------------------- [2100]
+
+S: [2100] GGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACAT [2150]
+ : [2100] -------------------------------------------------- [2150]
+
+S: [2150] CACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCAA [2200]
+ : [2150] -------------------------------------------------- [2200]
+
+S: [2200] GACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCTA [2250]
+ : [2200] -------------------------------------------------- [2250]
+
+S: [2250] ATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAACT [2300]
+ : [2250] -------------------------------------------------- [2300]
+
+S: [2300] CGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGTT [2350]
+ : [2300] -------------------------------------------------- [2350]
+
+S: [2350] GACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGCT [2400]
+ : [2350] -------------------------------------------------- [2400]
+
+S: [2400] TCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTAT [2450]
+ : [2400] -------------------------------------------------- [2450]
+
+S: [2450] AAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCCC [2500]
+ : [2450] -------------------------------------------------- [2500]
+
+S: [2500] TTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCATGG [2550]
+ : [2500] --------------------------------------------><---- [2550]
+
+S: [2550] AGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCTG [2600]
+ : [2550] -------------------------------------------------- [2600]
+
+S: [2600] AGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGACA [2650]
+ : [2600] -------------------------------------------------- [2650]
+
+S: [2650] TCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGCA [2700]
+ : [2650] -------------------------------------------------- [2700]
+
+S: [2700] AGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACCT [2750]
+ : [2700] -------------------------------------------------- [2750]
+
+S: [2750] AATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAAC [2800]
+ : [2750] -------------------------------------------------- [2800]
+
+S: [2800] TCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGGT [2850]
+ : [2800] -------------------------------------------------- [2850]
+
+S: [2850] TGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGGC [2900]
+ : [2850] -------------------------------------------------- [2900]
+
+S: [2900] TTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGTA [2950]
+ : [2900] -------------------------------------------------- [2950]
+
+S: [2950] TAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGCC [3000]
+ : [2950] -------------------------------------------------- [3000]
+
+S: [3000] CTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCATG [3050]
+ : [3000] ---------------------------------------------><--- [3050]
+
+S: [3050] GAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTCT [3100]
+ : [3050] -------------------------------------------------- [3100]
+
+S: [3100] GAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGAC [3150]
+ : [3100] -------------------------------------------------- [3150]
+
+S: [3150] ATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCGC [3200]
+ : [3150] -------------------------------------------------- [3200]
+
+S: [3200] AAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGACC [3250]
+ : [3200] -------------------------------------------------- [3250]
+
+S: [3250] TAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACAA [3300]
+ : [3250] -------------------------------------------------- [3300]
+
+S: [3300] CTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAGG [3350]
+ : [3300] -------------------------------------------------- [3350]
+
+S: [3350] TTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTGG [3400]
+ : [3350] -------------------------------------------------- [3400]
+
+S: [3400] CTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAGT [3450]
+ : [3400] -------------------------------------------------- [3450]
+
+S: [3450] ATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCGC [3500]
+ : [3450] -------------------------------------------------- [3500]
+
+S: [3500] CCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCAT [3550]
+ : [3500] ----------------------------------------------><-- [3550]
+
+S: [3550] GGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCTC [3600]
+ : [3550] -------------------------------------------------- [3600]
+
+S: [3600] TGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGGA [3650]
+ : [3600] -------------------------------------------------- [3650]
+
+S: [3650] CATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGCG [3700]
+ : [3650] -------------------------------------------------- [3700]
+
+S: [3700] CAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGAC [3750]
+ : [3700] -------------------------------------------------- [3750]
+
+S: [3750] CTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAACA [3800]
+ : [3750] -------------------------------------------------- [3800]
+
+S: [3800] ACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCAG [3850]
+ : [3800] -------------------------------------------------- [3850]
+
+S: [3850] GTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCTG [3900]
+ : [3850] -------------------------------------------------- [3900]
+
+S: [3900] GCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAAG [3950]
+ : [3900] -------------------------------------------------- [3950]
+
+S: [3950] TATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTCG [4000]
+ : [3950] -------------------------------------------------- [4000]
+
+S: [4000] CCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACCA [4050]
+ : [4000] -----------------------------------------------><- [4050]
+
+S: [4050] TGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTCT [4100]
+ : [4050] -------------------------------------------------- [4100]
+
+S: [4100] CTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTGG [4150]
+ : [4100] -------------------------------------------------- [4150]
+
+S: [4150] ACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAGC [4200]
+ : [4150] -------------------------------------------------- [4200]
+
+S: [4200] GCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAGA [4250]
+ : [4200] -------------------------------------------------- [4250]
+
+S: [4250] CCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAAC [4300]
+ : [4250] -------------------------------------------------- [4300]
+
+S: [4300] AACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCCA [4350]
+ : [4300] -------------------------------------------------- [4350]
+
+S: [4350] GGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGCT [4400]
+ : [4350] -------------------------------------------------- [4400]
+
+S: [4400] GGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGAA [4450]
+ : [4400] -------------------------------------------------- [4450]
+
+S: [4450] GTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCTC [4500]
+ : [4450] -------------------------------------------------- [4500]
+
+S: [4500] GCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGACC [4550]
+ : [4500] ------------------------------------------------>< [4550]
+
+S: [4550] ATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTTC [4600]
+ : [4550] -------------------------------------------------- [4600]
+
+S: [4600] TCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCTG [4650]
+ : [4600] -------------------------------------------------- [4650]
+
+S: [4650] GACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAAG [4700]
+ : [4650] -------------------------------------------------- [4700]
+
+S: [4700] CGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCAG [4750]
+ : [4700] -------------------------------------------------- [4750]
+
+S: [4750] ACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACAA [4800]
+ : [4750] -------------------------------------------------- [4800]
+
+S: [4800] CAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCCC [4850]
+ : [4800] -------------------------------------------------- [4850]
+
+S: [4850] AGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAGC [4900]
+ : [4850] -------------------------------------------------- [4900]
+
+S: [4900] TGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACGA [4950]
+ : [4900] -------------------------------------------------- [4950]
+
+S: [4950] AGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGCT [5000]
+ : [4950] -------------------------------------------------- [5000]
+
+S: [5000] CGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGAC [5050]
+ : [5000] -------------------------------------------------> [5050]
+
+S: [5050] CATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTTT [5100]
+ : [5050] <------------------------------------------------- [5100]
+
+S: [5100] CTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTCT [5150]
+ : [5100] -------------------------------------------------- [5150]
+
+S: [5150] GGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAAA [5200]
+ : [5150] -------------------------------------------------- [5200]
+
+S: [5200] GCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCCA [5250]
+ : [5200] -------------------------------------------------- [5250]
+
+S: [5250] GACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGACA [5300]
+ : [5250] -------------------------------------------------- [5300]
+
+S: [5300] ACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGCC [5350]
+ : [5300] -------------------------------------------------- [5350]
+
+S: [5350] CAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATAG [5400]
+ : [5350] -------------------------------------------------- [5400]
+
+S: [5400] CTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCACG [5450]
+ : [5400] -------------------------------------------------- [5450]
+
+S: [5450] AAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCGC [5500]
+ : [5450] -------------------------------------------------- [5500]
+
+S: [5500] TCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTGA [5550]
+ : [5500] -------------------------------------------------- [5550]
+
+S: [5550] CCATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGTT [5600]
+ : [5550] ><------------------------------------------------ [5600]
+
+S: [5600] TCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTTC [5650]
+ : [5600] -------------------------------------------------- [5650]
+
+S: [5650] TGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATAA [5700]
+ : [5650] -------------------------------------------------- [5700]
+
+S: [5700] AGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGCC [5750]
+ : [5700] -------------------------------------------------- [5750]
+
+S: [5750] AGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGAC [5800]
+ : [5750] -------------------------------------------------- [5800]
+
+S: [5800] AACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAGC [5850]
+ : [5800] -------------------------------------------------- [5850]
+
+S: [5850] CCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCATA [5900]
+ : [5850] -------------------------------------------------- [5900]
+
+S: [5900] GCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCAC [5950]
+ : [5900] -------------------------------------------------- [5950]
+
+S: [5950] GAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGCG [6000]
+ : [5950] -------------------------------------------------- [6000]
+
+S: [6000] CTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGTG [6050]
+ : [6000] -------------------------------------------------- [6050]
+
+S: [6050] ACCATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACGT [6100]
+ : [6050] -><----------------------------------------------- [6100]
+
+S: [6100] TTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGTT [6150]
+ : [6100] -------------------------------------------------- [6150]
+
+S: [6150] CTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAATA [6200]
+ : [6150] -------------------------------------------------- [6200]
+
+S: [6200] AAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGGC [6250]
+ : [6200] -------------------------------------------------- [6250]
+
+S: [6250] CAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTGA [6300]
+ : [6250] -------------------------------------------------- [6300]
+
+S: [6300] CAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAAG [6350]
+ : [6300] -------------------------------------------------- [6350]
+
+S: [6350] CCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCAT [6400]
+ : [6350] -------------------------------------------------- [6400]
+
+S: [6400] AGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGCA [6450]
+ : [6400] -------------------------------------------------- [6450]
+
+S: [6450] CGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGGC [6500]
+ : [6450] -------------------------------------------------- [6500]
+
+S: [6500] GCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGGT [6550]
+ : [6500] -------------------------------------------------- [6550]
+
+S: [6550] GACCATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACACG [6600]
+ : [6550] --><---------------------------------------------- [6600]
+
+S: [6600] TTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGGT [6650]
+ : [6600] -------------------------------------------------- [6650]
+
+S: [6650] TCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAAT [6700]
+ : [6650] -------------------------------------------------- [6700]
+
+S: [6700] AAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTGG [6750]
+ : [6700] -------------------------------------------------- [6750]
+
+S: [6750] CCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATTG [6800]
+ : [6750] -------------------------------------------------- [6800]
+
+S: [6800] ACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCAA [6850]
+ : [6800] -------------------------------------------------- [6850]
+
+S: [6850] GCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATCA [6900]
+ : [6850] -------------------------------------------------- [6900]
+
+S: [6900] TAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTGC [6950]
+ : [6900] -------------------------------------------------- [6950]
+
+S: [6950] ACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTGG [7000]
+ : [6950] -------------------------------------------------- [7000]
+
+S: [7000] CGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAGG [7050]
+ : [7000] -------------------------------------------------- [7050]
+
+S: [7050] TGACCATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACAC [7100]
+ : [7050] ---><--------------------------------------------- [7100]
+
+S: [7100] GTTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACGG [7150]
+ : [7100] -------------------------------------------------- [7150]
+
+S: [7150] TTCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGAA [7200]
+ : [7150] -------------------------------------------------- [7200]
+
+S: [7200] TAAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTTG [7250]
+ : [7200] -------------------------------------------------- [7250]
+
+S: [7250] GCCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAATT [7300]
+ : [7250] -------------------------------------------------- [7300]
+
+S: [7300] GACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGCA [7350]
+ : [7300] -------------------------------------------------- [7350]
+
+S: [7350] AGCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGATC [7400]
+ : [7350] -------------------------------------------------- [7400]
+
+S: [7400] ATAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTTG [7450]
+ : [7400] -------------------------------------------------- [7450]
+
+S: [7450] CACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCTG [7500]
+ : [7450] -------------------------------------------------- [7500]
+
+S: [7500] GCGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGAG [7550]
+ : [7500] -------------------------------------------------- [7550]
+
+S: [7550] GTGACCATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAACA [7600]
+ : [7550] ----><-------------------------------------------- [7600]
+
+S: [7600] CGTTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAACG [7650]
+ : [7600] -------------------------------------------------- [7650]
+
+S: [7650] GTTCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTGA [7700]
+ : [7650] -------------------------------------------------- [7700]
+
+S: [7700] ATAAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGTT [7750]
+ : [7700] -------------------------------------------------- [7750]
+
+S: [7750] GGCCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAAT [7800]
+ : [7750] -------------------------------------------------- [7800]
+
+S: [7800] TGACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCGC [7850]
+ : [7800] -------------------------------------------------- [7850]
+
+S: [7850] AAGCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGAT [7900]
+ : [7850] -------------------------------------------------- [7900]
+
+S: [7900] CATAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCTT [7950]
+ : [7900] -------------------------------------------------- [7950]
+
+S: [7950] GCACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCCT [8000]
+ : [7950] -------------------------------------------------- [8000]
+
+S: [8000] GGCGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGGA [8050]
+ : [8000] -------------------------------------------------- [8050]
+
+S: [8050] GGTGACCATGGAGCTTGTCAAGTAGTCCGGGGGCTACCAACGCATCCAAC [8100]
+ : [8050] -----><------------------------------------------- [8100]
+
+S: [8100] ACGTTTCTCTGAGGCTAACCCCGTAAACAGTCTAGCGCAAAAAACGTAAC [8150]
+ : [8100] -------------------------------------------------- [8150]
+
+S: [8150] GGTTCTGGACATCACAAACACAACACACTTAGAGCCAGTTTCTGGACTTG [8200]
+ : [8150] -------------------------------------------------- [8200]
+
+S: [8200] AATAAAGCGCAAGACCCGTATATCCAACTTCTCCCGCTCAGTCGCGGAGT [8250]
+ : [8200] -------------------------------------------------- [8250]
+
+S: [8250] TGGCCAGACCTAATGCCGTGTGATGTCTAGCTTAGCATACTAAGTTCCAA [8300]
+ : [8250] -------------------------------------------------- [8300]
+
+S: [8300] TTGACAACAACTCGGTGCCCGCCTACTATTCCCCGTCACTTAGCTACCCG [8350]
+ : [8300] -------------------------------------------------- [8350]
+
+S: [8350] CAAGCCCAGGTTGACACGTAGGTGGCGGGCGGCGGGACCGGGGACAGCGA [8400]
+ : [8350] -------------------------------------------------- [8400]
+
+S: [8400] TCATAGCTGGCTTCGTAGAATGCAGGCTGTCGGACCGTATAGCGTTGCCT [8450]
+ : [8400] -------------------------------------------------- [8450]
+
+S: [8450] TGCACGAAGTATAAAGACGGTTCGGAAAAAATTAACGTGGGAGATGATCC [8500]
+ : [8450] -------------------------------------------------- [8500]
+
+S: [8500] TGGCGCTCGCCCTTCCATCATTCTGTGAGAATCGAGGTTTATACTATAGG [8550]
+ : [8500] -------------------------------------------------- [8550]
+
+S: [8550] AGGTGACTACCGAAATGCTCGTAGGATCAAATGTGTG [8586]
+ : [8550] ------>                               [8586]
+===================================================================
+
+
+Model: <span class="ansi-bold">Suffix Array</span>
+Number of matches: <span class="ansi-red-fg">7</span>
+Query: ATTAGTACCCCATCGGTTTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTCGGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCGTACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACTTCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGACCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAAAAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGGCGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGGGCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTTTGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGCAGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCTGTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGATCCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGTATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAACCAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACACGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGGTCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAAGATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTGCTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGAACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGTGCTACAGTCTTACTCCCCCTATAGCTGGGTGACT
+===================================================================
+S: [0000] ATGGCAAATCTTGGGCAAGTAGCTGCGCGCATTAGTACCCCATCGGTTTT [0050]
+ : [0000]                               <------------------- [0050]
+
+S: [0050] ATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTCGGA [0100]
+ : [0050] -------------------------------------------------- [0100]
+
+S: [0100] GATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCGTAC [0150]
+ : [0100] -------------------------------------------------- [0150]
+
+S: [0150] TAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACTTCA [0200]
+ : [0150] -------------------------------------------------- [0200]
+
+S: [0200] ACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGACCG [0250]
+ : [0200] -------------------------------------------------- [0250]
+
+S: [0250] AGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAAAAG [0300]
+ : [0250] -------------------------------------------------- [0300]
+
+S: [0300] CCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGGCGC [0350]
+ : [0300] -------------------------------------------------- [0350]
+
+S: [0350] TATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGGGCT [0400]
+ : [0350] -------------------------------------------------- [0400]
+
+S: [0400] TATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTTTGT [0450]
+ : [0400] -------------------------------------------------- [0450]
+
+S: [0450] TAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGCAGT [0500]
+ : [0450] -------------------------------------------------- [0500]
+
+S: [0500] TTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCTGTT [0550]
+ : [0500] -------------------------------------------------- [0550]
+
+S: [0550] CAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGATCCC [0600]
+ : [0550] -------------------------------------------------- [0600]
+
+S: [0600] TTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGTATT [0650]
+ : [0600] -------------------------------------------------- [0650]
+
+S: [0650] TGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAACCAA [0700]
+ : [0650] -------------------------------------------------- [0700]
+
+S: [0700] GGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACACGG [0750]
+ : [0700] -------------------------------------------------- [0750]
+
+S: [0750] ACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGGTCA [0800]
+ : [0750] -------------------------------------------------- [0800]
+
+S: [0800] TTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAAGAT [0850]
+ : [0800] -------------------------------------------------- [0850]
+
+S: [0850] CTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTGCTG [0900]
+ : [0850] -------------------------------------------------- [0900]
+
+S: [0900] GCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGAACT [0950]
+ : [0900] -------------------------------------------------- [0950]
+
+S: [0950] ATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGTGCT [1000]
+ : [0950] -------------------------------------------------- [1000]
+
+S: [1000] ACAGTCTTACTCCCCCTATAGCTGGGTGACTATTAGTACCCCATCGGTTT [1050]
+ : [1000] ------------------------------><------------------ [1050]
+
+S: [1050] TATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTCGG [1100]
+ : [1050] -------------------------------------------------- [1100]
+
+S: [1100] AGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCGTA [1150]
+ : [1100] -------------------------------------------------- [1150]
+
+S: [1150] CTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACTTC [1200]
+ : [1150] -------------------------------------------------- [1200]
+
+S: [1200] AACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGACC [1250]
+ : [1200] -------------------------------------------------- [1250]
+
+S: [1250] GAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAAAA [1300]
+ : [1250] -------------------------------------------------- [1300]
+
+S: [1300] GCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGGCG [1350]
+ : [1300] -------------------------------------------------- [1350]
+
+S: [1350] CTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGGGC [1400]
+ : [1350] -------------------------------------------------- [1400]
+
+S: [1400] TTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTTTG [1450]
+ : [1400] -------------------------------------------------- [1450]
+
+S: [1450] TTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGCAG [1500]
+ : [1450] -------------------------------------------------- [1500]
+
+S: [1500] TTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCTGT [1550]
+ : [1500] -------------------------------------------------- [1550]
+
+S: [1550] TCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGATCC [1600]
+ : [1550] -------------------------------------------------- [1600]
+
+S: [1600] CTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGTAT [1650]
+ : [1600] -------------------------------------------------- [1650]
+
+S: [1650] TTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAACCA [1700]
+ : [1650] -------------------------------------------------- [1700]
+
+S: [1700] AGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACACG [1750]
+ : [1700] -------------------------------------------------- [1750]
+
+S: [1750] GACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGGTC [1800]
+ : [1750] -------------------------------------------------- [1800]
+
+S: [1800] ATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAAGA [1850]
+ : [1800] -------------------------------------------------- [1850]
+
+S: [1850] TCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTGCT [1900]
+ : [1850] -------------------------------------------------- [1900]
+
+S: [1900] GGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGAAC [1950]
+ : [1900] -------------------------------------------------- [1950]
+
+S: [1950] TATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGTGC [2000]
+ : [1950] -------------------------------------------------- [2000]
+
+S: [2000] TACAGTCTTACTCCCCCTATAGCTGGGTGACTATTAGTACCCCATCGGTT [2050]
+ : [2000] -------------------------------><----------------- [2050]
+
+S: [2050] TTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTCG [2100]
+ : [2050] -------------------------------------------------- [2100]
+
+S: [2100] GAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCGT [2150]
+ : [2100] -------------------------------------------------- [2150]
+
+S: [2150] ACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACTT [2200]
+ : [2150] -------------------------------------------------- [2200]
+
+S: [2200] CAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGAC [2250]
+ : [2200] -------------------------------------------------- [2250]
+
+S: [2250] CGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAAA [2300]
+ : [2250] -------------------------------------------------- [2300]
+
+S: [2300] AGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGGC [2350]
+ : [2300] -------------------------------------------------- [2350]
+
+S: [2350] GCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGGG [2400]
+ : [2350] -------------------------------------------------- [2400]
+
+S: [2400] CTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTTT [2450]
+ : [2400] -------------------------------------------------- [2450]
+
+S: [2450] GTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGCA [2500]
+ : [2450] -------------------------------------------------- [2500]
+
+S: [2500] GTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCTG [2550]
+ : [2500] -------------------------------------------------- [2550]
+
+S: [2550] TTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGATC [2600]
+ : [2550] -------------------------------------------------- [2600]
+
+S: [2600] CCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGTA [2650]
+ : [2600] -------------------------------------------------- [2650]
+
+S: [2650] TTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAACC [2700]
+ : [2650] -------------------------------------------------- [2700]
+
+S: [2700] AAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACAC [2750]
+ : [2700] -------------------------------------------------- [2750]
+
+S: [2750] GGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGGT [2800]
+ : [2750] -------------------------------------------------- [2800]
+
+S: [2800] CATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAAG [2850]
+ : [2800] -------------------------------------------------- [2850]
+
+S: [2850] ATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTGC [2900]
+ : [2850] -------------------------------------------------- [2900]
+
+S: [2900] TGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGAA [2950]
+ : [2900] -------------------------------------------------- [2950]
+
+S: [2950] CTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGTG [3000]
+ : [2950] -------------------------------------------------- [3000]
+
+S: [3000] CTACAGTCTTACTCCCCCTATAGCTGGGTGACTATTAGTACCCCATCGGT [3050]
+ : [3000] --------------------------------><---------------- [3050]
+
+S: [3050] TTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTTC [3100]
+ : [3050] -------------------------------------------------- [3100]
+
+S: [3100] GGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACCG [3150]
+ : [3100] -------------------------------------------------- [3150]
+
+S: [3150] TACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTACT [3200]
+ : [3150] -------------------------------------------------- [3200]
+
+S: [3200] TCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTGA [3250]
+ : [3200] -------------------------------------------------- [3250]
+
+S: [3250] CCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTAA [3300]
+ : [3250] -------------------------------------------------- [3300]
+
+S: [3300] AAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGGG [3350]
+ : [3300] -------------------------------------------------- [3350]
+
+S: [3350] CGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTGG [3400]
+ : [3350] -------------------------------------------------- [3400]
+
+S: [3400] GCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGTT [3450]
+ : [3400] -------------------------------------------------- [3450]
+
+S: [3450] TGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTGC [3500]
+ : [3450] -------------------------------------------------- [3500]
+
+S: [3500] AGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTCT [3550]
+ : [3500] -------------------------------------------------- [3550]
+
+S: [3550] GTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGAT [3600]
+ : [3550] -------------------------------------------------- [3600]
+
+S: [3600] CCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTGT [3650]
+ : [3600] -------------------------------------------------- [3650]
+
+S: [3650] ATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAAC [3700]
+ : [3650] -------------------------------------------------- [3700]
+
+S: [3700] CAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAACA [3750]
+ : [3700] -------------------------------------------------- [3750]
+
+S: [3750] CGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCGG [3800]
+ : [3750] -------------------------------------------------- [3800]
+
+S: [3800] TCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTAA [3850]
+ : [3800] -------------------------------------------------- [3850]
+
+S: [3850] GATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCTG [3900]
+ : [3850] -------------------------------------------------- [3900]
+
+S: [3900] CTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCGA [3950]
+ : [3900] -------------------------------------------------- [3950]
+
+S: [3950] ACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAGT [4000]
+ : [3950] -------------------------------------------------- [4000]
+
+S: [4000] GCTACAGTCTTACTCCCCCTATAGCTGGGTGACTATTAGTACCCCATCGG [4050]
+ : [4000] ---------------------------------><--------------- [4050]
+
+S: [4050] TTTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCTT [4100]
+ : [4050] -------------------------------------------------- [4100]
+
+S: [4100] CGGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTACC [4150]
+ : [4100] -------------------------------------------------- [4150]
+
+S: [4150] GTACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTAC [4200]
+ : [4150] -------------------------------------------------- [4200]
+
+S: [4200] TTCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCTG [4250]
+ : [4200] -------------------------------------------------- [4250]
+
+S: [4250] ACCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGTA [4300]
+ : [4250] -------------------------------------------------- [4300]
+
+S: [4300] AAAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACGG [4350]
+ : [4300] -------------------------------------------------- [4350]
+
+S: [4350] GCGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGTG [4400]
+ : [4350] -------------------------------------------------- [4400]
+
+S: [4400] GGCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAGT [4450]
+ : [4400] -------------------------------------------------- [4450]
+
+S: [4450] TTGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCTG [4500]
+ : [4450] -------------------------------------------------- [4500]
+
+S: [4500] CAGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATTC [4550]
+ : [4500] -------------------------------------------------- [4550]
+
+S: [4550] TGTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTGA [4600]
+ : [4550] -------------------------------------------------- [4600]
+
+S: [4600] TCCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTTG [4650]
+ : [4600] -------------------------------------------------- [4650]
+
+S: [4650] TATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGAA [4700]
+ : [4650] -------------------------------------------------- [4700]
+
+S: [4700] CCAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAAC [4750]
+ : [4700] -------------------------------------------------- [4750]
+
+S: [4750] ACGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCCG [4800]
+ : [4750] -------------------------------------------------- [4800]
+
+S: [4800] GTCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGTA [4850]
+ : [4800] -------------------------------------------------- [4850]
+
+S: [4850] AGATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTCT [4900]
+ : [4850] -------------------------------------------------- [4900]
+
+S: [4900] GCTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCCG [4950]
+ : [4900] -------------------------------------------------- [4950]
+
+S: [4950] AACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAAG [5000]
+ : [4950] -------------------------------------------------- [5000]
+
+S: [5000] TGCTACAGTCTTACTCCCCCTATAGCTGGGTGACTATTAGTACCCCATCG [5050]
+ : [5000] ----------------------------------><-------------- [5050]
+
+S: [5050] GTTTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGCT [5100]
+ : [5050] -------------------------------------------------- [5100]
+
+S: [5100] TCGGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTAC [5150]
+ : [5100] -------------------------------------------------- [5150]
+
+S: [5150] CGTACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCTA [5200]
+ : [5150] -------------------------------------------------- [5200]
+
+S: [5200] CTTCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTCT [5250]
+ : [5200] -------------------------------------------------- [5250]
+
+S: [5250] GACCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCGT [5300]
+ : [5250] -------------------------------------------------- [5300]
+
+S: [5300] AAAAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGACG [5350]
+ : [5300] -------------------------------------------------- [5350]
+
+S: [5350] GGCGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGGT [5400]
+ : [5350] -------------------------------------------------- [5400]
+
+S: [5400] GGGCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGAG [5450]
+ : [5400] -------------------------------------------------- [5450]
+
+S: [5450] TTTGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACCT [5500]
+ : [5450] -------------------------------------------------- [5500]
+
+S: [5500] GCAGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAATT [5550]
+ : [5500] -------------------------------------------------- [5550]
+
+S: [5550] CTGTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGTG [5600]
+ : [5550] -------------------------------------------------- [5600]
+
+S: [5600] ATCCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCTT [5650]
+ : [5600] -------------------------------------------------- [5650]
+
+S: [5650] GTATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAGA [5700]
+ : [5650] -------------------------------------------------- [5700]
+
+S: [5700] ACCAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCAA [5750]
+ : [5700] -------------------------------------------------- [5750]
+
+S: [5750] CACGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGCC [5800]
+ : [5750] -------------------------------------------------- [5800]
+
+S: [5800] GGTCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGGT [5850]
+ : [5800] -------------------------------------------------- [5850]
+
+S: [5850] AAGATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCTC [5900]
+ : [5850] -------------------------------------------------- [5900]
+
+S: [5900] TGCTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGCC [5950]
+ : [5900] -------------------------------------------------- [5950]
+
+S: [5950] GAACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGAA [6000]
+ : [5950] -------------------------------------------------- [6000]
+
+S: [6000] GTGCTACAGTCTTACTCCCCCTATAGCTGGGTGACTATTAGTACCCCATC [6050]
+ : [6000] -----------------------------------><------------- [6050]
+
+S: [6050] GGTTTTATCAGCGACGTCCACAGACTGCTCATGACATCAGGTGAACTAGC [6100]
+ : [6050] -------------------------------------------------- [6100]
+
+S: [6100] TTCGGAGATAGTTTTGGAACATTTTGCACACACCATAAGACGTTTATTTA [6150]
+ : [6100] -------------------------------------------------- [6150]
+
+S: [6150] CCGTACTAGGTAGGCATAGCCGGCAATCGGCGGCGGAGGAGATCGCCTCT [6200]
+ : [6150] -------------------------------------------------- [6200]
+
+S: [6200] ACTTCAACCCCAGTCGCTTAGACCATGGTTTCACTGTTTCCGGCAAGTTC [6250]
+ : [6200] -------------------------------------------------- [6250]
+
+S: [6250] TGACCGAGATAGATCATCCATATTTTGTAGTAGTTGTAAGAAGCGTAGCG [6300]
+ : [6250] -------------------------------------------------- [6300]
+
+S: [6300] TAAAAGCCGGAGGCGGCTCTGCGCATGCCGGAGTGCACTTAGAAAGTGAC [6350]
+ : [6300] -------------------------------------------------- [6350]
+
+S: [6350] GGGCGCTATTGACAAGGCTACGTATCCCAATGTATGTTAAGTCCCCTGGG [6400]
+ : [6350] -------------------------------------------------- [6400]
+
+S: [6400] TGGGCTTATCTATTATGAGAGACTAGTTACGGACCACATATTGGTGGCGA [6450]
+ : [6400] -------------------------------------------------- [6450]
+
+S: [6450] GTTTGTTAGGAGGAAGTAACCGCCGGGGCGACTATCGGATCGAGTCTACC [6500]
+ : [6450] -------------------------------------------------- [6500]
+
+S: [6500] TGCAGTTTGAACGTCTTAAAGTGCACTAGGAGAATAACTAATAGGCAAAT [6550]
+ : [6500] -------------------------------------------------- [6550]
+
+S: [6550] TCTGTTCAGGATTAAAATGTCTAGAATTCGTACAACCGATTACTTCCCGT [6600]
+ : [6550] -------------------------------------------------- [6600]
+
+S: [6600] GATCCCTTGCTATGCTATTGAAGCAGATGCTGCTAAGTCCATTGGTTGCT [6650]
+ : [6600] -------------------------------------------------- [6650]
+
+S: [6650] TGTATTTGACGGAACCCAGCGGGAGGCGAATTAGCTTTCTGTATTGATAG [6700]
+ : [6650] -------------------------------------------------- [6700]
+
+S: [6700] AACCAAGGCCCCATCTGCCTCCGACGCTGTTTCCCCGGACAATGATTCCA [6750]
+ : [6700] -------------------------------------------------- [6750]
+
+S: [6750] ACACGGACACTTGCGCCACATGCGCATTGGAGCTCCAGCGACACGGACGC [6800]
+ : [6750] -------------------------------------------------- [6800]
+
+S: [6800] CGGTCATTGAACCGACTGGCTGGACGTCCCGTCGCCAAACGATCGTATGG [6850]
+ : [6800] -------------------------------------------------- [6850]
+
+S: [6850] TAAGATCTCTCCCCTGTCTCTGAGGAGGTTCCTGGGTATAGCATACGCCT [6900]
+ : [6850] -------------------------------------------------- [6900]
+
+S: [6900] CTGCTGGCGGCCGTAGATTTCTTTTGACCTCCAAGATACGGTAACAATGC [6950]
+ : [6900] -------------------------------------------------- [6950]
+
+S: [6950] CGAACTATGATGTACGACCAGTGGTACTCACATCTTAGCCCCTACGATGA [7000]
+ : [6950] -------------------------------------------------- [7000]
+
+S: [7000] AGTGCTACAGTCTTACTCCCCCTATAGCTGGGTGACTGTTCCACTCCTGA [7050]
+ : [7000] ------------------------------------>              [7050]
+
+S: [7050] AGTCAGAGGGATCCCAAGTCTGGTGAT [7076]
+ : [7050]                             [7076]
+===================================================================
+
+
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="q2" style="padding: 0.25em 0.5em; border-left: solid 5px red; background-color: rgba(255,192,203,0.5)">演習問題2(オプション)</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>　記号列 $q$ が正確なタンデムリピート $p^k$ を部分列として含むとする。$q$ に対して、ランダムに1塩基の変異・挿入・削除を加えた配列を $q^{\prime}$ とする。$q^{\prime}$ から $p^k$ を予測するアルゴリズムを考えよ。</p>
+<p>　例題として $10$ 個の配列を与えるので、各配列から $p$ と $k$ を決定せよ（$k$ を正確に予測するのは難しいので問わない）</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="a2" style="padding: 0.25em 0.5em; border-left: solid 5px blue; background-color: rgba(130,192,255,0.5)">解答</h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [9]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">"Not Implemented."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansi-green-fg"><ipython-input-14-7c6745d17b09></span> in <span class="ansi-cyan-fg"><module></span>
+<span class="ansi-green-fg">----> 1</span><span class="ansi-red-fg"> </span><span class="ansi-green-fg">raise</span> NotImplementedError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">"Not Implemented."</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NotImplementedError</span>: Not Implemented.</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In [ ]:</div>
+<div class="inner_cell">
+<div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            <div>
+</div>
+
+            
+            
+            <hr/>
+            <aside>
+            <nav>
+            <ul class="articles-timeline">
+                <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下).html" title="Previous: Introduction">Introduction</a></li>
+                <li class="next-article"><a href="https://iwasakishuto.github.io/University/3A/生命情報表現論-4.html" title="Next: 生命情報表現論 第4回">生命情報表現論 第4回</a> »</li>
+            </ul>
+            </nav>
+            </aside>
+        </div>
+        <section>
+
+        <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+            <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+        </div>
+
+        <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+            <h5>Table of Contents</h5>
+            <div id="toc"></div>
+
+            <h5>Published</h5>
+            <time itemprop="dateCreated" datetime="2019-12-06T13:00:00+09:00">12 6, 2019</time>
+
+<h5>Last Updated</h5>
+<time datetime="2019-12-06T13:00:00+09:00">12 6, 2019</time>
+
+            <h5>Category</h5>
+            <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)</a>
+            <h5>Tags</h5>
+            <ul class="list-of-tags tags-in-article">
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
+                    <span>126</span>
+</a></li>
+                <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)
+                    <span>7</span>
+</a></li>
+            </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+        </div>
+        </section>
+</div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer>
+<div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+</div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content', 
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>

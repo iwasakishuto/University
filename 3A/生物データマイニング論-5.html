@@ -348,7 +348,7 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 <div class="prompt input_prompt">In [4]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"`products.csv` data num: {len(df_products)}"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"`products.csv` data num: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_products</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -459,7 +459,7 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_transactions_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_order_products</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"Total number of transactions: </span><span class="si">{N_transactions_total}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total number of transactions: </span><span class="si">{</span><span class="n">N_transactions_total</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -523,7 +523,7 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_transactions_extracted</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_order_products_extracted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"Transactions: </span><span class="si">{N_transactions_extracted}</span><span class="s2">/</span><span class="si">{N_transactions_total}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Transactions: </span><span class="si">{</span><span class="n">N_transactions_extracted</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">N_transactions_total</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -546,7 +546,7 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">extracted_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">extracted_ids</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"No.{i+1:>0{len(str(N))}}: </span><span class="si">{id2name[extracted_id]}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No.</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">>0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="si">}}</span><span class="s2">: </span><span class="si">{</span><span class="n">id2name</span><span class="p">[</span><span class="n">extracted_id</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -756,8 +756,8 @@ No.10: Organic Raspberries
 <div class="prompt input_prompt">In [20]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"n_samples:  </span><span class="si">{N}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"n_features: </span><span class="si">{M}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_samples:  </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_features: </span><span class="si">{</span><span class="n">M</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -780,7 +780,7 @@ n_features: 10
 <div class="prompt input_prompt">In [21]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="k">import</span> <span class="n">FrequentSet</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="kn">import</span> <span class="n">FrequentSet</span>
 </pre></div>
 </div>
 </div>
@@ -1167,7 +1167,7 @@ n_features: 10
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>123</span>
+                    <span>126</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#sheng-wu-detamainingulun-ref">生物データマイニング論
                     <span>10</span>

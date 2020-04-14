@@ -187,7 +187,7 @@ $$\text{pool}_{\alpha}(x_{ij}) = \alpha\max_i\left(x_{ij}\right) + \left(1-\alph
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="k">import</span> <span class="n">generateSeq_embedded_Motif</span>
+<span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="kn">import</span> <span class="n">generateSeq_embedded_Motif</span>
 </pre></div>
 </div>
 </div>
@@ -360,10 +360,10 @@ $$\text{pool}_{\alpha}(x_{ij}) = \alpha\max_i\left(x_{ij}\right) + \left(1-\alph
 <div class="prompt input_prompt">In [11]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"x_train.shape = </span><span class="si">{x_train.shape}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"y_train.shape = </span><span class="si">{y_train.shape}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"x_test.shape  = </span><span class="si">{x_test.shape}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"y_test.shape  = </span><span class="si">{y_test.shape}</span><span class="s2">"</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"x_train.shape = </span><span class="si">{</span><span class="n">x_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"y_train.shape = </span><span class="si">{</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"x_test.shape  = </span><span class="si">{</span><span class="n">x_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"y_test.shape  = </span><span class="si">{</span><span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -396,10 +396,10 @@ y_test.shape  = (1000, 1)
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">keras</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Activation</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">GlobalAveragePooling1D</span>
-<span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Activation</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">GlobalAveragePooling1D</span>
+<span class="kn">from</span> <span class="nn">keras</span> <span class="kn">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
 </pre></div>
 </div>
 </div>
@@ -590,9 +590,9 @@ _________________________________________________________________
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">keras</span>
-<span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Sequential</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Flatten</span>
-<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">MaxPool1D</span>
+<span class="kn">from</span> <span class="nn">keras.models</span> <span class="kn">import</span> <span class="n">Sequential</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">,</span> <span class="n">Flatten</span>
+<span class="kn">from</span> <span class="nn">keras.layers</span> <span class="kn">import</span> <span class="n">Conv1D</span><span class="p">,</span> <span class="n">MaxPool1D</span>
 </pre></div>
 </div>
 </div>
@@ -770,14 +770,14 @@ _________________________________________________________________
     <span class="n">ax_acc</span><span class="p">,</span> <span class="n">ax_loss</span> <span class="o">=</span> <span class="n">axes</span>
     <span class="n">ax_acc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">acc</span><span class="p">,</span>     <span class="s2">"r"</span> <span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">"training acc"</span><span class="p">)</span>
     <span class="n">ax_acc</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">val_acc</span><span class="p">,</span> <span class="s2">"b"</span> <span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">"validation acc"</span><span class="p">)</span>
-    <span class="n">ax_acc</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"Training and Validation acc (</span><span class="si">{name}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">ax_acc</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Training and Validation acc (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
     <span class="n">ax_acc</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Epochs"</span><span class="p">),</span> <span class="n">ax_acc</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Accuracy"</span><span class="p">)</span>
     <span class="n">ax_acc</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
     <span class="c1"># Loss Plot</span>
     <span class="n">ax_loss</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span>     <span class="s2">"r"</span> <span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">"training loss"</span><span class="p">)</span>
     <span class="n">ax_loss</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">val_loss</span><span class="p">,</span> <span class="s2">"b"</span> <span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">"validation loss"</span><span class="p">)</span>
-    <span class="n">ax_loss</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">f</span><span class="s2">"Training and Validation loss (</span><span class="si">{name}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">ax_loss</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Training and Validation loss (</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
     <span class="n">ax_loss</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"Epochs"</span><span class="p">),</span> <span class="n">ax_loss</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"Loss"</span><span class="p">)</span>
     <span class="n">ax_loss</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     
@@ -866,8 +866,8 @@ _________________________________________________________________
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_score</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">data_type</span><span class="o">=</span><span class="s2">"Test"</span><span class="p">):</span>
     <span class="n">loss</span><span class="p">,</span><span class="n">acc</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">- </span><span class="si">{data_type}</span><span class="s2"> loss    : </span><span class="si">{loss:.3f}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">- </span><span class="si">{data_type}</span><span class="s2"> accuracy: {acc*100:.1f}%"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">- </span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s2"> loss    : </span><span class="si">{</span><span class="n">loss</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\t</span><span class="s2">- </span><span class="si">{</span><span class="n">data_type</span><span class="si">}</span><span class="s2"> accuracy: </span><span class="si">{</span><span class="n">acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1138,7 +1138,7 @@ motifs for protein targets. <strong>Despite its name</strong>, it employs only o
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>123</span>
+                    <span>126</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>

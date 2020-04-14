@@ -242,7 +242,7 @@ $$
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"singlecell/tf.txt"</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">"r"</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">tf_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"TF Name types: {len(tf_names)}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"TF Name types: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tf_names</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -269,8 +269,8 @@ $$
         <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
     <span class="n">num_tf</span><span class="p">,</span> <span class="n">num_cells</span> <span class="o">=</span> <span class="n">expressions</span><span class="o">.</span><span class="n">shape</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"the number of tf   : </span><span class="si">{num_tf}</span><span class="s2">"</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"the number of cells: </span><span class="si">{num_cells}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"the number of tf   : </span><span class="si">{</span><span class="n">num_tf</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"the number of cells: </span><span class="si">{</span><span class="n">num_cells</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -297,7 +297,7 @@ the number of cells: 758
     <span class="n">time_normalized</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span>
         <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"the number of cells: {len(time_normalized)}"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"the number of cells: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">time_normalized</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -326,7 +326,7 @@ the number of cells: 758
 <div class="prompt input_prompt">In [5]:</div>
 <div class="inner_cell">
 <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.Bio.scode</span> <span class="k">import</span> <span class="n">SCODE</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.Bio.scode</span> <span class="kn">import</span> <span class="n">SCODE</span>
 </pre></div>
 </div>
 </div>
@@ -429,7 +429,7 @@ the number of cells: 758
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">RSSs</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">dimensions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">dimensions</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Dimension: </span><span class="si">{d}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Dimension: </span><span class="si">{</span><span class="n">d</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">SCODE</span><span class="p">(</span><span class="n">lamda</span><span class="o">=</span><span class="n">lamda</span><span class="p">,</span> <span class="n">b_min</span><span class="o">=</span><span class="n">b_min</span><span class="p">,</span> <span class="n">b_max</span><span class="o">=</span><span class="n">b_max</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">expressions</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="n">time_normalized</span><span class="p">,</span> <span class="n">dimension</span><span class="o">=</span><span class="n">d</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="n">max_iter</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">model</span><span class="o">.</span><span class="n">show_corr</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">gene_name</span><span class="o">=</span><span class="n">tf_names</span><span class="p">)</span>
@@ -643,7 +643,7 @@ Dimension: 9
 <div class="inner_cell">
 <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plot_expression_level</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">f</span><span class="s2">"The relationship between </span><span class="se">\n</span><span class="s2">Predicted and Answer (</span><span class="si">{tf_names[idx]}{text}</span><span class="s2">)"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">"The relationship between </span><span class="se">\n</span><span class="s2">Predicted and Answer (</span><span class="si">{</span><span class="n">tf_names</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span><span class="si">}{</span><span class="n">text</span><span class="si">}</span><span class="s2">)"</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">expressions_pred</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Pred expression level"</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time_normalized</span><span class="p">,</span> <span class="n">expressions</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Ans expression level"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -794,7 +794,7 @@ Dimension: 9
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>123</span>
+                    <span>126</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-mu-li-ref">情報基礎実験(木立)
                     <span>20</span>
