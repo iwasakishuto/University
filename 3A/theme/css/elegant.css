@@ -57,22 +57,32 @@ hr {
 /* [media print]
 @author iwasakishuto */
 @media print {
-    /*  */
     body {
-        font-family: Baskerville, Garamond, Georgia, 'DejaVu Serif', 'Times New Roman', Times, serif !important;
+        zoom: 0.68;
+        -webkit-print-color-adjust: exact;
     }
+}
+@media print{
     a[href]:after {
         content: "" !important;
     }
+}
+@media print{
     .row-fluid .offset2:first-child {
         margin-left: 1% !important;
     }
+}
+@media print{
     .row-fluid .span8 {
         width: 90% !important;
     }
+}
+@media print{
     section.article_meta {
         display: none !important;
     }
+}
+@media print{
     .row-fluid .span10 {
         width: 100% !important;
     }
