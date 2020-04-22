@@ -49,8 +49,33 @@ h6 small, h6 a, h6 a:hover {
 a {
     color: #3875d7;
 }
+
 hr {
     border-width: 3px;
+}
+
+/* [media print]
+@author iwasakishuto */
+@media print {
+    /*  */
+    body {
+        font-family: Baskerville, Garamond, Georgia, 'DejaVu Serif', 'Times New Roman', Times, serif;
+    }
+    a[href]:after {
+        content: "" !important;
+    }
+    .row-fluid .offset2:first-child {
+        margin-left: 1% !important;
+    }
+    .row-fluid .span8 {
+        width: 90% !important;
+    }
+    section.article_meta {
+        display: none
+    }
+    .row-fluid .span10 {
+        width: 100%; !important;
+    }
 }
 
 /* site title */
