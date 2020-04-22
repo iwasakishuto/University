@@ -370,10 +370,8 @@ C -> T: bisulfite conversion</li>
 <tr>
 <td style="text-align:center"><a href="#-Q.1-1-（必須課題）">1-1</a></td>
 <td style="text-align:center">MSS(maximal segment sum)問題</td>
-<td style="text-align:left">与えられた数列上で、その上での和が最大となる区間を見つける問題。つまり、所与の実数列 $r_1,\ldots,r_n$ と正整数 $L$ に対し、次の式を満たす区間の集合 $S$ を求める。$$\underset{S}{\text{argmax}}\sum<em>{I\in S}\sum</em>{i\in I}r_i\ \text{ s.t. }\ \forall I\in S,</td>
-<td style="text-align:left">I</td>
-<td>\geq L$$</td>
-<td>実数列の長さ $n$ に関する動的計画法を用いることで、線形時間で解くことが可能。また、区間の長さを直接制御することも可能。</td>
+<td style="text-align:left">与えられた数列上で、その上での和が最大となる区間を見つける問題。つまり、所与の実数列 $r_1,\ldots,r_n$ と正整数 $L$ に対し、次の式を満たす区間の集合 $S$ を求める。$$\underset{S}{\text{argmax}}\sum_{I\in S}\sum_{i\in I}r_i\ \text{ s.t. }\ \forall I\in S, \mid I\mid\geq L$$</td>
+<td style="text-align:left">実数列の長さ $n$ に関する動的計画法を用いることで、線形時間で解くことが可能。また、区間の長さを直接制御することも可能。</td>
 </tr>
 <tr>
 <td style="text-align:center"><a href="#-Q.1-2-（選択課題）">1-2</a></td>
@@ -505,7 +503,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<summary><code>kadai03_MSS.py</code><details>
+<summary><code>kadai03_MSS.py</code><details><div>
 
 ```python
 # coding: utf-8
@@ -526,7 +524,7 @@ if __name__ == "__main__":
         np.save(f"{limit:>02}.npy", model.detected_area)
 ```
 
-</details></summary>
+</div></details></summary>
 </div>
 </div>
 </div>
@@ -698,7 +696,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<summary><code>kadai03_HMM.py</code><details>
+<summary><code>kadai03_HMM.py</code><details><div>
 
 ```python
 # coding: utf-8
@@ -729,7 +727,7 @@ if __name__ == "__main__":
             np.save(f"t:{t}_theta:{theta}.npy", detected_area)
 ```
 
-</details></summary>
+</div></details></summary>
 </div>
 </div>
 </div>
@@ -1908,10 +1906,10 @@ L:100, processing time: 2.161
             <h5>Tags</h5>
             <ul class="list-of-tags tags-in-article">
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#3a-ref">3A
-                    <span>126</span>
+                    <span>127</span>
 </a></li>
                 <li><a href="https://iwasakishuto.github.io/University/3A/tags#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)
-                    <span>7</span>
+                    <span>8</span>
 </a></li>
             </ul>
 <h5>Contact</h5>
