@@ -59,7 +59,7 @@ hr {
 @media print {
     /*  */
     body {
-        font-family: Baskerville, Garamond, Georgia, 'DejaVu Serif', 'Times New Roman', Times, serif;
+        font-family: Baskerville, Garamond, Georgia, 'DejaVu Serif', 'Times New Roman', Times, serif !important;
     }
     a[href]:after {
         content: "" !important;
@@ -71,10 +71,10 @@ hr {
         width: 90% !important;
     }
     section.article_meta {
-        display: none
+        display: none !important;
     }
     .row-fluid .span10 {
-        width: 100%; !important;
+        width: 100% !important;
     }
 }
 
