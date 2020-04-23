@@ -57,35 +57,30 @@ hr {
 /* [media print]
 @author iwasakishuto */
 @media print {
-    body {
-        zoom: 0.68;
-        -webkit-print-color-adjust: exact;
-    }
-}
-@media print{
-    a[href]:after {
-        content: "" !important;
-    }
-}
-@media print{
-    .row-fluid .offset2:first-child {
-        margin-left: 1% !important;
-    }
-}
-@media print{
-    .row-fluid .span8 {
-        width: 90% !important;
-    }
-}
-@media print{
-    section.article_meta {
-        display: none !important;
-    }
-}
-@media print{
-    .row-fluid .span10 {
-        width: 100% !important;
-    }
+  body {
+    -webkit-print-color-adjust: exact;
+  }
+  a[href]:after {
+    content: "" !important;
+  }
+  section, aside, footer.article_meta {
+    display: none !important;
+  }
+  a.btn-navbar {
+    display: none !important;
+  }
+  .article-content {
+    max-width: 100em;
+  }
+  .row-fluid .offset2:first-child {
+    margin-left: 1% !important;
+  }
+  .row-fluid .span8 {
+    width: 90% !important;
+  }
+  .row-fluid .span10 {
+    width: 100% !important;
+  }
 }
 
 /* site title */
@@ -265,7 +260,7 @@ article div.article-content ul:not(.articles-timeline) a:hover {
 .article-content blockquote {
     border-left: 0;
     margin: 20px 0 0 2em;
-    padding: 0 0 0 20px;
+    padding: 0 20px;
 }
 .article-content blockquote:before {
     color: #646464;
@@ -278,7 +273,7 @@ article div.article-content ul:not(.articles-timeline) a:hover {
     position:absolute;
 }
 .article-content blockquote {
-    font-family: 'Helvetica Neue', Helvetica, Arial, Sans-Serif;
+    font-family: 'Monaco', 'Helvetica Neue', Helvetica, Arial, Sans-Serif;
     font-size: inherit;
     font-variant: normal;
     line-height: 1.7em;
