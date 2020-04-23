@@ -69,8 +69,11 @@ hr {
   a.btn-navbar {
     display: none !important;
   }
+  .nav-collapse.collapse {
+    display: none !important;
+  }
   .article-content {
-    max-width: 100em;
+    max-width: 100em !important;
   }
   .row-fluid .offset2:first-child {
     margin-left: 1% !important;
