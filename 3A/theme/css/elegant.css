@@ -56,12 +56,11 @@ hr {
 
 /* [media print]
 @author iwasakishuto */
-@page {
-  padding: 2cm;
-  margin: 2cm;
-}
-
 @media print {
+  @page {
+    padding: 2cm;
+    margin: 2cm;
+  }
   body {
     -webkit-print-color-adjust: exact;
   }
