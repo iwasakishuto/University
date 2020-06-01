@@ -26,14 +26,22 @@
 
         <title>システム生物学 第3回  · 3S
 </title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/bootstrap-combined.v2.3.2.min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
         <!---->
         <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-164333757-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 
 
@@ -42,7 +50,7 @@
         <!-- Syntax highlight -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <!-- LaTex -->
@@ -65,9 +73,9 @@
           });
         </script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -99,16 +107,16 @@
                 <div class="span10">
 <article itemscope>
 <div class="row-fluid">
-    <header class="page-header span10 offset2">
+  <header class="page-header span10 offset2">
     <h1><a href="https://iwasakishuto.github.io/University/3S/システム生物学-3.html"> システム生物学 第3回  </a></h1>
-    </header>
+  </header>
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    <div class="span8 offset2 article-content">
 
-            
-            <h1>第3回 2019/6/28</h1>
+  
+  <h1>第3回 2019/6/28</h1>
 <ul>
 <li>講師：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/ja/top/">黒田 真也</a></li>
 <li>教科書<ul>
@@ -178,7 +186,7 @@ $$</div>
 <div class="math">$$\frac{k_{f}}{\omega_{c}^{2}}=\frac{k_{f}}{\omega_{c}\left(k_{f}+k_{b}\right)} \\
 \therefore \omega_{c}=k_{f}+k_{b}$$</div>
 <p>以上で、カットオフ周波数が求まった。</p>
-<hr>
+<hr />
 <h2>D 安定性と振動</h2>
 <h3>D-1)バネの運動方程式とのアナロジー</h3>
 <p>以下の図のように、質量 <span class="math">\(m\)</span> の物体が、ばね定数 <span class="math">\(k\)</span> のばね、および粘性摩擦係数 <span class="math">\(c\)</span> を持つダッシュポットで支えられている系を考える。（ダッシュポットは物体の速度 <span class="math">\(\dot{x}\)</span> に比例して <span class="math">\(c\dot{x}\)</span> という抵抗力（摩擦力）を生じる。）</p>
@@ -186,32 +194,12 @@ $$</div>
 <p>今、物体へ外力 <span class="math">\(F(t)\)</span> が作用するとき、この系の運動方程式は、以下で与えられる。</p>
 <div class="math">$$m \ddot{x}+c \dot{x}+k x=F(t)\qquad (\mathrm{D.}1)$$</div>
 <p>なお、それぞれの力は以下の通りである。</p>
-<table>
-<thead>
-<tr>
-<th align="center">式</th>
-<th align="center">力</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(m \ddot{x}\)</span></td>
-<td align="center">慣性力</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(c \dot{x}\)</span></td>
-<td align="center">摩擦力</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(k x\)</span></td>
-<td align="center">弾性力</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(F(t)\)</span></td>
-<td align="center">外力</td>
-</tr>
-</tbody>
-</table>
+<p>|式|力|
+|:--:|:--:|
+|<span class="math">\(m \ddot{x}\)</span>|慣性力|
+|<span class="math">\(c \dot{x}\)</span>|摩擦力|
+|<span class="math">\(k x\)</span>|弾性力|
+|<span class="math">\(F(t)\)</span>|外力|</p>
 <p>ここで、式 <span class="math">\((\mathrm{D.}1)\)</span> の両辺を <span class="math">\(m\)</span> で割って、<span class="math">\(\gamma = c/m, \omega_0^2 = k/m\)</span> とおくと、（<span class="math">\(\omega_0\)</span> を<font color="red"><b>固有角振動数</b></font>という。また、<span class="math">\(\gamma\)</span> は<b>見かけの摩擦係数</b>とみなせる。）</p>
 <div class="math">$$\ddot{x}+\gamma \dot{x}+\omega_{0}^{2} x=\frac{F}{m}\qquad (\mathrm{D.}2)$$</div>
 <p>このとき、外力 <span class="math">\(F\)</span> が <span class="math">\(F(t) = \dot{F}\sin\omega t\)</span> で与えられるとき<font color="red"><b>（強制振動）</b></font>を考える。</p>
@@ -237,20 +225,19 @@ $$</div>
 より、</p>
 <div class="math">$$\operatorname{gain}=\left|\frac{\hat{x}}{\hat{F}}\right|=\frac{1}{\sqrt{\left(\omega_{0}^{2}-\omega^{2}\right)^{2}+\gamma^{2} \omega^{2}}}\qquad (\mathrm{D.}9)$$</div>
 <p>これを横軸に <span class="math">\(\omega\)</span>、縦軸にgainをとってグラフを書くと、ある角周波数 <span class="math">\(\omega_r\)</span> において一つの極値を取るグラフが描ける。</p>
-<div class="highlight"><pre><span></span><span class="c1"># 以下のプログラムで描ける。</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">w0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">gamma</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">gain</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">gamma</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">gain</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\omega$&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;gain&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-
+<p>```python</p>
+<h1>以下のプログラムで描ける。</h1>
+<p>import numpy as np
+import matplotlib.pyplot as plt
+X = np.linspace(0,1,1000)
+w0 = 1; gamma = 1
+gain = lambda x:1/np.sqrt((w0<strong>2-x</strong>2)<strong>2 + gamma</strong>2<em>x</em>*2)
+Y = np.vectorize(gain)(X)
+plt.plot(X,Y)
+plt.xlabel("<span class="math">\(\omega\)</span>")
+plt.ylabel("gain")
+plt.show()
+```</p>
 <p>そこで、<span class="math">\(\omega_r\)</span> を求めるため、gainを <span class="math">\(\omega\)</span> の関数とみて、<span class="math">\(\omega\)</span> について微分すると、</p>
 <div class="math">$$\operatorname{gain}^{\prime}(\omega)=\frac{\omega\left(2 \omega_{0}^{2}-\gamma^{2}-2 \omega^{2}\right)}{\left(\left(\omega_{0}^{2}-\omega^{2}\right)^{2}+\gamma^{2} \omega^{2}\right)^{\frac{3}{2}}} \quad(\mathrm{D.10})$$</div>
 <p>よって、<span class="math">\(\omega\neq0\)</span> のとき、</p>
@@ -278,97 +265,48 @@ $$</div>
 <p>とすると、<span class="math">\(\mathbf{v}_{1},\mathbf{v}_{2}\)</span> は一次独立だから、<span class="math">\( (\mathrm{D.}22)\)</span> の一般解は</p>
 <div class="math">$$\left(\begin{array}{l}{x} \\ {y}\end{array}\right)=C_{1} e^{\lambda_{1} t}\left(\begin{array}{c}{\alpha_{1}} \\ {\beta_{1}}\end{array}\right)+C_{2} e^{\lambda_{2} t}\left(\begin{array}{c}{\alpha_{2}} \\ {\beta_{2}}\end{array}\right)\qquad  (\mathrm{D.}26)$$</div>
 <p>と表すことができる。このとき、固有値 <span class="math">\(\lambda_1,\lambda_2\)</span> の取り得る値（正負、実虚）によって式 <span class="math">\((\mathrm{D.}26)\)</span> の挙動が大きく変わる。それをまとめると、以下の表になる。</p>
-<table>
-<thead>
-<tr>
-<th align="center">#</th>
-<th align="center">振動</th>
-<th align="center">固有値の正負</th>
-<th align="center"><span class="math">\(\mathrm{Tr} A=\lambda_1+\lambda_2\)</span></th>
-<th align="center"><span class="math">\(\det A=\lambda_1\cdot\lambda_2\)</span></th>
-<th align="center">解の挙動</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">①</td>
-<td align="center">しない</td>
-<td align="center"><span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center">発散</td>
-</tr>
-<tr>
-<td align="center">②</td>
-<td align="center">しない</td>
-<td align="center"><span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span></td>
-<td align="center"><span class="math">\(-\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center">減衰</td>
-</tr>
-<tr>
-<td align="center">③</td>
-<td align="center">する</td>
-<td align="center">実数部 <span class="math">\(&gt;0\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center">発散振動</td>
-</tr>
-<tr>
-<td align="center">④</td>
-<td align="center">する</td>
-<td align="center">実数部 <span class="math">\(&lt;0\)</span></td>
-<td align="center"><span class="math">\(-\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center">減衰振動</td>
-</tr>
-<tr>
-<td align="center">⑤</td>
-<td align="center">する</td>
-<td align="center">実数部 <span class="math">\(=0\)</span>（純虚数）</td>
-<td align="center"><span class="math">\(0\)</span></td>
-<td align="center"><span class="math">\(+\)</span></td>
-<td align="center">単振動</td>
-</tr>
-</tbody>
-</table>
+<p>|#|振動|固有値の正負|<span class="math">\(\mathrm{Tr} A=\lambda_1+\lambda_2\)</span>|<span class="math">\(\det A=\lambda_1\cdot\lambda_2\)</span>|解の挙動|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|①|しない|<span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span>|<span class="math">\(+\)</span>|<span class="math">\(+\)</span>|発散|
+|②|しない|<span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span>|<span class="math">\(-\)</span>|<span class="math">\(+\)</span>|減衰|
+|③|する|実数部 <span class="math">\(&gt;0\)</span>|<span class="math">\(+\)</span>|<span class="math">\(+\)</span>|発散振動|
+|④|する|実数部 <span class="math">\(&lt;0\)</span>|<span class="math">\(-\)</span>|<span class="math">\(+\)</span>|減衰振動|
+|⑤|する|実数部 <span class="math">\(=0\)</span>（純虚数）|<span class="math">\(0\)</span>|<span class="math">\(+\)</span>|単振動|</p>
 <p>なお、以下のプログラムによって実際にプロットすることも可能である。</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="kn">as</span> <span class="nn">LA</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<p>```python
+import numpy as np
+import numpy.linalg as LA
+import matplotlib.pyplot as plt</p>
+<p>def plot_concentration(a,b,c,d, xmin=0,xmax=10,c1=1,c2=2):
+    t = np.linspace(xmin,xmax,1000)
+    A = np.array([
+        [a,b],
+        [c,d]
+    ])</p>
+<pre class="highlight"><code>eig_value, eig_vector = LA.eig(A)
+lambda1, lambda2 = eig_value
+v1,v2 = eig_vector
+alpha1,_ = v1; alpha2,_ = v2
 
-<span class="k">def</span> <span class="nf">plot_concentration</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">xmax</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">c1</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c2</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
-    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-        <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],</span>
-        <span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">]</span>
-    <span class="p">])</span>
+func = lambda t: c1 * np.e ** (lambda1*t) * alpha1 + c2 * np.e ** (lambda2*t) * alpha2
+x = np.vectorize(func)(t)
 
-    <span class="n">eig_value</span><span class="p">,</span> <span class="n">eig_vector</span> <span class="o">=</span> <span class="n">LA</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-    <span class="n">lambda1</span><span class="p">,</span> <span class="n">lambda2</span> <span class="o">=</span> <span class="n">eig_value</span>
-    <span class="n">v1</span><span class="p">,</span><span class="n">v2</span> <span class="o">=</span> <span class="n">eig_vector</span>
-    <span class="n">alpha1</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">v1</span><span class="p">;</span> <span class="n">alpha2</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">v2</span>
-
-    <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">c1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="p">(</span><span class="n">lambda1</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha1</span> <span class="o">+</span> <span class="n">c2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">e</span> <span class="o">**</span> <span class="p">(</span><span class="n">lambda2</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="n">alpha2</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">func</span><span class="p">)(</span><span class="n">t</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#6da3fc&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$\lambda_1={:.2f},\ \lambda_2={:.2f},\ a={:.2f}$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lambda1</span><span class="p">,</span><span class="n">lambda2</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;oncentration of a reactant x&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#80160e&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># eigen values are Real numbers.</span>
-<span class="n">plot_concentration</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">xmax</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># ① lambda_1 &gt; 0, lambda_2 &gt; 0</span>
-<span class="n">plot_concentration</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">xmax</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># ② lambda_1 &lt; 0, lambda_2 &lt; 0</span>
-<span class="c1"># eigen values are Complex numbers.</span>
-<span class="n">plot_concentration</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>  <span class="n">xmax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># ③ a = 0, Re[lambda] = 0</span>
-<span class="n">plot_concentration</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># ④ a &gt; 0, Re[lambda] &gt; 0</span>
-<span class="n">plot_concentration</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">xmin</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># ④ a &lt; 0, Re[lambda] &lt; 0</span>
-</pre></div>
+plt.plot(t,x, color=&quot;#6da3fc&quot;)
+plt.title(&quot;$\lambda_1={:.2f},\ \lambda_2={:.2f},\ a={:.2f}$&quot;.format(lambda1,lambda2,a))
+plt.xlabel(&quot;t&quot;)
+plt.ylabel(&quot;oncentration of a reactant x&quot;)
+plt.hlines(0,xmin,xmax, color=&quot;#80160e&quot;)
+plt.show()</code></pre>
 
 
+<h1>eigen values are Real numbers.</h1>
+<p>plot_concentration( 1, 0, 1, 2, xmin=0,  xmax=3)  # ① lambda_1 &gt; 0, lambda_2 &gt; 0
+plot_concentration(-1, 0,-1,-2, xmin=0,  xmax=3)  # ② lambda_1 &lt; 0, lambda_2 &lt; 0</p>
+<h1>eigen values are Complex numbers.</h1>
+<p>plot_concentration(0, -1, 1, 0, xmin=0,  xmax=20) # ③ a = 0, Re[lambda] = 0
+plot_concentration(2,  1,-5,-1, xmin=10, xmax=20) # ④ a &gt; 0, Re[lambda] &gt; 0
+plot_concentration(-2,-1, 5, 1, xmin=10, xmax=20) # ④ a &lt; 0, Re[lambda] &lt; 0
+```</p>
 <h3>D-4)ヌルクライン</h3>
 <p><font color="red"><b>ヌルクライン</b></font>は、微分方程式系を解析するのに有効な方法の一つである。以下の微分方程式</p>
 <div class="math">$$
@@ -402,114 +340,72 @@ $$</div>
 <div class="math">$$J=\left(\begin{array}{ll}{a} &amp; {b} \\ {c} &amp; {d}\end{array}\right)$$</div>
 <p>の <span class="math">\(\det J,\mathrm{tr}J\)</span> の値、及び <span class="math">\(J\)</span> の固有値 <span class="math">\(\lambda_1,\lambda_2\)</span> の関係によって決まる。</b></p>
 <h3>D-6)平衡点の分類</h3>
-<table>
-<thead>
-<tr>
-<th align="center">#</th>
-<th align="center">種類</th>
-<th align="center">解の収束性</th>
-<th align="center">条件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center">1</td>
-<td align="center">安定結束点</td>
-<td align="center">収束する</td>
-<td align="center">
+<p>|#|種類|解の収束性|条件|
+|:--:|:--:|:--:|:--:|
+|1|安定結束点|収束する|</p>
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&lt;0\\\det{J}&lt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-</td>
-</tr>
-<tr>
-<td align="center">2</td>
-<td align="center">不安定結束点</td>
-<td align="center">発散する</td>
-<td align="center">
+<p>|
+|2|不安定結束点|発散する|</p>
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&gt;0\\\det{J}&lt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-</td>
-</tr>
-<tr>
-<td align="center">3</td>
-<td align="center">鞍点</td>
-<td align="center">サドル型</td>
-<td align="center">
+<p>|
+|3|鞍点|サドル型|</p>
 <div class="math">$$\det{J}&lt;0$$</div>
-</td>
-</tr>
-<tr>
-<td align="center">4</td>
-<td align="center">安定焦点（渦状点）</td>
-<td align="center">減衰振動する</td>
-<td align="center">
+<p>|
+|4|安定焦点（渦状点）|減衰振動する|</p>
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&lt;0\\\det{J}&gt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-</td>
-</tr>
-<tr>
-<td align="center">5</td>
-<td align="center">不安定焦点（渦状点）</td>
-<td align="center">発散振動する</td>
-<td align="center">
+<p>|
+|5|不安定焦点（渦状点）|発散振動する|</p>
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&gt;0\\\det{J}&gt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-</td>
-</tr>
-<tr>
-<td align="center">6</td>
-<td align="center">中心点（渦状点）</td>
-<td align="center">リミットサイクルを描く</td>
-<td align="center">
+<p>|
+|6|中心点（渦状点）|リミットサイクルを描く|</p>
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J=0\\\det{J}&gt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-</td>
-</tr>
-</tbody>
-</table>
+<p>|</p>
 <p>これらも、以下のプログラムによってプロットができる。</p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.linalg</span> <span class="kn">as</span> <span class="nn">LA</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<p>```python
+import numpy as np
+import numpy.linalg as LA
+import matplotlib.pyplot as plt</p>
+<p>def plot_nurcline(a,b,c,d, xsize=10, ysize=10):
+    J = np.array([
+        [a,b],
+        [c,d]
+    ])</p>
+<pre class="highlight"><code>det = np.linalg.det(J)
+tr = a + d
+eig_value, eig_vector = LA.eig(J)
+lambda1, lambda2 = eig_value
 
-<span class="k">def</span> <span class="nf">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span> <span class="n">xsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">ysize</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">J</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-        <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">],</span>
-        <span class="p">[</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">]</span>
-    <span class="p">])</span>
+xmin = -xsize; xmax = xsize
+ymin = -ysize; ymax = ysize
+X,Y = np.mgrid[xmin:xmax+1, ymin:ymax+1]
+dX = a*X + b*Y
+dY = c*X + d*Y
 
-    <span class="n">det</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
-    <span class="n">tr</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">d</span>
-    <span class="n">eig_value</span><span class="p">,</span> <span class="n">eig_vector</span> <span class="o">=</span> <span class="n">LA</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
-    <span class="n">lambda1</span><span class="p">,</span> <span class="n">lambda2</span> <span class="o">=</span> <span class="n">eig_value</span>
+plt.figure(figsize=(6,6))
 
-    <span class="n">xmin</span> <span class="o">=</span> <span class="o">-</span><span class="n">xsize</span><span class="p">;</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">xsize</span>
-    <span class="n">ymin</span> <span class="o">=</span> <span class="o">-</span><span class="n">ysize</span><span class="p">;</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ysize</span>
-    <span class="n">X</span><span class="p">,</span><span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mgrid</span><span class="p">[</span><span class="n">xmin</span><span class="p">:</span><span class="n">xmax</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">ymin</span><span class="p">:</span><span class="n">ymax</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">dX</span> <span class="o">=</span> <span class="n">a</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">Y</span>
-    <span class="n">dY</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">X</span> <span class="o">+</span> <span class="n">d</span><span class="o">*</span><span class="n">Y</span>
+plt.quiver(X, Y, dX, dY)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+x = X[:,0]
+plt.plot(x,x*lambda1, label=&quot;$y={:.2f}x$&quot;.format(lambda1), color=&quot;#80160e&quot;)
+plt.plot(x,x*lambda2, label=&quot;$y={:.2f}x$&quot;.format(lambda2), color=&quot;#6da3fc&quot;)
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">dX</span><span class="p">,</span> <span class="n">dY</span><span class="p">)</span>
-
-    <span class="n">x</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">lambda1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$y={:.2f}x$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lambda1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#80160e&quot;</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">lambda2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$y={:.2f}x$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lambda2</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#6da3fc&quot;</span><span class="p">)</span>
-
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$\det J = {:.2f},\ &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">det</span><span class="p">)</span> <span class="o">+</span>\
-              <span class="s2">&quot;\mathrm{tr}&quot;</span> <span class="o">+</span> <span class="s2">&quot;J = {:.2f},\ &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span> <span class="o">+</span>\
-              <span class="s2">&quot;1/4(\mathrm{tr}J)^2 = &quot;</span> <span class="o">+</span> <span class="s2">&quot;{:.2f}$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="o">*</span><span class="p">(</span><span class="n">tr</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="n">plot_nurcline</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># ① detJ&gt;0, trJ&lt;0, detJ&lt;1/4(trJ)^2</span>
-<span class="n">plot_nurcline</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># ② detJ&gt;0, trJ&gt;0, detJ&lt;1/4(trJ)^2</span>
-<span class="n">plot_nurcline</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># ③ detJ&lt;0</span>
-<span class="n">plot_nurcline</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># ④ detJ&gt;0, trJ&lt;0, detJ&gt;1/4(trJ)^2</span>
-<span class="n">plot_nurcline</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="c1"># ⑤ detJ&gt;0, trJ&gt;0, detJ&gt;1/4(trJ)^2</span>
-<span class="n">plot_nurcline</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># ⑥ detJ&gt;0, trJ=0, detJ&gt;1/4(trJ)^2</span>
-</pre></div>
+plt.title(&quot;$\det J = {:.2f},\ &quot;.format(det) +\
+          &quot;\mathrm{tr}&quot; + &quot;J = {:.2f},\ &quot;.format(tr) +\
+          &quot;1/4(\mathrm{tr}J)^2 = &quot; + &quot;{:.2f}$&quot;.format(1/4*(tr)**2))
+plt.xlim(xmin,xmax)
+plt.ylim(ymin,ymax)
+plt.grid()
+plt.legend()
+plt.show()</code></pre>
 
 
+<p>plot_nurcline( 1, 0, 1, 2) # ① detJ&gt;0, trJ&lt;0, detJ&lt;1/4(trJ)^2
+plot_nurcline(-1, 0,-1,-2) # ② detJ&gt;0, trJ&gt;0, detJ&lt;1/4(trJ)^2
+plot_nurcline( 1, 2, 3, 4) # ③ detJ&lt;0
+plot_nurcline( 1,-2, 3,-2) # ④ detJ&gt;0, trJ&lt;0, detJ&gt;1/4(trJ)^2
+plot_nurcline(-1, 2,-3, 2) # ⑤ detJ&gt;0, trJ&gt;0, detJ&gt;1/4(trJ)^2
+plot_nurcline( 1,-2, 3,-1) # ⑥ detJ&gt;0, trJ=0, detJ&gt;1/4(trJ)^2
+```</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
@@ -571,32 +467,48 @@ $$</div>
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-            <div>
+  <div>
 </div>
 
-            
-            
-            <hr/>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-06-28T00:00:00+09:00"> 6 28, 2019</time>
+  
+  
+  <hr/>
+
+    <aside class="article_meta">
+      <nav>
+        <ul class="articles-timeline">
+            <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3S/生体物質化学Ⅱ-10.html" title="Previous: 生体物質化学Ⅱ 第10回">生体物質化学Ⅱ 第10回</a></li>
+            <li class="next-article"><a href="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅱ-4.html" title="Next: ゲノム配列解析論Ⅱ 第4回">ゲノム配列解析論Ⅱ 第4回</a> »</li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+    <section class="article_meta">
+      <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+        <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+      </div>
+
+      <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+        <h5>Table of Contents</h5>
+        <div id="toc"></div>
+
+          <h5>Published</h5>
+          <time itemprop="dateCreated" datetime="2019-06-28T00:00:00+09:00"> 6 28, 2019</time>
 
 <h5>Last Updated</h5>
 <time datetime="2019-06-28T00:00:00+09:00"> 6 28, 2019</time>
 
-            <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#shisutemusheng-wu-xue-ref">システム生物学</a>
-            <h5>Tags</h5>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
-                    <span>94</span>
+          <h5>Category</h5>
+          <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#shisutemusheng-wu-xue-ref">システム生物学</a>
+          <h5>Tags</h5>
+          <ul class="list-of-tags tags-in-article">
+              <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                  <span>95</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3S/tags#shisutemusheng-wu-xue-ref">システム生物学
-                    <span>4</span>
+              <li><a href="https://iwasakishuto.github.io/University/3S/tags#shisutemusheng-wu-xue-ref">システム生物学
+                  <span>4</span>
 </a></li>
-            </ul>
+          </ul>
 <h5>Contact</h5>
     <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-twitter sidebar-social-links"></i></a>
@@ -604,9 +516,9 @@ $$</div>
     <i class="fab fa-github sidebar-social-links"></i></a>
     <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-facebook sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+      </div>
+    </section>
+  </div>
 </article>
                 </div>
                 <div class="span1"></div>
@@ -614,24 +526,34 @@ $$</div>
         </div>
         <div id="push"></div>
     </div>
-<footer>
-<div id="footer">
+<footer class="article_meta">
+  <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+        <li class="elegant-subtitle"><span class="site-name">3S</span> - Shuto's Notes</li>
+        <li class="elegant-license">MIT</li>
+      <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
                 return (query.length > 0);
             }
         </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content',
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
 
     
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css">
     </body>
     <!-- Theme: Elegant built for Pelican
     License : MIT -->

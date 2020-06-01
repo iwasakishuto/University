@@ -26,14 +26,22 @@
 
         <title>ゲノム配列解析論Ⅰ 第2回  · 3S
 </title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/bootstrap-combined.v2.3.2.min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
         <!---->
         <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-164333757-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 
 
@@ -42,7 +50,7 @@
         <!-- Syntax highlight -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <!-- LaTex -->
@@ -65,9 +73,9 @@
           });
         </script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -99,16 +107,16 @@
                 <div class="span10">
 <article itemscope>
 <div class="row-fluid">
-    <header class="page-header span10 offset2">
+  <header class="page-header span10 offset2">
     <h1><a href="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅰ-2.html"> ゲノム配列解析論Ⅰ 第2回  </a></h1>
-    </header>
+  </header>
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    <div class="span8 offset2 article-content">
 
-            
-            <h1>第2回 2019/4/15</h1>
+  
+  <h1>第2回 2019/4/15</h1>
 <ul>
 <li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/">後藤 修</a></li>
 </ul>
@@ -138,47 +146,15 @@ keywords: プロファイル、ドメイン、モチーフ、系統フットプ�
 </ol>
 <h3>種類と方法</h3>
 <h4>基本</h4>
-<table>
-<thead>
-<tr>
-<th align="left">配列数</th>
-<th align="left">大域的・半大域的</th>
-<th align="left">局所的</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">2配列(厳密)</td>
-<td align="left">NWG法</td>
-<td align="left">SWG法</td>
-</tr>
-<tr>
-<td align="left">2配列(高速)</td>
-<td align="left">PH<br><b>Cgaln</b><br>FASTS<br>BLAST</td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left">多重</td>
-<td align="left">累進法<br>反復改善法<br>整合法</td>
-<td align="left">期待値最大化Gibbsサンプリング</td>
-</tr>
-</tbody>
-</table>
+<p>|配列数|大域的・半大域的|局所的|
+|:--|:--|:--|
+|2配列(厳密)|NWG法|SWG法|
+|2配列(高速)|PH<br><b>Cgaln</b><br>FASTS<br>BLAST|
+|多重|累進法<br>反復改善法<br>整合法|期待値最大化Gibbsサンプリング|</p>
 <h4>応用</h4>
-<table>
-<thead>
-<tr>
-<th align="left">スレディング</th>
-<th align="left">スプライスアラインメント</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">高次構造と配列とのアラインメント</td>
-<td align="left">真核生物ゲノム配列とcDNAやアミノ酸配列とのアラインメント</td>
-</tr>
-</tbody>
-</table>
+<p>|スレディング|スプライスアラインメント|
+|:--|:--|
+|高次構造と配列とのアラインメント|真核生物ゲノム配列とcDNAやアミノ酸配列とのアラインメント|</p>
 <h2>動的計画法を用いた最良アラインメント計算アルゴリズム</h2>
 <h3>動的計画法による文字列比較</h3>
 <ul>
@@ -225,14 +201,12 @@ $$</div>
 <p>以下の <code>sum</code> を考える。</p>
 <p><img src="https://inzkyk.github.io//ox-hugo/AlgorithmFigure_3-ex10.png"></p>
 <p>Kadane-Gries <span class="math">\(O(n)\)</span> Algorithm:</p>
-<div class="highlight"><pre><span></span><span class="n">F</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 初期化</span>
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">N</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-  <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">{</span><span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="mi">0</span><span class="p">};</span> <span class="c1">// 0より小さくなったらその次から再スタート</span>
-  <span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">{</span><span class="n">F</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">H</span><span class="p">[</span><span class="n">i</span><span class="p">]};</span> <span class="c1">// 最大値を記録</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<p><code>c
+F[0] = H[0] = 0; // 初期化
+for (i=1; i&lt;=N; ++i){
+  H[i] = max{H[i-1] + S[i], 0}; // 0より小さくなったらその次から再スタート
+  F[i] = max{F[i-1], H[i]}; // 最大値を記録
+}</code></p>
 <h3>Smith-Waterman-Gotoh Algorithm (<span class="math">\(g(k)=-uk-v\)</span>)</h3>
 <p><img src="https://1.bp.blogspot.com/_39NGKVWYg3o/Sn2Vnx0m4RI/AAAAAAAAAeg/WD2HCZFQo9s/s320/Picture+2.png"></p>
 <h4>Recursion Eq.</h4>
@@ -255,35 +229,29 @@ $$</div>
 <div class="math">$$\mathrm{Score} = H_{i^*-1,j^*-1} = \underset{0\leq i\leq m, 1\leq j\leq n}{\max}\left\{H_{i,j}\right\}$$</div>
 <h2>編集距離アルゴリズムの実装</h2>
 <h4>漸化式(recurrent method)</h4>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
-    <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">{</span><span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span>
-                 <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">],</span>
-                 <span class="n">d</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<p><code>c
+for (i=0; i&lt;m; ++i){
+  for (j=0; j&lt;n; ++j){
+    d[i,j] = min{d[i-1,j-1] + s(a[i],b[j]),
+                 d[i-1,j],
+                 d[i,j-1]}
+  }
+}</code></p>
 <h4>再帰式(recursive call)</h4>
-<div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">D</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">){</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
-  <span class="k">if</span><span class="p">(</span><span class="n">j</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">min</span><span class="p">{</span><span class="n">D</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="err"></span><span class="n">s</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
-              <span class="n">D</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">j</span><span class="p">),</span>
-              <span class="n">D</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)}</span>
-  <span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
+<p><code>c
+double D(i,j){
+  if(i==0) return(j);
+  if(j==0) return(i);
+  return (min{D(i-1,j-1) + s(a[i],b[i]),
+              D(i-1,j),
+              D(i, j-1)}
+  )
+}</code></p>
 <p>上の式の場合、<span class="math">\(D(i,j)(i\neq0)\)</span> を計算する時に、再帰式の中で <span class="math">\(D(i-1,j-1)\)</span> を <span class="math">\(3\)</span> 回計算することになるため同じ値の計算が指数関数的に増えてしまい、無駄が多くなっている。</p>
 <h3>進行方向</h3>
-<div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
-</pre></div>
-
-
+<p><code>c
+for (i=0; i&lt;m; ++i){
+  for (j=0; j&lt;n; ++j){</code></p>
 <p>の方向は、かなり実装が楽。</p>
 <p>一方で、斜め方向の場合並列処理が可能になるので、大規模なDP matrixを考えた時は効率が良い。</p>
 <h2>トレースバック法</h2>
@@ -373,32 +341,48 @@ $$</div>
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-            <div>
+  <div>
 </div>
 
-            
-            
-            <hr/>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-04-15T00:00:00+09:00"> 4 15, 2019</time>
+  
+  
+  <hr/>
+
+    <aside class="article_meta">
+      <nav>
+        <ul class="articles-timeline">
+            <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3S/遺伝子機能学-1.html" title="Previous: 遺伝子機能学 第1回">遺伝子機能学 第1回</a></li>
+            <li class="next-article"><a href="https://iwasakishuto.github.io/University/3S/細胞分子生物学Ⅱ-2.html" title="Next: 細胞分子生物学Ⅱ 第2回">細胞分子生物学Ⅱ 第2回</a> »</li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+    <section class="article_meta">
+      <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+        <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+      </div>
+
+      <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+        <h5>Table of Contents</h5>
+        <div id="toc"></div>
+
+          <h5>Published</h5>
+          <time itemprop="dateCreated" datetime="2019-04-15T00:00:00+09:00"> 4 15, 2019</time>
 
 <h5>Last Updated</h5>
 <time datetime="2019-04-15T00:00:00+09:00"> 4 15, 2019</time>
 
-            <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>
-            <h5>Tags</h5>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
-                    <span>94</span>
+          <h5>Category</h5>
+          <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ</a>
+          <h5>Tags</h5>
+          <ul class="list-of-tags tags-in-article">
+              <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                  <span>95</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3S/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ
-                    <span>6</span>
+              <li><a href="https://iwasakishuto.github.io/University/3S/tags#genomupei-lie-jie-xi-lun-i-ref">ゲノム配列解析論Ⅰ
+                  <span>6</span>
 </a></li>
-            </ul>
+          </ul>
 <h5>Contact</h5>
     <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-twitter sidebar-social-links"></i></a>
@@ -406,9 +390,9 @@ $$</div>
     <i class="fab fa-github sidebar-social-links"></i></a>
     <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-facebook sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+      </div>
+    </section>
+  </div>
 </article>
                 </div>
                 <div class="span1"></div>
@@ -416,24 +400,34 @@ $$</div>
         </div>
         <div id="push"></div>
     </div>
-<footer>
-<div id="footer">
+<footer class="article_meta">
+  <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+        <li class="elegant-subtitle"><span class="site-name">3S</span> - Shuto's Notes</li>
+        <li class="elegant-license">MIT</li>
+      <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
                 return (query.length > 0);
             }
         </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content',
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
 
     
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css">
     </body>
     <!-- Theme: Elegant built for Pelican
     License : MIT -->

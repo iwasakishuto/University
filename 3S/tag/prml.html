@@ -17,14 +17,22 @@
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
         <title>3S - PRML tag</title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/bootstrap-combined.v2.3.2.min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
         <!---->
         <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-164333757-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 
 
@@ -33,7 +41,7 @@
         <!-- Syntax highlight -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <!-- LaTex -->
@@ -56,9 +64,9 @@
           });
         </script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -120,22 +128,32 @@
         </div>
         <div id="push"></div>
     </div>
-<footer>
-<div id="footer">
+<footer class="article_meta">
+  <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+        <li class="elegant-subtitle"><span class="site-name">3S</span> - Shuto's Notes</li>
+        <li class="elegant-license">MIT</li>
+      <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
-</div>
-</footer>        <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </div>
+</footer>        <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
                 return (query.length > 0);
             }
         </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content',
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css">
     </body>
     <!-- Theme: Elegant built for Pelican
     License : MIT -->

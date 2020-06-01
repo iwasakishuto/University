@@ -26,14 +26,22 @@
 
         <title>ゲノム配列解析論Ⅱ 第5回  · 3S
 </title>
-        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/bootstrap-combined.v2.3.2.min.css">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/pygments.css" media="screen">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/tipuesearch/tipuesearch.css" media="screen">
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/elegant.css">
         <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/admonition.css" media="screen">
         <!---->
         <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-164333757-1', 'auto');
+    ga('send', 'pageview');
+</script>
 
 
 
@@ -42,7 +50,7 @@
         <!-- Syntax highlight -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
         <!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script>
         <!-- LaTex -->
@@ -65,9 +73,9 @@
           });
         </script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/3S/theme/css/jupyter.css" media="screen">
     </head>
     <body>
+        
         <div id="content-sans-footer">
         <div class="navbar navbar-static-top">
             <div class="navbar-inner">
@@ -99,16 +107,16 @@
                 <div class="span10">
 <article itemscope>
 <div class="row-fluid">
-    <header class="page-header span10 offset2">
+  <header class="page-header span10 offset2">
     <h1><a href="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅱ-5.html"> ゲノム配列解析論Ⅱ 第5回  </a></h1>
-    </header>
+  </header>
 </div>
 
 <div class="row-fluid">
-        <div class="span8 offset2 article-content">
+    <div class="span8 offset2 article-content">
 
-            
-            <h1>第5回 2019/7/8</h1>
+  
+  <h1>第5回 2019/7/8</h1>
 <ul>
 <li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a></li>
 <li>資料：<a href="https://www.amazon.co.jp/%E3%83%90%E3%82%A4%E3%82%AA%E3%82%A4%E3%83%B3%E3%83%95%E3%82%A9%E3%83%9E%E3%83%86%E3%82%A3%E3%82%AF%E3%82%B9-%E7%A2%BA%E7%8E%87%E3%83%A2%E3%83%87%E3%83%AB%E3%81%AB%E3%82%88%E3%82%8B%E9%81%BA%E4%BC%9D%E5%AD%90%E9%85%8D%E5%88%97%E8%A7%A3%E6%9E%90-Richard-Durbin/dp/B0050YGNNY">バイオインフォマティクス 確率モデルによる遺伝子配列解析</a> 第５章</li>
@@ -129,20 +137,18 @@
 <h2 id="anchor1">ギャップなしのスコア行列</h2>
 
 <p>ここでは、<span class="marker-pink">タンパク質ファミリーのマルチプルアラインメント</span>を考える。</p>
-<div class="highlight"><pre><span></span><span class="mi">5</span><span class="n">p21</span><span class="o">-</span> <span class="n">MTEYKLVVV</span><span class="s1">&#39;G&#39;</span><span class="n">AGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTIQLIQNH</span><span class="s1">&#39;F&#39;</span><span class="n">VDEYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDSY</span>
-<span class="mi">1</span><span class="n">ctqA</span> <span class="n">MTEYKLVVV</span><span class="s1">&#39;G&#39;</span><span class="n">AGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTIQLIQNH</span><span class="s1">&#39;F&#39;</span><span class="n">VDEYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDSY</span>
-<span class="mi">1</span><span class="n">c1yA</span> <span class="n">MREYKLVVL</span><span class="s1">&#39;G&#39;</span><span class="n">SGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTVQFVQGI</span><span class="s1">&#39;F&#39;</span><span class="n">VEKYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDSY</span>
-<span class="mi">1</span><span class="n">kao</span><span class="o">-</span> <span class="n">MREYKVVVL</span><span class="s1">&#39;G&#39;</span><span class="n">SGGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">ALTVQFVTGT</span><span class="s1">&#39;F&#39;</span><span class="n">IEKYD</span><span class="s1">&#39;P&#39;</span><span class="n">TIEDFY</span>
-<span class="mi">1</span><span class="n">huqA</span> <span class="o">--</span><span class="n">QFKLVLL</span><span class="s1">&#39;G&#39;</span><span class="n">ESAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">SLVLRFVKGQ</span><span class="s1">&#39;F&#39;</span><span class="n">HEYQE</span><span class="s1">&#39;S&#39;</span><span class="n">TIGAAF</span>
-<span class="mi">1</span><span class="n">g16A</span> <span class="o">----</span><span class="n">KILLI</span><span class="s1">&#39;G&#39;</span><span class="n">DSGV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">CLLVRFVE</span><span class="o">--</span><span class="s1">&#39;-&#39;</span><span class="o">-</span><span class="n">DKFN</span><span class="s1">&#39;P&#39;</span><span class="n">I</span><span class="o">--</span><span class="n">DFK</span>
-<span class="mi">1</span><span class="n">ek0A</span> <span class="n">VTSIKLVLL</span><span class="s1">&#39;G&#39;</span><span class="n">EAAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;S&#39;</span><span class="n">SIVLRFVSND</span><span class="s1">&#39;F&#39;</span><span class="n">AENKE</span><span class="s1">&#39;P&#39;</span><span class="n">TIGAAF</span>
-<span class="mi">3</span><span class="n">rabA</span> <span class="o">---</span><span class="n">FKILII</span><span class="s1">&#39;G&#39;</span><span class="n">NSSV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">SFLFRYADDS</span><span class="s1">&#39;F&#39;</span><span class="n">TPAFV</span><span class="s1">&#39;S&#39;</span><span class="n">TVGIDF</span>
-<span class="mi">1</span><span class="n">mh1</span><span class="o">-</span> <span class="o">----</span><span class="n">KCVVV</span><span class="s1">&#39;G&#39;</span><span class="n">DGAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">CLLISYTTNA</span><span class="s1">&#39;F&#39;</span><span class="n">PGEYI</span><span class="s1">&#39;P&#39;</span><span class="n">TVFDNY</span>
-<span class="mi">2</span><span class="n">ngrA</span> <span class="n">MQTIKCVVV</span><span class="s1">&#39;G&#39;</span><span class="n">DGAV</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">CLLISYTTNK</span><span class="s1">&#39;F&#39;</span><span class="n">PSEYV</span><span class="s1">&#39;P&#39;</span><span class="n">TVFDNY</span>
-<span class="mi">1</span><span class="n">tx4B</span> <span class="o">----</span><span class="n">KLVIV</span><span class="s1">&#39;G&#39;</span><span class="n">DGAC</span><span class="s2">&quot;GK&quot;</span><span class="s1">&#39;T&#39;</span><span class="n">CLLIVNSKDQ</span><span class="s1">&#39;F&#39;</span><span class="o">---</span><span class="n">YV</span><span class="s1">&#39;P&#39;</span><span class="n">TVFENY</span>
-</pre></div>
-
-
+<p><code>python
+5p21- MTEYKLVVV'G'AGGV"GK"'S'ALTIQLIQNH'F'VDEYD'P'TIEDSY
+1ctqA MTEYKLVVV'G'AGGV"GK"'S'ALTIQLIQNH'F'VDEYD'P'TIEDSY
+1c1yA MREYKLVVL'G'SGGV"GK"'S'ALTVQFVQGI'F'VEKYD'P'TIEDSY
+1kao- MREYKVVVL'G'SGGV"GK"'S'ALTVQFVTGT'F'IEKYD'P'TIEDFY
+1huqA --QFKLVLL'G'ESAV"GK"'S'SLVLRFVKGQ'F'HEYQE'S'TIGAAF
+1g16A ----KILLI'G'DSGV"GK"'S'CLLVRFVE--'-'-DKFN'P'I--DFK
+1ek0A VTSIKLVLL'G'EAAV"GK"'S'SIVLRFVSND'F'AENKE'P'TIGAAF
+3rabA ---FKILII'G'NSSV"GK"'T'SFLFRYADDS'F'TPAFV'S'TVGIDF
+1mh1- ----KCVVV'G'DGAV"GK"'T'CLLISYTTNA'F'PGEYI'P'TVFDNY
+2ngrA MQTIKCVVV'G'DGAV"GK"'T'CLLISYTTNK'F'PSEYV'P'TVFDNY
+1tx4B ----KLVIV'G'DGAC"GK"'T'CLLIVNSKDQ'F'---YV'P'TVFENY</code></p>
 <p>上の配列から見てわかるように、タンパク質ファミリーの配列同士には特徴がある。</p>
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
   <h4>タンパク質ファミリーのマルチプルアラインメントの特徴</h4>
@@ -161,24 +167,10 @@
 <p>と表される。ただし <span class="math">\(L\)</span> はブロック長で、上の配列の場合 <span class="math">\(40\)</span> である。</p>
 <p>ここで、次の<span class="marker-pink">位置特異的スコア行列(Position Specific Score Matrix; PSSM)</span></p>
 <div class="math">$$S_i(a) = \log\frac{e_i(a)}{q_a}$$</div>
-<table>
-<thead>
-<tr>
-<th align="center">変数</th>
-<th align="left">意味</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(e_i(a)\)</span></td>
-<td align="left">位置 <span class="math">\(i\)</span> においてアミノ酸 <span class="math">\(a\)</span> が出力される確率</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(q_a\)</span></td>
-<td align="left">アミノ酸 <span class="math">\(a\)</span> の背景確率</td>
-</tr>
-</tbody>
-</table>
+<p>|変数|意味|
+|:--:|:--|
+|<span class="math">\(e_i(a)\)</span>|位置 <span class="math">\(i\)</span> においてアミノ酸 <span class="math">\(a\)</span> が出力される確率|
+|<span class="math">\(q_a\)</span>|アミノ酸 <span class="math">\(a\)</span> の背景確率|</p>
 <p>を考える。この値は、<span class="marker-pink">サイトごとのスコア行列</span>を意味している。</p>
 <blockquote>
 <p>スコア行列が <span class="math">\(s(a,b)=\log\frac{p(a,b)}{q(a)q(b)}\)</span> で表されていたことを思い出す。これとの比較より、今考えているのはスコア行列の第2引数 <span class="math">\(b\)</span> が位置 <span class="math">\(i\)</span> である時のスコア行列と言うことができる。</p>
@@ -197,32 +189,11 @@
   <li>新しい入力配列がそのタンパク質ファミリーに属するかを<b>（Viterbi algorithm/forward algorithmで求めた最大確率をある閾値で）</b>判断する。</li>
 </div>
 
-<table>
-<thead>
-<tr>
-<th align="center">状態</th>
-<th align="left">意味</th>
-<th align="center">画像</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(M_i\)</span></td>
-<td align="left">一致状態</td>
-<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103t.png"></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(I_i\)</span></td>
-<td align="left">マルチプルアラインメントの <span class="math">\(i\)</span> 番目のカラムに一致した塩基の後の挿入を表現する。</td>
-<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103b.png"></td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(D_i\)</span></td>
-<td align="left">ヌル状態。塩基を出力しない。欠失を表現するが、欠失のコストは <span class="math">\(M\rightarrow D\)</span> 遷移、それに続くいくつかの <span class="math">\(D\rightarrow D\)</span> 遷移、<span class="math">\(D\rightarrow M\)</span> 遷移の和になる。</td>
-<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p104b.png"></td>
-</tr>
-</tbody>
-</table>
+<p>|状態|意味|画像|
+|:--:|:--|:--:|
+|<span class="math">\(M_i\)</span>|一致状態|<img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103t.png">|
+|<span class="math">\(I_i\)</span>|マルチプルアラインメントの <span class="math">\(i\)</span> 番目のカラムに一致した塩基の後の挿入を表現する。|<img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103b.png">|
+|<span class="math">\(D_i\)</span>|ヌル状態。塩基を出力しない。欠失を表現するが、欠失のコストは <span class="math">\(M\rightarrow D\)</span> 遷移、それに続くいくつかの <span class="math">\(D\rightarrow D\)</span> 遷移、<span class="math">\(D\rightarrow M\)</span> 遷移の和になる。|<img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p104b.png">|</p>
 <h4>補足</h4>
 <ul>
 <li><span class="math">\(I_i\)</span> は出力分布 <span class="math">\(e_{I_i}(a)\)</span> を持つが、それらは普通バックグラウンドの分布 <span class="math">\(q(a)\)</span> が割り当てられる。</li>
@@ -268,28 +239,11 @@ $$</div>
 <p>に対する対数オッズ比である。</p>
 <h3>Viterbiアルゴリズム</h3>
 <p>動的計画法を回すために、以下の変数を定義する。</p>
-<table>
-<thead>
-<tr>
-<th align="center">変数</th>
-<th align="left">意味</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(V_j^M(i)\)</span></td>
-<td align="left">状態 <span class="math">\(M_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(V_j^I(i)\)</span></td>
-<td align="left">状態 <span class="math">\(I_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(V_j^D(i)\)</span></td>
-<td align="left">状態 <span class="math">\(D_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
-</tr>
-</tbody>
-</table>
+<p>|変数|意味|
+|:--:|:--|
+|<span class="math">\(V_j^M(i)\)</span>|状態 <span class="math">\(M_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア|
+|<span class="math">\(V_j^I(i)\)</span>|状態 <span class="math">\(I_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア|
+|<span class="math">\(V_j^D(i)\)</span>|状態 <span class="math">\(D_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア|</p>
 <p>すると、次のような漸化式を導出することができる。</p>
 <h4>漸化式</h4>
 <div class="math">$$
@@ -307,28 +261,11 @@ $$</div>
 <p>このことを機械的に保証する最も簡単な方法は、開始状態を <span class="math">\(M_0\)</span> とし、<span class="math">\(V_0^M(0) = 0\)</span> とすることである。<b>（<span class="math">\(M_0\)</span> から <span class="math">\(I_0\)</span> と <span class="math">\(D_1\)</span> への遷移は許す。）</b></p>
 <h3>前向きアルゴリズム</h3>
 <p>前向きアルゴリズムのための再帰式はViterbi式と似ているが、<span class="math">\(\max()\)</span> 操作が足し算によって置き換えられている。したがって、以下の変数を用いる。</p>
-<table>
-<thead>
-<tr>
-<th align="center">変数</th>
-<th align="left">意味</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="center"><span class="math">\(F_j^M(i)\)</span></td>
-<td align="left"><span class="math">\(V_j^M(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(F_j^I(i)\)</span></td>
-<td align="left"><span class="math">\(V_j^I(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
-</tr>
-<tr>
-<td align="center"><span class="math">\(F_j^D(i)\)</span></td>
-<td align="left"><span class="math">\(V_j^D(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
-</tr>
-</tbody>
-</table>
+<p>|変数|意味|
+|:--:|:--|
+|<span class="math">\(F_j^M(i)\)</span>|<span class="math">\(V_j^M(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比|
+|<span class="math">\(F_j^I(i)\)</span>|<span class="math">\(V_j^I(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比|
+|<span class="math">\(F_j^D(i)\)</span>|<span class="math">\(V_j^D(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比|</p>
 <p>すると、次のような漸化式を導出することができる。</p>
 <h4>漸化式</h4>
 <div class="math">$$
@@ -447,7 +384,7 @@ $$</div>
 <p>ベイズ流のアプローチを用いることもできる。行列ファミリーパラメータ <span class="math">\(t\)</span> を用いて</p>
 <div class="math">$$P\left(x_{j}^{1}, \ldots, x_{j}^{N} | t\right)=\sum_{a} q_{a} \prod_{k} P\left(x_{j}^{k} | a, t\right)$$</div>
 <p>とし、これと <span class="math">\(t\)</span> についての事前分布を用いて <span class="math">\(t\)</span> の事後分布を得、それを先の <span class="math">\(e_{M_j(a)}\)</span> の式で足し合わせることも可能であるが、それだと非常に多くの計算量が必要になってしまう。</p>
-<hr>
+<hr />
 <p>講義はここまで。実際の本には以下の章が続く。</p>
 <ul>
 <li>5.7 最適モデルの構築</li>
@@ -514,32 +451,48 @@ $$</div>
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-            <div>
+  <div>
 </div>
 
-            
-            
-            <hr/>
-        </div>
-        <section>
-        <div class="span2" style="float:right;font-size:0.9em;">
-            <h5>Published</h5>
-            <time itemprop="dateCreated" datetime="2019-07-08T00:00:00+09:00"> 7 8, 2019</time>
+  
+  
+  <hr/>
+
+    <aside class="article_meta">
+      <nav>
+        <ul class="articles-timeline">
+            <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/3S/システム生物学-4.html" title="Previous: システム生物学 第4回">システム生物学 第4回</a></li>
+            <li class="next-article"><a href="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-1.html" title="Next: シミュレーション実習 Day1">シミュレーション実習 Day1</a> »</li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+    <section class="article_meta">
+      <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+        <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+      </div>
+
+      <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+        <h5>Table of Contents</h5>
+        <div id="toc"></div>
+
+          <h5>Published</h5>
+          <time itemprop="dateCreated" datetime="2019-07-08T00:00:00+09:00"> 7 8, 2019</time>
 
 <h5>Last Updated</h5>
 <time datetime="2019-07-08T00:00:00+09:00"> 7 8, 2019</time>
 
-            <h5>Category</h5>
-            <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ</a>
-            <h5>Tags</h5>
-            <ul class="list-of-tags tags-in-article">
-                <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
-                    <span>94</span>
+          <h5>Category</h5>
+          <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ</a>
+          <h5>Tags</h5>
+          <ul class="list-of-tags tags-in-article">
+              <li><a href="https://iwasakishuto.github.io/University/3S/tags#3s-ref">3S
+                  <span>95</span>
 </a></li>
-                <li><a href="https://iwasakishuto.github.io/University/3S/tags#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ
-                    <span>8</span>
+              <li><a href="https://iwasakishuto.github.io/University/3S/tags#genomupei-lie-jie-xi-lun-ii-ref">ゲノム配列解析論Ⅱ
+                  <span>8</span>
 </a></li>
-            </ul>
+          </ul>
 <h5>Contact</h5>
     <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-twitter sidebar-social-links"></i></a>
@@ -547,9 +500,9 @@ $$</div>
     <i class="fab fa-github sidebar-social-links"></i></a>
     <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-facebook sidebar-social-links"></i></a>
-        </div>
-        </section>
-</div>
+      </div>
+    </section>
+  </div>
 </article>
                 </div>
                 <div class="span1"></div>
@@ -557,24 +510,34 @@ $$</div>
         </div>
         <div id="push"></div>
     </div>
-<footer>
-<div id="footer">
+<footer class="article_meta">
+  <div id="footer">
     <ul class="footer-content">
-        <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+        <li class="elegant-subtitle"><span class="site-name">3S</span> - Shuto's Notes</li>
+        <li class="elegant-license">MIT</li>
+      <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
     </ul>
-</div>
-</footer>            <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
         <script>
             function validateForm(query)
             {
                 return (query.length > 0);
             }
         </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
         <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content',
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
 
     
-        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css">
     </body>
     <!-- Theme: Elegant built for Pelican
     License : MIT -->
