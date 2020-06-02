@@ -139,44 +139,46 @@
 <h4>目的</h4>
 <p>動的計画法を用いて、最大スコアの鎖を求める。</p>
 <h4>アルゴリズム</h4>
-<p>```python</p>
-<h1>=== Initialization steps ===</h1>
-<p>X=[]
+<pre class="highlight"><code class="language-python">#=== Initialization steps ===
+X=[]
 for A in Alignments:
     X.append((A.sx, A))
-    X.append((A.ex, A))</p>
-<h1>If x1 is equal to x2, they are sorted by whether it is "start point" or "end point".</h1>
-<p>X = sorted(X, key=lambda x:(x[0], -x[1].sx))</p>
-<p>Y=[]</p>
-<h1>=== Repeat steps ===</h1>
-<p>while(len(X)!=0):
-    x,B = X.pop(0)</p>
-<pre class="highlight"><code>#=== Case1 ===
-if x == B.ex:
-    C_flags = [C.ey&lt;=B.ey and C.score&gt;=B.score for _,C in Y]
-    # If alignment &quot;C&quot; which is better than alignment &quot;B&quot; is not in Y.
-    if sum(C_flags)==0:
-        Y.append((B.ey, B))
-        Y = sorted(Y, key=lambda y:y[0])
-        # If alignemd &quot;D&quot; is worse than alignment &quot;B&quot; remove &quot;D&quot; from Y.
-        Y = [(x,D) for x,D in Y if not (B.ey&lt;=D.ey and B.score&gt;D.score)]
+    X.append((A.ex, A))
 
-        #=== Print the Y's transition ===
-        for y,A in Y:
-            print(&quot;{}{}{}&quot;.format(A.score, A.name, y))
-        print(&quot;-&quot; * 20)
+# If x1 is equal to x2, they are sorted by whether it is &quot;start point&quot; or &quot;end point&quot;.
+X = sorted(X, key=lambda x:(x[0], -x[1].sx))
 
-#=== Case2 ===
-elif x == B.sx:
-    # This flag indicates whether there is alignment &quot;C&quot; which alignment &quot;B&quot; can connect to.
-    C_flags = [(C.ey, C) for _,C in Y if (C.ex&lt;=B.sx and C.ey&lt;=B.sy)]
-    if C_flags:
-        _,nearestC = sorted(C_flags, key=lambda c:c[0])[-1]
-        newB = Alignment(B.name, nearestC.sx, nearestC.sy, B.ex, B.ey, nearestC.score+B.score)
-        X = [(B.ex, newB) if A.name==B.name else (x,A) for x,A in X]</code></pre>
+Y=[]
+
+#=== Repeat steps ===
+while(len(X)!=0):
+    x,B = X.pop(0)
+
+    #=== Case1 ===
+    if x == B.ex:
+        C_flags = [C.ey&lt;=B.ey and C.score&gt;=B.score for _,C in Y]
+        # If alignment &quot;C&quot; which is better than alignment &quot;B&quot; is not in Y.
+        if sum(C_flags)==0:
+            Y.append((B.ey, B))
+            Y = sorted(Y, key=lambda y:y[0])
+            # If alignemd &quot;D&quot; is worse than alignment &quot;B&quot; remove &quot;D&quot; from Y.
+            Y = [(x,D) for x,D in Y if not (B.ey&lt;=D.ey and B.score&gt;D.score)]
+
+            #=== Print the Y's transition ===
+            for y,A in Y:
+                print(&quot;{}{}{}&quot;.format(A.score, A.name, y))
+            print(&quot;-&quot; * 20)
+
+    #=== Case2 ===
+    elif x == B.sx:
+        # This flag indicates whether there is alignment &quot;C&quot; which alignment &quot;B&quot; can connect to.
+        C_flags = [(C.ey, C) for _,C in Y if (C.ex&lt;=B.sx and C.ey&lt;=B.sy)]
+        if C_flags:
+            _,nearestC = sorted(C_flags, key=lambda c:c[0])[-1]
+            newB = Alignment(B.name, nearestC.sx, nearestC.sy, B.ex, B.ey, nearestC.score+B.score)
+            X = [(B.ex, newB) if A.name==B.name else (x,A) for x,A in X]</code></pre>
 
 
-<p>```</p>
 <h3>1</h3>
 <p>アラインメント <span class="math">\(\mathrm{B}1\)</span> の開始位置 <span class="math">\(\mathrm{B}1.sx\)</span> とアラインメント <span class="math">\(\mathrm{B}2\)</span> の終了位置 <span class="math">\(\mathrm{B}2.ex\)</span> が等しい時、②→①の順番だとスコアが高い終了位置のアラインメントが見落とされる可能性が出てしまう。</p>
 <h4>コメント</h4>
@@ -222,12 +224,37 @@ elif x == B.sx:
 </li>
 </ul>
 <p>動的計画法によってこの問題を解くために、以下の4つの変数を導入する。</p>
-<p>|変数|意味|漸化式でのお気持ち|
-|:--:|:--|:--|
-|<span class="math">\(W_{\text { short }}^{0}(i)=w\left(C_{i, 1}^{0}\right)\)</span>|位置 <span class="math">\(i\)</span> で終了していないが、<font color="red"><b>位置 <span class="math">\(i\)</span> から始まる次の区間 <span class="math">\([a_{k+1}=i,b_{k+1}]\)</span> を集合 <span class="math">\(C\)</span> に追加することができない。</b></font>（<span class="math">\(\because a_{k+1}-b_{k}+1\geq1\)</span> しか間隔が保証されていないから。）|次の新しい区間を作れるよう、1つ前の区間の終点からの間隔を広げたい。|
-|<span class="math">\(W_{\text { long }}^{0}(i)=w\left(C_{i, m_0}^{0}\right)\)</span>|位置 <span class="math">\(i\)</span> で終了しておらず、<font color="red"><b>位置 <span class="math">\(i\)</span> から始まる次の区間 <span class="math">\([a_{k+1}=i,b_{k+1}]\)</span> を集合 <span class="math">\(C\)</span> に追加することができる。</b></font>（<span class="math">\(\because a_{k+1}-b_{k}+1\geq m_0\)</span> 分の間隔が保証されているから。）|<span class="math">\(i\)</span> から開始する区間を作って集合 <span class="math">\(C\)</span> に追加したい。|
-|<span class="math">\(W_{\text { short }}^{1}(i)=w\left(C_{i, 1}^{1}\right)\)</span>|最終区間 <span class="math">\([a_{k},b_{k}=i]\)</span> が位置 <span class="math">\(i\)</span> で終了しており、集合 <span class="math">\(C\)</span> に追加することができるが、<font color="red"><b>次の区間<span class="math">\([a_{k+1}=i+m_0+1,b_{k+1}]\)</span> を集合 <span class="math">\(C\)</span> に追加することができない。</b></font>（<span class="math">\(\because b_k-a_k+1\geq 1\)</span> しか間隔が保証されていないから。）|無理やり <span class="math">\(i\)</span> までの区間を考えた。最終区間であれば集合 <span class="math">\(C\)</span> に追加できるが、途中の区間としては区間長が足りない。|
-|<span class="math">\(W_{\text { long }}^{1}(i)=w\left(C_{i, m_1}^{1}\right)\)</span>|最終区間 <span class="math">\([a_{k},b_{k}=i]\)</span> が位置 <span class="math">\(i\)</span> で終了しており、集合 <span class="math">\(C\)</span> に追加することができる。また、<font color="red"><b>次の区間<span class="math">\([a_{k+1}=i+m_0+1,b_{k+1}]\)</span> も集合 <span class="math">\(C\)</span> に追加することができる。</b></font>（<span class="math">\(\because b_k-a_k+1\geq m_1\)</span> 分の間隔が保証されているから。）|<span class="math">\(i\)</span> までの区間を考えたが、区間長が十分あるので、<span class="math">\(i+m_0+1\)</span> から始まる次の区間も考えたい。|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+<th align="left">漸化式でのお気持ち</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(W_{\text { short }}^{0}(i)=w\left(C_{i, 1}^{0}\right)\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> で終了していないが、<font color="red"><b>位置 <span class="math">\(i\)</span> から始まる次の区間 <span class="math">\([a_{k+1}=i,b_{k+1}]\)</span> を集合 <span class="math">\(C\)</span> に追加することができない。</b></font>（<span class="math">\(\because a_{k+1}-b_{k}+1\geq1\)</span> しか間隔が保証されていないから。）</td>
+<td align="left">次の新しい区間を作れるよう、1つ前の区間の終点からの間隔を広げたい。</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(W_{\text { long }}^{0}(i)=w\left(C_{i, m_0}^{0}\right)\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> で終了しておらず、<font color="red"><b>位置 <span class="math">\(i\)</span> から始まる次の区間 <span class="math">\([a_{k+1}=i,b_{k+1}]\)</span> を集合 <span class="math">\(C\)</span> に追加することができる。</b></font>（<span class="math">\(\because a_{k+1}-b_{k}+1\geq m_0\)</span> 分の間隔が保証されているから。）</td>
+<td align="left"><span class="math">\(i\)</span> から開始する区間を作って集合 <span class="math">\(C\)</span> に追加したい。</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(W_{\text { short }}^{1}(i)=w\left(C_{i, 1}^{1}\right)\)</span></td>
+<td align="left">最終区間 <span class="math">\([a_{k},b_{k}=i]\)</span> が位置 <span class="math">\(i\)</span> で終了しており、集合 <span class="math">\(C\)</span> に追加することができるが、<font color="red"><b>次の区間<span class="math">\([a_{k+1}=i+m_0+1,b_{k+1}]\)</span> を集合 <span class="math">\(C\)</span> に追加することができない。</b></font>（<span class="math">\(\because b_k-a_k+1\geq 1\)</span> しか間隔が保証されていないから。）</td>
+<td align="left">無理やり <span class="math">\(i\)</span> までの区間を考えた。最終区間であれば集合 <span class="math">\(C\)</span> に追加できるが、途中の区間としては区間長が足りない。</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(W_{\text { long }}^{1}(i)=w\left(C_{i, m_1}^{1}\right)\)</span></td>
+<td align="left">最終区間 <span class="math">\([a_{k},b_{k}=i]\)</span> が位置 <span class="math">\(i\)</span> で終了しており、集合 <span class="math">\(C\)</span> に追加することができる。また、<font color="red"><b>次の区間<span class="math">\([a_{k+1}=i+m_0+1,b_{k+1}]\)</span> も集合 <span class="math">\(C\)</span> に追加することができる。</b></font>（<span class="math">\(\because b_k-a_k+1\geq m_1\)</span> 分の間隔が保証されているから。）</td>
+<td align="left"><span class="math">\(i\)</span> までの区間を考えたが、区間長が十分あるので、<span class="math">\(i+m_0+1\)</span> から始まる次の区間も考えたい。</td>
+</tr>
+</tbody>
+</table>
 <p>したがって、以下の漸化式を計算することで、重み <span class="math">\(w(C)\)</span> を最大化することが可能である。</p>
 <h4>初期条件</h4>
 <div class="math">$$W_{\text { short }}^{0}(1)=0,W_{\text { short }}^{1}(1)=L_{1}$$</div>
@@ -266,13 +293,36 @@ W_{\text { long }}^{1}(i)
 
 <h3>1</h3>
 <h4>定義</h4>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(s_{ij}\)</span>|2点 <span class="math">\(i,j\)</span> 間の距離|
-|<span class="math">\(O_{ij}\)</span>|Observed, Hi-Cで観測された位置 <span class="math">\(i,j\)</span> 間の接触の数|
-|<span class="math">\(E_{ij}\)</span>|Expected, 距離 <span class="math">\(s_{ij}\)</span> の位置間で観測される接触数の平均値|
-|<span class="math">\(M^{\star}_{ij} = O_{ij}/E_{ij}\)</span>|正規化された contact matrix|
-|<span class="math">\(C_{ij}\)</span>|<b>Pearson correlation</b> between the <span class="math">\(M^{\star}_{i}\)</span> and <span class="math">\(M^{\star}_{j}\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(s_{ij}\)</span></td>
+<td align="left">2点 <span class="math">\(i,j\)</span> 間の距離</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(O_{ij}\)</span></td>
+<td align="left">Observed, Hi-Cで観測された位置 <span class="math">\(i,j\)</span> 間の接触の数</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(E_{ij}\)</span></td>
+<td align="left">Expected, 距離 <span class="math">\(s_{ij}\)</span> の位置間で観測される接触数の平均値</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(M^{\star}_{ij} = O_{ij}/E_{ij}\)</span></td>
+<td align="left">正規化された contact matrix</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(C_{ij}\)</span></td>
+<td align="left"><b>Pearson correlation</b> between the <span class="math">\(M^{\star}_{i}\)</span> and <span class="math">\(M^{\star}_{j}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>この時、<span class="math">\(C_{ij}\)</span> は実対称行列なので、ある直交行列 <span class="math">\(P\)</span> で対角化できる。</p>
 <p><b>「固有値最大の固有ベクトル <span class="math">\(P_i\)</span>」</b>、主成分分析の言葉で言い換えれば<b>「共分散行列 <span class="math">\(C_{ij}\)</span> の第一主成分ベクトル」</b>の正/負の値で分けられた2つの大域的な構造がA/B compartmentである。</p>
 <h4>生物学的な意義</h4>
@@ -282,12 +332,32 @@ W_{\text { long }}^{1}(i)
 <h4>定義</h4>
 <p><font color="red"><b>※ 以下の変数 <span class="math">\(A,B\)</span> は上記のABコンパートメントとは関係がない。</b></font></p>
 <div class="math">$$\mathrm{DI} = \left(\frac{B-A}{|B-A|}\right)\left(\frac{(A-E)^2}{E}+\frac{(B-E)^2}{E}\right)$$</div>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(A\)</span>|あるbinとその<font color="red"><b>上流</b></font> <span class="math">\(2\ \mathrm{Mb}\)</span> をリンクするリード数|
-|<span class="math">\(B\)</span>|あるbinとその<font color="red"><b>下流</b></font> <span class="math">\(2\ \mathrm{Mb}\)</span> をリンクするリード数|
-|<span class="math">\(E\)</span>|<span class="math">\((A+B)/2\)</span> つまり、帰無仮説での期待値|
-|<span class="math">\(\mathrm{DI}\)</span>|第一項は正負の符号（<span class="math">\(\mathrm{sign}(B-A)\)</span> と同値）<br>第二項はカイ二乗検定|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(A\)</span></td>
+<td align="left">あるbinとその<font color="red"><b>上流</b></font> <span class="math">\(2\ \mathrm{Mb}\)</span> をリンクするリード数</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(B\)</span></td>
+<td align="left">あるbinとその<font color="red"><b>下流</b></font> <span class="math">\(2\ \mathrm{Mb}\)</span> をリンクするリード数</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(E\)</span></td>
+<td align="left"><span class="math">\((A+B)/2\)</span> つまり、帰無仮説での期待値</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\mathrm{DI}\)</span></td>
+<td align="left">第一項は正負の符号（<span class="math">\(\mathrm{sign}(B-A)\)</span> と同値）<br>第二項はカイ二乗検定</td>
+</tr>
+</tbody>
+</table>
 <h4>生物学的な意義</h4>
 <ul>
 <li><b>TAD(Topologically Associated Domain)</b>は、各コンパートメントの内のさらに局所的な構造である。</li>
@@ -409,13 +479,36 @@ $$</div>
 <p>子の各「アレル」が祖父由来なら <span class="math">\(0\)</span>、祖母由来なら <span class="math">\(1\)</span> と定義することで、4次元ベクトルで <span class="math">\(2^4=16\)</span> 通りの継承関係を表現できる。</p>
 <p>ここで、「罹患同胞対(りかんどうほうつい, affected sib-pair, 同じ疾患に罹患した兄弟で観察された共有する同祖遺伝子,IBD)」を分析することで、「劣性遺伝形式」ならIBD=2,「優性遺伝形式」ならIBD=1,2を説明できる。</p>
 <h3>2</h3>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(i\)</span>|DNA上の位置|
-|<span class="math">\(X_i\)</span>|位置 <span class="math">\(i\)</span> の子の順序<font color="red"><b>無</b></font>遺伝子型|
-|<span class="math">\(I_i\)</span>|位置 <span class="math">\(i\)</span> のIBD vector<br><font color="red"><b>観測困難なので、予測する</b></font>|
-|<span class="math">\(P(X_i,I_i)\)</span>|位置 <span class="math">\(i\)</span> で <span class="math">\(X_i\)</span> と <span class="math">\(I_i\)</span> が起こる確率|
-|<span class="math">\(P(Z)\)</span>|アレル <span class="math">\(Z\)</span> の出現確率|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(i\)</span></td>
+<td align="left">DNA上の位置</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X_i\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> の子の順序<font color="red"><b>無</b></font>遺伝子型</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(I_i\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> のIBD vector<br><font color="red"><b>観測困難なので、予測する</b></font></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P(X_i,I_i)\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> で <span class="math">\(X_i\)</span> と <span class="math">\(I_i\)</span> が起こる確率</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P(Z)\)</span></td>
+<td align="left">アレル <span class="math">\(Z\)</span> の出現確率</td>
+</tr>
+</tbody>
+</table>
 <h4><span class="math">\(X_i = \mathrm{AABC},\ \text{IBD vector} = 1100\)</span></h4>
 <ul>
 <li>子の順序付き遺伝子型は <span class="math">\(\mathrm{AABC},\mathrm{AACB}\)</span></li>
@@ -430,11 +523,28 @@ $$</div>
 </ul>
 <p>（以下省略）</p>
 <h3>3</h3>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(P(I_i)\)</span>|位置 <span class="math">\(i\)</span> で <span class="math">\(I_i\)</span> となる確率|
-|<span class="math">\(P(X_i\mid I_{i-1})\)</span>|IBD vector が <span class="math">\(I_i\)</span> の時 <span class="math">\(X_i\)</span> を観測する条件付確率|
-|<span class="math">\(P(I_i\mid I_{i-1})\)</span>|<span class="math">\(I_{i-1}\)</span> から <span class="math">\(I_i\)</span> へ遷移する確率|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(P(I_i)\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> で <span class="math">\(I_i\)</span> となる確率</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P(X_i\mid I_{i-1})\)</span></td>
+<td align="left">IBD vector が <span class="math">\(I_i\)</span> の時 <span class="math">\(X_i\)</span> を観測する条件付確率</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P(I_i\mid I_{i-1})\)</span></td>
+<td align="left"><span class="math">\(I_{i-1}\)</span> から <span class="math">\(I_i\)</span> へ遷移する確率</td>
+</tr>
+</tbody>
+</table>
 <p>Hidden Markov Model を用いて、最もらしい（<span class="math">\(P(X_1\cdots X_M|I_i)\)</span> を最大化する）IBD vector <span class="math">\(I_i\)</span> の列を推定する。
 →推定したIBD vectorから組み換え位置を予測できる!!</p>
 <p>ここで、<span class="math">\(P(X_1|I_1) = 1,P(X_M|I_M) = 1\)</span> と初期化して、以下の漸化式を回すことで、以下を最大化するIBD vector <span class="math">\(I_i\)</span> の列を推定できる。</p>

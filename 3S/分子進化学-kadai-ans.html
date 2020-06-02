@@ -119,9 +119,20 @@
   <h2>課題の解答</h2>
 <p><a href="https://www.s.u-tokyo.ac.jp/ja/people/ohashi_jun/">大橋 順</a>准教授の講義で取り扱った課題の解答を作成したので挙げる。</p>
 <h3>課題1</h3>
-<p>| 問題         | 解答         |
-| ------------ | ------------ |
-| <img src="theme/img/3S_Molecular_Evolution/kadai1.png"> | <img src="theme/img/3S_Molecular_Evolution/kadai1_ans.png"> |</p>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>解答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="theme/img/3S_Molecular_Evolution/kadai1.png"></td>
+<td><img src="theme/img/3S_Molecular_Evolution/kadai1_ans.png"></td>
+</tr>
+</tbody>
+</table>
 <h3>課題2</h3>
 <p><img src="theme/img/3S_Molecular_Evolution/kadai2.png"></p>
 <ul>
@@ -170,19 +181,75 @@ $$</div>
 </li>
 <li>標本中の対立遺伝子Aの頻度 <span class="math">\(p\)</span> が <span class="math">\(0.6\)</span> であることから計算した<b>対立遺伝子頻度に基づく遺伝子型頻度<font color="red">（期待頻度）</font></b>と、<b>観察された遺伝子型頻度<font color="red">（観察頻度）</font></b>の差を考えれば良い。</li>
 </ol>
-<p>|     | <span class="math">\(P\)</span> | <span class="math">\(Q\)</span> | <span class="math">\(R\)</span> | <span class="math">\(p\)</span> | <span class="math">\(q\)</span> |
-| --- | --- | --- | --- | --- | --- |
-|     | <span class="math">\(40/100\)</span>    |  <span class="math">\(40/100\)</span>   |  <span class="math">\(20/100\)</span>   | <span class="math">\(0.6\)</span>    | <span class="math">\(1-p=0.4\)</span>    |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><span class="math">\(P\)</span></th>
+<th><span class="math">\(Q\)</span></th>
+<th><span class="math">\(R\)</span></th>
+<th><span class="math">\(p\)</span></th>
+<th><span class="math">\(q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><span class="math">\(40/100\)</span></td>
+<td><span class="math">\(40/100\)</span></td>
+<td><span class="math">\(20/100\)</span></td>
+<td><span class="math">\(0.6\)</span></td>
+<td><span class="math">\(1-p=0.4\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>を用いて計算すれば、近交係数は</p>
 <div class="math">$$F = \frac{2\left(\mathrm{P} + \frac{\mathrm{Q}}{2}\right)\left(\frac{\mathrm{Q}}{2}+\mathrm{R}\right) - \mathrm{Q}}{2\left(\mathrm{P} + \frac{\mathrm{Q}}{2}\right)\left(\frac{\mathrm{Q}}{2}+\mathrm{R}\right)}=\frac{2\mathrm{pq}-\mathrm{Q}}{2\mathrm{pq}}=\frac{1}{6}$$</div>
 <h3>課題4</h3>
 <p><img src="theme/img/3S_Molecular_Evolution/kadai4.png"></p>
 <p>分集団2のサイズを <span class="math">\(N\)</span> とおくと、各頻度は以下のようにかける。</p>
-<p>|         | サイズ | <span class="math">\(A\)</span>   | <span class="math">\(a\)</span>     | <span class="math">\(AA\)</span>    | <span class="math">\(Aa\)</span>          | <span class="math">\(aa\)</span>        |
-| ------- | ------ | ----- | ------- | ------- | ------------- | ----------- |
-| 分集団1 | <span class="math">\(mN\)</span>   | <span class="math">\(p_1\)</span> | <span class="math">\(1-p_1\)</span> | <span class="math">\(p_1^2\)</span> | <span class="math">\(2p_1(1-p_1)\)</span> | <span class="math">\((1-p_1)^2\)</span> |
-| 分集団2 | <span class="math">\(N\)</span>    | <span class="math">\(p_2\)</span> | <span class="math">\(1-p_2\)</span> | <span class="math">\(p_2^2\)</span> | <span class="math">\(2p_2(1-p_2)\)</span> | <span class="math">\((1-p_2)^2\)</span> |
-| 集団 <span class="math">\(Z\)</span>        | <span class="math">\((m+1)N\)</span>       |   <span class="math">\(\frac{mp_1+p_2}{m+1}\)</span>    | <span class="math">\(\frac{m(1-p_1)+(1-p_2)}{m+1}\)</span>        |    略     |      <span class="math">\(\frac{2mp_1(1-p_1) + 2p_2(1-p_2)}{m+1}\)</span>         |   略          |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>サイズ</th>
+<th><span class="math">\(A\)</span></th>
+<th><span class="math">\(a\)</span></th>
+<th><span class="math">\(AA\)</span></th>
+<th><span class="math">\(Aa\)</span></th>
+<th><span class="math">\(aa\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>分集団1</td>
+<td><span class="math">\(mN\)</span></td>
+<td><span class="math">\(p_1\)</span></td>
+<td><span class="math">\(1-p_1\)</span></td>
+<td><span class="math">\(p_1^2\)</span></td>
+<td><span class="math">\(2p_1(1-p_1)\)</span></td>
+<td><span class="math">\((1-p_1)^2\)</span></td>
+</tr>
+<tr>
+<td>分集団2</td>
+<td><span class="math">\(N\)</span></td>
+<td><span class="math">\(p_2\)</span></td>
+<td><span class="math">\(1-p_2\)</span></td>
+<td><span class="math">\(p_2^2\)</span></td>
+<td><span class="math">\(2p_2(1-p_2)\)</span></td>
+<td><span class="math">\((1-p_2)^2\)</span></td>
+</tr>
+<tr>
+<td>集団 <span class="math">\(Z\)</span></td>
+<td><span class="math">\((m+1)N\)</span></td>
+<td><span class="math">\(\frac{mp_1+p_2}{m+1}\)</span></td>
+<td><span class="math">\(\frac{m(1-p_1)+(1-p_2)}{m+1}\)</span></td>
+<td>略</td>
+<td><span class="math">\(\frac{2mp_1(1-p_1) + 2p_2(1-p_2)}{m+1}\)</span></td>
+<td>略</td>
+</tr>
+</tbody>
+</table>
 <p>したがって、</p>
 <div class="math">$$\begin{aligned}F &amp;= \frac{2\left(\mathrm{P} + \frac{\mathrm{Q}}{2}\right)\left(\frac{\mathrm{Q}}{2}+\mathrm{R}\right) - \mathrm{Q}}{2\left(\mathrm{P} + \frac{\mathrm{Q}}{2}\right)\left(\frac{\mathrm{Q}}{2}+\mathrm{R}\right)}=\frac{2\mathrm{pq}-\mathrm{Q}}{2\mathrm{pq}}\\
 &amp;=1-\frac{(m+1)\left\{mp_1(1-p_1)+p_2(1-p_2)\right\}}{(mp_1+p_2)\left\{(m(1-p_1) + (1-p_2))\right\}}\end{aligned}$$</div>
@@ -210,12 +277,42 @@ $$</div>
 <h3>課題6</h3>
 <p><img src="theme/img/3S_Molecular_Evolution/kadai6.png"></p>
 <p>初期個体数を <span class="math">\(N\)</span> とおく。</p>
-<p>| 世代     | Aを持つ個体数 | aを持つ個体数 | 全体の個体数          |
-| -------- | ------------- | ------------- | --------------------- |
-| <span class="math">\(0\)</span>      | <span class="math">\(Np_0\)</span>        | <span class="math">\(Nq_o\)</span>        | <span class="math">\(N\)</span>                   |
-| <span class="math">\(1\)</span>      | <span class="math">\(Nw_Ap_0\)</span>     | <span class="math">\(Nw_aq_o\)</span>     | <span class="math">\(Nw_Ap_0+Nw_aq_o\)</span>     |
-| <span class="math">\(\vdots\)</span> |               |               |                       |
-| <span class="math">\(t\)</span>      | <span class="math">\(Nw_A^tp_0\)</span>   | <span class="math">\(Nw_a^tq_o\)</span>   | <span class="math">\(Nw_A^tp_0+Nw_a^tq_o\)</span> |</p>
+<table>
+<thead>
+<tr>
+<th>世代</th>
+<th>Aを持つ個体数</th>
+<th>aを持つ個体数</th>
+<th>全体の個体数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math">\(0\)</span></td>
+<td><span class="math">\(Np_0\)</span></td>
+<td><span class="math">\(Nq_o\)</span></td>
+<td><span class="math">\(N\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(1\)</span></td>
+<td><span class="math">\(Nw_Ap_0\)</span></td>
+<td><span class="math">\(Nw_aq_o\)</span></td>
+<td><span class="math">\(Nw_Ap_0+Nw_aq_o\)</span></td>
+</tr>
+<tr>
+<td><span class="math">\(\vdots\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><span class="math">\(t\)</span></td>
+<td><span class="math">\(Nw_A^tp_0\)</span></td>
+<td><span class="math">\(Nw_a^tq_o\)</span></td>
+<td><span class="math">\(Nw_A^tp_0+Nw_a^tq_o\)</span></td>
+</tr>
+</tbody>
+</table>
 <ol>
 <li>
 <div class="math">$$p_1 = \frac{w_Ap_0}{w_Ap_0 + w_aq_o}$$</div>
@@ -327,11 +424,36 @@ $$</div>
 </ol>
 <h3>課題14</h3>
 <p><img src="theme/img/3S_Molecular_Evolution/kadai14.png"></p>
-<p>||<span class="math">\(A_1\)</span>|<span class="math">\(A_2\)</span>|Total|
-|:--:|:--:|:--:|:--:|
-|<span class="math">\(B_1\)</span>|<span class="math">\(x_{11} = p_1\cdot q_1 + D\)</span>|<span class="math">\(x_{21} = p_2\cdot q_1 + D\)</span>|<span class="math">\(q_1\)</span>|
-|<span class="math">\(B_2\)</span>|<span class="math">\(x_{12} = p_1\cdot q_2 + D\)</span>|<span class="math">\(x_{22} = p_2\cdot q_2 + D\)</span>|<span class="math">\(q_2\)</span>|
-|Total|<span class="math">\(p_1\)</span>|<span class="math">\(p_2\)</span>|<span class="math">\(1\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><span class="math">\(A_1\)</span></th>
+<th align="center"><span class="math">\(A_2\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(B_1\)</span></td>
+<td align="center"><span class="math">\(x_{11} = p_1\cdot q_1 + D\)</span></td>
+<td align="center"><span class="math">\(x_{21} = p_2\cdot q_1 + D\)</span></td>
+<td align="center"><span class="math">\(q_1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(B_2\)</span></td>
+<td align="center"><span class="math">\(x_{12} = p_1\cdot q_2 + D\)</span></td>
+<td align="center"><span class="math">\(x_{22} = p_2\cdot q_2 + D\)</span></td>
+<td align="center"><span class="math">\(q_2\)</span></td>
+</tr>
+<tr>
+<td align="center">Total</td>
+<td align="center"><span class="math">\(p_1\)</span></td>
+<td align="center"><span class="math">\(p_2\)</span></td>
+<td align="center"><span class="math">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>ここで、</p>
 <ul>
 <li><span class="math">\(p_1=0.1+0.2=0.3\)</span></li>
@@ -520,13 +642,60 @@ $$</div>
 \mathrm{E}[S] &amp;= \theta\sum_{i=1}^{n-1}\frac{1}{i},\quad  \mathrm{E}[d] = \theta
 \end{aligned}$$</div>
 <h4>A：<span class="math">\(S=5\)</span></h4>
-<p>|     | site1    |  site2   |  site3   |   site4  | site5    |
-| --- | --- | --- | --- | --- | --- |
-| 1   | ●   | ●   |     |     |     |
-| 2   | ●   | ●   |     |     |     |
-| 3   | ●   | ●   |     |     |     |
-| 4   |     |     | ●   | ●   |     |
-| 5   |     |     | ●   | ●   | ●   |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>site1</th>
+<th>site2</th>
+<th>site3</th>
+<th>site4</th>
+<th>site5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>●</td>
+<td>●</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>●</td>
+<td>●</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>●</td>
+<td>●</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td>●</td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td>●</td>
+<td>●</td>
+<td>●</td>
+</tr>
+</tbody>
+</table>
 <div class="math">$$d = \frac{3\times2 + 3\times2 + 3\times 2+3\times 2 + 4\times 1}{_5\mathrm{C}_2} = \frac{14}{5}$$</div>
 <p>よって、</p>
 <div class="math">$$\theta =
@@ -538,13 +707,60 @@ $$</div>
 \end{cases}
 $$</div>
 <h4>B：<span class="math">\(S=5\)</span></h4>
-<p>|     |site1    |  site2   |  site3   |   site4  | site5    |
-| --- | --- | --- | --- | --- | --- |
-| 1   | ●   |     |     | ●   |     |
-| 2   |     |     |     |     |     |
-| 3   |     | ●   |     |     |     |
-| 4   |     |     | ●   |     |     |
-| 5   |     |     |     |     | ●   |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>site1</th>
+<th>site2</th>
+<th>site3</th>
+<th>site4</th>
+<th>site5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>●</td>
+<td></td>
+<td></td>
+<td>●</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td></td>
+<td>●</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td></td>
+<td></td>
+<td>●</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>●</td>
+</tr>
+</tbody>
+</table>
 <div class="math">$$d = \frac{1\times4 + 1\times4 + 1\times4 + 1\times 4 + 1\times 4}{_5\mathrm{C}_2} = \frac{20}{10} = 2$$</div>
 <p>よって、</p>
 <div class="math">$$\theta =
@@ -557,11 +773,36 @@ $$</div>
 $$</div>
 <h3>課題19</h3>
 <p><img src="theme/img/3S_Molecular_Evolution/kadai19.png"></p>
-<p>||<span class="math">\(\mathrm{A}\)</span>|<span class="math">\(\mathrm{G}\)</span>|Total|
-|:--:|:--:|:--:|:--:|
-|<span class="math">\(\mathrm{C}\)</span>|<span class="math">\(1/2\)</span>|<span class="math">\(3/8\)</span>|<span class="math">\(7/8\)</span>|
-|<span class="math">\(\mathrm{T}\)</span>|<span class="math">\(1/8\)</span>|<span class="math">\(0\)</span>|<span class="math">\(1/8\)</span>|
-|Total|<span class="math">\(5/8\)</span>|<span class="math">\(3/8\)</span>|<span class="math">\(1\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><span class="math">\(\mathrm{A}\)</span></th>
+<th align="center"><span class="math">\(\mathrm{G}\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(\mathrm{C}\)</span></td>
+<td align="center"><span class="math">\(1/2\)</span></td>
+<td align="center"><span class="math">\(3/8\)</span></td>
+<td align="center"><span class="math">\(7/8\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\mathrm{T}\)</span></td>
+<td align="center"><span class="math">\(1/8\)</span></td>
+<td align="center"><span class="math">\(0\)</span></td>
+<td align="center"><span class="math">\(1/8\)</span></td>
+</tr>
+<tr>
+<td align="center">Total</td>
+<td align="center"><span class="math">\(5/8\)</span></td>
+<td align="center"><span class="math">\(3/8\)</span></td>
+<td align="center"><span class="math">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
 <ol>
 <li>
 <div class="math">$$D_{AC} = \frac{1}{2} - \frac{5}{8}\cdot\frac{7}{8} = -\frac{3}{64}$$</div>
@@ -583,15 +824,68 @@ $$</div>
 <li><span class="math">\(s\)</span>：アリル <span class="math">\(i\)</span> を含む異なるハプロタイプの総数</li>
 </ul>
 <p>よって、ここでSNP1のAアリルに着目すれば、以下のように <span class="math">\(\mathrm{EHH}\)</span> が求められる。（SNP1のAアリルに着目しているので、SNP1がGアリルのものは考えなくて良い。）</p>
-<p>|     | SNP1 | SNP2 | SNP3 | SNP4 |
-| --- | ----- | ----- | ----- | ----- |
-| s   | 1     | 2     | 3     | 3     |
-| 1a  | A     | C     | G     | A     |
-| 1b  | A     | T     | G     | A     |
-| 2a  | A     | C     | A     | A     |
-| 2b  | A     | C     | G     | A     |
-| 3a  | A     | C     | G     | A     |
-| <span class="math">\(\mathrm{EHH}_A\)</span> | -     | 6/10      |    3/10   |   3/10    |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SNP1</th>
+<th>SNP2</th>
+<th>SNP3</th>
+<th>SNP4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1a</td>
+<td>A</td>
+<td>C</td>
+<td>G</td>
+<td>A</td>
+</tr>
+<tr>
+<td>1b</td>
+<td>A</td>
+<td>T</td>
+<td>G</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2a</td>
+<td>A</td>
+<td>C</td>
+<td>A</td>
+<td>A</td>
+</tr>
+<tr>
+<td>2b</td>
+<td>A</td>
+<td>C</td>
+<td>G</td>
+<td>A</td>
+</tr>
+<tr>
+<td>3a</td>
+<td>A</td>
+<td>C</td>
+<td>G</td>
+<td>A</td>
+</tr>
+<tr>
+<td><span class="math">\(\mathrm{EHH}_A\)</span></td>
+<td>-</td>
+<td>6/10</td>
+<td>3/10</td>
+<td>3/10</td>
+</tr>
+</tbody>
+</table>
 <div class="math">$$
 \begin{aligned}
 \mathrm{EHH}_{A,\mathrm{SNP}2}

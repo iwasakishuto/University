@@ -135,15 +135,44 @@
 <h2 id="anchor1">1. Motivations</h2>
 
 <h3>Diverse bio-molecule sequence data</h3>
-<p>|topic|images|
-|:--|:--:|
-|What kind of microbes are in here?|<img src="https://upload.wikimedia.org/wikipedia/commons/8/86/BNSF_5350_20040808_Prairie_du_Chien_WI.jpg" width=50%>|
-|What's wrong with his DNA?|<img src="https://medicine.news.am/static/news/b/2018/08/19302.jpg" width=50%>|
-|Why so long-lived?|<img src="https://static01.nyt.com/images/2016/10/06/science/05AGING-JP/05ZIMMER-jumbo.jpg?quality=90&auto=webp" width=50%>|
-|Ancient DNA|<img src="https://newhumanist.org.uk/images/rowson-DNA.jpg" width=50%>|
-|Religious relics?|<img src="https://upload.wikimedia.org/wikipedia/commons/9/99/St._Yves.JPG" width=50%>|
-|Infectious diseases|<img src="https://www.yourgenome.org/sites/default/files/images/photos/Close%20up%20a%20mosquito%20sucking%20human%20blood_set%20B-3.jpg" width=50%>|
-|What genes are active in each cell?|<img src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2018/cells.jpg" width=50%>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">topic</th>
+<th align="center">images</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">What kind of microbes are in here?</td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/8/86/BNSF_5350_20040808_Prairie_du_Chien_WI.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">What's wrong with his DNA?</td>
+<td align="center"><img src="https://medicine.news.am/static/news/b/2018/08/19302.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">Why so long-lived?</td>
+<td align="center"><img src="https://static01.nyt.com/images/2016/10/06/science/05AGING-JP/05ZIMMER-jumbo.jpg?quality=90&auto=webp" width=50%></td>
+</tr>
+<tr>
+<td align="left">Ancient DNA</td>
+<td align="center"><img src="https://newhumanist.org.uk/images/rowson-DNA.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">Religious relics?</td>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/9/99/St._Yves.JPG" width=50%></td>
+</tr>
+<tr>
+<td align="left">Infectious diseases</td>
+<td align="center"><img src="https://www.yourgenome.org/sites/default/files/images/photos/Close%20up%20a%20mosquito%20sucking%20human%20blood_set%20B-3.jpg" width=50%></td>
+</tr>
+<tr>
+<td align="left">What genes are active in each cell?</td>
+<td align="center"><img src="https://3c1703fe8d.site.internapcdn.net/newman/csz/news/800/2018/cells.jpg" width=50%></td>
+</tr>
+</tbody>
+</table>
 <h3>How do we analyze these sequences?</h3>
 <p><font color="red"><b>The main way is by comparing and aligning them.</b></font></p>
 <h3>Diverse alignment tasks</h3>
@@ -168,31 +197,66 @@
 <p>It depends on the purpose and researchers' options.</p>
 <h4>Ortholog and Paralog</h4>
 <p><img src="http://www.discoveryandinnovation.com/bioinformatics/glossary_detail/images/orthologs.jpg"></p>
-<p>|term|explanation|
-|:--:|:--|
-|<b>Homology</b>|descent from a common ancestor|
-|<b>Orthology</b>|descent from a common ancestor <b>by genome division</b>|
-|<b>Paralogy</b>|descent from a common ancestor <b>by duplication within a genome</b>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">term</th>
+<th align="left">explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><b>Homology</b></td>
+<td align="left">descent from a common ancestor</td>
+</tr>
+<tr>
+<td align="center"><b>Orthology</b></td>
+<td align="left">descent from a common ancestor <b>by genome division</b></td>
+</tr>
+<tr>
+<td align="center"><b>Paralogy</b></td>
+<td align="left">descent from a common ancestor <b>by duplication within a genome</b></td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>Orthology is not necessary to 1-to-1. (many-to-many.)</li>
 <li>Orthology is not transitive.
 Given "A and B are Orthologs" and "B and C are Orthologs", A and C <font color="red"><b>are not always</b></font> Orthologs. (Not an equivalence relation.)</li>
 </ul>
 <h3>Similarity versus homology</h3>
-<p>||Homologous sequences|Not|
-|:--:|:--:|:--:|
-|Similar sequences||<b>Convergent evolution</b>|
-|Not|Rapid evolution over a long time span||</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">Homologous sequences</th>
+<th align="center">Not</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Similar sequences</td>
+<td align="center"></td>
+<td align="center"><b>Convergent evolution</b></td>
+</tr>
+<tr>
+<td align="center">Not</td>
+<td align="center">Rapid evolution over a long time span</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <p>The most frequent case of <b>convergent evolution</b> is <font color="red"><b>simple sequences</b></font>.</p>
 <h3>Simple sequences</h3>
 <p>DNA (and RNA and protein) frequently has <font color="red"><b>simple sequences</b></font>:</p>
-<p><code>python
-atgatcgattatcgtagtctaggtcgtatgctatgatt
-cgat "aaaaaaaaaaaaaaaaaaa" cggtatgcgtagctg
+<pre class="highlight"><code class="language-python">atgatcgattatcgtagtctaggtcgtatgctatgatt
+cgat &quot;aaaaaaaaaaaaaaaaaaa&quot; cggtatgcgtagctg
 cgatcgtagtgactatatgagagaggattcgatgctaa
 gttctctaggagaggcttaggctgagcgcgtatcactg
-gctcgcggc "tgtgtgtgtgtgtgtgtgtgtgtgtgtg" a
-cgtatcgcacatcgtcgattttgagattcccgatggcc</code></p>
+gctcgcggc &quot;tgtgtgtgtgtgtgtgtgtgtgtgtgtg&quot; a
+cgtatcgcacatcgtcgattttgagattcccgatggcc</code></pre>
+
+
 <p>Of course, these simple sequences also appear randomly, but such sequences appear with a higher probability in the genome sequences of the actual organisms. (Why??)</p>
 <h4>How do simple sequences evolve?</h4>
 <ul>
@@ -224,18 +288,24 @@ cgtatcgcacatcgtcgattttgagattcccgatggcc</code></p>
 <h4>Simple sequences/low-complexity tracts</h4>
 <ul>
 <li><b>Maybe the same as short-period (inexact) tandem repeats?</b></li>
-<li>Examples:
-<code>python
-atatatatatatctctctctct
-aaaagagaaaacaaaaaagggaaaaa</code></li>
+<li>Examples:</li>
+</ul>
+<pre class="highlight"><code class="language-python">atatatatatatctctctctct
+aaaagagaaaacaaaaaagggaaaaa</code></pre>
+
+
+<ul>
 <li>Maybe evolve by slippage during DNA replication, <em>with change slip offsets?</em></li>
 </ul>
 <h4>Interspersed repeats</h4>
 <p>Completely different from the above two.</p>
 <ul>
-<li>Identical, or non-identical, sequences scattered around the genome:
-<code>python
-ctt "gttattgctgatc" gtcctctctgtaaatt "gttattgctgatc" atgctttaac</code></li>
+<li>Identical, or non-identical, sequences scattered around the genome:</li>
+</ul>
+<pre class="highlight"><code class="language-python">ctt &quot;gttattgctgatc&quot; gtcctctctgtaaatt &quot;gttattgctgatc&quot; atgctttaac</code></pre>
+
+
+<ul>
 <li>Many of them are virus-like, and copy themselves<ul>
 <li>Example: one human genome has about 1 million <font color="red">Alu</font> elements, and about 1 million <font color="red">LINE</font> elements.</li>
 </ul>
@@ -274,12 +344,47 @@ ctt "gttattgctgatc" gtcctctctgtaaatt "gttattgctgatc" atgctttaac</code></li>
 <ol>
 <li>Define a scoring scheme.</li>
 </ol>
-<p>||a|c|g|t|
-|:--:|:--:|:--:|:--:|:--:|
-|a|2|-3|-1|-3|
-|c|-3|2|-3|-1|
-|g|-1|-3|2|-3|
-|t|-3|-1|-3|2|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">c</th>
+<th align="center">g</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">a</td>
+<td align="center">2</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">-3</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">-3</td>
+<td align="center">2</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">-1</td>
+<td align="center">-3</td>
+<td align="center">2</td>
+<td align="center">-3</td>
+</tr>
+<tr>
+<td align="center">t</td>
+<td align="center">-3</td>
+<td align="center">-1</td>
+<td align="center">-3</td>
+<td align="center">2</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>Gap existence cost: 5</li>
 <li>
@@ -291,12 +396,47 @@ ctt "gttattgctgatc" gtcctctctgtaaatt "gttattgctgatc" atgctttaac</code></li>
 </ul>
 <p>Why is this a good method??</p>
 <p><b>Because using above matrix means equivalent to finding alignments with high likelihood, in a statistical model of related sequences.</b></p>
-<p>||a|c|g|t|
-|:--:|:--:|:--:|:--:|:--:|
-|a|0.2|0.03|0.05|0.03|
-|c|0.03|0.2|0.03|0.05|
-|g|0.05|0.03|0.2|0.03|
-|t|0.03|0.05|0.03|0.2|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">c</th>
+<th align="center">g</th>
+<th align="center">t</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">a</td>
+<td align="center">0.2</td>
+<td align="center">0.03</td>
+<td align="center">0.05</td>
+<td align="center">0.03</td>
+</tr>
+<tr>
+<td align="center">c</td>
+<td align="center">0.03</td>
+<td align="center">0.2</td>
+<td align="center">0.03</td>
+<td align="center">0.05</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="center">0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.2</td>
+<td align="center">0.03</td>
+</tr>
+<tr>
+<td align="center">t</td>
+<td align="center">0.03</td>
+<td align="center">0.05</td>
+<td align="center">0.03</td>
+<td align="center">0.2</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>Gap existence probability: 0.1</li>
 <li>Gap extension probability: 0.7</li>
@@ -315,12 +455,32 @@ ctt "gttattgctgatc" gtcctctctgtaaatt "gttattgctgatc" atgctttaac</code></li>
 </ul>
 <h3>Scores are log likelihood ratios</h3>
 <div class="math">$$S_{xy}=t \times \log \left(\frac{A_{xy}}{P_{x} \times Q_{y}}\right)$$</div>
-<p>|variable|meaning|
-|:--:|:--|
-|<span class="math">\(A_{xy}\)</span>|Probability of <span class="math">\(x\)</span> aligned to <span class="math">\(y\)</span> in a true alignment|
-|<span class="math">\(P_{x}\)</span>|Probability of <span class="math">\(x\)</span> in the first sequence|
-|<span class="math">\(Q_{y}\)</span>|Probability of <span class="math">\(y\)</span> in the second sequence|
-|<span class="math">\(t\)</span>|an arbitrary positive constant.|</p>
+<table>
+<thead>
+<tr>
+<th align="center">variable</th>
+<th align="left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(A_{xy}\)</span></td>
+<td align="left">Probability of <span class="math">\(x\)</span> aligned to <span class="math">\(y\)</span> in a true alignment</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(P_{x}\)</span></td>
+<td align="left">Probability of <span class="math">\(x\)</span> in the first sequence</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Q_{y}\)</span></td>
+<td align="left">Probability of <span class="math">\(y\)</span> in the second sequence</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(t\)</span></td>
+<td align="left">an arbitrary positive constant.</td>
+</tr>
+</tbody>
+</table>
 <p><b>We get more accurate alignments if we use model parameters that fit the data.</b></p>
 <h4>Sequence quality data</h4>
 <p>Some <b>DNA sequencers estimate the rror probability</b> of every base. We ought to use this information when comparing sequences.
@@ -336,20 +496,60 @@ t\times\log\left(\frac{A_{xy}}{P_x\times Q_y}\right)
 <p>Why this formula can model probability well ??
 → Home work:(</p>
 <h4>A flaw with classic alignment</h4>
-<p>|Alignment scores|<span class="math">\(200\)</span>|<span class="math">\(-150\)</span>|<span class="math">\(300\)</span>|<span class="math">\(-450\)</span>|
-|:--:|:--:|:--:|:--:|:--:|
-|Sequence A|<font color="red">▲</font>|<font color="green">◀︎</font>|<font color="pink">◼︎</font>|<font color="cyan">▶︎</font>|
-|Sequence B|<font color="red">▲</font>|<font color="blue">🔵</font>|<font color="pink">◼︎</font>|<font color="orange">⬛️</font>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">Alignment scores</th>
+<th align="center"><span class="math">\(200\)</span></th>
+<th align="center"><span class="math">\(-150\)</span></th>
+<th align="center"><span class="math">\(300\)</span></th>
+<th align="center"><span class="math">\(-450\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Sequence A</td>
+<td align="center"><font color="red">▲</font></td>
+<td align="center"><font color="green">◀︎</font></td>
+<td align="center"><font color="pink">◼︎</font></td>
+<td align="center"><font color="cyan">▶︎</font></td>
+</tr>
+<tr>
+<td align="center">Sequence B</td>
+<td align="center"><font color="red">▲</font></td>
+<td align="center"><font color="blue">🔵</font></td>
+<td align="center"><font color="pink">◼︎</font></td>
+<td align="center"><font color="orange">⬛️</font></td>
+</tr>
+</tbody>
+</table>
 <p>→ Maximum alignment score: <span class="math">\(350\)</span></p>
 <p>We Assuming that there is <b>only one homologous sequence</b>, but there may be <b>two homologous sequences</b>.</p>
 <h2 id="anchor5">5. Seeds & indexing</h2>
 
 <h3>Alignment algorithms</h3>
-<p>|Exact|Heuristic|
-|:--|:--|
-|Guaranteed to find the highest alignment score|Not guaranteed to find the highest alignment score|
-|A bit slow|Fast|
-|Smith-Waterman algotirhm, Gotoh algorithm|<b>seed-and-extend approach</b>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">Exact</th>
+<th align="left">Heuristic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Guaranteed to find the highest alignment score</td>
+<td align="left">Not guaranteed to find the highest alignment score</td>
+</tr>
+<tr>
+<td align="left">A bit slow</td>
+<td align="left">Fast</td>
+</tr>
+<tr>
+<td align="left">Smith-Waterman algotirhm, Gotoh algorithm</td>
+<td align="left"><b>seed-and-extend approach</b></td>
+</tr>
+</tbody>
+</table>
 <h3>Seed-and-extend approach (e.g. BLAST)</h3>
 <ol>
 <li>Find "seeds"</li>
@@ -400,35 +600,81 @@ t\times\log\left(\frac{A_{xy}}{P_x\times Q_y}\right)
 <li><font color="red"><b>Subset seeds (inexact)</b></font></li>
 <li>Adaptive seeds (variable length)</li>
 </ul>
-<p>|Name|Methods|Biological background|
-|:--|:--|:--|
-|Spaced seeds|Ignore some positions.|protein-coding DNA tends to change at every <span class="math">\(3^{\mathrm{rd}}\)</span> position|
-|Subset seeds|A generalization of spaced seeds.<br>Use reduced alphabets (allow a mismatch between "g" and "t") at some positions.|Proteins: similar (e.g. small) amino acids tend to replace each other<br>DNA: a ↔︎ g and c ↔︎ t are often more common|
-|Spaced &amp; subset seeds|Both|<font color="red"><b>Even for randomly evolving sequences, they can be more sensitive than exact match seeds (surprising)</b></font>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Methods</th>
+<th align="left">Biological background</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Spaced seeds</td>
+<td align="left">Ignore some positions.</td>
+<td align="left">protein-coding DNA tends to change at every <span class="math">\(3^{\mathrm{rd}}\)</span> position</td>
+</tr>
+<tr>
+<td align="left">Subset seeds</td>
+<td align="left">A generalization of spaced seeds.<br>Use reduced alphabets (allow a mismatch between "g" and "t") at some positions.</td>
+<td align="left">Proteins: similar (e.g. small) amino acids tend to replace each other<br>DNA: a ↔︎ g and c ↔︎ t are often more common</td>
+</tr>
+<tr>
+<td align="left">Spaced &amp; subset seeds</td>
+<td align="left">Both</td>
+<td align="left"><font color="red"><b>Even for randomly evolving sequences, they can be more sensitive than exact match seeds (surprising)</b></font></td>
+</tr>
+</tbody>
+</table>
 <h3>Analogy: word counts</h3>
 <ul>
 <li>We have a random DNA sequence of length 5.</li>
 <li>Which of these words is more likely to occur? "aaaa" or "atgc" (Ans. "aaaa" (<span class="math">\(7/4^5\)</span>) &lt; "atgc" (<span class="math">\(8/4^5\)</span>) )</li>
 </ul>
 <h3>Spaced seeds</h3>
-<p>```python</p>
-<h1>70%-identical sequences, length 50</h1>
-<p>ctaactagctagctgccgctatcttagctagctagctctctggtcgta
-cttgctagctaactacccctatctaaactagttaaatccctgggcata
-```</p>
-<p>|Un-spaced seed (length=<span class="math">\(5\)</span>)||Spaced seed (length=<span class="math">\(7\)</span>, weight=<span class="math">\(5\)</span>)|
-|:--:|:--:|:--:|
-|■■■■■|seed|■■□■□■■|
-|<span class="math">\((0.7)^5\)</span>|Prob(match at <span class="math">\(1\)</span> position)|<span class="math">\((0.7)^5\)</span>|
-|<span class="math">\(46\)</span>|Number of positions|<span class="math">\(44\)</span>|
-|<span class="math">\(46\times(0.7)^5\)</span>|Expected number of matches|<span class="math">\(44\times(0.7)^5\)</span>|</p>
-<p>Almost same probability, but...
-```python</p>
-<h1>70%-identical sequences, length 50</h1>
-<p>index: 0123456789...
-seq A: ctaa"ctagcta"gctg"ccgctat"cttag"ctagcta"gctctctggtcgta
-seq B: cttg"ctagcta"acta"cccctat"ctaaa"ctagtta"aatccctgggcata
-```</p>
+<pre class="highlight"><code class="language-python"># 70%-identical sequences, length 50
+ctaactagctagctgccgctatcttagctagctagctctctggtcgta
+cttgctagctaactacccctatctaaactagttaaatccctgggcata</code></pre>
+
+
+<table>
+<thead>
+<tr>
+<th align="center">Un-spaced seed (length=<span class="math">\(5\)</span>)</th>
+<th align="center"></th>
+<th align="center">Spaced seed (length=<span class="math">\(7\)</span>, weight=<span class="math">\(5\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">■■■■■</td>
+<td align="center">seed</td>
+<td align="center">■■□■□■■</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\((0.7)^5\)</span></td>
+<td align="center">Prob(match at <span class="math">\(1\)</span> position)</td>
+<td align="center"><span class="math">\((0.7)^5\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(46\)</span></td>
+<td align="center">Number of positions</td>
+<td align="center"><span class="math">\(44\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(46\times(0.7)^5\)</span></td>
+<td align="center">Expected number of matches</td>
+<td align="center"><span class="math">\(44\times(0.7)^5\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Almost same probability, but...</p>
+<pre class="highlight"><code class="language-python"># 70%-identical sequences, length 50
+index: 0123456789...
+seq A: ctaa&quot;ctagcta&quot;gctg&quot;ccgctat&quot;cttag&quot;ctagcta&quot;gctctctggtcgta
+seq B: cttg&quot;ctagcta&quot;acta&quot;cccctat&quot;ctaaa&quot;ctagtta&quot;aatccctgggcata</code></pre>
+
+
 <ul>
 <li>Un-spaced seed: <span class="math">\(\Longrightarrow [4:9],[5:10],[6:11]\)</span></li>
 <li>Spaced seed: <span class="math">\(\Longrightarrow [4:11],[15:22],[27:34]\)</span></li>
@@ -440,19 +686,19 @@ seq B: cttg"ctagcta"acta"cccctat"ctaaa"ctagtta"aatccctgggcata
 <p>"■■□■□■■","■■□■■■","■■□■□□■■","■■□■□□□■■"</p>
 <p>It is very hard and depends on these numbers. (<font color="red"><span class="math">\(70\)</span>%</font> identical sequences, length <font color="red">$50%</font>)</p>
 <h3>Co-designed seed patterns</h3>
-<p>```python</p>
-<h1>1: must match</h1>
-<h1>T: transitions are allowed (A ↔︎ G, C ↔︎ T)</h1>
-<h1>0: any mismatch is allowed</h1>
-<p>1101T1T0T1T00TT1TT11
+<pre class="highlight"><code class="language-python"># 1: must match
+# T: transitions are allowed (A ↔︎ G, C ↔︎ T)
+# 0: any mismatch is allowed
+1101T1T0T1T00TT1TT11
 1TTTTT010TT0TT01011TTT1
 1TTTT10010T011T0TTTT11
 111T011T0T01T100111
 1T10T100TT01000TT01TT111
 111T101TT000T0T10T00T1T1
 111100T011TTT00T0TT01T1
-1T1T10T11011011T1
-```</p>
+1T1T10T11011011T1</code></pre>
+
+
 <ul>
 <li>Each pattern tends to find alignments that the other ones miss.</li>
 <li>Design is very and very hard, so usually use Heuristics.</li>
@@ -480,12 +726,12 @@ If we compare the human and chimp genomes, as each genome has <span class="math"
 </ol>
 <h3>Definition of adaptive seeds</h3>
 <p>At each position in the query, find the shortest sequence that occurs <span class="math">\(\leq M\)</span> times in the reference. (For example, <span class="math">\(M=10\)</span>, and query starts from "|")</p>
-<p>```python</p>
-<h1>Query</h1>
-<p>…atcgtatcgtatcgtactgctggcc | tagtggggga…</p>
-<h1>Reference</h1>
-<p>…ctcgtcgatgctagtcgtactgctgatgctatatatatattaatg…
-```</p>
+<pre class="highlight"><code class="language-python"># Query
+…atcgtatcgtatcgtactgctggcc | tagtggggga…
+# Reference
+…ctcgtcgatgctagtcgtactgctgatgctatatatatattaatg…</code></pre>
+
+
 <ul>
 <li>"tag" occurs <span class="math">\(135\)</span> times in the reference.</li>
 <li>"tagt" occurs <span class="math">\(19\)</span> times in the reference.</li>
@@ -504,11 +750,10 @@ If we compare the human and chimp genomes, as each genome has <span class="math"
 <p>We can combine the benefits of <font color="red"><b>spaced/subset seeds</b></font> and <font color="red"><b>adaptive seeds</b></font></p>
 <h3>Spaced suffix array</h3>
 <p>Also, there is a <font color="red"><b>Spaced suffix array</b></font> to find "Adaptive spaced seeds". (Algotirhm is same as normal one.)</p>
-<p>```python</p>
-<h1>Sequence</h1>
-<p>acgatcgatg</p>
-<h1>Spaced suffixes</h1>
-<p>0 ac_at_ga_g
+<pre class="highlight"><code class="language-python"># Sequence
+acgatcgatg
+# Spaced suffixes
+0 ac_at_ga_g
 1  cg_tc_at_
 2   ga_cg_tg
 3    at_ga_g
@@ -517,15 +762,15 @@ If we compare the human and chimp genomes, as each genome has <span class="math"
 6       ga_g
 7        at_
 8         tg
-9          g
-```</p>
+9          g</code></pre>
+
+
 <h3>Subset suffix array</h3>
-<p>```python</p>
-<h1>Sequence</h1>
-<p>acgatcgatg</p>
-<h1>Subset suffixes</h1>
-<h1>a,g → R / c,t → Y</h1>
-<p>0 acRatYgaYg
+<pre class="highlight"><code class="language-python"># Sequence
+acgatcgatg
+# Subset suffixes
+# a,g → R / c,t → Y
+0 acRatYgaYg
 1  cgRtcRatR
 2   gaYcgRtg
 3    atYgaYg
@@ -534,8 +779,9 @@ If we compare the human and chimp genomes, as each genome has <span class="math"
 6       gaYg
 7        atR
 8         tg
-9          g
-```</p>
+9          g</code></pre>
+
+
 <h2>Advertising</h2>
 <p>Frith(teacher) and his colleagues made <a href="http://last.cbrc.jp">LAST</a>. "Adaptive seeds", and "Subset seeds" are used in the algorithm.</p>
 <p><a href="http://last.cbrc.jp"><img src="http://last.cbrc.jp/lastwebfig.png"></a></p>
@@ -564,8 +810,7 @@ t\times\log\left(\frac{A_{xy}}{P_x\times Q_y}\right)
 <h2>Answer</h2>
 <h4>1</h4>
 <p><span class="math">\(0,3,5,7,10,11,13,16,17\)</span></p>
-<p><code>python
-acgatcgatgaagatgca
+<pre class="highlight"><code class="language-python">acgatcgatgaagatgca
 =--
  --=
   -=-
@@ -583,10 +828,11 @@ acgatcgatgaagatgca
             -=-
              =--
               --=
-               --=</code></p>
+               --=</code></pre>
+
+
 <h4>2</h4>
-<p><code>python
-17 a
+<pre class="highlight"><code class="language-python">17 a
 10 aagatgca
  0 acgatcgatgaagatgca
 11 agatgca
@@ -594,7 +840,9 @@ acgatcgatgaagatgca
  7 atgaagatgca
 13 atgca
 16 ca
- 5 cgatgaagatgca</code></p>
+ 5 cgatgaagatgca</code></pre>
+
+
 <h4>3</h4>
 <p><span class="math">\(S_{xy} (x,y\in\{a,c,g,t\})\)</span> specifies the score for aligning the nucleotides <span class="math">\(x\)</span> and <span class="math">\(y\)</span>. The scoring matrix can be interpreted as a log likelihood ratio:</p>
 <div class="math">$$S_{x y}=t \times \ln \left(R_{x y}\right)$$</div>

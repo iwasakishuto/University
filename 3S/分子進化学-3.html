@@ -147,18 +147,76 @@ $$</div>
 <li><span class="math">\(t+1\)</span> 世代目の子ども中のAA、Aa、aaの頻度をそれぞれ <span class="math">\(p_t^2,2p_tq_t,q_t^2\)</span></li>
 <li>AA、Aa、aaの適応度を <span class="math">\(W_{AA},W_{Aa},W_{aa}\)</span></li>
 </ul>
-<p>|遺伝子型|AA|Aa|aa|合計|
-|:--|:--:|:--:|:--:|:--:|
-|頻度|<span class="math">\(p_1^2\)</span>|<span class="math">\(2p_tq_t\)</span>|<span class="math">\(q_t^2\)</span>|<span class="math">\(1\)</span>|
-|適応度|<span class="math">\(W_{AA}\)</span>|<span class="math">\(W_{Aa}\)</span>|<span class="math">\(W_{aa}\)</span>||
-|遺伝子プールへの寄与|<span class="math">\(p_t^2W_{AA}\)</span>|<span class="math">\(2p_tq_tW_{Aa}\)</span>|<span class="math">\(q_t^2W_{aa}\)</span>|<span class="math">\(W\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">遺伝子型</th>
+<th align="center">AA</th>
+<th align="center">Aa</th>
+<th align="center">aa</th>
+<th align="center">合計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">頻度</td>
+<td align="center"><span class="math">\(p_1^2\)</span></td>
+<td align="center"><span class="math">\(2p_tq_t\)</span></td>
+<td align="center"><span class="math">\(q_t^2\)</span></td>
+<td align="center"><span class="math">\(1\)</span></td>
+</tr>
+<tr>
+<td align="left">適応度</td>
+<td align="center"><span class="math">\(W_{AA}\)</span></td>
+<td align="center"><span class="math">\(W_{Aa}\)</span></td>
+<td align="center"><span class="math">\(W_{aa}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">遺伝子プールへの寄与</td>
+<td align="center"><span class="math">\(p_t^2W_{AA}\)</span></td>
+<td align="center"><span class="math">\(2p_tq_tW_{Aa}\)</span></td>
+<td align="center"><span class="math">\(q_t^2W_{aa}\)</span></td>
+<td align="center"><span class="math">\(W\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>ここで <span class="math">\(W=p_1^2W_{AA}+2p_tq_tW_{Aa}+q_t^2W_{aa}\)</span> を<font color="red"><b>集団適応度</b></font>と呼び、<span class="math">\(t+1\)</span> 世代における成体中のAの頻度は <span class="math">\(p_{t+1} = \left[p_t^2W_{AA}+p_tq_tW_{Aa}\right]/W\)</span> で表される。</p>
 <p>なお、AA、Aa、aaの<font color="red"><b>適応度の最大値</b></font>を <span class="math">\(W_{max}\)</span> として、AA、Aa、aaの<font color="red"><b>相対適応度</b></font>を <span class="math">\(W_{AA}/W_{max},W_{Aa}/W_{max},W_{aa}/W_{max}\)</span> で与え、式を簡潔にしたものを使うことも多い。</p>
-<p>|遺伝子型|AA|Aa|aa|合計|
-|:--|:--:|:--:|:--:|:--:|
-|相対頻度|<span class="math">\(p_1^2\)</span>|<span class="math">\(2p_tq_t\)</span>|<span class="math">\(q_t^2\)</span>|<span class="math">\(1\)</span>|
-|相対適応度|<span class="math">\(1\)</span>|<span class="math">\(1-s_1\)</span>|<span class="math">\(1-s_2\)</span>||
-|遺伝子プールへの寄与|<span class="math">\(p_t^2\)</span>|<span class="math">\(2p_tq_t(1-s_1)\)</span>|<span class="math">\(q_t^2(1-s_2)\)</span>|<span class="math">\(W\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">遺伝子型</th>
+<th align="center">AA</th>
+<th align="center">Aa</th>
+<th align="center">aa</th>
+<th align="center">合計</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">相対頻度</td>
+<td align="center"><span class="math">\(p_1^2\)</span></td>
+<td align="center"><span class="math">\(2p_tq_t\)</span></td>
+<td align="center"><span class="math">\(q_t^2\)</span></td>
+<td align="center"><span class="math">\(1\)</span></td>
+</tr>
+<tr>
+<td align="left">相対適応度</td>
+<td align="center"><span class="math">\(1\)</span></td>
+<td align="center"><span class="math">\(1-s_1\)</span></td>
+<td align="center"><span class="math">\(1-s_2\)</span></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">遺伝子プールへの寄与</td>
+<td align="center"><span class="math">\(p_t^2\)</span></td>
+<td align="center"><span class="math">\(2p_tq_t(1-s_1)\)</span></td>
+<td align="center"><span class="math">\(q_t^2(1-s_2)\)</span></td>
+<td align="center"><span class="math">\(W\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>この時、集団適応度 <span class="math">\(W=p_t^2 + 2p_tq_t(1-s_1) + q_t^2(1-s_2)\)</span></p>
 <p>ここで、<span class="math">\(s_1=s/2, s_2=s\)</span> とおくと、</p>
 <div class="math">$$W=p_t^2 + 2p_tq_t(1-s/2) + q_t^2(1-s) = 1-sq_t$$</div>

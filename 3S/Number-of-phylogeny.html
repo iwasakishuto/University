@@ -129,11 +129,36 @@
 <div class="math">$$n!! = n\times(n-2)\times(n-4)\times\cdots\times1$$</div>
 <h2>節点・枝・葉の関係</h2>
 <p>葉の個数に関する帰納法（といえば大げさだが、葉を <span class="math">\(1\)</span> つ取り除くと枝の数、節点の数が共に <span class="math">\(2\)</span> 個減少することは明らか）を用いれば、以下の性質が簡単に説明できる。</p>
-<p>| 用語 | 説明 | 有根系統樹 | 無根系統樹 |
-| ---- | ---- | ---------- | ---------- |
-| 葉   |  次数が <span class="math">\(1\)</span> の節点で、現存する、もしくは、対象とする <span class="math">\(1\)</span> つの生物種に対応する。<br>葉はラベルを持ち、異なる葉には異なるラベルが割り当てられる。    | <span class="math">\(n\)</span>        | <span class="math">\(n\)</span>        |
-| 節点 | 木の葉もしくは枝分かれ部分をいう。     | <span class="math">\(2n-1\)</span>     | <span class="math">\(2n-2\)</span>     |
-| 枝（辺）   | 節点の対で、種の親子関係を表す。     | <span class="math">\(2n-2\)</span>     | <span class="math">\(2n-3\)</span>     |</p>
+<table>
+<thead>
+<tr>
+<th>用語</th>
+<th>説明</th>
+<th>有根系統樹</th>
+<th>無根系統樹</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>葉</td>
+<td>次数が <span class="math">\(1\)</span> の節点で、現存する、もしくは、対象とする <span class="math">\(1\)</span> つの生物種に対応する。<br>葉はラベルを持ち、異なる葉には異なるラベルが割り当てられる。</td>
+<td><span class="math">\(n\)</span></td>
+<td><span class="math">\(n\)</span></td>
+</tr>
+<tr>
+<td>節点</td>
+<td>木の葉もしくは枝分かれ部分をいう。</td>
+<td><span class="math">\(2n-1\)</span></td>
+<td><span class="math">\(2n-2\)</span></td>
+</tr>
+<tr>
+<td>枝（辺）</td>
+<td>節点の対で、種の親子関係を表す。</td>
+<td><span class="math">\(2n-2\)</span></td>
+<td><span class="math">\(2n-3\)</span></td>
+</tr>
+</tbody>
+</table>
 <h2>系統樹の個数</h2>
 <h3>無根系統樹</h3>
 <p>こちらも葉の個数に関する帰納法によって証明できる。葉が <span class="math">\(3\)</span> 個の時に、無根系統樹に対して定理が成立することは明らか。</p>

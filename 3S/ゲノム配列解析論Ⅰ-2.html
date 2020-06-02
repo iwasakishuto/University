@@ -146,15 +146,47 @@ keywords: プロファイル、ドメイン、モチーフ、系統フットプ�
 </ol>
 <h3>種類と方法</h3>
 <h4>基本</h4>
-<p>|配列数|大域的・半大域的|局所的|
-|:--|:--|:--|
-|2配列(厳密)|NWG法|SWG法|
-|2配列(高速)|PH<br><b>Cgaln</b><br>FASTS<br>BLAST|
-|多重|累進法<br>反復改善法<br>整合法|期待値最大化Gibbsサンプリング|</p>
+<table>
+<thead>
+<tr>
+<th align="left">配列数</th>
+<th align="left">大域的・半大域的</th>
+<th align="left">局所的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2配列(厳密)</td>
+<td align="left">NWG法</td>
+<td align="left">SWG法</td>
+</tr>
+<tr>
+<td align="left">2配列(高速)</td>
+<td align="left">PH<br><b>Cgaln</b><br>FASTS<br>BLAST</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">多重</td>
+<td align="left">累進法<br>反復改善法<br>整合法</td>
+<td align="left">期待値最大化Gibbsサンプリング</td>
+</tr>
+</tbody>
+</table>
 <h4>応用</h4>
-<p>|スレディング|スプライスアラインメント|
-|:--|:--|
-|高次構造と配列とのアラインメント|真核生物ゲノム配列とcDNAやアミノ酸配列とのアラインメント|</p>
+<table>
+<thead>
+<tr>
+<th align="left">スレディング</th>
+<th align="left">スプライスアラインメント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">高次構造と配列とのアラインメント</td>
+<td align="left">真核生物ゲノム配列とcDNAやアミノ酸配列とのアラインメント</td>
+</tr>
+</tbody>
+</table>
 <h2>動的計画法を用いた最良アラインメント計算アルゴリズム</h2>
 <h3>動的計画法による文字列比較</h3>
 <ul>
@@ -201,12 +233,13 @@ $$</div>
 <p>以下の <code>sum</code> を考える。</p>
 <p><img src="https://inzkyk.github.io//ox-hugo/AlgorithmFigure_3-ex10.png"></p>
 <p>Kadane-Gries <span class="math">\(O(n)\)</span> Algorithm:</p>
-<p><code>c
-F[0] = H[0] = 0; // 初期化
+<pre class="highlight"><code class="language-c">F[0] = H[0] = 0; // 初期化
 for (i=1; i&lt;=N; ++i){
   H[i] = max{H[i-1] + S[i], 0}; // 0より小さくなったらその次から再スタート
   F[i] = max{F[i-1], H[i]}; // 最大値を記録
-}</code></p>
+}</code></pre>
+
+
 <h3>Smith-Waterman-Gotoh Algorithm (<span class="math">\(g(k)=-uk-v\)</span>)</h3>
 <p><img src="https://1.bp.blogspot.com/_39NGKVWYg3o/Sn2Vnx0m4RI/AAAAAAAAAeg/WD2HCZFQo9s/s320/Picture+2.png"></p>
 <h4>Recursion Eq.</h4>
@@ -229,29 +262,32 @@ $$</div>
 <div class="math">$$\mathrm{Score} = H_{i^*-1,j^*-1} = \underset{0\leq i\leq m, 1\leq j\leq n}{\max}\left\{H_{i,j}\right\}$$</div>
 <h2>編集距離アルゴリズムの実装</h2>
 <h4>漸化式(recurrent method)</h4>
-<p><code>c
-for (i=0; i&lt;m; ++i){
+<pre class="highlight"><code class="language-c">for (i=0; i&lt;m; ++i){
   for (j=0; j&lt;n; ++j){
     d[i,j] = min{d[i-1,j-1] + s(a[i],b[j]),
                  d[i-1,j],
                  d[i,j-1]}
   }
-}</code></p>
+}</code></pre>
+
+
 <h4>再帰式(recursive call)</h4>
-<p><code>c
-double D(i,j){
+<pre class="highlight"><code class="language-c">double D(i,j){
   if(i==0) return(j);
   if(j==0) return(i);
   return (min{D(i-1,j-1) + s(a[i],b[i]),
               D(i-1,j),
               D(i, j-1)}
   )
-}</code></p>
+}</code></pre>
+
+
 <p>上の式の場合、<span class="math">\(D(i,j)(i\neq0)\)</span> を計算する時に、再帰式の中で <span class="math">\(D(i-1,j-1)\)</span> を <span class="math">\(3\)</span> 回計算することになるため同じ値の計算が指数関数的に増えてしまい、無駄が多くなっている。</p>
 <h3>進行方向</h3>
-<p><code>c
-for (i=0; i&lt;m; ++i){
-  for (j=0; j&lt;n; ++j){</code></p>
+<pre class="highlight"><code class="language-c">for (i=0; i&lt;m; ++i){
+  for (j=0; j&lt;n; ++j){</code></pre>
+
+
 <p>の方向は、かなり実装が楽。</p>
 <p>一方で、斜め方向の場合並列処理が可能になるので、大規模なDP matrixを考えた時は効率が良い。</p>
 <h2>トレースバック法</h2>

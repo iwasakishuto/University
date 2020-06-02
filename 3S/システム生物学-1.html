@@ -134,24 +134,82 @@
 </li>
 </ul>
 <h2>講義日程</h2>
-<p>|#|日付|内容|
-|:--|:--|:--|
-|1|6/7|・イントロ<br>・フィードフォワード<br>・微分積分回路と細胞運命決定|
-|2|6/21|・フィードフォワード<br>・インスリン作用<br>・低周波フィルタ|
-|3|6/28|・ネガティブフィードバック<br>・浸透圧調節<br>・固有値と解の振る舞い|
-|4|7/5|・高次反応とスイッチ応答<br>・ポジティブフィードバック<br>・減数分裂|
-|5|7/12|・ポジティブ+ネガティブフィードバック<br>・神経細胞の活動電位<br>・確率共鳴<br>・分子数の少数性によるゆらぎを利用したロバストネス|
-|6|7/19|・シャノンの情報理論によるシグナル伝達経路の解析<br>・代謝フラックス解析<br>・多階層オミクスを統合したデータドリブンシステム生物学|
-|6|7/26|テスト|</p>
+<table>
+<thead>
+<tr>
+<th align="left">#</th>
+<th align="left">日付</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">6/7</td>
+<td align="left">・イントロ<br>・フィードフォワード<br>・微分積分回路と細胞運命決定</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">6/21</td>
+<td align="left">・フィードフォワード<br>・インスリン作用<br>・低周波フィルタ</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">6/28</td>
+<td align="left">・ネガティブフィードバック<br>・浸透圧調節<br>・固有値と解の振る舞い</td>
+</tr>
+<tr>
+<td align="left">4</td>
+<td align="left">7/5</td>
+<td align="left">・高次反応とスイッチ応答<br>・ポジティブフィードバック<br>・減数分裂</td>
+</tr>
+<tr>
+<td align="left">5</td>
+<td align="left">7/12</td>
+<td align="left">・ポジティブ+ネガティブフィードバック<br>・神経細胞の活動電位<br>・確率共鳴<br>・分子数の少数性によるゆらぎを利用したロバストネス</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">7/19</td>
+<td align="left">・シャノンの情報理論によるシグナル伝達経路の解析<br>・代謝フラックス解析<br>・多階層オミクスを統合したデータドリブンシステム生物学</td>
+</tr>
+<tr>
+<td align="left">6</td>
+<td align="left">7/26</td>
+<td align="left">テスト</td>
+</tr>
+</tbody>
+</table>
 <h2>イントロダクション</h2>
 <p>現象の特性</p>
 <h3>部分と全体</h3>
 <h3>システムが分かるとは？</h3>
-<p>|#|天体の運動|シグナル伝達|
-|:--:|:--:|:--:|
-|要素の同定|惑星|遺伝子、タンパク質|
-|要素の振る舞い|軌道<br>（ブラーエ）|一括性や持続性の活性化|
-||||</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">天体の運動</th>
+<th align="center">シグナル伝達</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">要素の同定</td>
+<td align="center">惑星</td>
+<td align="center">遺伝子、タンパク質</td>
+</tr>
+<tr>
+<td align="center">要素の振る舞い</td>
+<td align="center">軌道<br>（ブラーエ）</td>
+<td align="center">一括性や持続性の活性化</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <p>要素を同定し、振る舞いを観察することで、<font color="red"><b>「系の特性とそれを生み出す原理」</b></font>を導出するのがシステム生物学。</p>
 <p>ニュートンはすごい
 ニュートンがやったことは、説明。重力というものを仮定すると、全部説明できる。新しいものを発見したわけではないが、世の中の見方を大きく変えた。それが自然科学の面白いところだと感じている。</p>
@@ -160,10 +218,24 @@
 <p>また、全ての要素が入った複雑なモデルは、必ずしも良いモデルとは言えない。→<font color="red"><b>「シンプル」</b></font>かつ、<font color="red"><b>「エッセンシャル」</b></font>なルールを抽出する（<font color="red"><b>モデルの縮約(Model Reduction)</b></font>）ことが必要である。</p>
 <h3>順モデルと逆モデル</h3>
 <p>システム生物学の研究の仕方として、<b>「順モデル」</b>と<b>「逆モデル」</b>がある。</p>
-<p>|順モデル|逆モデル|
-|:--:|:--:|
-|仮説ドリブン|データドリブン|
-|分子間の相互作用に関する事前知識（ネットワークを記述する式）がありそこから反応を記述し検証する。|何が正解かわからないので、データから内部構造を推定する（システム同定）|</p>
+<table>
+<thead>
+<tr>
+<th align="center">順モデル</th>
+<th align="center">逆モデル</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">仮説ドリブン</td>
+<td align="center">データドリブン</td>
+</tr>
+<tr>
+<td align="center">分子間の相互作用に関する事前知識（ネットワークを記述する式）がありそこから反応を記述し検証する。</td>
+<td align="center">何が正解かわからないので、データから内部構造を推定する（システム同定）</td>
+</tr>
+</tbody>
+</table>
 <p>以前はデータと知見によって人力でモデルを作り込んでいたが、統計科学の発展と計算機性能向上により、「データからモデル」の流れが実用的になりつつある。</p>
 <blockquote>
 <p><b>データからモデルを生成する</b>というのは、正に機械学習がやってることそのものだなぁ。関数の置き方に生物学的な知識はどれほど必要なのだろうか…。実習（生命科学基礎実験）でモデルを作ってみたい！！</p>
@@ -199,10 +271,27 @@
 <h3>例）神経細胞の活動電位</h3>
 <p>細胞の興奮（＝細胞が活動電位を発生すること）を考える。なお、<font color="red"><b>活動電位</b></font>とは、細胞内電位が一定の値よりも浅くなったとき、それに続く一過性の電位変化のことである。</p>
 <p>細胞は、静止電位の状態では、以下のような濃度勾配になっている。</p>
-<p>||<span class="math">\(\mathrm{Na}^{+}\)</span>|<span class="math">\(\mathrm{K}^{+}\)</span>|
-|--:|:--:|:--:|
-|内側|<span class="math">\(37\ \mathrm{mM}\)</span>|<span class="math">\(110\ \mathrm{mM}\)</span>|
-|外側|<span class="math">\(140\ \mathrm{mM}\)</span>|<span class="math">\(\sim5 \mathrm{mM}\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="right"></th>
+<th align="center"><span class="math">\(\mathrm{Na}^{+}\)</span></th>
+<th align="center"><span class="math">\(\mathrm{K}^{+}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">内側</td>
+<td align="center"><span class="math">\(37\ \mathrm{mM}\)</span></td>
+<td align="center"><span class="math">\(110\ \mathrm{mM}\)</span></td>
+</tr>
+<tr>
+<td align="right">外側</td>
+<td align="center"><span class="math">\(140\ \mathrm{mM}\)</span></td>
+<td align="center"><span class="math">\(\sim5 \mathrm{mM}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>この状態で刺激を受けると、それまで不透過であったナトリウムイオン（<span class="math">\(\mathrm{Na}^{+}\)</span>）を細胞内に通すことになる。</p>
 <p>すると、細胞内への <span class="math">\(\mathrm{Na}^{+}\)</span> がさらなる<b><font color="red">脱分極</font>（膜電位の現象）</b>を引き起こし、それがさらに多くの <span class="math">\(\mathrm{Na}^{+}\)</span> チャネルを開状態にする。このポジティブフィードバックによって、活動電位が全か無かの法則に従って発生する。<b>（閾値を超える脱分極が生じたときのみ、活動電位が発生する。）</b></p>
 <p><img src="https://bsd.neuroinf.jp/w/images/5/58/%E9%96%BE%E5%80%A4_%E5%9B%B32.jpg"></p>
@@ -214,11 +303,28 @@
 </div>
 
 <h3>定性的マップ vs 定量的マップ</h3>
-<p>|定性的|定量的|
-|:--:|:--:|
-|ローカルの積み上げ<br>→仮説駆動|グローバル<br>→データ駆動|
-|個人のバイアスが入る<br>でもわかりやすい|個人のバイアスを避ける<br>でも複雑でわからん？|
-|<img src="https://media.springernature.com/lw900/springer-static/image/art%3A10.1038%2F414799a/MediaObjects/41586_2001_Article_BF414799a_Fig3_HTML.jpg">|<img src="http://kurodalab.bs.s.u-tokyo.ac.jp/wordpress/wp-content/uploads/topimage.gif" width=400>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">定性的</th>
+<th align="center">定量的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">ローカルの積み上げ<br>→仮説駆動</td>
+<td align="center">グローバル<br>→データ駆動</td>
+</tr>
+<tr>
+<td align="center">個人のバイアスが入る<br>でもわかりやすい</td>
+<td align="center">個人のバイアスを避ける<br>でも複雑でわからん？</td>
+</tr>
+<tr>
+<td align="center"><img src="https://media.springernature.com/lw900/springer-static/image/art%3A10.1038%2F414799a/MediaObjects/41586_2001_Article_BF414799a_Fig3_HTML.jpg"></td>
+<td align="center"><img src="http://kurodalab.bs.s.u-tokyo.ac.jp/wordpress/wp-content/uploads/topimage.gif" width=400></td>
+</tr>
+</tbody>
+</table>
 <h3>まとめ</h3>
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0; text-align: center;"><b>TAKE HOME MESSAGE</b><br>
   <p><font size=20>分子は媒体</font></p>

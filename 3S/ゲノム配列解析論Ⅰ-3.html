@@ -127,22 +127,46 @@
 <li>メモリ： <span class="math">\(O(L^2)\)</span></li>
 <li>計算時間： <span class="math">\(O(L^2)\)</span></li>
 </ul>
-<p>|大域アラインメント|局所アラインメント|
-|:--|:--|
-|Needleman-Wuncsh, 1970|Smith-Waterman, 1981|
-|</p>
+<table>
+<thead>
+<tr>
+<th align="left">大域アラインメント</th>
+<th align="left">局所アラインメント</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Needleman-Wuncsh, 1970</td>
+<td align="left">Smith-Waterman, 1981</td>
+</tr>
+<tr>
+<td align="left">
 <div class="math">$$F_{i,j} = \max\begin{cases}F_{i-1, j-1}+s\left(x_{i}, y_{j}\right), \\F_{i-1, j}-d, \\F_{i, j-1}-d\end{cases}\\$$</div>
-<p>|</p>
+</td>
+<td align="left">
 <div class="math">$$F_{i,j} = \min\begin{cases}0,\\F_{i-1, j-1}+s\left(x_{i}, y_{j}\right), \\F_{i-1, j}-d, \\F_{i, j-1}-d\end{cases}\\$$</div>
-<p>|
-|<span class="math">\(F(i,j)\)</span>: <span class="math">\(x_1,\ldots,x_i\)</span> と <span class="math">\(y_1,\ldots,y_j\)</span> の最適アラインメントのスコア|<span class="math">\(x_i\)</span> と <span class="math">\(y_i\)</span> <b>で終わる</b>最適局所アラインメントのスコア|
-|<span class="math">\(s(x_i,y_j)\)</span>: スコア行列(置換行列)|<span class="math">\(s(x_i,y_j)\)</span>: スコア行列(置換行列)|
-|<span class="math">\(d\)</span>: ギャップペナルティ(線形)|<span class="math">\(d\)</span>: ギャップペナルティ(線形)|
-|初期条件</p>
-<div class="math">$$\begin{aligned}&amp;F(0,0) = 0\\&amp;F(i,0) = -id\\&amp;F(o,j) = -jd\end{aligned}$$</div>
-<p>|初期条件</p>
-<div class="math">$$F(i,0)=F(0,j)=0$$</div>
-<p>|</p>
+</td>
+</tr>
+<tr>
+<td align="left"><span class="math">\(F(i,j)\)</span>: <span class="math">\(x_1,\ldots,x_i\)</span> と <span class="math">\(y_1,\ldots,y_j\)</span> の最適アラインメントのスコア</td>
+<td align="left"><span class="math">\(x_i\)</span> と <span class="math">\(y_i\)</span> <b>で終わる</b>最適局所アラインメントのスコア</td>
+</tr>
+<tr>
+<td align="left"><span class="math">\(s(x_i,y_j)\)</span>: スコア行列(置換行列)</td>
+<td align="left"><span class="math">\(s(x_i,y_j)\)</span>: スコア行列(置換行列)</td>
+</tr>
+<tr>
+<td align="left"><span class="math">\(d\)</span>: ギャップペナルティ(線形)</td>
+<td align="left"><span class="math">\(d\)</span>: ギャップペナルティ(線形)</td>
+</tr>
+<tr>
+<td align="left">初期条件<div class="math">$$\begin{aligned}&amp;F(0,0) = 0\\&amp;F(i,0) = -id\\&amp;F(o,j) = -jd\end{aligned}$$</div>
+</td>
+<td align="left">初期条件<div class="math">$$F(i,0)=F(0,j)=0$$</div>
+</td>
+</tr>
+</tbody>
+</table>
 <h2>アラインメントのスコア</h2>
 <h3>ギャップなしアラインメント</h3>
 <ul>

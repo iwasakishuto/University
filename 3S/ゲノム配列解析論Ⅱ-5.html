@@ -137,18 +137,19 @@
 <h2 id="anchor1">ギャップなしのスコア行列</h2>
 
 <p>ここでは、<span class="marker-pink">タンパク質ファミリーのマルチプルアラインメント</span>を考える。</p>
-<p><code>python
-5p21- MTEYKLVVV'G'AGGV"GK"'S'ALTIQLIQNH'F'VDEYD'P'TIEDSY
-1ctqA MTEYKLVVV'G'AGGV"GK"'S'ALTIQLIQNH'F'VDEYD'P'TIEDSY
-1c1yA MREYKLVVL'G'SGGV"GK"'S'ALTVQFVQGI'F'VEKYD'P'TIEDSY
-1kao- MREYKVVVL'G'SGGV"GK"'S'ALTVQFVTGT'F'IEKYD'P'TIEDFY
-1huqA --QFKLVLL'G'ESAV"GK"'S'SLVLRFVKGQ'F'HEYQE'S'TIGAAF
-1g16A ----KILLI'G'DSGV"GK"'S'CLLVRFVE--'-'-DKFN'P'I--DFK
-1ek0A VTSIKLVLL'G'EAAV"GK"'S'SIVLRFVSND'F'AENKE'P'TIGAAF
-3rabA ---FKILII'G'NSSV"GK"'T'SFLFRYADDS'F'TPAFV'S'TVGIDF
-1mh1- ----KCVVV'G'DGAV"GK"'T'CLLISYTTNA'F'PGEYI'P'TVFDNY
-2ngrA MQTIKCVVV'G'DGAV"GK"'T'CLLISYTTNK'F'PSEYV'P'TVFDNY
-1tx4B ----KLVIV'G'DGAC"GK"'T'CLLIVNSKDQ'F'---YV'P'TVFENY</code></p>
+<pre class="highlight"><code class="language-python">5p21- MTEYKLVVV'G'AGGV&quot;GK&quot;'S'ALTIQLIQNH'F'VDEYD'P'TIEDSY
+1ctqA MTEYKLVVV'G'AGGV&quot;GK&quot;'S'ALTIQLIQNH'F'VDEYD'P'TIEDSY
+1c1yA MREYKLVVL'G'SGGV&quot;GK&quot;'S'ALTVQFVQGI'F'VEKYD'P'TIEDSY
+1kao- MREYKVVVL'G'SGGV&quot;GK&quot;'S'ALTVQFVTGT'F'IEKYD'P'TIEDFY
+1huqA --QFKLVLL'G'ESAV&quot;GK&quot;'S'SLVLRFVKGQ'F'HEYQE'S'TIGAAF
+1g16A ----KILLI'G'DSGV&quot;GK&quot;'S'CLLVRFVE--'-'-DKFN'P'I--DFK
+1ek0A VTSIKLVLL'G'EAAV&quot;GK&quot;'S'SIVLRFVSND'F'AENKE'P'TIGAAF
+3rabA ---FKILII'G'NSSV&quot;GK&quot;'T'SFLFRYADDS'F'TPAFV'S'TVGIDF
+1mh1- ----KCVVV'G'DGAV&quot;GK&quot;'T'CLLISYTTNA'F'PGEYI'P'TVFDNY
+2ngrA MQTIKCVVV'G'DGAV&quot;GK&quot;'T'CLLISYTTNK'F'PSEYV'P'TVFDNY
+1tx4B ----KLVIV'G'DGAC&quot;GK&quot;'T'CLLIVNSKDQ'F'---YV'P'TVFENY</code></pre>
+
+
 <p>上の配列から見てわかるように、タンパク質ファミリーの配列同士には特徴がある。</p>
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
   <h4>タンパク質ファミリーのマルチプルアラインメントの特徴</h4>
@@ -167,10 +168,24 @@
 <p>と表される。ただし <span class="math">\(L\)</span> はブロック長で、上の配列の場合 <span class="math">\(40\)</span> である。</p>
 <p>ここで、次の<span class="marker-pink">位置特異的スコア行列(Position Specific Score Matrix; PSSM)</span></p>
 <div class="math">$$S_i(a) = \log\frac{e_i(a)}{q_a}$$</div>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(e_i(a)\)</span>|位置 <span class="math">\(i\)</span> においてアミノ酸 <span class="math">\(a\)</span> が出力される確率|
-|<span class="math">\(q_a\)</span>|アミノ酸 <span class="math">\(a\)</span> の背景確率|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(e_i(a)\)</span></td>
+<td align="left">位置 <span class="math">\(i\)</span> においてアミノ酸 <span class="math">\(a\)</span> が出力される確率</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(q_a\)</span></td>
+<td align="left">アミノ酸 <span class="math">\(a\)</span> の背景確率</td>
+</tr>
+</tbody>
+</table>
 <p>を考える。この値は、<span class="marker-pink">サイトごとのスコア行列</span>を意味している。</p>
 <blockquote>
 <p>スコア行列が <span class="math">\(s(a,b)=\log\frac{p(a,b)}{q(a)q(b)}\)</span> で表されていたことを思い出す。これとの比較より、今考えているのはスコア行列の第2引数 <span class="math">\(b\)</span> が位置 <span class="math">\(i\)</span> である時のスコア行列と言うことができる。</p>
@@ -189,11 +204,32 @@
   <li>新しい入力配列がそのタンパク質ファミリーに属するかを<b>（Viterbi algorithm/forward algorithmで求めた最大確率をある閾値で）</b>判断する。</li>
 </div>
 
-<p>|状態|意味|画像|
-|:--:|:--|:--:|
-|<span class="math">\(M_i\)</span>|一致状態|<img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103t.png">|
-|<span class="math">\(I_i\)</span>|マルチプルアラインメントの <span class="math">\(i\)</span> 番目のカラムに一致した塩基の後の挿入を表現する。|<img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103b.png">|
-|<span class="math">\(D_i\)</span>|ヌル状態。塩基を出力しない。欠失を表現するが、欠失のコストは <span class="math">\(M\rightarrow D\)</span> 遷移、それに続くいくつかの <span class="math">\(D\rightarrow D\)</span> 遷移、<span class="math">\(D\rightarrow M\)</span> 遷移の和になる。|<img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p104b.png">|</p>
+<table>
+<thead>
+<tr>
+<th align="center">状態</th>
+<th align="left">意味</th>
+<th align="center">画像</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M_i\)</span></td>
+<td align="left">一致状態</td>
+<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103t.png"></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(I_i\)</span></td>
+<td align="left">マルチプルアラインメントの <span class="math">\(i\)</span> 番目のカラムに一致した塩基の後の挿入を表現する。</td>
+<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p103b.png"></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(D_i\)</span></td>
+<td align="left">ヌル状態。塩基を出力しない。欠失を表現するが、欠失のコストは <span class="math">\(M\rightarrow D\)</span> 遷移、それに続くいくつかの <span class="math">\(D\rightarrow D\)</span> 遷移、<span class="math">\(D\rightarrow M\)</span> 遷移の和になる。</td>
+<td align="center"><img src="http://asailab.cb.k.u-tokyo.ac.jp/asai/bsa/fig/p104b.png"></td>
+</tr>
+</tbody>
+</table>
 <h4>補足</h4>
 <ul>
 <li><span class="math">\(I_i\)</span> は出力分布 <span class="math">\(e_{I_i}(a)\)</span> を持つが、それらは普通バックグラウンドの分布 <span class="math">\(q(a)\)</span> が割り当てられる。</li>
@@ -239,11 +275,28 @@ $$</div>
 <p>に対する対数オッズ比である。</p>
 <h3>Viterbiアルゴリズム</h3>
 <p>動的計画法を回すために、以下の変数を定義する。</p>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(V_j^M(i)\)</span>|状態 <span class="math">\(M_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア|
-|<span class="math">\(V_j^I(i)\)</span>|状態 <span class="math">\(I_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア|
-|<span class="math">\(V_j^D(i)\)</span>|状態 <span class="math">\(D_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(V_j^M(i)\)</span></td>
+<td align="left">状態 <span class="math">\(M_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(V_j^I(i)\)</span></td>
+<td align="left">状態 <span class="math">\(I_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(V_j^D(i)\)</span></td>
+<td align="left">状態 <span class="math">\(D_j\)</span> によって出力された <span class="math">\(x_i\)</span> で終わる最良パスのスコア</td>
+</tr>
+</tbody>
+</table>
 <p>すると、次のような漸化式を導出することができる。</p>
 <h4>漸化式</h4>
 <div class="math">$$
@@ -261,11 +314,28 @@ $$</div>
 <p>このことを機械的に保証する最も簡単な方法は、開始状態を <span class="math">\(M_0\)</span> とし、<span class="math">\(V_0^M(0) = 0\)</span> とすることである。<b>（<span class="math">\(M_0\)</span> から <span class="math">\(I_0\)</span> と <span class="math">\(D_1\)</span> への遷移は許す。）</b></p>
 <h3>前向きアルゴリズム</h3>
 <p>前向きアルゴリズムのための再帰式はViterbi式と似ているが、<span class="math">\(\max()\)</span> 操作が足し算によって置き換えられている。したがって、以下の変数を用いる。</p>
-<p>|変数|意味|
-|:--:|:--|
-|<span class="math">\(F_j^M(i)\)</span>|<span class="math">\(V_j^M(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比|
-|<span class="math">\(F_j^I(i)\)</span>|<span class="math">\(V_j^I(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比|
-|<span class="math">\(F_j^D(i)\)</span>|<span class="math">\(V_j^D(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比|</p>
+<table>
+<thead>
+<tr>
+<th align="center">変数</th>
+<th align="left">意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(F_j^M(i)\)</span></td>
+<td align="left"><span class="math">\(V_j^M(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(F_j^I(i)\)</span></td>
+<td align="left"><span class="math">\(V_j^I(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(F_j^D(i)\)</span></td>
+<td align="left"><span class="math">\(V_j^D(i)\)</span> に対する全ての可能性が足し合わされた対数オッズ比</td>
+</tr>
+</tbody>
+</table>
 <p>すると、次のような漸化式を導出することができる。</p>
 <h4>漸化式</h4>
 <div class="math">$$

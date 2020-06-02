@@ -194,12 +194,32 @@ $$</div>
 <p>今、物体へ外力 <span class="math">\(F(t)\)</span> が作用するとき、この系の運動方程式は、以下で与えられる。</p>
 <div class="math">$$m \ddot{x}+c \dot{x}+k x=F(t)\qquad (\mathrm{D.}1)$$</div>
 <p>なお、それぞれの力は以下の通りである。</p>
-<p>|式|力|
-|:--:|:--:|
-|<span class="math">\(m \ddot{x}\)</span>|慣性力|
-|<span class="math">\(c \dot{x}\)</span>|摩擦力|
-|<span class="math">\(k x\)</span>|弾性力|
-|<span class="math">\(F(t)\)</span>|外力|</p>
+<table>
+<thead>
+<tr>
+<th align="center">式</th>
+<th align="center">力</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(m \ddot{x}\)</span></td>
+<td align="center">慣性力</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(c \dot{x}\)</span></td>
+<td align="center">摩擦力</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(k x\)</span></td>
+<td align="center">弾性力</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(F(t)\)</span></td>
+<td align="center">外力</td>
+</tr>
+</tbody>
+</table>
 <p>ここで、式 <span class="math">\((\mathrm{D.}1)\)</span> の両辺を <span class="math">\(m\)</span> で割って、<span class="math">\(\gamma = c/m, \omega_0^2 = k/m\)</span> とおくと、（<span class="math">\(\omega_0\)</span> を<font color="red"><b>固有角振動数</b></font>という。また、<span class="math">\(\gamma\)</span> は<b>見かけの摩擦係数</b>とみなせる。）</p>
 <div class="math">$$\ddot{x}+\gamma \dot{x}+\omega_{0}^{2} x=\frac{F}{m}\qquad (\mathrm{D.}2)$$</div>
 <p>このとき、外力 <span class="math">\(F\)</span> が <span class="math">\(F(t) = \dot{F}\sin\omega t\)</span> で与えられるとき<font color="red"><b>（強制振動）</b></font>を考える。</p>
@@ -225,19 +245,19 @@ $$</div>
 より、</p>
 <div class="math">$$\operatorname{gain}=\left|\frac{\hat{x}}{\hat{F}}\right|=\frac{1}{\sqrt{\left(\omega_{0}^{2}-\omega^{2}\right)^{2}+\gamma^{2} \omega^{2}}}\qquad (\mathrm{D.}9)$$</div>
 <p>これを横軸に <span class="math">\(\omega\)</span>、縦軸にgainをとってグラフを書くと、ある角周波数 <span class="math">\(\omega_r\)</span> において一つの極値を取るグラフが描ける。</p>
-<p>```python</p>
-<h1>以下のプログラムで描ける。</h1>
-<p>import numpy as np
+<pre class="highlight"><code class="language-python"># 以下のプログラムで描ける。
+import numpy as np
 import matplotlib.pyplot as plt
 X = np.linspace(0,1,1000)
 w0 = 1; gamma = 1
-gain = lambda x:1/np.sqrt((w0<strong>2-x</strong>2)<strong>2 + gamma</strong>2<em>x</em>*2)
+gain = lambda x:1/np.sqrt((w0**2-x**2)**2 + gamma**2*x**2)
 Y = np.vectorize(gain)(X)
 plt.plot(X,Y)
-plt.xlabel("<span class="math">\(\omega\)</span>")
-plt.ylabel("gain")
-plt.show()
-```</p>
+plt.xlabel(&quot;$\omega$&quot;)
+plt.ylabel(&quot;gain&quot;)
+plt.show()</code></pre>
+
+
 <p>そこで、<span class="math">\(\omega_r\)</span> を求めるため、gainを <span class="math">\(\omega\)</span> の関数とみて、<span class="math">\(\omega\)</span> について微分すると、</p>
 <div class="math">$$\operatorname{gain}^{\prime}(\omega)=\frac{\omega\left(2 \omega_{0}^{2}-\gamma^{2}-2 \omega^{2}\right)}{\left(\left(\omega_{0}^{2}-\omega^{2}\right)^{2}+\gamma^{2} \omega^{2}\right)^{\frac{3}{2}}} \quad(\mathrm{D.10})$$</div>
 <p>よって、<span class="math">\(\omega\neq0\)</span> のとき、</p>
@@ -265,48 +285,96 @@ plt.show()
 <p>とすると、<span class="math">\(\mathbf{v}_{1},\mathbf{v}_{2}\)</span> は一次独立だから、<span class="math">\( (\mathrm{D.}22)\)</span> の一般解は</p>
 <div class="math">$$\left(\begin{array}{l}{x} \\ {y}\end{array}\right)=C_{1} e^{\lambda_{1} t}\left(\begin{array}{c}{\alpha_{1}} \\ {\beta_{1}}\end{array}\right)+C_{2} e^{\lambda_{2} t}\left(\begin{array}{c}{\alpha_{2}} \\ {\beta_{2}}\end{array}\right)\qquad  (\mathrm{D.}26)$$</div>
 <p>と表すことができる。このとき、固有値 <span class="math">\(\lambda_1,\lambda_2\)</span> の取り得る値（正負、実虚）によって式 <span class="math">\((\mathrm{D.}26)\)</span> の挙動が大きく変わる。それをまとめると、以下の表になる。</p>
-<p>|#|振動|固有値の正負|<span class="math">\(\mathrm{Tr} A=\lambda_1+\lambda_2\)</span>|<span class="math">\(\det A=\lambda_1\cdot\lambda_2\)</span>|解の挙動|
-|:--:|:--:|:--:|:--:|:--:|:--:|
-|①|しない|<span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span>|<span class="math">\(+\)</span>|<span class="math">\(+\)</span>|発散|
-|②|しない|<span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span>|<span class="math">\(-\)</span>|<span class="math">\(+\)</span>|減衰|
-|③|する|実数部 <span class="math">\(&gt;0\)</span>|<span class="math">\(+\)</span>|<span class="math">\(+\)</span>|発散振動|
-|④|する|実数部 <span class="math">\(&lt;0\)</span>|<span class="math">\(-\)</span>|<span class="math">\(+\)</span>|減衰振動|
-|⑤|する|実数部 <span class="math">\(=0\)</span>（純虚数）|<span class="math">\(0\)</span>|<span class="math">\(+\)</span>|単振動|</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">振動</th>
+<th align="center">固有値の正負</th>
+<th align="center"><span class="math">\(\mathrm{Tr} A=\lambda_1+\lambda_2\)</span></th>
+<th align="center"><span class="math">\(\det A=\lambda_1\cdot\lambda_2\)</span></th>
+<th align="center">解の挙動</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">①</td>
+<td align="center">しない</td>
+<td align="center"><span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center">発散</td>
+</tr>
+<tr>
+<td align="center">②</td>
+<td align="center">しない</td>
+<td align="center"><span class="math">\(\lambda_1&gt;0,\lambda_2&gt;0\)</span></td>
+<td align="center"><span class="math">\(-\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center">減衰</td>
+</tr>
+<tr>
+<td align="center">③</td>
+<td align="center">する</td>
+<td align="center">実数部 <span class="math">\(&gt;0\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center">発散振動</td>
+</tr>
+<tr>
+<td align="center">④</td>
+<td align="center">する</td>
+<td align="center">実数部 <span class="math">\(&lt;0\)</span></td>
+<td align="center"><span class="math">\(-\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center">減衰振動</td>
+</tr>
+<tr>
+<td align="center">⑤</td>
+<td align="center">する</td>
+<td align="center">実数部 <span class="math">\(=0\)</span>（純虚数）</td>
+<td align="center"><span class="math">\(0\)</span></td>
+<td align="center"><span class="math">\(+\)</span></td>
+<td align="center">単振動</td>
+</tr>
+</tbody>
+</table>
 <p>なお、以下のプログラムによって実際にプロットすることも可能である。</p>
-<p>```python
-import numpy as np
+<pre class="highlight"><code class="language-python">import numpy as np
 import numpy.linalg as LA
-import matplotlib.pyplot as plt</p>
-<p>def plot_concentration(a,b,c,d, xmin=0,xmax=10,c1=1,c2=2):
+import matplotlib.pyplot as plt
+
+def plot_concentration(a,b,c,d, xmin=0,xmax=10,c1=1,c2=2):
     t = np.linspace(xmin,xmax,1000)
     A = np.array([
         [a,b],
         [c,d]
-    ])</p>
-<pre class="highlight"><code>eig_value, eig_vector = LA.eig(A)
-lambda1, lambda2 = eig_value
-v1,v2 = eig_vector
-alpha1,_ = v1; alpha2,_ = v2
+    ])
 
-func = lambda t: c1 * np.e ** (lambda1*t) * alpha1 + c2 * np.e ** (lambda2*t) * alpha2
-x = np.vectorize(func)(t)
+    eig_value, eig_vector = LA.eig(A)
+    lambda1, lambda2 = eig_value
+    v1,v2 = eig_vector
+    alpha1,_ = v1; alpha2,_ = v2
 
-plt.plot(t,x, color=&quot;#6da3fc&quot;)
-plt.title(&quot;$\lambda_1={:.2f},\ \lambda_2={:.2f},\ a={:.2f}$&quot;.format(lambda1,lambda2,a))
-plt.xlabel(&quot;t&quot;)
-plt.ylabel(&quot;oncentration of a reactant x&quot;)
-plt.hlines(0,xmin,xmax, color=&quot;#80160e&quot;)
-plt.show()</code></pre>
+    func = lambda t: c1 * np.e ** (lambda1*t) * alpha1 + c2 * np.e ** (lambda2*t) * alpha2
+    x = np.vectorize(func)(t)
 
+    plt.plot(t,x, color=&quot;#6da3fc&quot;)
+    plt.title(&quot;$\lambda_1={:.2f},\ \lambda_2={:.2f},\ a={:.2f}$&quot;.format(lambda1,lambda2,a))
+    plt.xlabel(&quot;t&quot;)
+    plt.ylabel(&quot;oncentration of a reactant x&quot;)
+    plt.hlines(0,xmin,xmax, color=&quot;#80160e&quot;)
+    plt.show()
 
-<h1>eigen values are Real numbers.</h1>
-<p>plot_concentration( 1, 0, 1, 2, xmin=0,  xmax=3)  # ① lambda_1 &gt; 0, lambda_2 &gt; 0
-plot_concentration(-1, 0,-1,-2, xmin=0,  xmax=3)  # ② lambda_1 &lt; 0, lambda_2 &lt; 0</p>
-<h1>eigen values are Complex numbers.</h1>
-<p>plot_concentration(0, -1, 1, 0, xmin=0,  xmax=20) # ③ a = 0, Re[lambda] = 0
+# eigen values are Real numbers.
+plot_concentration( 1, 0, 1, 2, xmin=0,  xmax=3)  # ① lambda_1 &gt; 0, lambda_2 &gt; 0
+plot_concentration(-1, 0,-1,-2, xmin=0,  xmax=3)  # ② lambda_1 &lt; 0, lambda_2 &lt; 0
+# eigen values are Complex numbers.
+plot_concentration(0, -1, 1, 0, xmin=0,  xmax=20) # ③ a = 0, Re[lambda] = 0
 plot_concentration(2,  1,-5,-1, xmin=10, xmax=20) # ④ a &gt; 0, Re[lambda] &gt; 0
-plot_concentration(-2,-1, 5, 1, xmin=10, xmax=20) # ④ a &lt; 0, Re[lambda] &lt; 0
-```</p>
+plot_concentration(-2,-1, 5, 1, xmin=10, xmax=20) # ④ a &lt; 0, Re[lambda] &lt; 0</code></pre>
+
+
 <h3>D-4)ヌルクライン</h3>
 <p><font color="red"><b>ヌルクライン</b></font>は、微分方程式系を解析するのに有効な方法の一つである。以下の微分方程式</p>
 <div class="math">$$
@@ -340,72 +408,113 @@ $$</div>
 <div class="math">$$J=\left(\begin{array}{ll}{a} &amp; {b} \\ {c} &amp; {d}\end{array}\right)$$</div>
 <p>の <span class="math">\(\det J,\mathrm{tr}J\)</span> の値、及び <span class="math">\(J\)</span> の固有値 <span class="math">\(\lambda_1,\lambda_2\)</span> の関係によって決まる。</b></p>
 <h3>D-6)平衡点の分類</h3>
-<p>|#|種類|解の収束性|条件|
-|:--:|:--:|:--:|:--:|
-|1|安定結束点|収束する|</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="center">種類</th>
+<th align="center">解の収束性</th>
+<th align="center">条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">安定結束点</td>
+<td align="center">収束する</td>
+<td align="center">
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&lt;0\\\det{J}&lt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-<p>|
-|2|不安定結束点|発散する|</p>
+</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">不安定結束点</td>
+<td align="center">発散する</td>
+<td align="center">
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&gt;0\\\det{J}&lt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-<p>|
-|3|鞍点|サドル型|</p>
+</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">鞍点</td>
+<td align="center">サドル型</td>
+<td align="center">
 <div class="math">$$\det{J}&lt;0$$</div>
-<p>|
-|4|安定焦点（渦状点）|減衰振動する|</p>
+</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">安定焦点（渦状点）</td>
+<td align="center">減衰振動する</td>
+<td align="center">
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&lt;0\\\det{J}&gt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-<p>|
-|5|不安定焦点（渦状点）|発散振動する|</p>
+</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="center">不安定焦点（渦状点）</td>
+<td align="center">発散振動する</td>
+<td align="center">
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J&gt;0\\\det{J}&gt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-<p>|
-|6|中心点（渦状点）|リミットサイクルを描く|</p>
+</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="center">中心点（渦状点）</td>
+<td align="center">リミットサイクルを描く</td>
+<td align="center">
 <div class="math">$$\det{J}&gt;0\\\mathrm{tr}J=0\\\det{J}&gt;\frac{1}{4}\left(\mathrm{tr}J\right)^2$$</div>
-<p>|</p>
+</td>
+</tr>
+</tbody>
+</table>
 <p>これらも、以下のプログラムによってプロットができる。</p>
-<p>```python
-import numpy as np
+<pre class="highlight"><code class="language-python">import numpy as np
 import numpy.linalg as LA
-import matplotlib.pyplot as plt</p>
-<p>def plot_nurcline(a,b,c,d, xsize=10, ysize=10):
+import matplotlib.pyplot as plt
+
+def plot_nurcline(a,b,c,d, xsize=10, ysize=10):
     J = np.array([
         [a,b],
         [c,d]
-    ])</p>
-<pre class="highlight"><code>det = np.linalg.det(J)
-tr = a + d
-eig_value, eig_vector = LA.eig(J)
-lambda1, lambda2 = eig_value
+    ])
 
-xmin = -xsize; xmax = xsize
-ymin = -ysize; ymax = ysize
-X,Y = np.mgrid[xmin:xmax+1, ymin:ymax+1]
-dX = a*X + b*Y
-dY = c*X + d*Y
+    det = np.linalg.det(J)
+    tr = a + d
+    eig_value, eig_vector = LA.eig(J)
+    lambda1, lambda2 = eig_value
 
-plt.figure(figsize=(6,6))
+    xmin = -xsize; xmax = xsize
+    ymin = -ysize; ymax = ysize
+    X,Y = np.mgrid[xmin:xmax+1, ymin:ymax+1]
+    dX = a*X + b*Y
+    dY = c*X + d*Y
 
-plt.quiver(X, Y, dX, dY)
+    plt.figure(figsize=(6,6))
 
-x = X[:,0]
-plt.plot(x,x*lambda1, label=&quot;$y={:.2f}x$&quot;.format(lambda1), color=&quot;#80160e&quot;)
-plt.plot(x,x*lambda2, label=&quot;$y={:.2f}x$&quot;.format(lambda2), color=&quot;#6da3fc&quot;)
+    plt.quiver(X, Y, dX, dY)
 
-plt.title(&quot;$\det J = {:.2f},\ &quot;.format(det) +\
-          &quot;\mathrm{tr}&quot; + &quot;J = {:.2f},\ &quot;.format(tr) +\
-          &quot;1/4(\mathrm{tr}J)^2 = &quot; + &quot;{:.2f}$&quot;.format(1/4*(tr)**2))
-plt.xlim(xmin,xmax)
-plt.ylim(ymin,ymax)
-plt.grid()
-plt.legend()
-plt.show()</code></pre>
+    x = X[:,0]
+    plt.plot(x,x*lambda1, label=&quot;$y={:.2f}x$&quot;.format(lambda1), color=&quot;#80160e&quot;)
+    plt.plot(x,x*lambda2, label=&quot;$y={:.2f}x$&quot;.format(lambda2), color=&quot;#6da3fc&quot;)
 
+    plt.title(&quot;$\det J = {:.2f},\ &quot;.format(det) +\
+              &quot;\mathrm{tr}&quot; + &quot;J = {:.2f},\ &quot;.format(tr) +\
+              &quot;1/4(\mathrm{tr}J)^2 = &quot; + &quot;{:.2f}$&quot;.format(1/4*(tr)**2))
+    plt.xlim(xmin,xmax)
+    plt.ylim(ymin,ymax)
+    plt.grid()
+    plt.legend()
+    plt.show()
 
-<p>plot_nurcline( 1, 0, 1, 2) # ① detJ&gt;0, trJ&lt;0, detJ&lt;1/4(trJ)^2
+plot_nurcline( 1, 0, 1, 2) # ① detJ&gt;0, trJ&lt;0, detJ&lt;1/4(trJ)^2
 plot_nurcline(-1, 0,-1,-2) # ② detJ&gt;0, trJ&gt;0, detJ&lt;1/4(trJ)^2
 plot_nurcline( 1, 2, 3, 4) # ③ detJ&lt;0
 plot_nurcline( 1,-2, 3,-2) # ④ detJ&gt;0, trJ&lt;0, detJ&gt;1/4(trJ)^2
 plot_nurcline(-1, 2,-3, 2) # ⑤ detJ&gt;0, trJ&gt;0, detJ&gt;1/4(trJ)^2
-plot_nurcline( 1,-2, 3,-1) # ⑥ detJ&gt;0, trJ=0, detJ&gt;1/4(trJ)^2
-```</p>
+plot_nurcline( 1,-2, 3,-1) # ⑥ detJ&gt;0, trJ=0, detJ&gt;1/4(trJ)^2</code></pre>
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

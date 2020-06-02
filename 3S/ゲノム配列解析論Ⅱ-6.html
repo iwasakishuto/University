@@ -123,9 +123,18 @@
 </ul>
 <h2>ペアワイズアラインメント</h2>
 <h3>バイナリ変数を用いた定式化</h3>
-<p>|問題1|
-|:--|
-|<span class="math">\(2\)</span> 本の生物配列（DNA,RNA,protein） <span class="math">\(x,x'\)</span> に対して、<span class="math">\(x\)</span> と <span class="math">\(x'\)</span> のペアワイズアラインメントを求める。|</p>
+<table>
+<thead>
+<tr>
+<th align="left">問題1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><span class="math">\(2\)</span> 本の生物配列（DNA,RNA,protein） <span class="math">\(x,x'\)</span> に対して、<span class="math">\(x\)</span> と <span class="math">\(x'\)</span> のペアワイズアラインメントを求める。</td>
+</tr>
+</tbody>
+</table>
 <p>この問題を数学的に定式化する。</p>
 <p><span class="math">\(I^{(0)} = \left\{(i,k) | 1\leq i \leq |x|, 1\leq k\leq |x'|\right\}\)</span> に対して、バイナリ変数 <span class="math">\(\theta_{ik}\left((i,k)\in I^{(0)}\right)\)</span> を以下のように定義する。</p>
 <div class="math">$$
@@ -142,18 +151,45 @@ $$</div>
 この条件下では、配列 <span class="math">\(x\)</span> のある位置を <span class="math">\(x^{\prime}\)</span> の <span class="math">\(2\)</span> つの異なる位置と整列させることができてしまうので、<span class="math">\(\theta = \left\{\theta_{ik}\right\}_{(i,k)\in I}\in \{0,1\}^{|x|}\times\{0,1\}^{|x^{\prime}|}\)</span> が<b>コンシステント</b>なアラインメントになるとは限らない。</p>
 </blockquote>
 <p>この <span class="math">\(\mathcal{A}(x,x^{\prime})\)</span> を用いることにより、配列アラインメントの問題は以下の通り記述できる。</p>
-<p>|問題1'|
-|:--|
-|2本の生物配列（DNA,RNA,protein配列）<span class="math">\(x,x^{\prime}\)</span> に対して、アラインメント <span class="math">\(y\in\mathcal{A}(x,x^{\prime})\)</span> を求める。|</p>
+<table>
+<thead>
+<tr>
+<th align="left">問題1'</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">2本の生物配列（DNA,RNA,protein配列）<span class="math">\(x,x^{\prime}\)</span> に対して、アラインメント <span class="math">\(y\in\mathcal{A}(x,x^{\prime})\)</span> を求める。</td>
+</tr>
+</tbody>
+</table>
 <h3>バイナリ空間上の点推定問題</h3>
 <p>上の問題は、下記の抽象的な問題の一例である。</p>
-<p>|バイナリ空間上の点推定問題|
-|:--|
-|データセット <span class="math">\(D\)</span> と予測空間 <span class="math">\(Y\subset\{0,1\}^n\)</span>（予測候補集合）が与えられているとする。この時、予測空間 <span class="math">\(Y\)</span> の <span class="math">\(1\)</span> 点 <span class="math">\(y\)</span> を予測しなさい。|</p>
+<table>
+<thead>
+<tr>
+<th align="left">バイナリ空間上の点推定問題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">データセット <span class="math">\(D\)</span> と予測空間 <span class="math">\(Y\subset\{0,1\}^n\)</span>（予測候補集合）が与えられているとする。この時、予測空間 <span class="math">\(Y\)</span> の <span class="math">\(1\)</span> 点 <span class="math">\(y\)</span> を予測しなさい。</td>
+</tr>
+</tbody>
+</table>
 <p>ただし、これだけではこの定式化に意味がないので、以下の仮定をおく。</p>
-<p>|デコーディング問題|
-|:--|
-|データセット <span class="math">\(D\)</span> と予測空間 <span class="math">\(Y\subset\{0,1\}^n\)</span>（予測候補集合）が与えられているとする。ここで、<font color="red"><b>予測空間 <span class="math">\(Y\)</span> 上の確率分布 <span class="math">\(p(y\mid D)\)</span> が与えられているという条件下で</b></font>予測空間 <span class="math">\(Y\)</span> の <span class="math">\(1\)</span> 点 <span class="math">\(y\)</span> を予測しなさい。|</p>
+<table>
+<thead>
+<tr>
+<th align="left">デコーディング問題</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">データセット <span class="math">\(D\)</span> と予測空間 <span class="math">\(Y\subset\{0,1\}^n\)</span>（予測候補集合）が与えられているとする。ここで、<font color="red"><b>予測空間 <span class="math">\(Y\)</span> 上の確率分布 <span class="math">\(p(y\mid D)\)</span> が与えられているという条件下で</b></font>予測空間 <span class="math">\(Y\)</span> の <span class="math">\(1\)</span> 点 <span class="math">\(y\)</span> を予測しなさい。</td>
+</tr>
+</tbody>
+</table>
 <h3>最尤推定量</h3>
 <p>確率値が最も高くなる予測を行う場合、デコーディング問題に対して<b>ベイズ事後確率 <span class="math">\(p(y|D)\)</span> を最大化する推定量<font color="red">（ベイズ最尤推定量）</font></b></p>
 <div class="math">$$\hat{y}^{(M L)}=\underset{y \in Y}{\arg \max } p(y | D)$$</div>

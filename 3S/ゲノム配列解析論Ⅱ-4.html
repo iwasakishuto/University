@@ -185,9 +185,20 @@
 <h3>Overview of RNA-seq workflow</h3>
 <p><b>目的：遺伝子の発現量の解析</b></p>
 <p>上を実現する最も簡単な手法は<b>直接RNAの発現量を見ること</b>だが、それが難しいので、RNAをcDNAに逆転写して、断片化してランダムサンプリングし、発現量を定量化する。</p>
-<p>|Images|Movie|
-|:--:|:--:|
-|<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Journal.pcbi.1004393.g002.png/1920px-Journal.pcbi.1004393.g002.png">|<iframe src="https://www.youtube.com/embed/bAF_MFNjFpo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">Images</th>
+<th align="center">Movie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Journal.pcbi.1004393.g002.png/1920px-Journal.pcbi.1004393.g002.png"></td>
+<td align="center"><iframe src="https://www.youtube.com/embed/bAF_MFNjFpo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></td>
+</tr>
+</tbody>
+</table>
 <h3>RNA-seqデータからのリード数取得</h3>
 <p>各リードがどの遺伝子・転写産物に由来しているかを調べ、遺伝子・転写産物単位でリード数を数える。
 - リファレンス配列へのマッピング（今回はこれを説明）
@@ -213,11 +224,40 @@
 </ul>
 <p>長さが長い遺伝子の方が
 以下のデータが得られたとする。目的は、absolute abundance(=relative abundance)を求めること。</p>
-<p>|gene <span class="math">\(i\)</span>|length[kb] <span class="math">\(l_i\)</span>|absolute abundance|relative abundance <span class="math">\(f_i\)</span>|read count<font color="red">(observed)</font> <span class="math">\(c_i\)</span>|
-|:--:|--:|--:|--:|--:|
-|1|2|-|-|3|
-|2|4|-|-|2|
-|3|4|-|-|6|</p>
+<table>
+<thead>
+<tr>
+<th align="center">gene <span class="math">\(i\)</span></th>
+<th align="right">length[kb] <span class="math">\(l_i\)</span></th>
+<th align="right">absolute abundance</th>
+<th align="right">relative abundance <span class="math">\(f_i\)</span></th>
+<th align="right">read count<font color="red">(observed)</font> <span class="math">\(c_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="right">2</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">3</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="right">4</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">2</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="right">4</td>
+<td align="right">-</td>
+<td align="right">-</td>
+<td align="right">6</td>
+</tr>
+</tbody>
+</table>
 <p>この時、一般に以下の関係<b>（遺伝子領域の長さが長いほどリード数が多くなる）</b>が成り立つことが知られている。</p>
 <div class="math">$$f_i\propto\frac{c_i}{l_i}$$</div>
 <p>この関係を使った正規化の方法は、以下の二種類が存在している。</p>

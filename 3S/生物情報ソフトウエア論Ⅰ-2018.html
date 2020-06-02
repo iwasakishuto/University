@@ -129,8 +129,7 @@
 <li>right=i-1</li>
 </ol>
 <p>最終的なプログラムは以下のようになる。</p>
-<p><code>c
-void randomQuickSort3(int* target, int aLeft, int aRight) {
+<pre class="highlight"><code class="language-c">void randomQuickSort3(int* target, int aLeft, int aRight) {
   int left = aLeft; int right = aRight;
   while (left &lt; right) {
     int i = partition(target, left, right);
@@ -142,15 +141,16 @@ void randomQuickSort3(int* target, int aLeft, int aRight) {
       right=i-1;
     }
   }
-}</code></p>
+}</code></pre>
+
+
 <p>この時、入力配列 <code>target</code> の長さが2^40のように長い配列でも stack overflow を起こさず動作する理由は、<b>「短い部分列を先に処理することで深さを <span class="math">\(\log_2n\)</span> 以下に抑えているから。」</b>です。
 　関数呼出しの際には、パラメータや命令のアドレス、局所変数などをスタックに積み(push)、関数の実行が終わると取り出されます(pop)。
 　したがって、関数の中で関数を<b>並列に</b>呼ぶ分には問題はないのですが、<b>直列に</b>（こんな表現は多分正しくないです笑）呼ぶとその度にスタックに積まなくてはならず、メモリ領域が足りなくなり、stack overflowを起こしてしまいます。
 　ゆえに、再帰の深さを <span class="math">\(\log_2n\)</span> 以下に抑えている上記のプログラムはstack overflowを起こしにくいのです。</p>
 <h3>2</h3>
 <p>下からk番目の要素の場合、以下のようになる。（いわゆるQuick select）k番目が含まれている配列のみをソート(partition)していく。</p>
-<p><code>c
-int select(int* target, int aLeft, int aRight, int k) {
+<pre class="highlight"><code class="language-c">int select(int* target, int aLeft, int aRight, int k) {
   int left = aLeft; int right = aRight;
   if(left &lt; right) {
     int i = partition(target, left, right);
@@ -162,7 +162,9 @@ int select(int* target, int aLeft, int aRight, int k) {
       return select(target, left, i-1, k);
     }
   }
-}</code></p>
+}</code></pre>
+
+
 <h3>3</h3>
 <p>k番目の要素を選択する平均計算量を <span class="math">\(T(n,k)\)</span> と表記し、最悪の場合でも上界が <span class="math">\(O(n)\)</span> であることを示す。</p>
 <p>まず、k番目の要素を選択する平均計算量を <span class="math">\(C(n)\)</span> と表す。<code>partition</code> の結果 <span class="math">\(i\)</span> 個と <span class="math">\(n-i\)</span> 個の要素に分かれる確率を <span class="math">\(P(i,n)\)</span> とすると、<span class="math">\(C(n)\)</span> は <span class="math">\(i\)</span> が <span class="math">\(1\sim n-1\)</span> を動いた場合の期待値と考えられるので、
@@ -198,13 +200,36 @@ $$</div>
 　以上により、<span class="math">\(a &gt; c+C(1)\)</span> とすれば、全ての <span class="math">\(n\)</span> で <span class="math">\(C(k)\leq ak\)</span> が示せたことになり、クイックセレクトの平均計算量が <span class="math">\(O(n)\)</span> になることが示せた。</p>
 <h2>問題2</h2>
 <h3>1</h3>
-<p>|項目|定義|
-|:--:|:--:|
-|suffix array SA|Sの全てのsuffixを辞書式順序でソートした時に、i番目(0&lt;=i&lt;n)にランクされたsuffixS[k,n)の開始位置kを、SA[i]=kと記録する。（開始位置kだけ記録すればSからsuffixの文字列は得られるので問題ない。）|
-|inverse suffix array ISA|"SA[i]=k"ならば"ISA[k]=i"と記録したもの。suffix S[k,n)が何番目かを調べるための補助的データ構造。|
-|h-順序|最初のh文字だけでソートしたsuffixの順序|
-|近似 suffix array|最初のh文字だけで作成したsuffix array|
-|近似 inverse suffix array|最初のh文字だけで作成したinverse suffix array|</p>
+<table>
+<thead>
+<tr>
+<th align="center">項目</th>
+<th align="center">定義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">suffix array SA</td>
+<td align="center">Sの全てのsuffixを辞書式順序でソートした時に、i番目(0&lt;=i&lt;n)にランクされたsuffixS[k,n)の開始位置kを、SA[i]=kと記録する。（開始位置kだけ記録すればSからsuffixの文字列は得られるので問題ない。）</td>
+</tr>
+<tr>
+<td align="center">inverse suffix array ISA</td>
+<td align="center">"SA[i]=k"ならば"ISA[k]=i"と記録したもの。suffix S[k,n)が何番目かを調べるための補助的データ構造。</td>
+</tr>
+<tr>
+<td align="center">h-順序</td>
+<td align="center">最初のh文字だけでソートしたsuffixの順序</td>
+</tr>
+<tr>
+<td align="center">近似 suffix array</td>
+<td align="center">最初のh文字だけで作成したsuffix array</td>
+</tr>
+<tr>
+<td align="center">近似 inverse suffix array</td>
+<td align="center">最初のh文字だけで作成したinverse suffix array</td>
+</tr>
+</tbody>
+</table>
 <h3>2</h3>
 <p>基本的なアイデアは、<b>「h文字目までの順番が確定している時、その順番を利用すればh+h=2h文字目までの順番も分かる」</b>ということ。詳しくは<a href="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/tree/master/S1/kadai/kadai2#doubling">ここ</a>で図を用いて解説した。</p>
 <h3>3</h3>
@@ -221,9 +246,42 @@ $$</div>
 Suffix Array に関しては、<a href="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/tree/master/S1/kadai/kadai2">Doubling</a>や<a href="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/tree/master/S1/kadai/kadai3.1">SA-IS</a>に関してアルゴリズムの課題時にまとめたので、省略。</p>
 <h2>問題4</h2>
 <h3>1</h3>
-<p>|i|0|1|2|3|4|5|6|7|8|9|10|11|
-| ------ | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|BWT[i]|A|A|A|A|A|C|$|A|A|A|A|A|</p>
+<table>
+<thead>
+<tr>
+<th>i</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+<th>11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BWT[i]</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>C</td>
+<td>$</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
 <h3>2</h3>
 <ul>
 <li>suffix arrayの先頭文字の直前の文字を列にしたのがBWT</li>

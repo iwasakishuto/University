@@ -119,31 +119,69 @@
   <p><a href="./情報基礎実験(浅井)-10.html">ゲノム解析ツールの環境構築</a>で必要なツールを揃えたので、実際に<a href="https://www.proteinatlas.org/">The Human Protein Atlas</a>からデータを取得して、解析を行います。</p>
 <p>なお、今回は "<a href="https://www.ncbi.nlm.nih.gov/pubmed/25613900">Uhlen M, Fagerberg L, Hallstrom BM, et al. Proteomics. Tissue-based map of the human proteome. Science. 2015;347(6220):1260419. doi:10.1126/science.1260419</a>" でヒトの32種類の組織でRNA-seqを行なっていたため、そのデータを利用します。</p>
 <h3>解析の流れ</h3>
-<p>| # | 内容 | 利用するツール |
-| --- | ---- | ---- |
-| 0 |<a href="#anchor0">計算ノードを使用する準備</a> |  |
-| 1 |<a href="#anchor1">データの取得</a> | SRA Toolkit |
-| 2 | <a href="#anchor2">品質チェック</a> | FastQC |
-| 3 | <a href="#anchor3">マッピング</a> | HISAT2  |
-| 4 | <a href="#anchor4">IGVに必要なインデックスファイル作成</a> | samtools |
-| 5  | <a href="#anchor5">マッピング結果の可視化</a> | IGV |
-| 6 |<a href="#anchor6">リード数のカウント</a>| featureCounts |</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>内容</th>
+<th>利用するツール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td><a href="#anchor0">計算ノードを使用する準備</a></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td><a href="#anchor1">データの取得</a></td>
+<td>SRA Toolkit</td>
+</tr>
+<tr>
+<td>2</td>
+<td><a href="#anchor2">品質チェック</a></td>
+<td>FastQC</td>
+</tr>
+<tr>
+<td>3</td>
+<td><a href="#anchor3">マッピング</a></td>
+<td>HISAT2</td>
+</tr>
+<tr>
+<td>4</td>
+<td><a href="#anchor4">IGVに必要なインデックスファイル作成</a></td>
+<td>samtools</td>
+</tr>
+<tr>
+<td>5</td>
+<td><a href="#anchor5">マッピング結果の可視化</a></td>
+<td>IGV</td>
+</tr>
+<tr>
+<td>6</td>
+<td><a href="#anchor6">リード数のカウント</a></td>
+<td>featureCounts</td>
+</tr>
+</tbody>
+</table>
 <h3 id="anchor0">0. 計算ノードを使用する準備</h3>
 
 <p><code>qsub</code>コマンドで、対話モードで計算ノードを使用したいので、以下のバッチスクリプトを作成します。</p>
-<p>```sh
-[j29XXX@reedbush-h1 j29XXX]<span class="math">\( mkdir qsub_sh
-[j29XXX@reedbush-h1 j29XXX]\)</span> cd qsub_sh/
-[j29XXX@reedbush-h1 qsub_sh]$ vi interactive_h_qsub.sh</p>
-<p>"""interactive_h_qsub.sh</p>
-<h1>!bin/sh</h1>
-<h1>PBS -q h-interactive (使用する計算資源キュー名：h-interactiveはGPUあり。u-interactiveはGPUなし。)</h1>
-<h1>PBS -l select=1:ncpus=1:mpiprocs=1:ompthreads=8 (ノード数1、ノードあたりのMPIプロセス数1、プロセスあたりのスレッド数8)</h1>
-<h1>PBS -l walltime=2:00:00 (使用上限時間：2時間、u-interactiveの場合：30分)</h1>
-<h1>PBS -W group_list=gj29 (グループ名)</h1>
-<h1>PBS -I (対話型のジョブ)</h1>
-<p>"""
-```</p>
+<pre class="highlight"><code class="language-sh">[j29XXX@reedbush-h1 j29XXX]$ mkdir qsub_sh
+[j29XXX@reedbush-h1 j29XXX]$ cd qsub_sh/
+[j29XXX@reedbush-h1 qsub_sh]$ vi interactive_h_qsub.sh
+
+&quot;&quot;&quot;interactive_h_qsub.sh
+#!bin/sh
+#PBS -q h-interactive (使用する計算資源キュー名：h-interactiveはGPUあり。u-interactiveはGPUなし。)
+#PBS -l select=1:ncpus=1:mpiprocs=1:ompthreads=8 (ノード数1、ノードあたりのMPIプロセス数1、プロセスあたりのスレッド数8)
+#PBS -l walltime=2:00:00 (使用上限時間：2時間、u-interactiveの場合：30分)
+#PBS -W group_list=gj29 (グループ名)
+#PBS -I (対話型のジョブ)
+&quot;&quot;&quot;</code></pre>
+
+
 <p>※ なお、実際にツールを実行する際には、これと同じ値を引数として設定する。</p>
 <h3 id="anchor1">1. データの取得</h3>
 
@@ -153,30 +191,51 @@
 <li><a href="https://www.ncbi.nlm.nih.gov/sra">SRA</a>: アメリカのデータベース。実験に関するメタデータが多い。</li>
 <li>ERA: ヨーロッパのデータベース</li>
 </ul>
-<p>```sh
-[j29XXX@reedbush-h1 j29XXX]<span class="math">\( mkdir RNA
-[j29XXX@reedbush-h1 j29XXX]\)</span> cd RNAseq/</p>
-<h1>id: ERR315326のデータを取得する。</h1>
-<p>[j29XXX@reedbush-h1 RNAseq]<span class="math">\( wget ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra
-[j29XXX@reedbush-h1 RNAseq]\)</span> ls
+<pre class="highlight"><code class="language-sh">[j29XXX@reedbush-h1 j29XXX]$ mkdir RNA
+[j29XXX@reedbush-h1 j29XXX]$ cd RNAseq/
+# id: ERR315326のデータを取得する。
+[j29XXX@reedbush-h1 RNAseq]$ wget ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra
+[j29XXX@reedbush-h1 RNAseq]$ ls
 ERR315326.sra # これが見えていれば良い。
 [j29XXX@reedbush-h1 RNAseq]$ qsub ../qsub_sh/interactive_h_qsub.sh
 qsub: waiting for job 1804938.reedbush-pbsadmin0 to start
-qsub: job 1804938.reedbush-pbsadmin0 ready</p>
-<p>[j29XXX@a089 RNAseq]<span class="math">\( fasterq-dump ERR315326.sra -v --threads 8 --split-files -O ./
+qsub: job 1804938.reedbush-pbsadmin0 ready
+
+[j29XXX@a089 RNAseq]$ fasterq-dump ERR315326.sra -v --threads 8 --split-files -O ./
 spots read      : 8,782,257
 reads read      : 17,564,514
 reads written   : 17,564,514
-[j29XXX@a089 RNAseq]\)</span> ls
-ERR315326.sra  ERR315326.sra_1.fastq  ERR315326.sra_2.fastq
-```</p>
+[j29XXX@a089 RNAseq]$ ls
+ERR315326.sra  ERR315326.sra_1.fastq  ERR315326.sra_2.fastq</code></pre>
+
+
 <p>なお、ここで <code>fasterq-dump</code> のオプションは以下を表します。</p>
-<p>|オプション|説明|
-|:-:|:-|
-|<code>-v</code>|履歴の表示|
-|<code>--threads</code>|使用するスレッド数（バッチスクリプトに記載した値に合わせる。）|
-|<code>--split-files</code>|paired-endのリードを別々のファイルに出力する。|
-|<code>-O</code>|出力先のディレクトリ|</p>
+<table>
+<thead>
+<tr>
+<th align="center">オプション</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>-v</code></td>
+<td align="left">履歴の表示</td>
+</tr>
+<tr>
+<td align="center"><code>--threads</code></td>
+<td align="left">使用するスレッド数（バッチスクリプトに記載した値に合わせる。）</td>
+</tr>
+<tr>
+<td align="center"><code>--split-files</code></td>
+<td align="left">paired-endのリードを別々のファイルに出力する。</td>
+</tr>
+<tr>
+<td align="center"><code>-O</code></td>
+<td align="left">出力先のディレクトリ</td>
+</tr>
+</tbody>
+</table>
 <p>また、作成されたfastq形式のファイルは以下のように4行で1つの配列データを表しています。</p>
 <ol>
 <li>データのID シーケンサの機械・フローセル等の情報/リードペアの番号</li>
@@ -184,16 +243,16 @@ ERR315326.sra  ERR315326.sra_1.fastq  ERR315326.sra_2.fastq
 <li>＋（1行目と同じ文字列が入っていることもある）</li>
 <li>2行目の塩基配列の各塩基のクオリティスコア（<span class="math">\(Q=-10\log_{10}P_{\text{error}}\)</span>）</li>
 </ol>
-<p><code>fastq
-@ERR315326.sra.1 HWI-ST1362:39:H07R5ADXX:2:1101:1520:2188 length=101
+<pre class="highlight"><code class="language-fastq">@ERR315326.sra.1 HWI-ST1362:39:H07R5ADXX:2:1101:1520:2188 length=101
 CACTGAAGCAGGACAACGGACGTCTCCAATGCACCGCACAGGAACGGGCCCCCAGAGCTCGCACCCTCCGCCACACAGCACGCCCGGCAGCCTTTGGTGTC
 +ERR315326.sra.1 HWI-ST1362:39:H07R5ADXX:2:1101:1520:2188 length=101
-BBBFFFFFFFFFFFIIIIIFFIIIFFFFIIFBFIFIFIIIFBFFFFIFFBFBBBBBBBBBBBBFBBBBFFBBBBBFFBBBB&lt;&lt;BBBFFFFFFFFFBB7BBB</code></p>
+BBBFFFFFFFFFFFIIIIIFFIIIFFFFIIFBFIFIFIIIFBFFFFIFFBFBBBBBBBBBBBBFBBBBFFBBBBBFFBBBB&lt;&lt;BBBFFFFFFFFFBB7BBB</code></pre>
+
+
 <h3 id="anchor2">2. 品質チェック</h3>
 
 <p>シーケンス実験がどの程度正しく行われたかを調べるため、<code>FastQC</code> を用いてシーケンスの品質チェックを行います。</p>
-<p><code>sh
-[j29XXX@a089 RNAseq]$ fastqc -t 8 ERR315326.sra_1.fastq ERR315326.sra_2.fastq
+<pre class="highlight"><code class="language-sh">[j29XXX@a089 RNAseq]$ fastqc -t 8 ERR315326.sra_1.fastq ERR315326.sra_2.fastq
 Started analysis of ERR315326.sra_1.fastq
 Started analysis of ERR315326.sra_2.fastq
 Approx 5% complete for ERR315326.sra_1.fastq
@@ -209,16 +268,19 @@ Analysis complete for ERR315326.sra_1.fastq
 Analysis complete for ERR315326.sra_2.fastq
 [j29XXX@a089 RNAseq]$ ls
 ERR315326.sra_2_fastqc.html
-ERR315326.sra_1_fastqc.html</code></p>
+ERR315326.sra_1_fastqc.html</code></pre>
+
+
 <p>これ作成できたhtmlファイルをブラウザで開くことで品質チェックが行えます。</p>
 <p>なお、ここで<code>sftp</code>コマンドを使うと楽にファイルの移動が行なえます。</p>
-<p><code>sh
-[iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
+<pre class="highlight"><code class="language-sh">[iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
 sftp&gt; get /lustre/gj29/j29XXX/RNAseq/ERR315326.sra_*_fastqc.html
 sftp&gt; exit
 [iwasakioshuto@shuto-MacBook-Pro]$ ls
 ERR315326.sra_2_fastqc.html
-ERR315326.sra_1_fastqc.html</code></p>
+ERR315326.sra_1_fastqc.html</code></pre>
+
+
 <p>出力結果は以下のようになりました。</p>
 <ul>
 <li><a href="theme/img/3A_Basic_Laboratory/RNAseq/ERR315326.sra_1_fastqc.html">ERR315326.sra_1_fastqc.html</a></li>
@@ -228,21 +290,22 @@ ERR315326.sra_1_fastqc.html</code></p>
 
 <p>マッピングをする際には、まずリファレンスゲノムを取得する必要があります。これは、 ~~<code>wget https://cloud.biohpc.swmed.edu/index.php/s/grch38/download</code> とやってもうまくいかなかったので、~~ <code>wget --content-disposition https://cloud.biohpc.swmed.edu/index.php/s/grch38/download</code> とやればおそらくうまくいきます。</p>
 <p><code>https://cloud.biohpc.swmed.edu/index.php/s/grch38/download</code> を直接ローカル環境でクリックしてダウンロードし、<code>sftp</code> で転送するという形をとりました。</p>
-<p><code>sh
-[iwasakioshuto@shuto-MacBook-Pro]$ tar -zxvf grch38.tar.gz
+<pre class="highlight"><code class="language-sh">[iwasakioshuto@shuto-MacBook-Pro]$ tar -zxvf grch38.tar.gz
 [iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
 sftp&gt; put -r grch38 /lustre/gj29/j29XXX/grch38
 Uploading grch38/ to /lustre/gj29/j29XXX/grch38
-sftp&gt; exit</code></p>
+sftp&gt; exit</code></pre>
+
+
 <p>これでデータの転送ができたので、reedbush側でマッピングを行います。</p>
-<p>```sh
-[j29XXX@reedbush-h1 j29XXX]<span class="math">\( mkdir db
-[j29XXX@reedbush-h1 j29XXX]\)</span> mv /lustre/gj29/j29XXX/grch38 /lustre/gj29/j29XXX/db/grch38
-[j29XXX@reedbush-h1 j29XXX]<span class="math">\( cd qsub_sh
-[j29XXX@reedbush-h1 qsub_sh]\)</span> qsub ./interactive_h_qsub.sh
-qsub: waiting for job 1805079.reedbush-pbsadmin0 to start</p>
-<p>[j29XXX@a091 ~]<span class="math">\( cd RNAseq/
-[j29XXX@a091 RNAseq]\)</span> time hisat2 -x ../db/grch38/genome -1 ERR315326.sra_1.fastq -2 ERR315326.sra_2.fastq -p 8 -S hisat_output_ERR315326.sam
+<pre class="highlight"><code class="language-sh">[j29XXX@reedbush-h1 j29XXX]$ mkdir db
+[j29XXX@reedbush-h1 j29XXX]$ mv /lustre/gj29/j29XXX/grch38 /lustre/gj29/j29XXX/db/grch38
+[j29XXX@reedbush-h1 j29XXX]$ cd qsub_sh
+[j29XXX@reedbush-h1 qsub_sh]$ qsub ./interactive_h_qsub.sh
+qsub: waiting for job 1805079.reedbush-pbsadmin0 to start
+
+[j29XXX@a091 ~]$ cd RNAseq/
+[j29XXX@a091 RNAseq]$ time hisat2 -x ../db/grch38/genome -1 ERR315326.sra_1.fastq -2 ERR315326.sra_2.fastq -p 8 -S hisat_output_ERR315326.sam
 8782257 reads; of these:
   8782257 (100.00%) were paired; of these:
     2765587 (31.49%) aligned concordantly 0 times
@@ -257,14 +320,16 @@ qsub: waiting for job 1805079.reedbush-pbsadmin0 to start</p>
         3942560 (81.44%) aligned 0 times
         807875 (16.69%) aligned exactly 1 time
         90443 (1.87%) aligned &gt;1 times
-77.55% overall alignment rate</p>
-<p>real    2m24.673s
+77.55% overall alignment rate
+
+real    2m24.673s
 user    16m27.784s
 sys 1m9.225s
 [j29XXX@a091 RNAseq]$ ls
 hisat_output_ERR315326.sam
-hisat_output_ERR315326.bam
-```</p>
+hisat_output_ERR315326.bam</code></pre>
+
+
 <h3 id="anchor4">4. IGVに必要なインデックスファイル作成</h3>
 
 <p>ここでは、以下の操作を行い、マッピング結果（.sam,.bam）をIGVで取り扱える形に変換します。</p>
@@ -273,30 +338,43 @@ hisat_output_ERR315326.bam
 <li>HISAT2のSAM形式の説明: <a href="https://ccb.jhu.edu/software/hisat2/manual.shtml#sam-output">https://ccb.jhu.edu/software/hisat2/manual.shtml#sam-output</a></li>
 </ul>
 <p><strong>※Bamはバイナリ形式、samはテキスト形式</strong></p>
-<p><code>sh
-[j29XXX@a091 RNAseq]$ samtools view --threads 8 -b hisat_output_ERR315326.sam -o hisat_output_ERR315326.bam
+<pre class="highlight"><code class="language-sh">[j29XXX@a091 RNAseq]$ samtools view --threads 8 -b hisat_output_ERR315326.sam -o hisat_output_ERR315326.bam
 [j29XXX@a091 RNAseq]$ samtools sort --threads 8 hisat_output_ERR315326.bam -o hisat_output_ERR315326.sorted.bam
 [bam_sort_core] merging from 0 files and 8 in-memory blocks...
 [j29XXX@a091 RNAseq]$ samtools index -@ 8 hisat_output_ERR315326.sorted.bam
 [j29XXX@a091 RNAseq]$ ls
 hisat_output_ERR315326.sorted.bam
-hisat_output_ERR315326.sorted.bam.bai</code></p>
+hisat_output_ERR315326.sorted.bam.bai</code></pre>
+
+
 <ul>
 <li><code>samtools view</code>：SAM形式（テキスト）をBAM形式（バイナリ）に変換（-b: bam形式で出力 –o:出力先）</li>
 <li><code>samtools sort</code>：BAM形式のマッピング結果をゲノム上の位置でソートする（–o:出力先）</li>
 <li><code>samtools index</code>：IGV（ビューワ）用のインデックスファイル（.bai）を作成</li>
 </ul>
 <p>目的のファイルが作成できたので、ローカル環境にファイルを転送します。</p>
-<p><code>sh
-[iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
+<pre class="highlight"><code class="language-sh">[iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
 sftp&gt; get /lustre/gj29/j29XXX/RNAseq/hisat_output_ERR315326.sorted.*
-sftp&gt; exit</code></p>
+sftp&gt; exit</code></pre>
+
+
 <h3 id="anchor5">5. マッピング結果の可視化</h3>
 
 <p>IGVでゲノムをhg38に設定し、bamファイルをロードすれば、以下のようなマッピング結果が確認できます。</p>
-<p>|actin beta (ACTB)|MALAT1|
-|:-:|:-:|
-|<img alt="ACTB" src="theme/img/3A_Basic_Laboratory/RNAseq/ACTB.png" />|<img alt="MALAT1" src="theme/img/3A_Basic_Laboratory/RNAseq/MALAT1.png" />|</p>
+<table>
+<thead>
+<tr>
+<th align="center">actin beta (ACTB)</th>
+<th align="center">MALAT1</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img alt="ACTB" src="theme/img/3A_Basic_Laboratory/RNAseq/ACTB.png" /></td>
+<td align="center"><img alt="MALAT1" src="theme/img/3A_Basic_Laboratory/RNAseq/MALAT1.png" /></td>
+</tr>
+</tbody>
+</table>
 <h3 id="anchor6">6. リード数のカウント</h3>
 
 <ul>
@@ -331,34 +409,74 @@ sftp&gt; exit</code></p>
 </li>
 </ul>
 <p>となっており、各オプションは以下を表します。</p>
-<p>|オプション|説明|
-|:-:|:-|
-|<code>-p</code>|paired-endのデータ※リード2本で1カウント（1fragment）|
-|<code>-t</code>|feature領域の指定|
-|<code>-g</code>|meta-feature領域の指定|
-|<code>-s</code>|ストランド情報の有無|
-|<code>-T</code>|スレッド数|
-|<code>-B</code>|pairの両リードがマップ|
-|<code>-C</code>|pairが同じ染色体にマップ|
-|<code>-O</code>|overlapを許可|
-|<code>-M</code>|multi-mapを許可|
-|<code>-a</code>|アノテーションファイル|
-|<code>-O</code>|出力ファイル（テキスト形式）|</p>
-<p>```sh
-[j29XXX@reedbush-u3 j29XXX]<span class="math">\( wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz
-[j29XXX@reedbush-u3 j29XXX]\)</span> gunzip gencode.v32.annotation.gtf.gz
-[j29XXX@reedbush-u3 j29XXX]<span class="math">\( ls
+<table>
+<thead>
+<tr>
+<th align="center">オプション</th>
+<th align="left">説明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><code>-p</code></td>
+<td align="left">paired-endのデータ※リード2本で1カウント（1fragment）</td>
+</tr>
+<tr>
+<td align="center"><code>-t</code></td>
+<td align="left">feature領域の指定</td>
+</tr>
+<tr>
+<td align="center"><code>-g</code></td>
+<td align="left">meta-feature領域の指定</td>
+</tr>
+<tr>
+<td align="center"><code>-s</code></td>
+<td align="left">ストランド情報の有無</td>
+</tr>
+<tr>
+<td align="center"><code>-T</code></td>
+<td align="left">スレッド数</td>
+</tr>
+<tr>
+<td align="center"><code>-B</code></td>
+<td align="left">pairの両リードがマップ</td>
+</tr>
+<tr>
+<td align="center"><code>-C</code></td>
+<td align="left">pairが同じ染色体にマップ</td>
+</tr>
+<tr>
+<td align="center"><code>-O</code></td>
+<td align="left">overlapを許可</td>
+</tr>
+<tr>
+<td align="center"><code>-M</code></td>
+<td align="left">multi-mapを許可</td>
+</tr>
+<tr>
+<td align="center"><code>-a</code></td>
+<td align="left">アノテーションファイル</td>
+</tr>
+<tr>
+<td align="center"><code>-O</code></td>
+<td align="left">出力ファイル（テキスト形式）</td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight"><code class="language-sh">[j29XXX@reedbush-u3 j29XXX]$ wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz
+[j29XXX@reedbush-u3 j29XXX]$ gunzip gencode.v32.annotation.gtf.gz
+[j29XXX@reedbush-u3 j29XXX]$ ls
 gencode.v32.annotation.gtf
-[j29XXX@reedbush-u3 j29XXX]\)</span> mv gencode.v32.annotation.gtf db/
-[j29XXX@reedbush-u3 j29XXX]$ cd RNAseq/</p>
-<h1>overlap, multi-map をカウントしない場合</h1>
-<p>[j29XXX@reedbush-u3 RNAseq]$ featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -BC -a ../db/gencode.v32.annotation.gtf -o Counts_BC_ERR315326.txt</p>
-<h1>overlap, multi-map をそれぞれ1カウント</h1>
-<p>[j29XXX@reedbush-u3 RNAseq]$ featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -MOBC -a ../db/gencode.v32.annotation.gtf -o Counts_MOBC_ERR315326.txt
-```</p>
+[j29XXX@reedbush-u3 j29XXX]$ mv gencode.v32.annotation.gtf db/
+[j29XXX@reedbush-u3 j29XXX]$ cd RNAseq/
+# overlap, multi-map をカウントしない場合
+[j29XXX@reedbush-u3 RNAseq]$ featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -BC -a ../db/gencode.v32.annotation.gtf -o Counts_BC_ERR315326.txt
+# overlap, multi-map をそれぞれ1カウント
+[j29XXX@reedbush-u3 RNAseq]$ featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -MOBC -a ../db/gencode.v32.annotation.gtf -o Counts_MOBC_ERR315326.txt</code></pre>
+
+
 <p>カウントが行えたので、<span class="marker-info" aria-label="正規化された発現量">TPM(Transcripts Per Million)</span>の算出します。なお、TPMの算出方法は<a href="https://iwasakishuto.github.io/University/3S/ゲノム配列解析論Ⅱ-4.html">3S ゲノム配列解析論Ⅱ 第4回の講義内容</a>に記載してあります。</p>
-<p><code>sh
-[iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
+<pre class="highlight"><code class="language-sh">[iwasakioshuto@shuto-MacBook-Pro]$ sftp j29XXX@reedbush.cc.u-tokyo.ac.jp
 sftp&gt; get /lustre/gj29/j29XXX/RNAseq/Counts_*BC_ERR315326.txt
 sftp&gt; exit
 [iwasakioshuto@shuto-MacBook-Pro]$ ls
@@ -370,37 +488,39 @@ Counts_MOBC_ERR315326.txt
 Counts_BC_ERR315326.txt
 Counts_BC_ERR315326_with_TPM.txt
 Counts_MOBC_ERR315326.txt
-Counts_MOBC_ERR315326_with_TPM.tx</code></p>
+Counts_MOBC_ERR315326_with_TPM.tx</code></pre>
+
+
 <p>なお、ここで使用した <code>CalcuTPM.py</code> の中身は以下です。（ヘッダーの内容まで含めて形式を変えたくなかったので、少し余計な操作があります。）</p>
-<p>```py</p>
-<h1>coding:utf-8</h1>
-<p>import argparse
-import pandas as pd</p>
-<p>if <strong>name</strong> == "<strong>main</strong>":
+<pre class="highlight"><code class="language-py">#coding:utf-8
+import argparse
+import pandas as pd
+
+if __name__ == &quot;__main__&quot;:
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input",    type=str, help="Please specify where the Counts file is.")
-    parser.add_argument("-c", "--absolute", type=str, help="Which column indicates absolute counts.", default="hisat_output_ERR315326.bam",)
-    parser.add_argument("-l", "--length",   type=str, help="Which column indicates length", default="Length")
-    args = parser.parse_args()</p>
-<pre class="highlight"><code>output_path = &quot;_with_TPM.&quot;.join(args.input.split(&quot;.&quot;))
+    parser.add_argument(&quot;-i&quot;, &quot;--input&quot;,    type=str, help=&quot;Please specify where the Counts file is.&quot;)
+    parser.add_argument(&quot;-c&quot;, &quot;--absolute&quot;, type=str, help=&quot;Which column indicates absolute counts.&quot;, default=&quot;hisat_output_ERR315326.bam&quot;,)
+    parser.add_argument(&quot;-l&quot;, &quot;--length&quot;,   type=str, help=&quot;Which column indicates length&quot;, default=&quot;Length&quot;)
+    args = parser.parse_args()
 
-with open(args.input, mode=&quot;r&quot;) as inputFile:
-    header = inputFile.readline()
+    output_path = &quot;_with_TPM.&quot;.join(args.input.split(&quot;.&quot;))
 
-# TPMの計算はここだけで完結
-df = pd.read_csv(args.input, sep=&quot;\t&quot;, header=1)
-df[&quot;RPKM&quot;] = 1e6*df[args.absolute]/(df[args.length]*df[args.absolute].sum())
-df[&quot;TPM&quot;] = 1e6*df[&quot;RPKM&quot;]/df[&quot;RPKM&quot;].sum()
-df.to_csv(output_path, index=False, sep=&quot;\t&quot;)
+    with open(args.input, mode=&quot;r&quot;) as inputFile:
+        header = inputFile.readline()
 
-with open(output_path) as outputFile:
-    lines = outputFile.readlines()
-lines.insert(0, header)
-with open(output_path, mode='w') as f:
-    f.writelines(lines)</code></pre>
+    # TPMの計算はここだけで完結
+    df = pd.read_csv(args.input, sep=&quot;\t&quot;, header=1)
+    df[&quot;RPKM&quot;] = 1e6*df[args.absolute]/(df[args.length]*df[args.absolute].sum())
+    df[&quot;TPM&quot;] = 1e6*df[&quot;RPKM&quot;]/df[&quot;RPKM&quot;].sum()
+    df.to_csv(output_path, index=False, sep=&quot;\t&quot;)
+
+    with open(output_path) as outputFile:
+        lines = outputFile.readlines()
+    lines.insert(0, header)
+    with open(output_path, mode='w') as f:
+        f.writelines(lines)</code></pre>
 
 
-<p>```</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

@@ -231,14 +231,31 @@ $$</div>
 <h3 id="anchor1-3">双対変数の最適化</h3>
 
 <p>上の問題では、双対変数 <span class="math">\(\lambda\)</span> の最適化問題を解析的に解けたが、解析的に解くことができない問題もある。その場合に使うのが<span class="marker-pink">双対上昇法</span>や<span class="marker-pink">乗数法</span>と呼ばれる<strong>双対変数の勾配上昇</strong>を行う手法である。</p>
-<p>| 手法 | 数式 | 解説 |
-| ---- | ---- | ---- |
-| 双対上昇法     |  </p>
+<table>
+<thead>
+<tr>
+<th>手法</th>
+<th>数式</th>
+<th>解説</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>双対上昇法</td>
+<td>
 <div class="math">$$\begin{aligned}\mathbf{x}_{k+1} &amp;= \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}L(\mathbf{x},\boldsymbol{\lambda}_{k})\\\boldsymbol{\lambda}_{k+1} &amp;= \boldsymbol{\lambda}_k + \varepsilon_k\nabla\omega(\mathbf{\boldsymbol{\lambda}}_k) \\&amp;= \boldsymbol{\lambda}_k + \varepsilon_k\mathbf{g}(\mathbf{x}_{k+1})\end{aligned}$$</div>
-<p>    | 適当な初期値から，ラグランジュ関数の最小化と双対変数の勾配上昇を交互に実行     |
-| 乗数法     |  </p>
+</td>
+<td>適当な初期値から，ラグランジュ関数の最小化と双対変数の勾配上昇を交互に実行</td>
+</tr>
+<tr>
+<td>乗数法</td>
+<td>
 <div class="math">$$\begin{aligned}\mathbf{x}_{k+1} &amp;= \underset{\mathbf{x}\in\mathcal{X}}{\text{argmin}}L_c(\mathbf{x},\boldsymbol{\lambda}_{k})\\\boldsymbol{\lambda}_{k+1} &amp;= \boldsymbol{\lambda}_k + c\nabla\omega(\mathbf{\boldsymbol{\lambda}}_k) \\&amp;= \boldsymbol{\lambda}_k + c\mathbf{g}(\mathbf{x}_{k+1})\end{aligned}$$</div>
-<p>    | 適当な初期値から，<span class="marker-pink">拡張ラグランジュ関数</span>の最小化と双対変数の勾配上昇を交互に実行     |</p>
+</td>
+<td>適当な初期値から，<span class="marker-pink">拡張ラグランジュ関数</span>の最小化と双対変数の勾配上昇を交互に実行</td>
+</tr>
+</tbody>
+</table>
 <p>なお、<span class="marker-pink">拡張ラグランジュ関数(augmented Lagrangian)</span>は、以下で表される関数で、二次の項を加えることで凸性を増している。</p>
 <div class="math">$$L_c(\mathbf{x},\boldsymbol{\lambda}) = f(\mathbf{x}) + \boldsymbol{\lambda}^T\mathbf{g}(\mathbf{x}) + \frac{c}{2}\|\mathbf{g}(\mathbf{x})\|^2$$</div>
 <p>※実装は<a href="https://iwasakishuto.github.io/University/3A/知能システム論-report3.html">レポート課題3</a>に記載。</p>

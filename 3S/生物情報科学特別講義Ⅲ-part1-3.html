@@ -167,14 +167,54 @@ $$</div>
 <h3>Solexa</h3>
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/fCd6B5HRaZ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 <h3>何が違うのか？</h3>
-<p>|#|第1世代<br>Sanger法|第2世代<br>SBS|第3世代<br>SMRT/Nanopore|
-|:--:|:--|:--|:--|
-|鋳型調製|<li>組換えDNA</li><li>大腸菌</li>|<li>試験管内クローニング</li><li>エマルションPCR</li><li>ブリッジPCR</li>|<li>クローニング不要</li><li>一分子のまま</li>|
-|反応|<li>サンガー反応</li><li>サーマルサイクラー</li>|<li>非サンガー法</li><li>反応の進行を逐一観察</li><li>超並列(massively parallel)</li>|<li>非サンガー法</li><li>反応の進行を連続観察</li><li>超並列(massively parallel)</li>|
-|読み取り|電気泳動装置|反応と読み取りが一体化|反応と読み取りが一体化|
-|正確性|◯|△|×|
-|出力|×|◯|△|
-|リード長|△|×|◯|</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">第1世代<br>Sanger法</th>
+<th align="left">第2世代<br>SBS</th>
+<th align="left">第3世代<br>SMRT/Nanopore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">鋳型調製</td>
+<td align="left"><li>組換えDNA</li><li>大腸菌</li></td>
+<td align="left"><li>試験管内クローニング</li><li>エマルションPCR</li><li>ブリッジPCR</li></td>
+<td align="left"><li>クローニング不要</li><li>一分子のまま</li></td>
+</tr>
+<tr>
+<td align="center">反応</td>
+<td align="left"><li>サンガー反応</li><li>サーマルサイクラー</li></td>
+<td align="left"><li>非サンガー法</li><li>反応の進行を逐一観察</li><li>超並列(massively parallel)</li></td>
+<td align="left"><li>非サンガー法</li><li>反応の進行を連続観察</li><li>超並列(massively parallel)</li></td>
+</tr>
+<tr>
+<td align="center">読み取り</td>
+<td align="left">電気泳動装置</td>
+<td align="left">反応と読み取りが一体化</td>
+<td align="left">反応と読み取りが一体化</td>
+</tr>
+<tr>
+<td align="center">正確性</td>
+<td align="left">◯</td>
+<td align="left">△</td>
+<td align="left">×</td>
+</tr>
+<tr>
+<td align="center">出力</td>
+<td align="left">×</td>
+<td align="left">◯</td>
+<td align="left">△</td>
+</tr>
+<tr>
+<td align="center">リード長</td>
+<td align="left">△</td>
+<td align="left">×</td>
+<td align="left">◯</td>
+</tr>
+</tbody>
+</table>
 <h4>第四世代?</h4>
 <p>Post-light sequencer
 - Oxford Nanopore：
@@ -184,21 +224,67 @@ DNAポリメラーゼの一分子観察。<span class="marker-info" aria-label="
 - Ion Torrent：
 ヌクレオチドの取り込みで生じる <span class="math">\(\mathrm{H}^{+}\)</span> を計測（中身はただのpHメーター）</p>
 <h3>個人ゲノム解読</h3>
-<p>|ヒトゲノム計画|個人ゲノム解読|
-|:--|:--|
-|<font color="red"><b>de novo sequencing（新規）</b></font>|<font color="red"><b>re-sequencing（お手本あり）</b></font>|
-|誰か特定の人のゲノムではない（混合物）|リアルな個人のゲノム|
-|二倍体ゲノムではない（データは一本）|二倍体ゲノムを目指す|</p>
+<table>
+<thead>
+<tr>
+<th align="left">ヒトゲノム計画</th>
+<th align="left">個人ゲノム解読</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><font color="red"><b>de novo sequencing（新規）</b></font></td>
+<td align="left"><font color="red"><b>re-sequencing（お手本あり）</b></font></td>
+</tr>
+<tr>
+<td align="left">誰か特定の人のゲノムではない（混合物）</td>
+<td align="left">リアルな個人のゲノム</td>
+</tr>
+<tr>
+<td align="left">二倍体ゲノムではない（データは一本）</td>
+<td align="left">二倍体ゲノムを目指す</td>
+</tr>
+</tbody>
+</table>
 <h4>ヒトゲノム多様性のオーダー</h4>
-<p>|多様性|オーダー|
-|:--|:-:|
-|ゲノムサイズ|<span class="math">\(10^9\)</span>|
-|<font color="red"><b>SNP</b></font>|<span class="math">\(10^6\)</span>|
-|<font color="red"><b>Indel</b></font>|<span class="math">\(10^5\)</span>|
-|非同義置換|<span class="math">\(10^4\)</span>|
-|<font color="red"><b>SV(Structural Variation)</b></font>|<span class="math">\(10^3\)</span>|
-|遺伝子機能低下|<span class="math">\(10^2\)</span>|
-|遺伝子機能喪失|<span class="math">\(10\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="left">多様性</th>
+<th align="center">オーダー</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">ゲノムサイズ</td>
+<td align="center"><span class="math">\(10^9\)</span></td>
+</tr>
+<tr>
+<td align="left"><font color="red"><b>SNP</b></font></td>
+<td align="center"><span class="math">\(10^6\)</span></td>
+</tr>
+<tr>
+<td align="left"><font color="red"><b>Indel</b></font></td>
+<td align="center"><span class="math">\(10^5\)</span></td>
+</tr>
+<tr>
+<td align="left">非同義置換</td>
+<td align="center"><span class="math">\(10^4\)</span></td>
+</tr>
+<tr>
+<td align="left"><font color="red"><b>SV(Structural Variation)</b></font></td>
+<td align="center"><span class="math">\(10^3\)</span></td>
+</tr>
+<tr>
+<td align="left">遺伝子機能低下</td>
+<td align="center"><span class="math">\(10^2\)</span></td>
+</tr>
+<tr>
+<td align="left">遺伝子機能喪失</td>
+<td align="center"><span class="math">\(10\)</span></td>
+</tr>
+</tbody>
+</table>
 <h3>これかのゲノミクス</h3>
 <ul>
 <li>個人ゲノミクス<ul>

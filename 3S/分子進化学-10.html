@@ -233,14 +233,34 @@ $$</div>
 - 2個の遺伝子コピーが合祖する確率は <span class="math">\(1/2N\)</span>
 - 世代あたりの突然変異率を <span class="math">\(u\)</span> とすると、2個の遺伝子コピーの少なくともどちらか一方で突然変異が起こる確率は <span class="math">\(1-(1-u)^2\fallingdotseq2u\)</span></p>
 <p>ここで、合祖か突然変異のどちらかが起こるまで遡ったとすると、</p>
-<p>|                      | 塩基配列 |     |  ホモ/へテロ   |
-| -------------------- | -------- | --- | --- |
-| 合祖が先に起こる     | 同一     | </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>塩基配列</th>
+<th></th>
+<th>ホモ/へテロ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>合祖が先に起こる</td>
+<td>同一</td>
+<td>
 <div class="math">$$\frac{\frac{1}{2N}}{\frac{1}{2N} + 2u} = \frac{1}{1+4Nu}$$</div>
-<p>    |  ホモ   |
-| 突然変異が先に起こる | 異なる   | </p>
+</td>
+<td>ホモ</td>
+</tr>
+<tr>
+<td>突然変異が先に起こる</td>
+<td>異なる</td>
+<td>
 <div class="math">$$\frac{\frac{2u}{2N}}{\frac{1}{2N} + 2u} = \frac{4Nu}{1+4Nu}$$</div>
-<p>    | ヘテロ    |</p>
+</td>
+<td>ヘテロ</td>
+</tr>
+</tbody>
+</table>
 <h3>塩基相違数の期待値</h3>
 <ul>
 <li>世代あたりの突然変異率を <span class="math">\(u\)</span> とすると、ある世代で2本のどちらかで突然変異が起こる確率は <span class="math">\(2u(1-u)\fallingdotseq2u\)</span><b>（共に起こることはないと仮定）</b></li>

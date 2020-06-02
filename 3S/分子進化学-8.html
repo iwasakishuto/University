@@ -137,12 +137,37 @@
 <font color="red"><b>ディプロタイプ</b></font>と呼び、対のそれぞれ片方を<font color="red"><b>ハプロタイプ</b></font>と呼ぶ。</p>
 <p>今回の例の場合、ハプロタイプは 「A1-B1」,「A1-B2」,「A2-B1」,「A2-B2」の四種類が存在することになる。</p>
 <p>ここで、ハプロタイプ頻度が次のように得られたとする。</p>
-<p>|ハプロタイプ|理論的な頻度|実際の頻度|
-|:--:|:--:|:--:|
-|A1-B1|<span class="math">\(p_1\cdot q_1\)</span>|<span class="math">\(x_{11}\)</span>|
-|A1-B2|<span class="math">\(p_1\cdot q_2\)</span>|<span class="math">\(x_{12}\)</span>|
-|A2-B1|<span class="math">\(p_2\cdot q_1\)</span>|<span class="math">\(x_{21}\)</span>|
-|A2-B2|<span class="math">\(p_2\cdot q_2\)</span>|<span class="math">\(x_{22}\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">ハプロタイプ</th>
+<th align="center">理論的な頻度</th>
+<th align="center">実際の頻度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">A1-B1</td>
+<td align="center"><span class="math">\(p_1\cdot q_1\)</span></td>
+<td align="center"><span class="math">\(x_{11}\)</span></td>
+</tr>
+<tr>
+<td align="center">A1-B2</td>
+<td align="center"><span class="math">\(p_1\cdot q_2\)</span></td>
+<td align="center"><span class="math">\(x_{12}\)</span></td>
+</tr>
+<tr>
+<td align="center">A2-B1</td>
+<td align="center"><span class="math">\(p_2\cdot q_1\)</span></td>
+<td align="center"><span class="math">\(x_{21}\)</span></td>
+</tr>
+<tr>
+<td align="center">A2-B2</td>
+<td align="center"><span class="math">\(p_2\cdot q_2\)</span></td>
+<td align="center"><span class="math">\(x_{22}\)</span></td>
+</tr>
+</tbody>
+</table>
 <h3><span class="math">\(D_{A1,B1}\)</span></h3>
 <p>この時、</p>
 <div class="math">$$D_{A1,B1} = x_{11}-p_1\cdot q_1$$</div>
@@ -167,11 +192,36 @@ x_{11}+x_{12}
 $$</div>
 <p>といった関係があるため、以下の表のようにかける。</p>
 <h3><span class="math">\(D\)</span></h3>
-<p>||<span class="math">\(A_1\)</span>|<span class="math">\(A_2\)</span>|Total|
-|:--:|:--:|:--:|:--:|
-|<span class="math">\(B_1\)</span>|<span class="math">\(x_{11}=p_1\cdot q_1 + D\)</span>|<span class="math">\(x_{21}=p_2\cdot q_1 - D\)</span>|<span class="math">\(q_1\)</span>|
-|<span class="math">\(B_2\)</span>|<span class="math">\(x_{12}=p_1\cdot q_2 - D\)</span>|<span class="math">\(x_{22}=p_2\cdot q_2 + D\)</span>|<span class="math">\(q_2\)</span>|
-|Total|<span class="math">\(p_1\)</span>|<span class="math">\(p_2\)</span>|<span class="math">\(1\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><span class="math">\(A_1\)</span></th>
+<th align="center"><span class="math">\(A_2\)</span></th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(B_1\)</span></td>
+<td align="center"><span class="math">\(x_{11}=p_1\cdot q_1 + D\)</span></td>
+<td align="center"><span class="math">\(x_{21}=p_2\cdot q_1 - D\)</span></td>
+<td align="center"><span class="math">\(q_1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(B_2\)</span></td>
+<td align="center"><span class="math">\(x_{12}=p_1\cdot q_2 - D\)</span></td>
+<td align="center"><span class="math">\(x_{22}=p_2\cdot q_2 + D\)</span></td>
+<td align="center"><span class="math">\(q_2\)</span></td>
+</tr>
+<tr>
+<td align="center">Total</td>
+<td align="center"><span class="math">\(p_1\)</span></td>
+<td align="center"><span class="math">\(p_2\)</span></td>
+<td align="center"><span class="math">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
 <p><b>ここで、<span class="math">\(D\)</span> は、先ほど定義した連鎖不平衡係数 <span class="math">\(D_{A1,B1}\)</span> と等しい。</b></p>
 <p>また、上記の関係性を用いると、<span class="math">\(D_{A1,B1}\)</span> は以下のようにかける。</p>
 <div class="math">$$
@@ -206,11 +256,36 @@ $$</div>
 <p>一方で、ある個体の遺伝子型が座位Aで <span class="math">\([A_1/A_2]\)</span> 、座位Bで <span class="math">\([B_1/B_2]\)</span> だとした場合、<b>ハプロタイプは <span class="math">\([A_1B_1]\)</span> と <span class="math">\([A_2B_2]\)</span> の組み合わせなのか、<span class="math">\([A_1B_2]\)</span> と <span class="math">\([A_2B_1]\)</span> の組み合わせなのかわからない。</b></p>
 <p>そこで、どちらの組み合わせなのかを推定する必要がある。なお、単一個体ではどちらなのかの推定になるが、一般には<b> <span class="math">\(N\)</span> 体の個体のうち <span class="math">\(x_1\)</span> 体の遺伝子型が座位Aで <span class="math">\([A_1/A_2]\)</span>、座位Bで <span class="math">\([B_1/B_2]\)</span>、<span class="math">\(x_2\)</span> 体の遺伝子型が座位Aで <span class="math">\([A_1]\)</span>、座位Bで <span class="math">\([B_1]\)</span>、…</b>といった形でデータが得られるので、ハプロタイプ<font color="red"><b>頻度</b></font>の推定になる。（本質的には同じ）</p>
 <p>以下のデータが得られたとする。</p>
-<p>||<span class="math">\(B_1/B_1\)</span>|<span class="math">\(B_1/B_2\)</span>|<span class="math">\(B_2/B_2\)</span>|
-|:--:|:--:|:--:|:--:|
-|<span class="math">\(A_1/A_1\)</span>|<span class="math">\(n_{1111}\)</span>|<span class="math">\(n_{1112}\)</span>|<span class="math">\(n_{1122}\)</span>|
-|<span class="math">\(A_1/A_2\)</span>|<span class="math">\(n_{1211}\)</span>|<font color="red"><span class="math">\(n_{1212}\)</span></font>|<span class="math">\(n_{1222}\)</span>|
-|<span class="math">\(A_2/A_2\)</span>|<span class="math">\(n_{2211}\)</span>|<span class="math">\(n_{2212}\)</span>|<span class="math">\(n_{2222}\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"><span class="math">\(B_1/B_1\)</span></th>
+<th align="center"><span class="math">\(B_1/B_2\)</span></th>
+<th align="center"><span class="math">\(B_2/B_2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(A_1/A_1\)</span></td>
+<td align="center"><span class="math">\(n_{1111}\)</span></td>
+<td align="center"><span class="math">\(n_{1112}\)</span></td>
+<td align="center"><span class="math">\(n_{1122}\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(A_1/A_2\)</span></td>
+<td align="center"><span class="math">\(n_{1211}\)</span></td>
+<td align="center"><font color="red"><span class="math">\(n_{1212}\)</span></font></td>
+<td align="center"><span class="math">\(n_{1222}\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(A_2/A_2\)</span></td>
+<td align="center"><span class="math">\(n_{2211}\)</span></td>
+<td align="center"><span class="math">\(n_{2212}\)</span></td>
+<td align="center"><span class="math">\(n_{2222}\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>なお、ここで</p>
 <div class="math">$$
 \begin{aligned}

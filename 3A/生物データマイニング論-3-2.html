@@ -181,10 +181,27 @@ $$</div>
 <p>ただし、<span class="marker-pink"><span class="math">\(-\nabla f(\mathbf{x}^{\ast})\)</span> は <span class="math">\(g(\mathbf{x})&lt;0\)</span> の外側へと向かうはず</span>だから、<span class="marker-pink">あるパラメータ <span class="math">\(\lambda&gt;0\)</span> </span>が存在して、</p>
 <div class="math">$$\nabla f(\mathbf{x}) = -\lambda\nabla g (\mathbf{x})$$</div>
 <p>が成立しなければならない。</p>
-<p>|勾配|意味|最適化問題における問題における意味|
-|:-:|:-|:-|
-|<span class="math">\(\nabla f(\mathbf{x})\)</span>|<span class="math">\(f\)</span> が大きくなる方向|目的とは別の方向|
-|<span class="math">\(\nabla g(\mathbf{x})\)</span>|<span class="math">\(g\)</span> が大きくなる方向|<span class="math">\(g(\mathbf{x})&lt;0\)</span> の外側へと向かう方向|</p>
+<table>
+<thead>
+<tr>
+<th align="center">勾配</th>
+<th align="left">意味</th>
+<th align="left">最適化問題における問題における意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(\nabla f(\mathbf{x})\)</span></td>
+<td align="left"><span class="math">\(f\)</span> が大きくなる方向</td>
+<td align="left">目的とは別の方向</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\nabla g(\mathbf{x})\)</span></td>
+<td align="left"><span class="math">\(g\)</span> が大きくなる方向</td>
+<td align="left"><span class="math">\(g(\mathbf{x})&lt;0\)</span> の外側へと向かう方向</td>
+</tr>
+</tbody>
+</table>
 <h3>KKT条件</h3>
 <p>上記の無効制約・有効制約のどちらの場合にせよ、<span class="math">\(\lambda g(\mathbf{x})=0\)</span> が成立することがわかる。</p>
 <p>したがって、<span class="math">\(g(\mathbf{x})\leq0\)</span> という制約の下で <span class="math">\(f(\mathbf{x})\)</span> を最小化するには、以下の<span class="marker-pink">Karush-Kuhn-Tucker(KKT)条件</span>のもとで、<span class="math">\(\mathbf{x},\lambda\)</span> に関して<a href="#Lagrangian">ラグランジュ関数 <span class="math">\((E.4)\)</span> </a>の停留点を求めれば良い。</p>
@@ -198,12 +215,37 @@ $$</div>
 \end{aligned}
 $$</div>
 <p>なお、当然ではあるが、「制約条件の符号の向き」と「目的関数の最大化・最小化」には以下の関係がある。（<span class="math">\(\lambda\geq0\)</span>）</p>
-<p>|目的関数 <span class="math">\(f(\mathbf{x})\)</span>|制約条件 <span class="math">\(g(\mathbf{x})\)</span>|ラグランジュ関数 <span class="math">\(L(\mathbf{x},\lambda)\)</span>|
-|:-:|:-:|:-:|
-|<span class="math">\(\min f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\leq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span>|
-|<span class="math">\(\min f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\geq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span>|
-|<span class="math">\(\max f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\leq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span>|
-|<span class="math">\(\max f(\mathbf{x})\)</span>|<span class="math">\(g(\mathbf{x})\geq0\)</span>|<span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">目的関数 <span class="math">\(f(\mathbf{x})\)</span></th>
+<th align="center">制約条件 <span class="math">\(g(\mathbf{x})\)</span></th>
+<th align="center">ラグランジュ関数 <span class="math">\(L(\mathbf{x},\lambda)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(\min f(\mathbf{x})\)</span></td>
+<td align="center"><span class="math">\(g(\mathbf{x})\leq0\)</span></td>
+<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\min f(\mathbf{x})\)</span></td>
+<td align="center"><span class="math">\(g(\mathbf{x})\geq0\)</span></td>
+<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\max f(\mathbf{x})\)</span></td>
+<td align="center"><span class="math">\(g(\mathbf{x})\leq0\)</span></td>
+<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) - \lambda g(\mathbf{x})\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\max f(\mathbf{x})\)</span></td>
+<td align="center"><span class="math">\(g(\mathbf{x})\geq0\)</span></td>
+<td align="center"><span class="math">\(L(\mathbf{x},\lambda) = f(\mathbf{x}) + \lambda g(\mathbf{x})\)</span></td>
+</tr>
+</tbody>
+</table>
 <h3>一般化</h3>
 <div class="math">$$
 \begin{aligned}

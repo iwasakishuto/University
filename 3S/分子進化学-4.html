@@ -132,13 +132,48 @@
 <p><img src="https://ai2-s2-public.s3.amazonaws.com/figures/2017-08-08/ea221917a972b10b965857728cbff0740b773d4e/382-Figure16.6-1.png"></p>
 <p>ここで、祖先の塩基配列を <span class="math">\(N_{anc}\)</span> 子孫の塩基配列を <span class="math">\(N_{des}\)</span> とし、時間 <span class="math">\(t\)</span> におけるこれらの塩基配列の異なっている遺伝子座の割合を <span class="math">\(p_t\)</span> 等しい遺伝子座の割合を <span class="math">\(q_t\)</span> と定義する。（<span class="math">\(\forall t\in[0,T], p_t+q_t=1\)</span>）</p>
 <p>変異確率（速度）がどれも <span class="math">\(\alpha\)</span> で等しいので、それぞれの変異確率は以下のようになる。（※<span class="math">\(N_{anc}\)</span> は不変であり、<span class="math">\(N_{des}\)</span> のみに変異が起こる。）</p>
-<p>| <span class="math">\(N_{anc}\)</span> | t step | t+1 step | probability |
-| --------- | ------ | -------- | ----------- |
-| A         | A(q)   | A(q)     | 1-<span class="math">\(\alpha\)</span>  |
-| A         | A(q)   | C,G,T(p) | 3<span class="math">\(\alpha\)</span>   |
-| A         | G(p)   | G(p)     | 1-3<span class="math">\(\alpha\)</span> |
-| A         | G(p)   | A(q)     | <span class="math">\(\alpha\)</span>    |
-| A         | G(p)   | C,T(p)   | 2<span class="math">\(\alpha\)</span>   |</p>
+<table>
+<thead>
+<tr>
+<th><span class="math">\(N_{anc}\)</span></th>
+<th>t step</th>
+<th>t+1 step</th>
+<th>probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>A(q)</td>
+<td>A(q)</td>
+<td>1-<span class="math">\(\alpha\)</span></td>
+</tr>
+<tr>
+<td>A</td>
+<td>A(q)</td>
+<td>C,G,T(p)</td>
+<td>3<span class="math">\(\alpha\)</span></td>
+</tr>
+<tr>
+<td>A</td>
+<td>G(p)</td>
+<td>G(p)</td>
+<td>1-3<span class="math">\(\alpha\)</span></td>
+</tr>
+<tr>
+<td>A</td>
+<td>G(p)</td>
+<td>A(q)</td>
+<td><span class="math">\(\alpha\)</span></td>
+</tr>
+<tr>
+<td>A</td>
+<td>G(p)</td>
+<td>C,T(p)</td>
+<td>2<span class="math">\(\alpha\)</span></td>
+</tr>
+</tbody>
+</table>
 <p>したがって、以下の漸化式が導かれる。</p>
 <div class="math">$$
 \begin{aligned}

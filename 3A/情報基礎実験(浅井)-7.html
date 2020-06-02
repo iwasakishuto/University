@@ -138,18 +138,59 @@
 <p>そこで、<span class="marker-pink">「<span class="math">\(n\)</span> ではなく <span class="math">\(u,v\)</span> に注目する」</span>ことで、 <span class="math">\((13.43)\)</span> の式を以下のように書き換えます。</p>
 <div class="math">$$\xi_{u,v}\left(i,j\right)=\frac{f_i\left(u,v\right)A_{ij}\phi_j\left(\diamond_1\right)b_j\left(\diamond_2,\diamond_3\right)}{\sum_{k=1}^Kf_k\left(u,v\right)b_k\left(u,v\right)}$$</div>
 <p>ここで、分子に注目すると、各変数の意味が</p>
-<p>|variable|meaning|
-|:-:|:-|
-|<span class="math">\(f_i\left(u,v\right)\)</span>|The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.|
-|<span class="math">\(A_{ij}\)</span>|the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.|
-|<span class="math">\(\phi_j\left(\diamond_1\right)\)</span>|the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.|
-|<span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span>|the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.|</p>
+<table>
+<thead>
+<tr>
+<th align="center">variable</th>
+<th align="left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(f_i\left(u,v\right)\)</span></td>
+<td align="left">The probability of ending up in state <span class="math">\(i\)</span> after aligning the two sequences <span class="math">\(\mathbf{X,Y}\)</span> up to observation <span class="math">\(u\)</span> and <span class="math">\(v\)</span> respectively.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(A_{ij}\)</span></td>
+<td align="left">the transition probability from state <span class="math">\(i\)</span> to state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></td>
+<td align="left">the emission probability of emitting <span class="math">\(\diamond_1\)</span> in state <span class="math">\(j\)</span>.</td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></td>
+<td align="left">the probability of being in state <span class="math">\(j\)</span>, given the sequences <span class="math">\(\mathbf{X,Y}\)</span> are aligned from observation <span class="math">\(\diamond_2+1\)</span> and <span class="math">\(\diamond_3+1\)</span> to the end of the sequences respectively.</td>
+</tr>
+</tbody>
+</table>
 <p>であるので、<span class="math">\(\diamond\)</span> は状態によって異なり、具体的に書き下すと以下のようになります。</p>
-<p>|state\variable|<span class="math">\(\phi_j\left(\diamond_1\right)\)</span>|<span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span>|
-|:-:|:-:|:-:|
-|<span class="math">\(M\)</span>|<span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span>|<span class="math">\(b_j\left(u+1,v+1\right)\)</span>|
-|<span class="math">\(X\)</span>|<span class="math">\(e\left(x_{u+1}\right)\)</span>|<span class="math">\(b_j\left(u+1,v\right)\)</span>|
-|<span class="math">\(Y\)</span>|<span class="math">\(e\left(y_{v+1}\right)\)</span>|<span class="math">\(b_j\left(u,v+1\right)\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">state\variable</th>
+<th align="center"><span class="math">\(\phi_j\left(\diamond_1\right)\)</span></th>
+<th align="center"><span class="math">\(b_j\left(\diamond_2,\diamond_3\right)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1},y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v+1\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(e\left(x_{u+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u+1,v\right)\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(e\left(y_{v+1}\right)\)</span></td>
+<td align="center"><span class="math">\(b_j\left(u,v+1\right)\)</span></td>
+</tr>
+</tbody>
+</table>
 <h3><span class="math">\(\gamma\)</span></h3>
 <p>同様に <span class="math">\(\gamma\)</span> も考えると、</p>
 <div class="math">$$
@@ -165,11 +206,32 @@
 <div class="math">$$\pi^{\star}_i = \sum_w\gamma_i^w(0,0)$$</div>
 <h4><span class="math">\(A_{ij}\)</span></h4>
 <div class="math">$$A^{\star}_{ij} = \frac{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\xi_{u,v}^{w}\left(i,j\right)}{\sum_w\sum_{u=0}^{\tilde{U}}\sum_{v=0}^{\tilde{V}}\sum_{j}^{K}\xi_{u,v}^{w}\left(i,j\right)}$$</div>
-<p>|final emitting state|<span class="math">\(\tilde{U}\)</span>|<span class="math">\(\tilde{V}\)</span>|
-|:-:|:-:|:-:|
-|<span class="math">\(M\)</span>|<span class="math">\(U-1\)</span>|<span class="math">\(V-1\)</span>|
-|<span class="math">\(X\)</span>|<span class="math">\(U-1\)</span>|<span class="math">\(V\)</span>|
-|<span class="math">\(Y\)</span>|<span class="math">\(U\)</span>|<span class="math">\(V-1\)</span>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">final emitting state</th>
+<th align="center"><span class="math">\(\tilde{U}\)</span></th>
+<th align="center"><span class="math">\(\tilde{V}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="math">\(M\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(X\)</span></td>
+<td align="center"><span class="math">\(U-1\)</span></td>
+<td align="center"><span class="math">\(V\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="math">\(Y\)</span></td>
+<td align="center"><span class="math">\(U\)</span></td>
+<td align="center"><span class="math">\(V-1\)</span></td>
+</tr>
+</tbody>
+</table>
 <h4><span class="math">\(\phi_{i}(k)\)</span></h4>
 <div class="math">$$\phi_i\left(k\right) = \frac{\sum_w\sum_{u=0}^{U\ast1}\sum_{v=0}^{V\ast2}\gamma_i^w\left(u,v\right)}{\sum_w\sum_{u=0}^U\sum_{v=0}^V\gamma_i^w\left(u,v\right)}$$</div>
 <ul>

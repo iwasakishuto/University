@@ -121,15 +121,60 @@
 <li>講師：<a href="http://asailab.cb.k.u-tokyo.ac.jp/members/asai/">浅井 潔</a></li>
 </ul>
 <h2>Lecture Schedule</h2>
-<p>|#|date|teacher|title|
-|:--:|:--|:--|:--|
-|1|4/8|Asai|Introduction to sequence analysis|
-|2|4/15|Gotoh|Pairwise sequence alignment|
-|3|4/22|Asai|More on sequence alignment|
-|4|5/13|Asai|Hidden Markov Model (HMM)|
-|5|5/20|Kato|Multiple sequence alignment &amp; Phylogeny|
-|6|5/27|Asai|Advanced topics|
-|7|6/3||Paper Test|</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">date</th>
+<th align="left">teacher</th>
+<th align="left">title</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="left">4/8</td>
+<td align="left">Asai</td>
+<td align="left">Introduction to sequence analysis</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">4/15</td>
+<td align="left">Gotoh</td>
+<td align="left">Pairwise sequence alignment</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">4/22</td>
+<td align="left">Asai</td>
+<td align="left">More on sequence alignment</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">5/13</td>
+<td align="left">Asai</td>
+<td align="left">Hidden Markov Model (HMM)</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">5/20</td>
+<td align="left">Kato</td>
+<td align="left">Multiple sequence alignment &amp; Phylogeny</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="left">5/27</td>
+<td align="left">Asai</td>
+<td align="left">Advanced topics</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="left">6/3</td>
+<td align="left"></td>
+<td align="left">Paper Test</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li><a href="http://asailab.cb.k.u-tokyo.ac.jp/lecture/">講義HP</a></li>
 </ul>
@@ -144,13 +189,36 @@
 <p>文字列を比較することがあらゆる解析の基本で、その中でも<b>配列アラインメント(sequence alignment)が重要</b>である。</p>
 <h2>Sequence analyses in practice</h2>
 <p>実際の配列情報解析では、以下の5つのことが基本的に行われる。</p>
-<p>|言葉|meaning|
-|:--|:--|
-|シークエンシング|目的の配列を実験などによって決定すること。現在では次世代シークエンサー(NGS)の登場によりかなり高速化している。|
-|アセンブリ|高速シーケンサーが出力したリードとよばれる短い DNA または RNA 塩基配列を次々と繋げていくことによって、元の完全な塩基配列を復元すること。|
-|マッピング|クリーニング後のリードを、データベースからダウンロードしたリファレンス配列、あるいはアセンブリーしたリファレンス配列にマッピングし、各リードがどの遺伝子に由来するのかを決定すること。|
-|アノテーション|塩基配列データに遺伝子構造や遺伝子機能の情報、また文献情報などを注釈付けすること。|
-|RNAシークエンシング|RNAをcDNAに変換したシーケンスリードの本数をカウントすることで、遺伝子の発現量を測定すること。<br>トランスクリプトーム（細胞内における遺伝子転写産物(mRNA)全てを要素とする集合。）の解析。<br>RNAの二次元構造の解析|</p>
+<table>
+<thead>
+<tr>
+<th align="left">言葉</th>
+<th align="left">meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">シークエンシング</td>
+<td align="left">目的の配列を実験などによって決定すること。現在では次世代シークエンサー(NGS)の登場によりかなり高速化している。</td>
+</tr>
+<tr>
+<td align="left">アセンブリ</td>
+<td align="left">高速シーケンサーが出力したリードとよばれる短い DNA または RNA 塩基配列を次々と繋げていくことによって、元の完全な塩基配列を復元すること。</td>
+</tr>
+<tr>
+<td align="left">マッピング</td>
+<td align="left">クリーニング後のリードを、データベースからダウンロードしたリファレンス配列、あるいはアセンブリーしたリファレンス配列にマッピングし、各リードがどの遺伝子に由来するのかを決定すること。</td>
+</tr>
+<tr>
+<td align="left">アノテーション</td>
+<td align="left">塩基配列データに遺伝子構造や遺伝子機能の情報、また文献情報などを注釈付けすること。</td>
+</tr>
+<tr>
+<td align="left">RNAシークエンシング</td>
+<td align="left">RNAをcDNAに変換したシーケンスリードの本数をカウントすることで、遺伝子の発現量を測定すること。<br>トランスクリプトーム（細胞内における遺伝子転写産物(mRNA)全てを要素とする集合。）の解析。<br>RNAの二次元構造の解析</td>
+</tr>
+</tbody>
+</table>
 <h2>余談</h2>
 <ul>
 <li>個人ゲノム情報に基づき健康な乳腺を切除した米女優アンジェリーナ・ジョリー</li>

@@ -123,12 +123,12 @@
 <p>※ <code>group2</code> のようなファイル名が出てきますが、僕が2班だったというだけです。</p>
 <h3>謝辞</h3>
 <p>今回の実験では、<a href="http://hgc.jp/japanese/">東京大学 医科学研究所 ヒトゲノム解析センター</a>にスーパーコンピュータをお借りしました。この場を借りて御礼申し上げます。</p>
-<p>```sh</p>
-<h1>スパコンにログイン</h1>
-<p>$ ssh XXX@slogin.hgc.jp</p>
-<h1>スパコンからファイルをコピー</h1>
-<p>$ scp XXX@slogin.hgc.jp:/path/to/file .
-```</p>
+<pre class="highlight"><code class="language-sh"># スパコンにログイン
+$ ssh XXX@slogin.hgc.jp
+# スパコンからファイルをコピー
+$ scp XXX@slogin.hgc.jp:/path/to/file .</code></pre>
+
+
 <h3>原理</h3>
 <h4>illumina</h4>
 <p>以下の流れでシークエンスを行なっています。</p>
@@ -157,12 +157,13 @@ RNAをダイレクトにシークエンスする。多くのインプットが�
 <h3>解析の流れ</h3>
 <h4>illumina</h4>
 <p>以下の流れに沿って解析を行います。</p>
-<p><code>mermaid
-graph LR;
+<pre class="highlight"><code class="language-mermaid">graph LR;
   A((BCL))--&gt;B;
   B((fastq))--&gt;C;
   C[マッピング]--&gt;D;
-  D((BAM))--&gt;F[リードカウント];</code></p>
+  D((BAM))--&gt;F[リードカウント];</code></pre>
+
+
 <p>※ 6/28,7/2 の二日間でウェットの実験を行い、サンプルをアプライし、シークエンスを行いました。</p>
 <p>この時、生データファイルは<font color="red"><b>バイナリベースコール(BCL)形式</b></font>で生成されるようで、それを<a href="https://support.illumina.com/sequencing/sequencing_software/bcl2fastq-conversion-software.html">bcl2fastq</a>というソフトウェアを使って<font color="red"><b>FASTQ形式</b></font>という<b>NGSデータを保管する標準形式</b>（生シーケンスデータとクオリティスコアを保存）に変換します。（これは、研究室の方々にやっていただきました。）</p>
 <p>続いて、これを参照ゲノム配列（今回用いたのは<a href="https://genome-asia.ucsc.edu/cgi-bin/hgGateway?db=hg38&amp;redirect=manual&amp;source=genome.ucsc.edu">UCSCのhg38</a>）に<a href="https://github.com/alexdobin/STAR">STAR</a>というライブラリを用いてマッピングします。</p>
@@ -172,13 +173,14 @@ graph LR;
 <h4>MinION</h4>
 <p>以下の流れに沿って解析を行います。</p>
 <p>illuminaと異なり、MinIONで得られるのはイオンシグナル情報なので、それを塩基配列の情報に変換するのに <code>Guppy</code> というツールを用いてベースコール情報を付加する必要があるのと、マッピング時に長いリードや高いエラー率に対応したツールを用いる必要がある点のみが異なります。</p>
-<p><code>mermaid
-graph LR;
+<pre class="highlight"><code class="language-mermaid">graph LR;
   A((fast5))--&gt;G;
   G[ベースコール]--&gt;B;
   B((fastq))--&gt;C;
   C[マッピング]--&gt;D;
-  D((BAM))--&gt;F[リードカウント];</code></p>
+  D((BAM))--&gt;F[リードカウント];</code></pre>
+
+
 <p>※ 6/26,6/27 の二日間でウェットの実験を行い、サンプルをアプライし、シークエンスを行いました。</p>
 <h3>マッピング</h3>
 <p>illuminaとMinIONでは扱うツールが異なりますが、ソフトウェア化されているので、ユーザー側からすれば大差がありません。</p>
@@ -188,13 +190,14 @@ graph LR;
 <p>なお、この際東大医科研HGCスパコンは複数のユーザーで利用しているため、キューイングシステムを利用しています。</p>
 <p>キューイングシステムは、実行したいプログラムを<b>必要なメモリやCPUの数と共に実行ファイル（基本的にはシェルスクリプト）に書き込んでキューイングシステムにサブミットし、キューイングシステムが総合判断して複数ユーザーが投入したジョブを円滑に実行する</b>、という仕組みです。</p>
 <p>今回用意していただいたスクリプトは以下のようになっていました。</p>
-<p>```sh</p>
-<h1>!/bin/bash</h1>
-<h1>$ -S /bin/bash</h1>
-<h1>$ -l s_vmem=35G,mem_req=35G</h1>
-<h1>$ -l os7</h1>
-<p>source /home/lect01/2019_jisyu.source # ツールの場所を指定</p>
-<p>STAR  --genomeDir /home/lect01/reference/STAR_hg38 \ # リファレンスゲノムが置いてあるディレクトリ
+<pre class="highlight"><code class="language-sh">#!/bin/bash
+#$ -S /bin/bash
+#$ -l s_vmem=35G,mem_req=35G
+#$ -l os7
+
+source /home/lect01/2019_jisyu.source # ツールの場所を指定
+
+STAR  --genomeDir /home/lect01/reference/STAR_hg38 \ # リファレンスゲノムが置いてあるディレクトリ
     --readFilesIn 2_Read1.fastq 2_Read2.fastq \ # 入力fastqファイル
     --chimSegmentMin 30 \ # リードの前半と後半で異なる染色体にマッピングされるキメラ(fusion)リードを検出するために指定。長さの短い方がこの値よりも長い時、そのリードをキメラリードとみなす。
     --chimOutType WithinBAM \ # キメラリードのマッピング結果を通常のマッピング結果と同じファイルに保存する。（別ファイルの場合はSeparateSAMold）
@@ -202,14 +205,14 @@ graph LR;
     --sjdbGTFfile /home/lect01/reference/STAR_hg38/genes.gtf \ # 遺伝子のアノテーション情報
     --outFilterMultimapNmax 1 \ # 1つのリードがマッピングできる位置の最大値。Uniquely mapped readsのみを解析対象としているので、今回は1
     --outFileNamePrefix group2_ # ファイルの接尾辞を追加
-exit
-```</p>
+exit</code></pre>
+
+
 <p><summary></p>
 <p><code>2019_jisyu.source</code> ファイル</p>
 <details>
 
-```sh
-#-----------------------------------------------------------
+<pre class="highlight"><code class="language-sh">#-----------------------------------------------------------
 # TOOLS
 #-----------------------------------------------------------
 
@@ -222,40 +225,66 @@ export PATH=/PATH/to/where/STAR/is:${TOOLS}:${PATH}
 
 export PYTHONHOME=/path/to/Python/home # ex.) /usr/local/package/python/version/
 export PATH=${PYTHONHOME}/bin:${PATH}
-export LD_LIBRARY_PATH=:${PYTHONHOME}/lib:${LD_LIBRARY_PATH}
-```
+export LD_LIBRARY_PATH=:${PYTHONHOME}/lib:${LD_LIBRARY_PATH}</code></pre>
+
+
 
 </details>
 
 <p></summary></p>
 <p>なお、<code>group2_Aligned.sortedByCoord.out.bam</code> というファイルができたら、インデックス付けをします。</p>
-<p><code>sh
-$ samtools index group2_Aligned.sortedByCoord.out.bam</code></p>
+<pre class="highlight"><code class="language-sh">$ samtools index group2_Aligned.sortedByCoord.out.bam</code></pre>
+
+
 <p>これで、<code>group2_Aligned.sortedByCoord.out.bam.bai</code> というファイルが作成されます。</p>
 <h4>Minimap2(MinION)</h4>
 <p>ロングリードシークエンスデータをマッピングするツールは様々なものが開発されていますが、今回はMinimap2を利用しました。</p>
-<p>|名前|特徴|
-|:--:|:--|
-|<a href="http://last.cbrc.jp/">LAST</a>|我らが<a href="https://www.k.u-tokyo.ac.jp/pros-e/person/martin_frith/martin_frith.htm">Martin Frith</a>先生|
-|<a href="https://github.com/lh3/minimap2">Minimap2</a>|Direct RNA-seq用のパラメータが存在する。|
-|<a href="https://github.com/ocxtal/minialign">Minialign</a>|速くて正確|
-|<a href="https://github.com/isovic/graphmap">GraphMap</a>||</p>
+<table>
+<thead>
+<tr>
+<th align="center">名前</th>
+<th align="left">特徴</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><a href="http://last.cbrc.jp/">LAST</a></td>
+<td align="left">我らが<a href="https://www.k.u-tokyo.ac.jp/pros-e/person/martin_frith/martin_frith.htm">Martin Frith</a>先生</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/lh3/minimap2">Minimap2</a></td>
+<td align="left">Direct RNA-seq用のパラメータが存在する。</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/ocxtal/minialign">Minialign</a></td>
+<td align="left">速くて正確</td>
+</tr>
+<tr>
+<td align="center"><a href="https://github.com/isovic/graphmap">GraphMap</a></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
 <p>今回用意していただいたスクリプトは以下のようになっていました。</p>
-<p>```sh</p>
-<h1>!/bin/bash</h1>
-<h1>$ -S /bin/bash</h1>
-<h1>$ -l s_vmem=20G,mem_req=20G</h1>
-<h1>$ -l os7</h1>
-<p>source /home/lect01/2019_jisyu.source # ツールの場所を指定</p>
-<p>minimap2 -ax splice --secondary=no /home/lect01/reference/minimap2/genome.mmi 2.pass.fastq &gt; pass.sam</p>
-<h1>/home/lect01/reference/minimap2/genome.mmi: リファレンスゲノム</h1>
-<h1>2.pass.fastq: 入力fastqファイル</h1>
-<p>exit
-```</p>
+<pre class="highlight"><code class="language-sh">#!/bin/bash
+#$ -S /bin/bash
+#$ -l s_vmem=20G,mem_req=20G
+#$ -l os7
+
+source /home/lect01/2019_jisyu.source # ツールの場所を指定
+
+minimap2 -ax splice --secondary=no /home/lect01/reference/minimap2/genome.mmi 2.pass.fastq &gt; pass.sam
+# /home/lect01/reference/minimap2/genome.mmi: リファレンスゲノム
+# 2.pass.fastq: 入力fastqファイル
+
+exit</code></pre>
+
+
 <p>同様に、<code>pass_sort.bam</code> というファイルができたら、インデックス付けをします。なお、Minimap2では染色体順にソートがされていないので、ソートも行います。</p>
-<p><code>sh
-$ samtools view -bS pass.sam | samtools sort - pass_sort
-$ samtools index pass_sort.bam</code></p>
+<pre class="highlight"><code class="language-sh">$ samtools view -bS pass.sam | samtools sort - pass_sort
+$ samtools index pass_sort.bam</code></pre>
+
+
 <p>これで、<code>pass_sort.bam.bai</code> というファイルが作成されます。</p>
 <h3>データの可視化</h3>
 <p>データの可視化には、<a href="http://software.broadinstitute.org/software/igv/">Integrative Genomics Viewer(IGV)</a>というツールを用います。IGVにBAMファイルを選択するだけで結果が可視化されます。</p>
@@ -280,23 +309,22 @@ $ samtools index pass_sort.bam</code></p>
 </ul>
 <div class="math">$$[\mathrm{rpkm}] = [\mathrm{ppm}] / [\mathrm{gene\ length}] \times 1,000$$</div>
 <h4>illumina(rpkm)</h4>
-<p><code>sh
-$ featureCounts -p -B -t exon -g gene_id \
+<pre class="highlight"><code class="language-sh">$ featureCounts -p -B -t exon -g gene_id \
       -a /home/lect01/reference/genes.gtf \
-      -o illumina_counts.txt group2_Aligned.sortedByCoord.out.bam</code></p>
+      -o illumina_counts.txt group2_Aligned.sortedByCoord.out.bam</code></pre>
+
+
 <p><summary>出力
   <details></p>
-<p>```sh</p>
-<pre class="highlight"><code>    ==========     _____ _    _ ____  _____  ______          _____
-    =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \
-      =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
-        ====      \___ \| |  | |  _ &lt;|  _  /|  __|   / /\ \ | |  | |
-          ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
-    ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
-  v1.6.2</code></pre>
+<pre class="highlight"><code class="language-sh">        ==========     _____ _    _ ____  _____  ______          _____
+        =====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \
+          =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+            ====      \___ \| |  | |  _ &lt;|  _  /|  __|   / /\ \ | |  | |
+              ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+        ==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+      v1.6.2
 
-
-<p>//========================== featureCounts setting ===========================\
+//========================== featureCounts setting ===========================\\
 ||                                                                            ||
 ||             Input files : 1 BAM file                                       ||
 ||                           P group2_Aligned.sortedByCoord.out.bam           ||
@@ -316,8 +344,9 @@ $ featureCounts -p -B -t exon -g gene_id \
 ||          Chimeric reads : counted                                          ||
 ||        Both ends mapped : required                                         ||
 ||                                                                            ||
-\===================== http://subread.sourceforge.net/ ======================//</p>
-<p>//================================= Running ==================================\
+\\===================== http://subread.sourceforge.net/ ======================//
+
+//================================= Running ==================================\\
 ||                                                                            ||
 || Load annotation file genes.gtf ...                                         ||
 ||    Features : 535393                                                       ||
@@ -340,29 +369,31 @@ $ featureCounts -p -B -t exon -g gene_id \
 ||                                                                            ||
 ||                         Read assignment finished.                          ||
 ||                                                                            ||
-|| Summary of counting results can be found in file "illumina_counts.txt.sum  ||
-|| mary"                                                                      ||
+|| Summary of counting results can be found in file &quot;illumina_counts.txt.sum  ||
+|| mary&quot;                                                                      ||
 ||                                                                            ||
-\===================== http://subread.sourceforge.net/ ======================//
-```</p>
+\\===================== http://subread.sourceforge.net/ ======================//</code></pre>
+
+
 <p></details>
 </summary></p>
 <h4>MinION(ppm)</h4>
-<p><code>sh
-$ featureCounts -L -t exon -g gene_id \
+<pre class="highlight"><code class="language-sh">$ featureCounts -L -t exon -g gene_id \
       -a /home/lect01/reference/genes.gtf \
-      -o minion_counts.txt pass_sort.bam</code></p>
+      -o minion_counts.txt pass_sort.bam</code></pre>
+
+
 <p><summary>出力
   <details></p>
-<p>```sh
-==========     <strong><em>_</em> _    _ </strong><strong>  <strong><em>_</em>  </strong><strong><em>_          </em></strong></strong>
-=====         / <strong><em>_| |  | |  _ \|  </em>_ \|  </strong><strong>|   /\   |  </strong> \
-  =====      | (<strong><em> | |  | | |</em>) | |</strong>) | |<strong>     /  \  | |  | |
-    ====      _</strong> \| |  | |  _ &lt;|  _  /|  <strong>|   / /\ \ | |  | |
-      ====    <strong><em>_) | |</em><em>| | |</em>) | | \ \| |</strong></strong> / <strong><em>_ \| |</em>_| |
-==========   |</strong><strong><em>/ _</em></strong>/|<strong><em>_/|</em>|  __</strong><strong><em>/</em>/    __</strong>__/
-v1.6.2</p>
-<p>//========================== featureCounts setting ===========================\
+<pre class="highlight"><code class="language-sh">==========     _____ _    _ ____  _____  ______          _____
+=====         / ____| |  | |  _ \|  __ \|  ____|   /\   |  __ \
+  =====      | (___ | |  | | |_) | |__) | |__     /  \  | |  | |
+    ====      \___ \| |  | |  _ &lt;|  _  /|  __|   / /\ \ | |  | |
+      ====    ____) | |__| | |_) | | \ \| |____ / ____ \| |__| |
+==========   |_____/ \____/|____/|_|  \_\______/_/    \_\_____/
+v1.6.2
+
+//========================== featureCounts setting ===========================\\
 ||                                                                            ||
 ||             Input files : 1 BAM file                                       ||
 ||                           S pass_sort.bam                                  ||
@@ -380,8 +411,9 @@ v1.6.2</p>
 ||   Min overlapping bases : 1                                                ||
 ||          Long read mode : yes                                              ||
 ||                                                                            ||
-\===================== http://subread.sourceforge.net/ ======================//</p>
-<p>//================================= Running ==================================\
+\\===================== http://subread.sourceforge.net/ ======================//
+
+//================================= Running ==================================\\
 ||                                                                            ||
 || Load annotation file genes.gtf ...                                         ||
 ||    Features : 535393                                                       ||
@@ -398,40 +430,44 @@ Status  pass_sort.bam
 ||                                                                            ||
 ||                         Read assignment finished.                          ||
 ||                                                                            ||
-|| Summary of counting results can be found in file "minion_counts.txt.summa  ||
-|| ry"                                                                        ||
+|| Summary of counting results can be found in file &quot;minion_counts.txt.summa  ||
+|| ry&quot;                                                                        ||
 ||                                                                            ||
-\===================== http://subread.sourceforge.net/ ======================//
-```</p>
+\\===================== http://subread.sourceforge.net/ ======================//</code></pre>
+
+
 <p></details>
 </summary></p>
 <h4>Pearson相関係数算出(R)</h4>
-<p>```R
-ILLUMINA &lt;- read.table("illumina/illumina_counts.txt", header=T)
+<pre class="highlight"><code class="language-R">ILLUMINA &lt;- read.table(&quot;illumina/illumina_counts.txt&quot;, header=T)
 total_illumina &lt;- 9265506
-ppm_i &lt;- ILLUMINA<span class="math">\(group2_Aligned.sortedByCoord.out.bam / total_illumina * 1000000
-rpkm_i &lt;- ppm_i / ILLUMINA\)</span>Length * 1000
-MINION &lt;- read.table("minion/minion_counts.txt", header=T)
+ppm_i &lt;- ILLUMINA$group2_Aligned.sortedByCoord.out.bam / total_illumina * 1000000
+rpkm_i &lt;- ppm_i / ILLUMINA$Length * 1000
+MINION &lt;- read.table(&quot;minion/minion_counts.txt&quot;, header=T)
 total_minion &lt;- 515045
 ppm_m &lt;- MINION$pass_sort.bam / total_minion * 1000000
 log_rpkm_i &lt;- log2(rpkm_i + 1)
 log_ppm_m &lt;- log2(ppm_m + 1)
-cor.test (log_rpkm_i, log_ppm_m, method="pearson")</p>
-<h1>Pearson's product-moment correlation</h1>
-<h1>data:  log_rpkm_i and log_ppm_m</h1>
-<h1>t = 309.92, df = 26483, p-value &lt; 2.2e-16</h1>
-<h1>alternative hypothesis: true correlation is not equal to 0</h1>
-<h1>95 percent confidence interval:</h1>
-<h1>0.8827357 0.8879421</h1>
-<h1>sample estimates:</h1>
-<h1>cor</h1>
-<h1>0.8853666</h1>
-<p>pdf("comparison.pdf")
-plot(log_rpkm_i, log_ppm_m, xlab="illumina, log2 (rpkm+1)", ylab="MinION, log2 (ppm+1)")
-dev.off()</p>
-<h1>null device</h1>
-<h1>1</h1>
-<p>```</p>
+cor.test (log_rpkm_i, log_ppm_m, method=&quot;pearson&quot;)
+
+#   Pearson's product-moment correlation
+
+# data:  log_rpkm_i and log_ppm_m
+# t = 309.92, df = 26483, p-value &lt; 2.2e-16
+# alternative hypothesis: true correlation is not equal to 0
+# 95 percent confidence interval:
+#  0.8827357 0.8879421
+# sample estimates:
+#       cor
+# 0.8853666
+
+pdf(&quot;comparison.pdf&quot;)
+plot(log_rpkm_i, log_ppm_m, xlab=&quot;illumina, log2 (rpkm+1)&quot;, ylab=&quot;MinION, log2 (ppm+1)&quot;)
+dev.off()
+# null device
+#           1</code></pre>
+
+
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

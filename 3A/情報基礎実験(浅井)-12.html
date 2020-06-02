@@ -118,299 +118,258 @@
   
   <p>今回は、<a href="./情報基礎実験(浅井)-11.html">RNA-seqデータ解析（対話モード版）</a>で行なった処理を毎回対話モードで行うのは面倒なので、バッチスクリプトを作成して一括で行います。</p>
 <p>以下のパラメタファイル（<a href="theme/img/3A_Basic_Laboratory/RNAseq/params.json" download><code>params.json</code></a>）を読み込んで各種操作を行います。</p>
-<p>```json
-{
-  "qsub_q": "u-debug",
-  "n_node": 1,
-  "n_cpus": 1,
-  "n_MPIprocs": 1,
-  "n_OMPthreads": 8,
-  "walltime": "0:30:00",
-  "group_list": "gj29",</p>
-<p>"ID": "ERR315326",</p>
-<p>"RNAseqData": "ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra",
-  "MappingRefGenome": "https://cloud.biohpc.swmed.edu/index.php/s/grch38/download",
-  "GeneAnnotation": "ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz"
-}
-```</p>
+<pre class="highlight"><code class="language-json">{
+  &quot;qsub_q&quot;: &quot;u-debug&quot;,
+  &quot;n_node&quot;: 1,
+  &quot;n_cpus&quot;: 1,
+  &quot;n_MPIprocs&quot;: 1,
+  &quot;n_OMPthreads&quot;: 8,
+  &quot;walltime&quot;: &quot;0:30:00&quot;,
+  &quot;group_list&quot;: &quot;gj29&quot;,
+
+  &quot;ID&quot;: &quot;ERR315326&quot;,
+
+  &quot;RNAseqData&quot;: &quot;ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra&quot;,
+  &quot;MappingRefGenome&quot;: &quot;https://cloud.biohpc.swmed.edu/index.php/s/grch38/download&quot;,
+  &quot;GeneAnnotation&quot;: &quot;ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz&quot;
+}</code></pre>
+
+
 <p>各変数は、 <a href="https://stedolan.github.io/jq/download/"><code>jq</code>コマンド</a>を使って以下のように読み込みます。</p>
-<p><code>sh
-[変数名]=$(cat [パラメタファイルへのパス] | jq -r .[key名])
-[変数名]=`jq -r .[key名] [パラメタファイルへのパス]`</code></p>
+<pre class="highlight"><code class="language-sh">[変数名]=$(cat [パラメタファイルへのパス] | jq -r .[key名])
+[変数名]=`jq -r .[key名] [パラメタファイルへのパス]`</code></pre>
+
+
 <h2>成果物</h2>
 <p><code>make_batch_u_qsub.sh</code> という以下のシェルスクリプトを叩くことで、<code>params.json</code> の内容を踏まえたバッチスクリプト <code>batch_u_qsub.sh</code> を作成します。</p>
 <h3><a href="theme/img/3A_Basic_Laboratory/RNAseq/make_batch_u_qsub.sh"><code>make_batch_u_qsub.sh</code></a> <a href="" download>[download]</a></h3>
-<p>```sh</p>
-<h1>!/bin/bash</h1>
-<p>Ssymbol="["
-Esymbol="]"</p>
-<p>function AssignParams () {
+<pre class="highlight"><code class="language-sh">#!/bin/bash
+
+Ssymbol=&quot;[&quot;
+Esymbol=&quot;]&quot;
+
+function AssignParams () {
   &lt;&lt; COMMENTOUT
-  @params params.json     {"qsub_q": "u-debug"}
+  @params params.json     {&quot;qsub_q&quot;: &quot;u-debug&quot;}
   @params templates.sh    PBS -q [${n_node}]
   @return batch_u_qsub.sh PBS -q u-debug
-  COMMENTOUT</p>
-<p>line="<span class="math">\({1}"
+  COMMENTOUT
+
+  line=&quot;${1}&quot;
   while true
   do
-    Spos=<code>echo "${line}" | awk -v pattern=${Ssymbol} '{print index($0, pattern)}'</code>
-    Epos=<code>echo "${line}" | awk -v pattern=${Esymbol} '{print index($0, pattern)}'</code>
+    Spos=`echo &quot;${line}&quot; | awk -v pattern=${Ssymbol} '{print index($0, pattern)}'`
+    Epos=`echo &quot;${line}&quot; | awk -v pattern=${Esymbol} '{print index($0, pattern)}'`
     if [ ${Spos} -ne 0 -a ${Epos} -ne 0 -a ${Spos} -lt ${Epos} ]; then
-      PREFIX=<code>echo "${line:0:$(($Spos-1))}"</code>
-      VARIABLE=<code>echo "${line}" | cut -c "$(($Spos+1))-$(($Epos-1))"</code>
-      CONTENT=<code>eval echo ${VARIABLE}</code>
-      SUFFIX=<code>echo "${line:$Epos}"</code>
-      line="\)</span>{PREFIX}<span class="math">\({CONTENT}\)</span>{SUFFIX}"
+      PREFIX=`echo &quot;${line:0:$(($Spos-1))}&quot;`
+      VARIABLE=`echo &quot;${line}&quot; | cut -c &quot;$(($Spos+1))-$(($Epos-1))&quot;`
+      CONTENT=`eval echo ${VARIABLE}`
+      SUFFIX=`echo &quot;${line:$Epos}&quot;`
+      line=&quot;${PREFIX}${CONTENT}${SUFFIX}&quot;
     else
       break
     fi
   done
-  echo "${line}" &gt;&gt; $OUTPUT_FILE
-}</p>
-<p>echo -n "Path to params file (.json): "
-read PARAMS_FILE</p>
-<h1>Convert each element of json to a variable.</h1>
-<p>KEYS=<code>jq -r 'keys[]' $PARAMS_FILE</code>
+  echo &quot;${line}&quot; &gt;&gt; $OUTPUT_FILE
+}
+
+echo -n &quot;Path to params file (.json): &quot;
+read PARAMS_FILE
+# Convert each element of json to a variable.
+KEYS=`jq -r 'keys[]' $PARAMS_FILE`
 for key in $KEYS; do
-  eval $key=<code>jq -r .${key} $PARAMS_FILE</code>
-done</p>
-<p>OUTPUT_FILE="${ID}/batch_u_qsub.sh"
+  eval $key=`jq -r .${key} $PARAMS_FILE`
+done
+
+OUTPUT_FILE=&quot;${ID}/batch_u_qsub.sh&quot;
 if [ ! -d ${ID} ]; then
   mkdir ${ID}
-fi</p>
-<p>echo -n "Path to templates file (.sh): "
-read TEMPLATES_FILE</p>
-<p>PRE_IFS=<span class="math">\(IFS
-IFS=\)</span>'\n'
-for line in <code>cat ${TEMPLATES_FILE}</code>
-do
-  AssignParams <span class="math">\({line}
-done
-IFS=\)</span>PRE_IFS
-```</p>
-<h3><a href="theme/img/3A_Basic_Laboratory/RNAseq/templates.sh"><code>templates.sh</code></a> <a href="theme/img/3A_Basic_Laboratory/RNAseq/templates.sh" download>[download]</a></h3>
-<p>```sh</p>
-<h1>!/bin/sh</h1>
-<h1>PBS -q [${n_node}]</h1>
-<h1>PBS -l select=[<span class="math">\({n_node}]:ncpus=[\)</span>{n_cpus}]:mpiprocs=[<span class="math">\({n_MPIprocs}]:ompthreads=[\)</span>{n_OMPthreads}]</h1>
-<h1>PBS -l walltime=[${walltime}]</h1>
-<h1>PBS -W group_list=[${group_list}]</h1>
-<p>DB_DIR="db"
-RNA_DIR="RNAseq"</p>
-<p>function DecompressHandler() {
-  : '
-  @params <span class="math">\({1} Extension 1
-  @params ${2} Extension 2
-  @params ${3} File Name (hoge.\)</span>{1}.${2})
-  '</p>
-<p>n_compressed_fn=${#3}</p>
-<p>if [ <span class="math">\({2} = "zip" ]; then
-    unzip ${3}
-    n_extension=4
-  elif [ ${2} = "tar" ]; then
-    tar ${3}
-    n_extension=4
-  elif [ ${2} = "gz" ]; then
-    gunzip ${3}
-    n_extension=3
-  elif [ ${2} = "bz2" ]; then
-    bzip2 -d ${3}
-    n_extension=4
-  elif [ ${2} = "lha" -o ${2} = "lzh"]; then
-    lha x ${3}
-    n_extension=4
-  elif [ ${1} = "tar" ]; then
-    tar ${3}
-    n_extension=\)</span>((${#2}+5))
-  else
-    n_extension=0
-  fi</p>
-<p>de_compressed_fn=<span class="math">\({3:0:\)</span>((<span class="math">\(n_compressed_fn-\)</span>n_extension))}
-  mv <span class="math">\(de_compressed_fn "../\)</span>{DB_DIR}/"
-  if [ ${n_extension} -ne 0 ]; then
-    rm ${3}
-  fi</p>
-<p>echo "${de_compressed_fn}"
-}</p>
-<h1>Download, Decompress, Dispose</h1>
-<p>function D3() {
-  : '
-  @params ${1} URL
-  '</p>
-<p>fn=<code>wget -nv --content-disposition $1 2&gt;&amp;1 |cut -d\" -f2</code></p>
-<p>extensions=( <code>echo $fn | tr -s '.' ' '</code>)
-  n_extensions=${#extensions[@]}</p>
-<p>ext1=<span class="math">\({extensions[\)</span>((<span class="math">\(n_extensions-2))]}
-  ext2=\)</span>{extensions[<span class="math">\(((\)</span>n_extensions-1))]}
-  DecompressHandler $ext1 $ext2 $fn
-}</p>
-<h1>=== START ===</h1>
-<p>cd <span class="math">\(PBS_O_WORKDIR/\)</span>RNA_DIR}
-if [ ! -d $DB_DIR ]; then
-  mkdir $DB_DIR
 fi
-if [ ! -d $RNA_DIR ]; then
-  mkdir $RNA_DIR
-fi</p>
-<h1>1.データの取得</h1>
-<p>SRA_FILE=<code>D3 [$RNAseqData]</code>
-mv "../<span class="math">\({DB_DIR}/\)</span>SRA_FILE" .
-fasterq-dump <span class="math">\(SRA_FILE -v --threads [\)</span>n_OMPthreads] --split-files -O ./</p>
-<h1>2.品質チェック</h1>
-<p>fastqc -t [<span class="math">\(n_OMPthreads] "\)</span>{SRA_FILE}_1.fastq" "${SRA_FILE}_2.fastq"</p>
-<h1>3.マッピング</h1>
-<p>REF_GENOME_FILE=<code>D3 [$MappingRefGenome]</code>
-time hisat2 -x "../<span class="math">\({DB_DIR}/\)</span>{REF_GENOME_FILE}/genome" -1 "<span class="math">\({SRA_FILE}_1.fastq" -2 "\)</span>{SRA_FILE}_2.fastq" -p [<span class="math">\(n_OMPthreads] -S "hisat_output_[\)</span>{ID}].sam"</p>
-<h1>4. IGVに必要なインデックスファイル作成</h1>
-<p>samtools view --threads [<span class="math">\(n_OMPthreads] -b "hisat_output_[\)</span>{ID}].sam" -o "hisat_output_[<span class="math">\({ID}].bam"
-samtools sort --threads [\)</span>n_OMPthreads] "hisat_output_[<span class="math">\({ID}].bam" -o "hisat_output_[\)</span>{ID}].sorted.bam"</p>
-<h1>6. リード数のカウント</h1>
-<p>GENE_ANNO_FILE=<code>D3 [$GeneAnnotation]</code>
-featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T [<span class="math">\(n_OMPthreads] -BC -a "../\)</span>{DB_DIR}/<span class="math">\({GENE_ANNO_FILE}" -o "Counts_BC_[\)</span>{ID}].txt"
-featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T [<span class="math">\(n_OMPthreads] -MOBC -a "../\)</span>{DB_DIR}/<span class="math">\({GENE_ANNO_FILE}" -o "Counts_MOBC_[\)</span>{ID}].txt"
-```</p>
-<h3><a href="theme/img/3A_Basic_Laboratory/RNAseq/batch_u_qsub.sh"><code>batch_u_qsub.sh</code></a> <a href="theme/img/3A_Basic_Laboratory/RNAseq/batch_u_qsub.sh" download>[download]</a></h3>
-<p>```sh</p>
-<h1>!/bin/sh</h1>
-<h1>PBS -q 1</h1>
-<h1>PBS -l select=1:ncpus=1:mpiprocs=1:ompthreads=8</h1>
-<h1>PBS -l walltime=0:30:00</h1>
-<h1>PBS -W group_list=gj29</h1>
-<p>DB_DIR="db"
-RNA_DIR="RNAseq"
+
+echo -n &quot;Path to templates file (.sh): &quot;
+read TEMPLATES_FILE
+
+PRE_IFS=$IFS
+IFS=$'\n'
+for line in `cat ${TEMPLATES_FILE}`
+do
+  AssignParams ${line}
+done
+IFS=$PRE_IFS</code></pre>
+
+
+<h3><a href="theme/img/3A_Basic_Laboratory/RNAseq/templates.sh"><code>templates.sh</code></a> <a href="theme/img/3A_Basic_Laboratory/RNAseq/templates.sh" download>[download]</a></h3>
+<pre class="highlight"><code class="language-sh">#!/bin/sh
+#PBS -q [${n_node}]
+#PBS -l select=[${n_node}]:ncpus=[${n_cpus}]:mpiprocs=[${n_MPIprocs}]:ompthreads=[${n_OMPthreads}]
+#PBS -l walltime=[${walltime}]
+#PBS -W group_list=[${group_list}]
+
+DB_DIR=&quot;db&quot;
+RNA_DIR=&quot;RNAseq&quot;
+
 function DecompressHandler() {
   : '
-  @params <span class="math">\({1} Extension 1
+  @params ${1} Extension 1
   @params ${2} Extension 2
-  @params ${3} File Name (hoge.\)</span>{1}.<span class="math">\({2})
+  @params ${3} File Name (hoge.${1}.${2})
   '
-  n_compressed_fn=\)</span>{#3}
-  if [ <span class="math">\({2} = "zip" ]; then
+
+  n_compressed_fn=${#3}
+
+  if [ ${2} = &quot;zip&quot; ]; then
     unzip ${3}
     n_extension=4
-  elif [ ${2} = "tar" ]; then
+  elif [ ${2} = &quot;tar&quot; ]; then
     tar ${3}
     n_extension=4
-  elif [ ${2} = "gz" ]; then
+  elif [ ${2} = &quot;gz&quot; ]; then
     gunzip ${3}
     n_extension=3
-  elif [ ${2} = "bz2" ]; then
+  elif [ ${2} = &quot;bz2&quot; ]; then
     bzip2 -d ${3}
     n_extension=4
-  elif [ ${2} = "lha" -o ${2} = "lzh"]; then
+  elif [ ${2} = &quot;lha&quot; -o ${2} = &quot;lzh&quot;]; then
     lha x ${3}
     n_extension=4
-  elif [ ${1} = "tar" ]; then
+  elif [ ${1} = &quot;tar&quot; ]; then
     tar ${3}
-    n_extension=\)</span>((<span class="math">\({#2}+5))
+    n_extension=$((${#2}+5))
   else
     n_extension=0
   fi
-  de_compressed_fn=\)</span>{3:0:<span class="math">\(((\)</span>n_compressed_fn-<span class="math">\(n_extension))}
-  mv $de_compressed_fn "../\)</span>{DB_DIR}/"
-  if [ <span class="math">\({n_extension} -ne 0 ]; then
+
+  de_compressed_fn=${3:0:$(($n_compressed_fn-$n_extension))}
+  mv $de_compressed_fn &quot;../${DB_DIR}/&quot;
+  if [ ${n_extension} -ne 0 ]; then
     rm ${3}
   fi
-  echo "\)</span>{de_compressed_fn}"
-}</p>
-<h1>Download, Decompress, Dispose</h1>
-<p>function D3() {
+
+  echo &quot;${de_compressed_fn}&quot;
+}
+
+# Download, Decompress, Dispose
+function D3() {
   : '
-  @params <span class="math">\({1} URL
+  @params ${1} URL
   '
-  fn=<code>wget -nv --content-disposition $1 2&gt;&amp;1 |cut -d\" -f2</code>
-  extensions=( <code>echo $fn | tr -s '.' ' '</code>)
-  n_extensions=\)</span>{#extensions[@]}
-  ext1=<span class="math">\({extensions-2}
-  ext2=\)</span>{extensions-1}
+
+  fn=`wget -nv --content-disposition $1 2&gt;&amp;1 |cut -d\&quot; -f2`
+
+  extensions=( `echo $fn | tr -s '.' ' '`)
+  n_extensions=${#extensions[@]}
+
+  ext1=${extensions[$(($n_extensions-2))]}
+  ext2=${extensions[$(($n_extensions-1))]}
   DecompressHandler $ext1 $ext2 $fn
-}</p>
-<h1>=== START ===</h1>
-<p>cd <span class="math">\(PBS_O_WORKDIR/\)</span>RNA_DIR}
+}
+
+#=== START ===
+cd $PBS_O_WORKDIR/$RNA_DIR}
 if [ ! -d $DB_DIR ]; then
   mkdir $DB_DIR
 fi
 if [ ! -d $RNA_DIR ]; then
   mkdir $RNA_DIR
-fi</p>
-<h1>1.データの取得</h1>
-<p>SRA_FILE=<code>D3 ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra</code>
-mv "../<span class="math">\({DB_DIR}/\)</span>SRA_FILE" .
-fasterq-dump $SRA_FILE -v --threads 8 --split-files -O ./</p>
-<h1>2.品質チェック</h1>
-<p>fastqc -t 8 "<span class="math">\({SRA_FILE}_1.fastq" "\)</span>{SRA_FILE}_2.fastq"</p>
-<h1>3.マッピング</h1>
-<p>REF_GENOME_FILE=<code>D3 https://cloud.biohpc.swmed.edu/index.php/s/grch38/download</code>
-time hisat2 -x "../<span class="math">\({DB_DIR}/\)</span>{REF_GENOME_FILE}/genome" -1 "<span class="math">\({SRA_FILE}_1.fastq" -2 "\)</span>{SRA_FILE}_2.fastq" -p 8 -S "hisat_output_ERR315326.sam"</p>
-<h1>4. IGVに必要なインデックスファイル作成</h1>
-<p>samtools view --threads 8 -b "hisat_output_ERR315326.sam" -o "hisat_output_ERR315326.bam"
-samtools sort --threads 8 "hisat_output_ERR315326.bam" -o "hisat_output_ERR315326.sorted.bam"</p>
-<h1>6. リード数のカウント</h1>
-<p>GENE_ANNO_FILE=<code>D3 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz</code>
-featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -BC -a "../<span class="math">\({DB_DIR}/\)</span>{GENE_ANNO_FILE}" -o "Counts_BC_ERR315326.txt"
-featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -MOBC -a "../<span class="math">\({DB_DIR}/\)</span>{GENE_ANNO_FILE}" -o "Counts_MOBC_ERR315326.txt"
-```</p>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var align = "center",
-        indent = "0em",
-        linebreak = "false";
+fi
 
-    if (false) {
-        align = (screen.width < 768) ? "left" : align;
-        indent = (screen.width < 768) ? "0em" : indent;
-        linebreak = (screen.width < 768) ? 'true' : linebreak;
-    }
+# 1.データの取得
+SRA_FILE=`D3 [$RNAseqData]`
+mv &quot;../${DB_DIR}/$SRA_FILE&quot; .
+fasterq-dump $SRA_FILE -v --threads [$n_OMPthreads] --split-files -O ./
+# 2.品質チェック
+fastqc -t [$n_OMPthreads] &quot;${SRA_FILE}_1.fastq&quot; &quot;${SRA_FILE}_2.fastq&quot;
+# 3.マッピング
+REF_GENOME_FILE=`D3 [$MappingRefGenome]`
+time hisat2 -x &quot;../${DB_DIR}/${REF_GENOME_FILE}/genome&quot; -1 &quot;${SRA_FILE}_1.fastq&quot; -2 &quot;${SRA_FILE}_2.fastq&quot; -p [$n_OMPthreads] -S &quot;hisat_output_[${ID}].sam&quot;
+# 4. IGVに必要なインデックスファイル作成
+samtools view --threads [$n_OMPthreads] -b &quot;hisat_output_[${ID}].sam&quot; -o &quot;hisat_output_[${ID}].bam&quot;
+samtools sort --threads [$n_OMPthreads] &quot;hisat_output_[${ID}].bam&quot; -o &quot;hisat_output_[${ID}].sorted.bam&quot;
+# 6. リード数のカウント
+GENE_ANNO_FILE=`D3 [$GeneAnnotation]`
+featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T [$n_OMPthreads] -BC -a &quot;../${DB_DIR}/${GENE_ANNO_FILE}&quot; -o &quot;Counts_BC_[${ID}].txt&quot;
+featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T [$n_OMPthreads] -MOBC -a &quot;../${DB_DIR}/${GENE_ANNO_FILE}&quot; -o &quot;Counts_MOBC_[${ID}].txt&quot;</code></pre>
 
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
 
-    var configscript = document.createElement('script');
-    configscript.type = 'text/x-mathjax-config';
-    configscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: '"+ align +"'," +
-        "    displayIndent: '"+ indent +"'," +
-        "    showMathMenu: true," +
-        "    messageStyle: 'normal'," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        fonts: [['STIX', 'TeX']]," +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
-        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
-        "    }, " +
-        "}); " +
-        "if ('default' !== 'default') {" +
-            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
-                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
-                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
-                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
-                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
-                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
-            "});" +
-        "}";
-
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+<h3><a href="theme/img/3A_Basic_Laboratory/RNAseq/batch_u_qsub.sh"><code>batch_u_qsub.sh</code></a> <a href="theme/img/3A_Basic_Laboratory/RNAseq/batch_u_qsub.sh" download>[download]</a></h3>
+<pre class="highlight"><code class="language-sh">#!/bin/sh
+#PBS -q 1
+#PBS -l select=1:ncpus=1:mpiprocs=1:ompthreads=8
+#PBS -l walltime=0:30:00
+#PBS -W group_list=gj29
+DB_DIR=&quot;db&quot;
+RNA_DIR=&quot;RNAseq&quot;
+function DecompressHandler() {
+  : '
+  @params ${1} Extension 1
+  @params ${2} Extension 2
+  @params ${3} File Name (hoge.${1}.${2})
+  '
+  n_compressed_fn=${#3}
+  if [ ${2} = &quot;zip&quot; ]; then
+    unzip ${3}
+    n_extension=4
+  elif [ ${2} = &quot;tar&quot; ]; then
+    tar ${3}
+    n_extension=4
+  elif [ ${2} = &quot;gz&quot; ]; then
+    gunzip ${3}
+    n_extension=3
+  elif [ ${2} = &quot;bz2&quot; ]; then
+    bzip2 -d ${3}
+    n_extension=4
+  elif [ ${2} = &quot;lha&quot; -o ${2} = &quot;lzh&quot;]; then
+    lha x ${3}
+    n_extension=4
+  elif [ ${1} = &quot;tar&quot; ]; then
+    tar ${3}
+    n_extension=$((${#2}+5))
+  else
+    n_extension=0
+  fi
+  de_compressed_fn=${3:0:$(($n_compressed_fn-$n_extension))}
+  mv $de_compressed_fn &quot;../${DB_DIR}/&quot;
+  if [ ${n_extension} -ne 0 ]; then
+    rm ${3}
+  fi
+  echo &quot;${de_compressed_fn}&quot;
 }
-</script>
+# Download, Decompress, Dispose
+function D3() {
+  : '
+  @params ${1} URL
+  '
+  fn=`wget -nv --content-disposition $1 2&gt;&amp;1 |cut -d\&quot; -f2`
+  extensions=( `echo $fn | tr -s '.' ' '`)
+  n_extensions=${#extensions[@]}
+  ext1=${extensions-2}
+  ext2=${extensions-1}
+  DecompressHandler $ext1 $ext2 $fn
+}
+#=== START ===
+cd $PBS_O_WORKDIR/$RNA_DIR}
+if [ ! -d $DB_DIR ]; then
+  mkdir $DB_DIR
+fi
+if [ ! -d $RNA_DIR ]; then
+  mkdir $RNA_DIR
+fi
+# 1.データの取得
+SRA_FILE=`D3 ftp://ftp.ddbj.nig.ac.jp/ddbj_database/dra/sralite/ByExp/litesra/ERX/ERX288/ERX288491/ERR315326/ERR315326.sra`
+mv &quot;../${DB_DIR}/$SRA_FILE&quot; .
+fasterq-dump $SRA_FILE -v --threads 8 --split-files -O ./
+# 2.品質チェック
+fastqc -t 8 &quot;${SRA_FILE}_1.fastq&quot; &quot;${SRA_FILE}_2.fastq&quot;
+# 3.マッピング
+REF_GENOME_FILE=`D3 https://cloud.biohpc.swmed.edu/index.php/s/grch38/download`
+time hisat2 -x &quot;../${DB_DIR}/${REF_GENOME_FILE}/genome&quot; -1 &quot;${SRA_FILE}_1.fastq&quot; -2 &quot;${SRA_FILE}_2.fastq&quot; -p 8 -S &quot;hisat_output_ERR315326.sam&quot;
+# 4. IGVに必要なインデックスファイル作成
+samtools view --threads 8 -b &quot;hisat_output_ERR315326.sam&quot; -o &quot;hisat_output_ERR315326.bam&quot;
+samtools sort --threads 8 &quot;hisat_output_ERR315326.bam&quot; -o &quot;hisat_output_ERR315326.sorted.bam&quot;
+# 6. リード数のカウント
+GENE_ANNO_FILE=`D3 ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_32/gencode.v32.annotation.gtf.gz`
+featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -BC -a &quot;../${DB_DIR}/${GENE_ANNO_FILE}&quot; -o &quot;Counts_BC_ERR315326.txt&quot;
+featureCounts hisat_output_ERR315326.bam -p -t exon -g gene_id -s 0 -T 8 -MOBC -a &quot;../${DB_DIR}/${GENE_ANNO_FILE}&quot; -o &quot;Counts_MOBC_ERR315326.txt&quot;</code></pre>
   <div>
 </div>
 

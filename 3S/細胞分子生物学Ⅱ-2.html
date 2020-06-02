@@ -127,12 +127,32 @@
 <p><img src="https://player.slideplayer.com/26/8600673/data/images/img12.jpg"></p>
 <h4>校正機能(proofreading)</h4>
 <p>間違った塩基が入るとまず止まる。一個取り除いて、もう一回伸長。全体だとエラー率は <span class="math">\(10^{-9}\)</span> 以下！！</p>
-<p>|  複製の段階   |  誤りが入る確率   |
-| --- | --- |
-| 5'→3'重合反応    |  <span class="math">\(1/10^5\)</span>   |
-| 3'→5'エキソヌクレアーゼによる校正反応    | <span class="math">\(1/10^2\)</span>    |
-| 不対合鎖の選択的修復    | <span class="math">\(1/10^3\)</span>    |
-| 全体    |  <span class="math">\(1/10^{10}\)</span>   |</p>
+<table>
+<thead>
+<tr>
+<th>複製の段階</th>
+<th>誤りが入る確率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5'→3'重合反応</td>
+<td><span class="math">\(1/10^5\)</span></td>
+</tr>
+<tr>
+<td>3'→5'エキソヌクレアーゼによる校正反応</td>
+<td><span class="math">\(1/10^2\)</span></td>
+</tr>
+<tr>
+<td>不対合鎖の選択的修復</td>
+<td><span class="math">\(1/10^3\)</span></td>
+</tr>
+<tr>
+<td>全体</td>
+<td><span class="math">\(1/10^{10}\)</span></td>
+</tr>
+</tbody>
+</table>
 <h4>PCR反応</h4>
 <p><b>ポリメラーゼ連鎖反応(polymerase chain reaction, PCR)</b>は<b>任意の</b>塩基配列を<b>選択的に</b>増幅でき、<b>試験管の中(in vitro)で</b>反応を行える。この反応は、次の3段階に分かれている。</p>
 <ol>
@@ -160,39 +180,118 @@
 <p>ここで、プライマーとして<b>除去が不要なDNAではなく除去が必要なRNAを使う</b>理由としては、<b>新しい鎖を一から作り始めることのできるDNAプライマーゼが、DNAポリメラーゼに比べてミスを起こしやすい</b>から、と考えられている。RNAを使うことで取り替えるべき"怪しいコピー"として認識させている。</p>
 <h4>DNAリガーゼ</h4>
 <p>DNAプライマーゼが作ったプライマーRNAの末端には正しく塩基対を形成したヌクレオチドの3'-OH基があるので、DNAポリメラーゼはここから岡崎フラグメントの合成を始められる。岡崎フラグメントの合成は、その前に合成されたDNA断片の5'末端にあるプライマーRNAにぶつかるまで続く。その後プライマーRNAは除去されてDNAに置換され、酵素<b>DNAリガーゼ(DNA ligase)</b>が新しいDNA断片の3'末端と1つ前の5'末端をつなぎ、全過程が終わる。</p>
-<p>|ラギング鎖におけるDNA断片の合成|DNAリガーゼの触媒反応|
-|:--:|:--:|
-|<img src="https://player.slideplayer.com/26/8600673/data/images/img26.jpg">|<img src="https://player.slideplayer.com/26/8600673/data/images/img27.jpg">|</p>
+<table>
+<thead>
+<tr>
+<th align="center">ラギング鎖におけるDNA断片の合成</th>
+<th align="center">DNAリガーゼの触媒反応</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://player.slideplayer.com/26/8600673/data/images/img26.jpg"></td>
+<td align="center"><img src="https://player.slideplayer.com/26/8600673/data/images/img27.jpg"></td>
+</tr>
+</tbody>
+</table>
 <h4>DNAポリメラーゼ</h4>
 <ul>
 <li>原核生物
 バクテリアの大腸菌は5種類ある。
 大事なのは以下。</li>
 </ul>
-<p>|  名前   |  役割   |
-| --- | --- |
-| Pol Ⅰ    | DNA修復に関わる。5'→3'と3'→5'の両方のエキソヌクレアーゼ活性を持つ。    |
-| Pol Ⅱ    | 損傷DNAの複製に関わる。3'→5'エキソヌクレアーぜ活性を持つ。    |
-| <span class="marker-pink">Pol Ⅲ</span>    | DNA複製に関わる中心的なポリメラーゼ。3'→5'エキソヌクレアーぜ活性を持つ。    |</p>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pol Ⅰ</td>
+<td>DNA修復に関わる。5'→3'と3'→5'の両方のエキソヌクレアーゼ活性を持つ。</td>
+</tr>
+<tr>
+<td>Pol Ⅱ</td>
+<td>損傷DNAの複製に関わる。3'→5'エキソヌクレアーぜ活性を持つ。</td>
+</tr>
+<tr>
+<td><span class="marker-pink">Pol Ⅲ</span></td>
+<td>DNA複製に関わる中心的なポリメラーゼ。3'→5'エキソヌクレアーぜ活性を持つ。</td>
+</tr>
+</tbody>
+</table>
 <ul>
 <li>ヒト（真核細胞）には15以上のDNAポリメラーゼがある。
 大事なのは以下。</li>
 </ul>
-<p>| 名前    | 役割    |
-| --- | --- |
-|<span class="marker-pink">Pol α</span>     | 最初はプライマーゼとしてRNAプライマーを合成し、その後DNAポリメラーゼとして働く。およそ20塩基ほど合成するとPolδないしはPolεに交代する    |
-| Pol β    | DNA修復に関わる。    |
-| Pol γ    | ミトコンドリアDNAを複製する。    |
-|<span class="marker-pink">Pol δ</span>     | ラギング鎖でのDNA複製に関わる中心的なポリメラーゼ。効率が良く3'→5'エキソヌクレアーゼ活性を持つ。    |
-|<span class="marker-pink">Pol ε</span>     |  リーディング鎖でのDNA複製に関わる中心的なポリメラーゼ。効率が良く3'→5'エキソヌクレアーゼ活性を持つ。   |
-| Pol η,ι,κ,ζ・Rev1    | 損傷乗り越え複製に関わる。    |</p>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>役割</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="marker-pink">Pol α</span></td>
+<td>最初はプライマーゼとしてRNAプライマーを合成し、その後DNAポリメラーゼとして働く。およそ20塩基ほど合成するとPolδないしはPolεに交代する</td>
+</tr>
+<tr>
+<td>Pol β</td>
+<td>DNA修復に関わる。</td>
+</tr>
+<tr>
+<td>Pol γ</td>
+<td>ミトコンドリアDNAを複製する。</td>
+</tr>
+<tr>
+<td><span class="marker-pink">Pol δ</span></td>
+<td>ラギング鎖でのDNA複製に関わる中心的なポリメラーゼ。効率が良く3'→5'エキソヌクレアーゼ活性を持つ。</td>
+</tr>
+<tr>
+<td><span class="marker-pink">Pol ε</span></td>
+<td>リーディング鎖でのDNA複製に関わる中心的なポリメラーゼ。効率が良く3'→5'エキソヌクレアーゼ活性を持つ。</td>
+</tr>
+<tr>
+<td>Pol η,ι,κ,ζ・Rev1</td>
+<td>損傷乗り越え複製に関わる。</td>
+</tr>
+</tbody>
+</table>
 <h4>DNA複製に関わるその他のタンパク質</h4>
-<p>| 名前 | 役割 | fig |
-| ---- | ---- | --- |
-| DNAヘリカーゼ(DNA helicase)     | ATPを加水分解したエネルギーを元にDNAの二本鎖を開裂する。     |   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDiEk919JMidtGk-qOC8bmqPZ-RH0DuIbJWUYnNEkK7DGO43X">  |
-| Sliding clamp（留め金）＝ヒトPCNA     | DNAに沿ったポリメラーゼの素早い動きを妨げずに、複製フォークからの解離を防ぐ。     |<img src="https://docplayer.net/docs-images/82/85963169/images/65-0.jpg">     |
-| SSB（単鎖DNA結合タンパク質）     |  DNAを直接開きはしないが、解けた一本鎖構造を安定化してヘリカーゼを助ける。    |  <img src="http://helicase.pbworks.com/f/1239242870/1239242870/SSB.gif">   |
-| DNAトポイソメラーゼ     | 複製や転写に伴ってDNAに生じるねじれや絡まりを解消する。     |  <img src="https://i.servimg.com/u/f18/17/30/76/23/sem_ty36.png">   |</p>
+<table>
+<thead>
+<tr>
+<th>名前</th>
+<th>役割</th>
+<th>fig</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DNAヘリカーゼ(DNA helicase)</td>
+<td>ATPを加水分解したエネルギーを元にDNAの二本鎖を開裂する。</td>
+<td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyDiEk919JMidtGk-qOC8bmqPZ-RH0DuIbJWUYnNEkK7DGO43X"></td>
+</tr>
+<tr>
+<td>Sliding clamp（留め金）＝ヒトPCNA</td>
+<td>DNAに沿ったポリメラーゼの素早い動きを妨げずに、複製フォークからの解離を防ぐ。</td>
+<td><img src="https://docplayer.net/docs-images/82/85963169/images/65-0.jpg"></td>
+</tr>
+<tr>
+<td>SSB（単鎖DNA結合タンパク質）</td>
+<td>DNAを直接開きはしないが、解けた一本鎖構造を安定化してヘリカーゼを助ける。</td>
+<td><img src="http://helicase.pbworks.com/f/1239242870/1239242870/SSB.gif"></td>
+</tr>
+<tr>
+<td>DNAトポイソメラーゼ</td>
+<td>複製や転写に伴ってDNAに生じるねじれや絡まりを解消する。</td>
+<td><img src="https://i.servimg.com/u/f18/17/30/76/23/sem_ty36.png"></td>
+</tr>
+</tbody>
+</table>
 <p>なお、上記のタンパク質群は複製フォークのところで揃って働くことが知られているが、具体的な構造はまだわかっていない。</p>
 <h3>細胞周期あたり1度だけ複製を起こす仕掛け</h3>
 <p>DNAの二重らせんは非常に安定である。そのため、複製を始めるには、まず二重らせんをほどいて2本の鎖を引き離し、塩基を露出させる必要がある。DNAの複製は、特異的な開始タンパク(initial protein)が二本鎖DNAに結合し、塩基間の水素結合を壊して二本鎖を引き離すところから始まる。なお、この時二本鎖が開き始める場所を<b>複製起点(replication origin)</b>という。</p>
@@ -220,25 +319,82 @@
 <li>テロメアリピートは「テロメアーゼ」によって鋳型非依存的に合成される。</li>
 </ul>
 <h2>Glossary</h2>
-<p>| Words                  | Meanings |
-| ---------------------- | ------- |
-| Leading/lagging strand |         |
-| Okazaki fragment       |         |
-| Helicase, MCM helicase |         |
-| Ligase, topoisomerase  |         |
-| Replication fork       |         |
-| Replication origins    |         |
-| Orc                    |         |
-| Telomere, telomerse    |         |</p>
+<table>
+<thead>
+<tr>
+<th>Words</th>
+<th>Meanings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leading/lagging strand</td>
+<td></td>
+</tr>
+<tr>
+<td>Okazaki fragment</td>
+<td></td>
+</tr>
+<tr>
+<td>Helicase, MCM helicase</td>
+<td></td>
+</tr>
+<tr>
+<td>Ligase, topoisomerase</td>
+<td></td>
+</tr>
+<tr>
+<td>Replication fork</td>
+<td></td>
+</tr>
+<tr>
+<td>Replication origins</td>
+<td></td>
+</tr>
+<tr>
+<td>Orc</td>
+<td></td>
+</tr>
+<tr>
+<td>Telomere, telomerse</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2>Quizzes</h2>
 <p><input id="change-bg" type="button" value="See the answers"  style="display: block; background-color: rgba(68, 122, 178);; color: #fff; font-size: 1.2em; padding: 10px; border-radius: 3px;" onclick='document.body.style.backgroundColor="#C0C0C0";document.getElementById("change-bg").style.display="none";document.getElementById("return-bg").style.display="block";'>
 <input id="return-bg" type="button" value="Hide the answers" style="display: none; background-color: rgb(252, 92, 84); color: #fff; font-size: 1.2em; padding: 10px; border-radius: 3px;" onclick='window.location.reload();document.getElementById("change-bg").style.display="block";document.getElementById("return-bg").style.display="none";'></p>
-<p>|#|Question|Answer|
-|:--:|:--|:--|
-|1|Explain leading and lagging DNA strands.<br><br>リーディング鎖とラギング鎖を説明せよ。|<font color="white">Leading strand is the strand of nascent DNA(新生鎖) which is being synthesized in the same direction as the moving replication fork. This strand is synthesized continuously.<br>Lagging strand is the strand of nascent DNA whose direction of synthesis opposite to the direction of the moving replication fork. This strand is synthesized in short, separated segments by DNA polymerases, and joined together by DNA ligase.<br><br>リーディング鎖：<br>DNA複製の際に、複製フォークの動きと同じ方向に伸長されていく側の新生鎖。連続的に合成される。<br>ラギング鎖：<br>DNA複製の際に、複製フォークの動きと反対向きに伸長されていく側の新生鎖。不連続で短い岡崎フラグメントと呼ばれる断片が複数でき、DNAリガーゼによってそれらは連結される。</font>|
-|2|Budding yeast <em>Cdc9</em> encodes DNA ligase Ⅰ. Inactivation of <em>Cdc9</em> was found to cause accumulation of nicked DNA.<br><br>出芽酵母におけるリガーゼⅠを発現させる <em>Cdc9</em> の不活性化は、DNAにニックの蓄積をもたらした。||
-|2.a|Explain why nicked DNA was formed.|<font color="white">Because ligase Ⅰ is required for sealing of nicks between Okazaki fragments.<br><br>ニックを連結する酵素であるリガーゼⅠが生産されなくなったから。</font>|
-|2.b|Assume that there is an active DNA replication origin at the middle of the chromosome region of interest. Indicate where we could observe DNA nicks.|<img src="https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/1950/2017/05/31183852/figure-09-02-03.png"><font color="white">Where the Okazaki Fragment is in both strands.</font>|</p>
+<table>
+<thead>
+<tr>
+<th align="center">#</th>
+<th align="left">Question</th>
+<th align="left">Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="left">Explain leading and lagging DNA strands.<br><br>リーディング鎖とラギング鎖を説明せよ。</td>
+<td align="left"><font color="white">Leading strand is the strand of nascent DNA(新生鎖) which is being synthesized in the same direction as the moving replication fork. This strand is synthesized continuously.<br>Lagging strand is the strand of nascent DNA whose direction of synthesis opposite to the direction of the moving replication fork. This strand is synthesized in short, separated segments by DNA polymerases, and joined together by DNA ligase.<br><br>リーディング鎖：<br>DNA複製の際に、複製フォークの動きと同じ方向に伸長されていく側の新生鎖。連続的に合成される。<br>ラギング鎖：<br>DNA複製の際に、複製フォークの動きと反対向きに伸長されていく側の新生鎖。不連続で短い岡崎フラグメントと呼ばれる断片が複数でき、DNAリガーゼによってそれらは連結される。</font></td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">Budding yeast <em>Cdc9</em> encodes DNA ligase Ⅰ. Inactivation of <em>Cdc9</em> was found to cause accumulation of nicked DNA.<br><br>出芽酵母におけるリガーゼⅠを発現させる <em>Cdc9</em> の不活性化は、DNAにニックの蓄積をもたらした。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="center">2.a</td>
+<td align="left">Explain why nicked DNA was formed.</td>
+<td align="left"><font color="white">Because ligase Ⅰ is required for sealing of nicks between Okazaki fragments.<br><br>ニックを連結する酵素であるリガーゼⅠが生産されなくなったから。</font></td>
+</tr>
+<tr>
+<td align="center">2.b</td>
+<td align="left">Assume that there is an active DNA replication origin at the middle of the chromosome region of interest. Indicate where we could observe DNA nicks.</td>
+<td align="left"><img src="https://s3-us-west-2.amazonaws.com/courses-images/wp-content/uploads/sites/1950/2017/05/31183852/figure-09-02-03.png"><font color="white">Where the Okazaki Fragment is in both strands.</font></td>
+</tr>
+</tbody>
+</table>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",

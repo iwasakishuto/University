@@ -163,9 +163,22 @@
 </div>
 
 <p>これから、各suffixのtypeを <span class="math">\(\mathrm{O}(n)\)</span> 時間で決定することができる。</p>
-<p>|i=5|i=4|i=3|
-|:--:|:--:|:--:|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step1-1.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step1-2.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step1-3.png?raw=true">|</p>
+<table>
+<thead>
+<tr>
+<th align="center">i=5</th>
+<th align="center">i=4</th>
+<th align="center">i=3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step1-1.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step1-2.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step1-3.png?raw=true"></td>
+</tr>
+</tbody>
+</table>
 <h3>Step2</h3>
 <h4>定義：LMS</h4>
 <p>S-type文字S[i]の１つ前の文字S[i-1]がL-typeなら、LMSとする。（S-type文字の塊の左端だから。）</p>
@@ -193,17 +206,51 @@
 <li>１つ右側が残りの中で最小</li>
 </ul>
 <p>なので、この作業で正しい場所に入れられることがわかる。</p>
-<p>||||
-|:--:|:--:|:--:|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-1.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-2.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-3.png?raw=true">|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-4.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-5.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-6.png?raw=true">|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-7.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-8.png?raw=true">||</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-1.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-2.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-3.png?raw=true"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-4.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-5.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-6.png?raw=true"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-7.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6-8.png?raw=true"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <h3>Step 7</h3>
 <p>SAを逆順に走査して S-type のsuffixを埋めていく。
 なお、この時もちろん<b>最初に入れた(大小関係だけ決めて置いたLMSは更新する。)</b></p>
-<p>||||
-|:--:|:--:|:--:|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-1.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-2.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-3.png?raw=true">|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-1.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-2.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-3.png?raw=true"></td>
+</tr>
+</tbody>
+</table>
 <p>この作業を同様に繰り返し、結果以下を得る。</p>
 <p><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7-4.png?raw=true" width=50%></p>
 <h2>Step5 LMS suffix のソートは？？</h2>
@@ -220,18 +267,56 @@
 <h3>Step6'</h3>
 <p>SAを正順に走査して L-type のsuffixを埋めていく。
 この時、等号の情報も随時受け継いでいく。</p>
-<p>||||
-|:--:|:--:|:--:|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-1.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-2.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-3.png?raw=true">|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-4.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-5.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-6.png?raw=true">|</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-1.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-2.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-3.png?raw=true"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-4.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-5.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step6'-6.png?raw=true"></td>
+</tr>
+</tbody>
+</table>
 <h3>Step7'</h3>
 <p>SAを逆順に走査して S-type のsuffixを埋めていく。
 なお、今回も、<b>最初に入れた(大小関係だけ決めて置いたLMSは更新する。)</b></p>
-<p>||||
-|:--:|:--:|:--:|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-1.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-2.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-3.png?raw=true">|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-4.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-5.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-6.png?raw=true">|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-7.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-8.png?raw=true">||</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-1.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-2.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-3.png?raw=true"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-4.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-5.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-6.png?raw=true"></td>
+</tr>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-7.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_step7'-8.png?raw=true"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <h2>Recursion</h2>
 <p>ここまでの操作で、LMSのソートは完了していない。そこで、上で得た情報を元にLMS(正確にはLMS部分列)に順位を付与する。</p>
 <p><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_encoding.png?raw=true" width=50%></p>
@@ -242,9 +327,20 @@
 <p><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_step6.png?raw=true" width=50%></p>
 <h3>step7 (Recursion)</h3>
 <p>SAを逆順に走査して S-type のsuffixを埋めていく。</p>
-<p>|before|after|
-|:--:|:--:|
-|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_step7-1.png?raw=true">|<img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_step7-2.png?raw=true">|</p>
+<table>
+<thead>
+<tr>
+<th align="center">before</th>
+<th align="center">after</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_step7-1.png?raw=true"></td>
+<td align="center"><img src="https://github.com/iwasakishuto/3S-Software-and-Algolism-Design-for-Biology/blob/master/S1/kadai/kadai3.1/images/SA-IS_recursion_step7-2.png?raw=true"></td>
+</tr>
+</tbody>
+</table>
 <p>これで、LMSのソートが完了した！！</p>
 <h2>計算量</h2>
 <p>LMS部分列に順位を付与して生成した文字列は、長さが元の1/2以下になることが保証されている。（LMSの数は最大でも1/2）
