@@ -397,11 +397,9 @@ $$V_d(r)/(2r)^d = \frac{\pi^{d/2}}{2^d\Gamma\left(\frac{d}{2} + 1\right)}\unders
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<summary><b>備忘録（ディレクトリ構造）</b><details>
-
-```sh
-# file 群を整える。
-$ tree kadai07
+<summary><b>備忘録（ディレクトリ構造）</b><details open="">
+<pre><code class="cm-s-ipython language-sh"><span class="cm-comment"># file 群を整える。</span>
+<span class="cm-def">$ tree</span> kadai07
 
 kadai07/
 ├── kadai07.py
@@ -411,9 +409,7 @@ kadai07/
     ├── Elkan.txt
     ├── Hamerly.txt
     ├── Lloyd_Random.txt
-    └── Lloyd_k++.txt
-```
-
+    └── Lloyd_k<span class="cm-operator">+</span><span class="cm-operator">+</span>.txt</code></pre>
 </details></summary>
 </div>
 </div>
@@ -421,63 +417,59 @@ kadai07/
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<summary><code>kadai07.py</code><details>
+<summary><code>kadai07.py</code><details open="">
+<pre><code class="cm-s-ipython language-python"><span class="cm-comment">#coding: utf-8</span>
 
-```python
-#coding: utf-8
+<span class="cm-keyword">import</span> <span class="cm-variable">subprocess</span>
+<span class="cm-keyword">import</span> <span class="cm-variable">argparse</span>
+<span class="cm-keyword">import</span> <span class="cm-variable">numpy</span> <span class="cm-keyword">as</span> <span class="cm-variable">np</span>
+<span class="cm-keyword">from</span> <span class="cm-variable">kerasy</span>.<span class="cm-property">ML</span>.<span class="cm-property">sampling</span> <span class="cm-keyword">import</span> <span class="cm-variable">GibbsMsphereSampler</span>
+<span class="cm-keyword">from</span> <span class="cm-variable">kerasy</span>.<span class="cm-property">utils</span> <span class="cm-keyword">import</span> <span class="cm-variable">measure_complexity</span>
+<span class="cm-keyword">from</span> <span class="cm-variable">kerasy</span>.<span class="cm-property">ML</span>.<span class="cm-property">EM</span> <span class="cm-keyword">import</span> <span class="cm-variable">KMeans</span>, <span class="cm-variable">HamerlyKMeans</span>, <span class="cm-variable">ElkanKMeans</span>
 
-import subprocess
-import argparse
-import numpy as np
-from kerasy.ML.sampling import GibbsMsphereSampler
-from kerasy.utils import measure_complexity
-from kerasy.ML.EM import KMeans, HamerlyKMeans, ElkanKMeans
-
-ModelHandler = {
-    'Lloyd_Random': KMeans,
-    'Lloyd_k++'   : KMeans,
-    'Hamerly'     : HamerlyKMeans,
-    'Elkan'       : ElkanKMeans,
+<span class="cm-variable">ModelHandler</span> <span class="cm-operator">=</span> {
+    <span class="cm-string">'Lloyd_Random'</span>: <span class="cm-variable">KMeans</span>,
+    <span class="cm-string">'Lloyd_k++'</span>   : <span class="cm-variable">KMeans</span>,
+    <span class="cm-string">'Hamerly'</span>     : <span class="cm-variable">HamerlyKMeans</span>,
+    <span class="cm-string">'Elkan'</span>       : <span class="cm-variable">ElkanKMeans</span>,
 }
 
-dimensions   = [2,10,100]
-sample_nums  = [1000,10000,100000]
-cluster_nums = [10,100,1000]
-repetitions  = 10
+<span class="cm-variable">dimensions</span>   <span class="cm-operator">=</span> [<span class="cm-number">2</span>,<span class="cm-number">10</span>,<span class="cm-number">100</span>]
+<span class="cm-variable">sample_nums</span>  <span class="cm-operator">=</span> [<span class="cm-number">1000</span>,<span class="cm-number">10000</span>,<span class="cm-number">100000</span>]
+<span class="cm-variable">cluster_nums</span> <span class="cm-operator">=</span> [<span class="cm-number">10</span>,<span class="cm-number">100</span>,<span class="cm-number">1000</span>]
+<span class="cm-variable">repetitions</span>  <span class="cm-operator">=</span> <span class="cm-number">10</span>
 
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-m", "--model", choices=['Lloyd_Random', 'Lloyd_k++', 'Hamerly', 'Elkan'])
-    parser.add_argument("-s", "--seed",  type=int, default=0)
-    args = parser.parse_args()
+<span class="cm-keyword">if</span> <span class="cm-variable">__name__</span> <span class="cm-operator">==</span> <span class="cm-string">"__main__"</span>:
+    <span class="cm-variable">parser</span> <span class="cm-operator">=</span> <span class="cm-variable">argparse</span>.<span class="cm-property">ArgumentParser</span>()
+    <span class="cm-variable">parser</span>.<span class="cm-property">add_argument</span>(<span class="cm-string">"-m"</span>, <span class="cm-string">"--model"</span>, <span class="cm-variable">choices</span><span class="cm-operator">=</span>[<span class="cm-string">'Lloyd_Random'</span>, <span class="cm-string">'Lloyd_k++'</span>, <span class="cm-string">'Hamerly'</span>, <span class="cm-string">'Elkan'</span>])
+    <span class="cm-variable">parser</span>.<span class="cm-property">add_argument</span>(<span class="cm-string">"-s"</span>, <span class="cm-string">"--seed"</span>,  <span class="cm-builtin">type</span><span class="cm-operator">=</span><span class="cm-builtin">int</span>, <span class="cm-variable">default</span><span class="cm-operator">=</span><span class="cm-number">0</span>)
+    <span class="cm-variable">args</span> <span class="cm-operator">=</span> <span class="cm-variable">parser</span>.<span class="cm-property">parse_args</span>()
 
-    init  = "random" if 'Lloyd_Random' else 'k++'
-    Model = ModelHandler[args.model]
-    seed  = args.seed
+    <span class="cm-variable">init</span>  <span class="cm-operator">=</span> <span class="cm-string">"random"</span> <span class="cm-keyword">if</span> <span class="cm-string">'Lloyd_Random'</span> <span class="cm-keyword">else</span> <span class="cm-string">'k++'</span>
+    <span class="cm-variable">Model</span> <span class="cm-operator">=</span> <span class="cm-variable">ModelHandler</span>[<span class="cm-variable">args</span>.<span class="cm-property">model</span>]
+    <span class="cm-variable">seed</span>  <span class="cm-operator">=</span> <span class="cm-variable">args</span>.<span class="cm-property">seed</span>
 
-    def func(data, n_clusters, random_state):
-        model = Model(n_clusters, init=init, random_state=random_state)
-        model.fit(data, verbose=-1)
-        inertia = model.inertia_
-        n_iter = model.iterations_
-        return (inertia, n_iter)
+    <span class="cm-keyword">def</span> <span class="cm-def">func</span>(<span class="cm-variable">data</span>, <span class="cm-variable">n_clusters</span>, <span class="cm-variable">random_state</span>):
+        <span class="cm-variable">model</span> <span class="cm-operator">=</span> <span class="cm-variable">Model</span>(<span class="cm-variable">n_clusters</span>, <span class="cm-variable">init</span><span class="cm-operator">=</span><span class="cm-variable">init</span>, <span class="cm-variable">random_state</span><span class="cm-operator">=</span><span class="cm-variable">random_state</span>)
+        <span class="cm-variable">model</span>.<span class="cm-property">fit</span>(<span class="cm-variable">data</span>, <span class="cm-variable">verbose</span><span class="cm-operator">=</span><span class="cm-operator">-</span><span class="cm-number">1</span>)
+        <span class="cm-variable">inertia</span> <span class="cm-operator">=</span> <span class="cm-variable">model</span>.<span class="cm-property">inertia_</span>
+        <span class="cm-variable">n_iter</span> <span class="cm-operator">=</span> <span class="cm-variable">model</span>.<span class="cm-property">iterations_</span>
+        <span class="cm-keyword">return</span> (<span class="cm-variable">inertia</span>, <span class="cm-variable">n_iter</span>)
 
-    print(f"#dimensions  : {dimensions}")
-    print(f"#sample_nums : {sample_nums}")
-    print(f"#cluster_nums: {cluster_nums}")
-    print(f"#repetitions : {repetitions}")
-    print(f"#seed        : {seed}")
-    print("num_samples, dimensions, num_clusters, processing_time, num_iterations, MSE")
-    for d in dimensions:
-        sampler = GibbsMsphereSampler(d, r=1)
-        for n in sample_nums:
-            data = sampler.sample(n, random_state=seed, verbose=-1)
-            for k in cluster_nums:
-                p_time, metrics = measure_complexity(func, data=data, n_clusters=k, random_state=seed, repetitions_=10)
-                inertia, n_iter = np.mean(np.asarray(metrics, dtype=float), axis=0)
-                print(f"{n}, {d}, {k}, {p_time}, {n_iter}, {inertia/n}")
-```
-
+    <span class="cm-builtin">print</span>(<span class="cm-string">f"#dimensions  : </span>{<span class="cm-variable">dimensions</span>}<span class="cm-string">"</span>)
+    <span class="cm-builtin">print</span>(<span class="cm-string">f"#sample_nums : </span>{<span class="cm-variable">sample_nums</span>}<span class="cm-string">"</span>)
+    <span class="cm-builtin">print</span>(<span class="cm-string">f"#cluster_nums: </span>{<span class="cm-variable">cluster_nums</span>}<span class="cm-string">"</span>)
+    <span class="cm-builtin">print</span>(<span class="cm-string">f"#repetitions : </span>{<span class="cm-variable">repetitions</span>}<span class="cm-string">"</span>)
+    <span class="cm-builtin">print</span>(<span class="cm-string">f"#seed        : </span>{<span class="cm-variable">seed</span>}<span class="cm-string">"</span>)
+    <span class="cm-builtin">print</span>(<span class="cm-string">"num_samples, dimensions, num_clusters, processing_time, num_iterations, MSE"</span>)
+    <span class="cm-keyword">for</span> <span class="cm-variable">d</span> <span class="cm-keyword">in</span> <span class="cm-variable">dimensions</span>:
+        <span class="cm-variable">sampler</span> <span class="cm-operator">=</span> <span class="cm-variable">GibbsMsphereSampler</span>(<span class="cm-variable">d</span>, <span class="cm-variable">r</span><span class="cm-operator">=</span><span class="cm-number">1</span>)
+        <span class="cm-keyword">for</span> <span class="cm-variable">n</span> <span class="cm-keyword">in</span> <span class="cm-variable">sample_nums</span>:
+            <span class="cm-variable">data</span> <span class="cm-operator">=</span> <span class="cm-variable">sampler</span>.<span class="cm-property">sample</span>(<span class="cm-variable">n</span>, <span class="cm-variable">random_state</span><span class="cm-operator">=</span><span class="cm-variable">seed</span>, <span class="cm-variable">verbose</span><span class="cm-operator">=</span><span class="cm-operator">-</span><span class="cm-number">1</span>)
+            <span class="cm-keyword">for</span> <span class="cm-variable">k</span> <span class="cm-keyword">in</span> <span class="cm-variable">cluster_nums</span>:
+                <span class="cm-variable">p_time</span>, <span class="cm-variable">metrics</span> <span class="cm-operator">=</span> <span class="cm-variable">measure_complexity</span>(<span class="cm-variable">func</span>, <span class="cm-variable">data</span><span class="cm-operator">=</span><span class="cm-variable">data</span>, <span class="cm-variable">n_clusters</span><span class="cm-operator">=</span><span class="cm-variable">k</span>, <span class="cm-variable">random_state</span><span class="cm-operator">=</span><span class="cm-variable">seed</span>, <span class="cm-variable">repetitions_</span><span class="cm-operator">=</span><span class="cm-number">10</span>)
+                <span class="cm-variable">inertia</span>, <span class="cm-variable">n_iter</span> <span class="cm-operator">=</span> <span class="cm-variable">np</span>.<span class="cm-property">mean</span>(<span class="cm-variable">np</span>.<span class="cm-property">asarray</span>(<span class="cm-variable">metrics</span>, <span class="cm-variable">dtype</span><span class="cm-operator">=</span><span class="cm-builtin">float</span>), <span class="cm-variable">axis</span><span class="cm-operator">=</span><span class="cm-number">0</span>)
+                <span class="cm-builtin">print</span>(<span class="cm-string">f"</span>{<span class="cm-variable">n</span>}<span class="cm-string">, </span>{<span class="cm-variable">d</span>}<span class="cm-string">, </span>{<span class="cm-variable">k</span>}<span class="cm-string">, </span>{<span class="cm-variable">p_time</span>}<span class="cm-string">, </span>{<span class="cm-variable">n_iter</span>}<span class="cm-string">, </span>{<span class="cm-variable">inertia</span><span class="cm-operator">/</span><span class="cm-variable">n</span>}<span class="cm-string">"</span>)</code></pre>
 </details></summary>
 </div>
 </div>
@@ -486,27 +478,23 @@ if __name__ == "__main__":
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <summary><code>kadai07.sh</code><details>
+<pre><code class="cm-s-ipython language-bash"><span class="cm-meta">#!/bin/bash</span>
+<span class="cm-comment"># chmod +x kadai07.sh</span>
+<span class="cm-comment"># sh ./kadai07.sh</span>
 
-```bash
-#!/bin/bash
-# chmod +x kadai07.sh
-# sh ./kadai07.sh
+<span class="cm-def">LOGDIR</span><span class="cm-operator">=</span><span class="cm-string">"output"</span>
+<span class="cm-keyword">if</span> [ <span class="cm-attribute">-d</span> <span class="cm-def">$LOGDIR</span> ]; <span class="cm-keyword">then</span>
+    <span class="cm-builtin">echo</span> <span class="cm-string">"Deleted </span><span class="cm-def">${LOGDIR}</span><span class="cm-string">"</span>
+    <span class="cm-builtin">rm</span> <span class="cm-attribute">-r</span> <span class="cm-def">$LOGDIR</span>
+<span class="cm-keyword">fi</span>
 
-LOGDIR="output"
-if [ -d $LOGDIR ]; then
-    echo "Deleted ${LOGDIR}"
-    rm -r $LOGDIR
-fi
+<span class="cm-builtin">echo</span> <span class="cm-string">"Created </span><span class="cm-def">${LOGDIR}</span><span class="cm-string">"</span>
+<span class="cm-builtin">mkdir</span> <span class="cm-def">$LOGDIR</span>
 
-echo "Created ${LOGDIR}"
-mkdir $LOGDIR
-
-for Model in Lloyd_Random Lloyd_k++ Hamerly Elkan
-do
-    python3 kadai07.py -m $Model -s 0 > output/$Model.txt
-done
-```
-
+<span class="cm-keyword">for</span> Model <span class="cm-keyword">in</span> Lloyd_Random Lloyd_k<span class="cm-operator">+</span><span class="cm-operator">+</span> Hamerly Elkan
+<span class="cm-keyword">do</span>
+    python3 kadai07.py <span class="cm-attribute">-m</span> <span class="cm-def">$Model</span> <span class="cm-attribute">-s</span> <span class="cm-number">0</span> > output/<span class="cm-def">$Model</span>.txt
+<span class="cm-keyword">done</span></code></pre>
 </details></summary>
 </div>
 </div>
@@ -1253,25 +1241,20 @@ n=100000 d=100 k=1000 processing time: 944.928[s], n_iter=91.40, mse=0.933
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="padding: 0.25em 0.5em; border-left: solid 5px black; background-color: rgb(255,243,184,0.5)">
-
-### Hamerlyの命題
-
-　点 $x_i$ の
-- 最近接の重心への距離の上界の一つを $u_i\geq\operatorname{d}\left(x_i, c(\operatorname{cls}(i))\right)$
-- 2番目に近い重心への距離の下界の一つを $l_i\leq\min_{j\neq \operatorname{cls}(i)}\operatorname{d}\left(x_i, c(j)\right)$
-- 所属するクラスターを $\operatorname{cls}(i)$ 
-- $\operatorname{cls}(i)$ の重心を $c\left(\operatorname{cls}(i)\right)$ 
-- $c\left(\operatorname{cls}(i)\right)$ と最も近い他のクラスタの重心との距離を $s\left(\operatorname{cls}(i)\right) = \min_{j\neq \operatorname{cls}(i)}\left\{\operatorname{d}\left(c\left(\operatorname{cls}(i)\right), c\left(j\right)\right)\right\}$ 
-
-とする。この時、
-
-1. $u_i\leq l_i$
-2. $u_i\leq s\left(\operatorname{cls}(i)\right)/2$
-
-のどちらかが成立するならば、$x_i$ に最も近いクラスターは重心移動後も $\operatorname{cls}(i)$ のまま。
-
-</div>
+<h3 id="Hamerlyの命題">Hamerlyの命題<a class="anchor-link" href="#Hamerlyの命題">¶</a></h3><p>　点 $x_i$ の</p>
+<ul>
+<li>最近接の重心への距離の上界の一つを $u_i\geq\operatorname{d}\left(x_i, c(\operatorname{cls}(i))\right)$</li>
+<li>2番目に近い重心への距離の下界の一つを $l_i\leq\min_{j\neq \operatorname{cls}(i)}\operatorname{d}\left(x_i, c(j)\right)$</li>
+<li>所属するクラスターを $\operatorname{cls}(i)$ </li>
+<li>$\operatorname{cls}(i)$ の重心を $c\left(\operatorname{cls}(i)\right)$ </li>
+<li>$c\left(\operatorname{cls}(i)\right)$ と最も近い他のクラスタの重心との距離を $s\left(\operatorname{cls}(i)\right) = \min_{j\neq \operatorname{cls}(i)}\left\{\operatorname{d}\left(c\left(\operatorname{cls}(i)\right), c\left(j\right)\right)\right\}$ </li>
+</ul>
+<p>とする。この時、</p>
+<ol>
+<li>$u_i\leq l_i$</li>
+<li>$u_i\leq s\left(\operatorname{cls}(i)\right)/2$</li>
+</ol>
+<p>のどちらかが成立するならば、$x_i$ に最も近いクラスターは重心移動後も $\operatorname{cls}(i)$ のまま。</p>
 </div>
 </div>
 </div>
@@ -1708,23 +1691,19 @@ $$\operatorname{d}\left(x_i,c\left(\operatorname{cls}(i)\right)\right)\leq\min_{
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="padding: 0.25em 0.5em; border-left: solid 5px black; background-color: rgb(255,243,184,0.5)">
-
-### Elkanの命題
-
-　点 $x_i$ の
-- 最近接の重心への距離の上界の一つを $u_i\geq\operatorname{d}\left(x_i, c(\operatorname{cls}(i))\right)$
-- <span class="unRed">$j$ 番のクラスタの重心への距離</span>の下界を $l_{ij}\leq\operatorname{d}\left(x_i, c(j)\right)$
-- 所属するクラスターを $\operatorname{cls}(i)$ 
-- $\operatorname{cls}(i)$ の重心を $c\left(\operatorname{cls}(i)\right)$ 
-- $A$ の、一つ前のイテレーション時の値を $A^{\prime}$
-
-とする。この時、
-
-1. $\frac{1}{2}\operatorname{d}\left(c\left(\operatorname{cls}(i)\right),c(j)\right)\geq u_i$ が成立する時、$\operatorname{d}\left(x_i,c(j)\right)$ を計算する必要がない。
-2. $l_{ij} = \max\left\{0, l_{ij}^{\prime}-\operatorname{d}\left(c(j), c^{\prime}(j)\right)\right\}$ と下界を計算できる。
-
-</div>
+<h3 id="Elkanの命題">Elkanの命題<a class="anchor-link" href="#Elkanの命題">¶</a></h3><p>　点 $x_i$ の</p>
+<ul>
+<li>最近接の重心への距離の上界の一つを $u_i\geq\operatorname{d}\left(x_i, c(\operatorname{cls}(i))\right)$</li>
+<li><span class="unRed">$j$ 番のクラスタの重心への距離</span>の下界を $l_{ij}\leq\operatorname{d}\left(x_i, c(j)\right)$</li>
+<li>所属するクラスターを $\operatorname{cls}(i)$ </li>
+<li>$\operatorname{cls}(i)$ の重心を $c\left(\operatorname{cls}(i)\right)$ </li>
+<li>$A$ の、一つ前のイテレーション時の値を $A^{\prime}$</li>
+</ul>
+<p>とする。この時、</p>
+<ol>
+<li>$\frac{1}{2}\operatorname{d}\left(c\left(\operatorname{cls}(i)\right),c(j)\right)\geq u_i$ が成立する時、$\operatorname{d}\left(x_i,c(j)\right)$ を計算する必要がない。</li>
+<li>$l_{ij} = \max\left\{0, l_{ij}^{\prime}-\operatorname{d}\left(c(j), c^{\prime}(j)\right)\right\}$ と下界を計算できる。</li>
+</ol>
 </div>
 </div>
 </div>
@@ -2178,7 +2157,7 @@ $$</li>
 <tbody>
 <tr>
 <td style="text-align:center"><a href="https://www.nature.com/articles/nprot.2014.006"><img alt="Full-length RNA-seq from single cells using Smart-seq2" src="https://media.springernature.com/m312/springer-static/image/art%3A10.1038%2Fnprot.2014.006/MediaObjects/41596_2014_Article_BFnprot2014006_Fig1_HTML.jpg?as=webp" /></a></td>
-<td style="text-align:center"><a href="https://www.cell.com/fulltext/S0092-8674(15"><img alt="Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets" src="https://els-jbs-prod-cdn.literatumonline.com/cms/attachment/cedc42c0-8b11-419e-9922-0f2f29d8bdf6/fx1.jpg" /></a>00549-8)</td>
+<td style="text-align:center"><a href="https://www.cell.com/fulltext/S0092-8674(15)00549-8"><img alt="Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets" src="https://els-jbs-prod-cdn.literatumonline.com/cms/attachment/cedc42c0-8b11-419e-9922-0f2f29d8bdf6/fx1.jpg" /></a></td>
 </tr>
 </tbody>
 </table>
