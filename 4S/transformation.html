@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <link rel="shortcut icon" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" />
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="author" content="Shuto" />
+
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary">
+
+<meta name="keywords" content="卒研, protocol, 生物情報科学特別演習・実験I, " />
+<meta property="og:image" content="https://iwasakishuto.github.io/images/FacebookImage/University.png"/>
+
+<meta property="og:title" content="トランスフォーメーション "/>
+<meta property="og:url" content="https://iwasakishuto.github.io/University/4S/transformation.html" />
+<meta property="og:description" content="トランスフォーメーション" />
+<meta property="og:site_name" content="4S" />
+<meta property="og:article:author" content="Shuto" />
+<meta property="og:article:published_time" content="2020-07-27T14:00:00+09:00" />
+<meta property="og:article:modified_time" content="2020-07-27T14:00:00+09:00" />
+<meta name="twitter:title" content="トランスフォーメーション ">
+<meta name="twitter:description" content="トランスフォーメーション">
+
+        <title>トランスフォーメーション  · 4S
+</title>
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/bootstrap-combined.v2.3.2.min.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/4S/theme/css/pygments.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/4S/theme/tipuesearch/tipuesearch.css" media="screen">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/4S/theme/css/elegant.css">
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/University/4S/theme/css/admonition.css" media="screen">
+        <!---->
+        <link rel="apple-touch-icon" sizes="152x152" href="https://iwasakishuto.github.io/images/apple-touch-icon/University.png" type="image/png" />
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-164333757-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+
+        <!-- Use fontawesome Icon -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+        <!-- Syntax highlight -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/custom.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <!-- LaTex -->
+        <!-- Github env -->
+        <!--<script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>-->
+        <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+        <script type="text/x-mathjax-config">
+        	MathJax.Hub.Config({
+        		tex2jax: {
+        			inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        			displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+        		}
+        	});
+        </script>
+        <!-- Mermaid -->
+        <script src="https://unpkg.com/mermaid/dist/mermaid.min.js" charset="UTF-8"></script>
+        <script>
+          mermaid.initialize({
+            startOnLoad:true
+          });
+        </script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+    </head>
+    <body>
+        
+        <div id="content-sans-footer">
+        <div class="navbar navbar-static-top">
+            <div class="navbar-inner">
+                <div class="container-fluid">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="https://iwasakishuto.github.io/University/4S"><span class=site-name style="color: #80273F;"><i class="fa fa-book"></i> 4S</span></a>
+                    <!--
+                    <a class="brand" href="https://iwasakishuto.github.io/University/4S/"><span class=site-name style="margin-left:auto; margin-right:auto;"><i class="fas fa-book-reader"></i>4S</span></a>
+                    -->
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right top-menu">
+                            <li ><a href="https://iwasakishuto.github.io/"><i class="fas fa-home"></i>Portfolio Top</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/4S/categories"><i class="fa fa-list-alt"></i> Categories</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/4S/tags"><i class="fa fa-tags"></i> Tags</a></li>
+                            <li ><a href="https://iwasakishuto.github.io/University/4S/archives"><i class="fa fa-folder-open"></i> Archives</a></li>
+                            <li><form class="navbar-search" action="https://iwasakishuto.github.io/University/4S/search.html" onsubmit="return validateForm(this.elements['q'].value);"> <input type="text" class="search-query" placeholder="Search" name="q" id="tipue_search_input"></form></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1"></div>
+                <div class="span10">
+<article itemscope>
+<div class="row-fluid">
+  <header class="page-header span10 offset2">
+    <h1><a href="https://iwasakishuto.github.io/University/4S/transformation.html"> <i class="fas fa-lock"></i> トランスフォーメーション  </a></h1>
+  </header>
+</div>
+
+<div class="row-fluid">
+    <div class="span8 offset2 article-content">
+
+  
+  <div id="pec-encrypted-content" style="display:none">gE+XYkQQjQ9ROrtC1ke92w==;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;^</div>
+<div id="pec-decrypted-content">
+    <h4>This content is encrypted.</h4>
+</div>
+
+<form id="pec-decrypt-form">
+    <label for="pec-content-password">Password</label>
+    <input type="password" id="pec-content-password" placeholder="Password" />
+    <button type="button" id="pec-decrypt-content" style="margin-bottom: 10px;">Decrypt <i class="fa fa-unlock"></i></button>
+</form>
+
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/core.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/enc-base64.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/cipher-core.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/pad-nopadding.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/md5.js"></script>
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/components/aes.js"></script>
+
+
+<script type="text/javascript">
+    (function () {
+        var strip_padding = function (padded_content, padding_char) {
+            /*
+             * Strips the padding character from decrypted content.
+             */
+            for (var i = padded_content.length; i > 0; i--) {
+                if (padded_content[i-1] !== padding_char) {
+                    return padded_content.slice(0, i);
+                }
+            }
+        };
+
+        var decrypt_content = function (password, iv_b64, ciphertext_b64, padding_char) {
+            /*
+             * Decrypts the content from the ciphertext bundle.
+             */
+            var key = CryptoJS.MD5(password),
+                iv = CryptoJS.enc.Base64.parse(iv_b64),
+                ciphertext = CryptoJS.enc.Base64.parse(ciphertext_b64),
+                bundle = {
+                    key: key,
+                    iv: iv,
+                    ciphertext: ciphertext
+                };
+
+            var plaintext = CryptoJS.AES.decrypt(bundle, key, {iv: iv, padding: CryptoJS.pad.NoPadding});
+
+            try {
+                return strip_padding(plaintext.toString(CryptoJS.enc.Utf8), padding_char);
+            }
+            catch (err) {
+                // encoding failed; wrong password
+                return false;
+            }
+        };
+
+        var init_decryptor = function() {
+            var decrypt_btn = document.getElementById('pec-decrypt-content'),
+                password_input = document.getElementById('pec-content-password'),
+                encrypted_content = document.getElementById('pec-encrypted-content'),
+                decrypted_content = document.getElementById('pec-decrypted-content'),
+                decrypt_form = document.getElementById('pec-decrypt-form');
+
+            decrypt_btn.addEventListener('click', function () {
+                // grab the ciphertext bundle
+                var parts = encrypted_content.innerHTML.split(';');
+
+                // decrypt it
+                var content = decrypt_content(
+                    password_input.value,
+                    parts[0],
+                    parts[1],
+                    parts[2]
+                );
+
+                if (content) {
+                    // success; display the decrypted content
+                    decrypted_content.innerHTML = content;
+                    decrypt_form.parentNode.removeChild(decrypt_form);
+                    encrypted_content.parentNode.removeChild(encrypted_content);
+
+                    // any post processing on the decrypted content should be done here
+                }
+                else {
+                    // ¯\_(ツ)_/¯
+                    password_input.value = '';
+                }
+            });
+        };
+
+        document.addEventListener('DOMContentLoaded', init_decryptor);
+    })();
+</script>
+  <div>
+</div>
+
+  
+  
+  <hr/>
+
+    <aside class="article_meta">
+      <nav>
+        <ul class="articles-timeline">
+            <li class="previous-article">« <a href="https://iwasakishuto.github.io/University/4S/ligation.html" title="Previous: ライゲーション">ライゲーション</a></li>
+            <li class="next-article"><a href="https://iwasakishuto.github.io/University/4S/colony_PCR.html" title="Next: コロニーPCR">コロニーPCR</a> »</li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+    <section class="article_meta">
+      <div class="span2" style="float:right;font-size:0.9em; text-align: center;">
+        <a class="btn-square-pop" onclick="switchVisibility('_article_meta_')">hidden</a>
+      </div>
+
+      <div class="span2" id="_article_meta_" style="float:right;font-size:0.9em;">
+        <h5>Table of Contents</h5>
+        <div id="toc"></div>
+
+          <h5>Published</h5>
+          <time itemprop="dateCreated" datetime="2020-07-27T14:00:00+09:00"> 7 27, 2020</time>
+
+<h5>Last Updated</h5>
+<time datetime="2020-07-27T14:00:00+09:00"> 7 27, 2020</time>
+
+          <h5>Category</h5>
+          <a class="category-link" href="https://iwasakishuto.github.io/University/4S/categories.html#sheng-wu-qing-bao-ke-xue-te-bie-yan-xi-shi-yan-i-ref">生物情報科学特別演習・実験I</a>
+          <h5>Tags</h5>
+          <ul class="list-of-tags tags-in-article">
+              <li><a href="https://iwasakishuto.github.io/University/4S/tags#protocol-ref">protocol
+                  <span>12</span>
+</a></li>
+              <li><a href="https://iwasakishuto.github.io/University/4S/tags#zu-yan-ref">卒研
+                  <span>12</span>
+</a></li>
+          </ul>
+<h5>Contact</h5>
+    <a href="https://twitter.com/cabernet_rock" title="My twitter Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-twitter sidebar-social-links"></i></a>
+    <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-github sidebar-social-links"></i></a>
+    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
+    <i class="fab fa-facebook sidebar-social-links"></i></a>
+      </div>
+    </section>
+  </div>
+</article>
+                </div>
+                <div class="span1"></div>
+            </div>
+        </div>
+        <div id="push"></div>
+    </div>
+<footer class="article_meta">
+  <div id="footer">
+    <ul class="footer-content">
+        <li class="elegant-subtitle"><span class="site-name">4S</span> - Shuto's Notes</li>
+        <li class="elegant-license">MIT</li>
+      <li class="elegant-power">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>. Theme: <a href="https://github.com/Pelican-Elegant/elegant/" title="Theme Elegant Home Page">Elegant</a></li>
+    </ul>
+  </div>
+</footer>            <script src="https://code.jquery.com/jquery.min.js"></script>
+        <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+        <script>
+            function validateForm(query)
+            {
+                return (query.length > 0);
+            }
+        </script>
+        <script src="https://iwasakishuto.github.io/js/custom.js"></script>
+        <script src="https://iwasakishuto.github.io/js/smooth-scroll.polyfills.min.js"></script>
+        <script src="https://iwasakishuto.github.io/js/toc.min.js"></script>
+        <script>
+            jQuery('#toc').toc({
+                'container': 'div.article-content',
+                'selectors': 'h2, h3, h4',
+            });
+        </script>
+
+    
+        <link rel="stylesheet" type="text/css" href="https://iwasakishuto.github.io/css/jupyter.css">
+    </body>
+    <!-- Theme: Elegant built for Pelican
+    License : MIT -->
+</html>
