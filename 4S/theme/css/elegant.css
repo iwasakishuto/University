@@ -35,6 +35,7 @@ h3,
 h4 {  /* 見出しの違いがわかりにくいため */
     padding: 0.25em 0.5em;/*上下 左右の余白*/
     border-left: solid 5px #800000;/*左線*/
+    background-color: rgba(128,0,0,0.05);
 }
 
 h1 small, h1 a, h1 a:hover,
