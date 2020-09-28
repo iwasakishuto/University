@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="シミュレーション実習 Day4 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-4.html" />
-<meta property="og:description" content="シミュレーション実習¶Day.4: シグナル伝達系の応答特性 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Intoroduction パルス刺激時のRas,Rap1モデルの応答特性 ランプ刺激時のRas,Rap1モデルの応答特性 Rasモデルのfold-change detection 1. Intoroduction ホルモンの時間パターンは単純なステップ刺激ではない（が、通常の実験での刺激パターンはいわゆる&#34;入れっぱなし&#34;=ステップ刺激） 刺激パターンを忠実に再現するためには、「パルス刺激（一過性の変化）」・「ランプ刺激（穏やかな変化）」に分解する必要がある。 パルス・ランプ刺激に対する応答は、ネットワークを見ても直感的には良くわからない。→実際にシミュレーションしてみよう！！ 今日のテーマ 異なる刺激パターン（今まではステップ刺激。今回はパルス刺激やランプ刺激）に対するRas,Rap1の応答から、Ras,Rap1経路の特性を学ぶ" />
+<meta property="og:description" content="時間パターンに対する選択的応答" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-12T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-12T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day4 ">
-<meta name="twitter:description" content="シミュレーション実習¶Day.4: シグナル伝達系の応答特性 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Intoroduction パルス刺激時のRas,Rap1モデルの応答特性 ランプ刺激時のRas,Rap1モデルの応答特性 Rasモデルのfold-change detection 1. Intoroduction ホルモンの時間パターンは単純なステップ刺激ではない（が、通常の実験での刺激パターンはいわゆる&#34;入れっぱなし&#34;=ステップ刺激） 刺激パターンを忠実に再現するためには、「パルス刺激（一過性の変化）」・「ランプ刺激（穏やかな変化）」に分解する必要がある。 パルス・ランプ刺激に対する応答は、ネットワークを見ても直感的には良くわからない。→実際にシミュレーションしてみよう！！ 今日のテーマ 異なる刺激パターン（今まではステップ刺激。今回はパルス刺激やランプ刺激）に対するRas,Rap1の応答から、Ras,Rap1経路の特性を学ぶ">
+<meta name="twitter:description" content="時間パターンに対する選択的応答">
 
         <title>シミュレーション実習 Day4  · 3S
 </title>
@@ -119,23 +119,25 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="シミュレーション実習">シミュレーション実習<a class="anchor-link" href="#シミュレーション実習">¶</a></h1><p><b>Day.4: シグナル伝達系の応答特性</b></p>
+<h1 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#182;</a></h1><p><b>Day.4: シグナル伝達系の応答特性</b></p>
 <ul>
 <li>担当：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/">黒田研究室</a></li>
 <li>実習のwiki：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/">Slides and programs</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="概要">概要<a class="anchor-link" href="#概要">¶</a></h2><ol>
-<li><a data-scroll="" href="#anchor1">Intoroduction</a></li>
-<li><a data-scroll="" href="#anchor2">パルス刺激時のRas,Rap1モデルの応答特性</a></li>
-<li><a data-scroll="" href="#anchor3">ランプ刺激時のRas,Rap1モデルの応答特性</a></li>
-<li><a data-scroll="" href="#anchor4">Rasモデルのfold-change detection</a></li>
+<h2 id="&#27010;&#35201;">&#27010;&#35201;<a class="anchor-link" href="#&#27010;&#35201;">&#182;</a></h2><ol>
+<li><a data-scroll href="#anchor1">Intoroduction</a></li>
+<li><a data-scroll href="#anchor2">パルス刺激時のRas,Rap1モデルの応答特性</a></li>
+<li><a data-scroll href="#anchor3">ランプ刺激時のRas,Rap1モデルの応答特性</a></li>
+<li><a data-scroll href="#anchor4">Rasモデルのfold-change detection</a></li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -148,6 +150,7 @@
 <li><font color="red"><b>刺激パターンを忠実に再現するためには、「パルス刺激（一過性の変化）」・「ランプ刺激（穏やかな変化）」に分解する必要がある。</b></font></li>
 <li>パルス・ランプ刺激に対する応答は、<b>ネットワークを見ても直感的には良くわからない。</b>→実際にシミュレーションしてみよう！！</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -155,8 +158,8 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<b>今日のテーマ</b>
-<p><b>異なる刺激パターン<font color="red">（今まではステップ刺激。今回はパルス刺激やランプ刺激）</font>に対するRas,Rap1の応答から、Ras,Rap1経路の特性を学ぶ</b></p>
+    <b>今日のテーマ</b>
+    <p><b>異なる刺激パターン<font color="red">（今まではステップ刺激。今回はパルス刺激やランプ刺激）</font>に対するRas,Rap1の応答から、Ras,Rap1経路の特性を学ぶ</b></p>
 </div>
 </div>
 </div>
@@ -164,21 +167,24 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://player.slidesplayer.net/90/14658129/slides/slide_25.jpg" width="50%" /></p>
+<p><img src="https://player.slidesplayer.net/90/14658129/slides/slide_25.jpg" width=50%></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -188,52 +194,55 @@
 <li>パルス刺激幅を変えた時のRas,Rap1の応答のシミュレーション</li>
 <li>パルス刺激幅と最大応答の関係性</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">stimulatHandler</span><span class="p">(</span><span class="n">stimulat</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"step"</span><span class="p">:</span>
-        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"basal"</span><span class="p">]</span> <span class="c1"># 普段の刺激の強さ</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span> <span class="c1"># ステップ刺激を加え始める時間</span>
-        <span class="n">intensity</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"intensity"</span><span class="p">]</span> <span class="c1"># ステップ刺激の強さ</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">intensity</span> <span class="k">if</span> <span class="n">t</span><span class="o">>=</span><span class="n">start</span> <span class="k">else</span> <span class="n">basal</span>
-    <span class="k">elif</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"pulse"</span><span class="p">:</span>
-        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"basal"</span><span class="p">]</span> <span class="c1"># 普段の刺激の強さ</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span> <span class="c1"># パルス刺激を加え始める時間</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"duration"</span><span class="p">]</span> <span class="c1"># パルス刺激を受け取る時間</span>
-        <span class="n">intensity</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"intensity"</span><span class="p">]</span> <span class="c1"># パルス刺激の強さ</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">intensity</span> <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o"><=</span> <span class="n">t</span> <span class="ow">and</span> <span class="n">t</span><span class="o"><=</span><span class="n">duration</span><span class="p">)</span> <span class="k">else</span> <span class="n">basal</span>
-    <span class="k">elif</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"ramp"</span><span class="p">:</span>
-        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"basal"</span><span class="p">]</span> <span class="c1"># 普段の刺激の強さ</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span> <span class="c1"># ランプ刺激を加え始める時間</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"duration"</span><span class="p">]</span> <span class="c1"># ランプ刺激が増す時間</span>
-        <span class="n">intensity</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"intensity"</span><span class="p">]</span> <span class="c1"># ランプ刺激の最大値</span>
+    <span class="k">if</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;step&quot;</span><span class="p">:</span>
+        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;basal&quot;</span><span class="p">]</span> <span class="c1"># 普段の刺激の強さ</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="c1"># ステップ刺激を加え始める時間</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;intensity&quot;</span><span class="p">]</span> <span class="c1"># ステップ刺激の強さ</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span><span class="n">intensity</span> <span class="k">if</span> <span class="n">t</span><span class="o">&gt;=</span><span class="n">start</span> <span class="k">else</span> <span class="n">basal</span>
+    <span class="k">elif</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;pulse&quot;</span><span class="p">:</span>
+        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;basal&quot;</span><span class="p">]</span> <span class="c1"># 普段の刺激の強さ</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="c1"># パルス刺激を加え始める時間</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span> <span class="c1"># パルス刺激を受け取る時間</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;intensity&quot;</span><span class="p">]</span> <span class="c1"># パルス刺激の強さ</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">intensity</span> <span class="k">if</span> <span class="p">(</span><span class="n">start</span> <span class="o">&lt;=</span> <span class="n">t</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;=</span><span class="n">duration</span><span class="p">)</span> <span class="k">else</span> <span class="n">basal</span>
+    <span class="k">elif</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ramp&quot;</span><span class="p">:</span>
+        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;basal&quot;</span><span class="p">]</span> <span class="c1"># 普段の刺激の強さ</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="c1"># ランプ刺激を加え始める時間</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span> <span class="c1"># ランプ刺激が増す時間</span>
+        <span class="n">intensity</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;intensity&quot;</span><span class="p">]</span> <span class="c1"># ランプ刺激の最大値</span>
         <span class="n">velocity</span> <span class="o">=</span> <span class="n">intensity</span><span class="o">/</span><span class="n">duration</span> <span class="c1"># ランプ刺激の速度</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">basal</span> <span class="k">if</span> <span class="n">t</span><span class="o"><</span><span class="n">start</span> <span class="k">else</span> <span class="n">t</span><span class="o">*</span><span class="n">velocity</span> <span class="k">if</span> <span class="n">t</span><span class="o"><=</span><span class="n">duration</span> <span class="k">else</span> <span class="n">intensity</span>
-    <span class="k">elif</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"step_wise"</span><span class="p">:</span>
-        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"basal"</span><span class="p">]</span> <span class="c1"># 最初の刺激の強さs</span>
-        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"start"</span><span class="p">]</span> <span class="c1"># ステップ刺激を加え始める時間</span>
-        <span class="n">duration</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"duration"</span><span class="p">]</span> <span class="c1"># ステップ刺激が大きくなる間隔</span>
-        <span class="n">fold_change</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">"fold change"</span><span class="p">]</span> <span class="c1"># 刺激の増幅量(×fold change)</span>
-        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">fold_change</span> <span class="o">**</span> <span class="p">((</span><span class="n">t</span><span class="o">//</span><span class="n">duration</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>  <span class="o">*</span> <span class="n">basal</span> <span class="k">if</span> <span class="n">start</span><span class="o"><=</span><span class="n">t</span> <span class="k">else</span> <span class="n">basal</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">basal</span> <span class="k">if</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">start</span> <span class="k">else</span> <span class="n">t</span><span class="o">*</span><span class="n">velocity</span> <span class="k">if</span> <span class="n">t</span><span class="o">&lt;=</span><span class="n">duration</span> <span class="k">else</span> <span class="n">intensity</span>
+    <span class="k">elif</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;step_wise&quot;</span><span class="p">:</span>
+        <span class="n">basal</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;basal&quot;</span><span class="p">]</span> <span class="c1"># 最初の刺激の強さs</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;start&quot;</span><span class="p">]</span> <span class="c1"># ステップ刺激を加え始める時間</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;duration&quot;</span><span class="p">]</span> <span class="c1"># ステップ刺激が大きくなる間隔</span>
+        <span class="n">fold_change</span> <span class="o">=</span> <span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;fold change&quot;</span><span class="p">]</span> <span class="c1"># 刺激の増幅量(×fold change)</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">fold_change</span> <span class="o">**</span> <span class="p">((</span><span class="n">t</span><span class="o">//</span><span class="n">duration</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">)</span>  <span class="o">*</span> <span class="n">basal</span> <span class="k">if</span> <span class="n">start</span><span class="o">&lt;=</span><span class="n">t</span> <span class="k">else</span> <span class="n">basal</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">"Error!! The stimulat name '</span><span class="si">{}</span><span class="s2">' was not recognized!!"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stimulat</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]))</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error!! The stimulat name &#39;</span><span class="si">{}</span><span class="s2">&#39; was not recognized!!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]))</span>
     <span class="k">return</span> <span class="n">func</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rasの応答シミュレーション関数</span>
 <span class="k">def</span> <span class="nf">plot_Ras</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">stimulat</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
              <span class="n">k1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">,</span> <span class="n">k4</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span> <span class="n">k5</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">k6</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
@@ -255,21 +264,23 @@
         <span class="n">S</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="c1"># 刺激は制御を受けている。</span>
         
         <span class="n">Rasa_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rasa</span> <span class="c1"># Rasaの刺激を記録。</span>
-        <span class="k">if</span> <span class="n">t</span><span class="o">>=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">maxval</span><span class="o"><</span><span class="n">Rasa</span><span class="p">:</span> <span class="n">maxval</span><span class="o">=</span><span class="n">Rasa</span> <span class="c1"># Rasaの最大値を記録。(t>=0のみ)</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">maxval</span><span class="o">&lt;</span><span class="n">Rasa</span><span class="p">:</span> <span class="n">maxval</span><span class="o">=</span><span class="n">Rasa</span> <span class="c1"># Rasaの最大値を記録。(t&gt;=0のみ)</span>
         
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rasa_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">stimulat</span><span class="p">[</span><span class="s2">"label"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rasa_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">return_max</span><span class="p">:</span> <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">maxval</span>
     <span class="k">return</span> <span class="n">ax</span>    
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rap1の応答シミュレーション関数</span>
 <span class="k">def</span> <span class="nf">plot_Rap1</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">stimulat</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> 
               <span class="n">k1</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k2</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">k3</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">k4</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
@@ -292,96 +303,111 @@
         <span class="n">S</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="c1"># 刺激は制御を受けている。</span>
         
         <span class="n">Rap1a_vals</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rap1a</span> <span class="c1"># Rap1aの刺激を記録。</span>
-        <span class="k">if</span> <span class="n">t</span><span class="o">>=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">maxval</span><span class="o"><</span><span class="n">Rap1a</span><span class="p">:</span> <span class="n">maxval</span><span class="o">=</span><span class="n">Rap1a</span> <span class="c1"># Rap1aの最大値を記録。(t>=0のみ)</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">&gt;=</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">maxval</span><span class="o">&lt;</span><span class="n">Rap1a</span><span class="p">:</span> <span class="n">maxval</span><span class="o">=</span><span class="n">Rap1a</span> <span class="c1"># Rap1aの最大値を記録。(t&gt;=0のみ)</span>
         
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rap1a_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">stimulat</span><span class="p">[</span><span class="s2">"label"</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rap1a_vals</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">stimulat</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">return_max</span><span class="p">:</span> <span class="k">return</span> <span class="n">ax</span><span class="p">,</span> <span class="n">maxval</span>
     <span class="k">return</span> <span class="n">ax</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題1.1：パルス刺激に対するRas,Rap1の応答シミュレーション">課題1.1：パルス刺激に対するRas,Rap1の応答シミュレーション<a class="anchor-link" href="#課題1.1：パルス刺激に対するRas,Rap1の応答シミュレーション">¶</a></h3>
+<h3 id="&#35506;&#38988;1.1&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;Ras,Rap1&#12398;&#24540;&#31572;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#35506;&#38988;1.1&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;Ras,Rap1&#12398;&#24540;&#31572;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#35506;&#38988;1.1&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;Ras,Rap1&#12398;&#24540;&#31572;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pulse_kadai1_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">step_kadai1_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">Ras_yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
 
 <span class="c1"># Ras model</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response ×$10^{-3}$"</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response ×$10^{-3}$&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Ras_yticks</span><span class="p">])</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">Ras_yticks</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="c1"># Rap1 model</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">pulse_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">pulse_kadai1_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAEDCAYAAAD+ySj5AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -749,102 +775,118 @@ MVvKkk4LkUpzDBh9MS909w5gl5ktA7Awv5idExGRbhSzJXWUXEtFcfdDwAYzawH+4yLe4gvA3Wb2
 OrAFuK2Y/RMRkTzFbEkjleITERERESkSHbkWERERESkSJdciIiIiIkWi5FpEREREpEiUXIuIiIiI
 FImSaxERERGRIlFyLSIiIiJSJEquRURERESKRMm1iIiIiEiR/D+0aXbVSZ6dfgAAAABJRU5ErkJg
 gg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>
-<li>Ras: 応答の最大値は変わらない。</li>
-<li>Rap1: 応答の最大値が減少。</li>
+  <li>Ras: 応答の最大値は変わらない。</li>
+  <li>Rap1: 応答の最大値が減少。</li>
 </b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題1.2：パルス刺激幅を変えた時のRas,Rap1の応答のシミュレーション">課題1.2：パルス刺激幅を変えた時のRas,Rap1の応答のシミュレーション<a class="anchor-link" href="#課題1.2：パルス刺激幅を変えた時のRas,Rap1の応答のシミュレーション">¶</a></h3>
+<h3 id="&#35506;&#38988;1.2&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#24133;&#12434;&#22793;&#12360;&#12383;&#26178;&#12398;Ras,Rap1&#12398;&#24540;&#31572;&#12398;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#35506;&#38988;1.2&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#24133;&#12434;&#22793;&#12360;&#12383;&#26178;&#12398;Ras,Rap1&#12398;&#24540;&#31572;&#12398;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#35506;&#38988;1.2&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#24133;&#12434;&#22793;&#12360;&#12383;&#26178;&#12398;Ras,Rap1&#12398;&#24540;&#31572;&#12398;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pulse_kadai1_2_10sec</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"pulse 10sec"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;pulse 10sec&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">pulse_kadai1_2_60sec</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"pulse 60sec"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;pulse 60sec&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 <span class="n">step_kadai1_2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">Ras_yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">20</span><span class="p">]</span>
 
 <span class="c1"># Ras model</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai1_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse_kadai1_2_10sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse_kadai1_2_60sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"green"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response ×$10^{-3}$"</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai1_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse_kadai1_2_10sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse_kadai1_2_60sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response ×$10^{-3}$&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Ras_yticks</span><span class="p">])</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">Ras_yticks</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="c1"># Rap1 model</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai1_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">pulse_kadai1_2_10sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">pulse_kadai1_2_60sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"green"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai1_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">pulse_kadai1_2_10sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">pulse_kadai1_2_60sec</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtcAAAEDCAYAAAD+ySj5AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1312,63 +1354,72 @@ my18jly5FqLYEq31MeCYUuoo8IVz+29Ac6VUReByYJZSquh3Qj0fphBCCKTNFl5Kkmship0sse4o
 oGitDwPLlFLrgXGX8Ba3AUOUUmuBDUBvV8YnhBCimLTZwhdJKT4hhBBCCCFcRK5cCyGEEEII4SKS
 XAshhBBCCOEiklwLIYQQQgjhIpJcCyGEEEII4SKSXAshhBBCCOEiklwLIYQQQgjhIpJcCyGEEEII
 4SKSXAshhBBCCOEi/w+/bh8plZJmbgAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>
-<li>Ras: $10,60$ の両方の刺激に応答できる。</li>
-<li>Rap1: $60$ の刺激にのみ応答できる。</li>
+  <li>Ras: $10,60$ の両方の刺激に応答できる。</li>
+  <li>Rap1: $60$ の刺激にのみ応答できる。</li>
 </b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題1.3：パルス刺激幅と最大応答の関係性">課題1.3：パルス刺激幅と最大応答の関係性<a class="anchor-link" href="#課題1.3：パルス刺激幅と最大応答の関係性">¶</a></h3>
+<h3 id="&#35506;&#38988;1.3&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#24133;&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;">&#35506;&#38988;1.3&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#24133;&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;<a class="anchor-link" href="#&#35506;&#38988;1.3&#65306;&#12497;&#12523;&#12473;&#21050;&#28608;&#24133;&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">duration_times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">pulses_kadai1_3</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="n">t</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="n">t</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">duration_times</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="c1"># Ras model</span>
@@ -1377,15 +1428,15 @@ XAshhBBCCOEiklwLIYQQQgjhIpJcCyGEEEII4SKSXAshhBBCCOEiklwLIYQQQgjhIpJcCyGEEEII
 <span class="k">for</span> <span class="n">pulse</span> <span class="ow">in</span> <span class="n">pulses_kadai1_3</span><span class="p">:</span>
     <span class="n">ax1</span><span class="p">,</span><span class="n">max_res</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">pulse</span><span class="p">,</span> <span class="n">return_max</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">Ras_maxres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_res</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration_times</span><span class="p">,</span> <span class="n">Ras_maxres</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"duration time of pulse stimulat"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"max response"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;duration time of pulse stimulat&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;max response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
 
@@ -1395,28 +1446,37 @@ XAshhBBCCOEiklwLIYQQQgjhIpJcCyGEEEII4SKSXAshhBBCCOEiklwLIYQQQgjhIpJcCyGEEEII
 <span class="k">for</span> <span class="n">pulse</span> <span class="ow">in</span> <span class="n">pulses_kadai1_3</span><span class="p">:</span>
     <span class="n">ax3</span><span class="p">,</span><span class="n">max_res</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">pulse</span><span class="p">,</span> <span class="n">return_max</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">Rap1_maxres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_res</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration_times</span><span class="p">,</span> <span class="n">Rap1_maxres</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"duration time of pulse stimulat"</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"max response"</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;duration time of pulse stimulat&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;max response&quot;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -2419,19 +2479,24 @@ wbGPAruA/cBf2aMntgH/BdTZr4cvsd8CYLeIvAl8D/iivX4mbeDn7Ho+CkSwfpZHgZiIHJkaMONt
 +AvgayJyEOtq4qU8htWF8RCQeE/cfwMf0EEubiwyfaVTKaWUUkqp1BKRx9CBHdQNTK9gKaWUUkop
 pVSS6BUspZRSSimllEoSvYKllFJKKaWUUkmiAUsppZRSSimlkkQDllJKKaWUUkoliQYspZRSSiml
 lEoSDVhKKaWUUkoplST/H378kkxH1yODAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>
-<li>Ras: $10$ 以上のパルス幅がないと十分応答できない。</li>
-<li>Rap1: $40$ 以上のパルス幅がないと十分応答できない。</li>
+  <li>Ras: $10$ 以上のパルス幅がないと十分応答できない。</li>
+  <li>Rap1: $40$ 以上のパルス幅がないと十分応答できない。</li>
 </b></p>
+
 </div>
 </div>
 </div>
@@ -2439,8 +2504,8 @@ lEoSDVhKKaWUUkoplST/H378kkxH1yODAAAAAElFTkSuQmCC
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<b>ここまでのまとめ</b>
-<p><b>Rap1は短いパルスに応答しない→<font color="red">ノイズをキャンセルし、長期的な入力のみを認識できる。</font></b></p>
+    <b>ここまでのまとめ</b>
+    <p><b>Rap1は短いパルスに応答しない→<font color="red">ノイズをキャンセルし、長期的な入力のみを認識できる。</font></b></p>
 </div>
 </div>
 </div>
@@ -2452,75 +2517,87 @@ lEoSDVhKKaWUUkoplST/H378kkxH1yODAAAAAElFTkSuQmCC
 <li>ランプ刺激に対するRas,Rap1の応答シミュレーション</li>
 <li>ランプ刺激の刺激速度と最大応答の関係性</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2.1：ランプ刺激に対するRas,Rap1の応答シミュレーション">課題2.1：ランプ刺激に対するRas,Rap1の応答シミュレーション<a class="anchor-link" href="#課題2.1：ランプ刺激に対するRas,Rap1の応答シミュレーション">¶</a></h3>
+<h3 id="&#35506;&#38988;2.1&#65306;&#12521;&#12531;&#12503;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;Ras,Rap1&#12398;&#24540;&#31572;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#35506;&#38988;2.1&#65306;&#12521;&#12531;&#12503;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;Ras,Rap1&#12398;&#24540;&#31572;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#35506;&#38988;2.1&#65306;&#12521;&#12531;&#12503;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;Ras,Rap1&#12398;&#24540;&#31572;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ramp_kadai2_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"ramp"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"ramp"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;ramp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;ramp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">step_kadai2_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="c1"># Ras model</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ramp_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ramp_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="c1"># Rap1 model</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">ramp_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">ramp_kadai2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAuAAAAEDCAYAAAB05rG4AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -2970,53 +3047,61 @@ VwIDzKwt8FVgjplF35Ob+mKKiAiqs6URUgAucuT2xTyviFmvwL9TzYAdkZYYERFJL9XZ0uioC4pI
 zXYD+Q15YwhhF7DezC4BMHdyIgsnIiJVqM6WjKIAXKQGIYStwOtm9i7whwYc4nJggpm9DawCRiey
 fCIiUkl1tmQapSEUEREREUkhtYCLiIiIiKSQAnARERERkRRSAC4iIiIikkIKwEVEREREUkgBuIiI
 iIhICikAFxERERFJIQXgIiIiIiIppABcRERERCSF/j8FRHvLYsTtoAAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2.2：ランプ刺激の刺激速度と最大応答の関係性">課題2.2：ランプ刺激の刺激速度と最大応答の関係性<a class="anchor-link" href="#課題2.2：ランプ刺激の刺激速度と最大応答の関係性">¶</a></h3>
+<h3 id="&#35506;&#38988;2.2&#65306;&#12521;&#12531;&#12503;&#21050;&#28608;&#12398;&#21050;&#28608;&#36895;&#24230;&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;">&#35506;&#38988;2.2&#65306;&#12521;&#12531;&#12503;&#21050;&#28608;&#12398;&#21050;&#28608;&#36895;&#24230;&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;<a class="anchor-link" href="#&#35506;&#38988;2.2&#65306;&#12521;&#12531;&#12503;&#21050;&#28608;&#12398;&#21050;&#28608;&#36895;&#24230;&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">duration_times</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ramps_kadai2_2</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"ramp"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="n">t</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;ramp&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="n">t</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">}</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">duration_times</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 
 <span class="c1"># Ras model</span>
@@ -3025,15 +3110,15 @@ iIhICikAFxERERFJIQXgIiIiIiIppABcRERERCSF/j8FRHvLYsTtoAAAAABJRU5ErkJggg==
 <span class="k">for</span> <span class="n">ramp</span> <span class="ow">in</span> <span class="n">ramps_kadai2_2</span><span class="p">:</span>
     <span class="n">ax1</span><span class="p">,</span><span class="n">max_res</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ramp</span><span class="p">,</span> <span class="n">return_max</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">Ras_maxres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_res</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration_times</span><span class="p">,</span> <span class="n">Ras_maxres</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"duration time of pulse stimulat"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"max response"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;duration time of pulse stimulat&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;max response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.01</span><span class="p">,</span><span class="mf">0.015</span><span class="p">,</span><span class="mf">0.02</span><span class="p">])</span>
 
@@ -3043,28 +3128,37 @@ iIhICikAFxERERFJIQXgIiIiIiIppABcRERERCSF/j8FRHvLYsTtoAAAAABJRU5ErkJggg==
 <span class="k">for</span> <span class="n">ramp</span> <span class="ow">in</span> <span class="n">ramps_kadai2_2</span><span class="p">:</span>
     <span class="n">ax3</span><span class="p">,</span><span class="n">max_res</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">ramp</span><span class="p">,</span> <span class="n">return_max</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">Rap1_maxres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_res</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">duration_times</span><span class="p">,</span> <span class="n">Rap1_maxres</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"duration time of pulse stimulat"</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"max response"</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;duration time of pulse stimulat&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;max response&quot;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -4449,19 +4543,23 @@ k9MUvI1xNbAFMDdNI7y6mXUeBuaS1c1UsnuL3qlg33OBacAM4Or09MRlwAPA/PSzoZntegDPSHoZ
 +CNweSqvJAeOTPU8F1hLdi7nAl9IeqX0wIyNcBVwi6SXyEYTmzOGbArjbCB/T9xjwHF+yEXHovUj
 nWZmZmZmXy5JY/CDHawD8wiWmZmZmZlZlXgEy8zMzMzMrEo8gmVmZmZmZlYl7mCZmZmZmZlViTtY
 ZmZmZmZmVeIOlpmZmZmZWZW4g2VmZmZmZlYl/wWD3rKoIa5abAAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<b>ここまでのまとめ</b>
-<li><b>Rap1は短いパルスに応答しない→ノイズをキャンセルし、長期的な入力のみを認識できる。</b></li>
-<li><b><font color="red">Rasはランプ刺激の刺激強度の変化が遅いと活性が減少←new</font></b></li>
+    <b>ここまでのまとめ</b>
+    <li><b>Rap1は短いパルスに応答しない→ノイズをキャンセルし、長期的な入力のみを認識できる。</b></li>
+    <li><b><font color="red">Rasはランプ刺激の刺激強度の変化が遅いと活性が減少←new</font></b></li>
 </div>
 </div>
 </div>
@@ -4478,13 +4576,14 @@ ZmZmZmZmVeIOlpmZmZmZWZW4g2VmZmZmZlYl/wWD3rKoIa5abAAAAABJRU5ErkJggg==
 </ol>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Fold-change-dbetection">Fold-change dbetection<a class="anchor-link" href="#Fold-change-dbetection">¶</a></h3><ul>
+<h3 id="Fold-change-dbetection">Fold-change dbetection<a class="anchor-link" href="#Fold-change-dbetection">&#182;</a></h3><ul>
 <li>論文：<a href="https://www.sciencedirect.com/science/article/pii/S2452310017301889">Fold-change detection in biological systems</a></li>
 <li>色々な生物種・機能に見られる<ul>
 <li>走化性</li>
@@ -4499,7 +4598,8 @@ ZmZmZmZmVeIOlpmZmZmZWZW4g2VmZmZmZlYl/wWD3rKoIa5abAAAAABJRU5ErkJggg==
 </ul>
 </li>
 </ul>
-<p><img src="https://ars.els-cdn.com/content/image/1-s2.0-S2452310017301889-gr2.jpg" /></p>
+<p><img src="https://ars.els-cdn.com/content/image/1-s2.0-S2452310017301889-gr2.jpg"></p>
+
 </div>
 </div>
 </div>
@@ -4508,57 +4608,60 @@ ZmZmZmZmVeIOlpmZmZmZWZW4g2VmZmZmZlYl/wWD3rKoIa5abAAAAABJRU5ErkJggg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>Rasモデルは、フィードフォワード型FCD回路に似ている</b></p>
 <p><b>→Rasモデルがfold-change detectionを示すか調べる！！</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題3.1：Ras,-Rap1モデルのステップワイズ刺激に対する応答">課題3.1：Ras, Rap1モデルのステップワイズ刺激に対する応答<a class="anchor-link" href="#課題3.1：Ras,-Rap1モデルのステップワイズ刺激に対する応答">¶</a></h3>
+<h3 id="&#35506;&#38988;3.1&#65306;Ras,-Rap1&#12514;&#12487;&#12523;&#12398;&#12473;&#12486;&#12483;&#12503;&#12527;&#12452;&#12474;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;&#24540;&#31572;">&#35506;&#38988;3.1&#65306;Ras, Rap1&#12514;&#12487;&#12523;&#12398;&#12473;&#12486;&#12483;&#12503;&#12527;&#12452;&#12474;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;&#24540;&#31572;<a class="anchor-link" href="#&#35506;&#38988;3.1&#65306;Ras,-Rap1&#12514;&#12487;&#12523;&#12398;&#12473;&#12486;&#12483;&#12503;&#12527;&#12452;&#12474;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;&#24540;&#31572;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">step_kadai3_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"step"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;step&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">step_wise_kadai3_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"step_wise"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"step_wise"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
-    <span class="s2">"fold change"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;step_wise&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;step_wise&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+    <span class="s2">&quot;fold change&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">Ras_yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 
 <span class="c1"># Ras model</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_wise_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response ×$10^{-3}$"</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_wise_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response ×$10^{-3}$&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Ras_yticks</span><span class="p">])</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">Ras_yticks</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
@@ -4567,24 +4670,33 @@ ZmZmZmZmVeIOlpmZmZmZWZW4g2VmZmZmZlYl/wWD3rKoIa5abAAAAABJRU5ErkJggg==
 
 <span class="c1"># Rap1 model</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_wise_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_wise_kadai3_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1000</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtkAAAEDCAYAAADgABhKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -4886,61 +4998,67 @@ SpKwZmtK2WRriDZGnt8ZeX2H7jvxEHCznFGRJPXLmq2p5HQRtWodeGKcN2bm38BvEfE6QHReqDk4
 SdL/WLPVHJtsNSkz/wSuRcQycHaMj5gHFiPie+BH4HjN8UmS/mPNVou8hZ8kSZJUmWeyJUmSpMps
 siVJkqTKbLIlSZKkymyyJUmSpMpssiVJkqTKbLIlSZKkymyyJUmSpMpssiVJkqTK/gFdqyPtv2sg
 1gAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題3.2：Ras,-Rap1モデルの同じfold-changeで異なるbasalのパルス刺激に対する応答">課題3.2：Ras, Rap1モデルの同じfold-changeで異なるbasalのパルス刺激に対する応答<a class="anchor-link" href="#課題3.2：Ras,-Rap1モデルの同じfold-changeで異なるbasalのパルス刺激に対する応答">¶</a></h3>
+<h3 id="&#35506;&#38988;3.2&#65306;Ras,-Rap1&#12514;&#12487;&#12523;&#12398;&#21516;&#12376;fold-change&#12391;&#30064;&#12394;&#12427;basal&#12398;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;&#24540;&#31572;">&#35506;&#38988;3.2&#65306;Ras, Rap1&#12514;&#12487;&#12523;&#12398;&#21516;&#12376;fold-change&#12391;&#30064;&#12394;&#12427;basal&#12398;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;&#24540;&#31572;<a class="anchor-link" href="#&#35506;&#38988;3.2&#65306;Ras,-Rap1&#12514;&#12487;&#12523;&#12398;&#21516;&#12376;fold-change&#12391;&#30064;&#12394;&#12427;basal&#12398;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#23550;&#12377;&#12427;&#24540;&#31572;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">step_kadai3_2_1</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"pulse basal=0.1"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;pulse basal=0.1&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
 <span class="p">}</span>
 
 <span class="n">step_kadai3_2_2</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="s2">"pulse basal=0.2"</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="mf">0.2</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;pulse basal=0.2&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">Ras_yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 
 <span class="c1"># Ras model</span>
 <span class="n">ax1</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai3_2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai3_2_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response ×$10^{-3}$"</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai3_2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax1</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">step_kadai3_2_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response ×$10^{-3}$&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Ras_yticks</span><span class="p">])</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">Ras_yticks</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
@@ -4949,24 +5067,33 @@ siVJkqTKbLIlSZKkymyyJUmSpMpssiVJkqTKbLIlSZKkymyyJUmSpMpssiVJkqTK/gFdqyPtv2sg
 
 <span class="c1"># Rap1 model</span>
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai3_2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai3_2_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai3_2_1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">step_kadai3_2_2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtYAAAEDCAYAAAARC0PHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -5348,64 +5475,74 @@ HREx+Z6x3ocpScKcrQFiYa1hdKCj3e543qb4TjSAF8uZE0lStczZGhheCqK62gPMP5k3ZuZLwI8j
 4hqAKJzfzeAkSUcxZ6sWLKxVS5n5AvBfEbEZ+PRJfMQ64IaI+D/gYWBtN+OTJB1hzlZdeLs9SZIk
 qQucsZYkSZK6wMJakiRJ6gILa0mSJKkLLKwlSZKkLrCwliRJkrrAwlqSJEnqAgtrSZIkqQssrCVJ
 kqQu+H+8lxOLyjwYbAAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題3.3：同じfold-change-で異なるbasalのパルス刺激におけるbasalと最大応答の関係性">課題3.3：同じfold-change で異なるbasalのパルス刺激におけるbasalと最大応答の関係性<a class="anchor-link" href="#課題3.3：同じfold-change-で異なるbasalのパルス刺激におけるbasalと最大応答の関係性">¶</a></h3>
+<h3 id="&#35506;&#38988;3.3&#65306;&#21516;&#12376;fold-change-&#12391;&#30064;&#12394;&#12427;basal&#12398;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#12362;&#12369;&#12427;basal&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;">&#35506;&#38988;3.3&#65306;&#21516;&#12376;fold-change &#12391;&#30064;&#12394;&#12427;basal&#12398;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#12362;&#12369;&#12427;basal&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;<a class="anchor-link" href="#&#35506;&#38988;3.3&#65306;&#21516;&#12376;fold-change-&#12391;&#30064;&#12394;&#12427;basal&#12398;&#12497;&#12523;&#12473;&#21050;&#28608;&#12395;&#12362;&#12369;&#12427;basal&#12392;&#26368;&#22823;&#24540;&#31572;&#12398;&#38306;&#20418;&#24615;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">basals</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.02</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.02</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fold_change</span> <span class="o">=</span> <span class="mi">5</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">step_kadai3_3</span> <span class="o">=</span> <span class="p">[{</span>
-    <span class="s2">"name"</span><span class="p">:</span><span class="s2">"pulse"</span><span class="p">,</span>
-    <span class="s2">"label"</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
-    <span class="s2">"basal"</span><span class="p">:</span><span class="n">basal</span><span class="p">,</span>
-    <span class="s2">"start"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
-    <span class="s2">"intensity"</span><span class="p">:</span><span class="n">basal</span><span class="o">*</span><span class="n">fold_change</span><span class="p">,</span>
-    <span class="s2">"duration"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="s2">&quot;pulse&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="kc">None</span><span class="p">,</span>
+    <span class="s2">&quot;basal&quot;</span><span class="p">:</span><span class="n">basal</span><span class="p">,</span>
+    <span class="s2">&quot;start&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;intensity&quot;</span><span class="p">:</span><span class="n">basal</span><span class="o">*</span><span class="n">fold_change</span><span class="p">,</span>
+    <span class="s2">&quot;duration&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
 <span class="p">}</span> <span class="k">for</span> <span class="n">basal</span> <span class="ow">in</span> <span class="n">basals</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
 <span class="n">Ras_yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
 
@@ -5415,9 +5552,9 @@ kqQu+H+8lxOLyjwYbAAAAABJRU5ErkJggg==
 <span class="k">for</span> <span class="n">stimulat</span> <span class="ow">in</span> <span class="n">step_kadai3_3</span><span class="p">:</span>
     <span class="n">ax1</span><span class="p">,</span><span class="n">max_res</span> <span class="o">=</span> <span class="n">plot_Ras</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">stimulat</span><span class="p">,</span> <span class="n">return_max</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
     <span class="n">Ras_maxres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_res</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Ras model simulation."</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response ×$10^{-3}$"</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Ras model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response ×$10^{-3}$&quot;</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Ras_yticks</span><span class="p">])</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">Ras_yticks</span><span class="p">)</span>
 <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
@@ -5425,8 +5562,8 @@ kqQu+H+8lxOLyjwYbAAAAABJRU5ErkJggg==
 
 <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">basals</span><span class="p">,</span> <span class="n">Ras_maxres</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"basal"</span><span class="p">)</span>
-<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"max response ×$10^{-3}$"</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;basal&quot;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;max response ×$10^{-3}$&quot;</span><span class="p">)</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-3</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Ras_yticks</span><span class="p">])</span>
 <span class="n">ax2</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">Ras_yticks</span><span class="p">)</span>
 
@@ -5436,29 +5573,38 @@ kqQu+H+8lxOLyjwYbAAAAABJRU5ErkJggg==
 <span class="k">for</span> <span class="n">stimulat</span> <span class="ow">in</span> <span class="n">step_kadai3_3</span><span class="p">:</span>
     <span class="n">ax3</span><span class="p">,</span><span class="n">max_res</span> <span class="o">=</span> <span class="n">plot_Rap1</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span> <span class="n">stimulat</span><span class="p">,</span> <span class="n">return_max</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=-</span><span class="mi">1000</span><span class="p">)</span>
     <span class="n">Rap1_maxres</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">max_res</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1 model simulation."</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"response"</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1 model simulation.&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;response&quot;</span><span class="p">)</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
 
 <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">basals</span><span class="p">,</span> <span class="n">Rap1_maxres</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"basal"</span><span class="p">)</span>
-<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"max response"</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;basal&quot;</span><span class="p">)</span>
+<span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;max response&quot;</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ax4</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -6689,18 +6835,22 @@ PIDXcpXuPzb459wfrqBFooESLJEwcc61AW/4g1t88694ibuBD5vZerxuGQuDGZ+IiEiAbcDfm9kW
 YCzwI+C/gE3AEuAv/nHxwBNmthFYC/yHc64T+AbwNTNbi3pMyShjzp3cAiwiIiIiIiJ/DbVgiYiI
 iIiIBIkSLBERERERkSBRgiUiIiIiIhIkSrBERERERESCRAmWiIiIiIhIkCjBEhERERERCRIlWCIi
 IiIiIkHyP+Pahx6Wzly+AAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<b>結論</b><br />
-<b>Rasモデルはfold-change detectionを示す！</b>
+    <b>結論</b><br>
+    <b>Rasモデルはfold-change detectionを示す！</b>
 </div>
 </div>
 </div>
@@ -6709,29 +6859,34 @@ IiIiIkHyP+Pahx6Wzly+AAAAAElFTkSuQmCC
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>
-fold-change detectionを示す意義・利点とは？</b></p>
+fold-change detectionを示す意義・利点とは？</p>
 <p>→環境の変化を「相対値」で見ることができる点。外部シグナルは大抵ノイズが相対値でのっているので、その値を捉えることができること…？
-</b></p>
+&lt;/b&gt;</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -6748,6 +6903,7 @@ fold-change detectionを示す意義・利点とは？</b></p>
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -6781,10 +6937,10 @@ fold-change detectionを示す意義・利点とは？</b></p>
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-07-12T00:00:00+09:00"> 7 12, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-07-12T00:00:00+09:00">Jul 12, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-07-12T00:00:00+09:00"> 7 12, 2019</time>
+<time datetime="2019-07-12T00:00:00+09:00">Jul 12, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -6802,8 +6958,6 @@ fold-change detectionを示す意義・利点とは？</b></p>
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

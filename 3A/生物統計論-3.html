@@ -118,20 +118,22 @@
   
   <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Section3.1-Multiple-Test-Correction">Section3.1 Multiple Test Correction<a class="anchor-link" href="#Section3.1-Multiple-Test-Correction">¶</a></h2>
+<h2 id="Section3.1-Multiple-Test-Correction">Section3.1 Multiple Test Correction<a class="anchor-link" href="#Section3.1-Multiple-Test-Correction">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -139,70 +141,75 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>"The more inferences are made, the more likely erroneous inferences are to occur."</strong>(ex. Even if the type1 error rate is 1% for each data, 10 out of 1000 sample will be rejected on average.)</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Terminology">Terminology<a class="anchor-link" href="#Terminology">¶</a></h3><ul>
+<h3 id="Terminology">Terminology<a class="anchor-link" href="#Terminology">&#182;</a></h3><ul>
 <li><span class="marker-pink">FWER(Family-wise error rate)</span>:
 the probability of making <strong>at least</strong> one type I error (FP) in the family.</li>
 <li><span class="marker-pink">FDR(False discovery rate)</span>:
 the expected type I error (FP) rate in rejected data.</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="FDR(False-discovery-rate)">FDR(False discovery rate)<a class="anchor-link" href="#FDR(False-discovery-rate)">¶</a></h4><ul>
+<h4 id="FDR(False-discovery-rate)">FDR(False discovery rate)<a class="anchor-link" href="#FDR(False-discovery-rate)">&#182;</a></h4><ul>
 <li>Null hypotheses: $H_1,\ldots,H_{g_j}$</li>
 <li>Alternative hypotheses: $H_{g_j+1},\ldots,H_g$</li>
-<li><span aria-label="The rule of which hypothesis set {H_i} is rejected by the p-value." class="marker-info">Procedure to reject hypotheses</span>: $d_{\alpha}: \left(P_1,P_2,\ldots,P_g\right)\rightarrow\left\{H_{i_1},\ldots,H_{i_K}\right\}$</li>
+<li><span class="marker-info" aria-label="The rule of which hypothesis set {H_i} is rejected by the p-value.">Procedure to reject hypotheses</span>: $d_{\alpha}: \left(P_1,P_2,\ldots,P_g\right)\rightarrow\left\{H_{i_1},\ldots,H_{i_K}\right\}$</li>
 <li>Expected ratio of FP in rejected hypotheses: $\mathrm{FP}=\sum_{k=1}^K\mathbb{I}(1\leq i_k\leq g_j),\quad \mathrm{TP}=K-\mathrm{FP}$</li>
-<li>$\mathcal{Q} = \begin{cases}0 & \text{if }K=(\mathrm{FP+TP})=0\\\frac{\mathrm{FP}}{\mathrm{FP}+\mathrm{TP}} & \text{if }K>0\end{cases}$
+<li>$\mathcal{Q} = \begin{cases}0 &amp; \text{if }K=(\mathrm{FP+TP})=0\\\frac{\mathrm{FP}}{\mathrm{FP}+\mathrm{TP}} &amp; \text{if }K&gt;0\end{cases}$
 $$\mathrm{FDR}(d_{\alpha})=\mathbb{E}\left(\mathcal{Q}|H_1,\ldots,H_g\right)$$</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Methods-to-counteract-this-problem">Methods to counteract this problem<a class="anchor-link" href="#Methods-to-counteract-this-problem">¶</a></h3>
+<h3 id="Methods-to-counteract-this-problem">Methods to counteract this problem<a class="anchor-link" href="#Methods-to-counteract-this-problem">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Bonferroni-Correction">Bonferroni Correction<a class="anchor-link" href="#Bonferroni-Correction">¶</a></h4><p><strong>Set $\alpha\left(=s_{\alpha}\leq S_h|H_0\right)\leftarrow 1/g\cdot\alpha_{\mathrm{FWER}}$</strong> ($g$: sample size)</p>
+<h4 id="Bonferroni-Correction">Bonferroni Correction<a class="anchor-link" href="#Bonferroni-Correction">&#182;</a></h4><p><strong>Set $\alpha\left(=s_{\alpha}\leq S_h|H_0\right)\leftarrow 1/g\cdot\alpha_{\mathrm{FWER}}$</strong> ($g$: sample size)</p>
 <p>Therefore, we have:
 $$\mathbb{P}\left(\{s_{\alpha}\leq S_1\}\cup\cdots\cup\{s_{\alpha}\leq S_g\}|H_0\right)\leq\sum_{h=1}^g\mathbb{P}\left(s_{\alpha}\leq S_h|H_0\right) = g\cdot\left(\frac{1}{g}\alpha_{\mathrm{FWER}}\right) = \alpha_{\mathrm{FWER}}$$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Benjamini-Hochberg-Procedure-(B-H-Procedure)">Benjamini-Hochberg Procedure (B-H Procedure)<a class="anchor-link" href="#Benjamini-Hochberg-Procedure-(B-H-Procedure)">¶</a></h4><p>If we assume data are distributed independently, we have:
+<h4 id="Benjamini-Hochberg-Procedure-(B-H-Procedure)">Benjamini-Hochberg Procedure (B-H Procedure)<a class="anchor-link" href="#Benjamini-Hochberg-Procedure-(B-H-Procedure)">&#182;</a></h4><p>If we assume data are distributed independently, we have:
 $$\left(P_1,\ldots,P_g\right)\sim\mathrm{Unif}\left(0,1\right)^{\times g_j}\times\mathbb{P}\left(P|H_{\text{alternative}}\right)^{\times\left(g-g_j\right)}$$
 We sort the p-value as $p_1\leq\cdots\leq p_g$ Then,
 $$
 \begin{aligned}
-d_{\alpha_{\mathrm{FDR}}}^{\mathrm{B-H}}(p_1,\cdots,p_g) &:=\mathrm{Reject}\left\{H_i|1\leq i\max\left\{n|p_n\leq\left(\frac{n}{g}\alpha_{\mathrm{FDR}}\right)\right\}\right\}\\
-&\Rightarrow \mathrm{FDR}\left(d_{\alpha_{\mathrm{FDR}}^{\mathrm{B-H}}}\right)\leq\alpha_{\mathrm{FDR}}
+d_{\alpha_{\mathrm{FDR}}}^{\mathrm{B-H}}(p_1,\cdots,p_g) &amp;:=\mathrm{Reject}\left\{H_i|1\leq i\max\left\{n|p_n\leq\left(\frac{n}{g}\alpha_{\mathrm{FDR}}\right)\right\}\right\}\\
+&amp;\Rightarrow \mathrm{FDR}\left(d_{\alpha_{\mathrm{FDR}}^{\mathrm{B-H}}}\right)\leq\alpha_{\mathrm{FDR}}
 \end{aligned}
 $$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Example.">Example.<a class="anchor-link" href="#Example.">¶</a></h5>
+<h5 id="Example.">Example.<a class="anchor-link" href="#Example.">&#182;</a></h5>
 </div>
 </div>
 </div>
@@ -240,132 +247,165 @@ $$</p>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">alpha_FDR</span> <span class="o">=</span> <span class="mf">0.1</span>
 <span class="n">g</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">g</span><span class="p">)])</span>
 <span class="n">p_value</span> <span class="o">=</span> <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.035</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.04</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
 <span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">g</span><span class="o">*</span><span class="n">alpha_FDR</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">g</span><span class="p">)])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">p_value_rank</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">p_value</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">g</span><span class="p">)):</span>
-    <span class="k">if</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">>=</span> <span class="n">p_value</span><span class="p">[</span><span class="n">p_value_rank</span><span class="p">[</span><span class="n">i</span><span class="p">]]:</span>
+    <span class="k">if</span> <span class="n">q</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">p_value</span><span class="p">[</span><span class="n">p_value_rank</span><span class="p">[</span><span class="n">i</span><span class="p">]]:</span>
         <span class="k">break</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reject: </span><span class="si">{</span><span class="p">[</span><span class="sa">f</span><span class="s1">'G</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">[</span><span class="n">p_value_rank</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Reject: </span><span class="si">{</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;G</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">idx</span><span class="p">[</span><span class="n">p_value_rank</span><span class="p">[:</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Reject: ['G7', 'G8', 'G4', 'G6']
+<pre>Reject: [&#39;G7&#39;, &#39;G8&#39;, &#39;G4&#39;, &#39;G6&#39;]
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Quantile-Quantile-plot">Quantile-Quantile plot<a class="anchor-link" href="#Quantile-Quantile-plot">¶</a></h3>
+<h3 id="Quantile-Quantile-plot">Quantile-Quantile plot<a class="anchor-link" href="#Quantile-Quantile-plot">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">g</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">g</span><span class="p">)]))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">p_value</span><span class="p">[</span><span class="n">p_value_rank</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"observed"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])),(</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$y=x$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Quantile-Quantile plot"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$-\log_</span><span class="si">{10}</span><span class="s2">$ expected P-value"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$-\log_</span><span class="si">{10}</span><span class="s2">$ observed P-value"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;observed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])),(</span><span class="mi">0</span><span class="p">,</span><span class="nb">min</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">])),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$y=x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Quantile-Quantile plot&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$-\log_</span><span class="si">{10}</span><span class="s2">$ expected P-value&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$-\log_</span><span class="si">{10}</span><span class="s2">$ observed P-value&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,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
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Section3.2-Probabilistic-Models">Section3.2 Probabilistic Models<a class="anchor-link" href="#Section3.2-Probabilistic-Models">¶</a></h2>
+<h2 id="Section3.2-Probabilistic-Models">Section3.2 Probabilistic Models<a class="anchor-link" href="#Section3.2-Probabilistic-Models">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -389,25 +429,27 @@ $$</p>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Problems-of-Hypothesis-Testing-Approaches">Problems of Hypothesis Testing Approaches<a class="anchor-link" href="#Problems-of-Hypothesis-Testing-Approaches">¶</a></h3><ul>
+<h3 id="Problems-of-Hypothesis-Testing-Approaches">Problems of Hypothesis Testing Approaches<a class="anchor-link" href="#Problems-of-Hypothesis-Testing-Approaches">&#182;</a></h3><ul>
 <li>Difficult to model satisfactory, uninteresting scenarios</li>
 <li>Does not model interesting biological scenarios</li>
 <li>A rejected hypothesis does not necessarily tell anything interesting</li>
 <li>Still useful for many small parts of a full analysis</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="probabilistic-Modeling">probabilistic Modeling<a class="anchor-link" href="#probabilistic-Modeling">¶</a></h3><ul>
+<h3 id="probabilistic-Modeling">probabilistic Modeling<a class="anchor-link" href="#probabilistic-Modeling">&#182;</a></h3><ul>
 <li>Strong regularity from the probability condition</li>
 <li>Can include various biological knowledge</li>
 <li>Adjustable to the quality, amount, randomness of the data</li>
@@ -422,13 +464,14 @@ $$</p>
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Section3.3-Likelihood">Section3.3 Likelihood<a class="anchor-link" href="#Section3.3-Likelihood">¶</a></h2>
+<h2 id="Section3.3-Likelihood">Section3.3 Likelihood<a class="anchor-link" href="#Section3.3-Likelihood">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -439,26 +482,30 @@ $$</p>
 <li>Q. How to adjust parameters?? </li>
 <li>A. Maximize the Likelihood</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="likelihood">likelihood<a class="anchor-link" href="#likelihood">¶</a></h3><ul>
+<h3 id="likelihood">likelihood<a class="anchor-link" href="#likelihood">&#182;</a></h3><ul>
 <li>observed data: $\mathbf{D} = \left\{x^{(h)}|h=1,\cdots,n\right\}$</li>
 <li>parametrized model distribution: $\mathbb{P}(x|\theta)$</li>
 <li>Likelihood: $L(\theta|D) = \mathbb{P}(D|\theta) = \prod_{h=1}^n\mathbb{P}\left(x^{(h)}|\theta\right)$</li>
 </ul>
+
 </div>
 </div>
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -475,6 +522,7 @@ $$</p>
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -508,10 +556,10 @@ $$</p>
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-10-11T00:00:00+09:00">10 11, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-10-11T00:00:00+09:00">Oct 11, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-10-11T00:00:00+09:00">10 11, 2019</time>
+<time datetime="2019-10-11T00:00:00+09:00">Oct 11, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-tong-ji-lun-ref">生物統計論</a>
@@ -529,8 +577,6 @@ $$</p>
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

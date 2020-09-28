@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="0.英語論文 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-0.html" />
-<meta property="og:description" content="問題1 数学やアルゴリズムの論文では余計な表現を省いた簡潔な記述が好まれます。例えば： ⻑さ $n$ の⾃然数の列に対して、隣接する数 $a,b$ をその差の絶対値 $|a-b|$ で置き換える作業を繰返し、最終的に１つの数を計算する。異なる計算順序の総数 $P(n)$ は、列を分割し統治することで、漸化式 $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)$$と表現できる。 これでは⾏間を補わないと理解できないと思います。⼀⽅、⽣命科学の論⽂では、数式やアルゴリズムに不慣れな読者を意識して丁寧に説明するのは親切だし、論⽂を読む読者層を広げることになります。たとえば下記の説明⽂のように書き換えられます。丁寧な英⽂を⼼がけるために、この⽂章を英語にしましょう。 ⾃然数の列 $x_1,x_2,\ldots,x_n$ が与えられたとき、隣接する２つの数 $a,b$ の差の絶対値 $a-b$ を取り、$a,b$ を置き換える作業を繰返し、最終的に１つの数を計算することを考えよう。どの２つの数を選択するか、その順番で最終結果は異なる場合がある。そこで選択した２つの数 $a,b$ を $(a,b)$ で置き換え、計算の順序を表現しよう。たとえば列 $1, 2, 3, 4$ から以下のような計算過程を表現できる。 $$((1, 2), (3, 4)) = (1, 1) = 0 \quad (1, ((2, 3), 4)) = (1, (1, 4))=(1, 3) =2$$では $x_1,x_2,\ldots,x_n$ から得られる異なる計算順序の総数 $P(n)$ はどのぐらいだろうか？まず $P(n)$ は⻑さ $n$ だけで決まり、その中⾝ $x_i$ には依存しないことに注意しよう。次に、$P(n)$ を計算するには⼊⼒列を２つに分割する考え⽅が有⽤である。いま $x_1,x_2,\ldots,x_n$ を⻑さ $k$ の前半と残りの後半へ分割したとき、前半と後半の部分列の計算順序の総数は、$P(k)$ と $P(n-k)$ であるから、この分割を満たす計算順序の総数は $P(k)P(n-k)$ となる。したがって $k=1,\ldots,n-1$ について $P(k)P(n-k)$ の和を計算すれば $P(n)$ になりそうだが、$P(1)$ の扱い⽅を考える必要がある。$1$ 個の要素しかない列では計算順序の総数は $0$ としたいところであるが、$P(1)P(n-1) = P(n-1)$ としたい。そこで便宜上 $P(1)=1$ と約束する。まとめると $P(n)$ は以下の漸化式で計算できる。" />
+<meta property="og:description" content="英語で論文を投稿して受理されるまで" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-12-05T13:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-12-05T13:00:00+09:00" />
 <meta name="twitter:title" content="0.英語論文 ">
-<meta name="twitter:description" content="問題1 数学やアルゴリズムの論文では余計な表現を省いた簡潔な記述が好まれます。例えば： ⻑さ $n$ の⾃然数の列に対して、隣接する数 $a,b$ をその差の絶対値 $|a-b|$ で置き換える作業を繰返し、最終的に１つの数を計算する。異なる計算順序の総数 $P(n)$ は、列を分割し統治することで、漸化式 $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)$$と表現できる。 これでは⾏間を補わないと理解できないと思います。⼀⽅、⽣命科学の論⽂では、数式やアルゴリズムに不慣れな読者を意識して丁寧に説明するのは親切だし、論⽂を読む読者層を広げることになります。たとえば下記の説明⽂のように書き換えられます。丁寧な英⽂を⼼がけるために、この⽂章を英語にしましょう。 ⾃然数の列 $x_1,x_2,\ldots,x_n$ が与えられたとき、隣接する２つの数 $a,b$ の差の絶対値 $a-b$ を取り、$a,b$ を置き換える作業を繰返し、最終的に１つの数を計算することを考えよう。どの２つの数を選択するか、その順番で最終結果は異なる場合がある。そこで選択した２つの数 $a,b$ を $(a,b)$ で置き換え、計算の順序を表現しよう。たとえば列 $1, 2, 3, 4$ から以下のような計算過程を表現できる。 $$((1, 2), (3, 4)) = (1, 1) = 0 \quad (1, ((2, 3), 4)) = (1, (1, 4))=(1, 3) =2$$では $x_1,x_2,\ldots,x_n$ から得られる異なる計算順序の総数 $P(n)$ はどのぐらいだろうか？まず $P(n)$ は⻑さ $n$ だけで決まり、その中⾝ $x_i$ には依存しないことに注意しよう。次に、$P(n)$ を計算するには⼊⼒列を２つに分割する考え⽅が有⽤である。いま $x_1,x_2,\ldots,x_n$ を⻑さ $k$ の前半と残りの後半へ分割したとき、前半と後半の部分列の計算順序の総数は、$P(k)$ と $P(n-k)$ であるから、この分割を満たす計算順序の総数は $P(k)P(n-k)$ となる。したがって $k=1,\ldots,n-1$ について $P(k)P(n-k)$ の和を計算すれば $P(n)$ になりそうだが、$P(1)$ の扱い⽅を考える必要がある。$1$ 個の要素しかない列では計算順序の総数は $0$ としたいところであるが、$P(1)P(n-1) = P(n-1)$ としたい。そこで便宜上 $P(1)=1$ と約束する。まとめると $P(n)$ は以下の漸化式で計算できる。">
+<meta name="twitter:description" content="英語で論文を投稿して受理されるまで">
 
         <title>0.英語論文  · 3A
 </title>
@@ -130,13 +130,15 @@
 <p>⻑さ $n$ の⾃然数の列に対して、隣接する数 $a,b$ をその差の絶対値 $|a-b|$ で置き換える作業を繰返し、最終的に１つの数を計算する。異なる計算順序の総数 $P(n)$ は、列を分割し統治することで、漸化式</p>
 $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)$$<p>と表現できる。</p>
 <p>これでは⾏間を補わないと理解できないと思います。⼀⽅、⽣命科学の論⽂では、数式やアルゴリズムに不慣れな読者を意識して丁寧に説明するのは親切だし、論⽂を読む読者層を広げることになります。たとえば下記の説明⽂のように書き換えられます。丁寧な英⽂を⼼がけるために、この⽂章を英語にしましょう。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -153,7 +155,8 @@ $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)$$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -167,8 +170,8 @@ $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)$$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Given a sequence of Natural numbers <span aria-label="この記法は、ふつうは集合の意味になります。" class="marker-info">$\mathcal{D} = \{x_1,x_2,\ldots,x_n\}$</span>, the goal is to calculate the value $x^{\ast}$ by repeatedly replacing <span aria-label="pair of adjacent numbers" class="marker-info">adjacent number pairs</span> $a,b$ <span aria-label="with か by のほうがよい" class="marker-info">to</span> one value $|a-b|$. In this problem, $x^{\ast}$ depends on how to <span aria-label="choose でもよいけど select が formal でよい" class="marker-info">chose</span> the consecutive two numbers $a$ and $b$, so by denoting $(a,b)$ <span aria-label="denoting the selected numbers as (a,b)" class="marker-info">as the selected numbers</span>, we express the calculation process <span aria-label="uniquely express と動詞の隣にあるほうがよい" class="marker-info">uniquely</span>. For example, in the case of $\mathcal{D} = \{1,2,3,4\}$ we can express following calculation processes</p>
-$$\left(\left(1,2\right), \left(3,4\right)\right) = \left(1,1\right) = 0 \quad \left(1,\left(\left(2,3\right)\right), 4\right) = \left(1,\left(1,4\right)\right) = \left(1,3\right) = 2$$<p><span aria-label="少し唐突な印象です" class="marker-info">We now discuss</span> $P(n)$, denoting the total number of calculation processes. Noting that $P(n)$ depends <span aria-label="only on" class="marker-info">only</span> the sequence length $n$, we <del style="color: red;"><span style="color: black">take an approach to</span></del> calculate $P(n)$ <del style="color: red;"><span style="color: black">by</span></del> using a recurrence formula. If we divide the sequence into $\{x_1,x_2,\ldots,x_k\}$ and $\{x_{k+1},\ldots,x_n\}$, the total number of calculation processes under this division is given by $P(k)P(n-k)$. Therefore, $P(n)$ can be obtained by summing it over $k$. In the case of $n=1$, we define $P(1)=1$ <span aria-label="to ensure that the expression ... holds. 次の式は、このように定義した結果として成り立つので…" class="marker-info">since</span> expression $P(1)(n-1) = P(n-1)$ holds. To summarize, $P(n)$ is given by</p>
+<p>Given a sequence of Natural numbers <span class="marker-info" aria-label="この記法は、ふつうは集合の意味になります。">$\mathcal{D} = \{x_1,x_2,\ldots,x_n\}$</span>, the goal is to calculate the value $x^{\ast}$ by repeatedly replacing <span class="marker-info" aria-label="pair of adjacent numbers">adjacent number pairs</span> $a,b$ <span class="marker-info" aria-label="with か by のほうがよい">to</span> one value $|a-b|$. In this problem, $x^{\ast}$ depends on how to <span class="marker-info" aria-label="choose でもよいけど select が formal でよい">chose</span> the consecutive two numbers $a$ and $b$, so by denoting $(a,b)$ <span class="marker-info" aria-label="denoting the selected numbers as (a,b)">as the selected numbers</span>, we express the calculation process <span class="marker-info" aria-label="uniquely express と動詞の隣にあるほうがよい">uniquely</span>. For example, in the case of $\mathcal{D} = \{1,2,3,4\}$ we can express following calculation processes</p>
+$$\left(\left(1,2\right), \left(3,4\right)\right) = \left(1,1\right) = 0 \quad \left(1,\left(\left(2,3\right)\right), 4\right) = \left(1,\left(1,4\right)\right) = \left(1,3\right) = 2$$<p><span class="marker-info" aria-label="少し唐突な印象です">We now discuss</span> $P(n)$, denoting the total number of calculation processes. Noting that $P(n)$ depends <span class="marker-info" aria-label="only on">only</span> the sequence length $n$, we <del style="color: red;"><span style="color: black">take an approach to</span></del> calculate $P(n)$ <del style="color: red;"><span style="color: black">by</span></del> using a recurrence formula. If we divide the sequence into $\{x_1,x_2,\ldots,x_k\}$ and $\{x_{k+1},\ldots,x_n\}$, the total number of calculation processes under this division is given by $P(k)P(n-k)$. Therefore, $P(n)$ can be obtained by summing it over $k$. In the case of $n=1$, we define $P(1)=1$ <span class="marker-info" aria-label="to ensure that the expression ... holds. 次の式は、このように定義した結果として成り立つので…">since</span> expression $P(1)(n-1) = P(n-1)$ holds. To summarize, $P(n)$ is given by</p>
 $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)\ .$$
 </div>
 </div>
@@ -186,13 +189,15 @@ $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)\ .$$
 <p><strong>３年間の研究が実って以下のような研究成果が得られました。</strong></p>
 <p>（研究成果の要約）ゲノムのタンデムリピートは⻑くなるほど検出が難しく、どのような機能を持つか解明が待たれる。モデル⽣物 A のゲノムをロングリード・シーケンシングにより解読したところ、従来のショートリード・シーケンシングでは検出できなかったタンデムリピート X がゲノムの約 5%を占めることが分かった。X を含む転写物が神経細胞と⽣殖細胞に統計的に有意に発現しており、RNA ⼲渉でノックダウンしたところ雄の⽣殖能⼒が有意に低下した。タンデムリピート配列が機能することを⽰す注⽬すべき結果である。さらに、近縁種のゲノムと⽐較した結果、X はモデル⽣物 A の近縁種のゲノムでは殆ど存在せず、急速に進化し新しい機能を獲得したことを⽰唆している。</p>
 <p>多くの⼈達にその成果を知ってほしいので、読者層の広い雑誌 SNC に投稿することにしました。雑誌 SNC では専属の編集者がいて、研究成果がどの程度広い読者層に関⼼を持たれるかを評価します。⾼評価であれば専⾨的な研究者に査読を依頼します。編集者に価値を理解してもらうため、通常はかなり苦労します。研究成果をアピールする以下の英⽂で、⻩⾊いマーカー部分を埋めてください。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -205,16 +210,18 @@ $$P(1) = 1,\quad P(n) = \sum_{k=1}^{n-1}P(k)P(n-k)\ (n\geq2)\ .$$
     要約を魅力的に伝えるパラグラフ
 </span></p>
 <p>We believe that our findings should interest a broad readership of <em>Scientific Nature of the Cell.</em></p>
-<p>Sincerely yours,<br />
-<span style="background-color: rgb(255,255,0,0.7)">"あなたの名前"</span><br />
+<p>Sincerely yours,<br>
+<span style="background-color: rgb(255,255,0,0.7)">"あなたの名前"</span><br>
 Department of Bioinformatics and Systems BiologyFaculty of Science, The University of Tokyo</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -229,14 +236,15 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Dear Editor of <em>Scientific Nature of the Cell,</em></p>
-<p>We are pleased to submit a manuscript entitled <span aria-label="機能を持つことも触れられるともっと良いです" class="marker-info" style="background-color: rgb(255,255,0,0.7)">"Long-read sequencing reveals unexplored tandem repeats"</span> for consideration for publication in <em>Scientific Nature of the Cell.</em></p>
+<p>We are pleased to submit a manuscript entitled <span class="marker-info" aria-label="機能を持つことも触れられるともっと良いです" style="background-color: rgb(255,255,0,0.7)">"Long-read sequencing reveals unexplored tandem repeats"</span> for consideration for publication in <em>Scientific Nature of the Cell.</em></p>
 <p><span style="background-color: rgb(255,255,0,0.7)">
     Repetitive genome regions have been difficult to detect and remain unexplained, mainly because of the comparative small size of the fragments used in assembly. To address this issue, we used long-read sequencers for "A" and found that tandem repeat "X" accounts for 5% of the whole genome, which has not been detected by conventional short-read sequencing. "X"-related transcript is significantly expressed in nerve cell and germ cell, and male fertility is declined when it knocked down by RNA interference. This shows that detected tandem repeat actually works. Surprisingly, X was hardly detected in related species of "A", and this suggests that "A" evolved rapidly and acquire functions recently.
 </span></p>
 <p>We believe that our findings should interest a broad readership of <em>Scientific Nature of the Cell.</em></p>
-<p>Sincerely yours,<br />
-<span style="background-color: rgb(255,255,0,0.7)">Shuto Iwasaki</span><br />
+<p>Sincerely yours,<br>
+<span style="background-color: rgb(255,255,0,0.7)">Shuto Iwasaki</span><br>
 Department of Bioinformatics and Systems BiologyFaculty of Science, The University of Tokyo</p>
+
 </div>
 </div>
 </div>
@@ -257,6 +265,7 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
 考えてみてください。</p>
 <blockquote><p>まず、とても貴重なコメントを頂きました Reviewer 1 に感謝いたします。コメントに従いまして本⽂を修正いたしました。リピート領域を解読することはとても難しい問題ですので、注意深くソフトウエアを設計しました。まず、正解領域が分かっているデータを現実のエラーパターンを考慮して⽣成し、そのデータを使って私達のソフトウエアの性能を評価しました。その結果、新しく追加した表１に⽰しますように、既存のソフトウエア⽐べて精度を10%以上改善できることが分かりました。⽣成データに加えて、現実のデータでもリピート領域を正しい⻑さでアセンブリしていることを、サザンブロットで確認しました。</p>
 </blockquote>
+
 </div>
 </div>
 </div>
@@ -276,6 +285,7 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
 <li>We compare the performance of various softwares in that data, and as shown in the Table 1, which is newly inserted, our software recorded more than 10% higher accuracy than the previous softwares.</li>
 <li>Our software also predicted the repeat regions for raw sequences, and its accuracy was confirmed by Southern blotting.</li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -284,15 +294,18 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>添削コメント：上手く書けています。一つ注意が必要なのは "software" は単数形です。複数形にしたい場合には "software programs" にしましょう。</p>
 </blockquote>
+
 </div>
 </div>
 </div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -309,6 +322,7 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -342,10 +356,10 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-12-05T13:00:00+09:00">12 5, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-12-05T13:00:00+09:00">Dec 5, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-12-05T13:00:00+09:00">12 5, 2019</time>
+<time datetime="2019-12-05T13:00:00+09:00">Dec 5, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)</a>
@@ -363,8 +377,6 @@ Department of Bioinformatics and Systems BiologyFaculty of Science, The Universi
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

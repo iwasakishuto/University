@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="5.de Bruijn graphとその表現 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(森下)-5.html" />
-<meta property="og:description" content="定義：ゲノムアセンブリ※ インデックスは0-originである。 記号・用語 定義 $$\Sigma=\{A,C,G,T\}$$ 塩基の集合 $$\Sigma^{\ast}$$ 全ての配列 $$^-:\Sigma^\ast\rightarrow\Sigma^\ast$$ 配列の相補塩基対（通常のワトソンクリックの相補対）を取るという演算 $$\mathbf{G}$$ ゲノム。塩基上の文字列 $$G=|\mathbf{G}|$$ ゲノムの文字列長 $$r$$ リード。ゲノム $\mathbf{G}$ からサンプリングされた、長さ $l \in \mathbb{N},l より正確には、$[0\cdots G-1]$ 上の一様分布に従う確率変数 $X$ の関数 $\mathbf{G}[X\cdots X+l)$ なお、スライスがインデックスの範囲を超えた場合は、環状ゲノムのことを示していると考える。$$\mathbf{G}[X\cdots X+l] = \mathbf{G}[X\cdots G] + \mathbf{G}[0\cdots X-G+l] $$ $$R$$ 独立にサンプリングした $N\in\mathbb{N}$ 本のリードの集合 $\{r_1,r_2,\cdots,r_N\}$ 各リードの長さは固定長 $l$ とする。 $$c=lN/G$$ 平均深度（データサイズ/ゲノムサイズ）。$\times10.4$ などと記されている。ここで、$\mathbf{G}$ がわかっていないにも関わらず $G$ がわかるのは、染色体の大きさから推定することができるからである。 深度 何回読まれたか 被覆度 どのくらいの割合が、最低1回読まれるか。 強連結成分 $V^{\prime}$ 頂点の部分集合で（$V^{\prime}\subset V(G)$）、「$V^{\prime}$ の頂点の中では互いに行き来できる」が、「$V^{\prime}$ から外には行き来できない（行くだけ、来るだけは可能でも良い。）」もの。 Lemma 1 (Coverage) ゲノム中の任意の場所 $G[i]$ での深度 $C_i$ は、$l\ll G$ かつ $G$ が十分に大きい時、パラメータ $\lambda=-c$ のポアソン分布に従う。" />
+<meta property="og:description" content="de Bruijn graphとその表現" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-12-17T13:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-12-17T13:00:00+09:00" />
 <meta name="twitter:title" content="5.de Bruijn graphとその表現 ">
-<meta name="twitter:description" content="定義：ゲノムアセンブリ※ インデックスは0-originである。 記号・用語 定義 $$\Sigma=\{A,C,G,T\}$$ 塩基の集合 $$\Sigma^{\ast}$$ 全ての配列 $$^-:\Sigma^\ast\rightarrow\Sigma^\ast$$ 配列の相補塩基対（通常のワトソンクリックの相補対）を取るという演算 $$\mathbf{G}$$ ゲノム。塩基上の文字列 $$G=|\mathbf{G}|$$ ゲノムの文字列長 $$r$$ リード。ゲノム $\mathbf{G}$ からサンプリングされた、長さ $l \in \mathbb{N},l より正確には、$[0\cdots G-1]$ 上の一様分布に従う確率変数 $X$ の関数 $\mathbf{G}[X\cdots X+l)$ なお、スライスがインデックスの範囲を超えた場合は、環状ゲノムのことを示していると考える。$$\mathbf{G}[X\cdots X+l] = \mathbf{G}[X\cdots G] + \mathbf{G}[0\cdots X-G+l] $$ $$R$$ 独立にサンプリングした $N\in\mathbb{N}$ 本のリードの集合 $\{r_1,r_2,\cdots,r_N\}$ 各リードの長さは固定長 $l$ とする。 $$c=lN/G$$ 平均深度（データサイズ/ゲノムサイズ）。$\times10.4$ などと記されている。ここで、$\mathbf{G}$ がわかっていないにも関わらず $G$ がわかるのは、染色体の大きさから推定することができるからである。 深度 何回読まれたか 被覆度 どのくらいの割合が、最低1回読まれるか。 強連結成分 $V^{\prime}$ 頂点の部分集合で（$V^{\prime}\subset V(G)$）、「$V^{\prime}$ の頂点の中では互いに行き来できる」が、「$V^{\prime}$ から外には行き来できない（行くだけ、来るだけは可能でも良い。）」もの。 Lemma 1 (Coverage) ゲノム中の任意の場所 $G[i]$ での深度 $C_i$ は、$l\ll G$ かつ $G$ が十分に大きい時、パラメータ $\lambda=-c$ のポアソン分布に従う。">
+<meta name="twitter:description" content="de Bruijn graphとその表現">
 
         <title>5.de Bruijn graphとその表現  · 3A
 </title>
@@ -149,7 +149,7 @@
 </tr>
 <tr>
 <td style="text-align:center">$$r$$</td>
-<td style="text-align:left">リード。ゲノム $\mathbf{G}$ からサンプリングされた、<strong>長さ $l \in \mathbb{N},l < G$ の配列。</strong>より正確には、$[0\cdots G-1]$ 上の一様分布に従う確率変数 $X$ の関数 $\mathbf{G}[X\cdots X+l)$ なお、スライスがインデックスの範囲を超えた場合は、環状ゲノムのことを示していると考える。$$\mathbf{G}[X\cdots X+l] = \mathbf{G}[X\cdots G] + \mathbf{G}[0\cdots X-G+l] $$</td>
+<td style="text-align:left">リード。ゲノム $\mathbf{G}$ からサンプリングされた、<strong>長さ $l \in \mathbb{N},l &lt; G$ の配列。</strong>より正確には、$[0\cdots G-1]$ 上の一様分布に従う確率変数 $X$ の関数 $\mathbf{G}[X\cdots X+l)$ なお、スライスがインデックスの範囲を超えた場合は、環状ゲノムのことを示していると考える。$$\mathbf{G}[X\cdots X+l] = \mathbf{G}[X\cdots G] + \mathbf{G}[0\cdots X-G+l] $$</td>
 </tr>
 <tr>
 <td style="text-align:center">$$R$$</td>
@@ -173,6 +173,7 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -239,7 +240,8 @@ $$1-\operatorname{Pr}\left\{C_{i}=0\right\} = 1-e^{-c}$$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　以上より、<span class="marker-pink">「十分多くのリードを読めば、全ての箇所が読まれる確率が1に近づく」</span>ことがわかる。</p>
-<p>　またここで、ゲノム $\mathbf{G}$ がわかっていて、2つのリード $r_i,r_j$ が $l\ast\theta\ (0<\theta\leq1)$ だけ重なっていれば、その2つは<span class="marker-pink">「重なった部分から取ってこられた」</span>と検知できるとする。</p>
+<p>　またここで、ゲノム $\mathbf{G}$ がわかっていて、2つのリード $r_i,r_j$ が $l\ast\theta\ (0&lt;\theta\leq1)$ だけ重なっていれば、その2つは<span class="marker-pink">「重なった部分から取ってこられた」</span>と検知できるとする。</p>
+
 </div>
 </div>
 </div>
@@ -324,6 +326,7 @@ $$
 <p>なお、これはアセンブリが完全に実現できた場合の解析であり、<strong>ある種のアセンブリの上界を与えている</strong>と捉えることができる。</p>
 <blockquote><p>ところで、ここにおける確証のためのパラメータ $\theta$ はどのくらいだろうか？これはゲノムの構成に依存する。例えば、ゲノムの中に、長い $A$ の連続が2箇所以上あった場合、ポリAのリードに対しては、$\theta=1$ でも、私達が思っている意味での確証はできないように思われる。敷衍して言えば、<strong>このパラメータ $\theta$ は、ゲノム配列とゲノム上の位置に依存するパラメータであって、どちらもアセンブリの前には手に入らないものだ。</strong></p>
 </blockquote>
+
 </div>
 </div>
 </div>
@@ -331,6 +334,7 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　さて、では<strong>「これらのリード $R$ から、元のゲノム $\mathbf{G}$ を復元する方法」</strong>について考える。ここでは、以下の2つを挙げる。</p>
+
 </div>
 </div>
 </div>
@@ -341,13 +345,14 @@ $$
 <li><a href="#OLC">OLC</a></li>
 <li><a href="#de-Bruijn-Graph">de Bruijn Graph</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="OLC">OLC<a class="anchor-link" href="#OLC">¶</a></h3>
+<h3 id="OLC">OLC<a class="anchor-link" href="#OLC">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -370,13 +375,14 @@ $$
 <strong>「各リードをノードとして、overlapしている組をエッジで結んだグラフ」</strong>において、<strong>「全てのノードを一回だけ使って、全てのノードを回るパスを発見すること」</strong>であるが、この問題はNP完全に属するハミルトン路問題と同一である。</li>
 </ul>
 <p>といった問題から、<strong>OLCのパラダイムに基づいて、ゲノムアセンブリを実行する際には、発見的方法、制約条件や作業仮説をつけることが必須になる。</strong></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="de-Bruijn-Graph">de Bruijn Graph<a class="anchor-link" href="#de-Bruijn-Graph">¶</a></h3>
+<h3 id="de-Bruijn-Graph">de Bruijn Graph<a class="anchor-link" href="#de-Bruijn-Graph">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -389,6 +395,7 @@ $$
 <li>$V\subset\Sigma^k$</li>
 <li>$(u,v)\in E\Longleftrightarrow u[1,\ldots,k) = v[0,\ldots,k-1)$</li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -396,6 +403,7 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　簡単に言えば、$k$-mer の集合を、<span class="marker-pink">『後ろ $k-1$ 文字と先頭 $k-1$ 文字が一致したら辺を引く』</span>というルールに基づいて辺を引けるだけ引いたグラフである。</p>
+
 </div>
 </div>
 </div>
@@ -403,13 +411,15 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　ここで、リードの集合 $R$ から作られるde Bruijn Graphを、$R$ 中に出現する $k$-merをノードとするde Bruijn Graphだとする。つまり、<strong>$k+1$ より長いリードに関しては、短い断片にバラバラにしてしまう。</strong>（この時 $R$ 中に何回その $k$-merが現れたかを数えてノードに計数としてのせておく。）</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>　それでは、このde Bruijn Graphを用いてアセンブリを行う手法について考えるが、これは<strong>「ある $k$ を固定して、与えられたリードから、全ての $k$-merを抽出してde Bruijn Graphを作り、<span aria-label="与えられた有向グラフGがただ一つの強連結成分を持ち、Gの各頂点vについて、OUT(v)=IN(v)が成立する。" class="marker-info">オイラー閉路</span><b>（環状ゲノム）</b>/<span aria-label="全ての頂点へsから到達可能であり、IN(t)-OUT(t)=1,OUT(s)-IN(s)=1,OUT(v)=IN(v) for v≠s,t" class="marker-info">オイラーパス</span><b>（線状ゲノム）</b>を構築する」</strong>ことに他ならない。また、このアルゴリズムは<span aria-label="強連結成分がただ一つであるかをチェックするアルゴリズムとして有名なものには、「深さ優先探索を一回行い、その後辺の向きを全て逆にして、先程の深さ優先探索で最後にたどり着いた頂点から、もう一度深さ優先探索を行う」というものがある。" class="marker-info">明らかに $O(|E|)$ で計算できる。</span></p>
+<p>　それでは、このde Bruijn Graphを用いてアセンブリを行う手法について考えるが、これは<strong>「ある $k$ を固定して、与えられたリードから、全ての $k$-merを抽出してde Bruijn Graphを作り、<span class="marker-info" aria-label="与えられた有向グラフGがただ一つの強連結成分を持ち、Gの各頂点vについて、OUT(v)=IN(v)が成立する。">オイラー閉路</span><b>（環状ゲノム）</b>/<span class="marker-info" aria-label="全ての頂点へsから到達可能であり、IN(t)-OUT(t)=1,OUT(s)-IN(s)=1,OUT(v)=IN(v) for v≠s,t">オイラーパス</span><b>（線状ゲノム）</b>を構築する」</strong>ことに他ならない。また、このアルゴリズムは<span class="marker-info" aria-label="強連結成分がただ一つであるかをチェックするアルゴリズムとして有名なものには、「深さ優先探索を一回行い、その後辺の向きを全て逆にして、先程の深さ優先探索で最後にたどり着いた頂点から、もう一度深さ優先探索を行う」というものがある。">明らかに $O(|E|)$ で計算できる。</span></p>
+
 </div>
 </div>
 </div>
@@ -417,10 +427,12 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　一般に、グラフ $G=(V,E)$ のオイラー閉路/パスを探すアルゴリズムを実装する際は、次のようにパス $P$、開始頂点 $v$ を持っておいて、深さ優先探索を一度だけ、グラフ $G$ を破壊しながら、再帰呼び出して行う擬似コードが用いられることが多い。</p>
+
 <pre><code>1. For each nodes in {u | (v,u) ∈ E}
 2. (a) Remove (v,u) from E
    (b) Call DFS(G,u)
 3. Push v to P</code></pre>
+
 </div>
 </div>
 </div>
@@ -438,13 +450,14 @@ $$
 <li><a href="#リピート（反復配列）">リピート（反復配列）</a></li>
 <li><a href="#シークエンシングエラー">シークエンシングエラー</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="相補鎖">相補鎖<a class="anchor-link" href="#相補鎖">¶</a></h4><p>　シークエンシングを行う際に、<strong>「相補鎖・鋳型鎖」</strong>のどちらかを選択することは困難であり、またあるリードの対に対して、それらが同じ鎖から出てきたのか、それとも相補鎖から出てきたのかを知ることもできない。このとき、</p>
+<h4 id="&#30456;&#35036;&#37782;">&#30456;&#35036;&#37782;<a class="anchor-link" href="#&#30456;&#35036;&#37782;">&#182;</a></h4><p>　シークエンシングを行う際に、<strong>「相補鎖・鋳型鎖」</strong>のどちらかを選択することは困難であり、またあるリードの対に対して、それらが同じ鎖から出てきたのか、それとも相補鎖から出てきたのかを知ることもできない。このとき、</p>
 <ul>
 <li>2つの鎖が共通の $k$-merを持っていない：2つの弱連結成分からなり、オイラー閉路/パスが2つ獲得できる。</li>
 <li>2つの鎖が共通の $k$-merを持っている：グラフを巡回する間に別の鎖に乗り移ってしまうことがあり、これに対処するために以下の面倒な実装が必要となる。<ul>
@@ -455,16 +468,17 @@ $$
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="リピート（反復配列）">リピート（反復配列）<a class="anchor-link" href="#リピート（反復配列）">¶</a></h4><ul>
+<h4 id="&#12522;&#12500;&#12540;&#12488;&#65288;&#21453;&#24489;&#37197;&#21015;&#65289;">&#12522;&#12500;&#12540;&#12488;&#65288;&#21453;&#24489;&#37197;&#21015;&#65289;<a class="anchor-link" href="#&#12522;&#12500;&#12540;&#12488;&#65288;&#21453;&#24489;&#37197;&#21015;&#65289;">&#182;</a></h4><ul>
 <li>2つの異なったゲノム上の位置を占める配列が、全く同じ $k$-merを持ってしまう場合（$\ldots ARB\ldots CRD\ldots$）：<ul>
 <li>ここから構築されるde Bruijn Graohから、グラフが「$\ldots ARB\ldots CRD\ldots$」から読んだリードから構成されたものなのか、「$\ldots ARD\ldots CRB\ldots$」から構成されたものなのかを判別することができない。</li>
-<li>このようなグラフから、オイラー閉路/オイラーパスを構築できるかも定かではない。（パスが合流するところ（$R[0]$）では<strong>「出次数<入次数」</strong>となるが、分流する場所ではその逆となる。）</li>
+<li>このようなグラフから、オイラー閉路/オイラーパスを構築できるかも定かではない。（パスが合流するところ（$R[0]$）では<strong>「出次数&lt;入次数」</strong>となるが、分流する場所ではその逆となる。）</li>
 <li>paired endというシークエンシング法を使えば、元のリードの情報から、オイラー閉路を選んだり・ノードを複製したり・エッジを複製したりしてアセンブリ結果を良くすることができる。</li>
 </ul>
 </li>
@@ -474,13 +488,14 @@ $$
 </li>
 </ul>
 <p><strong>※ これらの難しい問題に対処するために、現代的なアセンブラでは、リピートに関しては、解決できない部分は諦めて、確信が持てる– 必ず正しいような– 配列のみを出力するようになっている。</strong></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="シークエンシングエラー">シークエンシングエラー<a class="anchor-link" href="#シークエンシングエラー">¶</a></h4>
+<h4 id="&#12471;&#12540;&#12463;&#12456;&#12531;&#12471;&#12531;&#12464;&#12456;&#12521;&#12540;">&#12471;&#12540;&#12463;&#12456;&#12531;&#12471;&#12531;&#12464;&#12456;&#12521;&#12540;<a class="anchor-link" href="#&#12471;&#12540;&#12463;&#12456;&#12531;&#12471;&#12531;&#12464;&#12456;&#12521;&#12540;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -505,13 +520,14 @@ $$
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="実装における工夫：BloomFilter">実装における工夫：BloomFilter<a class="anchor-link" href="#実装における工夫：BloomFilter">¶</a></h3>
+<h3 id="&#23455;&#35013;&#12395;&#12362;&#12369;&#12427;&#24037;&#22827;&#65306;BloomFilter">&#23455;&#35013;&#12395;&#12362;&#12369;&#12427;&#24037;&#22827;&#65306;BloomFilter<a class="anchor-link" href="#&#23455;&#35013;&#12395;&#12362;&#12369;&#12427;&#24037;&#22827;&#65306;BloomFilter">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -519,6 +535,7 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　$k = 50$ 程度でde novo アセンブリを行うと、あり得る $k$-mer の数も多くなり、シークエンス深度によっては、数百ギガバイトものメモリを要求することもある。現在では、多数の実装が開発されており、その最適化の方法、実際の問題に対する性能もまちまちだが、今回は<span class="marker-pink">Bloom Filter を用いた確率的 de Bruijn Graph</span>について記述する。</p>
+
 </div>
 </div>
 </div>
@@ -527,6 +544,7 @@ $$
 <div class="text_cell_render border-box-sizing rendered_html">
 <blockquote><p>BloomFilterとは、1970 年にBloomらによって開発された、確率的データ構造である。このデータ構造は、ハッシュが計算できるような要素の集合に対する表現を与えるもので、空間効率が非常に高くなるほか、集合に対する所属、追加、そして集合同士の和を高速に計算できることが特徴である。</p>
 </blockquote>
+
 </div>
 </div>
 </div>
@@ -544,7 +562,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="演算">演算<a class="anchor-link" href="#演算">¶</a></h4>
+<h4 id="&#28436;&#31639;">&#28436;&#31639;<a class="anchor-link" href="#&#28436;&#31639;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -581,6 +599,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -599,6 +618,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 <li>$N$ 個の要素を挿入した、$M$ 長のBitVectorと $p$ 個のハッシュ函数からなるBloomFilterの偽陽性は、簡単な計算から $\left(1-e^{-pN/M}\right)^p$ と近似できる。</li>
 <li>この近似から、<span class="marker-pink">最適なハッシュ函数の個数が $p=\frac{N}{M}\ln2$ </span>の近くの整数になることがわかる。</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -615,6 +635,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -647,6 +668,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -654,6 +676,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　ここで、我々が気をつけるべき偽陽性は、<span class="marker-pink">『$\mathcal{P}$ のうち、$\mathcal{S}$ には無いようなもの』</span>である。このことを<span class="marker-pink">Critical False Positive</span>と呼ぶ。$\left(cFP = \mathcal{P}\setminus\mathcal{S}\right)$</p>
+
 </div>
 </div>
 </div>
@@ -667,6 +690,7 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 ただし、素数 $M$ の剰余類で、連立方程式 $y_i=a\ast i+b, y_j=a\ast j+b$ は、$a,b$ について必ず一意に解けることを用いてもよい。ここから、BloomFilter において、$p$ 個のハッシュ関数をどのように構築すればよいか示せ。ハッシュ函数についてより知りたい場合は <strong><a href="https://www.eecs.harvard.edu/~michaelm/postscripts/rsa2008.pdf">"Adam Kirsch and Michael Mitzenmacher.  Less hashing, same performance: Building abetter Bloom filter.Random Structures and Algorithms, 33(2):187–218, sep 2008."</a></strong> などを参考にせよ。</li>
 <li>k-merの集合 $S$ に対して、CriticalFalseNegative を $O(\|S\|k)$ で構成するアルゴリズムを与えよ。ランダムアクセスメモリを仮定してよく、メモリ空間は必要な分だけ好きに確保できるとしてよい。</li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -680,24 +704,24 @@ $M$ を正の整数、$U$ を任意の集合として、$U$ に対して、$p$ �
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="1">1<a class="anchor-link" href="#1">¶</a></h4><p>Bit Vectorの $i$ 番目の位置に <code>true</code> を立てるハッシュ値の数を $B[i]$ で表す。ここで、$Np$ 個のハッシュ値が一様分布に従っていると仮定すると、</p>
+<h4 id="1">1<a class="anchor-link" href="#1">&#182;</a></h4><p>Bit Vectorの $i$ 番目の位置に <code>true</code> を立てるハッシュ値の数を $B[i]$ で表す。ここで、$Np$ 個のハッシュ値が一様分布に従っていると仮定すると、</p>
 $$
 \begin{aligned}
 \operatorname{Pr}\left\{B[i]=k\right\}
-&=\left(\begin{array}{l}{pN} \\ {k}\end{array}\right)\left(\frac{1}{M}\right)^{k}\left(1-\frac{1}{M}\right)^{pN-k}\\
-&=\frac{(pN)!}{k!(pN-k)!}\left(\frac{\lambda}{pN}\right)^k\left(1-\frac{\lambda}{pN}\right)^{-k}\left(1-\frac{\lambda}{pN}\right)^{pN}\quad\left(\because \lambda=pN/M\right)\\
-&=\frac{\lambda^k}{k!}
+&amp;=\left(\begin{array}{l}{pN} \\ {k}\end{array}\right)\left(\frac{1}{M}\right)^{k}\left(1-\frac{1}{M}\right)^{pN-k}\\
+&amp;=\frac{(pN)!}{k!(pN-k)!}\left(\frac{\lambda}{pN}\right)^k\left(1-\frac{\lambda}{pN}\right)^{-k}\left(1-\frac{\lambda}{pN}\right)^{pN}\quad\left(\because \lambda=pN/M\right)\\
+&amp;=\frac{\lambda^k}{k!}
 {\underbrace{\left(1-\frac{\lambda}{pN}\right)}_{\underset{pN\rightarrow\infty}{\longrightarrow}e^{-\lambda}}}^{pN}
 {\underbrace{\left(1-\frac{\lambda}{pN}\right)}_{{\underset{pN\rightarrow\infty}{\longrightarrow1}}}}^{-k}
 \underbrace{\frac{(pN)!}{(pN-k)!(pN)^k}}_{\underset{pN\rightarrow\infty}{\longrightarrow1}}\\
-&\underset{pN\rightarrow\infty}{\longrightarrow} e^{-\lambda}\frac{\lambda^k}{k!}
+&amp;\underset{pN\rightarrow\infty}{\longrightarrow} e^{-\lambda}\frac{\lambda^k}{k!}
 \end{aligned}
 $$<p>　なる確率分布に従う。従って、偽陽性となる確率(False Positive Rate; FPR)は、以下で<strong>近似</strong>できる。</p>
 $$
 \begin{aligned}
-\operatorname{FPR}(p) &= \left(1-\operatorname{Pr}\left\{B[i]=0\right\}\right)^p\\
-&= \left(1-e^{-\lambda}\right)^p\\
-&= \left(1 - e^{-pN/M}\right)^p
+\operatorname{FPR}(p) &amp;= \left(1-\operatorname{Pr}\left\{B[i]=0\right\}\right)^p\\
+&amp;= \left(1-e^{-\lambda}\right)^p\\
+&amp;= \left(1 - e^{-pN/M}\right)^p
 \end{aligned}
 $$
 </div>
@@ -710,36 +734,39 @@ $$
 $$
 \begin{aligned}
 \frac{\partial\ln\left(\operatorname{FPR}(p)\right)}{\partial p} 
-&= \frac{\partial}{\partial p}\left(p\ln\left(1 - e^{-pN/M}\right)\right)\\
-&=\ln\left(1 - e^{-pN/M}\right) + \frac{pN}{M}\frac{e^{-pN/M}}{1 - e^{-pN/M}}\\
+&amp;= \frac{\partial}{\partial p}\left(p\ln\left(1 - e^{-pN/M}\right)\right)\\
+&amp;=\ln\left(1 - e^{-pN/M}\right) + \frac{pN}{M}\frac{e^{-pN/M}}{1 - e^{-pN/M}}\\
 \therefore\left.\frac{\partial\ln\left(\operatorname{FPR}(p)\right)}{\partial p}\right|_{p = \frac{M}{N}\ln2}
-&=\ln\left(1 - \frac{1}{2}\right) + \ln2\frac{1/2}{1 - 1/2}\\
-&= -\ln2 + \ln2 \\
-&= 0
+&amp;=\ln\left(1 - \frac{1}{2}\right) + \ln2\frac{1/2}{1 - 1/2}\\
+&amp;= -\ln2 + \ln2 \\
+&amp;= 0
 \end{aligned}
 $$<p>となるため、最適なハッシュ函数の個数は整数値であるから、<span class="unRed">$p = \frac{M}{N}\ln2$ 付近の整数</span></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="2">2<a class="anchor-link" href="#2">¶</a></h4><p>　素数 $M$ の剰余類で、連立方程式</p>
+<h4 id="2">2<a class="anchor-link" href="#2">&#182;</a></h4><p>　素数 $M$ の剰余類で、連立方程式</p>
 $$\begin{cases}
-y_i&=a\ast i+b\\
-y_j&=a\ast j+b
+y_i&amp;=a\ast i+b\\
+y_j&amp;=a\ast j+b
 \end{cases}$$<p>は、$a,b$ について必ず一意に解けることを用いれば、$y_i$ が与えられた時、</p>
 $$y_j = a\ast \left(j-i\right) + y_i$$<p>となり、これは $i\neq j$ の時、$y_i$ と独立になる。</p>
 <p>　従って、</p>
 $$h_i = A\ast i + B\quad\operatorname{mod} M$$<p>というハッシュ関数を $p$ 個用意すれば良いことになる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="3">3<a class="anchor-link" href="#3">¶</a></h4><p>　<strong>Critical False Positive</strong> は、「<strong>『リード中のk-merの集合 $\mathcal{S}$ の要素と直接辺で結ばれている $k$-merで、BloomFilter $B$ が <code>B.has(e) = true</code> を返すもの』</strong> のうち、$\mathcal{S}$ に無いようなもの」を指す。</p>
+<h4 id="3">3<a class="anchor-link" href="#3">&#182;</a></h4><p>　<strong>Critical False Positive</strong> は、「<strong>『リード中のk-merの集合 $\mathcal{S}$ の要素と直接辺で結ばれている $k$-merで、BloomFilter $B$ が <code>B.has(e) = true</code> を返すもの』</strong> のうち、$\mathcal{S}$ に無いようなもの」を指す。</p>
 <p>　したがって、以下のアルゴリズムで、$O(\|S\|k)$ によって<strong>Critical False Positive</strong> の構築が可能である。</p>
+
 </div>
 </div>
 </div>
@@ -755,6 +782,7 @@ $$h_i = A\ast i + B\quad\operatorname{mod} M$$<p>というハッシュ関数を 
             <span class="k">if</span> <span class="n">e</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span> <span class="c1"># O(k): Using Trie Tree </span>
                 <span class="n">cFP</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -773,6 +801,7 @@ $$<p>次の問いに答えよ。</p>
 <li>一般に、$n$ 通りの値を取り得るものから、重複無しに $m$ 個選んだ集合を Bloom Filter で表現すると、上記で示した下界より小さくできる。これは下界を破っているように見えるが、そうではない理由を説明せよ（つまり、この BloomFilter は対象の集合を表せていないことを示せ）</li>
 <li>$k$-de Bruijn graph を、二つの BloomFilter を使って表現することを考える。このデータ構造は複数の BloomFilter からなり、さらに、de Bruijn graph をたどるようなクエリに対しては偽陽性はない。しかも、必要なbit数は上記の下界よりも小さい。一見、この状態は下界を破っているように見えるが、実はそうではない理由を説明せよ。</li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -785,51 +814,61 @@ $$<p>次の問いに答えよ。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">raise</span> <span class="ne">KeyboardInterrupt</span><span class="p">(</span>
-    <span class="s2">"I didn't understand what the problem statement means."</span>
+    <span class="s2">&quot;I didn&#39;t understand what the problem statement means.&quot;</span>
 <span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_text output_error">
 <pre>
 <span class="ansi-red-fg">---------------------------------------------------------------------------</span>
 <span class="ansi-red-fg">KeyboardInterrupt</span>                         Traceback (most recent call last)
-<span class="ansi-green-fg"><ipython-input-1-531c57a748d8></span> in <span class="ansi-cyan-fg"><module></span>
+<span class="ansi-green-fg">&lt;ipython-input-1-531c57a748d8&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
 <span class="ansi-green-intense-fg ansi-bold">      1</span> raise KeyboardInterrupt(
-<span class="ansi-green-fg">----> 2</span><span class="ansi-red-fg">     </span><span class="ansi-blue-fg">"I didn't understand what the problem statement means."</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg">     </span><span class="ansi-blue-fg">&#34;I didn&#39;t understand what the problem statement means.&#34;</span>
 <span class="ansi-green-intense-fg ansi-bold">      3</span> )
 
-<span class="ansi-red-fg">KeyboardInterrupt</span>: I didn't understand what the problem statement means.</pre>
+<span class="ansi-red-fg">KeyboardInterrupt</span>: I didn&#39;t understand what the problem statement means.</pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><h3 id="q3" style="padding: 0.25em 0.5em; border-left: solid 5px red; background-color: rgba(255,192,203,0.5)">課題3: de Bruijn Graph(Optional)</h3>
-<br /></p>
+<br></p>
 <div style="padding: 0.25em 0.5em; border-left: solid 5px black; background-color: rgb(255,243,184,0.5)"><b>Remark</b>
 <p>　以下で用いるデータセットは、人為的に作成されており、次のような性質を満たす。</p>
 <ol>
-<li>カバレッジは十分量ある（被覆度は1になるように設計してある）</li>
-<li>各リードは必ずゲノム中の位置からサンプリングされているし、エラーはない。</li>
-<li>どちらか一方の鎖からしかリードはサンプリングされていない。つまり、相補鎖について考える必要はない。</li>
-<li>あるkがあり、このkを用いて作った k-mer de Bruijn Graph は <b>"ほとんど"</b>リニアになっている。つまり、ほとんどのノードの入次数と出次数は1になる。</li>
+  <li>カバレッジは十分量ある（被覆度は1になるように設計してある）</li>
+  <li>各リードは必ずゲノム中の位置からサンプリングされているし、エラーはない。</li>
+  <li>どちらか一方の鎖からしかリードはサンプリングされていない。つまり、相補鎖について考える必要はない。</li>
+  <li>あるkがあり、このkを用いて作った k-mer de Bruijn Graph は <b>"ほとんど"</b>リニアになっている。つまり、ほとんどのノードの入次数と出次数は1になる。</li>
 </ol>
 </div><p>　（確率的であれ、別のものであれ）de Bruijn Graph を実装し、<code>.fasta</code> fileと整数 $k$ を入力として、何らかの <code>.fasta</code> fileを出力するようなプログラムを書け（注：頑張りすぎないこと。ノードを選んで探索すればよい）。</p>
 <p>　余裕がある人は、2つのデータセット tiny と large に対して、何か $k$ を決めて、リードから $k$-deBruijn Graph を構築して、その上で何かしらのパスを求めてみよ。</p>
 <p>　参考のために、リードをサンプリングした配列もデータセットに含めておいた。</p>
+
 </div>
 </div>
 </div>
@@ -842,142 +881,183 @@ $$<p>次の問いに答えよ。</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.utils</span> <span class="kn">import</span> <span class="n">read_fastseq</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">true_seq</span> <span class="o">=</span> <span class="n">read_fastseq</span><span class="p">(</span><span class="s2">"dataset/tiny/assumed_genome_size1K_readlength_100.fasta"</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">reads</span> <span class="o">=</span> <span class="n">read_fastseq</span><span class="p">(</span><span class="s2">"dataset/tiny/tiny.fa"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">true_seq</span> <span class="o">=</span> <span class="n">read_fastseq</span><span class="p">(</span><span class="s2">&quot;dataset/tiny/assumed_genome_size1K_readlength_100.fasta&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">reads</span> <span class="o">=</span> <span class="n">read_fastseq</span><span class="p">(</span><span class="s2">&quot;dataset/tiny/tiny.fa&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.debruijn</span> <span class="kn">import</span> <span class="n">kmer_deBruijnGraph</span>
 
 <span class="n">k</span> <span class="o">=</span> <span class="mi">89</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">kmer_deBruijnGraph</span><span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">reads</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"num sequences : </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">num_reads</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"average length: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">ave_read_length</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;num sequences : </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">num_reads</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;average length: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">ave_read_length</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>num sequences : 150
 average length: 100.0
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="sa">f</span><span class="s2">"deBruijnGraph_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">mer.png"</span><span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;deBruijnGraph_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">mer.png&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.Bio.alignment</span> <span class="kn">import</span> <span class="n">SmithWaterman</span>
 
 <span class="n">score_model</span> <span class="o">=</span> <span class="n">SmithWaterman</span><span class="p">()</span>
 <span class="n">score_model</span><span class="o">.</span><span class="n">load_params</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Loading Parameters from <span class="ansi-blue-fg">/Users/iwasakishuto/Github/portfolio/Kerasy/kerasy/utils/default_params/SmithWaterman.json</span>
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"length of the true sequence: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">true_seq</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;length of the true sequence: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">true_seq</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">true_seq</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>length of the true sequence: 1000
 GAAGACTGCACGTTGCATATTTGCCATCATCTATGGACCGTGCGAGAATTCAATACTAATCCTGTCCGCAGTTAGTTTAAATCCGACGGGCTCAGTTCGCTAGTAGAACCAACGCGCTCTCCAGGAATCTAACAATCAACTTCTTCATTGCCGGTAACCTTGTTCAATAACACTAACACCTTTCTAAGCCACCCGTAACAGTACTCCTTCCTGGGCTGTTCTACAACAAGGAGAGGTTTACGTTTGACCCGGTTTCCATTTATTTAACAGCGGCTTATTATTAGCCATCGACTCTGAGTTCACCTTTACGACTCTCTCATTAATCCCTAGGTAAACCTTGCATCCACGAACTAATTGCTATCTTATTGCACGCGTGAGTCAACGCGGGCCTAACCAGTAGGTCGGTGCAGTACTGAAGACAAGGCGATCAAGGCGTCCAAGAGCGCATGCCCCGACCGAAGGTACATCCCGTGCTGTAGACGGACAGATCTTGCCCATCGGGTTTCCATTTATTTAACAGCGGCTTATTATTAGCCATCGACTCTGAGTTCACCTTTACGACTCTCTCATTAATCCCTAGGTAAACCTTGCATCCACGAACTAATTGCTATCTTATTGCACGCGTACTTATCAAATTAAGTAGTCATCCGTCACACGAGACGGAAGCCTTGCCGGTGACCGTAACCTAGTTACTACGCAGAGGACACTTGTCACTCTCCTTCGAAACTCTACACCGGGGAAACTCGTCTCCATCCCCTTTGCATAGGTGTCTTCATTAAAAGTGTCATAGACTCAGACGTTCGCCTTCCTGAACCAACAGGATCAGCGGCTCCCGGCCACCACTTGGATTACCGCCAGAGGCCATCGCTGCGCGAGTTCTGGAAAAAGATTGAAACCAGCGTCTAACTTCTCTTACAGGCACAATCTCAGGTCGTTTATCCAGAATGACCACAAATCTCGGTAAAATCTTTCTCGGCCTCTTACTCGGTGTGGACGGCGC
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">init</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">inits</span><span class="p">:</span>
     <span class="n">result_trail</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">assemble</span><span class="p">(</span><span class="n">init</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">result_trail</span><span class="p">:</span>
         <span class="n">score_model</span><span class="o">.</span><span class="n">align</span><span class="p">(</span><span class="n">true_seq</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">()</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"*"</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Model: <span class="ansi-bold">SmithWaterman</span>
 Alignment score: <span class="ansi-red-fg">102.000</span>
@@ -1314,26 +1394,32 @@ B: [0060] TTATCAAATTAAGTAGTCATCCGTCACACGAGACGGAAGC [0099]
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -1350,6 +1436,7 @@ B: [0060] TTATCAAATTAAGTAGTCATCCGTCACACGAGACGGAAGC [0099]
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -1383,10 +1470,10 @@ B: [0060] TTATCAAATTAAGTAGTCATCCGTCACACGAGACGGAAGC [0099]
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-12-17T13:00:00+09:00">12 17, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-12-17T13:00:00+09:00">Dec 17, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-12-17T13:00:00+09:00">12 17, 2019</time>
+<time datetime="2019-12-17T13:00:00+09:00">Dec 17, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-sen-xia-ref">情報基礎実験(森下)</a>
@@ -1404,8 +1491,6 @@ B: [0060] TTATCAAATTAAGTAGTCATCCGTCACACGAGACGGAAGC [0099]
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

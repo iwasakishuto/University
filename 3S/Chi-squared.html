@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="カイ二乗分布 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/Chi-squared.html" />
-<meta property="og:description" content="カイ二乗分布¶" />
+<meta property="og:description" content="カイ二乗分布" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-04-17T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-04-17T00:00:00+09:00" />
 <meta name="twitter:title" content="カイ二乗分布 ">
-<meta name="twitter:description" content="カイ二乗分布¶">
+<meta name="twitter:description" content="カイ二乗分布">
 
         <title>カイ二乗分布  · 3S
 </title>
@@ -119,26 +119,29 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="カイ二乗分布">カイ二乗分布<a class="anchor-link" href="#カイ二乗分布">¶</a></h1>
+<h1 id="&#12459;&#12452;&#20108;&#20055;&#20998;&#24067;">&#12459;&#12452;&#20108;&#20055;&#20998;&#24067;<a class="anchor-link" href="#&#12459;&#12452;&#20108;&#20055;&#20998;&#24067;">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　<font color="red"><b>カイ二乗検定(Chi-squared test, $\chi^2$ 検定) </b></font>とは、<b>「帰無仮説が正しければ検定統計量が漸近的にカイ二乗分布に従うような統計的検定法の総称」</b>であり、以下で表される $\chi^2$ 値を用いる。</p>
+
 </div>
 </div>
 </div>
@@ -155,20 +158,22 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>※ なお、一般に事象の<b>真の期待値</b>はわからないので、<b>「観測値から推定した値」</b>や<b>「理論値」</b>を用いる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="ピンポン玉実験">ピンポン玉実験<a class="anchor-link" href="#ピンポン玉実験">¶</a></h2><p>　それでは実際に、カイ二乗分布を求めるために、簡単な事象を例に考えてみる。</p>
+<h2 id="&#12500;&#12531;&#12509;&#12531;&#29577;&#23455;&#39443;">&#12500;&#12531;&#12509;&#12531;&#29577;&#23455;&#39443;<a class="anchor-link" href="#&#12500;&#12531;&#12509;&#12531;&#29577;&#23455;&#39443;">&#182;</a></h2><p>　それでは実際に、カイ二乗分布を求めるために、簡単な事象を例に考えてみる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>問題</b><br />
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>問題</b><br>
 　白とオレンジのピンポン玉をそれぞれ $50$ 個ずつ箱に入れておき、無作為に $10$ 個取り出す。調べたら、また取り出した分を箱の中に戻して、同じように無作為に $10$ 個取り出す。
 </div>
 </div>
@@ -177,7 +182,8 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://media.qikeru.me/wp-content/uploads/2016/01/tama1.png" width="60%" /></p>
+<p><img src="https://media.qikeru.me/wp-content/uploads/2016/01/tama1.png" width=60%></p>
+
 </div>
 </div>
 </div>
@@ -185,71 +191,90 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　この時、白とオレンジのピンポン玉数の期待値はそれぞれ $5$ 個であり、それを用いるとカイ二乗値は以下のように計算できる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">Calc_Chi_squared</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">orange</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    関数の概要：カイ2乗値を求める関数</span>
 <span class="sd">    @param n     ：取り出すピンポン玉の総数</span>
 <span class="sd">    @param orange：取り出したオレンジ色の球の数</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">white</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="n">orange</span>
     <span class="n">mean</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span>
     <span class="k">return</span> <span class="p">((</span><span class="n">mean</span> <span class="o">-</span> <span class="n">orange</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">mean</span> <span class="o">-</span> <span class="n">white</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span><span class="n">mean</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">100</span> <span class="c1"># ピンポン玉の総数</span>
 <span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># 一度に取り出す玉の総数</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Chi_squared</span> <span class="o">=</span> <span class="p">[</span><span class="n">Calc_Chi_squared</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">num_orange</span><span class="p">)</span> <span class="k">for</span> <span class="n">num_orange</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Chi_squared</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[10.0, 6.4, 3.6, 1.6, 0.4, 0.0, 0.4, 1.6, 3.6, 6.4, 10.0]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -288,6 +313,7 @@ $$
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -295,6 +321,7 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　ここで、左の事象が起こる確率は実際に以下のように計算することができる。</p>
+
 </div>
 </div>
 </div>
@@ -307,48 +334,61 @@ $$\mathrm{Prob(白=x個, オレンジ=n-x個)} = \frac{_{\mathrm{白玉の総数
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">Calc_Prob</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">orange</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    関数の概要：事象が起こる確率を求める関数</span>
 <span class="sd">    @param N     ：球の総数(オレンジと白は同じ数と仮定)</span>
 <span class="sd">    @param n     ：取り出すピンポン球の総数</span>
 <span class="sd">    @param orange：取り出したオレンジ色の球の数</span>
-<span class="sd">    """</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">white</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="n">orange</span>
     <span class="k">return</span> <span class="n">comb</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">orange</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">*</span> <span class="n">comb</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">white</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">/</span> <span class="n">comb</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">Calc_Prob</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">num_orange</span><span class="p">)</span> <span class="k">for</span> <span class="n">num_orange</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Prob</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[8]:</div>
+
+    <div class="prompt output_prompt">Out[8]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[0.0005934196725858287,
  0.007236825275436936,
@@ -362,9 +402,12 @@ $$\mathrm{Prob(白=x個, オレンジ=n-x個)} = \frac{_{\mathrm{白玉の総数
  0.007236825275436936,
  0.0005934196725858287]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -410,64 +453,89 @@ $$\mathrm{Prob(白=x個, オレンジ=n-x個)} = \frac{_{\mathrm{白玉の総数
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>　以上により、カイ二乗値と確率の関係性が得られた。<br />
+<p>　以上により、カイ二乗値と確率の関係性が得られた。<br>
 ※ なお、気をつけるべきことは、<b>「カイ二乗値=0.4となる確率は0.211では<font color="red">ない</font>」</b>ということである。白玉4個と<font color="orange">オレンジ玉4個</font>でもカイ二乗値は0.4となるので、<b>2倍する必要がある！！</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Chi_squared</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[0.0, 0.4, 1.6, 3.6, 6.4, 10.0]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 単純に、2倍しているだけ。</span>
 <span class="n">Probability</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">*</span><span class="mi">2</span> <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="mi">0</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Prob</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):])]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Probability</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[0.2593335462255351,
  0.42282643406337245,
@@ -476,42 +544,57 @@ $$\mathrm{Prob(白=x個, オレンジ=n-x個)} = \frac{_{\mathrm{白玉の総数
  0.014473650550873872,
  0.0011868393451716574]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　また、<font color="red"><b>確率密度関数(probability density function, PDF)</b></font>を求めたいので、確率を足し合わせていく。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Probability_density</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">Probability</span><span class="p">[</span><span class="n">i</span><span class="p">:])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Probability</span><span class="p">))]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Probability_density</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[1.0000000000000002,
  0.7406664537744649,
@@ -520,36 +603,49 @@ $$\mathrm{Prob(白=x個, オレンジ=n-x個)} = \frac{_{\mathrm{白玉の総数
  0.01566048989604553,
  0.0011868393451716574]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　したがって、これらの関係をプロットすると、以下のようになる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Chi_squared</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span> <span class="n">Probability_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"degree of freedom = $1$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"$\chi^2$ distribution"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Probability density"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$\chi^2$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Chi_squared</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span> <span class="n">Probability_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;degree of freedom = $1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$\chi^2$ distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\chi^2$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAEgCAYAAABb8m8VAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -748,55 +844,71 @@ iIxVcSWRQW+uJtIJ4wJ3fyi8hCJHT0VB5BiY2SJgITDf3f877Dwix0rNRyLHZiHQmchoYCIJT0VB
 pI7MrAPwJeA5d0+WIUCliVPzkUgdmdl0YDewx92/FXYekfqgMwWROjCz64B9wE+A00OOI1JvdKYg
 cpTMrAcwAzjd3beZ2etExlL/SsjRRI6ZioKIiFRQ85GIiFRQURARkQoqCiIiUkFFQUREKqgoiIhI
 BRUFERGpoKIgIiIVVBRERKSCioKIiFT4/wFBrsodbAqCAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　かなりガタガタの分布となっている:(</p>
 <p>そこで、同じ操作を $n=50$ で行うと、以下の分布が得られる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">Chi_squared</span> <span class="o">=</span> <span class="p">[</span><span class="n">Calc_Chi_squared</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">num_orange</span><span class="p">)</span> <span class="k">for</span> <span class="n">num_orange</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
 <span class="n">Prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">Calc_Prob</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">num_orange</span><span class="p">)</span> <span class="k">for</span> <span class="n">num_orange</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
 <span class="n">Probability</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">*</span><span class="mi">2</span> <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="mi">0</span> <span class="k">else</span> <span class="n">p</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Prob</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):])]</span>
 <span class="n">Probability_density</span> <span class="o">=</span> <span class="p">[</span><span class="nb">sum</span><span class="p">(</span><span class="n">Probability</span><span class="p">[</span><span class="n">i</span><span class="p">:])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">Probability</span><span class="p">))]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Chi_squared</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span> <span class="n">Probability_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"degree of freedom = $1$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"$\chi^2$ distribution"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Probability density"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$\chi^2$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Chi_squared</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">):],</span> <span class="n">Probability_density</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;degree of freedom = $1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;$\chi^2$ distribution&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Probability density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\chi^2$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAEgCAYAAABb8m8VAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -999,24 +1111,30 @@ pHOWAUXEZrcSiTwVBZEOMrOBwJnAQ+6e7tNwiiREzUciHWRmc4EqYK+7fy7sPCLJoDsFkQ4ws88D
 +4H/AD4YchyRpNGdgkg7mdkIYB7wQXffYWZ/B9zdzw45mkinqSiIiEgjNR+JiEgjFQUREWmkoiAi
 Io1UFEREpJGKgoiINFJREBGRRioKIiLSSEVBREQaqSiIiEij/w/yKp7M4Kv8ZAAAAABJRU5ErkJg
 gg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　そこそこ綺麗に求めることができた。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="カイ二乗検定">カイ二乗検定<a class="anchor-link" href="#カイ二乗検定">¶</a></h2><p>　上で求めたカイ二乗分布のカイ二乗値が $0.384$ のところでグラフを区切ると、それよりも左側の面積が $0.95$、右側の面積が $0.05$ となる。</p>
+<h2 id="&#12459;&#12452;&#20108;&#20055;&#26908;&#23450;">&#12459;&#12452;&#20108;&#20055;&#26908;&#23450;<a class="anchor-link" href="#&#12459;&#12452;&#20108;&#20055;&#26908;&#23450;">&#182;</a></h2><p>　上で求めたカイ二乗分布のカイ二乗値が $0.384$ のところでグラフを区切ると、それよりも左側の面積が $0.95$、右側の面積が $0.05$ となる。</p>
 <p>　したがって、カイ二乗値が $3.84$ 以下の値は、帰無仮説の下では $0.95$ の確率で起き、カイ二乗値が $0.38$ 以上の値は $0.05$ の確率で起きる、と言える。</p>
+
 </div>
 </div>
 </div>
@@ -1025,6 +1143,7 @@ gg==
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　一般に $\alpha=0.05$ を有意水準と用いる場合が多い（事前に決めておく）。すると、例えばカイ二乗値 $4.46$ が出てくる確率は帰無仮説が正しいとすると有意水準以下であり、<b>「滅多に起こらない事象」</b>である。</p>
 <p>　つまり、<b>偶然の誤差ではないと認めることができ、帰無仮説を棄却する</b>ことができる。</p>
+
 </div>
 </div>
 </div>
@@ -1041,14 +1160,15 @@ $$\mathrm{P}(X_{\mathrm{obs}}\leq X) = \int_{X_{\mathrm{obs}}}^{\infty}f_x(x)dx$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　※ 難しく書いてありますが、確率密度関数を使っているので当たり前です。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="自由度">自由度<a class="anchor-link" href="#自由度">¶</a></h2><p>　ここまで考えたのは自由度1のカイ二乗分布であった。一般に自由度 $k$ のカイ二乗分布に拡張することが可能であり、以下の式で定義される。</p>
-<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>自由度 $k$ のカイ二乗分布</b><br />
+<h2 id="&#33258;&#30001;&#24230;">&#33258;&#30001;&#24230;<a class="anchor-link" href="#&#33258;&#30001;&#24230;">&#182;</a></h2><p>　ここまで考えたのは自由度1のカイ二乗分布であった。一般に自由度 $k$ のカイ二乗分布に拡張することが可能であり、以下の式で定義される。</p>
+<div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><b>自由度 $k$ のカイ二乗分布</b><br>
 　確率変数 $Z_1,Z_2,\ldots,Z_n$ が互いに独立であり、それぞれが標準正規分布 $N(0,1)$ に従うとき、
 $$\chi^2 = Z_1^2+Z_2^2+\cdots+Z_k^2$$
 の $\chi^2$ に従う分布を、自由度 $k$ のカイ二乗分布と言う。
@@ -1060,27 +1180,32 @@ $$\chi^2 = Z_1^2+Z_2^2+\cdots+Z_k^2$$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　自由度 $\phi$ のカイ二乗分布は、以下で表される。
-<img src="http://ogawas.cerp.u-toyama.ac.jp/e-stat/stat_chi2.png" /></p>
+<img src="http://ogawas.cerp.u-toyama.ac.jp/e-stat/stat_chi2.png"></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -1097,6 +1222,7 @@ $$\chi^2 = Z_1^2+Z_2^2+\cdots+Z_k^2$$
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -1130,10 +1256,10 @@ $$\chi^2 = Z_1^2+Z_2^2+\cdots+Z_k^2$$
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-04-17T00:00:00+09:00"> 4 17, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-04-17T00:00:00+09:00">Apr 17, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-04-17T00:00:00+09:00"> 4 17, 2019</time>
+<time datetime="2019-04-17T00:00:00+09:00">Apr 17, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#fen-zi-jin-hua-xue-ref">分子進化学</a>
@@ -1151,8 +1277,6 @@ $$\chi^2 = Z_1^2+Z_2^2+\cdots+Z_k^2$$
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

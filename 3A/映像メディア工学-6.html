@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="動画像処理 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/映像メディア工学-6.html" />
-<meta property="og:description" content="講師：山崎俊彦 参考書：CG-ARTS協会発行「ディジタル画像処理」 参考書：R. Szeliski, Computer Vision Algorithms and Applications, Springer (PDF版はインターネット上で無料公開)" />
+<meta property="og:description" content="動画像処理" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-11-11T10:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-11-11T10:00:00+09:00" />
 <meta name="twitter:title" content="動画像処理 ">
-<meta name="twitter:description" content="講師：山崎俊彦 参考書：CG-ARTS協会発行「ディジタル画像処理」 参考書：R. Szeliski, Computer Vision Algorithms and Applications, Springer (PDF版はインターネット上で無料公開)">
+<meta name="twitter:description" content="動画像処理">
 
         <title>動画像処理  · 3A
 </title>
@@ -124,21 +124,24 @@
 <li>参考書：<a href="https://www.cgarts.or.jp/book/img_engineer/">CG-ARTS協会発行「ディジタル画像処理」</a></li>
 <li>参考書：<a href="http://szeliski.org/Book/">R. Szeliski, Computer Vision Algorithms and Applications, Springer</a> (PDF版はインターネット上で無料公開)</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">cv2</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -151,6 +154,7 @@
 <li>ロボット制御に必要な速度（アクチュエーターの反応速度が~ms）：1,000[fps]</li>
 <li>自動運転 ~ 10,000[fps]</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -158,20 +162,20 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <table>
-<thead>
-<tr>
-<th style="text-align:center">10[fps]</th>
-<th style="text-align:center">25[fps]</th>
-<th style="text-align:center">50[fps]</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img alt="sin_fps10_still.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps10_still.gif" /></td>
-<td style="text-align:center"><img alt="sin_fps25_still.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps25_still.gif" /></td>
-<td style="text-align:center"><img alt="sin_fps50_still.gif" class="gif_play" src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps50_still.gif" /></td>
-</tr>
-</tbody>
+  <thead>
+    <tr>
+      <th style="text-align:center">10[fps]</th>
+      <th style="text-align:center">25[fps]</th>
+      <th style="text-align:center">50[fps]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align:center"><img src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps10_still.gif" class="gif_play" alt="sin_fps10_still.gif"></td>
+      <td style="text-align:center"><img src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps25_still.gif" class="gif_play" alt="sin_fps25_still.gif"></td>
+      <td style="text-align:center"><img src="theme/img/3A_Image_Media_Technologies/gif_fps/sin_fps50_still.gif" class="gif_play" alt="sin_fps50_still.gif"></td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
@@ -187,6 +191,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>→ 何をするか？</strong></p>
+
 </div>
 </div>
 </div>
@@ -194,9 +199,9 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li><a href="#anchor1">動物体の検出・解析</a></li>
-<li><a href="#anchor2">動画の編集</a></li>
-<li><a href="#anchor3">動画の理解・認識</a></li>
+    <li><a href="#anchor1">動物体の検出・解析</a></li>
+    <li><a href="#anchor2">動画の編集</a></li>
+    <li><a href="#anchor3">動画の理解・認識</a></li>
 </ul>
 </div>
 </div>
@@ -211,7 +216,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="背景差分・フレーム間差分">背景差分・フレーム間差分<a class="anchor-link" href="#背景差分・フレーム間差分">¶</a></h4>
+<h4 id="&#32972;&#26223;&#24046;&#20998;&#12539;&#12501;&#12524;&#12540;&#12512;&#38291;&#24046;&#20998;">&#32972;&#26223;&#24046;&#20998;&#12539;&#12501;&#12524;&#12540;&#12512;&#38291;&#24046;&#20998;<a class="anchor-link" href="#&#32972;&#26223;&#24046;&#20998;&#12539;&#12501;&#12524;&#12540;&#12512;&#38291;&#24046;&#20998;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -219,11 +224,11 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="frame">
-<p><b>【問題】</b></p>
-<ul>
-<li>照明変化（屋外では良く起こる）、背景の変化（木の揺れ等）に弱い。</li>
-<li>背景画像をどうやって作るかもポイント。</li>
-</ul>
+   <p><b>【問題】</b></p>
+   <ul>
+       <li>照明変化（屋外では良く起こる）、背景の変化（木の揺れ等）に弱い。</li>
+       <li>背景画像をどうやって作るかもポイント。</li>
+   </ul>
 </div>
 </div>
 </div>
@@ -237,8 +242,8 @@
 $$
 \begin{cases}
     \begin{aligned}
-    p\left(w_f | I(x,y)\right) &= \frac{p(w_f)p(I\left(x,y)|w_f\right)}{p(I(x,y))}\propto p(w_f)p\left(I(x,y)|w_f\right)\\
-    p\left(w_b | I(x,y)\right) &= \frac{p(w_b)p(I\left(x,y)|w_b\right)}{p(I(x,y))}\propto p(w_b)p\left(I(x,y)|w_b\right)
+    p\left(w_f | I(x,y)\right) &amp;= \frac{p(w_f)p(I\left(x,y)|w_f\right)}{p(I(x,y))}\propto p(w_f)p\left(I(x,y)|w_f\right)\\
+    p\left(w_b | I(x,y)\right) &amp;= \frac{p(w_b)p(I\left(x,y)|w_b\right)}{p(I(x,y))}\propto p(w_b)p\left(I(x,y)|w_b\right)
     \end{aligned}
 \end{cases}
 $$
@@ -252,13 +257,14 @@ $$
 <li>$p(w_b, w_f)$：その画素が $w_b, w_f$ である事前確率（例：木の上に人や車はいないので、$p_b$ 大, $p_f$：小）</li>
 <li>$p(I|w_c)$：$w_c$ だった時に、どの程度の確率でその画素値が観測されるか。</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="動き量の計算">動き量の計算<a class="anchor-link" href="#動き量の計算">¶</a></h4>
+<h4 id="&#21205;&#12365;&#37327;&#12398;&#35336;&#31639;">&#21205;&#12365;&#37327;&#12398;&#35336;&#31639;<a class="anchor-link" href="#&#21205;&#12365;&#37327;&#12398;&#35336;&#31639;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -266,6 +272,7 @@ $$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><span class="marker-pink">【ブロックマッチング(Block Matching)】</span></p>
+
 </div>
 </div>
 </div>
@@ -281,6 +288,7 @@ $$
 </li>
 <li>動画像圧縮では、この動きベクトル(motion vector)と差分を符号化することで圧縮を実現。</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -290,12 +298,13 @@ $$
 <p><span class="marker-pink">【オプティカルフロー(optical flow)】</span></p>
 <ul>
 <li>2枚の画像間で、変化が微小だとすると、
-$$\begin{aligned}I(x+\Delta x, y+\Delta y, t+\Delta t) &\simeq I(x,y,t) + \frac{\partial I}{\partial x}\Delta x + \frac{\partial I}{\partial y} \Delta y+ \frac{\partial I}{\partial t} \Delta t + \cdots\\\rightarrow I_x\Delta x + I_y\Delta y + I_t\Delta t&\simeq0\\ I_x\frac{\Delta x}{\Delta t} + I_y\frac{\Delta y}{\Delta t} + I_t &= 0\\\left(\Delta t\rightarrow0\right)\qquad I_xu+I_yv+I &= 0\\(u,v) &= \left(\frac{dx}{dt},\frac{dy}{dt}\right)\end{aligned}$$</li>
+$$\begin{aligned}I(x+\Delta x, y+\Delta y, t+\Delta t) &amp;\simeq I(x,y,t) + \frac{\partial I}{\partial x}\Delta x + \frac{\partial I}{\partial y} \Delta y+ \frac{\partial I}{\partial t} \Delta t + \cdots\\\rightarrow I_x\Delta x + I_y\Delta y + I_t\Delta t&amp;\simeq0\\ I_x\frac{\Delta x}{\Delta t} + I_y\frac{\Delta y}{\Delta t} + I_t &amp;= 0\\\left(\Delta t\rightarrow0\right)\qquad I_xu+I_yv+I &amp;= 0\\(u,v) &amp;= \left(\frac{dx}{dt},\frac{dy}{dt}\right)\end{aligned}$$</li>
 <li>これだけだと、自由度が高すぎて一意に決まらないので、微小領域では動きが滑らかという仮定を置く。（Lucas-Kanada法, 1981）
-$$\mathbf{G} = \left[\begin{array}{c}I_{x_1} &I;_{y_1} \\\vdots&\vdots\\I_{x_m}&I;_{y_m}\end{array}\right],\quad \mathbf{f} = \left[\begin{array}{c}u \\v\end{array}\right],\quad\mathbf{b} = \left[\begin{array}{c}I_{t_1} \\\vdots\\I_{t_m}\end{array}\right]$$
+$$\mathbf{G} = \left[\begin{array}{c}I_{x_1} &amp;I_{y_1} \\\vdots&amp;\vdots\\I_{x_m}&amp;I_{y_m}\end{array}\right],\quad \mathbf{f} = \left[\begin{array}{c}u \\v\end{array}\right],\quad\mathbf{b} = \left[\begin{array}{c}I_{t_1} \\\vdots\\I_{t_m}\end{array}\right]$$
 上記のように定義し、滑らかさの条件を使うと、
-$$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\ast}&=-\left(\mathbf{G}^T\mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{b}\quad \left(\because\text{Least squares}\right)\end{aligned}$$</li>
+$$\begin{aligned}\mathbf{Gf}+\mathbf{b} &amp;= \mathbf{0}\\\therefore\mathbf{f}^{\ast}&amp;=-\left(\mathbf{G}^T\mathbf{G}\right)^{-1}\mathbf{G}^T\mathbf{b}\quad \left(\because\text{Least squares}\right)\end{aligned}$$</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -309,6 +318,7 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
 <li>3D Convolution：空間情報と時間情報を同時に畳み込む。</li>
 <li>仮想3D Convolution：空間情報を畳み込んで、その後時間方向に畳み込む。</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -321,14 +331,16 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -339,21 +351,25 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -370,6 +386,7 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -403,10 +420,10 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-11-11T10:00:00+09:00">11 11, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-11-11T10:00:00+09:00">Nov 11, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-11-11T10:00:00+09:00">11 11, 2019</time>
+<time datetime="2019-11-11T10:00:00+09:00">Nov 11, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#ying-xiang-medeiagong-xue-ref">映像メディア工学</a>
@@ -424,8 +441,6 @@ $$\begin{aligned}\mathbf{Gf}+\mathbf{b} &= \mathbf{0}\\\therefore\mathbf{f}^{\as
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

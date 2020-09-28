@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="シミュレーション実習 Day6 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-6.html" />
-<meta property="og:description" content="シミュレーション実習¶Day.6: トランスオミクス解析１：多階層代謝制御ネットワークの再構築 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Intoroduction UNIXコマンドの使い方 トランスオミクスStep1：変動した代謝物の同定 トランスオミクスStep2：責任代謝酵素の同定 1. Intoroduction これまでの実習は「ネットワーク構造」→「応答パターンの生成」 これからの実習は「現象（応答パターン）」→「モデル構築」 インスリンによる代謝制御は従来考えられていたよりも広範囲のネットワークに作用する多階層現象だと、トランスオミクス解析によってわかってきた。（下図参照） 実習全体のテーマ マルチオミクスデータとバイオインフォマティクスを用いて、多階層ネットワークを再構築する。 多階層ネットワークのアンバイアスな再構築法¶論文：Reconstruction of Insulin Signal Flow from Phosphoproteome and Metabolome Data 変動した代謝物の同定 責任代謝酵素の同定 リン酸化された責任代謝酵素の同定 インスリンシグナル伝達と責任代謝酵素をつなぐ アロステリック調節（活性部位以外の別の場所に、特異的に物質を結合する機能を持ち、この部位に物質の結合が行われると構造変化が起こって機能が変化する現象） ポイント 代謝を起点に階層をさかのぼる オミクスデータ + Pathway DB" />
+<meta property="og:description" content="トランスオミクスのデータ解析Ⅰ" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-17T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-17T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day6 ">
-<meta name="twitter:description" content="シミュレーション実習¶Day.6: トランスオミクス解析１：多階層代謝制御ネットワークの再構築 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Intoroduction UNIXコマンドの使い方 トランスオミクスStep1：変動した代謝物の同定 トランスオミクスStep2：責任代謝酵素の同定 1. Intoroduction これまでの実習は「ネットワーク構造」→「応答パターンの生成」 これからの実習は「現象（応答パターン）」→「モデル構築」 インスリンによる代謝制御は従来考えられていたよりも広範囲のネットワークに作用する多階層現象だと、トランスオミクス解析によってわかってきた。（下図参照） 実習全体のテーマ マルチオミクスデータとバイオインフォマティクスを用いて、多階層ネットワークを再構築する。 多階層ネットワークのアンバイアスな再構築法¶論文：Reconstruction of Insulin Signal Flow from Phosphoproteome and Metabolome Data 変動した代謝物の同定 責任代謝酵素の同定 リン酸化された責任代謝酵素の同定 インスリンシグナル伝達と責任代謝酵素をつなぐ アロステリック調節（活性部位以外の別の場所に、特異的に物質を結合する機能を持ち、この部位に物質の結合が行われると構造変化が起こって機能が変化する現象） ポイント 代謝を起点に階層をさかのぼる オミクスデータ + Pathway DB">
+<meta name="twitter:description" content="トランスオミクスのデータ解析Ⅰ">
 
         <title>シミュレーション実習 Day6  · 3S
 </title>
@@ -119,23 +119,25 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="シミュレーション実習">シミュレーション実習<a class="anchor-link" href="#シミュレーション実習">¶</a></h1><p><b>Day.6: トランスオミクス解析１：多階層代謝制御ネットワークの再構築</b></p>
+<h1 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#182;</a></h1><p><b>Day.6: トランスオミクス解析１：多階層代謝制御ネットワークの再構築</b></p>
 <ul>
 <li>担当：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/">黒田研究室</a></li>
 <li>実習のwiki：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/">Slides and programs</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="概要">概要<a class="anchor-link" href="#概要">¶</a></h2><ol>
-<li><a data-scroll="" href="#anchor1">Intoroduction</a></li>
-<li><a data-scroll="" href="#anchor2">UNIXコマンドの使い方</a></li>
-<li><a data-scroll="" href="#anchor3">トランスオミクスStep1：変動した代謝物の同定</a></li>
-<li><a data-scroll="" href="#anchor3">トランスオミクスStep2：責任代謝酵素の同定</a></li>
+<h2 id="&#27010;&#35201;">&#27010;&#35201;<a class="anchor-link" href="#&#27010;&#35201;">&#182;</a></h2><ol>
+<li><a data-scroll href="#anchor1">Intoroduction</a></li>
+<li><a data-scroll href="#anchor2">UNIXコマンドの使い方</a></li>
+<li><a data-scroll href="#anchor3">トランスオミクスStep1：変動した代謝物の同定</a></li>
+<li><a data-scroll href="#anchor3">トランスオミクスStep2：責任代謝酵素の同定</a></li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -148,7 +150,8 @@
 <li>これからの実習は<b>「現象（応答パターン）」→「モデル構築」</b></li>
 <li>インスリンによる代謝制御は従来考えられていたよりも広範囲のネットワークに作用する多階層現象だと、<font color="red"><b>トランスオミクス解析</b></font>によってわかってきた。（下図参照）</li>
 </ul>
-<p><img src="http://kurodalab.bs.s.u-tokyo.ac.jp/ja_old/research/img/research08_2.png" /></p>
+<p><img src="http://kurodalab.bs.s.u-tokyo.ac.jp/ja_old/research/img/research08_2.png"></p>
+
 </div>
 </div>
 </div>
@@ -156,8 +159,8 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h3>実習全体のテーマ</h3>
-<p><b>マルチオミクスデータとバイオインフォマティクスを用いて、多階層ネットワークを再構築する。</b></p>
+    <h3>実習全体のテーマ</h3>
+    <p><b>マルチオミクスデータとバイオインフォマティクスを用いて、多階層ネットワークを再構築する。</b></p>
 </div>
 </div>
 </div>
@@ -165,7 +168,7 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="多階層ネットワークのアンバイアスな再構築法">多階層ネットワークのアンバイアスな再構築法<a class="anchor-link" href="#多階層ネットワークのアンバイアスな再構築法">¶</a></h3><p>論文：<a href="https://www.sciencedirect.com/science/article/pii/S2211124714005907">Reconstruction of Insulin Signal Flow from Phosphoproteome and Metabolome Data</a></p>
+<h3 id="&#22810;&#38542;&#23652;&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12398;&#12450;&#12531;&#12496;&#12452;&#12450;&#12473;&#12394;&#20877;&#27083;&#31689;&#27861;">&#22810;&#38542;&#23652;&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12398;&#12450;&#12531;&#12496;&#12452;&#12450;&#12473;&#12394;&#20877;&#27083;&#31689;&#27861;<a class="anchor-link" href="#&#22810;&#38542;&#23652;&#12493;&#12483;&#12488;&#12527;&#12540;&#12463;&#12398;&#12450;&#12531;&#12496;&#12452;&#12450;&#12473;&#12394;&#20877;&#27083;&#31689;&#27861;">&#182;</a></h3><p>論文：<a href="https://www.sciencedirect.com/science/article/pii/S2211124714005907">Reconstruction of Insulin Signal Flow from Phosphoproteome and Metabolome Data</a></p>
 <ol>
 <li>変動した代謝物の同定</li>
 <li>責任代謝酵素の同定</li>
@@ -181,29 +184,31 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><img src="https://ars.els-cdn.com/content/image/1-s2.0-S2211124714005907-gr1.jpg" /></td>
-<td style="text-align:center"><img src="http://kurodalab.bs.s.u-tokyo.ac.jp/ja_old/research/img/research08_1.png" /></td>
+<td style="text-align:center"><img src="https://ars.els-cdn.com/content/image/1-s2.0-S2211124714005907-gr1.jpg"></td>
+<td style="text-align:center"><img src="http://kurodalab.bs.s.u-tokyo.ac.jp/ja_old/research/img/research08_1.png"></td>
 </tr>
 </tbody>
 </table>
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h3>ポイント</h3>
-<li>代謝を起点に階層を<font color="red"><b>さかのぼる</b></font></li>
-<li>オミクスデータ + Pathway DB</li>
+    <h3>ポイント</h3>
+    <li>代謝を起点に階層を<font color="red"><b>さかのぼる</b></font></li>
+    <li>オミクスデータ + Pathway DB</li>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -215,7 +220,7 @@
 <thead><tr>
 <th style="text-align:left"></th>
 <th style="text-align:center">微分方程式</th>
-<th style="text-align:center">テキスト初期<br />ファイル処理</th>
+<th style="text-align:center">テキスト初期<br>ファイル処理</th>
 <th style="text-align:center">ターンオーバー</th>
 </tr>
 </thead>
@@ -235,13 +240,14 @@
 </tbody>
 </table>
 <p>※ <b>ターンオーバー</b>：プログラムを最初に書いてから実行・修正を繰り返して完成させるまでの時間的手間</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="様々なコマンド">様々なコマンド<a class="anchor-link" href="#様々なコマンド">¶</a></h3><p>参考：<a href="https://afni.nimh.nih.gov/pub/dist/edu/data/CD.expanded/AFNI_data6/unix_tutorial/misc/unix_commands.html">Documentation</a></p>
+<h3 id="&#27096;&#12293;&#12394;&#12467;&#12510;&#12531;&#12489;">&#27096;&#12293;&#12394;&#12467;&#12510;&#12531;&#12489;<a class="anchor-link" href="#&#27096;&#12293;&#12394;&#12467;&#12510;&#12531;&#12489;">&#182;</a></h3><p>参考：<a href="https://afni.nimh.nih.gov/pub/dist/edu/data/CD.expanded/AFNI_data6/unix_tutorial/misc/unix_commands.html">Documentation</a></p>
 <table>
 <thead><tr>
 <th style="text-align:center">課題No.</th>
@@ -283,7 +289,7 @@
 <tr>
 <td style="text-align:center">0</td>
 <td style="text-align:center"><code>less</code></td>
-<td style="text-align:left">ファイルの中身を一行ずつを読む<br /><code>f</code>で進み、<code>b</code>で戻る。<code>g</code>でファイル先頭に進み、<code>G</code>でファイル末尾に移動。<code>q</code>で終了。</td>
+<td style="text-align:left">ファイルの中身を一行ずつを読む<br><code>f</code>で進み、<code>b</code>で戻る。<code>g</code>でファイル先頭に進み、<code>G</code>でファイル末尾に移動。<code>q</code>で終了。</td>
 </tr>
 <tr>
 <td style="text-align:center">0</td>
@@ -342,13 +348,14 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題1：UNIXコマンドの初歩を体験する">UNIX 課題1：UNIXコマンドの初歩を体験する<a class="anchor-link" href="#UNIX-課題1：UNIXコマンドの初歩を体験する">¶</a></h3>
+<h3 id="UNIX-&#35506;&#38988;1&#65306;UNIX&#12467;&#12510;&#12531;&#12489;&#12398;&#21021;&#27497;&#12434;&#20307;&#39443;&#12377;&#12427;">UNIX &#35506;&#38988;1&#65306;UNIX&#12467;&#12510;&#12531;&#12489;&#12398;&#21021;&#27497;&#12434;&#20307;&#39443;&#12377;&#12427;<a class="anchor-link" href="#UNIX-&#35506;&#38988;1&#65306;UNIX&#12467;&#12510;&#12531;&#12489;&#12398;&#21021;&#27497;&#12434;&#20307;&#39443;&#12377;&#12427;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -356,6 +363,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>省略します。[ggks](https://www.google.com)</b>（もしくは <code>man hoge</code> ）</p>
+
 </div>
 </div>
 </div>
@@ -367,23 +375,31 @@ $ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day6/transomics_dat
 $ unzip transomics_data.zip
 $ mv transomics_data
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> tree <span class="p">|</span> grep -v *.ipynb
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>.
 ├── Day6_AnswerFiles
@@ -408,13 +424,15 @@ $ mv transomics_data
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題2：パターンマッチ入門">UNIX 課題2：パターンマッチ入門<a class="anchor-link" href="#UNIX-課題2：パターンマッチ入門">¶</a></h3>
+<h3 id="UNIX-&#35506;&#38988;2&#65306;&#12497;&#12479;&#12540;&#12531;&#12510;&#12483;&#12481;&#20837;&#38272;">UNIX &#35506;&#38988;2&#65306;&#12497;&#12479;&#12540;&#12531;&#12510;&#12483;&#12481;&#20837;&#38272;<a class="anchor-link" href="#UNIX-&#35506;&#38988;2&#65306;&#12497;&#12479;&#12540;&#12531;&#12510;&#12483;&#12481;&#20837;&#38272;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -474,35 +492,46 @@ $ mv transomics_data
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_metabolome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"metabolome.txt"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_metabolome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;metabolome.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1. データをExcelで開き、データの特徴を捉える。</span>
 <span class="n">df_metabolome</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[4]:</div>
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -519,142 +548,146 @@ $ mv transomics_data
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Unnamed: 0</th>
-<th>Unnamed: 1</th>
-<th>Unnamed: 2</th>
-<th>Unnamed: 3</th>
-<th>Unnamed: 4</th>
-<th>Unnamed: 5</th>
-<th>Unnamed: 6</th>
-<th>Insulin=0.01nM</th>
-<th>(Dataset 1 of 3)</th>
-<th>Unnamed: 9</th>
-<th>...</th>
-<th>Unnamed: 70</th>
-<th>Insulin=100nM.2</th>
-<th>(Dataset 3 of 3).2</th>
-<th>Unnamed: 73</th>
-<th>Unnamed: 74</th>
-<th>Unnamed: 75</th>
-<th>Unnamed: 76</th>
-<th>Unnamed: 77</th>
-<th>Unnamed: 78</th>
-<th>Unnamed: 79</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>No. (Figure. 2)</td>
-<td>Compound name (Keio IAB)</td>
-<td>Compound (KEGG)</td>
-<td>KEGG Compound ID</td>
-<td>Synonym 1</td>
-<td>Synonym 2</td>
-<td>Synonym 3</td>
-<td>0min</td>
-<td>2min</td>
-<td>5min</td>
-<td>...</td>
-<td>60min</td>
-<td>0min</td>
-<td>2min</td>
-<td>5min</td>
-<td>10min</td>
-<td>15min</td>
-<td>20min</td>
-<td>30min</td>
-<td>60min</td>
-<td>S1/S0</td>
-</tr>
-<tr>
-<th>1</th>
-<td>1</td>
-<td>SAH</td>
-<td>S-Adenosyl-L-homocysteine</td>
-<td>C00021</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.085</td>
-<td>0.048</td>
-<td>0.077</td>
-<td>...</td>
-<td>0.037</td>
-<td>N.D.</td>
-<td>0.038</td>
-<td>0.018</td>
-<td>N.D.</td>
-<td>0.047</td>
-<td>N.D.</td>
-<td>0.048</td>
-<td>0.064</td>
-<td>-2.192296401</td>
-</tr>
-<tr>
-<th>2</th>
-<td>2</td>
-<td>2-Oxoglutarate</td>
-<td>2-Oxoglutarate</td>
-<td>C00026</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>0.52</td>
-<td>0.44</td>
-<td>0.35</td>
-<td>...</td>
-<td>0.8</td>
-<td>0.59</td>
-<td>0.35</td>
-<td>0.27</td>
-<td>0.3</td>
-<td>0.39</td>
-<td>0.36</td>
-<td>0.49</td>
-<td>0.95</td>
-<td>2.218224139</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Unnamed: 1</th>
+      <th>Unnamed: 2</th>
+      <th>Unnamed: 3</th>
+      <th>Unnamed: 4</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+      <th>Insulin=0.01nM</th>
+      <th>(Dataset 1 of 3)</th>
+      <th>Unnamed: 9</th>
+      <th>...</th>
+      <th>Unnamed: 70</th>
+      <th>Insulin=100nM.2</th>
+      <th>(Dataset 3 of 3).2</th>
+      <th>Unnamed: 73</th>
+      <th>Unnamed: 74</th>
+      <th>Unnamed: 75</th>
+      <th>Unnamed: 76</th>
+      <th>Unnamed: 77</th>
+      <th>Unnamed: 78</th>
+      <th>Unnamed: 79</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>No. (Figure. 2)</td>
+      <td>Compound name (Keio IAB)</td>
+      <td>Compound (KEGG)</td>
+      <td>KEGG Compound ID</td>
+      <td>Synonym 1</td>
+      <td>Synonym 2</td>
+      <td>Synonym 3</td>
+      <td>0min</td>
+      <td>2min</td>
+      <td>5min</td>
+      <td>...</td>
+      <td>60min</td>
+      <td>0min</td>
+      <td>2min</td>
+      <td>5min</td>
+      <td>10min</td>
+      <td>15min</td>
+      <td>20min</td>
+      <td>30min</td>
+      <td>60min</td>
+      <td>S1/S0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>SAH</td>
+      <td>S-Adenosyl-L-homocysteine</td>
+      <td>C00021</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.085</td>
+      <td>0.048</td>
+      <td>0.077</td>
+      <td>...</td>
+      <td>0.037</td>
+      <td>N.D.</td>
+      <td>0.038</td>
+      <td>0.018</td>
+      <td>N.D.</td>
+      <td>0.047</td>
+      <td>N.D.</td>
+      <td>0.048</td>
+      <td>0.064</td>
+      <td>-2.192296401</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>2-Oxoglutarate</td>
+      <td>2-Oxoglutarate</td>
+      <td>C00026</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.52</td>
+      <td>0.44</td>
+      <td>0.35</td>
+      <td>...</td>
+      <td>0.8</td>
+      <td>0.59</td>
+      <td>0.35</td>
+      <td>0.27</td>
+      <td>0.3</td>
+      <td>0.39</td>
+      <td>0.36</td>
+      <td>0.49</td>
+      <td>0.95</td>
+      <td>2.218224139</td>
+    </tr>
+  </tbody>
 </table>
 <p>3 rows × 80 columns</p>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div class="highlight"><pre><span></span><span class="c1"># 2. "glucose" を含む行を表示する</span>
+<div class="highlight"><pre><span></span><span class="c1"># 2. &quot;glucose&quot; を含む行を表示する</span>
 $ grep glucose metabolome.txt
 
-<span class="c1"># 3. "Glucose" を含む行を表示する</span>
+<span class="c1"># 3. &quot;Glucose&quot; を含む行を表示する</span>
 $ grep Glucose metabolome.txt
 
-<span class="c1"># 4.  "glucose" を「含まない」行を表示する</span>
+<span class="c1"># 4.  &quot;glucose&quot; を「含まない」行を表示する</span>
 $ grep -v glucose metabolome.txt
 
-<span class="c1"># 5. "glucose" または "Glucose" を含む行を表示する</span>
+<span class="c1"># 5. &quot;glucose&quot; または &quot;Glucose&quot; を含む行を表示する</span>
 $ grep -i glucose metabolome.txt
 
-<span class="c1"># 6. "glucose" および "Glucose" を「共に含まない」行を表示する</span>
+<span class="c1"># 6. &quot;glucose&quot; および &quot;Glucose&quot; を「共に含まない」行を表示する</span>
 $ grep -i -v glucose metabolome.txt
 
 <span class="c1"># 7. インデックス113の代謝物を表示する。</span>
 $ grep ^113 metabolome.txt
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題3：パイプとリダイレクション、ファイル取り扱いの基本">UNIX 課題3：パイプとリダイレクション、ファイル取り扱いの基本<a class="anchor-link" href="#UNIX-課題3：パイプとリダイレクション、ファイル取り扱いの基本">¶</a></h3>
+<h3 id="UNIX-&#35506;&#38988;3&#65306;&#12497;&#12452;&#12503;&#12392;&#12522;&#12480;&#12452;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12501;&#12449;&#12452;&#12523;&#21462;&#12426;&#25201;&#12356;&#12398;&#22522;&#26412;">UNIX &#35506;&#38988;3&#65306;&#12497;&#12452;&#12503;&#12392;&#12522;&#12480;&#12452;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12501;&#12449;&#12452;&#12523;&#21462;&#12426;&#25201;&#12356;&#12398;&#22522;&#26412;<a class="anchor-link" href="#UNIX-&#35506;&#38988;3&#65306;&#12497;&#12452;&#12503;&#12392;&#12522;&#12480;&#12452;&#12524;&#12463;&#12471;&#12519;&#12531;&#12289;&#12501;&#12449;&#12452;&#12523;&#21462;&#12426;&#25201;&#12356;&#12398;&#22522;&#26412;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -662,7 +695,7 @@ $ grep ^113 metabolome.txt
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># 1. grepの結果をテキストファイルに出力</span>
-$ grep CoA metabolome.txt > metabolome_CoA.txt
+$ grep CoA metabolome.txt &gt; metabolome_CoA.txt
 
 <span class="c1"># 2. 行数をカウント</span>
 $ wc metabolome_CoA.txt
@@ -682,13 +715,14 @@ $ mv metabolome_CoA_copy.txt metabolome_CoA_cp.txt
 <span class="c1"># 7. ファイル削除</span>
 $ rm metabolome_CoA_cp.txt
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題4：awk">UNIX 課題4：<code>awk</code><a class="anchor-link" href="#UNIX-課題4：awk">¶</a></h3>
+<h3 id="UNIX-&#35506;&#38988;4&#65306;awk">UNIX &#35506;&#38988;4&#65306;<code>awk</code><a class="anchor-link" href="#UNIX-&#35506;&#38988;4&#65306;awk">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -710,17 +744,17 @@ $ rm metabolome_CoA_cp.txt
 </tr>
 <tr>
 <td style="text-align:center">ⅱ</td>
-<td style="text-align:left"><code>$ awk '{ print $1 }' metabolome.txt</code><br /><code>$ cut –f1 metabolome.txt</code></td>
+<td style="text-align:left"><code>$ awk '{ print $1 }' metabolome.txt</code><br><code>$ cut –f1 metabolome.txt</code></td>
 <td style="text-align:left">1列目を表示する。変数 <code>$1</code> は1列目を指す。<code>cut</code> コマンドの <code>-f</code> オプションを用いても同じことができる。</td>
 </tr>
 <tr>
 <td style="text-align:center">ⅲ</td>
-<td style="text-align:left"><code>$ awk '{ print $2 }' metabolome.txt</code><br /><code>$ awk -F"\t" '{ print $2 }' metabolome.txt</code></td>
+<td style="text-align:left"><code>$ awk '{ print $2 }' metabolome.txt</code><br><code>$ awk -F"\t" '{ print $2 }' metabolome.txt</code></td>
 <td style="text-align:left">2列目を表示する。<code>-F"\t"</code> オプションを指定すると、タブ文字を列の区切りとして認識する。指定しないと区切り文字はタブ文字とスペース文字どちらも。</td>
 </tr>
 <tr>
 <td style="text-align:center">ⅳ</td>
-<td style="text-align:left"><code>$ awk -F"\t" '{ print $4"\t"$2 }' metabolome.txt</code><br /><code>$ cut –f4,2 metabolome.txt</code></td>
+<td style="text-align:left"><code>$ awk -F"\t" '{ print $4"\t"$2 }' metabolome.txt</code><br><code>$ cut –f4,2 metabolome.txt</code></td>
 <td style="text-align:left">1.    4列目、2列目の順に表示する。出力形式は [4列目][タブ文字][2列目]。<code>cut</code> コマンドで同じことをしようとすると、出力が[2列目][タブ文字][4列目]になってしまう。</td>
 </tr>
 <tr>
@@ -735,7 +769,7 @@ $ rm metabolome_CoA_cp.txt
 </tr>
 <tr>
 <td style="text-align:center">ⅶ</td>
-<td style="text-align:left"><code>$ awk -F"\t" '($80 > 1){ print }' metabolome.txt</code></td>
+<td style="text-align:left"><code>$ awk -F"\t" '($80 &gt; 1){ print }' metabolome.txt</code></td>
 <td style="text-align:left">80列目の値が 1 より大きい行のみ表示する</td>
 </tr>
 <tr>
@@ -745,20 +779,22 @@ $ rm metabolome_CoA_cp.txt
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題5：sort-と-uniq">UNIX 課題5：<code>sort</code> と <code>uniq</code><a class="anchor-link" href="#UNIX-課題5：sort-と-uniq">¶</a></h3><p>　リン酸化タンパク質データ <code>phosphoproteome.txt</code> の各行は、リン酸化残基を持つペプチド（Not タンパク質）を表す。これについて、以下の演習問題に答えなさい。1, 2行目が見出し行であることに注意すること。</p>
+<h3 id="UNIX-&#35506;&#38988;5&#65306;sort-&#12392;-uniq">UNIX &#35506;&#38988;5&#65306;<code>sort</code> &#12392; <code>uniq</code><a class="anchor-link" href="#UNIX-&#35506;&#38988;5&#65306;sort-&#12392;-uniq">&#182;</a></h3><p>　リン酸化タンパク質データ <code>phosphoproteome.txt</code> の各行は、リン酸化残基を持つペプチド（Not タンパク質）を表す。これについて、以下の演習問題に答えなさい。1, 2行目が見出し行であることに注意すること。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="sort"><code>sort</code><a class="anchor-link" href="#sort">¶</a></h4><table>
+<h4 id="sort"><code>sort</code><a class="anchor-link" href="#sort">&#182;</a></h4><table>
 <thead><tr>
 <th style="text-align:center">略</th>
 <th style="text-align:center">オプション</th>
@@ -798,13 +834,14 @@ $ rm metabolome_CoA_cp.txt
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="uniq"><code>uniq</code><a class="anchor-link" href="#uniq">¶</a></h4><table>
+<h4 id="uniq"><code>uniq</code><a class="anchor-link" href="#uniq">&#182;</a></h4><table>
 <thead><tr>
 <th style="text-align:center">略</th>
 <th style="text-align:center">オプション</th>
@@ -844,35 +881,46 @@ $ rm metabolome_CoA_cp.txt
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_phosphoproteome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"phosphoproteome.txt"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_phosphoproteome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;phosphoproteome.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1. データをExcelで開き、データの特徴を捉える。</span>
 <span class="n">df_phosphoproteome</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -889,88 +937,91 @@ $ rm metabolome_CoA_cp.txt
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Phosphoproteomic data of the responsible metabolic enzymes and the responsible protein kinases</th>
-<th>Unnamed: 1</th>
-<th>Unnamed: 2</th>
-<th>Unnamed: 3</th>
-<th>Unnamed: 4</th>
-<th>Unnamed: 5</th>
-<th>Unnamed: 6</th>
-<th>Unnamed: 7</th>
-<th>Unnamed: 8</th>
-<th>Unnamed: 9</th>
-<th>Unnamed: 10</th>
-<th>Unnamed: 11</th>
-<th>Unnamed: 12</th>
-<th>Unnamed: 13</th>
-<th>Unnamed: 14</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>EC number</td>
-<td>IPI</td>
-<td>KEGG identifier</td>
-<td>Gene name</td>
-<td>KEGG annotation</td>
-<td>Phosphopeptide sequence</td>
-<td>Other Modification</td>
-<td>Phosphorylated residue</td>
-<td>time=0min</td>
-<td>2min</td>
-<td>5min</td>
-<td>10min</td>
-<td>30min</td>
-<td>45min</td>
-<td>60min</td>
-</tr>
-<tr>
-<th>1</th>
-<td>ec:1.1.1.37</td>
-<td>IPI00198717</td>
-<td>rno:24551</td>
-<td>Mdh1</td>
-<td>malate dehydrogenase</td>
-<td>KLpSSAMSAAK</td>
-<td>NaN</td>
-<td>S241</td>
-<td>1.027587068</td>
-<td>1.554700684</td>
-<td>1.20995715</td>
-<td>1</td>
-<td>1.479191537</td>
-<td>1.191214131</td>
-<td>1.539084861</td>
-</tr>
-<tr>
-<th>2</th>
-<td>ec:1.1.1.95</td>
-<td>IPI00475835</td>
-<td>rno:58835</td>
-<td>Phgdh</td>
-<td>phosphoglycerate dehydrogenase</td>
-<td>QNLSKEELIAELQDCEGLIVRpSATK</td>
-<td>NaN</td>
-<td>S55</td>
-<td>NaN</td>
-<td>0.75701328</td>
-<td>NaN</td>
-<td>1</td>
-<td>1.159319876</td>
-<td>NaN</td>
-<td>0.889512017</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Phosphoproteomic data of the responsible metabolic enzymes and the responsible protein kinases</th>
+      <th>Unnamed: 1</th>
+      <th>Unnamed: 2</th>
+      <th>Unnamed: 3</th>
+      <th>Unnamed: 4</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+      <th>Unnamed: 8</th>
+      <th>Unnamed: 9</th>
+      <th>Unnamed: 10</th>
+      <th>Unnamed: 11</th>
+      <th>Unnamed: 12</th>
+      <th>Unnamed: 13</th>
+      <th>Unnamed: 14</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>EC number</td>
+      <td>IPI</td>
+      <td>KEGG identifier</td>
+      <td>Gene name</td>
+      <td>KEGG annotation</td>
+      <td>Phosphopeptide sequence</td>
+      <td>Other Modification</td>
+      <td>Phosphorylated residue</td>
+      <td>time=0min</td>
+      <td>2min</td>
+      <td>5min</td>
+      <td>10min</td>
+      <td>30min</td>
+      <td>45min</td>
+      <td>60min</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ec:1.1.1.37</td>
+      <td>IPI00198717</td>
+      <td>rno:24551</td>
+      <td>Mdh1</td>
+      <td>malate dehydrogenase</td>
+      <td>KLpSSAMSAAK</td>
+      <td>NaN</td>
+      <td>S241</td>
+      <td>1.027587068</td>
+      <td>1.554700684</td>
+      <td>1.20995715</td>
+      <td>1</td>
+      <td>1.479191537</td>
+      <td>1.191214131</td>
+      <td>1.539084861</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ec:1.1.1.95</td>
+      <td>IPI00475835</td>
+      <td>rno:58835</td>
+      <td>Phgdh</td>
+      <td>phosphoglycerate dehydrogenase</td>
+      <td>QNLSKEELIAELQDCEGLIVRpSATK</td>
+      <td>NaN</td>
+      <td>S55</td>
+      <td>NaN</td>
+      <td>0.75701328</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1.159319876</td>
+      <td>NaN</td>
+      <td>0.889512017</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -984,6 +1035,7 @@ $ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f <span class="m"
 <span class="c1"># 4.  それぞれの酵素について何個のリン酸化ペプチドが得られたか数えなさい。</span>
 $ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f <span class="m">1</span> <span class="p">|</span> sort <span class="p">|</span> uniq  -c
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -991,8 +1043,8 @@ $ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f <span class="m"
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h3>余談：メタボロームとは？</h3>
-<p>　<b>細胞や臓器、血液など生体試料中に含まれる代謝物質（糖やアミノ酸、脂質など）の総体、もしくはその網羅的計測データ</b>を指す。異なる条件下に置いた細胞から得たメタボロームデータを比較することにより、<font color="red"><b>当該細胞の代謝調節メカニズムの解明が可能</b></font>であるほか、<font color="red"><b>薬効バイオマーカー探索</b></font>などにも用いられている。有名なデータベースとしては、[HMDB (Human Metabolome DataBase)](http://www.hmdb.ca/)や、本実習で用いる[KEGG (Kyoto Encyclopedia of Genes and Genomes)](https://www.genome.jp/kegg/)がある。</p>
+    <h3>余談：メタボロームとは？</h3>
+    <p>　<b>細胞や臓器、血液など生体試料中に含まれる代謝物質（糖やアミノ酸、脂質など）の総体、もしくはその網羅的計測データ</b>を指す。異なる条件下に置いた細胞から得たメタボロームデータを比較することにより、<font color="red"><b>当該細胞の代謝調節メカニズムの解明が可能</b></font>であるほか、<font color="red"><b>薬効バイオマーカー探索</b></font>などにも用いられている。有名なデータベースとしては、[HMDB (Human Metabolome DataBase)](http://www.hmdb.ca/)や、本実習で用いる[KEGG (Kyoto Encyclopedia of Genes and Genomes)](https://www.genome.jp/kegg/)がある。</p>
 </div>
 </div>
 </div>
@@ -1001,20 +1053,22 @@ $ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f <span class="m"
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="anchor3">3. トランスオミクスStep1：変動した代謝物の同定</h2><p>　代謝物データ <code>metabolome.txt</code> から変動代謝物を抜き出し、 KEGG Mapper で利用可能な形式に変換する。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="変動代謝物の判定基準">変動代謝物の判定基準<a class="anchor-link" href="#変動代謝物の判定基準">¶</a></h3><p>　今回の目的は、<font color="red"><b>インスリン依存の代謝物濃度変動</b></font>を捉え、<b>インスリンシグナルがどのように伝達しているかを調べる</b>ことです。つまり、<b>「インスリン濃度が上昇した時に各代謝物の濃度が変化したか？」</b>を定量的にはかる指標が必要になります。</p>
+<h3 id="&#22793;&#21205;&#20195;&#35613;&#29289;&#12398;&#21028;&#23450;&#22522;&#28310;">&#22793;&#21205;&#20195;&#35613;&#29289;&#12398;&#21028;&#23450;&#22522;&#28310;<a class="anchor-link" href="#&#22793;&#21205;&#20195;&#35613;&#29289;&#12398;&#21028;&#23450;&#22522;&#28310;">&#182;</a></h3><p>　今回の目的は、<font color="red"><b>インスリン依存の代謝物濃度変動</b></font>を捉え、<b>インスリンシグナルがどのように伝達しているかを調べる</b>ことです。つまり、<b>「インスリン濃度が上昇した時に各代謝物の濃度が変化したか？」</b>を定量的にはかる指標が必要になります。</p>
 <p>　今回の実験では、これに、以下の画像で示される $S_0,S_1$ という値を用いています。$S_0,S_1$ はそれぞれ<b>符号付の面積</b>（$S_0$ は常に正だが）であり、<font color="red">インスリン濃度が高い時の濃度</font>が<font color="blue">コントロール</font>に比べて高ければ正、低ければ負の値となります。</p>
 <ul>
 <li>$S_0$ は、<font color="blue">コントロール</font>の値を平均とした $1\sigma$ 区間の面積です</li>
 <li>$S_1$ は、最も外側の枠で囲まれた面積に符号をつけたものです。</li>
 </ul>
 <p>　この定量評価は少し雑（例えば、<font color="green">中濃度のインスリン</font>ではそこまで変動しないが、<font color="red">高濃度のインスリン</font>には大きく反応する場合に、<font color="red">高濃度のインスリン</font>に対する応答が同じ程度であれば、中濃度でもある程度反応するものに比べて $S_1/S_0$ の値が大きくなるが、それは正しく現象を捉えているのか…？）な気もしますが、今回は<b>「正/負に反応したかどうか？」</b>のみを考えているので、そこまで気にしないことにします。</p>
-<p><img src="theme/img/3S_Basic_Laboratory_Work_in_Life_Science_Experiments/kuroda/What_S0_and_S1_indicates.png" /></p>
+<p><img src="theme/img/3S_Basic_Laboratory_Work_in_Life_Science_Experiments/kuroda/What_S0_and_S1_indicates.png"></p>
+
 </div>
 </div>
 </div>
@@ -1028,34 +1082,35 @@ $ cut -f80 metabolome.txt
 $ tail -n +3 metabolome.txt
 
 <span class="c1">#=== データの前処理 ===</span>
-<span class="c1"># 3. 欠損点などの理由によりS1 / S0を計算できなかった代謝物については、当該箇所(80列目)に ”N.D.”と記載されている。“N.D." の代謝物の行を除いたデータを measured_metabolite.txt に出力しなさい。</span>
-$ tail -n +3 metabolome.txt <span class="p">|</span> awk -F<span class="s2">"\t"</span> <span class="s1">'($80 != "N.D."){ print }'</span> > measured_metabolite.txt
+<span class="c1"># 3. 欠損点などの理由によりS1 / S0を計算できなかった代謝物については、当該箇所(80列目)に ”N.D.”と記載されている。“N.D.&quot; の代謝物の行を除いたデータを measured_metabolite.txt に出力しなさい。</span>
+$ tail -n +3 metabolome.txt <span class="p">|</span> awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;($80 != &quot;N.D.&quot;){ print }&#39;</span> &gt; measured_metabolite.txt
 
 <span class="c1"># 4. 3の結果が模範解答ファイルと一致しているか確かめなさい。</span>
 $ diff measured_metabolite.txt Day6_AnswerFiles/Step_i/measured_metabolite.txt
 
-<span class="c1"># 5. KEGGデータベース内にIDが存在しない代謝物については、KEGGのIDを記載する箇所(4列目)に "-" と記載されている。4列目が "-" となっている代謝物をmeasured_metabolite.txt から取り除いた結果残るデータを mappable_metabolite.txt に出力しなさい。</span>
-$ awk -F<span class="s2">"\t"</span> <span class="s1">'($4 != "-"){ print }'</span> measured_metabolite.txt > mappable_metabolite.txt
+<span class="c1"># 5. KEGGデータベース内にIDが存在しない代謝物については、KEGGのIDを記載する箇所(4列目)に &quot;-&quot; と記載されている。4列目が &quot;-&quot; となっている代謝物をmeasured_metabolite.txt から取り除いた結果残るデータを mappable_metabolite.txt に出力しなさい。</span>
+$ awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;($4 != &quot;-&quot;){ print }&#39;</span> measured_metabolite.txt &gt; mappable_metabolite.txt
 
 <span class="c1"># 6. 5の結果が模範解答ファイルと一致しているか確かめなさい。</span>
 $ diff mappable_metabolite.txt Day6_AnswerFiles/Step_i/mappable_metabolite.txt
 
 <span class="c1">#=== カラーマッピングの作成 ===</span>
-<span class="c1"># 7. S1 / S0 > 1の代謝物は「増加」である。mappable_metabolite.txtを元にして、[増加した代謝物 ID][タブ文字]["red"] という形式のファイル metabolite_mapping.txt をつくりなさい。代謝物のIDは4列目に格納されている。また、"red" は綴りそのままの文字列である。</span>
-$ awk -F<span class="s2">"\t"</span> <span class="s1">'($80 > 1){ print }'</span> mappable_metabolite.txt <span class="p">|</span> awk -F<span class="s2">"\t"</span> <span class="s1">'{ print $4"\t""red" }'</span> > metabolite_mapping.txt
+<span class="c1"># 7. S1 / S0 &gt; 1の代謝物は「増加」である。mappable_metabolite.txtを元にして、[増加した代謝物 ID][タブ文字][&quot;red&quot;] という形式のファイル metabolite_mapping.txt をつくりなさい。代謝物のIDは4列目に格納されている。また、&quot;red&quot; は綴りそのままの文字列である。</span>
+$ awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;($80 &gt; 1){ print }&#39;</span> mappable_metabolite.txt <span class="p">|</span> awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $4&quot;\t&quot;&quot;red&quot; }&#39;</span> &gt; metabolite_mapping.txt
 
 <span class="c1"># 8. 7の結果が模範解答ファイルと一致しているか確かめなさい。</span>
 $ diff metabolite_mapping.txt Day6_AnswerFiles/Step_i/metabolite_mapping_first.txt
 
-<span class="c1"># 9. S1 / S0 < -1の代謝物は「減少」である。[減少した代謝物 ID][タブ文字]["blue"] という形式で、metabolite_mapping.txtに「追加書き込み」しなさい。</span>
-$ awk -F<span class="s2">"\t"</span> <span class="s1">'($80 < -1){ print }'</span> mappable_metabolite.txt <span class="p">|</span> awk -F<span class="s2">"\t"</span> <span class="s1">'{ print $4"\t""blue" }'</span> >> metabolite_mapping.txt
+<span class="c1"># 9. S1 / S0 &lt; -1の代謝物は「減少」である。[減少した代謝物 ID][タブ文字][&quot;blue&quot;] という形式で、metabolite_mapping.txtに「追加書き込み」しなさい。</span>
+$ awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;($80 &lt; -1){ print }&#39;</span> mappable_metabolite.txt <span class="p">|</span> awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $4&quot;\t&quot;&quot;blue&quot; }&#39;</span> &gt;&gt; metabolite_mapping.txt
 
-<span class="c1"># 10. -1 < S1/S0 < 1の代謝物は「変動なし」である。[変動なしの代謝物 ID][tab]["green"] という形式で、metabolite_mapping.txtに追加書き込みしなさい。</span>
-$ awk -F<span class="s2">"\t"</span> <span class="s1">'(-1 < $80 && $80 < 1){ print }'</span> mappable_metabolite.txt <span class="p">|</span> awk -F<span class="s2">"\t"</span> <span class="s1">'{ print $4"\t""green" }'</span> >> metabolite_mapping.txt
+<span class="c1"># 10. -1 &lt; S1/S0 &lt; 1の代謝物は「変動なし」である。[変動なしの代謝物 ID][tab][&quot;green&quot;] という形式で、metabolite_mapping.txtに追加書き込みしなさい。</span>
+$ awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;(-1 &lt; $80 &amp;&amp; $80 &lt; 1){ print }&#39;</span> mappable_metabolite.txt <span class="p">|</span> awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $4&quot;\t&quot;&quot;green&quot; }&#39;</span> &gt;&gt; metabolite_mapping.txt
 
 <span class="c1"># 11. 7-10 で作成したファイルが模範解答ファイルと一致しているか確かめなさい。</span>
 $ diff metabolite_mapping.txt Day6_AnswerFiles/Step_i/metabolite_mapping_final.txt
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -1069,13 +1124,14 @@ $ diff metabolite_mapping.txt Day6_AnswerFiles/Step_i/metabolite_mapping_final.t
 <li>Use uncolored diagram をチェックして Exec ボタンを押す。</li>
 <li>'rno01100 Metabolic pathways - Rattus norvegicus (rat)' をクリックする。</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題6：変数">UNIX 課題6：変数<a class="anchor-link" href="#UNIX-課題6：変数">¶</a></h3><table>
+<h3 id="UNIX-&#35506;&#38988;6&#65306;&#22793;&#25968;">UNIX &#35506;&#38988;6&#65306;&#22793;&#25968;<a class="anchor-link" href="#UNIX-&#35506;&#38988;6&#65306;&#22793;&#25968;">&#182;</a></h3><table>
 <thead><tr>
 <th style="text-align:center">#</th>
 <th style="text-align:left">コマンド</th>
@@ -1090,38 +1146,39 @@ $ diff metabolite_mapping.txt Day6_AnswerFiles/Step_i/metabolite_mapping_final.t
 </tr>
 <tr>
 <td style="text-align:center">ⅱ</td>
-<td style="text-align:left"><code>$ i = 1</code><br />>>> -bash: i: コマンドが見つかりません</td>
+<td style="text-align:left"><code>$ i = 1</code><br>&gt;&gt;&gt; -bash: i: コマンドが見つかりません</td>
 <td style="text-align:left">変数名、代入記号、値の間にスペースを挟むとエラーになる</td>
 </tr>
 <tr>
 <td style="text-align:center">ⅲ</td>
-<td style="text-align:left"><code>$ echo $i</code><br />>>> 1</td>
+<td style="text-align:left"><code>$ echo $i</code><br>&gt;&gt;&gt; 1</td>
 <td style="text-align:left">変数に格納されている値を呼び出す際には、\$[変数名] と書く。echoは引数を表示するだけの関数、意外とよく使う。</td>
 </tr>
 <tr>
 <td style="text-align:center">ⅳ</td>
-<td style="text-align:left"><code>$ echo $ij</code><br />>>> （何も出力されない）<br /><code>$ echo ${i}j</code><br />>>> 1j</td>
+<td style="text-align:left"><code>$ echo $ij</code><br>&gt;&gt;&gt; （何も出力されない）<br><code>$ echo ${i}j</code><br>&gt;&gt;&gt; 1j</td>
 <td style="text-align:left">変数名の直後に文字列を書く場合、変数名と当該文字列の区切りを明確にするため、変数名は { } で囲まなければならない。</td>
 </tr>
 <tr>
 <td style="text-align:center">ⅴ</td>
-<td style="text-align:left"><code>$ echo '${i}j'</code><br />>>> \${i}j</td>
+<td style="text-align:left"><code>$ echo '${i}j'</code><br>&gt;&gt;&gt; \${i}j</td>
 <td style="text-align:left">シングルクオートで囲まれた文字列中に含まれる変数名は、文字列としてそのまま出力される</td>
 </tr>
 <tr>
 <td style="text-align:center">ⅵ</td>
-<td style="text-align:left"><code>$ i=$(ls)</code><br /><code>$ echo $i</code><br />>>> Day6_AnswerFiles metabolite_mapping.txt ...</td>
+<td style="text-align:left"><code>$ i=$(ls)</code><br><code>$ echo $i</code><br>&gt;&gt;&gt; Day6_AnswerFiles metabolite_mapping.txt ...</td>
 <td style="text-align:left">コマンドの実行結果そのものを変数として扱いたいときは、$( command ) のように書く</td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="UNIX-課題7：for">UNIX 課題7：<code>for</code><a class="anchor-link" href="#UNIX-課題7：for">¶</a></h3><div class="highlight"><pre><span></span><span class="c1"># 1. 整数を1から10まで順に表示する。</span>
+<h3 id="UNIX-&#35506;&#38988;7&#65306;for">UNIX &#35506;&#38988;7&#65306;<code>for</code><a class="anchor-link" href="#UNIX-&#35506;&#38988;7&#65306;for">&#182;</a></h3><div class="highlight"><pre><span></span><span class="c1"># 1. 整数を1から10まで順に表示する。</span>
 $ seq <span class="m">10</span>
 
 <span class="c1"># 2. 1から10までの整数をforループごとにiに代入し、出力する。</span>
@@ -1132,8 +1189,9 @@ $ <span class="nv">sum</span><span class="o">=</span><span class="m">0</span>
 $ <span class="k">for</span> i in <span class="k">$(</span>seq <span class="m">10</span><span class="k">)</span> <span class="p">;</span> <span class="k">do</span> <span class="nv">sum</span><span class="o">=</span><span class="k">$(</span>expr <span class="nv">$sum</span> + <span class="nv">$i</span><span class="k">)</span> <span class="p">;</span> <span class="nb">echo</span> <span class="nv">$sum</span> <span class="p">;</span> <span class="k">done</span>
 
 <span class="c1"># 4. metabolite_mapping.txtとfor文を用いて、増加した代謝物IDのみを黒色で表示するKEGG Mapper用テキストを表示せよ。</span>
-$ <span class="k">for</span> aCPD in <span class="k">$(</span>awk -F<span class="s2">"\t"</span> <span class="s1">'($2 == "red"){ print }'</span> metabolite_mapping.txt <span class="p">|</span> cut -f1<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$aCPD</span><span class="s2">\tblack"</span><span class="p">;</span> <span class="k">done</span>
+$ <span class="k">for</span> aCPD in <span class="k">$(</span>awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;($2 == &quot;red&quot;){ print }&#39;</span> metabolite_mapping.txt <span class="p">|</span> cut -f1<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$aCPD</span><span class="s2">\tblack&quot;</span><span class="p">;</span> <span class="k">done</span>
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -1141,6 +1199,7 @@ $ <span class="k">for</span> aCPD in <span class="k">$(</span>awk -F<span class=
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="anchor4">4. トランスオミクスStep2：責任代謝酵素の同定</h2><p>　<b>「ある代謝物質を基質または産物とする酵素」</b>のことを<a href="https://www.sciencedirect.com/science/article/pii/S2211124714005907">Reconstruction of Insulin Signal Flow from Phosphoproteome and Metabolome Data</a>では「責任代謝酵素 (RME: Responsible Metabolic Enzyme)」と定義した。責任代謝酵素について以下の問いに答えなさい。</p>
+
 </div>
 </div>
 </div>
@@ -1149,6 +1208,7 @@ $ <span class="k">for</span> aCPD in <span class="k">$(</span>awk -F<span class=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p># 1. 多くのデータベースには、APIといわれるインターフェイスが存在する。以下のURLをブラウザ等に打ち込み、KEGGデータベースの「クエン酸 (KEGG COMPOUND ID: C00158) 」の項を閲覧せよ。代謝物データには名前・分子式・分子量・代謝経路、代謝酵素などの情報が含まれていることが確認できる。
 URL: <a href="http://rest.kegg.jp/get/cpd:C00158">http://rest.kegg.jp/get/cpd:C00158</a></p>
+
 </div>
 </div>
 </div>
@@ -1156,37 +1216,38 @@ URL: <a href="http://rest.kegg.jp/get/cpd:C00158">http://rest.kegg.jp/get/cpd:C0
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># 2. curl [URL] は、 URL にあるウェブページの内容を標準出力に書き出すコマンドである。以下のコマンドにより、KEGGデータベースにアクセスし、「クエン酸 (KEGG COMPOUND ID: C00158) 」のデータを取得し、データの内容を確認せよ。</span>
-$ curl http://rest.kegg.jp/get/cpd:C00158  > C00158.txt
+$ curl http://rest.kegg.jp/get/cpd:C00158  &gt; C00158.txt
 $ less C00158.txt
 
-<span class="c1"># 3. KEGGデータベースは、上記のAPI（get）以外にも様々なAPIを提供している。API "link" はある項目に対して関連のある項目を網羅的に出力する。以下のコマンドにより、KEGGデータベースにアクセスし、「クエン酸 (KEGG COMPOUND ID: C00158) 」に関わる全代謝酵素（ec.X.X.X.X）のデータを出力せよ。C00158.txtと比較すると、ENZYMEの項と同じことがわかる。</span>
+<span class="c1"># 3. KEGGデータベースは、上記のAPI（get）以外にも様々なAPIを提供している。API &quot;link&quot; はある項目に対して関連のある項目を網羅的に出力する。以下のコマンドにより、KEGGデータベースにアクセスし、「クエン酸 (KEGG COMPOUND ID: C00158) 」に関わる全代謝酵素（ec.X.X.X.X）のデータを出力せよ。C00158.txtと比較すると、ENZYMEの項と同じことがわかる。</span>
 $ curl http://rest.kegg.jp/link/ec/cpd:C00158
 
 <span class="c1">#=== 変動代謝物に関わる代謝酵素の抜き出し ===</span>
 <span class="c1"># 4. では、変動代謝物に関わる代謝酵素の抜き出しを行う。まず、変動代謝物のデータをまとめたファイル metab_rme.txt を作成し、lessで確認せよ。なお、このファイルは metabolite_mapping.txt から変動代謝物を抜き出し、それらをcurlを含むfor文にわたすことで作成可能である。最後にソートすること</span>
-$ <span class="k">for</span> aCPD in <span class="k">$(</span>awk -F<span class="s2">"\t"</span> <span class="s1">'($2 != "green"){ print }'</span> metabolite_mapping.txt <span class="p">|</span> cut -f1<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> curl http://rest.kegg.jp/link/ec/cpd:<span class="nv">$aCPD</span><span class="p">;</span> <span class="k">done</span> <span class="p">|</span> sort> metab_rme.txt
+$ <span class="k">for</span> aCPD in <span class="k">$(</span>awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;($2 != &quot;green&quot;){ print }&#39;</span> metabolite_mapping.txt <span class="p">|</span> cut -f1<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> curl http://rest.kegg.jp/link/ec/cpd:<span class="nv">$aCPD</span><span class="p">;</span> <span class="k">done</span> <span class="p">|</span> sort&gt; metab_rme.txt
 
 <span class="c1"># 5. 結果が模範解答と一致しているかを確認する。</span>
 $ diff metab_rme.txt Day6_AnswerFiles/Step_ii/metab_rme.txt
 
-<span class="c1"># 6. metabolite_rme.txtから代謝酵素のみを取り出し、重複をなくし、空白行を削除したファイルrme.txtを作成せよ。（ヒント：空白行の削除にはgrep –vを用いる。空白行は"^$"、つまり「行先頭^の次の文字が行末尾$」で表現）</span>
-$ cut -f2 metab_rme.txt <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> grep -v <span class="s2">"^</span>$<span class="s2">"</span> > rme.txt
+<span class="c1"># 6. metabolite_rme.txtから代謝酵素のみを取り出し、重複をなくし、空白行を削除したファイルrme.txtを作成せよ。（ヒント：空白行の削除にはgrep –vを用いる。空白行は&quot;^$&quot;、つまり「行先頭^の次の文字が行末尾$」で表現）</span>
+$ cut -f2 metab_rme.txt <span class="p">|</span> sort <span class="p">|</span> uniq <span class="p">|</span> grep -v <span class="s2">&quot;^</span>$<span class="s2">&quot;</span> &gt; rme.txt
 
 <span class="c1"># 7. 結果が模範解答と一致しているかを確認する。（注：KEGGの更新により、ここからは微妙に一致しないこともある）</span>
 $ diff rme.txt Day6_AnswerFiles/Step_ii/rme.txt
 
 <span class="c1"># 8. 黒色の責任代謝酵素を KEGG Mapper で視覚化するための元ファイル、rme_mapping.txtを作成する。</span>
-$ <span class="k">for</span> aEC in <span class="k">$(</span>cat rme.txt<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -e <span class="s2">"</span><span class="nv">$aEC</span><span class="s2">\tblack"</span><span class="p">;</span> <span class="k">done</span> > rme_mapping.txt
+$ <span class="k">for</span> aEC in <span class="k">$(</span>cat rme.txt<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> -e <span class="s2">&quot;</span><span class="nv">$aEC</span><span class="s2">\tblack&quot;</span><span class="p">;</span> <span class="k">done</span> &gt; rme_mapping.txt
 
 <span class="c1"># 9. 結果が模範解答と一致しているかを確認する。</span>
 $ diff rme_mapping.txt Day6_AnswerFiles/Step_ii/rme_mapping.txt
 
 <span class="c1"># 10. metabolite_mapping.txt と rme_mapping.txt を一つのファイルにまとめる。（fig2_mapping.txt）</span>
-$ cat metabolite_mapping.txt rme_mapping.txt > fig2_mapping.txt
+$ cat metabolite_mapping.txt rme_mapping.txt &gt; fig2_mapping.txt
 
 <span class="c1"># 11. 結果が模範解答と一致しているかを確認する。</span>
 $ diff fig2_mapping.txt Day6_AnswerFiles/Step_ii/fig2_mapping.txt
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -1194,26 +1255,31 @@ $ diff fig2_mapping.txt Day6_AnswerFiles/Step_ii/fig2_mapping.txt
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p># 12. <a href="http://www.genome.jp/kegg/tool/map_pathway2.html">KEGG Mapper</a> を開き、先ほどと同様の手順で変動代謝物と責任代謝酵素を同時に視覚化しなさい。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -1230,6 +1296,7 @@ $ diff fig2_mapping.txt Day6_AnswerFiles/Step_ii/fig2_mapping.txt
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -1263,10 +1330,10 @@ $ diff fig2_mapping.txt Day6_AnswerFiles/Step_ii/fig2_mapping.txt
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-07-17T00:00:00+09:00"> 7 17, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-07-17T00:00:00+09:00">Jul 17, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-07-17T00:00:00+09:00"> 7 17, 2019</time>
+<time datetime="2019-07-17T00:00:00+09:00">Jul 17, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -1284,8 +1351,6 @@ $ diff fig2_mapping.txt Day6_AnswerFiles/Step_ii/fig2_mapping.txt
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

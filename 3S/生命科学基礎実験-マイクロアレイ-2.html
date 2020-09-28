@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="マイクロアレイ実習2 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-マイクロアレイ-2.html" />
-<meta property="og:description" content="マイクロアレイデータ解析2¶〜マイクロアレイを用いた網羅的遺伝子発現解析〜 担当：程研究室 実習のwiki：http://bit.ly/microarray-2019 論文：Functional dissection of siRNA sequence by systematic DNA substitution: Modified siRNA with a DNA seed arm is a powerful tool for mammalian gene silencing with significantly reduced off-target effect Index 全データを読み込む mRNAの配列を調べる AWSにインスタンスを立て並列処理 NCBIの結果を統合する 相関関係を調べる seedmatchの結果と比べる モデルを作成する まとめ 【目的】¶ 「siRNAを導入した際にどのようなmRNAが発現抑制されるか」について様々な予測がされているが、確定的な理論は存在しない。 そこで、どういった特徴を持ったmRNA（配列）が（この実験系では・マイクロアレイ解析の結果上は）抑制されるのか調べる。" />
+<meta property="og:description" content="マイクロアレイ解析" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-06-21T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-06-21T00:00:00+09:00" />
 <meta name="twitter:title" content="マイクロアレイ実習2 ">
-<meta name="twitter:description" content="マイクロアレイデータ解析2¶〜マイクロアレイを用いた網羅的遺伝子発現解析〜 担当：程研究室 実習のwiki：http://bit.ly/microarray-2019 論文：Functional dissection of siRNA sequence by systematic DNA substitution: Modified siRNA with a DNA seed arm is a powerful tool for mammalian gene silencing with significantly reduced off-target effect Index 全データを読み込む mRNAの配列を調べる AWSにインスタンスを立て並列処理 NCBIの結果を統合する 相関関係を調べる seedmatchの結果と比べる モデルを作成する まとめ 【目的】¶ 「siRNAを導入した際にどのようなmRNAが発現抑制されるか」について様々な予測がされているが、確定的な理論は存在しない。 そこで、どういった特徴を持ったmRNA（配列）が（この実験系では・マイクロアレイ解析の結果上は）抑制されるのか調べる。">
+<meta name="twitter:description" content="マイクロアレイ解析">
 
         <title>マイクロアレイ実習2  · 3S
 </title>
@@ -119,12 +119,13 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="マイクロアレイデータ解析2">マイクロアレイデータ解析2<a class="anchor-link" href="#マイクロアレイデータ解析2">¶</a></h1><p><b>〜マイクロアレイを用いた網羅的遺伝子発現解析〜</b></p>
+<h1 id="&#12510;&#12452;&#12463;&#12525;&#12450;&#12524;&#12452;&#12487;&#12540;&#12479;&#35299;&#26512;2">&#12510;&#12452;&#12463;&#12525;&#12450;&#12524;&#12452;&#12487;&#12540;&#12479;&#35299;&#26512;2<a class="anchor-link" href="#&#12510;&#12452;&#12463;&#12525;&#12450;&#12524;&#12452;&#12487;&#12540;&#12479;&#35299;&#26512;2">&#182;</a></h1><p><b>〜マイクロアレイを用いた網羅的遺伝子発現解析〜</b></p>
 <ul>
 <li>担当：程研究室</li>
 <li>実習のwiki：<a href="http://bit.ly/microarray-2019">http://bit.ly/microarray-2019</a></li>
 <li>論文：<a href="https://www.ncbi.nlm.nih.gov/pubmed/18267968">Functional dissection of siRNA sequence by systematic DNA substitution: Modified siRNA with a DNA seed arm is a powerful tool for mammalian gene silencing with significantly reduced off-target effect</a></li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -132,16 +133,16 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;"><h3>Index</h3>
-<ol>
-<li><a data-scroll="" href="#anchor1">全データを読み込む</a></li>
-<li><a data-scroll="" href="#anchor2">mRNAの配列を調べる</a></li>
-<li><a data-scroll="" href="#anchor3">AWSにインスタンスを立て並列処理</a></li>
-<li><a data-scroll="" href="#anchor4">NCBIの結果を統合する</a></li>
-<li><a data-scroll="" href="#anchor5">相関関係を調べる</a></li>
-<li><a data-scroll="" href="#anchor6">seedmatchの結果と比べる</a></li>
-<li><a data-scroll="" href="#anchor7">モデルを作成する</a></li>
-<li><a data-scroll="" href="#anchor8">まとめ</a></li>
-</ol>
+  <ol>
+    <li><a data-scroll href="#anchor1">全データを読み込む</a></li>
+    <li><a data-scroll href="#anchor2">mRNAの配列を調べる</a></li>
+    <li><a data-scroll href="#anchor3">AWSにインスタンスを立て並列処理</a></li>
+    <li><a data-scroll href="#anchor4">NCBIの結果を統合する</a></li>
+    <li><a data-scroll href="#anchor5">相関関係を調べる</a></li>
+    <li><a data-scroll href="#anchor6">seedmatchの結果と比べる</a></li>
+    <li><a data-scroll href="#anchor7">モデルを作成する</a></li>
+    <li><a data-scroll href="#anchor8">まとめ</a></li>
+  </ol>
 </div>
 </div>
 </div>
@@ -149,89 +150,114 @@
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="【目的】">【目的】<a class="anchor-link" href="#【目的】">¶</a></h3><p>　<b>「siRNAを導入した際にどのようなmRNAが発現抑制されるか」</b>について<font color="red"><b>様々な予測がされているが、確定的な理論は存在しない。</b></font></p>
+<h3 id="&#12304;&#30446;&#30340;&#12305;">&#12304;&#30446;&#30340;&#12305;<a class="anchor-link" href="#&#12304;&#30446;&#30340;&#12305;">&#182;</a></h3><p>　<b>「siRNAを導入した際にどのようなmRNAが発現抑制されるか」</b>について<font color="red"><b>様々な予測がされているが、確定的な理論は存在しない。</b></font></p>
 <p>　そこで、どういった特徴を持ったmRNA（配列）が<b>（この実験系では・マイクロアレイ解析の結果上は）</b>抑制されるのか調べる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> python --version
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Python 3.6.8 :: Anaconda, Inc.
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 見栄えの問題</span>
 <span class="kn">import</span> <span class="nn">warnings</span>
-<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="anchor1">1. 全データを読み込む</h3><p>　<a href='"生命科学基礎実験-マイクロアレイ-1.html"'>マイクロアレイ解析1</a>で行なった前処理後のデータを読み込む。</p>
+<h3 id="anchor1">1. 全データを読み込む</h3><p>　<a href="&quot;生命科学基礎実験-マイクロアレイ-1.html&quot;">マイクロアレイ解析1</a>で行なった前処理後のデータを読み込む。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"result.xlsx"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;result.xlsx&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+
+    <div class="prompt output_prompt">Out[5]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -248,107 +274,120 @@
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>FeatureNum</th>
-<th>ControlType</th>
-<th>ProbeName</th>
-<th>GeneName</th>
-<th>SystematicName</th>
-<th>mock(1)</th>
-<th>RNA</th>
-<th>2OMe3</th>
-<th>2OMe5</th>
-<th>mock(5)</th>
-<th>2OMe7</th>
-<th>LNA3</th>
-<th>LNA7</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>3</th>
-<td>4</td>
-<td>0</td>
-<td>A_23_P117082</td>
-<td>HEBP1</td>
-<td>NM_015987</td>
-<td>12566.870</td>
-<td>12356.960</td>
-<td>12896.740</td>
-<td>12860.240</td>
-<td>12416.270</td>
-<td>13869.810</td>
-<td>14213.960</td>
-<td>13553.84</td>
-</tr>
-<tr>
-<th>8</th>
-<td>9</td>
-<td>0</td>
-<td>A_21_P0000509</td>
-<td>SNAR-G2</td>
-<td>NR_024244</td>
-<td>122723.700</td>
-<td>117958.900</td>
-<td>118623.000</td>
-<td>128495.100</td>
-<td>117447.400</td>
-<td>124273.000</td>
-<td>113802.500</td>
-<td>107326.70</td>
-</tr>
-<tr>
-<th>9</th>
-<td>10</td>
-<td>0</td>
-<td>A_21_P0000744</td>
-<td>LOC100506844</td>
-<td>NR_038269</td>
-<td>1234.146</td>
-<td>1281.739</td>
-<td>1128.132</td>
-<td>1199.297</td>
-<td>1251.119</td>
-<td>1141.723</td>
-<td>1302.718</td>
-<td>1264.15</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>FeatureNum</th>
+      <th>ControlType</th>
+      <th>ProbeName</th>
+      <th>GeneName</th>
+      <th>SystematicName</th>
+      <th>mock(1)</th>
+      <th>RNA</th>
+      <th>2OMe3</th>
+      <th>2OMe5</th>
+      <th>mock(5)</th>
+      <th>2OMe7</th>
+      <th>LNA3</th>
+      <th>LNA7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>0</td>
+      <td>A_23_P117082</td>
+      <td>HEBP1</td>
+      <td>NM_015987</td>
+      <td>12566.870</td>
+      <td>12356.960</td>
+      <td>12896.740</td>
+      <td>12860.240</td>
+      <td>12416.270</td>
+      <td>13869.810</td>
+      <td>14213.960</td>
+      <td>13553.84</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>9</td>
+      <td>0</td>
+      <td>A_21_P0000509</td>
+      <td>SNAR-G2</td>
+      <td>NR_024244</td>
+      <td>122723.700</td>
+      <td>117958.900</td>
+      <td>118623.000</td>
+      <td>128495.100</td>
+      <td>117447.400</td>
+      <td>124273.000</td>
+      <td>113802.500</td>
+      <td>107326.70</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>10</td>
+      <td>0</td>
+      <td>A_21_P0000744</td>
+      <td>LOC100506844</td>
+      <td>NR_038269</td>
+      <td>1234.146</td>
+      <td>1281.739</td>
+      <td>1128.132</td>
+      <td>1199.297</td>
+      <td>1251.119</td>
+      <td>1141.723</td>
+      <td>1302.718</td>
+      <td>1264.15</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"データ数: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;データ数: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>データ数: 21511
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -358,6 +397,7 @@
 <h3 id="anchor2">2. mRNAの配列を調べる</h3><p>　<a href="https://www.ncbi.nlm.nih.gov/nuccore">Home - Nucleotide - NCBI</a> のデータベースにアクセスし、塩基配列データを取得する。こちらも、もちろん $21511$ の塩基配列を取得するのは骨が折れるので、プログラム化する。なお、<b>GeneName(ex.`NM_015987`) から id(ex.`1519241814`) を取得</b>し、<del>そのidを用いて新たにクエリを投げないと（僕の頭では）塩基配列を取得できなかった</del> ので、<b>二回リクエストを送っている。</b>（idの部分にGeneNameを入れてもうまく検索ができた。）</p>
 <p>　また、リクエストを送った時にうまく <code>try</code> 内が処理できる場合と処理ができない場合（<code>except</code>）があるが、リクエストごとに決まっている訳ではなく、<b>送るタイミングによってうまく処理できたりできなかったりしていた。</b></p>
 <p>　<b>が、ほとんどの場合 <font color="red">"No items found"</font>と出ていたので、今回は深追いしない:(</b></p>
+
 </div>
 </div>
 </div>
@@ -372,89 +412,100 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center"><a href="https://www.ncbi.nlm.nih.gov/nuccore"><img src="https://www.ncbi.nlm.nih.gov/books/NBK45527/bin/nuchome.jpg" /></a></td>
-<td style="text-align:center"><a href="https://www.ncbi.nlm.nih.gov/nuccore"><img src="https://www.britmycolsoc.org.uk/application/files/cache/thumbnails/84b789aac973a6bd5346cf3c02ee463d.png" /></a></td>
+<td style="text-align:center"><a href="https://www.ncbi.nlm.nih.gov/nuccore"><img src="https://www.ncbi.nlm.nih.gov/books/NBK45527/bin/nuchome.jpg"></a></td>
+<td style="text-align:center"><a href="https://www.ncbi.nlm.nih.gov/nuccore"><img src="https://www.britmycolsoc.org.uk/application/files/cache/thumbnails/84b789aac973a6bd5346cf3c02ee463d.png"></a></td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
 <span class="kn">import</span> <span class="nn">requests</span>
 <span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">guide_match_array</span> <span class="o">=</span> <span class="s2">"gagttca"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">guide_match_array</span> <span class="o">=</span> <span class="s2">&quot;gagttca&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">front_patterns</span> <span class="o">=</span><span class="sa">r</span><span class="s1">'<meta name="ncbi_uidlist" content="(.+)" /><meta name="ncbi_filter" &#x27;&lt; span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">front_patterns</span> <span class="o">=</span><span class="sa">r</span><span class="s1">&#39;&lt;meta name=&quot;ncbi_uidlist&quot; content=&quot;(.+)&quot; /&gt;&lt;meta name=&quot;ncbi_filter&quot;&#39;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">back_request_format</span> <span class="o">=</span> <span class="s2">"https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=</span><span class="si">{}</span><span class="s2">&db;=nuccore&report;=genbank&conwithfeat;=on&hide-cdd;=on&retmode;=html&withmarkup;=on&tool;=portal&log;$=seqview&maxdownloadsize;=1000000"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">back_request_format</span> <span class="o">=</span> <span class="s2">&quot;https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=</span><span class="si">{}</span><span class="s2">&amp;db=nuccore&amp;report=genbank&amp;conwithfeat=on&amp;hide-cdd=on&amp;retmode=html&amp;withmarkup=on&amp;tool=portal&amp;log$=seqview&amp;maxdownloadsize=1000000&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">back_patterns</span> <span class="o">=</span> <span class="s2">">([atgc ]*)</span>"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">back_patterns</span> <span class="o">=</span> <span class="s2">&quot;&gt;([atgc ]*)&lt;/span&gt;&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">gene2array</span><span class="p">(</span><span class="n">GeneName</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1">#=== httpリクエストを飛ばしてプログラムで検索を行う ===</span>
-        <span class="n">front_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://www.ncbi.nlm.nih.gov/nuccore/'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">'term'</span><span class="p">:</span> <span class="n">GeneName</span><span class="p">})</span>
+        <span class="n">front_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.ncbi.nlm.nih.gov/nuccore/&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span><span class="p">:</span> <span class="n">GeneName</span><span class="p">})</span>
         <span class="n">genome_id</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">front_patterns</span><span class="p">,</span> <span class="n">front_response</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># ex) 1519241814</span>
         <span class="n">back_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">back_request_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">genome_id</span><span class="p">))</span>
-        <span class="n">sequences</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">back_patterns</span><span class="p">,</span> <span class="n">back_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="c1"># ex) ['atgcatgcat gcatgca...', 'at..', .., '..atgc']</span>
-        <span class="n">sequence</span> <span class="o">=</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="s2">""</span><span class="p">)</span>
+        <span class="n">sequences</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">back_patterns</span><span class="p">,</span> <span class="n">back_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span> <span class="c1"># ex) [&#39;atgcatgcat gcatgca...&#39;, &#39;at..&#39;, .., &#39;..atgc&#39;]</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         
         <span class="c1">#=== 配列の長さ ===</span>
         <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
         
-        <span class="c1">#=== seed領域と一致するポジションの5'末端からの割合 ===</span>
+        <span class="c1">#=== seed領域と一致するポジションの5&#39;末端からの割合 ===</span>
         <span class="n">position</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">guide_match_array</span><span class="p">,</span> <span class="n">sequence</span><span class="p">)</span>
         <span class="n">p</span> <span class="o">=</span> <span class="n">position</span><span class="o">.</span><span class="n">end</span><span class="p">()</span><span class="o">/</span><span class="n">length</span> <span class="k">if</span> <span class="n">position</span> <span class="k">else</span> <span class="mi">0</span>
         
@@ -462,82 +513,110 @@
     <span class="k">except</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># GeneNameを全て調べる。</span>
 <span class="n">gene_names</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">SystematicName</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_gene_name</span> <span class="o">=</span> <span class="n">gene_names</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"sample gene name: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample_gene_name</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sample gene name: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sample_gene_name</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>sample gene name: NM_000147
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">gene2array</span><span class="p">(</span><span class="n">sample_gene_name</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['cgggccaatcgttagtcagagtgggcggagccgcccgcgggcacctgcgcgttaagagtgggccgcgtcgctgaggggtagcgatgcgggctccggggatgaggtcgcggccggcgggtcccgcgctgttgctgctgctgctcttcctcggagcggccgagtcggtgcgtcgggcccagcctccgcgccgctacaccccagactggccgagcctggattctcggccgctgccggcctggttcgacgaagccaagttcggggtgttcatccactggggcgtgttctcggtgcccgcctggggcagcgagtggttctggtggcactggcagggcgaggggcggccgcagtaccagcgcttcatgcgcgacaactacccgcccggcttcagctacgccgacttcggaccgcagttcactgcgcgcttcttccacccggaggagtgggccgacctcttccaggccgcgggcgccaagtatgtagttttgacgacaaagcatcacgaaggcttcacaaactggccgagtcctgtgtcttggaactggaactccaaagacgtggggcctcatcgggatttggttggtgaattgggaacagctctccggaagaggaacatccgctatggactataccactcactcttagagtggttccatccactctatctacttgataagaaaaatggcttcaaaacacagcattttgtcagtgcaaaaacaatgccagagctgtacgaccttgttaacagctataaacctgatctgatctggtctgatggggagtgggaatgtcctgatacttactggaactccacaaattttctttcatggctctacaatgacagccctgtcaaggatgaggtggtagtaaatgaccgatggggtcagaactgttcctgtcaccatggaggatactataactgtgaagataaattcaagccacagagcttgccagatcacaagtgggagatgtgcaccagcattgacaagttttcctggggctatcgtcgtgacatggcattgtctgatgttacagaagaatctgaaatcatttcggaactggttcagacagtaagtttgggaggcaactatcttctgaacattggaccaactaaagatggactgattgttcccatcttccaagaaaggcttcttgctgttgggaaatggctgagcatcaatggggaggctatctatgcctccaaaccatggcgggtgcaatgggaaaagaacacaacatctgtatggtatacctcaaagggatcggctgtttatgccatttttctgcactggccagaaaatggagtcttaaaccttgaatcccccataactacctcaactacaaagataacaatgctgggaattcaaggagatctgaagtggtccacagatccagataaaggtctcttcatctctctaccccagttgccaccctctgctgtccccgcagagtttgcttggactataaagctgacaggagtgaagtaatcatttgagtgcaagaagaaagaggcgctgctcactgttttcctgcttcagtttttctcttatagtaccatcactataatcaacgaacttctcttctccacccagagatggcttttccaacacattttaattaaaggaactgagtacattaccctgatgtctaaatggaccaaagatctgagatccattgtgattatatctgtatcaggtcagcagaagaaggaactgagcagttgaactctgagttcatcaattgtaatatttggaaattatctacaatggaatcttccctctgttctctgataacctacttgcttactcaatgcctttaagccaagtcaccctgttgcctatgggaggaggtggaaggatttggcaagctcaaccacatgctatttagttagcatcagttgtcaccaacagtctttctgcaaagggcaggagagctttgggggaaaggaaaaggcttaccaggctgctatggtcaactcttcagaaattttcagagcaatctaaaagcgccaaaattcgctatgtttacagtgatactattaagaaaatgaatgtgattctgctctgtctttttaagtatgatcaaataaaaaatttgtacatcacaatcatttctaccaaaaaaaaaaaaaaaaaa',
+<pre>[&#39;cgggccaatcgttagtcagagtgggcggagccgcccgcgggcacctgcgcgttaagagtgggccgcgtcgctgaggggtagcgatgcgggctccggggatgaggtcgcggccggcgggtcccgcgctgttgctgctgctgctcttcctcggagcggccgagtcggtgcgtcgggcccagcctccgcgccgctacaccccagactggccgagcctggattctcggccgctgccggcctggttcgacgaagccaagttcggggtgttcatccactggggcgtgttctcggtgcccgcctggggcagcgagtggttctggtggcactggcagggcgaggggcggccgcagtaccagcgcttcatgcgcgacaactacccgcccggcttcagctacgccgacttcggaccgcagttcactgcgcgcttcttccacccggaggagtgggccgacctcttccaggccgcgggcgccaagtatgtagttttgacgacaaagcatcacgaaggcttcacaaactggccgagtcctgtgtcttggaactggaactccaaagacgtggggcctcatcgggatttggttggtgaattgggaacagctctccggaagaggaacatccgctatggactataccactcactcttagagtggttccatccactctatctacttgataagaaaaatggcttcaaaacacagcattttgtcagtgcaaaaacaatgccagagctgtacgaccttgttaacagctataaacctgatctgatctggtctgatggggagtgggaatgtcctgatacttactggaactccacaaattttctttcatggctctacaatgacagccctgtcaaggatgaggtggtagtaaatgaccgatggggtcagaactgttcctgtcaccatggaggatactataactgtgaagataaattcaagccacagagcttgccagatcacaagtgggagatgtgcaccagcattgacaagttttcctggggctatcgtcgtgacatggcattgtctgatgttacagaagaatctgaaatcatttcggaactggttcagacagtaagtttgggaggcaactatcttctgaacattggaccaactaaagatggactgattgttcccatcttccaagaaaggcttcttgctgttgggaaatggctgagcatcaatggggaggctatctatgcctccaaaccatggcgggtgcaatgggaaaagaacacaacatctgtatggtatacctcaaagggatcggctgtttatgccatttttctgcactggccagaaaatggagtcttaaaccttgaatcccccataactacctcaactacaaagataacaatgctgggaattcaaggagatctgaagtggtccacagatccagataaaggtctcttcatctctctaccccagttgccaccctctgctgtccccgcagagtttgcttggactataaagctgacaggagtgaagtaatcatttgagtgcaagaagaaagaggcgctgctcactgttttcctgcttcagtttttctcttatagtaccatcactataatcaacgaacttctcttctccacccagagatggcttttccaacacattttaattaaaggaactgagtacattaccctgatgtctaaatggaccaaagatctgagatccattgtgattatatctgtatcaggtcagcagaagaaggaactgagcagttgaactctgagttcatcaattgtaatatttggaaattatctacaatggaatcttccctctgttctctgataacctacttgcttactcaatgcctttaagccaagtcaccctgttgcctatgggaggaggtggaaggatttggcaagctcaaccacatgctatttagttagcatcagttgtcaccaacagtctttctgcaaagggcaggagagctttgggggaaaggaaaaggcttaccaggctgctatggtcaactcttcagaaattttcagagcaatctaaaagcgccaaaattcgctatgtttacagtgatactattaagaaaatgaatgtgattctgctctgtctttttaagtatgatcaaataaaaaatttgtacatcacaatcatttctaccaaaaaaaaaaaaaaaaaa&#39;,
  2133,
  0.8124706985466479]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>「<b>塩基配列</b>・<b>塩基配列長</b>・<b>シードマッチ領域の5'末端からの割合</b>」が記録されていることがわかる。</p>
+
 </div>
 </div>
 </div>
@@ -545,6 +624,7 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　うまくプログラムが実行できていることがわかったので、以下を実行して $21511$ データ分の配列を入手する。</p>
+
 </div>
 </div>
 </div>
@@ -555,9 +635,10 @@
 <span class="k">for</span> <span class="n">genome</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">gene_names</span><span class="p">):</span>
     <span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gene2array</span><span class="p">(</span><span class="n">genome</span><span class="p">))</span>
 <span class="n">df_output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
-<span class="n">df_output</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">'sequence'</span><span class="p">,</span><span class="s1">'length'</span><span class="p">,</span><span class="s1">'position'</span><span class="p">]</span>
-<span class="n">df_output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'seeqences.csv'</span><span class="p">)</span>
+<span class="n">df_output</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span><span class="s1">&#39;length&#39;</span><span class="p">,</span><span class="s1">&#39;position&#39;</span><span class="p">]</span>
+<span class="n">df_output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;seeqences.csv&#39;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -565,27 +646,30 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　<b>二時間ほど回したが、以下のような出力が出ていた…。（現在時刻 6/20 20:36）</b></p>
-<pre><code>9%|▉         | 1963/21511 [1:55:43<19:12:28,  3.54s/it]
-9%|▉         | 1964/21511 [1:55:45<19:12:04,  3.54s/it]
-9%|▉         | 1965/21511 [1:55:50<19:12:17,  3.54s/it]
-9%|▉         | 1966/21511 [1:55:54<19:12:17,  3.54s/it]
-9%|▉         | 1967/21511 [1:55:56<19:11:56,  3.54s/it]
-9%|▉         | 1968/21511 [1:56:00<19:12:05,  3.54s/it]</code></pre>
+
+<pre><code>9%|▉         | 1963/21511 [1:55:43&lt;19:12:28,  3.54s/it]
+9%|▉         | 1964/21511 [1:55:45&lt;19:12:04,  3.54s/it]
+9%|▉         | 1965/21511 [1:55:50&lt;19:12:17,  3.54s/it]
+9%|▉         | 1966/21511 [1:55:54&lt;19:12:17,  3.54s/it]
+9%|▉         | 1967/21511 [1:55:56&lt;19:11:56,  3.54s/it]
+9%|▉         | 1968/21511 [1:56:00&lt;19:12:05,  3.54s/it]</code></pre>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><blockquote class="twitter-tweet" data-lang="ja"><p dir="ltr" lang="ja">明日のプレゼン開始時にデータ収集が終わるんだけど解析とは？？ <a href="https://t.co/0aOb3BVIDF">pic.twitter.com/0aOb3BVIDF</a></p>— しゅーと (@cabernet_rock) <a href="https://twitter.com/cabernet_rock/status/1141671238286245888?ref_src=twsrc%5Etfw">2019年6月20日</a></blockquote></p>
-<script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"></script>
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">明日のプレゼン開始時にデータ収集が終わるんだけど解析とは？？ <a href="https://t.co/0aOb3BVIDF">pic.twitter.com/0aOb3BVIDF</a></p>&mdash; しゅーと (@cabernet_rock) <a href="https://twitter.com/cabernet_rock/status/1141671238286245888?ref_src=twsrc%5Etfw">2019年6月20日</a></blockquote></p>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -594,13 +678,14 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="anchor3">3. AWSにインスタンスを立て並列処理</h3><p>　6/21(金)のプレゼンテーションに間に合いそうにないので、<b>急遽 [AWS](https://aws.amazon.com/jp/) でEC2インスタンスを複数台（計 $11$ 個）立てて並列処理を行うことにした。</b></p>
 <p>　まず、以下の <code>main.py</code> ファイルと <code>result.xlsx</code> を格納した <code>microarray</code> というディレクトリを準備した。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="main.py"><code>main.py</code><a class="anchor-link" href="#main.py">¶</a></h4><div class="highlight"><pre><span></span><span class="c1">#coding:utf-8</span>
+<h4 id="main.py"><code>main.py</code><a class="anchor-link" href="#main.py">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1">#coding:utf-8</span>
 <span class="kn">import</span> <span class="nn">argparse</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
@@ -611,11 +696,11 @@
 <span class="k">def</span> <span class="nf">gene2array</span><span class="p">(</span><span class="n">GeneName</span><span class="p">):</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="c1">#=== httpsリクエストを飛ばして検索を行う ===</span>
-        <span class="n">front_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'https://www.ncbi.nlm.nih.gov/nuccore/'</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">'term'</span><span class="p">:</span> <span class="n">GeneName</span><span class="p">})</span>
+        <span class="n">front_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.ncbi.nlm.nih.gov/nuccore/&#39;</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;term&#39;</span><span class="p">:</span> <span class="n">GeneName</span><span class="p">})</span>
         <span class="n">genome_id</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">front_patterns</span><span class="p">,</span> <span class="n">front_response</span><span class="o">.</span><span class="n">text</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">back_response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">back_request_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">genome_id</span><span class="p">))</span>
         <span class="n">sequences</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">back_patterns</span><span class="p">,</span> <span class="n">back_response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-        <span class="n">sequence</span> <span class="o">=</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">" "</span><span class="p">,</span><span class="s2">""</span><span class="p">)</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
 
         <span class="c1">#=== 配列の長さ ===</span>
         <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
@@ -628,23 +713,23 @@
     <span class="k">except</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
   <span class="n">parser</span> <span class="o">=</span> <span class="n">argparse</span><span class="o">.</span><span class="n">ArgumentParser</span><span class="p">()</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'--begin'</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
-  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">'--end'</span><span class="p">,</span>   <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--begin&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+  <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--end&#39;</span><span class="p">,</span>   <span class="nb">type</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
   <span class="n">args</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
 
   <span class="c1">#=== パラメータ定義 ===</span>
-  <span class="n">guide_match_array</span> <span class="o">=</span> <span class="s2">"gagttca"</span>
-  <span class="n">front_patterns</span> <span class="o">=</span><span class="sa">r</span><span class="s1">'<meta name="ncbi_uidlist" content="(.+)" /><meta name="ncbi_filter" &#x27;&lt; span>
-  <span class="n">back_request_format</span> <span class="o">=</span> <span class="s2">"https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=</span><span class="si">{}</span><span class="s2">&db;=nuccore&report;=genbank&conwithfeat;=on&hide-cdd;=on&retmode;=html&withmarkup;=on&tool;=portal&log;$=seqview&maxdownloadsize;=1000000"</span>
-  <span class="n">back_patterns</span> <span class="o">=</span> <span class="s2">">([atgc ]*)</span>"</span>
+  <span class="n">guide_match_array</span> <span class="o">=</span> <span class="s2">&quot;gagttca&quot;</span>
+  <span class="n">front_patterns</span> <span class="o">=</span><span class="sa">r</span><span class="s1">&#39;&lt;meta name=&quot;ncbi_uidlist&quot; content=&quot;(.+)&quot; /&gt;&lt;meta name=&quot;ncbi_filter&quot;&#39;</span>
+  <span class="n">back_request_format</span> <span class="o">=</span> <span class="s2">&quot;https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=</span><span class="si">{}</span><span class="s2">&amp;db=nuccore&amp;report=genbank&amp;conwithfeat=on&amp;hide-cdd=on&amp;retmode=html&amp;withmarkup=on&amp;tool=portal&amp;log$=seqview&amp;maxdownloadsize=1000000&quot;</span>
+  <span class="n">back_patterns</span> <span class="o">=</span> <span class="s2">&quot;&gt;([atgc ]*)&lt;/span&gt;&quot;</span>
 
   <span class="n">begin</span> <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">begin</span>
   <span class="n">end</span>   <span class="o">=</span> <span class="n">args</span><span class="o">.</span><span class="n">end</span>
-  <span class="n">df</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">"result.xlsx"</span><span class="p">)[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+  <span class="n">df</span>    <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;result.xlsx&quot;</span><span class="p">)[</span><span class="n">begin</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
 
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="si">{}</span><span class="s2"> ~ </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2"> ~ </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
   <span class="n">gene_names</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">SystematicName</span><span class="o">.</span><span class="n">values</span>
 
   <span class="n">lst</span> <span class="o">=</span> <span class="p">[]</span>
@@ -652,28 +737,36 @@
       <span class="n">lst</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gene2array</span><span class="p">(</span><span class="n">genome</span><span class="p">))</span>
 
   <span class="n">df_output</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
-  <span class="n">df_output</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"sequence"</span><span class="p">,</span><span class="s2">"length"</span><span class="p">,</span><span class="s2">"p"</span><span class="p">]</span>
-  <span class="n">df_output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">'sequence</span><span class="si">{:05}</span><span class="s1">to</span><span class="si">{:05}</span><span class="s1">.csv'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-  <span class="nb">print</span><span class="p">(</span><span class="s2">"finished."</span><span class="p">)</span>
+  <span class="n">df_output</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sequence&quot;</span><span class="p">,</span><span class="s2">&quot;length&quot;</span><span class="p">,</span><span class="s2">&quot;p&quot;</span><span class="p">]</span>
+  <span class="n">df_output</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;sequence</span><span class="si">{:05}</span><span class="s1">to</span><span class="si">{:05}</span><span class="s1">.csv&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span><span class="n">end</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finished.&quot;</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 階層構造は以下の通り。</span>
 <span class="o">!</span> tree microarray
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>microarray
 ├── main.py
@@ -684,13 +777,16 @@
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="データを送信する">データを送信する<a class="anchor-link" href="#データを送信する">¶</a></h4><p>　上記のディレクトリを <code>scp</code> コマンドでEC2インスタンスに転送し、プログラムが実行できる環境を構築する。諸々の準備が整い、<b>後は実行するだけ</b>となったら<font color="red"><b>Amazon マシンイメージ (AMI) </b></font>を取り、イメージを取得する。このイメージを元にEC2インスタンスを作成することで、かなりの作業を省略することができる。</p>
+<h4 id="&#12487;&#12540;&#12479;&#12434;&#36865;&#20449;&#12377;&#12427;">&#12487;&#12540;&#12479;&#12434;&#36865;&#20449;&#12377;&#12427;<a class="anchor-link" href="#&#12487;&#12540;&#12479;&#12434;&#36865;&#20449;&#12377;&#12427;">&#182;</a></h4><p>　上記のディレクトリを <code>scp</code> コマンドでEC2インスタンスに転送し、プログラムが実行できる環境を構築する。諸々の準備が整い、<b>後は実行するだけ</b>となったら<font color="red"><b>Amazon マシンイメージ (AMI) </b></font>を取り、イメージを取得する。このイメージを元にEC2インスタンスを作成することで、かなりの作業を省略することができる。</p>
+
 </div>
 </div>
 </div>
@@ -699,7 +795,7 @@
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># ローカルのデータをそれぞれのEC2インスタンスに送る。</span>
 $ scp -r -i ~/.ssh/ShutoBioinfo.pem microarray ubuntu@ec2-3-113-33-209.ap-northeast-1.compute.amazonaws.com:/home/ubuntu/
-$ ssh -i <span class="s2">"path/to/key.pem"</span> ubuntu@ec2-3-113-33-209.ap-northeast-1.compute.amazonaws.com
+$ ssh -i <span class="s2">&quot;path/to/key.pem&quot;</span> ubuntu@ec2-3-113-33-209.ap-northeast-1.compute.amazonaws.com
 
 ----------------------------------------------------------------
 Welcome to Ubuntu <span class="m">18</span>.04.1 LTS <span class="o">(</span>GNU/Linux <span class="m">4</span>.15.0-1041-aws x86_64<span class="o">)</span>
@@ -719,15 +815,17 @@ Welcome to Ubuntu <span class="m">18</span>.04.1 LTS <span class="o">(</span>GNU
 ----------------------------------------------------------------
 
 ubuntu@ip-172-31-45-117:~$ <span class="nb">cd</span> microarray/
-ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="m">0</span> --end <span class="m">2000</span> > Logger.log
+ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="m">0</span> --end <span class="m">2000</span> &gt; Logger.log
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="インスタンス情報とコマンド作成プログラム">インスタンス情報とコマンド作成プログラム<a class="anchor-link" href="#インスタンス情報とコマンド作成プログラム">¶</a></h4><p>　以下のインスタンスを作成してプログラムを実行した。この時、<b>一々コピーアンドペーストするのは面倒なので、スクレイピングをしている間にコマンドを準備しておく。</b></p>
+<h4 id="&#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#24773;&#22577;&#12392;&#12467;&#12510;&#12531;&#12489;&#20316;&#25104;&#12503;&#12525;&#12464;&#12521;&#12512;">&#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#24773;&#22577;&#12392;&#12467;&#12510;&#12531;&#12489;&#20316;&#25104;&#12503;&#12525;&#12464;&#12521;&#12512;<a class="anchor-link" href="#&#12452;&#12531;&#12473;&#12479;&#12531;&#12473;&#24773;&#22577;&#12392;&#12467;&#12510;&#12531;&#12489;&#20316;&#25104;&#12503;&#12525;&#12464;&#12521;&#12512;">&#182;</a></h4><p>　以下のインスタンスを作成してプログラムを実行した。この時、<b>一々コピーアンドペーストするのは面倒なので、スクレイピングをしている間にコマンドを準備しておく。</b></p>
+
 </div>
 </div>
 </div>
@@ -799,36 +897,41 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">publicDNSs</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">"3-113-33-209"</span><span class="p">,</span><span class="s2">"3-112-149-206"</span><span class="p">,</span><span class="s2">"3-112-213-203"</span><span class="p">,</span>
-    <span class="s2">"13-113-177-99"</span><span class="p">,</span><span class="s2">"54-249-50-45"</span><span class="p">,</span><span class="s2">"13-231-179-134"</span><span class="p">,</span>
-    <span class="s2">"13-115-166-8"</span><span class="p">,</span><span class="s2">"3-112-73-40"</span><span class="p">,</span><span class="s2">"52-198-222-27"</span><span class="p">,</span>
-    <span class="s2">"13-115-220-149"</span><span class="p">,</span><span class="s2">"18-182-16-178"</span>
+    <span class="s2">&quot;3-113-33-209&quot;</span><span class="p">,</span><span class="s2">&quot;3-112-149-206&quot;</span><span class="p">,</span><span class="s2">&quot;3-112-213-203&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;13-113-177-99&quot;</span><span class="p">,</span><span class="s2">&quot;54-249-50-45&quot;</span><span class="p">,</span><span class="s2">&quot;13-231-179-134&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;13-115-166-8&quot;</span><span class="p">,</span><span class="s2">&quot;3-112-73-40&quot;</span><span class="p">,</span><span class="s2">&quot;52-198-222-27&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;13-115-220-149&quot;</span><span class="p">,</span><span class="s2">&quot;18-182-16-178&quot;</span>
 <span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">begins</span> <span class="o">=</span> <span class="p">[</span>  <span class="n">i</span>  <span class="o">*</span> <span class="mi">2000</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)]</span>
 <span class="n">ends</span>   <span class="o">=</span> <span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span> <span class="mi">2000</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -836,12 +939,13 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
 <div class="highlight"><pre><span></span><span class="c1"># ssh接続からプログラム実行まで</span>
 <span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">publicDNSs</span><span class="p">,</span> <span class="n">begins</span><span class="p">,</span><span class="n">ends</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span>
-        <span class="s2">" ssh -i 'path/to/key.pem' ubuntu@ec2-</span><span class="si">{}</span><span class="s2">.ap-northeast-1.compute.amazonaws.com</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
-        <span class="s2">"cd microarray</span><span class="se">\n</span><span class="s2">"</span><span class="p">,</span>
-        <span class="s2">"nohup python main.py --begin </span><span class="si">{}</span><span class="s2"> --end </span><span class="si">{}</span><span class="s2"> > Logger.log &</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">e</span><span class="p">),</span>
-        <span class="s2">"exit"</span>
+        <span class="s2">&quot; ssh -i &#39;path/to/key.pem&#39; ubuntu@ec2-</span><span class="si">{}</span><span class="s2">.ap-northeast-1.compute.amazonaws.com</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">),</span>
+        <span class="s2">&quot;cd microarray</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;nohup python main.py --begin </span><span class="si">{}</span><span class="s2"> --end </span><span class="si">{}</span><span class="s2"> &gt; Logger.log &amp;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">e</span><span class="p">),</span>
+        <span class="s2">&quot;exit&quot;</span>
     <span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -849,6 +953,7 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="anchor4">4. NCBIの結果を統合する</h3><p>　無事それぞれがスクレイピングを完了したので、結果を統合する。なお、<b>EC2インスタンスからデータを取得するのは、ローカルから以下のコマンドを実行するだけで可能である。</b></p>
+
 </div>
 </div>
 </div>
@@ -857,8 +962,9 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># 結果をEC2からリモートに送る</span>
 <span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">e</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">publicDNSs</span><span class="p">,</span> <span class="n">begins</span><span class="p">,</span><span class="n">ends</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"scp -i 'path/to/key.pem' ubuntu@ec2-</span><span class="si">{}</span><span class="s2">.ap-northeast-1.compute.amazonaws.com:/home/ubuntu/microarray/sequence</span><span class="si">{:05}</span><span class="s2">to</span><span class="si">{:05}</span><span class="s2">.csv ."</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">e</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;scp -i &#39;path/to/key.pem&#39; ubuntu@ec2-</span><span class="si">{}</span><span class="s2">.ap-northeast-1.compute.amazonaws.com:/home/ubuntu/microarray/sequence</span><span class="si">{:05}</span><span class="s2">to</span><span class="si">{:05}</span><span class="s2">.csv .&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">e</span><span class="p">))</span>
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -866,24 +972,32 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><font color="red"><b>※ 本来ならうまくスクレイピングできなかったデータに関してはもう一度リクエストを飛ばす</b></font>なりの作業を行ってデータを集める必要があるが、<font color="red"><b>"No items found"</b></font> とリスポンスが返ってきてしまっていたデータがかなりあったので今回は２回目だけ行い、それ以降は深追いしなかった:(</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 以下のファイルが作られた。</span>
 <span class="o">!</span> tree AWS
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>AWS
 ├── sequence00000to02000.csv
@@ -902,103 +1016,133 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">"AWS"</span><span class="p">))</span> <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">".csv"</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">file_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s2">&quot;AWS&quot;</span><span class="p">))</span> <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="o">==</span> <span class="s2">&quot;.csv&quot;</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 確認</span>
 <span class="n">file_names</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[23]:</div>
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>['sequence00000to02000.csv',
- 'sequence02000to04000.csv',
- 'sequence04000to06000.csv',
- 'sequence06000to08000.csv',
- 'sequence08000to10000.csv',
- 'sequence10000to12000.csv',
- 'sequence12000to14000.csv',
- 'sequence14000to16000.csv',
- 'sequence16000to18000.csv',
- 'sequence18000to20000.csv',
- 'sequence20000to22000.csv']</pre>
+<pre>[&#39;sequence00000to02000.csv&#39;,
+ &#39;sequence02000to04000.csv&#39;,
+ &#39;sequence04000to06000.csv&#39;,
+ &#39;sequence06000to08000.csv&#39;,
+ &#39;sequence08000to10000.csv&#39;,
+ &#39;sequence10000to12000.csv&#39;,
+ &#39;sequence12000to14000.csv&#39;,
+ &#39;sequence14000to16000.csv&#39;,
+ &#39;sequence16000to18000.csv&#39;,
+ &#39;sequence18000to20000.csv&#39;,
+ &#39;sequence20000to22000.csv&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">file_names</span><span class="p">:</span>
-    <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'AWS'</span><span class="p">,</span><span class="n">filename</span><span class="p">))</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;AWS&#39;</span><span class="p">,</span><span class="n">filename</span><span class="p">))</span>
     <span class="n">df_all</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_all</span><span class="p">,</span><span class="n">tmp</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 結合</span>
-<span class="n">df_cocated</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_all</span><span class="p">[[</span><span class="s1">'sequence'</span><span class="p">,</span><span class="s1">'length'</span><span class="p">,</span><span class="s1">'p'</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_cocated</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_all</span><span class="p">[[</span><span class="s1">&#39;sequence&#39;</span><span class="p">,</span><span class="s1">&#39;length&#39;</span><span class="p">,</span><span class="s1">&#39;p&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span><span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cocated</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[26]:</div>
+
+    <div class="prompt output_prompt">Out[26]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -1015,108 +1159,120 @@ ubuntu@ip-172-31-45-117:~/microarray$ nohup python main.py --begin <span class="
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>sequence</th>
-<th>length</th>
-<th>p</th>
-<th>FeatureNum</th>
-<th>ControlType</th>
-<th>ProbeName</th>
-<th>GeneName</th>
-<th>SystematicName</th>
-<th>mock(1)</th>
-<th>RNA</th>
-<th>2OMe3</th>
-<th>2OMe5</th>
-<th>mock(5)</th>
-<th>2OMe7</th>
-<th>LNA3</th>
-<th>LNA7</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>4</td>
-<td>0</td>
-<td>A_23_P117082</td>
-<td>HEBP1</td>
-<td>NM_015987</td>
-<td>12566.870</td>
-<td>12356.960</td>
-<td>12896.740</td>
-<td>12860.240</td>
-<td>12416.270</td>
-<td>13869.810</td>
-<td>14213.960</td>
-<td>13553.84</td>
-</tr>
-<tr>
-<th>1</th>
-<td>NaN</td>
-<td>NaN</td>
-<td>NaN</td>
-<td>9</td>
-<td>0</td>
-<td>A_21_P0000509</td>
-<td>SNAR-G2</td>
-<td>NR_024244</td>
-<td>122723.700</td>
-<td>117958.900</td>
-<td>118623.000</td>
-<td>128495.100</td>
-<td>117447.400</td>
-<td>124273.000</td>
-<td>113802.500</td>
-<td>107326.70</td>
-</tr>
-<tr>
-<th>2</th>
-<td>ggaggagttacgcaggcagggttgtggttgctggctgttaccagga...</td>
-<td>711.0</td>
-<td>0.0</td>
-<td>10</td>
-<td>0</td>
-<td>A_21_P0000744</td>
-<td>LOC100506844</td>
-<td>NR_038269</td>
-<td>1234.146</td>
-<td>1281.739</td>
-<td>1128.132</td>
-<td>1199.297</td>
-<td>1251.119</td>
-<td>1141.723</td>
-<td>1302.718</td>
-<td>1264.15</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sequence</th>
+      <th>length</th>
+      <th>p</th>
+      <th>FeatureNum</th>
+      <th>ControlType</th>
+      <th>ProbeName</th>
+      <th>GeneName</th>
+      <th>SystematicName</th>
+      <th>mock(1)</th>
+      <th>RNA</th>
+      <th>2OMe3</th>
+      <th>2OMe5</th>
+      <th>mock(5)</th>
+      <th>2OMe7</th>
+      <th>LNA3</th>
+      <th>LNA7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4</td>
+      <td>0</td>
+      <td>A_23_P117082</td>
+      <td>HEBP1</td>
+      <td>NM_015987</td>
+      <td>12566.870</td>
+      <td>12356.960</td>
+      <td>12896.740</td>
+      <td>12860.240</td>
+      <td>12416.270</td>
+      <td>13869.810</td>
+      <td>14213.960</td>
+      <td>13553.84</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>9</td>
+      <td>0</td>
+      <td>A_21_P0000509</td>
+      <td>SNAR-G2</td>
+      <td>NR_024244</td>
+      <td>122723.700</td>
+      <td>117958.900</td>
+      <td>118623.000</td>
+      <td>128495.100</td>
+      <td>117447.400</td>
+      <td>124273.000</td>
+      <td>113802.500</td>
+      <td>107326.70</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ggaggagttacgcaggcagggttgtggttgctggctgttaccagga...</td>
+      <td>711.0</td>
+      <td>0.0</td>
+      <td>10</td>
+      <td>0</td>
+      <td>A_21_P0000744</td>
+      <td>LOC100506844</td>
+      <td>NR_038269</td>
+      <td>1234.146</td>
+      <td>1281.739</td>
+      <td>1128.132</td>
+      <td>1199.297</td>
+      <td>1251.119</td>
+      <td>1141.723</td>
+      <td>1302.718</td>
+      <td>1264.15</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># かなりNaN(配列データが取得できなかったもの)が多い</span>
 <span class="n">df_cocated</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[27]:</div>
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>sequence          13890
 length            13888
@@ -1136,105 +1292,135 @@ LNA3                  0
 LNA7                  0
 dtype: int64</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="anchor5">5. 相関関係を調べる</h3><p>　ここまでで集めたデータの特徴量と <code>log2(siRNA/mock)</code> の相関関係を調べる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">"mock"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cocated</span><span class="p">[[</span><span class="s2">"mock(1)"</span><span class="p">,</span><span class="s2">"mock(5)"</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">&quot;mock&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_cocated</span><span class="p">[[</span><span class="s2">&quot;mock(1)&quot;</span><span class="p">,</span><span class="s2">&quot;mock(5)&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">"RNA"</span><span class="p">]</span><span class="o">/</span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">"mock"</span><span class="p">])</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log2</span><span class="p">(</span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">&quot;RNA&quot;</span><span class="p">]</span><span class="o">/</span><span class="n">df_cocated</span><span class="p">[</span><span class="s2">&quot;mock&quot;</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 正しく配列データが取得できたものだけを利用する。</span>
-<span class="n">df_used</span> <span class="o">=</span> <span class="n">df_cocated</span><span class="p">[</span><span class="n">df_cocated</span><span class="o">.</span><span class="n">length</span><span class="o">></span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_used</span> <span class="o">=</span> <span class="n">df_cocated</span><span class="p">[</span><span class="n">df_cocated</span><span class="o">.</span><span class="n">length</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"取得できたmRNA: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_used</span><span class="p">)))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;取得できたmRNA: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_used</span><span class="p">)))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>取得できたmRNA: 7621
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 取得したmRNAの配列の長さの分布</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_used</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The histgram of the length of mRNA"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"length"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"N"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The histgram of the length of mRNA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;length&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY4AAAEWCAYAAABxMXBSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1369,53 +1555,75 @@ Ir6V6r6F4uvGpwKXpO9NMmspB4fZwExL08+Bhyje6CemZU9ExKo0vxIYL2k4cERE3JfK/6mP9u+I
 14CkMZJeV6tyROwEXpB0QiqaXVr8AsW/JzXbpzk4zAYgIu6iON10n6RHKP4FaF9v/nOBGyStAg4D
 nkvl91JcDC9fHDfb5/jbcc0GmaTDI+LFND+f4iu5L2pxt8z6zedLzQbfaZIupvj9exI4p7XdMcvj
 Iw4zM8viaxxmZpbFwWFmZlkcHGZmlsXBYWZmWRwcZmaW5f8D1ElZD+f0fEMAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"7merマッチ出現量の期待値: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_used</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">**</span><span class="mi">7</span><span class="p">)))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;7merマッチ出現量の期待値: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">df_used</span><span class="o">.</span><span class="n">length</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">**</span><span class="mi">7</span><span class="p">)))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>7merマッチ出現量の期待値: 1662.5132446289062
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 取得した配列の発現量の分布</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_used</span><span class="p">[</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The histgram of the expression level of mRNA"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"expression level"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"N"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df_used</span><span class="p">[</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The histgram of the expression level of mRNA&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;expression level&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;N&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAY4AAAEWCAYAAABxMXBSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1563,17 +1771,21 @@ eh9FV9DkiLgB+JOk09NsjwFnS1oIDKK4DlLLycAZkipPBa78/OjX0wXuR4DfUDxh9SPAI6mr6W3A
 dVXLugWYl+reDZwXESs2YHv/RPH48skprrkUXWoVNwEfpei26kl9s2756bj2hiapA7gtIt7W5lDM
 +gyfcZiZWRafcZiZWRafcZiZWRYnDjMzy+LEYWZmWZw4zMwsixOHmZll+f8f5JqS9VzW8wAAAABJ
 RU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># シード領域とマッチする領域の出てくる場所の割合</span>
 <span class="k">def</span> <span class="nf">match_rate</span><span class="p">(</span><span class="n">match_array</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">match_array</span><span class="p">,</span> <span class="n">array</span><span class="p">)</span>
@@ -1583,47 +1795,61 @@ RU5ErkJggg==
         <span class="n">p</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">return</span> <span class="n">p</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># うまく取得できていなかったので、これらのデータを利用</span>
-<span class="n">df_used</span><span class="p">[</span><span class="s2">"position"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_used</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">match_rate</span><span class="p">(</span><span class="s1">'gagttca'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_used</span><span class="p">[</span><span class="s2">&quot;position&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_used</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">match_rate</span><span class="p">(</span><span class="s1">&#39;gagttca&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used</span><span class="p">[</span><span class="s2">"position_rate"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_used</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">match_rate</span><span class="p">(</span><span class="s1">'gagttca'</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used</span><span class="p">[</span><span class="s2">&quot;position_rate&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_used</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">match_rate</span><span class="p">(</span><span class="s1">&#39;gagttca&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used</span><span class="p">[[</span><span class="s2">"length"</span><span class="p">,</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used</span><span class="p">[[</span><span class="s2">&quot;length&quot;</span><span class="p">,</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[39]:</div>
+
+    <div class="prompt output_prompt">Out[39]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -1640,86 +1866,109 @@ RU5ErkJggg==
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>length</th>
-<th>log2(siRNA/mock)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>length</th>
-<td>1.000000</td>
-<td>-0.084781</td>
-</tr>
-<tr>
-<th>log2(siRNA/mock)</th>
-<td>-0.084781</td>
-<td>1.000000</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>length</th>
+      <th>log2(siRNA/mock)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>length</th>
+      <td>1.000000</td>
+      <td>-0.084781</td>
+    </tr>
+    <tr>
+      <th>log2(siRNA/mock)</th>
+      <td>-0.084781</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [40]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used_with_seed</span> <span class="o">=</span> <span class="n">df_used</span><span class="p">[</span><span class="n">df_used</span><span class="o">.</span><span class="n">position</span><span class="o">></span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"取得できたマッチ領域を含むmRNA: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_used_with_seed</span><span class="p">)))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used_with_seed</span> <span class="o">=</span> <span class="n">df_used</span><span class="p">[</span><span class="n">df_used</span><span class="o">.</span><span class="n">position</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;取得できたマッチ領域を含むmRNA: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df_used_with_seed</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>取得できたマッチ領域を含むmRNA: 1930
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>↑seedmatchで調べた時と数が異なっている…。こんなに多いはずがない？？</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used_with_seed</span><span class="p">[[</span><span class="s2">"length"</span><span class="p">,</span><span class="s2">"position"</span><span class="p">,</span><span class="s2">"position_rate"</span><span class="p">,</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_used_with_seed</span><span class="p">[[</span><span class="s2">&quot;length&quot;</span><span class="p">,</span><span class="s2">&quot;position&quot;</span><span class="p">,</span><span class="s2">&quot;position_rate&quot;</span><span class="p">,</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[42]:</div>
+
+    <div class="prompt output_prompt">Out[42]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -1736,74 +1985,86 @@ RU5ErkJggg==
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>length</th>
-<th>position</th>
-<th>position_rate</th>
-<th>log2(siRNA/mock)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>length</th>
-<td>1.000000</td>
-<td>0.616134</td>
-<td>-0.064294</td>
-<td>0.061601</td>
-</tr>
-<tr>
-<th>position</th>
-<td>0.616134</td>
-<td>1.000000</td>
-<td>0.615967</td>
-<td>0.040860</td>
-</tr>
-<tr>
-<th>position_rate</th>
-<td>-0.064294</td>
-<td>0.615967</td>
-<td>1.000000</td>
-<td>-0.056128</td>
-</tr>
-<tr>
-<th>log2(siRNA/mock)</th>
-<td>0.061601</td>
-<td>0.040860</td>
-<td>-0.056128</td>
-<td>1.000000</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>length</th>
+      <th>position</th>
+      <th>position_rate</th>
+      <th>log2(siRNA/mock)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>length</th>
+      <td>1.000000</td>
+      <td>0.616134</td>
+      <td>-0.064294</td>
+      <td>0.061601</td>
+    </tr>
+    <tr>
+      <th>position</th>
+      <td>0.616134</td>
+      <td>1.000000</td>
+      <td>0.615967</td>
+      <td>0.040860</td>
+    </tr>
+    <tr>
+      <th>position_rate</th>
+      <td>-0.064294</td>
+      <td>0.615967</td>
+      <td>1.000000</td>
+      <td>-0.056128</td>
+    </tr>
+    <tr>
+      <th>log2(siRNA/mock)</th>
+      <td>0.061601</td>
+      <td>0.040860</td>
+      <td>-0.056128</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
-    <span class="n">df_used_with_seed</span><span class="p">[[</span><span class="s2">"length"</span><span class="p">,</span><span class="s2">"position"</span><span class="p">,</span><span class="s2">"position_rate"</span><span class="p">,</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span>
+    <span class="n">df_used_with_seed</span><span class="p">[[</span><span class="s2">&quot;length&quot;</span><span class="p">,</span><span class="s2">&quot;position&quot;</span><span class="p">,</span><span class="s2">&quot;position_rate&quot;</span><span class="p">,</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span>
     <span class="n">vmin</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
     <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># True:格子の中に値を表示</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="s1">'.3f'</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3f&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAbQAAAFLCAYAAAC+8HmKAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -2122,16 +2383,21 @@ Q4CBjSlmZWUOLSKiC5LmAxuphhrnA3+UdG3ZVM2WIceIiC5I2gZc2XrnTNKpwBO2p5dN1lzpoUVE
 dOeEQS9Q7yHP1KIyhxYR0Z01ktYCv6yvrwceL5in8TLkGBHRJUnXAK1DPp+2vbJknqZLQYuIiFEh
 Q44RER2QdJBqmf5Rt6hW80/qcaSopYcWERGjQlbkRETEqJCCFhERo0IKWkREjAopaBERMSqkoEVE
 xKjwf+0fRcVnu99NAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　<b>長さ・マッチ領域の割合はほとんど関係がない😱😱😱</b></p>
+
 </div>
 </div>
 </div>
@@ -2140,62 +2406,63 @@ xKjwf+0fRcVnu99NAAAAAElFTkSuQmCC
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="anchor6">6. seedmatchの結果と比べる</h3><p>　シード領域とマッチする領域の数が異なっていたので、seedmatchの結果をもう一度参照し、比較する。</p>
 <p>　<font color="red"><b>※なお、取得できたデータに対してのみ行なっていることに注意！！</b></font></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="seedmatch">seedmatch<a class="anchor-link" href="#seedmatch">¶</a></h4>
+<h4 id="seedmatch">seedmatch<a class="anchor-link" href="#seedmatch">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">seedmatchNmer</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">match_array</span><span class="p">,</span> <span class="n">arrayname</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">seedmatchNmer</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">match_array</span><span class="p">,</span> <span class="n">arrayname</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    関数の概要：色々な領域のNmerの発現量を調べる。</span>
 <span class="sd">    @param df         ：元となるデータフレーム </span>
 <span class="sd">    @param N          ：領域の長さ</span>
-<span class="sd">    @param match_array：ガイド鎖やパッセンジャー鎖のシード領域と相補的なmRNAの配列（5'-3'）</span>
-<span class="sd">    """</span>
-    <span class="n">PATTERNS</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">'\n(.+)\t([0-9]+)'</span>
+<span class="sd">    @param match_array：ガイド鎖やパッセンジャー鎖のシード領域と相補的なmRNAの配列（5&#39;-3&#39;）</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">PATTERNS</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\n(.+)\t([0-9]+)&#39;</span>
     <span class="n">GMEANS</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">COLNAMES</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">LENGTH</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">match_array</span><span class="p">)</span>
-    <span class="n">df_Nmer</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">)</span>
+    <span class="n">df_Nmer</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
     
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">match_array</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
-        <span class="n">colname</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">mer(</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arrayname</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">colname</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">mer(</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arrayname</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
         <span class="n">COLNAMES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colname</span><span class="p">)</span>
 
-        <span class="c1"># "seedmatch"にリクエスト飛ばしてseed領域に対応する配列を検索</span>
+        <span class="c1"># &quot;seedmatch&quot;にリクエスト飛ばしてseed領域に対応する配列を検索</span>
         <span class="n">array</span> <span class="o">=</span> <span class="n">match_array</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="n">N</span><span class="p">:</span><span class="n">p</span><span class="p">]</span>
-        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">'http://atlas.rnai.jp/seedmatch/seedmatch.cgi'</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">"seedseq"</span><span class="p">:</span> <span class="n">array</span><span class="p">})</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://atlas.rnai.jp/seedmatch/seedmatch.cgi&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;seedseq&quot;</span><span class="p">:</span> <span class="n">array</span><span class="p">})</span>
         <span class="n">df_mRNA</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">PATTERNS</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
-        <span class="n">df_mRNA</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">"SystematicName"</span><span class="p">,</span> <span class="n">colname</span><span class="p">]</span>
+        <span class="n">df_mRNA</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;SystematicName&quot;</span><span class="p">,</span> <span class="n">colname</span><span class="p">]</span>
 
         <span class="c1"># マージ</span>
-        <span class="n">df_Nmer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_Nmer</span><span class="p">,</span> <span class="n">df_mRNA</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">"SystematicName"</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">"left"</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">df_Nmer</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df_Nmer</span><span class="p">,</span> <span class="n">df_mRNA</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;SystematicName&quot;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="c1"># マッチする配列を持っているものを抜き出して</span>
-        <span class="n">signal_7mer</span> <span class="o">=</span> <span class="n">df_Nmer</span><span class="p">[</span><span class="n">df_Nmer</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">][</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">signal_7mer</span> <span class="o">=</span> <span class="n">df_Nmer</span><span class="p">[</span><span class="n">df_Nmer</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span><span class="o">!=</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="n">GMEANS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">))</span>
         <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">)</span>
         <span class="c1"># 累積密度をプロット</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">,[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">length</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="n">colname</span> <span class="o">+</span> <span class="s2">": </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">,[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">length</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="n">colname</span> <span class="o">+</span> <span class="s2">&quot;: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">p</span><span class="o">-</span><span class="n">N</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="k">break</span>
     
     <span class="c1">#=== プロット後処理 ===</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'The difference between</span><span class="se">\n</span><span class="s1">"seed match resions" and "Expression levels"'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Cumulative frequency"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;The difference between</span><span class="se">\n</span><span class="s1">&quot;seed match resions&quot; and &quot;Expression levels&quot;&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative frequency&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -2203,48 +2470,61 @@ xKjwf+0fRcVnu99NAAAAAElFTkSuQmCC
     <span class="c1">#===  ===</span>
     <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))]</span>
     <span class="n">label_before</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span><span class="k">2</span> == 0]
-    <span class="n">label_after</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))</span> <span class="k">if</span> <span class="n">p</span> <span class="o">%</span><span class="k">2</span> == 0]
+    <span class="n">label_after</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))</span> <span class="k">if</span> <span class="n">p</span> <span class="o">%</span><span class="k">2</span> == 0]
 
     <span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">GMEANS</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'The difference between</span><span class="se">\n</span><span class="s1">"seed match resions" and "Expression levels"'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"7mer position"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"average $\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;The difference between</span><span class="se">\n</span><span class="s1">&quot;seed match resions&quot; and &quot;Expression levels&quot;&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;7mer position&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;average $\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">label_before</span><span class="p">,</span><span class="n">label_after</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     
     <span class="k">if</span> <span class="n">return_data</span><span class="p">:</span> 
         <span class="k">return</span> <span class="p">(</span><span class="n">df_Nmer</span><span class="p">,</span> <span class="n">COLNAMES</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [45]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">guide_array</span>   <span class="o">=</span> <span class="s2">"UUGAACUCGGUGUUGAUGGCG"</span> <span class="c1"># 5'-3'</span>
-<span class="n">g_match_array</span> <span class="o">=</span> <span class="s2">"CGCCATCAACACCGAGTTCAA"</span> <span class="c1"># 5'-3'</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seedmatchNmer</span><span class="p">(</span><span class="n">df_used_with_seed</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">g_match_array</span><span class="p">,</span> <span class="n">arrayname</span><span class="o">=</span><span class="s2">"guide"</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">guide_array</span>   <span class="o">=</span> <span class="s2">&quot;UUGAACUCGGUGUUGAUGGCG&quot;</span> <span class="c1"># 5&#39;-3&#39;</span>
+<span class="n">g_match_array</span> <span class="o">=</span> <span class="s2">&quot;CGCCATCAACACCGAGTTCAA&quot;</span> <span class="c1"># 5&#39;-3&#39;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">seedmatchNmer</span><span class="p">(</span><span class="n">df_used_with_seed</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">g_match_array</span><span class="p">,</span> <span class="n">arrayname</span><span class="o">=</span><span class="s2">&quot;guide&quot;</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtsAAAIDCAYAAADVHdLqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -4110,11 +4390,19 @@ gy9XrgOmAd/iSNheyMAZPR4Arg3W+3u2jTH5oH4hGIZyFRA1xjxadP6NQFpEKjl2vPZLwfnGgUQQ
 caWUOmto2FZKqREiIj/BH2IRB35ojPnaEPa5Oah73Lm2zzbBTCw3GmN+NNrnopRSw03DtlJKKaWU
 UiNEx2wrpZRSSik1QjRsK6WUUkopNUI0bCullFJKKTVCNGwrpZRSSik1QjRsK6WUUkopNUI0bCul
 lFJKKTVCNGwrpZRSSik1QjRsK6WUUkopNUL+P8NRlHtQwwygAAAAAElFTkSuQmCC
-" />
+"
+>
 </div>
+
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAaEAAAElCAYAAABNiV0MAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -4320,66 +4608,71 @@ zTrlMyGzTNJiwBYU5iSqV0TcJ+mHwJWSFgLeJN03qqd33VxJdwJDSSMrAxwJnC7pbuBV3hlO/xBJ
 m5LOwO4FLiPdz6m4Djg0XxL8WdVxDiLNMvod0sjeezf2Ks2az120zUok6Xrg2xExpexYzMrgy3Fm
 ZlYanwmZmVlpfCZkZmalcRIyM7PSOAmZmVlpnITMzKw0TkJmZlaa/w8h3tO11xKgOwAAAABJRU5E
 rkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>　どの7merにも抑制傾向がある…。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="NCBI">NCBI<a class="anchor-link" href="#NCBI">¶</a></h4>
+<h4 id="NCBI">NCBI<a class="anchor-link" href="#NCBI">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">seedNCBINmer</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">match_array</span><span class="p">,</span> <span class="n">arrayname</span><span class="o">=</span><span class="s2">""</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-    <span class="sd">"""</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">seedNCBINmer</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">match_array</span><span class="p">,</span> <span class="n">arrayname</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    関数の概要：色々な領域のNmerの発現量を調べる。</span>
 <span class="sd">    @param df         ：元となるデータフレーム </span>
 <span class="sd">    @param N          ：領域の長さ</span>
-<span class="sd">    @param match_array：ガイド鎖やパッセンジャー鎖のシード領域と相補的なmRNAの配列（5'-3'）</span>
-<span class="sd">    """</span>
+<span class="sd">    @param match_array：ガイド鎖やパッセンジャー鎖のシード領域と相補的なmRNAの配列（5&#39;-3&#39;）</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">GMEANS</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">COLNAMES</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">LENGTH</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">match_array</span><span class="p">)</span>
-    <span class="n">df_Nmer</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">)</span>
+    <span class="n">df_Nmer</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
     
     <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">match_array</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)):</span>
         <span class="n">array</span> <span class="o">=</span> <span class="n">match_array</span><span class="p">[</span><span class="n">p</span><span class="o">-</span><span class="n">N</span><span class="p">:</span><span class="n">p</span><span class="p">]</span>
-        <span class="n">colname</span> <span class="o">=</span> <span class="s2">"</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">mer(</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arrayname</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
+        <span class="n">colname</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">mer(</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">arrayname</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">LENGTH</span><span class="o">-</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span>
         <span class="n">COLNAMES</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">colname</span><span class="p">)</span>
         
         <span class="n">df_Nmer</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_Nmer</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">match_rate</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">sequence</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">length</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 
         <span class="c1"># マッチする配列を持っているものを抜き出して</span>
-        <span class="n">signal_7mer</span> <span class="o">=</span> <span class="n">df_Nmer</span><span class="p">[</span><span class="n">df_Nmer</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span><span class="o">></span><span class="mi">0</span><span class="p">][</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+        <span class="n">signal_7mer</span> <span class="o">=</span> <span class="n">df_Nmer</span><span class="p">[</span><span class="n">df_Nmer</span><span class="p">[</span><span class="n">colname</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
         <span class="n">GMEANS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">))</span>
         <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">)</span>
         <span class="c1"># 累積密度をプロット</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">,[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">length</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="n">colname</span> <span class="o">+</span> <span class="s2">": </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">signal_7mer</span><span class="p">,[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">length</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">length</span><span class="p">)],</span> <span class="n">label</span><span class="o">=</span><span class="n">colname</span> <span class="o">+</span> <span class="s2">&quot;: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="n">p</span><span class="o">-</span><span class="n">N</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span> <span class="k">break</span>
     
     <span class="c1">#=== プロット後処理 ===</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'The difference between</span><span class="se">\n</span><span class="s1">"seed match resions" and "Expression levels"'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Cumulative frequency"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;The difference between</span><span class="se">\n</span><span class="s1">&quot;seed match resions&quot; and &quot;Expression levels&quot;&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Cumulative frequency&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -4387,36 +4680,47 @@ rkJggg==
     <span class="c1">#===  ===</span>
     <span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))]</span>
     <span class="n">label_before</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span><span class="k">2</span> == 0]
-    <span class="n">label_after</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))</span> <span class="k">if</span> <span class="n">p</span> <span class="o">%</span><span class="k">2</span> == 0]
+    <span class="n">label_after</span>  <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">-</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">p</span><span class="o">+</span><span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">GMEANS</span><span class="p">))</span> <span class="k">if</span> <span class="n">p</span> <span class="o">%</span><span class="k">2</span> == 0]
 
     <span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">GMEANS</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'The difference between</span><span class="se">\n</span><span class="s1">"seed match resions" and "Expression levels"'</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"7mer position"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"average $\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;The difference between</span><span class="se">\n</span><span class="s1">&quot;seed match resions&quot; and &quot;Expression levels&quot;&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;7mer position&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;average $\log_</span><span class="si">{2}</span><span class="s2">(siRNA/mock)$&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">label_before</span><span class="p">,</span><span class="n">label_after</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
     
     <span class="k">if</span> <span class="n">return_data</span><span class="p">:</span> 
         <span class="k">return</span> <span class="p">(</span><span class="n">df_Nmer</span><span class="p">,</span> <span class="n">COLNAMES</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_guide_7mer</span><span class="p">,</span> <span class="n">guide_7mer_colnames</span> <span class="o">=</span> <span class="n">seedNCBINmer</span><span class="p">(</span><span class="n">df_used</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">g_match_array</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s2">"guide"</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_guide_7mer</span><span class="p">,</span> <span class="n">guide_7mer_colnames</span> <span class="o">=</span> <span class="n">seedNCBINmer</span><span class="p">(</span><span class="n">df_used</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="n">g_match_array</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="s2">&quot;guide&quot;</span><span class="p">,</span> <span class="n">return_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAtsAAAIDCAYAAADVHdLqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -5871,11 +6175,19 @@ upmZtYqkvojYmJZnXAecFBE3SfobYCXFkoo1EXF2qn8o8OmI+ECH+nsTcHgnZpclfQ84JSXiZmY7
 DSfbZmZtIunbFEsseoBvRMSXm7jmhFR33O/a3tmkb2JZERHf7HRfzMxazcm2mZmZmVmbeM22mZmZ
 mVmbONk2MzMzM2sTJ9tmZmZmZm3iZNvMzMzMrE2cbJuZmZmZtYmTbTMzMzOzNnGybWZmZmbWJk62
 zczMzMza5P8B8Ilr8lD7QWgAAAAASUVORK5CYII=
-" />
+"
+>
 </div>
+
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZYAAAElCAYAAADHpsRNAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -6073,52 +6385,68 @@ Mz6zhrjFYpZJGkF6PMEBja4bEXdI+g5wqaQhwAukfph6ripbKukWYBip6i/AZOAMSbNJz6bpKrv+
 FUnbk1pKtwMXkfpHulwJHJ5Px32/4n0OAc6U9HVgMbBfY3tpVh9fbmzWQpKuAr4WETNaHYtZWXwq
 zMzMSuUWi5mZlcotFjMzK5UTi5mZlcqJxczMSuXEYmZmpXJiMTOzUv1/DXY4kZSxegUAAAAASUVO
 RK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="anchor7">7. モデルを作成する</h3><p>　モデルに予測させてみて、<b>「どの特徴量を参考にした？？」</b>って聞けば、変数の重要度がわかるという流れ。今回は解釈のしやすい決定木を用いてパラメータも適当に決めてサクッと学習させてみた。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">feature_columns</span> <span class="o">=</span> <span class="n">guide_7mer_colnames</span><span class="o">+</span><span class="p">[</span><span class="s2">"length"</span><span class="p">,</span><span class="s2">"position"</span><span class="p">,</span><span class="s2">"position_rate"</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">feature_columns</span> <span class="o">=</span> <span class="n">guide_7mer_colnames</span><span class="o">+</span><span class="p">[</span><span class="s2">&quot;length&quot;</span><span class="p">,</span><span class="s2">&quot;position&quot;</span><span class="p">,</span><span class="s2">&quot;position_rate&quot;</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 相関関係を調べる。</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
     <span class="n">df_guide_7mer</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">(),</span>
     <span class="n">vmin</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">vmax</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
     <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-    <span class="n">fmt</span><span class="o">=</span><span class="s1">'.3f'</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.3f&#39;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFRCAYAAAACdGjEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -6512,40 +6840,53 @@ J1vrlOtyjs2Z/udb03rFG7RBnKMLmqSgrcGlDaMEpxaOprRe8QZtEIUuCEaKo8t0cK1XvEEbRKEL
 gpHi6DIdXOsVb9AIZhYrVqwRLtLMxoN79w8GHgLeCuwak9Yr3lhtrP3mXzqDIKiEZR2bE9vHoPWK
 N2iAcBYFwXhxcZk6ab3iDRogztEFwYhpbdh3ibZFR20wDFHogiAIglET5+iCIAiCUROFLgiCIBg1
 UeiCIAiCUROFLgiCIBg1UeiCIAiCUfM/8YURlnyDEy4AAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestRegressor</span>
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">preprocessing</span>
 
 <span class="n">tree</span> <span class="o">=</span> <span class="n">RandomForestRegressor</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 
 <span class="n">X</span> <span class="o">=</span> <span class="n">df_guide_7mer</span><span class="p">[</span><span class="n">feature_columns</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df_guide_7mer</span><span class="p">[</span><span class="s2">"log2(siRNA/mock)"</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df_guide_7mer</span><span class="p">[</span><span class="s2">&quot;log2(siRNA/mock)&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>/Users/iwasakishuto/.pyenv/versions/anaconda3-5.0.1/lib/python3.6/site-packages/sklearn/ensemble/weight_boosting.py:29: DeprecationWarning: numpy.core.umath_tests is an internal NumPy module and should not be imported. It will be removed in a future NumPy release.
   from numpy.core.umath_tests import inner1d
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -6556,53 +6897,75 @@ UeiCIAiCUROFLgiCIBg1UeiCIAiCUfM/8YURlnyDEy4AAAAASUVORK5CYII=
 <span class="n">X_std</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="n">y_std</span> <span class="o">=</span> <span class="n">ss</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">tree</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[52]:</div>
+
+    <div class="prompt output_prompt">Out[52]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>RandomForestRegressor(bootstrap=True, criterion='mse', max_depth=15,
-           max_features='auto', max_leaf_nodes=None,
+<pre>RandomForestRegressor(bootstrap=True, criterion=&#39;mse&#39;, max_depth=15,
+           max_features=&#39;auto&#39;, max_leaf_nodes=None,
            min_impurity_decrease=0.0, min_impurity_split=None,
            min_samples_leaf=1, min_samples_split=2,
            min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=1,
            oob_score=False, random_state=0, verbose=0, warm_start=False)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">tree</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'predicted "$\log_2(siRNA/mock)$" and answer "$\log_2(siRNA/mock)$"'</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"answer"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"predict"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;predicted &quot;$\log_2(siRNA/mock)$&quot; and answer &quot;$\log_2(siRNA/mock)$&quot;&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;answer&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;predict&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZwAAAEYCAYAAABoYED3AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -6969,31 +7332,44 @@ Ae9ExIwGX292xPA+HLOhOVXSxWn5BuAv1Ssj4t/APyTNgYPXnv9MWv0slbMVA9xY5/1XA7el0/sj
 aUJ6/j/A+OZ8BLNiuOCYDc1W4A5J3cDxwH012twI3CKp74zafZc0/n56bRf1r864CHgdeDG9/ob0
 /ELgcU8asHbmadFmDZI0DfhTRJxbcBSztuQtHDMzy8JbOGZmloW3cMzMLAsXHDMzy8IFx8zMsnDB
 MTOzLFxwzMwsi/8BkyYxcECukvEAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">n_features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">feature_columns</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">),</span> <span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span> <span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">'center'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_features</span><span class="p">),</span> <span class="n">tree</span><span class="o">.</span><span class="n">feature_importances_</span> <span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_features</span><span class="p">),</span> <span class="n">feature_columns</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"importances for predict the Expression levels"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;importances for predict the Expression levels&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxUAAAHiCAYAAACeFeGCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -7436,24 +7812,30 @@ tnZ7T5xU8p4AVpVx/L+B0UN9ncN4HP9VGauXyr9X1eo8rvztv1LeC0YM9XUOxzEseeOpvj3fp1ud
 eS1+eBwfA35T+7tdUCs7KO+L+UXtiIiIiIhoJMufIiIiIiKikQQVERERERHRSIKKiIiIiIhoJEFF
 REREREQ0kqAiIiIiIiIaSVARERERERGNJKiIiIiIiIhGElREREREREQj/z/ZEaU6kKChagAAAABJ
 RU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　どちらにせよ2-8の7merが重要そうだが、<b>mRNAの長さ</b>にも依存関係がありそう。</p>
 <p>　<b>かなり深い木を使っている</b>こともあり、その結果比較的プロットがうまくいっているので、<font color="red"><b>一つのパラメータで語るのが難しい分野である</b></font>と考えられる、</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
@@ -7468,26 +7850,31 @@ RU5ErkJggg==
 <p>に限って考えてしまった。もっと他の特徴量も考察したかった。</p>
 <p>　また、<font color="red"><b>「mRNAに対する抑制度合い」</b></font>を予測するのであれば、<b>もちろんデータを分割して汎化性能を求める必要がある。</b></p>
 <p><b>※NCBIのプログラムに関しては目検でデータを確認していないので、それも確認が必要かと思います。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -7504,6 +7891,7 @@ RU5ErkJggg==
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -7537,10 +7925,10 @@ RU5ErkJggg==
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-06-21T00:00:00+09:00"> 6 21, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-06-21T00:00:00+09:00">Jun 21, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-06-21T00:00:00+09:00"> 6 21, 2019</time>
+<time datetime="2019-06-21T00:00:00+09:00">Jun 21, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -7558,8 +7946,6 @@ RU5ErkJggg==
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

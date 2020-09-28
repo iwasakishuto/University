@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="シミュレーション実習 Day3 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-3.html" />
-<meta property="og:description" content="シミュレーション実習¶Day.3: 生化学反応系の数理モデル 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Introduction 細胞運命決定機構とRas, Rap1 パラメタ推定 最適化 課題 1. Introduction そもそも、なぜモデルを作るのか？ 現象を定量的に理解するため。（観測データの再現には、どのパラメータが重要？） 現象を予測するため。（面白い現象を見るには、どんな実験条件が適切？） 実験で確かめるのが困難なことを知りたいから。（コスト・技術・倫理などの問題で、そもそも実験できないことを知りたい） 構造は既知とする。パラメータはどうやって決める？ 文献・データベースを参照（→実験条件がバラバラ。使って大丈夫？） 実験的に測る（→手間がかかる。そもそも測定できる？） 再現したい現象とモデルに依存して決める。 今日のテーマ シグナル分子活性の経時変化のデータから、生化学反応の速度パラメータを推定する。 2. 細胞運命決定機構とRas, Rap1 システム生物学の講義参照。 ERKの時間波形が異なるだけで、異なる現象（増殖/分化）を制御 複雑なモデルをシンプルに記述する。（ERKの一過性活性化はRas（のみ）に、持続性活性化はRap1（のみ）に依存している。） 3. パラメータ推定 パラメータの決め方 事象をうまく説明するモデルを作りたい。 客観的かつ定量的な指標（評価関数）を定義（ex.残差二乗和） 最適化 4. 最適化 勾配（微分）を用いた最適化：局所的な最適化に向いている。収束性や収束速度なども理論が進んでいる。 最急降下法 共役勾配法 ニュートン法 信頼領域法 など 確率を用いた最適化：大域的な最適化に向いている。ただし、得られた解の最適性は保証されない。 Nelder-Mead法 シミュレーテッドアニーリング（SA） タブー探索 遺伝的アルゴリズム（GA） 進化的プログラミング（EP） 粒子群最適化（PSO） など 5. 課題" />
+<meta property="og:description" content="実験結果からの数理モデル処理" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-11T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-11T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day3 ">
-<meta name="twitter:description" content="シミュレーション実習¶Day.3: 生化学反応系の数理モデル 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ Introduction 細胞運命決定機構とRas, Rap1 パラメタ推定 最適化 課題 1. Introduction そもそも、なぜモデルを作るのか？ 現象を定量的に理解するため。（観測データの再現には、どのパラメータが重要？） 現象を予測するため。（面白い現象を見るには、どんな実験条件が適切？） 実験で確かめるのが困難なことを知りたいから。（コスト・技術・倫理などの問題で、そもそも実験できないことを知りたい） 構造は既知とする。パラメータはどうやって決める？ 文献・データベースを参照（→実験条件がバラバラ。使って大丈夫？） 実験的に測る（→手間がかかる。そもそも測定できる？） 再現したい現象とモデルに依存して決める。 今日のテーマ シグナル分子活性の経時変化のデータから、生化学反応の速度パラメータを推定する。 2. 細胞運命決定機構とRas, Rap1 システム生物学の講義参照。 ERKの時間波形が異なるだけで、異なる現象（増殖/分化）を制御 複雑なモデルをシンプルに記述する。（ERKの一過性活性化はRas（のみ）に、持続性活性化はRap1（のみ）に依存している。） 3. パラメータ推定 パラメータの決め方 事象をうまく説明するモデルを作りたい。 客観的かつ定量的な指標（評価関数）を定義（ex.残差二乗和） 最適化 4. 最適化 勾配（微分）を用いた最適化：局所的な最適化に向いている。収束性や収束速度なども理論が進んでいる。 最急降下法 共役勾配法 ニュートン法 信頼領域法 など 確率を用いた最適化：大域的な最適化に向いている。ただし、得られた解の最適性は保証されない。 Nelder-Mead法 シミュレーテッドアニーリング（SA） タブー探索 遺伝的アルゴリズム（GA） 進化的プログラミング（EP） 粒子群最適化（PSO） など 5. 課題">
+<meta name="twitter:description" content="実験結果からの数理モデル処理">
 
         <title>シミュレーション実習 Day3  · 3S
 </title>
@@ -119,24 +119,26 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="シミュレーション実習">シミュレーション実習<a class="anchor-link" href="#シミュレーション実習">¶</a></h1><p><b>Day.3: 生化学反応系の数理モデル</b></p>
+<h1 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#182;</a></h1><p><b>Day.3: 生化学反応系の数理モデル</b></p>
 <ul>
 <li>担当：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/">黒田研究室</a></li>
 <li>実習のwiki：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/">Slides and programs</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="概要">概要<a class="anchor-link" href="#概要">¶</a></h2><ol>
-<li><a data-scroll="" href="#anchor1">Introduction</a></li>
-<li><a data-scroll="" href="#anchor2">細胞運命決定機構とRas, Rap1</a></li>
-<li><a data-scroll="" href="#anchor3">パラメタ推定</a></li>
-<li><a data-scroll="" href="#anchor4">最適化</a></li>
-<li><a data-scroll="" href="#anchor5">課題</a></li>
+<h2 id="&#27010;&#35201;">&#27010;&#35201;<a class="anchor-link" href="#&#27010;&#35201;">&#182;</a></h2><ol>
+<li><a data-scroll href="#anchor1">Introduction</a></li>
+<li><a data-scroll href="#anchor2">細胞運命決定機構とRas, Rap1</a></li>
+<li><a data-scroll href="#anchor3">パラメタ推定</a></li>
+<li><a data-scroll href="#anchor4">最適化</a></li>
+<li><a data-scroll href="#anchor5">課題</a></li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -158,6 +160,7 @@
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -165,8 +168,8 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<b>今日のテーマ</b>
-<p><b>シグナル分子活性の経時変化のデータから、生化学反応の速度パラメータを推定する。</b></p>
+    <b>今日のテーマ</b>
+    <p><b>シグナル分子活性の経時変化のデータから、生化学反応の速度パラメータを推定する。</b></p>
 </div>
 </div>
 </div>
@@ -181,6 +184,7 @@
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -195,6 +199,7 @@
 </ol>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -221,6 +226,7 @@
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -233,45 +239,48 @@
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.io</span> <span class="kn">import</span> <span class="n">loadmat</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題1：Ras,-Rap1のODEモデルを作成">課題1：Ras, Rap1のODEモデルを作成<a class="anchor-link" href="#課題1：Ras,-Rap1のODEモデルを作成">¶</a></h3><ul>
+<h3 id="&#35506;&#38988;1&#65306;Ras,-Rap1&#12398;ODE&#12514;&#12487;&#12523;&#12434;&#20316;&#25104;">&#35506;&#38988;1&#65306;Ras, Rap1&#12398;ODE&#12514;&#12487;&#12523;&#12434;&#20316;&#25104;<a class="anchor-link" href="#&#35506;&#38988;1&#65306;Ras,-Rap1&#12398;ODE&#12514;&#12487;&#12523;&#12434;&#20316;&#25104;">&#182;</a></h3><ul>
 <li>Rap1モデルの $\mathrm{S},\mathrm{GEF_a}, \mathrm{GAP_a}, \mathrm{Rap1_a}$ の常微分方程式 (ODE) を記述せよ。</li>
 <li>Rasモデルの $\mathrm{S}, \mathrm{GEF_a}, \mathrm{GAP_a}$ RasaのODEを記述せよ。</li>
 </ul>
-<p><img src="https://player.slidesplayer.net/89/14232848/slides/slide_26.jpg" width="50%" /></p>
+<p><img src="https://player.slidesplayer.net/89/14232848/slides/slide_26.jpg" width=50%></p>
 <ul>
 <li><b>※ 上の図では触媒を $\mathrm{pR}$ と記述しているが、以下では $\mathrm{S}$ と記述する。</b></li>
 <li>また、<b>適当に反応速度定数 $k_i$ を定義している。</b>（見れば対応関係はすぐに掴めるはず。）</li>
 <li><font color="red"><b>不活性型 $\mathrm{hoge_i}$ と活性型 $\mathrm{hoge_a}$ の総和は保存</b></font>されていると考える（簡単のため、$\mathrm{hoge_i} + \mathrm{hoge_a} = 1$ とおいている。）</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Rap1モデル">Rap1モデル<a class="anchor-link" href="#Rap1モデル">¶</a></h3>$$
+<h3 id="Rap1&#12514;&#12487;&#12523;">Rap1&#12514;&#12487;&#12523;<a class="anchor-link" href="#Rap1&#12514;&#12487;&#12523;">&#182;</a></h3>$$
 \begin{aligned}
-  \frac{d\mathrm{S}}{dt} &= 0\\
-  \frac{d\mathrm{GEF_a}}{dt} &= k_1\left[\mathrm{S}\right]\left[\mathrm{GEF_i}\right] - k_2\left[\mathrm{GEF_a}\right]\\
-  &=k_1\left[\mathrm{S}\right]\left(1-\left[\mathrm{GEF_a}\right]\right) - k_2\left[\mathrm{GEF_a}\right]\\
-  \frac{d\mathrm{GAP_a}}{dt} &= 0\\
-  \frac{d\mathrm{Rap1_a}}{dt} &= k_3\left[\mathrm{GEF_a}\right]\left[\mathrm{Rap1_i}\right] - k_4\left[\mathrm{GAP_a}\right]\left[\mathrm{Rap1_a}\right]\\
-  &= k_3\left[\mathrm{GEF_a}\right]\left(1-\left[\mathrm{Rap1_a}\right]\right) - k_4\left[\mathrm{GAP_a}\right]\left[\mathrm{Rap1_a}\right] 
+  \frac{d\mathrm{S}}{dt} &amp;= 0\\
+  \frac{d\mathrm{GEF_a}}{dt} &amp;= k_1\left[\mathrm{S}\right]\left[\mathrm{GEF_i}\right] - k_2\left[\mathrm{GEF_a}\right]\\
+  &amp;=k_1\left[\mathrm{S}\right]\left(1-\left[\mathrm{GEF_a}\right]\right) - k_2\left[\mathrm{GEF_a}\right]\\
+  \frac{d\mathrm{GAP_a}}{dt} &amp;= 0\\
+  \frac{d\mathrm{Rap1_a}}{dt} &amp;= k_3\left[\mathrm{GEF_a}\right]\left[\mathrm{Rap1_i}\right] - k_4\left[\mathrm{GAP_a}\right]\left[\mathrm{Rap1_a}\right]\\
+  &amp;= k_3\left[\mathrm{GEF_a}\right]\left(1-\left[\mathrm{Rap1_a}\right]\right) - k_4\left[\mathrm{GAP_a}\right]\left[\mathrm{Rap1_a}\right] 
 \end{aligned}
 $$
 </div>
@@ -280,15 +289,15 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="モデルを関数化">モデルを関数化<a class="anchor-link" href="#モデルを関数化">¶</a></h4>
+<h4 id="&#12514;&#12487;&#12523;&#12434;&#38306;&#25968;&#21270;">&#12514;&#12487;&#12523;&#12434;&#38306;&#25968;&#21270;<a class="anchor-link" href="#&#12514;&#12487;&#12523;&#12434;&#38306;&#25968;&#21270;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Rap model の微分方程式</span>
 <span class="k">def</span> <span class="nf">Rap1ODE</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">GEFa</span><span class="p">,</span><span class="n">GAPa</span><span class="p">,</span><span class="n">Rap1a</span><span class="p">,</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">,</span><span class="n">dt</span><span class="p">):</span>
     <span class="n">dS</span>     <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">dt</span>
@@ -297,15 +306,17 @@ $$
     <span class="n">dRap1a</span> <span class="o">=</span> <span class="p">(</span><span class="n">k3</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">Rap1a</span><span class="p">)</span><span class="o">*</span><span class="n">GEFa</span> <span class="o">-</span> <span class="n">k4</span><span class="o">*</span><span class="n">Rap1a</span><span class="o">*</span><span class="n">GAPa</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
     <span class="k">return</span> <span class="n">S</span><span class="o">+</span><span class="n">dS</span><span class="p">,</span><span class="n">GEFa</span><span class="o">+</span><span class="n">dGEFa</span><span class="p">,</span><span class="n">GAPa</span><span class="o">+</span><span class="n">dGAPa</span><span class="p">,</span><span class="n">Rap1a</span><span class="o">+</span><span class="n">dRap1a</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">Rap1model</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">min_t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">max_t</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
               <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">GEFa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">GAPa</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span><span class="n">Rap1a</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">both</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">max_t</span><span class="o">+=</span><span class="n">dt</span>
@@ -320,57 +331,72 @@ $$
     <span class="k">if</span> <span class="n">both</span><span class="p">:</span> <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">Rap1a_vals</span><span class="p">,</span> <span class="n">Gefa_vals</span>
     <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">Rap1a_vals</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="適当なパラメタでシミュレーション">適当なパラメタでシミュレーション<a class="anchor-link" href="#適当なパラメタでシミュレーション">¶</a></h4>
+<h4 id="&#36969;&#24403;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#36969;&#24403;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#36969;&#24403;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rap_params</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span><span class="p">,</span><span class="n">Rap1_vals</span> <span class="o">=</span> <span class="n">Rap1model</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">rap_params</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Rap1_vals</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Simple Rap1 model simulation"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc."</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simple Rap1 model simulation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAEWCAYAAACJ0YulAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -543,24 +569,28 @@ qXsQeHvaZjHwnog4A/gA8JVBqdpsgLynYDZw96fPrWiW1AT8OB3/JHBqerfac4HvJ3clAKBq8Ms0
 6z+HgtnA5d5npyNnuIPk/60yknv+v3SwCzMbKHcfmfWuGRg3kDemz7JYL+mN0PVc3UX5LM4s3xwK
 Zr2IiJ3A79OHqX9+ALO4GninpMeBlRThY2CtuPiUVDMz6+I9BTMz6+JQMDOzLg4FMzPr4lAwM7Mu
 DgUzM+viUDAzsy4OBTMz6/L/AYTFk22YzHOqAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Rasモデル">Rasモデル<a class="anchor-link" href="#Rasモデル">¶</a></h3>$$
+<h3 id="Ras&#12514;&#12487;&#12523;">Ras&#12514;&#12487;&#12523;<a class="anchor-link" href="#Ras&#12514;&#12487;&#12523;">&#182;</a></h3>$$
 \begin{aligned}
-  \frac{d\mathrm{S}}{dt} &= 0\\
-  \frac{d\mathrm{GEF_a}}{dt} &= k_1\left[\mathrm{S}\right]\left[\mathrm{GEF_i}\right] - k_2\left[\mathrm{GEF_a}\right]\\
-  &=k_1\left[\mathrm{S}\right]\left(1-\left[\mathrm{GEF_a}\right]\right) - k_2\left[\mathrm{GEF_a}\right]\\
-  \frac{d\mathrm{GAP_a}}{dt} &= k_3\left[\mathrm{S}\right]\left[\mathrm{GAP_i}\right] - k_4\left[\mathrm{GAP_a}\right]\\
-  &= k_3\left[\mathrm{S}\right]\left(1-\left[\mathrm{GAP_a}\right]\right) - k_4\left[\mathrm{GAP_a}\right]\\
-  \frac{d\mathrm{Ras_a}}{dt} &= k_5\left[\mathrm{GEF_a}\right]\left[\mathrm{Ras_i}\right] - k_6\left[\mathrm{GAP_a}\right]\left[\mathrm{Ras_a}\right]\\
-  &= k_5\left[\mathrm{GEF_a}\right]\left(1-\left[\mathrm{Ras_a}\right]\right) - k_6\left[\mathrm{GAP_a}\right]\left[\mathrm{Ras_a}\right] 
+  \frac{d\mathrm{S}}{dt} &amp;= 0\\
+  \frac{d\mathrm{GEF_a}}{dt} &amp;= k_1\left[\mathrm{S}\right]\left[\mathrm{GEF_i}\right] - k_2\left[\mathrm{GEF_a}\right]\\
+  &amp;=k_1\left[\mathrm{S}\right]\left(1-\left[\mathrm{GEF_a}\right]\right) - k_2\left[\mathrm{GEF_a}\right]\\
+  \frac{d\mathrm{GAP_a}}{dt} &amp;= k_3\left[\mathrm{S}\right]\left[\mathrm{GAP_i}\right] - k_4\left[\mathrm{GAP_a}\right]\\
+  &amp;= k_3\left[\mathrm{S}\right]\left(1-\left[\mathrm{GAP_a}\right]\right) - k_4\left[\mathrm{GAP_a}\right]\\
+  \frac{d\mathrm{Ras_a}}{dt} &amp;= k_5\left[\mathrm{GEF_a}\right]\left[\mathrm{Ras_i}\right] - k_6\left[\mathrm{GAP_a}\right]\left[\mathrm{Ras_a}\right]\\
+  &amp;= k_5\left[\mathrm{GEF_a}\right]\left(1-\left[\mathrm{Ras_a}\right]\right) - k_6\left[\mathrm{GAP_a}\right]\left[\mathrm{Ras_a}\right] 
 \end{aligned}
 $$
 </div>
@@ -569,15 +599,15 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="モデルを関数化">モデルを関数化<a class="anchor-link" href="#モデルを関数化">¶</a></h4>
+<h4 id="&#12514;&#12487;&#12523;&#12434;&#38306;&#25968;&#21270;">&#12514;&#12487;&#12523;&#12434;&#38306;&#25968;&#21270;<a class="anchor-link" href="#&#12514;&#12487;&#12523;&#12434;&#38306;&#25968;&#21270;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Ras model の微分方程式</span>
 <span class="k">def</span> <span class="nf">RasODE</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">GEFa</span><span class="p">,</span><span class="n">GAPa</span><span class="p">,</span><span class="n">Rasa</span><span class="p">,</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">,</span><span class="n">k5</span><span class="p">,</span><span class="n">k6</span><span class="p">,</span><span class="n">dt</span><span class="p">):</span>
     <span class="n">dS</span>    <span class="o">=</span> <span class="mi">0</span> <span class="o">*</span> <span class="n">dt</span>
@@ -586,15 +616,17 @@ $$
     <span class="n">dRasa</span> <span class="o">=</span> <span class="p">(</span><span class="n">k5</span><span class="o">*</span><span class="n">GEFa</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">Rasa</span><span class="p">)</span> <span class="o">-</span> <span class="n">k6</span><span class="o">*</span><span class="n">GAPa</span><span class="o">*</span><span class="n">Rasa</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
     <span class="k">return</span> <span class="n">S</span><span class="o">+</span><span class="n">dS</span><span class="p">,</span><span class="n">GEFa</span><span class="o">+</span><span class="n">dGEFa</span><span class="p">,</span><span class="n">GAPa</span><span class="o">+</span><span class="n">dGAPa</span><span class="p">,</span><span class="n">Rasa</span><span class="o">+</span><span class="n">dRasa</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">Rasmodel</span><span class="p">(</span><span class="n">params</span><span class="p">,</span><span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span><span class="n">min_t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">max_t</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
              <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">GEFa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">GAPa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">Rasa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">both</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="n">max_t</span><span class="o">+=</span><span class="n">dt</span>
@@ -609,57 +641,72 @@ $$
     <span class="k">if</span> <span class="n">both</span><span class="p">:</span> <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">Rasa_vals</span><span class="p">,</span> <span class="n">GEFa_vals</span>
     <span class="k">return</span> <span class="n">time</span><span class="p">,</span> <span class="n">Rasa_vals</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="適当なパラメタでシミュレーション">適当なパラメタでシミュレーション<a class="anchor-link" href="#適当なパラメタでシミュレーション">¶</a></h4>
+<h4 id="&#36969;&#24403;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#36969;&#24403;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#36969;&#24403;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ras_params</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mf">0.0005</span><span class="p">,</span><span class="mf">0.005</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span><span class="p">,</span><span class="n">Rasa_vals</span> <span class="o">=</span> <span class="n">Rasmodel</span><span class="p">(</span><span class="n">ras_params</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rasa_vals</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Simple Ras model simulation"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc."</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simple Ras model simulation&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZIAAAEWCAYAAABMoxE0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -901,72 +948,82 @@ BKlGIjK57gvnfmk1s2bg1+H6p4Gjw5GYXw/8dzCiBQAFkx+mSPKUSEQmV+K4Tv0Jy/0E/x9zCObM
 OHayAxOZKDVtiaRfK1A2kR3D+WA2m9l7YXCe7WPSGZxIuimRiKSZu+8DHjSzZ4B/n8AhPgBcZGZP
 AuuYhtM8y/Si239FRCQlqpGIiEhKlEhERCQlSiQiIpISJRIREUmJEomIiKREiURERFKiRCIiIin5
 /yy1z7tWH/fDAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2：1つ-or-2つの未知パラメータを推定">課題2：1つ or 2つの未知パラメータを推定<a class="anchor-link" href="#課題2：1つ-or-2つの未知パラメータを推定">¶</a></h3><ol>
+<h3 id="&#35506;&#38988;2&#65306;1&#12388;-or-2&#12388;&#12398;&#26410;&#30693;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#25512;&#23450;">&#35506;&#38988;2&#65306;1&#12388; or 2&#12388;&#12398;&#26410;&#30693;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#25512;&#23450;<a class="anchor-link" href="#&#35506;&#38988;2&#65306;1&#12388;-or-2&#12388;&#12398;&#26410;&#30693;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;&#25512;&#23450;">&#182;</a></h3><ol>
 <li>最小二乗法に基づき、$\mathrm{Rap1}$ モデルのパラメータ<font color="red"> $k_4$ を手で</font>推定せよ。（省略）</li>
 <li>最小二乗法に基づき、$\mathrm{Rap1}$ モデルのパラメータ<font color="red"> $k_4$ を自動で</font>推定せよ。</li>
 <li>最小二乗法に基づき、$\mathrm{Rap1}$ モデルのパラメータ<font color="red"> $k_2,k_4$ を自動で</font>推定せよ。</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2.2">課題2.2<a class="anchor-link" href="#課題2.2">¶</a></h3><p>$k4$ の候補を総なめし、最も値が良かったものを採用する、という方法をとる。</p>
+<h3 id="&#35506;&#38988;2.2">&#35506;&#38988;2.2<a class="anchor-link" href="#&#35506;&#38988;2.2">&#182;</a></h3><p>$k4$ の候補を総なめし、最も値が良かったものを採用する、という方法をとる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="データの読み込み">データの読み込み<a class="anchor-link" href="#データの読み込み">¶</a></h4>
+<h4 id="&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;">&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;<a class="anchor-link" href="#&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data_kadai2_2</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">"data_Rap1_1para.mat"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data_kadai2_2</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;data_Rap1_1para.mat&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_t_kadai2_2</span> <span class="o">=</span> <span class="n">train_data_kadai2_2</span><span class="p">[</span><span class="s2">"t"</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="n">train_x_kadai2_2</span> <span class="o">=</span> <span class="n">train_data_kadai2_2</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_t_kadai2_2</span> <span class="o">=</span> <span class="n">train_data_kadai2_2</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">train_x_kadai2_2</span> <span class="o">=</span> <span class="n">train_data_kadai2_2</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="評価関数（RSS）の定義">評価関数（RSS）の定義<a class="anchor-link" href="#評価関数（RSS）の定義">¶</a></h4>
+<h4 id="&#35413;&#20385;&#38306;&#25968;&#65288;RSS&#65289;&#12398;&#23450;&#32681;">&#35413;&#20385;&#38306;&#25968;&#65288;RSS&#65289;&#12398;&#23450;&#32681;<a class="anchor-link" href="#&#35413;&#20385;&#38306;&#25968;&#65288;RSS&#65289;&#12398;&#23450;&#32681;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">CalRap1RSS</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_x</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
                <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
                <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">GEFa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">GAPa</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span><span class="n">Rap1a</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -977,62 +1034,70 @@ AuuYhtM8y/Si239FRCQlqpGIiEhKlEhERCQlSiQiIpISJRIREUmJEomIiKREiURERFKiRCIiIin5
     <span class="n">rss</span><span class="o">=</span><span class="mi">0</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
         <span class="n">S</span><span class="p">,</span><span class="n">GEFa</span><span class="p">,</span><span class="n">GAPa</span><span class="p">,</span><span class="n">Rap1a</span> <span class="o">=</span> <span class="n">Rap1ODE</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">GEFa</span><span class="p">,</span><span class="n">GAPa</span><span class="p">,</span><span class="n">Rap1a</span><span class="p">,</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">GEFa</span><span class="o">></span><span class="mi">100</span><span class="p">:</span> <span class="k">return</span> <span class="mf">1e10</span>
+        <span class="k">if</span> <span class="n">GEFa</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">:</span> <span class="k">return</span> <span class="mf">1e10</span>
         <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">timing</span><span class="p">:</span>
             <span class="n">rss</span> <span class="o">+=</span> <span class="p">(</span><span class="n">train_x</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">timing</span><span class="o">==</span><span class="n">i</span><span class="p">)]</span><span class="o">-</span><span class="n">Rap1a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">rss</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="パラメタを変化させて評価関数を最適化">パラメタを変化させて評価関数を最適化<a class="anchor-link" href="#パラメタを変化させて評価関数を最適化">¶</a></h4>
+<h4 id="&#12497;&#12521;&#12513;&#12479;&#12434;&#22793;&#21270;&#12373;&#12379;&#12390;&#35413;&#20385;&#38306;&#25968;&#12434;&#26368;&#36969;&#21270;">&#12497;&#12521;&#12513;&#12479;&#12434;&#22793;&#21270;&#12373;&#12379;&#12390;&#35413;&#20385;&#38306;&#25968;&#12434;&#26368;&#36969;&#21270;<a class="anchor-link" href="#&#12497;&#12521;&#12513;&#12479;&#12434;&#22793;&#21270;&#12373;&#12379;&#12390;&#35413;&#20385;&#38306;&#25968;&#12434;&#26368;&#36969;&#21270;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k1</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="n">k2</span><span class="o">=</span><span class="mf">0.5</span>
 <span class="n">k3</span><span class="o">=</span><span class="mf">0.2</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k4range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">10.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">params_kadai2_2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">]</span> <span class="k">for</span> <span class="n">k4</span> <span class="ow">in</span> <span class="n">k4range</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">RSS_kadai2_2</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">CalRap1RSS</span><span class="p">(</span>
         <span class="n">train_t_kadai2_2</span><span class="p">,</span>
@@ -1042,44 +1107,57 @@ AuuYhtM8y/Si239FRCQlqpGIiEhKlEhERCQlSiQiIpISJRIREUmJEomIiKREiURERFKiRCIiIin5
     <span class="p">)</span> <span class="k">for</span> <span class="n">param_kadai2_2</span> <span class="ow">in</span> <span class="n">params_kadai2_2</span>
 <span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">opt_id_kadai2_2</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">RSS_kadai2_2</span><span class="p">)</span>
 <span class="n">opt_k4_kadai2_2</span>  <span class="o">=</span> <span class="n">k4range</span><span class="p">[</span><span class="n">opt_id_kadai2_2</span><span class="p">]</span>
 <span class="n">opt_RSS_kadai2_2</span> <span class="o">=</span> <span class="n">RSS_kadai2_2</span><span class="p">[</span><span class="n">opt_id_kadai2_2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">k4range</span><span class="p">,</span> <span class="n">RSS_kadai2_2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">opt_k4_kadai2_2</span><span class="p">,</span> <span class="n">opt_RSS_kadai2_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"optimized k4"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"*"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">opt_k4_kadai2_2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">opt_RSS_kadai2_2</span><span class="p">,</span> <span class="s2">"optimized k4=</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">opt_k4_kadai2_2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between $k_4$ and RSS"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$k_4$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"RSS"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">opt_k4_kadai2_2</span><span class="p">,</span> <span class="n">opt_RSS_kadai2_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;optimized k4&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">opt_k4_kadai2_2</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">opt_RSS_kadai2_2</span><span class="p">,</span> <span class="s2">&quot;optimized k4=</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">opt_k4_kadai2_2</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between $k_4$ and RSS&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$k_4$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;RSS&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYsAAAEcCAYAAAA2g5hwAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1361,61 +1439,78 @@ MDDdkUTGnCfbDWVM2esM/AB8CHwqIpfj2i21AQh2Mpgx58qKhTFlrzPws6puFpETWxNLgBCgPZAl
 IvNU1Z8u9WoqOTtFuTHlSERGAWmqOtfpLMaUhhULY4wxHlkDtzHGGI+sWBhjjPHIioUxxhiPrFgY
 Y4zxyIqFMcYYj6xYGGOM8ciKhTHGGI+sWBhjjPHIioUxxhiP/h+ZLhXGHCBNvQAAAABJRU5ErkJg
 gg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="最適なパラメタでシミュレーション">最適なパラメタでシミュレーション<a class="anchor-link" href="#最適なパラメタでシミュレーション">¶</a></h4>
+<h4 id="&#26368;&#36969;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#26368;&#36969;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#26368;&#36969;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">min_param_kadai2_2</span> <span class="o">=</span> <span class="n">params_kadai2_2</span><span class="p">[</span><span class="n">opt_id_kadai2_2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span><span class="p">,</span><span class="n">Rap1_vals</span> <span class="o">=</span> <span class="n">Rap1model</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">min_param_kadai2_2</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rap1_vals</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t_kadai2_2</span><span class="p">,</span> <span class="n">train_x_kadai2_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The best $k_4$ with sample data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc."</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t_kadai2_2</span><span class="p">,</span> <span class="n">train_x_kadai2_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The best $k_4$ with sample data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAEYCAYAAACz2+rVAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1598,96 +1693,111 @@ D3A0uEndK8CNQZuHgH909/cAtwP/1S9Vi/SS9hREeu+F4JkVdWZ2EHg6GL8OODO4U+35wJOxOxQA
 kNf/ZYokTqEg0nvx99tpjRtuJfb/Vhaxe//P6u/CRHpL3UciJ1YHFPXmi8FzLLaZ2Ueh/Rm7M5NZ
 nEiyKRRETsDda4CXggerL+rFJD4OfNLM1gIbSKNHv0p60impIiLSTnsKIiLSTqEgIiLtFAoiItJO
 oSAiIu0UCiIi0k6hICIi7RQKIiLS7v8DlIBe+VnmXYIAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#35506;&#38988;2.3">&#35506;&#38988;2.3<a class="anchor-link" href="#&#35506;&#38988;2.3">&#182;</a></h3><p>$k2, k4$ の候補を総なめし、最も値が良かったものを採用する、という方法をとる。<b>なお、値が収束するまで繰り返すことはしない。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2.3">課題2.3<a class="anchor-link" href="#課題2.3">¶</a></h3><p>$k2, k4$ の候補を総なめし、最も値が良かったものを採用する、という方法をとる。<b>なお、値が収束するまで繰り返すことはしない。</b></p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="データの読み込み">データの読み込み<a class="anchor-link" href="#データの読み込み">¶</a></h4>
+<h4 id="&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;">&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;<a class="anchor-link" href="#&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data_kadai2_3</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">"data_Rap1_2para.mat"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data_kadai2_3</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;data_Rap1_2para.mat&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_t_kadai2_3</span> <span class="o">=</span> <span class="n">train_data_kadai2_3</span><span class="p">[</span><span class="s2">"t"</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="n">train_x_kadai2_3</span> <span class="o">=</span> <span class="n">train_data_kadai2_3</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_t_kadai2_3</span> <span class="o">=</span> <span class="n">train_data_kadai2_3</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">train_x_kadai2_3</span> <span class="o">=</span> <span class="n">train_data_kadai2_3</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="パラメタを変化させて評価関数を最適化">パラメタを変化させて評価関数を最適化<a class="anchor-link" href="#パラメタを変化させて評価関数を最適化">¶</a></h4>
+<h4 id="&#12497;&#12521;&#12513;&#12479;&#12434;&#22793;&#21270;&#12373;&#12379;&#12390;&#35413;&#20385;&#38306;&#25968;&#12434;&#26368;&#36969;&#21270;">&#12497;&#12521;&#12513;&#12479;&#12434;&#22793;&#21270;&#12373;&#12379;&#12390;&#35413;&#20385;&#38306;&#25968;&#12434;&#26368;&#36969;&#21270;<a class="anchor-link" href="#&#12497;&#12521;&#12513;&#12479;&#12434;&#22793;&#21270;&#12373;&#12379;&#12390;&#35413;&#20385;&#38306;&#25968;&#12434;&#26368;&#36969;&#21270;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k1</span> <span class="o">=</span> <span class="mf">0.5</span>
 <span class="n">k3</span> <span class="o">=</span> <span class="mf">0.2</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">k2range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">3.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
 <span class="n">k4range</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">3.05</span><span class="p">,</span><span class="mf">0.05</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">params_kadai2_3</span> <span class="o">=</span> <span class="p">[[</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">]</span> <span class="k">for</span> <span class="n">k4</span> <span class="ow">in</span> <span class="n">k4range</span> <span class="k">for</span> <span class="n">k2</span> <span class="ow">in</span> <span class="n">k2range</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">RSS_kadai2_3</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">CalRap1RSS</span><span class="p">(</span>
         <span class="n">train_t_kadai2_3</span><span class="p">,</span>
@@ -1697,69 +1807,86 @@ oSAiIu0UCiIi0k6hICIi7RQKIiLS7v8DlIBe+VnmXYIAAAAASUVORK5CYII=
     <span class="p">)</span> <span class="k">for</span> <span class="n">param_kadai2_3</span> <span class="ow">in</span> <span class="n">params_kadai2_3</span>
 <span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">RSS_kadai2_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">RSS_kadai2_3</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">k2range</span><span class="p">),</span><span class="nb">len</span><span class="p">(</span><span class="n">k4range</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">opt_k2_index</span><span class="p">,</span> <span class="n">opt_k4_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">RSS_kadai2_3</span><span class="p">),</span> <span class="n">RSS_kadai2_3</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 <span class="n">optk2</span> <span class="o">=</span> <span class="n">k2range</span><span class="p">[</span><span class="n">opt_k2_index</span><span class="p">]</span>
 <span class="n">optk4</span> <span class="o">=</span> <span class="n">k4range</span><span class="p">[</span><span class="n">opt_k4_index</span><span class="p">]</span>
 <span class="n">optRSS</span> <span class="o">=</span> <span class="n">RSS_kadai2_3</span><span class="p">[</span><span class="n">opt_k2_index</span><span class="p">][</span><span class="n">opt_k4_index</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">k2range</span><span class="p">,</span> <span class="n">k4range</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">Axes3D</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"$k_2$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"$k_4$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">"RSS"</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$k_2$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$k_4$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s2">&quot;RSS&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">plot_wireframe</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">RSS_kadai2_3</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter3D</span><span class="p">(</span><span class="n">optk2</span><span class="p">,</span><span class="n">optk4</span><span class="p">,</span><span class="n">optRSS</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"*"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"The relationship between RSS and $k_2$ and $k_4$"</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">text3D</span><span class="p">(</span><span class="n">optk2</span><span class="p">,</span><span class="n">optk4</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">optRSS</span><span class="p">,</span><span class="s2">"optimized k2=</span><span class="si">{:.2f}</span><span class="s2">, k4=</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">optk2</span><span class="p">,</span><span class="n">optk4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter3D</span><span class="p">(</span><span class="n">optk2</span><span class="p">,</span><span class="n">optk4</span><span class="p">,</span><span class="n">optRSS</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;*&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;The relationship between RSS and $k_2$ and $k_4$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">text3D</span><span class="p">(</span><span class="n">optk2</span><span class="p">,</span><span class="n">optk4</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">optRSS</span><span class="p">,</span><span class="s2">&quot;optimized k2=</span><span class="si">{:.2f}</span><span class="s2">, k4=</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">optk2</span><span class="p">,</span><span class="n">optk4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcUAAAE1CAYAAACWU/udAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -3637,61 +3764,78 @@ BEG4A1gliuJtE7RkGZkJQbZ5k5G5MogE/iIIgpK+CtH/E0XxU0EQngEKRVHcBbwBvCMIwimgFbhj
 4pYrIzMxyJmijIyMjIzMOeQ9RRkZGRkZmXMWofNFAAAAS0lEQVTIQVFGRkZGRuYcclCUkZGRkZE5
 hxwUZWRkZGRkziEHRRkZGRkZmXPIQVFGRkZGRuYcclCUkZGRkZE5hxwUZWRkZGRkzvH/AebXXJbN
 fWZ7AAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="最適なパラメタでシミュレーション">最適なパラメタでシミュレーション<a class="anchor-link" href="#最適なパラメタでシミュレーション">¶</a></h4>
+<h4 id="&#26368;&#36969;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#26368;&#36969;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;<a class="anchor-link" href="#&#26368;&#36969;&#12394;&#12497;&#12521;&#12513;&#12479;&#12391;&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">min_param_kadai2_3</span> <span class="o">=</span> <span class="n">params_kadai2_3</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">RSS_kadai2_3</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span><span class="p">,</span><span class="n">Rap1_vals</span> <span class="o">=</span> <span class="n">Rap1model</span><span class="p">(</span><span class="n">params</span><span class="o">=</span><span class="n">min_param_kadai2_3</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rap1_vals</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t_kadai2_2</span><span class="p">,</span> <span class="n">train_x_kadai2_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The best k4 with sample data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc."</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t_kadai2_2</span><span class="p">,</span> <span class="n">train_x_kadai2_2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The best k4 with sample data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAEWCAYAAACJ0YulAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -3900,26 +4044,31 @@ VYscJO0piBy8N4J7VpSb2U7gpWD8IuDooKfaE4HnIj0UAJDe+WWKtJ1CQeTgRfe30xA13EDkfyuJ
 SN//4zu7MJGDpeYjkX0rB3IO5o3BfSxWm9nXoOkeu+M6sjiRjqZQENkHd98GvBPcWH36QczicuBa
 M1sILCGObv0q8UmnpIqISBPtKYiISBOFgoiINFEoiIhIE4WCiIg0USiIiEgThYKIiDRRKIiISJP/
 D30/4E9B9+JXAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題3：4つの未知パラメータをEPで推定">課題3：4つの未知パラメータをEPで推定<a class="anchor-link" href="#課題3：4つの未知パラメータをEPで推定">¶</a></h3><ol>
+<h3 id="&#35506;&#38988;3&#65306;4&#12388;&#12398;&#26410;&#30693;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;EP&#12391;&#25512;&#23450;">&#35506;&#38988;3&#65306;4&#12388;&#12398;&#26410;&#30693;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;EP&#12391;&#25512;&#23450;<a class="anchor-link" href="#&#35506;&#38988;3&#65306;4&#12388;&#12398;&#26410;&#30693;&#12497;&#12521;&#12513;&#12540;&#12479;&#12434;EP&#12391;&#25512;&#23450;">&#182;</a></h3><ol>
 <li>最小二乗法に基づき、$\mathrm{Rap1}$ モデルのパラメータ<font color="red"> $k_1,k_2,k_3,k_4$ を手で</font>推定せよ。（省略）</li>
 <li>最小二乗法に基づき、$\mathrm{Rap1}$ モデルのパラメータ<font color="red"> $k_4$ をEPで</font>推定せよ。</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="EP（Evolutionary-programming）">EP（Evolutionary programming）<a class="anchor-link" href="#EP（Evolutionary-programming）">¶</a></h3><ol>
+<h3 id="EP&#65288;Evolutionary-programming&#65289;">EP&#65288;Evolutionary programming&#65289;<a class="anchor-link" href="#EP&#65288;Evolutionary-programming&#65289;">&#182;</a></h3><ol>
 <li>乱数を初期値として，$N$ 個の個体（解の候補）を生成する。</li>
 <li>個体のそれぞれのコピーをつくる。</li>
 <li>2.で作った各コピーに正規乱数を加える。<b>（変異）</b></li>
@@ -3932,67 +4081,81 @@ D30/4E9B9+JXAAAAAElFTkSuQmCC
 <li>終了条件を満たすまで 2~5<b>（1世代に相当）</b>の操作を繰り返す。</li>
 <li>残った中で最も評価関数の値が良い個体を<b>"解"</b>とする。</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="データの読み込み">データの読み込み<a class="anchor-link" href="#データの読み込み">¶</a></h4>
+<h4 id="&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;">&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;<a class="anchor-link" href="#&#12487;&#12540;&#12479;&#12398;&#35501;&#12415;&#36796;&#12415;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">"data_Rap1_4para.mat"</span><span class="p">)</span>
-<span class="n">ts</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"t"</span><span class="p">]</span>
-<span class="n">xs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;data_Rap1_4para.mat&quot;</span><span class="p">)</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
 <span class="n">_</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">train_Rap1a</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In [38]:</div>
-<div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data_kadai3</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">"data_Rap1_4para.mat"</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_t_kadai3</span> <span class="o">=</span> <span class="n">train_data_kadai3</span><span class="p">[</span><span class="s2">"t"</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-<span class="n">train_x_kadai3</span> <span class="o">=</span> <span class="n">train_data_kadai3</span><span class="p">[</span><span class="s2">"x"</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_data_kadai3</span> <span class="o">=</span> <span class="n">loadmat</span><span class="p">(</span><span class="s2">&quot;data_Rap1_4para.mat&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"訓練データの中身</span><span class="se">\n</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_x_kadai3</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_t_kadai3</span> <span class="o">=</span> <span class="n">train_data_kadai3</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+<span class="n">train_x_kadai3</span> <span class="o">=</span> <span class="n">train_data_kadai3</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;訓練データの中身</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_x_kadai3</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>訓練データの中身
 [[ 1.         -0.0357536   0.005      -0.0056963 ]
@@ -4009,35 +4172,46 @@ D30/4E9B9+JXAAAAAElFTkSuQmCC
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">_</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">train_Rap1a</span> <span class="o">=</span> <span class="n">train_x_kadai3</span><span class="o">.</span><span class="n">T</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"GEFa:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_GEFa</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Rap1a:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_Rap1a</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;GEFa:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_GEFa</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Rap1a:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_Rap1a</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>GEFa:
 [-0.0357536   0.36819643  0.66759354  0.73270475  0.73190286  0.77473891
@@ -4048,36 +4222,40 @@ Rap1a:
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="諸々の関数定義">諸々の関数定義<a class="anchor-link" href="#諸々の関数定義">¶</a></h4>
+<h4 id="&#35576;&#12293;&#12398;&#38306;&#25968;&#23450;&#32681;">&#35576;&#12293;&#12398;&#38306;&#25968;&#23450;&#32681;<a class="anchor-link" href="#&#35576;&#12293;&#12398;&#38306;&#25968;&#23450;&#32681;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 摂動(dt)が大きいと、パラメータの値によっては急激な変化によってうまくシミュレーションができないことがある。</span>
 <span class="c1"># そこで、濃度があまりにも大きい（or負の数になった）時には大きなペナルティを与える。</span>
 <span class="c1"># そうすることでdtを比較的大きな値に設定することができるので、短時間で学習が行える。</span>
 <span class="k">def</span> <span class="nf">AvoidOverFlow</span><span class="p">(</span><span class="n">values</span><span class="p">,</span><span class="n">minv</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">maxv</span><span class="o">=</span><span class="mf">1e3</span><span class="p">):</span>
-    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">v</span><span class="o"><</span><span class="n">minv</span> <span class="ow">or</span> <span class="n">maxv</span><span class="o"><</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">([</span><span class="n">v</span><span class="o">&lt;</span><span class="n">minv</span> <span class="ow">or</span> <span class="n">maxv</span><span class="o">&lt;</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">CalRap1RSS_both</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">train_Rap1a</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span>
                     <span class="n">dt</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">min_t</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_t</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">maxrss</span><span class="o">=</span><span class="mf">1e5</span><span class="p">,</span>
                     <span class="n">S</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">GEFa</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">GAPa</span><span class="o">=</span><span class="mf">0.005</span><span class="p">,</span><span class="n">Rap1a</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
@@ -4094,175 +4272,195 @@ Rap1a:
             <span class="n">rss</span> <span class="o">+=</span> <span class="p">(</span><span class="n">train_Rap1a</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">-</span><span class="n">Rap1a</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">train_GEFa</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">-</span><span class="n">GEFa</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
     <span class="k">return</span> <span class="n">rss</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plotSimulate</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">param</span><span class="p">):</span>
     <span class="n">time</span><span class="p">,</span><span class="n">Rap1a_vals</span><span class="p">,</span><span class="n">Gefa_vals</span> <span class="o">=</span> <span class="n">Rap1model</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="n">both</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Gefa_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rap1a_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Gefa_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Rap1a_vals</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plotRSS</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span><span class="p">,</span><span class="n">generations</span><span class="p">,</span><span class="n">best_rss</span><span class="p">,</span><span class="n">mean_rss</span><span class="p">):</span>
-    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">generations</span><span class="p">,</span> <span class="n">best_rss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">generations</span><span class="p">,</span> <span class="n">mean_rss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">generations</span><span class="p">,</span> <span class="n">best_rss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">generations</span><span class="p">,</span> <span class="n">mean_rss</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">plotInfo</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">train_Rap1a</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">8</span><span class="p">)):</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="n">figsize</span><span class="p">)</span>
     
     <span class="n">ax1</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"GEFa"</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"train data"</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;GEFa&quot;</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train data&quot;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     
     <span class="n">ax2</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time"</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Rap1"</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_Rap1a</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"train data"</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Rap1&quot;</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_t</span><span class="p">,</span> <span class="n">train_Rap1a</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;train data&quot;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     
     <span class="n">ax3</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"generation"</span><span class="p">)</span>
-    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"RSS"</span><span class="p">)</span>
-    <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"The Best individual"</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;generation&quot;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RSS&quot;</span><span class="p">)</span>
+    <span class="n">ax3</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;The Best individual&quot;</span><span class="p">)</span>
     <span class="n">ax3</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.5</span><span class="p">)</span>
     
     <span class="n">ax4</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"generation"</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"RSS"</span><span class="p">)</span>
-    <span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"The Mean of individuals"</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;generation&quot;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;RSS&quot;</span><span class="p">)</span>
+    <span class="n">ax4</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;The Mean of individuals&quot;</span><span class="p">)</span>
     <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
     
     <span class="k">return</span> <span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">datetime</span>
 <span class="k">def</span> <span class="nf">now</span><span class="p">():</span>
-    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%Y/%m/</span><span class="si">%d</span><span class="s2"> %H:%M:%S"</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y/%m/</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="パラメタ定義">パラメタ定義<a class="anchor-link" href="#パラメタ定義">¶</a></h4>
+<h4 id="&#12497;&#12521;&#12513;&#12479;&#23450;&#32681;">&#12497;&#12521;&#12513;&#12479;&#23450;&#32681;<a class="anchor-link" href="#&#12497;&#12521;&#12513;&#12479;&#23450;&#32681;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">2019</span><span class="p">)</span> <span class="c1"># シード固定(→再現性)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">numGeneration</span> <span class="o">=</span> <span class="mi">250</span>
 <span class="n">ITERTION_COUNT</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">K</span><span class="o">=</span><span class="mi">4</span> <span class="c1"># パラメタ数</span>
 <span class="n">N</span><span class="o">=</span><span class="mi">100</span> <span class="c1"># 一世代の個体数</span>
 <span class="n">indexes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="mi">2</span><span class="p">)])</span> <span class="c1"># 各個体のインデックス</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lb</span> <span class="o">=</span> <span class="mf">1e-3</span><span class="p">;</span> <span class="n">ub</span> <span class="o">=</span> <span class="mf">1e2</span> <span class="c1"># 初期パラメータの範囲</span>
 <span class="n">sigma_scale</span><span class="o">=</span><span class="mf">0.1</span><span class="p">;</span> <span class="c1"># 正規乱数の分散パラメータ</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rate</span><span class="o">=</span><span class="mf">0.7</span> <span class="c1"># スコア算出時に何割の個体と値を比べるか</span>
 <span class="n">q</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">rate</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="EP実装">EP実装<a class="anchor-link" href="#EP実装">¶</a></h4>
+<h4 id="EP&#23455;&#35013;">EP&#23455;&#35013;<a class="anchor-link" href="#EP&#23455;&#35013;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"[START] </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">now</span><span class="p">()))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"[PARAM] Iteration=</span><span class="si">{}</span><span class="s2">, numGeneration=</span><span class="si">{}</span><span class="s2">, numIndividual=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ITERTION_COUNT</span><span class="p">,</span> <span class="n">numGeneration</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[START] </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">now</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[PARAM] Iteration=</span><span class="si">{}</span><span class="s2">, numGeneration=</span><span class="si">{}</span><span class="s2">, numIndividual=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">ITERTION_COUNT</span><span class="p">,</span> <span class="n">numGeneration</span><span class="p">,</span><span class="n">N</span><span class="p">))</span>
 <span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span> <span class="o">=</span> <span class="n">plotInfo</span><span class="p">(</span><span class="n">train_t_kadai3</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">train_Rap1a</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ITERTION_COUNT</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
     <span class="n">params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="n">lb</span><span class="p">,</span><span class="n">ub</span><span class="p">,(</span><span class="n">N</span><span class="p">,</span><span class="n">K</span><span class="p">))</span> <span class="c1"># 初期パラメータ</span>
     
     <span class="n">best_rss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numGeneration</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 各世代の最も良い個体の値を格納</span>
@@ -4275,8 +4473,8 @@ Rap1a:
         <span class="c1"># 分散: sigma_scale × 元のパラメータ</span>
         <span class="n">new_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">params</span><span class="o">*</span><span class="n">sigma_scale</span><span class="p">)</span>
         <span class="c1">#=== パラメタを[lb,ub]の範囲に入れる ===</span>
-        <span class="n">new_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_params</span><span class="o">></span><span class="n">lb</span><span class="p">,</span> <span class="n">new_params</span><span class="p">,</span> <span class="n">lb</span><span class="p">)</span>
-        <span class="n">new_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_params</span><span class="o"><</span><span class="n">ub</span><span class="p">,</span> <span class="n">new_params</span><span class="p">,</span> <span class="n">ub</span><span class="p">)</span>
+        <span class="n">new_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_params</span><span class="o">&gt;</span><span class="n">lb</span><span class="p">,</span> <span class="n">new_params</span><span class="p">,</span> <span class="n">lb</span><span class="p">)</span>
+        <span class="n">new_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">new_params</span><span class="o">&lt;</span><span class="n">ub</span><span class="p">,</span> <span class="n">new_params</span><span class="p">,</span> <span class="n">ub</span><span class="p">)</span>
         
         <span class="n">all_params</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">params</span><span class="p">,</span><span class="n">new_params</span><span class="p">]</span>
         <span class="n">RSSs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">CalRap1RSS_both</span><span class="p">(</span><span class="n">train_t_kadai3</span><span class="p">,</span> <span class="n">train_GEFa</span><span class="p">,</span> <span class="n">train_Rap1a</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span> <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">all_params</span><span class="p">])</span>
@@ -4289,7 +4487,7 @@ Rap1a:
             <span class="n">rss</span> <span class="o">=</span> <span class="n">RSSs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># 今考えている個体のRSS</span>
             <span class="n">selected</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">indexes</span><span class="p">[</span><span class="n">indexes</span><span class="o">!=</span><span class="n">i</span><span class="p">],</span> <span class="n">q</span><span class="p">)</span> <span class="c1"># 考えている個体以外からq個体をランダムチョイス</span>
             <span class="n">selected_scores</span> <span class="o">=</span> <span class="n">RSSs</span><span class="p">[</span><span class="n">selected</span><span class="p">]</span> <span class="c1"># それらの個体のRSS</span>
-            <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">selected_scores</span> <span class="o">></span> <span class="n">rss</span><span class="p">)</span> <span class="c1"># 考えている個体よりもRSSが悪い（=大きい）個体の数</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">selected_scores</span> <span class="o">&gt;</span> <span class="n">rss</span><span class="p">)</span> <span class="c1"># 考えている個体よりもRSSが悪い（=大きい）個体の数</span>
             <span class="n">scores</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">score</span> <span class="c1"># 記録</span>
 
         <span class="n">params</span> <span class="o">=</span> <span class="n">all_params</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">scores</span><span class="p">)[</span><span class="n">N</span><span class="p">:]]</span> <span class="c1"># スコアの良い半分を次の世代に残す。</span>
@@ -4297,10 +4495,10 @@ Rap1a:
         
         <span class="k">if</span> <span class="n">gen</span><span class="o">%</span><span class="k">10</span>==0:
             <span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span> <span class="o">=</span> <span class="n">best_params</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"[</span><span class="si">{:02}</span><span class="s2"> | Gene</span><span class="si">{:03}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="n">gen</span><span class="p">,</span><span class="n">now</span><span class="p">()))</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"- best RSS: </span><span class="si">{:.5f}</span><span class="s2"> / k1=</span><span class="si">{:.2f}</span><span class="s2">, k2=</span><span class="si">{:.2f}</span><span class="s2">, k3=</span><span class="si">{:.2f}</span><span class="s2">, k4=</span><span class="si">{:.2f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_rss</span><span class="p">[</span><span class="n">gen</span><span class="p">],</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">))</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"- mean RSS: </span><span class="si">{:.5f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_rss</span><span class="p">[</span><span class="n">gen</span><span class="p">]))</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">"-"</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[</span><span class="si">{:02}</span><span class="s2"> | Gene</span><span class="si">{:03}</span><span class="s2">] </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="n">gen</span><span class="p">,</span><span class="n">now</span><span class="p">()))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- best RSS: </span><span class="si">{:.5f}</span><span class="s2"> / k1=</span><span class="si">{:.2f}</span><span class="s2">, k2=</span><span class="si">{:.2f}</span><span class="s2">, k3=</span><span class="si">{:.2f}</span><span class="s2">, k4=</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best_rss</span><span class="p">[</span><span class="n">gen</span><span class="p">],</span><span class="n">k1</span><span class="p">,</span><span class="n">k2</span><span class="p">,</span><span class="n">k3</span><span class="p">,</span><span class="n">k4</span><span class="p">))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;- mean RSS: </span><span class="si">{:.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_rss</span><span class="p">[</span><span class="n">gen</span><span class="p">]))</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="o">*</span><span class="mi">60</span><span class="p">)</span>
 
     <span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span> <span class="o">=</span> <span class="n">plotSimulate</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span><span class="n">ax2</span><span class="p">,</span><span class="n">best_params</span><span class="p">)</span>
     <span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span> <span class="o">=</span> <span class="n">plotRSS</span><span class="p">(</span><span class="n">ax3</span><span class="p">,</span><span class="n">ax4</span><span class="p">,</span><span class="n">generations</span><span class="p">,</span><span class="n">best_rss</span><span class="p">,</span><span class="n">mean_rss</span><span class="p">)</span>
@@ -4308,13 +4506,20 @@ Rap1a:
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[START] 2019/07/11 17:26:47
 [PARAM] Iteration=10, numGeneration=250, numIndividual=100
@@ -5371,8 +5576,14 @@ Rap1a:
 </pre>
 </div>
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA1gAAAI4CAYAAAB3HEhGAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -6337,48 +6548,58 @@ cpzXReQ8AEsDLhz1AG4FZ/Dc+60XkbUA3gdQCw6mlgcA/F1E9rp93o0xawKziisCq/5sjFkbmIlU
 FEVRzhF0TFKU5EDTtCtKhIhIljGmXljv4x0Ac4wxaxLdLkVRFKXvoWOSoiQetWApSuQ8ICJVoN/5
 ozqQKYqiKAlExyRFSTBqwVIURVEURVEURYkSmuRCURRFURRFURQlSqjAUhRFURRFURRFiRIqsBRF
 URRFURRFUaKECixFURRFURRFUZQooQJLURRFURRFURQlSvx/Ur3LYE/vDaQAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="発展課題：Rap1のデータに対して、Rasモデルのパラメータ（$k_1,\ldots,k_6$）を推定せよ。">発展課題：Rap1のデータに対して、Rasモデルのパラメータ（$k_1,\ldots,k_6$）を推定せよ。<a class="anchor-link" href="#発展課題：Rap1のデータに対して、Rasモデルのパラメータ（$k_1,\ldots,k_6$）を推定せよ。">¶</a></h3><ul>
+<h3 id="&#30330;&#23637;&#35506;&#38988;&#65306;Rap1&#12398;&#12487;&#12540;&#12479;&#12395;&#23550;&#12375;&#12390;&#12289;Ras&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;&#65288;$k_1,\ldots,k_6$&#65289;&#12434;&#25512;&#23450;&#12379;&#12424;&#12290;">&#30330;&#23637;&#35506;&#38988;&#65306;Rap1&#12398;&#12487;&#12540;&#12479;&#12395;&#23550;&#12375;&#12390;&#12289;Ras&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;&#65288;$k_1,\ldots,k_6$&#65289;&#12434;&#25512;&#23450;&#12379;&#12424;&#12290;<a class="anchor-link" href="#&#30330;&#23637;&#35506;&#38988;&#65306;Rap1&#12398;&#12487;&#12540;&#12479;&#12395;&#23550;&#12375;&#12390;&#12289;Ras&#12514;&#12487;&#12523;&#12398;&#12497;&#12521;&#12513;&#12540;&#12479;&#65288;$k_1,\ldots,k_6$&#65289;&#12434;&#25512;&#23450;&#12379;&#12424;&#12290;">&#182;</a></h3><ul>
 <li>RasモデルとRap1モデルの関係はどうなっているか？</li>
 <li>Rasモデルを使った場合とRap1モデルを使った場合で、パラメータや残差二乗和にどのような違いが現れたか？</li>
 <li>残差二乗和が似ている最適化試行では、パラメータの推定値も似ているか？</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="予想：">予想：<a class="anchor-link" href="#予想：">¶</a></h3><p>$\frac{dGAP}{dt}=0$ になるようにパラメータがフィッティング（<font color="red"><b>つまり、Rasモデルと本質的には変わらないということ</b></font>）するのではないか？</p>
+<h3 id="&#20104;&#24819;&#65306;">&#20104;&#24819;&#65306;<a class="anchor-link" href="#&#20104;&#24819;&#65306;">&#182;</a></h3><p>$\frac{dGAP}{dt}=0$ になるようにパラメータがフィッティング（<font color="red"><b>つまり、Rasモデルと本質的には変わらないということ</b></font>）するのではないか？</p>
 <p>もしくは変に<font color="red"><b>オーバーフィッティング？？</b></font></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -6395,6 +6616,7 @@ URRFURRFUaKECixFURRFURRFUZQooQJLURRFURRFURQlSvx/Ur3LYE/vDaQAAAAASUVORK5CYII=
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -6428,10 +6650,10 @@ URRFURRFUaKECixFURRFURRFUZQooQJLURRFURRFURQlSvx/Ur3LYE/vDaQAAAAASUVORK5CYII=
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-07-11T00:00:00+09:00"> 7 11, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-07-11T00:00:00+09:00">Jul 11, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-07-11T00:00:00+09:00"> 7 11, 2019</time>
+<time datetime="2019-07-11T00:00:00+09:00">Jul 11, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -6449,8 +6671,6 @@ URRFURRFUaKECixFURRFURRFUZQooQJLURRFURRFURQlSvx/Ur3LYE/vDaQAAAAASUVORK5CYII=
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

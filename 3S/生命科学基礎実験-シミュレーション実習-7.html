@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="シミュレーション実習 Day7 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-7.html" />
-<meta property="og:description" content="シミュレーション実習¶Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ トランスオミクスStep3：リン酸化された責任代謝酵素を同定する トランスオミクスStep4：責任キナーゼの推定 トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する # この後使うデータの準備（Webサイトのある階層を一括取得し、展開する。） $ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day7/transomics_data.zip $ unzip transomics_data.zip $ mv transomics_data" />
+<meta property="og:description" content="トランスオミクスのデータ解析Ⅱ" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-18T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-18T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day7 ">
-<meta name="twitter:description" content="シミュレーション実習¶Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築 担当：黒田研究室 実習のwiki：Slides and programs 概要¶ トランスオミクスStep3：リン酸化された責任代謝酵素を同定する トランスオミクスStep4：責任キナーゼの推定 トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する # この後使うデータの準備（Webサイトのある階層を一括取得し、展開する。） $ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day7/transomics_data.zip $ unzip transomics_data.zip $ mv transomics_data">
+<meta name="twitter:description" content="トランスオミクスのデータ解析Ⅱ">
 
         <title>シミュレーション実習 Day7  · 3S
 </title>
@@ -119,22 +119,24 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="シミュレーション実習">シミュレーション実習<a class="anchor-link" href="#シミュレーション実習">¶</a></h1><p><b>Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築</b></p>
+<h1 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#182;</a></h1><p><b>Day.7: トランスオミクス解析２：多階層代謝制御ネットワークの再構築</b></p>
 <ul>
 <li>担当：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/">黒田研究室</a></li>
 <li>実習のwiki：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/">Slides and programs</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="概要">概要<a class="anchor-link" href="#概要">¶</a></h2><ol>
-<li><a data-scroll="" href="#anchor1">トランスオミクスStep3：リン酸化された責任代謝酵素を同定する</a></li>
-<li><a data-scroll="" href="#anchor2">トランスオミクスStep4：責任キナーゼの推定</a></li>
-<li><a data-scroll="" href="#anchor3">トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する</a></li>
+<h2 id="&#27010;&#35201;">&#27010;&#35201;<a class="anchor-link" href="#&#27010;&#35201;">&#182;</a></h2><ol>
+<li><a data-scroll href="#anchor1">トランスオミクスStep3：リン酸化された責任代謝酵素を同定する</a></li>
+<li><a data-scroll href="#anchor2">トランスオミクスStep4：責任キナーゼの推定</a></li>
+<li><a data-scroll href="#anchor3">トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する</a></li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -146,23 +148,31 @@ $ wget http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/Day7/transomics_dat
 $ unzip transomics_data.zip
 $ mv transomics_data
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> tree <span class="p">|</span> grep -v *.ipynb
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>.
 ├── Day7_AnswerFiles
@@ -205,60 +215,76 @@ $ mv transomics_data
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　<b>※ これに加えて、前日作成した「責任代謝酵素リスト(</b> <code>rme.txt</code> <b>)」が必要になります。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="anchor1">1. トランスオミクスStep3：リン酸化された責任代謝酵素を同定する</h2><p>　<code>phosphoproteome.txt</code> の１列目には、リン酸化された代謝酵素の EC number が含まれている。ここから、責任代謝酵素に関する行のみ抽出する。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_phosphoproteome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"phosphoproteome.txt"</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_phosphoproteome</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;phosphoproteome.txt&quot;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 1. phosphoproteome.txt をExcelで開き、データの特徴を捉える。</span>
 <span class="n">df_phosphoproteome</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[4]:</div>
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -275,110 +301,114 @@ $ mv transomics_data
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>Phosphoproteomic data of the responsible metabolic enzymes and the responsible protein kinases</th>
-<th>Unnamed: 1</th>
-<th>Unnamed: 2</th>
-<th>Unnamed: 3</th>
-<th>Unnamed: 4</th>
-<th>Unnamed: 5</th>
-<th>Unnamed: 6</th>
-<th>Unnamed: 7</th>
-<th>Unnamed: 8</th>
-<th>Unnamed: 9</th>
-<th>Unnamed: 10</th>
-<th>Unnamed: 11</th>
-<th>Unnamed: 12</th>
-<th>Unnamed: 13</th>
-<th>Unnamed: 14</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>EC number</td>
-<td>IPI</td>
-<td>KEGG identifier</td>
-<td>Gene name</td>
-<td>KEGG annotation</td>
-<td>Phosphopeptide sequence</td>
-<td>Other Modification</td>
-<td>Phosphorylated residue</td>
-<td>time=0min</td>
-<td>2min</td>
-<td>5min</td>
-<td>10min</td>
-<td>30min</td>
-<td>45min</td>
-<td>60min</td>
-</tr>
-<tr>
-<th>1</th>
-<td>ec:1.1.1.37</td>
-<td>IPI00198717</td>
-<td>rno:24551</td>
-<td>Mdh1</td>
-<td>malate dehydrogenase</td>
-<td>KLpSSAMSAAK</td>
-<td>NaN</td>
-<td>S241</td>
-<td>1.027587068</td>
-<td>1.554700684</td>
-<td>1.20995715</td>
-<td>1</td>
-<td>1.479191537</td>
-<td>1.191214131</td>
-<td>1.539084861</td>
-</tr>
-<tr>
-<th>2</th>
-<td>ec:1.1.1.95</td>
-<td>IPI00475835</td>
-<td>rno:58835</td>
-<td>Phgdh</td>
-<td>phosphoglycerate dehydrogenase</td>
-<td>QNLSKEELIAELQDCEGLIVRpSATK</td>
-<td>NaN</td>
-<td>S55</td>
-<td>NaN</td>
-<td>0.75701328</td>
-<td>NaN</td>
-<td>1</td>
-<td>1.159319876</td>
-<td>NaN</td>
-<td>0.889512017</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Phosphoproteomic data of the responsible metabolic enzymes and the responsible protein kinases</th>
+      <th>Unnamed: 1</th>
+      <th>Unnamed: 2</th>
+      <th>Unnamed: 3</th>
+      <th>Unnamed: 4</th>
+      <th>Unnamed: 5</th>
+      <th>Unnamed: 6</th>
+      <th>Unnamed: 7</th>
+      <th>Unnamed: 8</th>
+      <th>Unnamed: 9</th>
+      <th>Unnamed: 10</th>
+      <th>Unnamed: 11</th>
+      <th>Unnamed: 12</th>
+      <th>Unnamed: 13</th>
+      <th>Unnamed: 14</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>EC number</td>
+      <td>IPI</td>
+      <td>KEGG identifier</td>
+      <td>Gene name</td>
+      <td>KEGG annotation</td>
+      <td>Phosphopeptide sequence</td>
+      <td>Other Modification</td>
+      <td>Phosphorylated residue</td>
+      <td>time=0min</td>
+      <td>2min</td>
+      <td>5min</td>
+      <td>10min</td>
+      <td>30min</td>
+      <td>45min</td>
+      <td>60min</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ec:1.1.1.37</td>
+      <td>IPI00198717</td>
+      <td>rno:24551</td>
+      <td>Mdh1</td>
+      <td>malate dehydrogenase</td>
+      <td>KLpSSAMSAAK</td>
+      <td>NaN</td>
+      <td>S241</td>
+      <td>1.027587068</td>
+      <td>1.554700684</td>
+      <td>1.20995715</td>
+      <td>1</td>
+      <td>1.479191537</td>
+      <td>1.191214131</td>
+      <td>1.539084861</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ec:1.1.1.95</td>
+      <td>IPI00475835</td>
+      <td>rno:58835</td>
+      <td>Phgdh</td>
+      <td>phosphoglycerate dehydrogenase</td>
+      <td>QNLSKEELIAELQDCEGLIVRpSATK</td>
+      <td>NaN</td>
+      <td>S55</td>
+      <td>NaN</td>
+      <td>0.75701328</td>
+      <td>NaN</td>
+      <td>1</td>
+      <td>1.159319876</td>
+      <td>NaN</td>
+      <td>0.889512017</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># 2. リン酸化された代謝酵素の[EC number, IPI ID, リン酸化残基]　の情報を抜き出し、phospho_ec_ipi_residue.txtを作成しなさい。先頭２行は見出し行なので、３行目から出力すること。重複の除去を忘れずに。</span>
-$ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f1,2,8 <span class="p">|</span> sort <span class="p">|</span> uniq > phospho_ec_ipi_residue.txt
+$ tail -n +3 phosphoproteome.txt <span class="p">|</span> cut -f1,2,8 <span class="p">|</span> sort <span class="p">|</span> uniq &gt; phospho_ec_ipi_residue.txt
 
 <span class="c1"># 3. 2の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phospho_ec_ipi_residue.txt Day7_AnswerFiles/Step_iii/phospho_ec_ipi_residue.txt
 
 <span class="c1"># 4. phospho_ec_ipi_residue.txt から責任代謝酵素リスト(rme.txt)にも含まれている代謝酵素のみを抜き出しphosphorme_ec_ipi_residue.txtを作成せよ。for文でrme.txtのそれぞれのEC番号をphospho_ec_ipi_residue.txtからgrepするとよい。ただしgrepは単語一致を指定するオプションwを用いる（ec:1.1.1.1とec:1.1.1.10を区別するため）。</span>
-$ <span class="k">for</span> aEC in <span class="k">$(</span>cat rme.txt<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> grep -w <span class="nv">$aEC</span> phospho_ec_ipi_residue.txt <span class="p">;</span> <span class="k">done</span> > phosphorme_ec_ipi_residue.txt
+$ <span class="k">for</span> aEC in <span class="k">$(</span>cat rme.txt<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> grep -w <span class="nv">$aEC</span> phospho_ec_ipi_residue.txt <span class="p">;</span> <span class="k">done</span> &gt; phosphorme_ec_ipi_residue.txt
 
 <span class="c1"># 5. 4の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phosphorme_ec_ipi_residue.txt Day7_AnswerFiles/Step_iii/phosphorme_ec_ipi_residue.txt
 
 <span class="c1"># 6. phosphorme_ec_ipi_residue.txtからリン酸化された責任代謝酵素のIPI IDとEC番号を抜き出したファイルphosphorme_ipi_ec.txtを作成せよ。</span>
-$ awk -F<span class="s2">"\t"</span> <span class="s1">'{ print $2"\t"$1 }'</span> phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq > phosphorme_ipi_ec.txt
+$ awk -F<span class="s2">&quot;\t&quot;</span> <span class="s1">&#39;{ print $2&quot;\t&quot;$1 }&#39;</span> phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq &gt; phosphorme_ipi_ec.txt
 
 <span class="c1"># 7. 6の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phosphorme_ipi_ec.txt Day7_AnswerFiles/Step_iii/phosphorme_ipi_ec.txt
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -386,14 +416,15 @@ $ diff phosphorme_ipi_ec.txt Day7_AnswerFiles/Step_iii/phosphorme_ipi_ec.txt
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="anchor2">2. トランスオミクスStep4：責任キナーゼの推定</h2><p>　キナーゼ推定ソフトウェアNetPhorestを用いて、責任代謝酵素をリン酸化したタンパク質キナーゼを推定する。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Q.1.-まずはお試し用のタンパク質配列ipi_sample.fastaを使い、以下の手順に則ってNetPhorest-の動作を体験してみよう。">Q.1. まずはお試し用のタンパク質配列ipi_sample.fastaを使い、以下の手順に則ってNetPhorest の動作を体験してみよう。<a class="anchor-link" href="#Q.1.-まずはお試し用のタンパク質配列ipi_sample.fastaを使い、以下の手順に則ってNetPhorest-の動作を体験してみよう。">¶</a></h4><ol>
-<li>TextEditで <code>ipi_sample.fasta</code> の中身を確認する（TextEditにDrag & Drop）。タンパク質ID_IPI00197210とそのアミノ酸配列から構成されていることがわかる。このような形式をFASTA形式という。</li>
+<h4 id="Q.1.-&#12414;&#12378;&#12399;&#12362;&#35430;&#12375;&#29992;&#12398;&#12479;&#12531;&#12497;&#12463;&#36074;&#37197;&#21015;ipi_sample.fasta&#12434;&#20351;&#12356;&#12289;&#20197;&#19979;&#12398;&#25163;&#38918;&#12395;&#21063;&#12387;&#12390;NetPhorest-&#12398;&#21205;&#20316;&#12434;&#20307;&#39443;&#12375;&#12390;&#12415;&#12424;&#12358;&#12290;">Q.1. &#12414;&#12378;&#12399;&#12362;&#35430;&#12375;&#29992;&#12398;&#12479;&#12531;&#12497;&#12463;&#36074;&#37197;&#21015;ipi_sample.fasta&#12434;&#20351;&#12356;&#12289;&#20197;&#19979;&#12398;&#25163;&#38918;&#12395;&#21063;&#12387;&#12390;NetPhorest &#12398;&#21205;&#20316;&#12434;&#20307;&#39443;&#12375;&#12390;&#12415;&#12424;&#12358;&#12290;<a class="anchor-link" href="#Q.1.-&#12414;&#12378;&#12399;&#12362;&#35430;&#12375;&#29992;&#12398;&#12479;&#12531;&#12497;&#12463;&#36074;&#37197;&#21015;ipi_sample.fasta&#12434;&#20351;&#12356;&#12289;&#20197;&#19979;&#12398;&#25163;&#38918;&#12395;&#21063;&#12387;&#12390;NetPhorest-&#12398;&#21205;&#20316;&#12434;&#20307;&#39443;&#12375;&#12390;&#12415;&#12424;&#12358;&#12290;">&#182;</a></h4><ol>
+<li>TextEditで <code>ipi_sample.fasta</code> の中身を確認する（TextEditにDrag &amp; Drop）。タンパク質ID_IPI00197210とそのアミノ酸配列から構成されていることがわかる。このような形式をFASTA形式という。</li>
 <li><code>less</code> などで <code>resnum_sample.txt</code> の中身を確認する。タンパク質ID_IPI00197210とその490番目のアミノ酸であるSerineを表すS490が記されている。このファイルはタンパク質のどの位置がリン酸化されているかの情報を与えるために用いる。</li>
 <li><a href="http://netphorest.info">NetPhorest</a> のウェブサイトを開く</li>
 <li>FASTA形式のアミノ酸配列ファイル <code>ipi_sample.fasta</code> の内容を<b>そのまま</b>問合せフォームに貼り付けて、<b>[Select Phosphosite]</b> を押す。</li>
@@ -402,45 +433,58 @@ $ diff phosphorme_ipi_ec.txt Day7_AnswerFiles/Step_iii/phosphorme_ipi_ec.txt
 <li>今回はキナーゼによるリン酸化のみ使うので、8つあるチェックボックス “KIN”, “SH2”, “PTP”, “PTB”, “14-3-3”, “BRCT”, “WW” ,”WD40” のうち ”KIN” のみチェックする。</li>
 <li><b>[Save]</b> → <b>Full dataset</b> を選択し、キナーゼの予測結果 <code>networkin_predictions_sample.tsv</code> を保存し、Excelなどで中身を確認する。タンパク質IPI00197210の490番目のSerineのリン酸化の予測キナーゼやその予測スコアが記されている。（その他には、アミノ酸配列やキナーゼのタンパク質IDが記されている。）</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_NetPhorest_path</span> <span class="o">=</span> <span class="s2">"../NetPhorest/sample_networkin_predictions.tsv"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sample_NetPhorest_path</span> <span class="o">=</span> <span class="s2">&quot;../NetPhorest/sample_networkin_predictions.tsv&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sample_NetPhorest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sample_NetPhorest_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sample_NetPhorest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sample_NetPhorest_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sample_NetPhorest</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -457,76 +501,79 @@ $ diff phosphorme_ipi_ec.txt Day7_AnswerFiles/Step_iii/phosphorme_ipi_ec.txt
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>#substrate</th>
-<th>position</th>
-<th>id</th>
-<th>networkin_score</th>
-<th>tree</th>
-<th>netphorest_group</th>
-<th>netphorest_score</th>
-<th>string_identifier</th>
-<th>string_score</th>
-<th>substrate_name</th>
-<th>sequence</th>
-<th>string_path</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>IPI00197210</td>
-<td>490</td>
-<td>AuroraA</td>
-<td>0.000223</td>
-<td>KIN</td>
-<td>AuroraA</td>
-<td>0.046184</td>
-<td>ENSP00000369100</td>
-<td>0.267089</td>
-<td>NaN</td>
-<td>LMRRNsVTPLA</td>
-<td>ENSP00000216911, 0.5728 ENSP00000386759, 0.653...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>IPI00197210</td>
-<td>490</td>
-<td>Pim2</td>
-<td>0.163875</td>
-<td>KIN</td>
-<td>Pim2</td>
-<td>0.035309</td>
-<td>ENSP00000369100</td>
-<td>0.140811</td>
-<td>NaN</td>
-<td>LMRRNsVTPLA</td>
-<td>ENSP00000365692, 0.7824 ENSP00000367207, 0.790...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>IPI00197210</td>
-<td>490</td>
-<td>Pim3</td>
-<td>0.346647</td>
-<td>KIN</td>
-<td>Pim3_Pim1_group</td>
-<td>0.152856</td>
-<td>ENSP00000369100</td>
-<td>0.147894</td>
-<td>NaN</td>
-<td>LMRRNsVTPLA</td>
-<td>ENSP00000353824, 0.756 ENSP00000376436, 0.7736...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#substrate</th>
+      <th>position</th>
+      <th>id</th>
+      <th>networkin_score</th>
+      <th>tree</th>
+      <th>netphorest_group</th>
+      <th>netphorest_score</th>
+      <th>string_identifier</th>
+      <th>string_score</th>
+      <th>substrate_name</th>
+      <th>sequence</th>
+      <th>string_path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>IPI00197210</td>
+      <td>490</td>
+      <td>AuroraA</td>
+      <td>0.000223</td>
+      <td>KIN</td>
+      <td>AuroraA</td>
+      <td>0.046184</td>
+      <td>ENSP00000369100</td>
+      <td>0.267089</td>
+      <td>NaN</td>
+      <td>LMRRNsVTPLA</td>
+      <td>ENSP00000216911, 0.5728 ENSP00000386759, 0.653...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>IPI00197210</td>
+      <td>490</td>
+      <td>Pim2</td>
+      <td>0.163875</td>
+      <td>KIN</td>
+      <td>Pim2</td>
+      <td>0.035309</td>
+      <td>ENSP00000369100</td>
+      <td>0.140811</td>
+      <td>NaN</td>
+      <td>LMRRNsVTPLA</td>
+      <td>ENSP00000365692, 0.7824 ENSP00000367207, 0.790...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>IPI00197210</td>
+      <td>490</td>
+      <td>Pim3</td>
+      <td>0.346647</td>
+      <td>KIN</td>
+      <td>Pim3_Pim1_group</td>
+      <td>0.152856</td>
+      <td>ENSP00000369100</td>
+      <td>0.147894</td>
+      <td>NaN</td>
+      <td>LMRRNsVTPLA</td>
+      <td>ENSP00000353824, 0.756 ENSP00000376436, 0.7736...</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -537,19 +584,22 @@ $ diff phosphorme_ipi_ec.txt Day7_AnswerFiles/Step_iii/phosphorme_ipi_ec.txt
 <li>リン酸化が実際に確認された残基の位置　(例：<code>resnum_sample.txt</code>)</li>
 </ol>
 <p>そこで、実際に以下のQ2,Q3でそれぞれのデータファイルを作成する。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Q2.-FASTA形式のアミノ酸配列データ作成">Q2. FASTA形式のアミノ酸配列データ作成<a class="anchor-link" href="#Q2.-FASTA形式のアミノ酸配列データ作成">¶</a></h4><p>　<code>ipi.RAT.fasta</code> は、ラット全タンパク質のアミノ酸配列をFASTA形式で格納しているファイルである。FASTA形式とは、以下のようなファイル形式である。</p>
+<h4 id="Q2.-FASTA&#24418;&#24335;&#12398;&#12450;&#12511;&#12494;&#37240;&#37197;&#21015;&#12487;&#12540;&#12479;&#20316;&#25104;">Q2. FASTA&#24418;&#24335;&#12398;&#12450;&#12511;&#12494;&#37240;&#37197;&#21015;&#12487;&#12540;&#12479;&#20316;&#25104;<a class="anchor-link" href="#Q2.-FASTA&#24418;&#24335;&#12398;&#12450;&#12511;&#12494;&#37240;&#37197;&#21015;&#12487;&#12540;&#12479;&#20316;&#25104;">&#182;</a></h4><p>　<code>ipi.RAT.fasta</code> は、ラット全タンパク質のアミノ酸配列をFASTA形式で格納しているファイルである。FASTA形式とは、以下のようなファイル形式である。</p>
+
 <pre><code>fasta
 [IPI]
 [60文字ごとに改行したアミノ酸配列]
 [60文字ごとに改行したアミノ酸配列]
        （以下、配列の末尾まで同様）</code></pre>
 <p>※なお、IPIはタンパク質を識別するID体系のひとつ、<b>International Protein Index</b>を指す。</p>
+
 </div>
 </div>
 </div>
@@ -565,20 +615,23 @@ $ seqkit grep ipi.RAT.fasta  -p IPI00197210
 $ seqkit grep ipi.RAT.fasta  -p IPI00197241
 
 <span class="c1"># 3. phosphorme_ec_ipi_residue.txtに含まれるタンパク質の配列をipi.RAT.fastaから抜き出し、phosphorme_ipi.fastaを作成しなさい。IPI IDはphosphorme_ec_ipi_residue.txtの2列目から抜き出し、重複を除いた上でfor文に用いるとよい。</span>
-$ <span class="k">for</span> aIPI in <span class="k">$(</span>cut -f2 phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> seqkit grep ipi.RAT.fasta -p <span class="nv">$aIPI</span><span class="p">;</span> <span class="k">done</span> > phosphorme_ipi.fasta
+$ <span class="k">for</span> aIPI in <span class="k">$(</span>cut -f2 phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq<span class="k">)</span> <span class="p">;</span> <span class="k">do</span> seqkit grep ipi.RAT.fasta -p <span class="nv">$aIPI</span><span class="p">;</span> <span class="k">done</span> &gt; phosphorme_ipi.fasta
 
 <span class="c1"># 4. 3の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phosphorme_ipi.fasta Day7_AnswerFiles/Step_iv/phosphorme_ipi.fasta
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Q3.-リン酸化が実際に確認された残基の位置を示すデータ作成">Q3. リン酸化が実際に確認された残基の位置を示すデータ作成<a class="anchor-link" href="#Q3.-リン酸化が実際に確認された残基の位置を示すデータ作成">¶</a></h4><p>　責任代謝酵素についてこの情報を取り出し、<code>resnum_sample.txt</code>と同様の</p>
+<h4 id="Q3.-&#12522;&#12531;&#37240;&#21270;&#12364;&#23455;&#38555;&#12395;&#30906;&#35469;&#12373;&#12428;&#12383;&#27531;&#22522;&#12398;&#20301;&#32622;&#12434;&#31034;&#12377;&#12487;&#12540;&#12479;&#20316;&#25104;">Q3. &#12522;&#12531;&#37240;&#21270;&#12364;&#23455;&#38555;&#12395;&#30906;&#35469;&#12373;&#12428;&#12383;&#27531;&#22522;&#12398;&#20301;&#32622;&#12434;&#31034;&#12377;&#12487;&#12540;&#12479;&#20316;&#25104;<a class="anchor-link" href="#Q3.-&#12522;&#12531;&#37240;&#21270;&#12364;&#23455;&#38555;&#12395;&#30906;&#35469;&#12373;&#12428;&#12383;&#27531;&#22522;&#12398;&#20301;&#32622;&#12434;&#31034;&#12377;&#12487;&#12540;&#12479;&#20316;&#25104;">&#182;</a></h4><p>　責任代謝酵素についてこの情報を取り出し、<code>resnum_sample.txt</code>と同様の</p>
+
 <pre><code>[IPI][tab][リン酸化部位]</code></pre>
 <p>という形式で保存したい。</p>
+
 </div>
 </div>
 </div>
@@ -586,7 +639,7 @@ $ diff phosphorme_ipi.fasta Day7_AnswerFiles/Step_iv/phosphorme_ipi.fasta
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="highlight"><pre><span></span><span class="c1"># 1. phosphorme_ec_ipi_residue.txtからリン酸化された責任代謝酵素のリン酸化部位（残基番号）を抜き出したファイルphosphorme_ipi_residue.txtを作成せよ。（ヒント：cutで2列目と3列目を抜き出し、重複削除）</span>
-$ cut -f2,3 phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq > phosphorme_ipi_residue.txt
+$ cut -f2,3 phosphorme_ec_ipi_residue.txt <span class="p">|</span> sort <span class="p">|</span> uniq &gt; phosphorme_ipi_residue.txt
 
 <span class="c1"># 2. 1の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phosphorme_ipi_residue.txt Day7_AnswerFiles/Step_iv/phosphorme_ipi_residue.txt
@@ -594,45 +647,58 @@ $ diff phosphorme_ipi_residue.txt Day7_AnswerFiles/Step_iv/phosphorme_ipi_residu
 <span class="c1"># 3. リン酸化された責任代謝酵素のFASTA形式ファイルphosphorme_ipi.fasta (Q2で作成)およびリン酸化部位ファイルphosphorme_ipi_residue.txt (Q3で作成)をNetPhorestに入力し、キナーゼの予測結果をnetworkin_predictions.tsvに保存しなさい。（先きほどのサンプルデータと別に取り扱うことを明確化したかったので、../NetPhorest/networkin_predictions.tsvに保存した。)</span>
 <span class="c1"># → [NetPhorest](http://netphorest.info) のウェブサイトを開く</span>
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NetPhorest_path</span> <span class="o">=</span> <span class="s2">"../NetPhorest/networkin_predictions.tsv"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NetPhorest_path</span> <span class="o">=</span> <span class="s2">&quot;../NetPhorest/networkin_predictions.tsv&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_NetPhorest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sample_NetPhorest_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_NetPhorest</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">sample_NetPhorest_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_NetPhorest</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[10]:</div>
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -649,76 +715,79 @@ $ diff phosphorme_ipi_residue.txt Day7_AnswerFiles/Step_iv/phosphorme_ipi_residu
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>#substrate</th>
-<th>position</th>
-<th>id</th>
-<th>networkin_score</th>
-<th>tree</th>
-<th>netphorest_group</th>
-<th>netphorest_score</th>
-<th>string_identifier</th>
-<th>string_score</th>
-<th>substrate_name</th>
-<th>sequence</th>
-<th>string_path</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>IPI00197210</td>
-<td>490</td>
-<td>AuroraA</td>
-<td>0.000223</td>
-<td>KIN</td>
-<td>AuroraA</td>
-<td>0.046184</td>
-<td>ENSP00000369100</td>
-<td>0.267089</td>
-<td>NaN</td>
-<td>LMRRNsVTPLA</td>
-<td>ENSP00000216911, 0.5728 ENSP00000386759, 0.653...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>IPI00197210</td>
-<td>490</td>
-<td>Pim2</td>
-<td>0.163875</td>
-<td>KIN</td>
-<td>Pim2</td>
-<td>0.035309</td>
-<td>ENSP00000369100</td>
-<td>0.140811</td>
-<td>NaN</td>
-<td>LMRRNsVTPLA</td>
-<td>ENSP00000365692, 0.7824 ENSP00000367207, 0.790...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>IPI00197210</td>
-<td>490</td>
-<td>Pim3</td>
-<td>0.346647</td>
-<td>KIN</td>
-<td>Pim3_Pim1_group</td>
-<td>0.152856</td>
-<td>ENSP00000369100</td>
-<td>0.147894</td>
-<td>NaN</td>
-<td>LMRRNsVTPLA</td>
-<td>ENSP00000353824, 0.756 ENSP00000376436, 0.7736...</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>#substrate</th>
+      <th>position</th>
+      <th>id</th>
+      <th>networkin_score</th>
+      <th>tree</th>
+      <th>netphorest_group</th>
+      <th>netphorest_score</th>
+      <th>string_identifier</th>
+      <th>string_score</th>
+      <th>substrate_name</th>
+      <th>sequence</th>
+      <th>string_path</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>IPI00197210</td>
+      <td>490</td>
+      <td>AuroraA</td>
+      <td>0.000223</td>
+      <td>KIN</td>
+      <td>AuroraA</td>
+      <td>0.046184</td>
+      <td>ENSP00000369100</td>
+      <td>0.267089</td>
+      <td>NaN</td>
+      <td>LMRRNsVTPLA</td>
+      <td>ENSP00000216911, 0.5728 ENSP00000386759, 0.653...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>IPI00197210</td>
+      <td>490</td>
+      <td>Pim2</td>
+      <td>0.163875</td>
+      <td>KIN</td>
+      <td>Pim2</td>
+      <td>0.035309</td>
+      <td>ENSP00000369100</td>
+      <td>0.140811</td>
+      <td>NaN</td>
+      <td>LMRRNsVTPLA</td>
+      <td>ENSP00000365692, 0.7824 ENSP00000367207, 0.790...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>IPI00197210</td>
+      <td>490</td>
+      <td>Pim3</td>
+      <td>0.346647</td>
+      <td>KIN</td>
+      <td>Pim3_Pim1_group</td>
+      <td>0.152856</td>
+      <td>ENSP00000369100</td>
+      <td>0.147894</td>
+      <td>NaN</td>
+      <td>LMRRNsVTPLA</td>
+      <td>ENSP00000353824, 0.756 ENSP00000376436, 0.7736...</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -727,22 +796,24 @@ $ diff phosphorme_ipi_residue.txt Day7_AnswerFiles/Step_iv/phosphorme_ipi_residu
 $ diff ../NetPhorest/networkin_predictions.tsv Day7_AnswerFiles/Step_iv/networkin_predictions.tsv
 
 <span class="c1"># 5. networkin_predictions.tsv は1,6列目にそれぞれ基質のIPI、責任キナーゼ名が含まれている。これらの列のみ抽出して重複を取り除き、phosphorme_ipi_kinase.txtに保存し、Excel等で中身を確認せよ。１行目は見出しなので、除いておくこと。sortコマンドにおいては、辞書順にするために-fオプションを用いること。</span>
-$ cut -f1,6 ../NetPhorest/networkin_predictions.tsv <span class="p">|</span> tail -n +2 <span class="p">|</span> sort -f <span class="p">|</span> uniq > phosphorme_ipi_kinase.txt
+$ cut -f1,6 ../NetPhorest/networkin_predictions.tsv <span class="p">|</span> tail -n +2 <span class="p">|</span> sort -f <span class="p">|</span> uniq &gt; phosphorme_ipi_kinase.txt
 
 <span class="c1"># 6. 最後に、phosphorme_ipi_ec.txtとphosphorme_ipi_kinase.txtを統合し、代謝酵素とキナーゼの対応関係phosphorme_ec_kinase.txtを作成し、less等で確認せよ。join(後述)を用いて、IPI_ID, EC番号, キナーゼの表を作成後、2列目と3列目を抽出し（*）、重複を削除すれば良い。ただし、cutコマンドにおいては、区切り文字を” ”にする必要があるため（joinの仕様）、-d “ ”を付加すること。またsortコマンドにおいては、辞書順にするために-fオプションを用いること。</span>
-<span class="c1"># *2列目と3列目の間は"\t"タブ文字ではなく、" "空白を用いてください（joinの仕様）。そのため、awkを用いる場合は$2と$3の間は" "を用いる必要がある。</span>
-$ join phosphorme_ipi_ec.txt phosphorme_ipi_kinase.txt <span class="p">|</span> cut -d <span class="s2">" "</span> -f2,3 <span class="p">|</span> sort -f <span class="p">|</span> uniq > phosphorme_ec_kinase.txt
+<span class="c1"># *2列目と3列目の間は&quot;\t&quot;タブ文字ではなく、&quot; &quot;空白を用いてください（joinの仕様）。そのため、awkを用いる場合は$2と$3の間は&quot; &quot;を用いる必要がある。</span>
+$ join phosphorme_ipi_ec.txt phosphorme_ipi_kinase.txt <span class="p">|</span> cut -d <span class="s2">&quot; &quot;</span> -f2,3 <span class="p">|</span> sort -f <span class="p">|</span> uniq &gt; phosphorme_ec_kinase.txt
 
 <span class="c1"># 7. 6の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phosphorme_ec_kinase.txt Day7_AnswerFiles/Step_iv/phosphorme_ec_kinase.txt
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="まとめ：経路抜き出し">まとめ：経路抜き出し<a class="anchor-link" href="#まとめ：経路抜き出し">¶</a></h4><p>　ここまでの操作で、以下の経路ファイルが作成された。</p>
+<h4 id="&#12414;&#12392;&#12417;&#65306;&#32076;&#36335;&#25244;&#12365;&#20986;&#12375;">&#12414;&#12392;&#12417;&#65306;&#32076;&#36335;&#25244;&#12365;&#20986;&#12375;<a class="anchor-link" href="#&#12414;&#12392;&#12417;&#65306;&#32076;&#36335;&#25244;&#12365;&#20986;&#12375;">&#182;</a></h4><p>　ここまでの操作で、以下の経路ファイルが作成された。</p>
+
 <pre><code>・metab_rme.txt：     変動代謝物　　～責任代謝酵素
             cpd:C00021      ec:1.16.1.8
             cpd:C00021      ec:2.1.1.1
@@ -759,6 +830,7 @@ $ diff phosphorme_ec_kinase.txt Day7_AnswerFiles/Step_iv/phosphorme_ec_kinase.tx
             ec:1.1.1.95 RSK_group
             …               …</code></pre>
 <p>　最後に、これらのデータを用いて<b>ネットワークの可視化</b>を試みる。</p>
+
 </div>
 </div>
 </div>
@@ -766,15 +838,16 @@ $ diff phosphorme_ec_kinase.txt Day7_AnswerFiles/Step_iv/phosphorme_ec_kinase.tx
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="anchor3">3. トランスオミクスStep5：シグナル伝達経路と代謝経路を視覚化する</h2><p>　インスリンシグナル伝達経路と中心炭素代謝経路の間をつないで立体的に視覚化する。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Q1.-まず、phosphorme_ec_kinase.txt-のうち、インスリンシグナル伝達経路と中心炭素代謝経路の間をつなぐリン酸化の情報のみを取り出す。">Q1. まず、<code>phosphorme_ec_kinase.txt</code> のうち、インスリンシグナル伝達経路と中心炭素代謝経路の間をつなぐリン酸化の情報のみを取り出す。<a class="anchor-link" href="#Q1.-まず、phosphorme_ec_kinase.txt-のうち、インスリンシグナル伝達経路と中心炭素代謝経路の間をつなぐリン酸化の情報のみを取り出す。">¶</a></h4><div class="highlight"><pre><span></span><span class="c1"># 1. NetPhorestで推定したキナーゼのうち、KEGGのインスリンシグナル伝達経路に存在するキナーゼのIDはPKA_group, PKB_group, PKC_group, p70S6K_group, GSK3_group, MAPK3_MAPK1_MAPK7_NLK_groupの6つである。これら6つを含む行のみをphosphorme_ec_kinase.txtから抜き出し、phosphorme_ec_inskinase.txt という名前のファイルに保存しなさい。</span>
-<span class="c1"># ヒント：「PKA_groupまたはPKB_group」を検索したいときは、 "PKA_group\|PKB_group" のように書く。検索に記号を含むので、""で囲む。</span>
-$ grep <span class="s2">"PKA_group\|PKB_group\|PKC_group\|p70S6K_group\|GSK3_group\|MAPK3_MAPK1_MAPK7_NLK_group"</span> phosphorme_ec_kinase.txt > phosphorme_ec_inskinase.txt
+<h4 id="Q1.-&#12414;&#12378;&#12289;phosphorme_ec_kinase.txt-&#12398;&#12358;&#12385;&#12289;&#12452;&#12531;&#12473;&#12522;&#12531;&#12471;&#12464;&#12490;&#12523;&#20253;&#36948;&#32076;&#36335;&#12392;&#20013;&#24515;&#28845;&#32032;&#20195;&#35613;&#32076;&#36335;&#12398;&#38291;&#12434;&#12388;&#12394;&#12368;&#12522;&#12531;&#37240;&#21270;&#12398;&#24773;&#22577;&#12398;&#12415;&#12434;&#21462;&#12426;&#20986;&#12377;&#12290;">Q1. &#12414;&#12378;&#12289;<code>phosphorme_ec_kinase.txt</code> &#12398;&#12358;&#12385;&#12289;&#12452;&#12531;&#12473;&#12522;&#12531;&#12471;&#12464;&#12490;&#12523;&#20253;&#36948;&#32076;&#36335;&#12392;&#20013;&#24515;&#28845;&#32032;&#20195;&#35613;&#32076;&#36335;&#12398;&#38291;&#12434;&#12388;&#12394;&#12368;&#12522;&#12531;&#37240;&#21270;&#12398;&#24773;&#22577;&#12398;&#12415;&#12434;&#21462;&#12426;&#20986;&#12377;&#12290;<a class="anchor-link" href="#Q1.-&#12414;&#12378;&#12289;phosphorme_ec_kinase.txt-&#12398;&#12358;&#12385;&#12289;&#12452;&#12531;&#12473;&#12522;&#12531;&#12471;&#12464;&#12490;&#12523;&#20253;&#36948;&#32076;&#36335;&#12392;&#20013;&#24515;&#28845;&#32032;&#20195;&#35613;&#32076;&#36335;&#12398;&#38291;&#12434;&#12388;&#12394;&#12368;&#12522;&#12531;&#37240;&#21270;&#12398;&#24773;&#22577;&#12398;&#12415;&#12434;&#21462;&#12426;&#20986;&#12377;&#12290;">&#182;</a></h4><div class="highlight"><pre><span></span><span class="c1"># 1. NetPhorestで推定したキナーゼのうち、KEGGのインスリンシグナル伝達経路に存在するキナーゼのIDはPKA_group, PKB_group, PKC_group, p70S6K_group, GSK3_group, MAPK3_MAPK1_MAPK7_NLK_groupの6つである。これら6つを含む行のみをphosphorme_ec_kinase.txtから抜き出し、phosphorme_ec_inskinase.txt という名前のファイルに保存しなさい。</span>
+<span class="c1"># ヒント：「PKA_groupまたはPKB_group」を検索したいときは、 &quot;PKA_group\|PKB_group&quot; のように書く。検索に記号を含むので、&quot;&quot;で囲む。</span>
+$ grep <span class="s2">&quot;PKA_group\|PKB_group\|PKC_group\|p70S6K_group\|GSK3_group\|MAPK3_MAPK1_MAPK7_NLK_group&quot;</span> phosphorme_ec_kinase.txt &gt; phosphorme_ec_inskinase.txt
 
 <span class="c1"># 2. 1の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff phosphorme_ec_inskinase.txt Day7_AnswerFiles/Step_v/phosphorme_ec_inskinase.txt
@@ -782,19 +855,20 @@ $ diff phosphorme_ec_inskinase.txt Day7_AnswerFiles/Step_v/phosphorme_ec_inskina
 <span class="c1"># 3. 中心炭素代謝の酵素リストをつくる。そのために再びKEGG API ”Link”を用いる。</span>
 <span class="c1">#    curl http://rest.kegg.jp/link/ec/[生化学パスウェイのID]</span>
 <span class="c1">#    と入力すると、当該生化学パスウェイに含まれる全酵素のEC numberが表示される。解糖系(map00010)、TCAサイクル(map00020)、ペントースリン酸経路(map00030)に含まれる全酵素のEC number一覧をそれぞれglycolysis_ec.txt、tca_ec.txt、ppp_ec.txtというファイル名で保存しなさい。１列目はmapIDであることに注意せよ。</span>
-$ curl http://rest.kegg.jp/link/ec/map00010 <span class="p">|</span> cut -f2 > glycolysis_ec.txt
-$ curl http://rest.kegg.jp/link/ec/map00020 <span class="p">|</span> cut -f2 > tca_ec.txt
-$ curl http://rest.kegg.jp/link/ec/map00030 <span class="p">|</span> cut -f2 > ppp_ec.txt
+$ curl http://rest.kegg.jp/link/ec/map00010 <span class="p">|</span> cut -f2 &gt; glycolysis_ec.txt
+$ curl http://rest.kegg.jp/link/ec/map00020 <span class="p">|</span> cut -f2 &gt; tca_ec.txt
+$ curl http://rest.kegg.jp/link/ec/map00030 <span class="p">|</span> cut -f2 &gt; ppp_ec.txt
 
-<span class="c1"># 4. glycolysis_ec.txt、tca_ec.txt、ppp_ec.txtに含まれる全EC numberを重複なく統合し、中心炭素代謝経路のEC number一覧ccm_ec.txt というファイル名で保存しなさい。（ヒント：ファイルの統合にはcatを用いる。ex. cat fileA fileB fileC > file ABC）</span>
-$ cat glycolysis_ec.txt tca_ec.txt ppp_ec.txt <span class="p">|</span> sort <span class="p">|</span> uniq > ccm_ec.txt
+<span class="c1"># 4. glycolysis_ec.txt、tca_ec.txt、ppp_ec.txtに含まれる全EC numberを重複なく統合し、中心炭素代謝経路のEC number一覧ccm_ec.txt というファイル名で保存しなさい。（ヒント：ファイルの統合にはcatを用いる。ex. cat fileA fileB fileC &gt; file ABC）</span>
+$ cat glycolysis_ec.txt tca_ec.txt ppp_ec.txt <span class="p">|</span> sort <span class="p">|</span> uniq &gt; ccm_ec.txt
 
 <span class="c1"># 5. 4の結果が正しいかを模範解答ファイルと比較することで確かめる。</span>
 $ diff ccm_ec.txt Day7_AnswerFiles/Step_v/ccm_ec.txt
 
 <span class="c1"># 6. EC numberリストccm_ec.txtとphosphorme_ec_inskinase.txtを用いて、「インスリンシグナル伝達経路の6つのキナーゼにリン酸化された中心炭素代謝の責任代謝酵素」phosphorme_ccmec_inskinase.txtを作成せよ。</span>
-$ <span class="k">for</span> aEC in <span class="k">$(</span>cat ccm_ec.txt<span class="k">)</span><span class="p">;</span> <span class="k">do</span> grep -w <span class="nv">$aEC</span> phosphorme_ec_inskinase.txt<span class="p">;</span> <span class="k">done</span> > phosphorme_ccmec_inskinase.txt
+$ <span class="k">for</span> aEC in <span class="k">$(</span>cat ccm_ec.txt<span class="k">)</span><span class="p">;</span> <span class="k">do</span> grep -w <span class="nv">$aEC</span> phosphorme_ec_inskinase.txt<span class="p">;</span> <span class="k">done</span> &gt; phosphorme_ccmec_inskinase.txt
 </pre></div>
+
 </div>
 </div>
 </div>
@@ -831,23 +905,31 @@ $ <span class="k">for</span> aEC in <span class="k">$(</span>cat ccm_ec.txt<span
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> cat phosphorme_ccmec_inskinase.txt <span class="p">|</span> sort -k <span class="m">2</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>ec:2.3.3.8 GSK3_group
 ec:5.4.2.2 GSK3_group
@@ -866,13 +948,15 @@ ec:2.7.1.11 p70S6K_group
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Q2.-VANTED-with-HIVEを使って、インスリンシグナル伝達経路と中心炭素代謝経路の間を立体的に視覚化する。">Q2. VANTED with HIVEを使って、インスリンシグナル伝達経路と中心炭素代謝経路の間を立体的に視覚化する。<a class="anchor-link" href="#Q2.-VANTED-with-HIVEを使って、インスリンシグナル伝達経路と中心炭素代謝経路の間を立体的に視覚化する。">¶</a></h4>
+<h4 id="Q2.-VANTED-with-HIVE&#12434;&#20351;&#12387;&#12390;&#12289;&#12452;&#12531;&#12473;&#12522;&#12531;&#12471;&#12464;&#12490;&#12523;&#20253;&#36948;&#32076;&#36335;&#12392;&#20013;&#24515;&#28845;&#32032;&#20195;&#35613;&#32076;&#36335;&#12398;&#38291;&#12434;&#31435;&#20307;&#30340;&#12395;&#35222;&#35226;&#21270;&#12377;&#12427;&#12290;">Q2. VANTED with HIVE&#12434;&#20351;&#12387;&#12390;&#12289;&#12452;&#12531;&#12473;&#12522;&#12531;&#12471;&#12464;&#12490;&#12523;&#20253;&#36948;&#32076;&#36335;&#12392;&#20013;&#24515;&#28845;&#32032;&#20195;&#35613;&#32076;&#36335;&#12398;&#38291;&#12434;&#31435;&#20307;&#30340;&#12395;&#35222;&#35226;&#21270;&#12377;&#12427;&#12290;<a class="anchor-link" href="#Q2.-VANTED-with-HIVE&#12434;&#20351;&#12387;&#12390;&#12289;&#12452;&#12531;&#12473;&#12522;&#12531;&#12471;&#12464;&#12490;&#12523;&#20253;&#36948;&#32076;&#36335;&#12392;&#20013;&#24515;&#28845;&#32032;&#20195;&#35613;&#32076;&#36335;&#12398;&#38291;&#12434;&#31435;&#20307;&#30340;&#12395;&#35222;&#35226;&#21270;&#12377;&#12427;&#12290;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -903,6 +987,7 @@ ec:2.7.1.11 p70S6K_group
 </ol>
 </li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -910,32 +995,36 @@ ec:2.7.1.11 p70S6K_group
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h3>まとめ</h3>
-<p>
-<li>マルチオミクスデータから多階層ネットワークを再構築</li>
-<li>メタボローム階層を起点に、シグナルの流れをさかのぼる</li>
-<li>インスリンシグナルは従来考えられていたよりも広く伝播する</li>
-</p></div>
+    <h3>まとめ</h3>
+    <p>
+    <li>マルチオミクスデータから多階層ネットワークを再構築</li>
+    <li>メタボローム階層を起点に、シグナルの流れをさかのぼる</li>
+    <li>インスリンシグナルは従来考えられていたよりも広く伝播する</li>
+</div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -952,6 +1041,7 @@ ec:2.7.1.11 p70S6K_group
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -985,10 +1075,10 @@ ec:2.7.1.11 p70S6K_group
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-07-18T00:00:00+09:00"> 7 18, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-07-18T00:00:00+09:00">Jul 18, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-07-18T00:00:00+09:00"> 7 18, 2019</time>
+<time datetime="2019-07-18T00:00:00+09:00">Jul 18, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -1006,8 +1096,6 @@ ec:2.7.1.11 p70S6K_group
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="検量線周りのまとめ "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/Calibration_curve.html" />
-<meta property="og:description" content="検量線を引き、吸光度から濃度を求める¶この作業がかなり多く、パターン化しているので、まとめておく。なお、可読性のために変数名は長めにしている。 Download this python file. How to use:¶$ python Calibration_curve.py --Concentration 0,0,0.10,0.25,0.50,1.00,1.50,2.00,2.50 \ --Absorbance 0.048,0.042,0.045,0.045,0.076,0.103,0.151,0.202,0.262 \ --unit mM \" />
+<meta property="og:description" content="検量線を引く作業のまとめ" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-05-17T14:20:00+09:00" />
 <meta property="og:article:modified_time" content="2019-05-17T14:20:00+09:00" />
 <meta name="twitter:title" content="検量線周りのまとめ ">
-<meta name="twitter:description" content="検量線を引き、吸光度から濃度を求める¶この作業がかなり多く、パターン化しているので、まとめておく。なお、可読性のために変数名は長めにしている。 Download this python file. How to use:¶$ python Calibration_curve.py --Concentration 0,0,0.10,0.25,0.50,1.00,1.50,2.00,2.50 \ --Absorbance 0.048,0.042,0.045,0.045,0.076,0.103,0.151,0.202,0.262 \ --unit mM \">
+<meta name="twitter:description" content="検量線を引く作業のまとめ">
 
         <title>検量線周りのまとめ  · 3S
 </title>
@@ -119,38 +119,42 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="検量線を引き、吸光度から濃度を求める">検量線を引き、吸光度から濃度を求める<a class="anchor-link" href="#検量線を引き、吸光度から濃度を求める">¶</a></h1><p>この作業がかなり多く、パターン化しているので、まとめておく。なお、可読性のために変数名は長めにしている。</p>
+<h1 id="&#26908;&#37327;&#32218;&#12434;&#24341;&#12365;&#12289;&#21560;&#20809;&#24230;&#12363;&#12425;&#28611;&#24230;&#12434;&#27714;&#12417;&#12427;">&#26908;&#37327;&#32218;&#12434;&#24341;&#12365;&#12289;&#21560;&#20809;&#24230;&#12363;&#12425;&#28611;&#24230;&#12434;&#27714;&#12417;&#12427;<a class="anchor-link" href="#&#26908;&#37327;&#32218;&#12434;&#24341;&#12365;&#12289;&#21560;&#20809;&#24230;&#12363;&#12425;&#28611;&#24230;&#12434;&#27714;&#12417;&#12427;">&#182;</a></h1><p>この作業がかなり多く、パターン化しているので、まとめておく。なお、可読性のために変数名は長めにしている。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a download="" href="theme/downloads/python/Calibration_curve.py">Download this python file.</a></p>
-<h4 id="How-to-use:">How to use:<a class="anchor-link" href="#How-to-use:">¶</a></h4><div class="highlight"><pre><span></span>$ python Calibration_curve.py --Concentration <span class="m">0</span>,0,0.10,0.25,0.50,1.00,1.50,2.00,2.50 <span class="se">\</span>
+<p><a href="theme/downloads/python/Calibration_curve.py" download>Download this python file.</a></p>
+<h4 id="How-to-use:">How to use:<a class="anchor-link" href="#How-to-use:">&#182;</a></h4><div class="highlight"><pre><span></span>$ python Calibration_curve.py --Concentration <span class="m">0</span>,0,0.10,0.25,0.50,1.00,1.50,2.00,2.50 <span class="se">\</span>
                               --Absorbance <span class="m">0</span>.048,0.042,0.045,0.045,0.076,0.103,0.151,0.202,0.262 <span class="se">\</span>
                               --unit mM <span class="se">\</span>
                               --wavelength <span class="m">540</span>
 </pre></div>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="実験データ">実験データ<a class="anchor-link" href="#実験データ">¶</a></h2><table>
+<h2 id="&#23455;&#39443;&#12487;&#12540;&#12479;">&#23455;&#39443;&#12487;&#12540;&#12479;<a class="anchor-link" href="#&#23455;&#39443;&#12487;&#12540;&#12479;">&#182;</a></h2><table>
 <thead><tr>
 <th>濃度(mg/mL)</th>
 <th>0</th>
@@ -183,214 +187,265 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="前処理">前処理<a class="anchor-link" href="#前処理">¶</a></h3>
+<h3 id="&#21069;&#20966;&#29702;">&#21069;&#20966;&#29702;<a class="anchor-link" href="#&#21069;&#20966;&#29702;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unit</span> <span class="o">=</span> <span class="s2">"mg/mL"</span>
-<span class="n">wavelength</span> <span class="o">=</span> <span class="s2">"$A_</span><span class="si">{280}</span><span class="s2">$"</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">unit</span> <span class="o">=</span> <span class="s2">&quot;mg/mL&quot;</span>
+<span class="n">wavelength</span> <span class="o">=</span> <span class="s2">&quot;$A_</span><span class="si">{280}</span><span class="s2">$&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 上の表をそのままベタ貼り。</span>
-<span class="n">c_str</span> <span class="o">=</span> <span class="s2">"濃度(mg/mL)	0	0.01	0.02	0.05	0.10	0.20	0.40	0.60	0.80	1.00	2.00"</span>
-<span class="n">a_str</span> <span class="o">=</span> <span class="s2">"吸光度( A280 )	0	0.004	0.010	0.000	0.043	0.067	0.159	0.288	0.382	0.473	0.962"</span>
+<span class="n">c_str</span> <span class="o">=</span> <span class="s2">&quot;濃度(mg/mL)	0	0.01	0.02	0.05	0.10	0.20	0.40	0.60	0.80	1.00	2.00&quot;</span>
+<span class="n">a_str</span> <span class="o">=</span> <span class="s2">&quot;吸光度( A280 )	0	0.004	0.010	0.000	0.043	0.067	0.159	0.288	0.382	0.473	0.962&quot;</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># データ部分だけを取得する。</span>
-<span class="n">c_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">c_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
-<span class="n">a_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">a_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">"</span><span class="se">\t</span><span class="s2">"</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+<span class="n">c_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">c_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
+<span class="n">a_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">a_str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># ここまでのデータ処理（表がないことがほとんどなので、これを最初から作っても良い）</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Concentration: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Absorbance   : </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Concentration: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">c_</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Absorbance   : </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a_</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Concentration: [0.0, 0.01, 0.02, 0.05, 0.1, 0.2, 0.4, 0.6, 0.8, 1.0, 2.0]
 Absorbance   : [0.0, 0.004, 0.01, 0.0, 0.043, 0.067, 0.159, 0.288, 0.382, 0.473, 0.962]
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># sklearn が扱えるデータの型に直す。</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c_</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">a_</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="学習">学習<a class="anchor-link" href="#学習">¶</a></h3>
+<h3 id="&#23398;&#32722;">&#23398;&#32722;<a class="anchor-link" href="#&#23398;&#32722;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span> <span class="k">as</span> <span class="n">mse</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 学習</span>
 <span class="n">lr</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[9]:</div>
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">coef</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 係数</span>
 <span class="n">intercept</span> <span class="o">=</span> <span class="n">lr</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># y切片</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 検量線</span>
-<span class="n">Calibration_curve</span> <span class="o">=</span> <span class="s2">"$y=</span><span class="si">{:.3f}</span><span class="s2">x</span><span class="si">{}{:.3f}</span><span class="s2">$"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="s2">"+"</span> <span class="k">if</span> <span class="n">intercept</span> <span class="o">></span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>  <span class="n">intercept</span><span class="p">)</span>
+<span class="n">Calibration_curve</span> <span class="o">=</span> <span class="s2">&quot;$y=</span><span class="si">{:.3f}</span><span class="s2">x</span><span class="si">{}{:.3f}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span> <span class="k">if</span> <span class="n">intercept</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="n">intercept</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 決定係数</span>
-<span class="n">Coefficient_of_determination</span> <span class="o">=</span> <span class="s2">"$R^2$ = </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
+<span class="n">Coefficient_of_determination</span> <span class="o">=</span> <span class="s2">&quot;$R^2$ = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 平均二乗誤差</span>
-<span class="n">Root_Mean_Square_Error</span> <span class="o">=</span> <span class="s2">"RMSE = </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">Root_Mean_Square_Error</span> <span class="o">=</span> <span class="s2">&quot;RMSE = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># プロット</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Calibration curve: "</span><span class="o">+</span><span class="n">Calibration_curve</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Coefficient_of_determination</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibration curve: &quot;</span><span class="o">+</span><span class="n">Calibration_curve</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Coefficient_of_determination</span><span class="p">,</span>
                                        <span class="n">Root_Mean_Square_Error</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Concentration [</span><span class="si">{}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Absorbance (</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between Concentration and Absorbance"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Concentration [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Absorbance (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between Concentration and Absorbance&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -729,146 +784,194 @@ pE/l4/hPSWcOVOfY3n0CZheqb4XAt9veXwO5wf8JkT02CEYo+fFWt+1vDnHcyU4V40ppqR8hBYxr
 bC+pob4NwPW242uyo5y4owiCkUs3cK2kVw/xfykWS/ooqeDPn4Db8wL2ploJy18hbiHVdAhGOXFH
 EQRBEJQlFrODIAiCskSgCIIgCMoSgSIIgiAoSwSKIAiCoCwRKIIgCIKy/BfRgHHwEsW/nQAAAABJ
 RU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="外れ値を除く">外れ値を除く<a class="anchor-link" href="#外れ値を除く">¶</a></h3><p>上記の結果では、濃度 0.05 mg/mL時に吸光度が 0 となっているのは、明らかにヒューマンエラーだと分かる。そこで、この値を外れ値だとみなし、残りのデータでフィッティングを行う。</p>
+<h3 id="&#22806;&#12428;&#20516;&#12434;&#38500;&#12367;">&#22806;&#12428;&#20516;&#12434;&#38500;&#12367;<a class="anchor-link" href="#&#22806;&#12428;&#20516;&#12434;&#38500;&#12367;">&#182;</a></h3><p>上記の結果では、濃度 0.05 mg/mL時に吸光度が 0 となっているのは、明らかにヒューマンエラーだと分かる。そこで、この値を外れ値だとみなし、残りのデータでフィッティングを行う。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># インデックスを利用して</span>
 <span class="n">Outlier_Concentration</span> <span class="o">=</span> <span class="mf">0.05</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">c_</span><span class="p">,</span><span class="n">a_</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">Outlier_Concentration</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[0.0, 0.01, 0.02, 0.1, 0.2, 0.4, 0.6, 0.8, 1.0, 2.0]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">c_data</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">c_</span><span class="p">,</span><span class="n">a_</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">Outlier_Concentration</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">c_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">c_</span><span class="p">,</span><span class="n">a_</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">Outlier_Concentration</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">a_data</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">c_</span><span class="p">,</span><span class="n">a_</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">!=</span> <span class="n">Outlier_Concentration</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">a_outlier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">a</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">c_</span><span class="p">,</span><span class="n">a_</span><span class="p">)</span> <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">Outlier_Concentration</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">lr_2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">lr_2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span> <span class="n">a_data</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[19]:</div>
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>LinearRegression(copy_X=True, fit_intercept=True, n_jobs=1, normalize=False)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">coef_2</span> <span class="o">=</span> <span class="n">lr_2</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 係数</span>
 <span class="n">intercept_2</span> <span class="o">=</span> <span class="n">lr_2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># y切片</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Calibration_curve_2</span> <span class="o">=</span> <span class="s2">"$y=</span><span class="si">{:.3f}</span><span class="s2">x</span><span class="si">{}{:.3f}</span><span class="s2">$"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coef_2</span><span class="p">,</span> <span class="s2">"+"</span> <span class="k">if</span> <span class="n">intercept_2</span> <span class="o">></span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>  <span class="n">intercept_2</span><span class="p">)</span>
-<span class="n">Coefficient_of_determination_2</span> <span class="o">=</span> <span class="s2">"$R^2$ = </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr_2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span><span class="n">a_data</span><span class="p">))</span>
-<span class="n">Root_Mean_Square_Error_2</span> <span class="o">=</span> <span class="s2">"RMSE = </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">a_data</span><span class="p">,</span> <span class="n">lr_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c_data</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Calibration_curve_2</span> <span class="o">=</span> <span class="s2">&quot;$y=</span><span class="si">{:.3f}</span><span class="s2">x</span><span class="si">{}{:.3f}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coef_2</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span> <span class="k">if</span> <span class="n">intercept_2</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="n">intercept_2</span><span class="p">)</span>
+<span class="n">Coefficient_of_determination_2</span> <span class="o">=</span> <span class="s2">&quot;$R^2$ = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">lr_2</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span><span class="n">a_data</span><span class="p">))</span>
+<span class="n">Root_Mean_Square_Error_2</span> <span class="o">=</span> <span class="s2">&quot;RMSE = </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mse</span><span class="p">(</span><span class="n">a_data</span><span class="p">,</span> <span class="n">lr_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c_data</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># プロット</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span> <span class="n">lr_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c_data</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Calibration curve: "</span><span class="o">+</span><span class="n">Calibration_curve_2</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span><span class="n">a_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Coefficient_of_determination_2</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span> <span class="n">lr_2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c_data</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibration curve: &quot;</span><span class="o">+</span><span class="n">Calibration_curve_2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c_data</span><span class="p">,</span><span class="n">a_data</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{}</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">Coefficient_of_determination_2</span><span class="p">,</span>
                                                  <span class="n">Root_Mean_Square_Error_2</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c_outlier</span><span class="p">,</span> <span class="n">a_outlier</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Outlier"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Concentration [</span><span class="si">{}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Absorbance (</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between Concentration and Absorbance"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c_outlier</span><span class="p">,</span> <span class="n">a_outlier</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Outlier&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Concentration [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Absorbance (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between Concentration and Absorbance&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1212,16 +1315,21 @@ f9GDhj5he6ekq/Jx/LukM09UJ9h+7ADMzlDnDIFn2t5WA7nB/wkRPTYI+in58VaH7W/3st+hThnj
 SmGpnyBNGJfZnl1DfcuBa2zHz2QHOHFHEQT9lw7gcklv7uX/UsyS9ClSwp8/ALfmBewVtRKWf0Lc
 QsrpEAxw4o4iCIIgqEgsZgdBEAQViYkiCIIgqEhMFEEQBEFFYqIIgiAIKhITRRAEQVCR/wJ+1WmS
 rwlfBAAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="検量線を関数化する">検量線を関数化する<a class="anchor-link" href="#検量線を関数化する">¶</a></h3><p>上のグラフとは異なり、吸光度から濃度を求める関数を求めたいので、上の検量線の逆関数を求める。</p>
+<h3 id="&#26908;&#37327;&#32218;&#12434;&#38306;&#25968;&#21270;&#12377;&#12427;">&#26908;&#37327;&#32218;&#12434;&#38306;&#25968;&#21270;&#12377;&#12427;<a class="anchor-link" href="#&#26908;&#37327;&#32218;&#12434;&#38306;&#25968;&#21270;&#12377;&#12427;">&#182;</a></h3><p>上のグラフとは異なり、吸光度から濃度を求める関数を求めたいので、上の検量線の逆関数を求める。</p>
+
 </div>
 </div>
 </div>
@@ -1229,42 +1337,46 @@ rwlfBAAAAABJRU5ErkJggg==
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 $$\begin{aligned}
-&y;\left(\mathrm{Absorbance}\right) = \mathrm{coef}\times x\left(\mathrm{Concentration}\right) + \mathrm{intercept}\\
-&\Longrightarrow x\left(\mathrm{Concentration}\right) = \frac{y\left(\mathrm{Absorbance}\right)-\mathrm{intercept}}{\mathrm{coef}}
+&amp;y\left(\mathrm{Absorbance}\right) = \mathrm{coef}\times x\left(\mathrm{Concentration}\right) + \mathrm{intercept}\\
+&amp;\Longrightarrow x\left(\mathrm{Concentration}\right) = \frac{y\left(\mathrm{Absorbance}\right)-\mathrm{intercept}}{\mathrm{coef}}
 \end{aligned}$$
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A2C</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="n">intercept</span><span class="p">)</span><span class="o">/</span><span class="n">coef</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>　あとは、この関数を未知試料の吸光度に適応すれば未知試料の濃度が求まる。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
 <p>※ここからは、実際のレポートに書いた考察をつらつらと書いています。間違いがあれば全体を通してですが、指摘していただけると嬉しいです。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="重み付き最小二乗誤差">重み付き最小二乗誤差<a class="anchor-link" href="#重み付き最小二乗誤差">¶</a></h3>
+<h3 id="&#37325;&#12415;&#20184;&#12365;&#26368;&#23567;&#20108;&#20055;&#35492;&#24046;">&#37325;&#12415;&#20184;&#12365;&#26368;&#23567;&#20108;&#20055;&#35492;&#24046;<a class="anchor-link" href="#&#37325;&#12415;&#20184;&#12365;&#26368;&#23567;&#20108;&#20055;&#35492;&#24046;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -1275,17 +1387,19 @@ $$\begin{aligned}
 <p>　どのように希釈系列を作ったかにもよるが、本実験では希釈系列の総量は揃えている。従って、希釈試料を調整する際に誤差に大きな影響を及ぼすのは<b>水の量ではなく試料の量</b>である。</p>
 <p>　ここで、ピペットマンにはいくつかの種類があり、それぞれ測り取れる最大容量が異なる。測定時の誤差はピペットマンの最大容量に比例するはずなので、以上の理論により<font color="red"><b>「希釈系列の濃度が高いほど誤差が大きい」</b></font>と結論づけられる。</p>
 <p>　厳密には、それぞれの希釈系列を作製する際にどのピペットマンを使ったか、段階希釈をしたか、などの情報が必要になるが、ここでは簡単のために<b>「希釈濃度が誤差の大きさに比例する」</b>と仮定する。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="定式化">定式化<a class="anchor-link" href="#定式化">¶</a></h4><p>　以上を踏まえると、希釈系列の濃度 $\{x_i\}$ 吸光度 $\{y_i\}$ のデータが得られた時、ナイーブな最小二乗では
+<h4 id="&#23450;&#24335;&#21270;">&#23450;&#24335;&#21270;<a class="anchor-link" href="#&#23450;&#24335;&#21270;">&#182;</a></h4><p>　以上を踏まえると、希釈系列の濃度 $\{x_i\}$ 吸光度 $\{y_i\}$ のデータが得られた時、ナイーブな最小二乗では
 $$E=\frac{1}{n}\sum_{i}\left\{y_{i}-\left(a x_{i}+b\right)\right\}^{2}$$
 を最小化していたが、今回の最小二乗では
 $$E^{\prime}=\frac{1}{n}\sum_{i}\left\{\frac{y_{i}-\left(a x_{i}+b\right)}{x_{i}}\right\}^{2}$$
 を最小化する必要がある。</p>
+
 </div>
 </div>
 </div>
@@ -1301,13 +1415,15 @@ $$\left\{\begin{array}{l}{a=\frac{n}{n^{2}-1}\left\{\sum_{i} \frac{y_{i}}{x_{i}}
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　なお、この際決定係数を使って回帰直線の評価を行うことができないが、誤差関数の値をそのまま比較すれば良いことになる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="ブランクの取り扱い">ブランクの取り扱い<a class="anchor-link" href="#ブランクの取り扱い">¶</a></h4><p><b>※ この際正しく数値計算するためには、$x_i=0$ となる値（ブランク）の処理が非常に大事になる。</b></p>
+<h4 id="&#12502;&#12521;&#12531;&#12463;&#12398;&#21462;&#12426;&#25201;&#12356;">&#12502;&#12521;&#12531;&#12463;&#12398;&#21462;&#12426;&#25201;&#12356;<a class="anchor-link" href="#&#12502;&#12521;&#12531;&#12463;&#12398;&#21462;&#12426;&#25201;&#12356;">&#182;</a></h4><p><b>※ この際正しく数値計算するためには、$x_i=0$ となる値（ブランク）の処理が非常に大事になる。</b></p>
+
 </div>
 </div>
 </div>
@@ -1315,6 +1431,7 @@ $$\left\{\begin{array}{l}{a=\frac{n}{n^{2}-1}\left\{\sum_{i} \frac{y_{i}}{x_{i}}
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　ここでは、<font color="red"><b>「ブランクには誤差が存在しない」</b></font>という大胆な仮定をおき、回帰直線がブランクを必ず通るようにすることで、この問題に対処する。</p>
+
 </div>
 </div>
 </div>
@@ -1331,6 +1448,7 @@ $$y-y_{\mathrm{blank}} = m\left(x-x_{\mathrm{blank}}\right)$$
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　すると、誤差関数は以下のようにかける。
 $$E_{\mathrm{blank}}=\frac{1}{n}\sum_{i}\left\{\frac{y_{i}-\left\{m\left(x_i-x_{\mathrm{blank}}\right) + y_{\mathrm{blank}}\right\}}{x_i}\right\}^{2}$$</p>
+
 </div>
 </div>
 </div>
@@ -1340,106 +1458,129 @@ $$E_{\mathrm{blank}}=\frac{1}{n}\sum_{i}\left\{\frac{y_{i}-\left\{m\left(x_i-x_{
 <p>　この誤差を最小化する $m$ は解析的に解くことができ、以下で求まる。
 $$m = \frac{\sum_i\frac{\left(y_i-y_{\mathrm{blank}}\right)\left(x_i-x_{\mathrm{blank}}\right)}{x_i^2}}
 {\sum_i\frac{\left(x_i-x_{\mathrm{blank}}\right)^2}{x_i^2}}$$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="実装">実装<a class="anchor-link" href="#実装">¶</a></h4><p>　<b>「実装」</b>と言う程ではないが、先ほどのデータに適用してみる。</p>
+<h4 id="&#23455;&#35013;">&#23455;&#35013;<a class="anchor-link" href="#&#23455;&#35013;">&#182;</a></h4><p>　<b>「実装」</b>と言う程ではないが、先ほどのデータに適用してみる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">x_blank</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">y_blank</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">y</span><span class="o">-</span><span class="n">y_blank</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_blank</span><span class="p">)</span><span class="o">/</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="nb">sum</span><span class="p">((</span><span class="n">x</span><span class="o">-</span><span class="n">x_blank</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">coef_3</span> <span class="o">=</span> <span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># 係数</span>
 <span class="n">intercept_3</span> <span class="o">=</span> <span class="p">(</span><span class="n">coef_3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">0</span><span class="o">-</span><span class="n">x_blank</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_blank</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># y切片</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Calibration_curve_3</span> <span class="o">=</span> <span class="s2">"$y=</span><span class="si">{:.3f}</span><span class="s2">x</span><span class="si">{}{:.3f}</span><span class="s2">$"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coef_3</span><span class="p">,</span> <span class="s2">"+"</span> <span class="k">if</span> <span class="n">intercept_3</span> <span class="o">>=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">""</span><span class="p">,</span>  <span class="n">intercept_3</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Calibration_curve_3</span> <span class="o">=</span> <span class="s2">&quot;$y=</span><span class="si">{:.3f}</span><span class="s2">x</span><span class="si">{}{:.3f}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">coef_3</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span> <span class="k">if</span> <span class="n">intercept_3</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="n">intercept_3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">func3</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">coef_3</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">x_blank</span><span class="p">)</span> <span class="o">+</span> <span class="n">y_blank</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Calibration curve: "</span><span class="o">+</span><span class="n">Calibration_curve</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">func3</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Calibration curve (weighted): "</span><span class="o">+</span> <span class="n">Calibration_curve_3</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Concentration [</span><span class="si">{}</span><span class="s2">]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Absorbance (</span><span class="si">{}</span><span class="s2">)"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between Concentration and Absorbance"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">lr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibration curve: &quot;</span><span class="o">+</span><span class="n">Calibration_curve</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">func3</span><span class="p">)(</span><span class="n">x</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Calibration curve (weighted): &quot;</span><span class="o">+</span> <span class="n">Calibration_curve_3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Concentration [</span><span class="si">{}</span><span class="s2">]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unit</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Absorbance (</span><span class="si">{}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">wavelength</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between Concentration and Absorbance&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1835,36 +1976,45 @@ m98GXhWRTDf2vH12i8gjOCPtCvCxqs4oIYazoqqZIvJb93V8lxenm6iaquq6M6h2qBScIbCTqu4s
 hXDNOcJGjzUmSrmXtzJU9bnT3K+qOjPG5Q1LvREnYdyhqveUYnwLgD+rqv1MtoyzMwpjolcGMExE
 zjvNeyl+IyJDcCb8+RZ4ze3A/rK0AnN/QtwEZ04HU8bZGYUxxpigrDPbGGNMUJYojDHGBGWJwhhj
 TFCWKIwxxgRlicIYY0xQ/weO29OzZ8pl7wAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　<b>データ点の偏りを均等に捉えている気がする。<font color="red">（が、この例だと元の回帰直線の方が綺麗に近似できているように見える。）</font></b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -1881,6 +2031,7 @@ TFCWKIwxxgRlicIYY0xQ/weO29OzZ8pl7wAAAABJRU5ErkJggg==
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -1914,10 +2065,10 @@ TFCWKIwxxgRlicIYY0xQ/weO29OzZ8pl7wAAAABJRU5ErkJggg==
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-05-17T14:20:00+09:00"> 5 17, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-05-17T14:20:00+09:00">May 17, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-05-17T14:20:00+09:00"> 5 17, 2019</time>
+<time datetime="2019-05-17T14:20:00+09:00">May 17, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-wu-hua-xue-shi-yan-i-ref">生物化学実験Ⅰ</a>
@@ -1935,8 +2086,6 @@ TFCWKIwxxgRlicIYY0xQ/weO29OzZ8pl7wAAAABJRU5ErkJggg==
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

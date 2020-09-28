@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="頻度パターンマイニング "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/生物データマイニング論-5.html" />
-<meta property="og:description" content="講師：津田宏治 資料：生物データマイニング論(2019) 参考資料：頻出パターン発見アルゴリズム入門 -アイテム集合からグラフまで- Data Mining A formal study of efficient methods for extracting interesting rules and patterns from massive data. Frequent itemset mining. Closed pattern mining. Structured data mining. Itemset Mining Frequent Itemset Mining Closed Itemset Mining Closure Extension LCM Itemset Mining Frequent Itemset Mining Finding all &#34;frequent&#34; sets of elements(items) appearing $\sigma$ times or more" />
+<meta property="og:description" content="頻度パターンマイニング" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-10-28T15:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-10-28T15:00:00+09:00" />
 <meta name="twitter:title" content="頻度パターンマイニング ">
-<meta name="twitter:description" content="講師：津田宏治 資料：生物データマイニング論(2019) 参考資料：頻出パターン発見アルゴリズム入門 -アイテム集合からグラフまで- Data Mining A formal study of efficient methods for extracting interesting rules and patterns from massive data. Frequent itemset mining. Closed pattern mining. Structured data mining. Itemset Mining Frequent Itemset Mining Closed Itemset Mining Closure Extension LCM Itemset Mining Frequent Itemset Mining Finding all &#34;frequent&#34; sets of elements(items) appearing $\sigma$ times or more">
+<meta name="twitter:description" content="頻度パターンマイニング">
 
         <title>頻度パターンマイニング  · 3A
 </title>
@@ -124,6 +124,7 @@
 <li>資料：<a href="https://tsudalab.org/ja/lectures/">生物データマイニング論(2019)</a></li>
 <li>参考資料：<a href="http://research.nii.ac.jp/~uno/papers/0806AIlecture.pdf">頻出パターン発見アルゴリズム入門 -アイテム集合からグラフまで- </a></li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -143,6 +144,7 @@
 <li>Closed pattern mining.</li>
 <li>Structured data mining.</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -150,19 +152,19 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="frame">
-<ul>
-<li>Itemset Mining
+  <ul>
+    <li>Itemset Mining
       <ul>
-<li>Frequent Itemset Mining</li>
-</ul>
-</li>
-<li>Closed Itemset Mining
+        <li>Frequent Itemset Mining</li>
+      </ul>
+    </li>
+    <li>Closed Itemset Mining
       <ul>
-<li>Closure Extension</li>
-<li>LCM</li>
-</ul>
-</li>
-</ul>
+        <li>Closure Extension</li>
+        <li>LCM</li>
+      </ul>
+    </li>
+  </ul>
 </div>
 </div>
 </div>
@@ -185,13 +187,14 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Finding all "frequent" sets of elements(items) <strong>appearing $\sigma$ times or more</strong> in a database.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">¶</a></h4><ul>
+<h4 id="Definitions">Definitions<a class="anchor-link" href="#Definitions">&#182;</a></h4><ul>
 <li><strong>Database</strong><ul>
 <li>A set $\Sigma = \{1,\ldots,n\}$ of items(elements).</li>
 <li>Tramsaction database<ul>
@@ -211,16 +214,18 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Market-Basket-Data">Market Basket Data<a class="anchor-link" href="#Market-Basket-Data">¶</a></h4><ul>
+<h4 id="Market-Basket-Data">Market Basket Data<a class="anchor-link" href="#Market-Basket-Data">&#182;</a></h4><ul>
 <li>Popular application of itemset mining.</li>
 <li>Business and Market data analysis.</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -228,23 +233,31 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>※ Visit <strong><a href="https://www.instacart.com/datasets/grocery-shopping-2017">"The Instacart Online Grocery Shopping Dataset 2017"</a></strong> and Download "instacart_2017_05_01" Folder.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span> tree instacart_2017_05_01
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>instacart_2017_05_01
 ├── aisles.csv
@@ -258,43 +271,55 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="products.csv"><code>products.csv</code><a class="anchor-link" href="#products.csv">¶</a></h5>
+<h5 id="products.csv"><code>products.csv</code><a class="anchor-link" href="#products.csv">&#182;</a></h5>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_products</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./instacart_2017_05_01/products.csv"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_products</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./instacart_2017_05_01/products.csv&quot;</span><span class="p">)</span>
 <span class="n">df_products</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[3]:</div>
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -311,100 +336,122 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>product_id</th>
-<th>product_name</th>
-<th>aisle_id</th>
-<th>department_id</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1</td>
-<td>Chocolate Sandwich Cookies</td>
-<td>61</td>
-<td>19</td>
-</tr>
-<tr>
-<th>1</th>
-<td>2</td>
-<td>All-Seasons Salt</td>
-<td>104</td>
-<td>13</td>
-</tr>
-<tr>
-<th>2</th>
-<td>3</td>
-<td>Robust Golden Unsweetened Oolong Tea</td>
-<td>94</td>
-<td>7</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>product_id</th>
+      <th>product_name</th>
+      <th>aisle_id</th>
+      <th>department_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Chocolate Sandwich Cookies</td>
+      <td>61</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>All-Seasons Salt</td>
+      <td>104</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Robust Golden Unsweetened Oolong Tea</td>
+      <td>94</td>
+      <td>7</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"`products.csv` data num: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_products</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;`products.csv` data num: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df_products</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>`products.csv` data num: 49688
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">id2name</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">df_products</span><span class="o">.</span><span class="n">product_id</span><span class="p">,</span> <span class="n">df_products</span><span class="o">.</span><span class="n">product_name</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="order_products__train.csv"><code>order_products__train.csv</code><a class="anchor-link" href="#order_products__train.csv">¶</a></h5>
+<h5 id="order_products__train.csv"><code>order_products__train.csv</code><a class="anchor-link" href="#order_products__train.csv">&#182;</a></h5>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_order_products</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">"./instacart_2017_05_01/order_products__train.csv"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_order_products</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;./instacart_2017_05_01/order_products__train.csv&quot;</span><span class="p">)</span>
 <span class="n">df_order_products</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -421,147 +468,181 @@ $$\mathrm{Occ}(X,T) = \left\{t\in T: X\subseteq t\right\}$$</li>
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>order_id</th>
-<th>product_id</th>
-<th>add_to_cart_order</th>
-<th>reordered</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1</td>
-<td>49302</td>
-<td>1</td>
-<td>1</td>
-</tr>
-<tr>
-<th>1</th>
-<td>1</td>
-<td>11109</td>
-<td>2</td>
-<td>1</td>
-</tr>
-<tr>
-<th>2</th>
-<td>1</td>
-<td>10246</td>
-<td>3</td>
-<td>0</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>product_id</th>
+      <th>add_to_cart_order</th>
+      <th>reordered</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>49302</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>11109</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>10246</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_transactions_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_order_products</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total number of transactions: </span><span class="si">{</span><span class="n">N_transactions_total</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_transactions_total</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_order_products</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total number of transactions: </span><span class="si">{</span><span class="n">N_transactions_total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Total number of transactions: 131209
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Extract-Only-N-products">Extract Only N products<a class="anchor-link" href="#Extract-Only-N-products">¶</a></h5>
+<h5 id="Extract-Only-N-products">Extract Only N products<a class="anchor-link" href="#Extract-Only-N-products">&#182;</a></h5>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">extracted_ids</span> <span class="o">=</span> <span class="n">df_order_products</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"product_id"</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">product_id</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">extracted_ids</span> <span class="o">=</span> <span class="n">df_order_products</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;product_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">size</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">product_id</span><span class="p">[:</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Only focus on N products.</span>
 <span class="n">df_order_products_extracted</span> <span class="o">=</span> <span class="n">df_order_products</span><span class="p">[</span><span class="n">df_order_products</span><span class="o">.</span><span class="n">product_id</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="n">x</span> <span class="ow">in</span> <span class="n">extracted_ids</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_transactions_extracted</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_order_products_extracted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Transactions: </span><span class="si">{</span><span class="n">N_transactions_extracted</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">N_transactions_total</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">N_transactions_extracted</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df_order_products_extracted</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transactions: </span><span class="si">{</span><span class="n">N_transactions_extracted</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">N_transactions_total</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Transactions: 59887/131209
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">extracted_id</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">extracted_ids</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No.</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">>0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="si">}}</span><span class="s2">: </span><span class="si">{</span><span class="n">id2name</span><span class="p">[</span><span class="n">extracted_id</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No.</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">&gt;0</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">N</span><span class="p">))</span><span class="si">}}</span><span class="s2">: </span><span class="si">{</span><span class="n">id2name</span><span class="p">[</span><span class="n">extracted_id</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>No.01: Banana
 No.02: Bag of Organic Bananas
@@ -576,56 +657,72 @@ No.10: Organic Raspberries
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_product_id_OneHot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df_order_products_extracted</span><span class="o">.</span><span class="n">product_id</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_order_OneHot</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_order_products_extracted</span><span class="o">.</span><span class="n">order_id</span><span class="p">,</span> <span class="n">df_product_id_OneHot</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_order_OneHot</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"order_id"</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df_order_OneHot</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;order_id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[16]:</div>
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
 <style>
@@ -642,98 +739,112 @@ No.10: Organic Raspberries
     }
 </style>
 <table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>order_id</th>
-<th>13176</th>
-<th>16797</th>
-<th>21137</th>
-<th>21903</th>
-<th>24852</th>
-<th>26209</th>
-<th>27966</th>
-<th>47209</th>
-<th>47626</th>
-<th>47766</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>1</th>
-<td>96</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-<tr>
-<th>2</th>
-<td>98</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-</tr>
-</tbody>
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>order_id</th>
+      <th>13176</th>
+      <th>16797</th>
+      <th>21137</th>
+      <th>21903</th>
+      <th>24852</th>
+      <th>26209</th>
+      <th>27966</th>
+      <th>47209</th>
+      <th>47626</th>
+      <th>47766</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>96</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>98</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
 </table>
 </div>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">database</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="mi">1</span><span class="p">:]])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">database</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[18]:</div>
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[1, 0, 0, ..., 1, 0, 0],
        [0, 0, 0, ..., 0, 0, 0],
@@ -743,93 +854,122 @@ No.10: Organic Raspberries
        [0, 0, 0, ..., 0, 0, 0],
        [0, 0, 1, ..., 0, 0, 0]], dtype=uint8)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">N</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="n">database</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_samples:  </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"n_features: </span><span class="si">{</span><span class="n">M</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_samples:  </span><span class="si">{</span><span class="n">N</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n_features: </span><span class="si">{</span><span class="n">M</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>n_samples:  59887
 n_features: 10
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.search.itemset</span> <span class="kn">import</span> <span class="n">FrequentSet</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">FrequentSet</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">database</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Frequent Itemset. (frq >= threshold)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Frequent Itemset. (frq &gt;= threshold)</span>
 <span class="n">model</span><span class="o">.</span><span class="n">all</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[24]:</div>
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>[None,
  array([0]),
@@ -966,19 +1106,23 @@ n_features: 10
  array([8, 9]),
  array([9])]</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Association-Rule-Mining">Association Rule Mining<a class="anchor-link" href="#Association-Rule-Mining">¶</a></h4><ul>
+<h4 id="Association-Rule-Mining">Association Rule Mining<a class="anchor-link" href="#Association-Rule-Mining">&#182;</a></h4><ul>
 <li><span class="marker-pink">Confidence</span>: $\mathrm{Supp}(A\text{ and }B)/\mathrm{Supp}(A)$ (Probability of $B$, Given $A$)</li>
 <li>What item is likely to be bought when $A$ is bought.</li>
 <li>Search: large support, confidence large</li>
 <li>Post-processing of itemset mining</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -986,12 +1130,12 @@ n_features: 10
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="frame">
-<h4>Summary</h4>
-<ul>
-<li>Itemset mining is the simplest of all mining algorithms.</li>
-<li>Need to maintain occurrence of each pattern in database.</li>
-<li>Tree by lexicographical order is (implicitly) used.</li>
-</ul>
+  <h4>Summary</h4>
+  <ul>
+    <li>Itemset mining is the simplest of all mining algorithms.</li>
+    <li>Need to maintain occurrence of each pattern in database.</li>
+    <li>Tree by lexicographical order is (implicitly) used.</li>
+  </ul>
 </div>
 </div>
 </div>
@@ -1006,38 +1150,40 @@ n_features: 10
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="[Problem]-in-Frequent-Pattern-Mining">[Problem] in Frequent Pattern Mining<a class="anchor-link" href="#[Problem]-in-Frequent-Pattern-Mining">¶</a></h3><ul>
+<h3 id="[Problem]-in-Frequent-Pattern-Mining">[Problem] in Frequent Pattern Mining<a class="anchor-link" href="#[Problem]-in-Frequent-Pattern-Mining">&#182;</a></h3><ul>
 <li><span class="marker-pink">Huge Number of frequent itemsets</span></li>
 <li>Hard to analyze</li>
 <li>Most of them are <span class="marker-pink">similar</span></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="[Solution]-Closed-Pattern-Mining">[Solution] Closed Pattern Mining<a class="anchor-link" href="#[Solution]-Closed-Pattern-Mining">¶</a></h3><ul>
+<h3 id="[Solution]-Closed-Pattern-Mining">[Solution] Closed Pattern Mining<a class="anchor-link" href="#[Solution]-Closed-Pattern-Mining">&#182;</a></h3><ul>
 <li>Find <strong>only closed patterns</strong></li>
 <li><strong>Observation</strong>: Most frequent itemset $X$ can be extended without changing occurrence by adding new elements.</li>
 <li><strong>definition</strong>: An itemset $X$ is a <strong>"closed set"</strong> if and only if there is <span class="marker-pink">no proper superset of $X$ with the same frequency</span> (thus the same occurrence set).</li>
 <li>A closed itemset is <span class="marker-pink">the maximal set</span> among all itemsets with the same occurrences.</li>
 <li>Equivalence class $[X] =\left\{Y | \mathrm{Occ}(X)=\mathrm{Occ}(Y)\right\}$</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Implementation.">Implementation.<a class="anchor-link" href="#Implementation.">¶</a></h3>
+<h3 id="Implementation.">Implementation.<a class="anchor-link" href="#Implementation.">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Brute-force:-Stupid-Baseline">Brute-force: Stupid Baseline<a class="anchor-link" href="#Brute-force:-Stupid-Baseline">¶</a></h4><ul>
+<h4 id="Brute-force:-Stupid-Baseline">Brute-force: Stupid Baseline<a class="anchor-link" href="#Brute-force:-Stupid-Baseline">&#182;</a></h4><ul>
 <li>ALGORITHM: Bruteforcel<ul>
 <li>First, generate all frequent itemsets.</li>
 <li>Check them one by one via <strong>maximality test</strong></li>
@@ -1050,14 +1196,15 @@ n_features: 10
 </ul>
 </li>
 </ul>
-<p>※ Number of patterns usually exponential to input size, so Brute-force is <strong>exponential</strong> <span aria-label="Time between two pattern outputs" class="marker-info">delay</span> <span aria-label="with respect to" class="marker-info">w.r.t.</span> pattern size.</p>
+<p>※ Number of patterns usually exponential to input size, so Brute-force is <strong>exponential</strong> <span class="marker-info" aria-label="Time between two pattern outputs">delay</span> <span class="marker-info" aria-label="with respect to">w.r.t.</span> pattern size.</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Reverse-Search">Reverse Search<a class="anchor-link" href="#Reverse-Search">¶</a></h4><ul>
+<h4 id="Reverse-Search">Reverse Search<a class="anchor-link" href="#Reverse-Search">&#182;</a></h4><ul>
 <li>A general mathematical framework to design enumeration algorithms.</li>
 <li>Can be used to prove the correctness of the algorithm.</li>
 <li>Popular in computational geometry.</li>
@@ -1069,17 +1216,19 @@ n_features: 10
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="LCM(Linear-Time-Closed-Sets-Miner)">LCM(Linear Time Closed Sets Miner)<a class="anchor-link" href="#LCM(Linear-Time-Closed-Sets-Miner)">¶</a></h4><ul>
+<h4 id="LCM(Linear-Time-Closed-Sets-Miner)">LCM(Linear Time Closed Sets Miner)<a class="anchor-link" href="#LCM(Linear-Time-Closed-Sets-Miner)">&#182;</a></h4><ul>
 <li>Key Algorithm: <span class="marker-pink">Prefix Preserving Closure Extension</span> = Children generation from the reduction map.</li>
 <li><a href="https://www.ism.ac.jp/editsec/toukei/pdf/53-2-317.pdf">飽和集合列挙アルゴリズムを用いた大規模データベースからのルール発見手法</a></li>
 <li>Python Implementation: <strong>I'm doing now XD</strong></li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -1087,34 +1236,38 @@ n_features: 10
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div class="frame">
-<h4>Summary</h4>
-<ul>
-<li>Closure Extension: Jump from closed set to closed set.</li>
-<li>LCM: Linear Delay.</li>
-<li>Very fast in practice, too (Winner of FIMI'04(Frequent Itemset Mining Implementation Workshop)).</li>
-<li>Relation to clique enumeration.</li>
-</ul>
+  <h4>Summary</h4>
+  <ul>
+    <li>Closure Extension: Jump from closed set to closed set.</li>
+    <li>LCM: Linear Delay.</li>
+    <li>Very fast in practice, too (Winner of FIMI'04(Frequent Itemset Mining Implementation Workshop)).</li>
+    <li>Relation to clique enumeration.</li>
+  </ul>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -1131,6 +1284,7 @@ n_features: 10
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -1164,10 +1318,10 @@ n_features: 10
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-10-28T15:00:00+09:00">10 28, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-10-28T15:00:00+09:00">Oct 28, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-10-28T15:00:00+09:00">10 28, 2019</time>
+<time datetime="2019-10-28T15:00:00+09:00">Oct 28, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#sheng-wu-detamainingulun-ref">生物データマイニング論</a>
@@ -1185,8 +1339,6 @@ n_features: 10
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

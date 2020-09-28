@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="シークエンス解析実習1 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シークエンス解析-1.html" />
-<meta property="og:description" content="シークエンス解析実習1¶〜第6日目：数理モデル解析〜 担当：波江野 洋 講義全体の流れ¶ノートに記録するのは初めてなので、今回の実習の講義日程も記録しておく。 目的 次世代シークエンス解析関連の実験操作と解析を学ぶ # 日付 内容 1 6/25(火) はじめに/Total RNAの調製とBioanalyzerによる濃度測定 2 6/26(水) ナノポアシークエンサーMinION RNA-seq 1日目 3 6/27(木) ナノポアシークエンサーMinION RNA-seq 2日目 4 6/28(金) イルミナシークエンサー RNA-seq 1日目 5 7/2(火) イルミナシークエンサー RNA-seq 2日目 6 7/3(水) 数理モデル講義・演習（社会連携講座） 7 7/4(木) RNA-seq解析 8 7/5(金) RNA-seq解析とまとめ 課題1: ロジスティック方程式¶ロジスティック成長：¶内的自然増加率（$r$）と環境収容力（$K$）があり、集団の大きさに依存して増加率が変化する。 $$\frac{dx(t)}{dt} = r\left(1-\frac{x(t)}{K}\right)x(t)$$ 解析解¶$$ \begin{aligned} \frac{dx(t)}{dt} &amp;= r\left(1-\frac{x(t)}{K}\right)x(t)\\ \frac{dx(t)}{dt} &amp;= \frac{r}{K}\left(K-x(t)\right)x(t)\\ \int\left(\frac{1}{K-x(t)}+\frac{1}{x(t)}\right)dx(t) &amp;= \int rdt\\ \ln\left(\frac{x(t)}{K-x(t)}\right) &amp;= Crt\qquad(C:\mathrm{const.})\\ \frac{x(t)}{K-x(t)} &amp;= Ae^{rt}\qquad(A=e^C)\\ \end{aligned} $$ここで、$t=0$ で $x(t)=x_0$ だから、$A = \frac{x_0}{K-x_0}$ となるので、これを代入して、 $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$ シミュレーション（数値計算）¶" />
+<meta property="og:description" content="シークエンス解析" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-03T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-03T00:00:00+09:00" />
 <meta name="twitter:title" content="シークエンス解析実習1 ">
-<meta name="twitter:description" content="シークエンス解析実習1¶〜第6日目：数理モデル解析〜 担当：波江野 洋 講義全体の流れ¶ノートに記録するのは初めてなので、今回の実習の講義日程も記録しておく。 目的 次世代シークエンス解析関連の実験操作と解析を学ぶ # 日付 内容 1 6/25(火) はじめに/Total RNAの調製とBioanalyzerによる濃度測定 2 6/26(水) ナノポアシークエンサーMinION RNA-seq 1日目 3 6/27(木) ナノポアシークエンサーMinION RNA-seq 2日目 4 6/28(金) イルミナシークエンサー RNA-seq 1日目 5 7/2(火) イルミナシークエンサー RNA-seq 2日目 6 7/3(水) 数理モデル講義・演習（社会連携講座） 7 7/4(木) RNA-seq解析 8 7/5(金) RNA-seq解析とまとめ 課題1: ロジスティック方程式¶ロジスティック成長：¶内的自然増加率（$r$）と環境収容力（$K$）があり、集団の大きさに依存して増加率が変化する。 $$\frac{dx(t)}{dt} = r\left(1-\frac{x(t)}{K}\right)x(t)$$ 解析解¶$$ \begin{aligned} \frac{dx(t)}{dt} &amp;= r\left(1-\frac{x(t)}{K}\right)x(t)\\ \frac{dx(t)}{dt} &amp;= \frac{r}{K}\left(K-x(t)\right)x(t)\\ \int\left(\frac{1}{K-x(t)}+\frac{1}{x(t)}\right)dx(t) &amp;= \int rdt\\ \ln\left(\frac{x(t)}{K-x(t)}\right) &amp;= Crt\qquad(C:\mathrm{const.})\\ \frac{x(t)}{K-x(t)} &amp;= Ae^{rt}\qquad(A=e^C)\\ \end{aligned} $$ここで、$t=0$ で $x(t)=x_0$ だから、$A = \frac{x_0}{K-x_0}$ となるので、これを代入して、 $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$ シミュレーション（数値計算）¶">
+<meta name="twitter:description" content="シークエンス解析">
 
         <title>シークエンス解析実習1  · 3S
 </title>
@@ -119,20 +119,21 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="シークエンス解析実習1">シークエンス解析実習1<a class="anchor-link" href="#シークエンス解析実習1">¶</a></h1><p><b>〜第6日目：数理モデル解析〜</b></p>
+<h1 id="&#12471;&#12540;&#12463;&#12456;&#12531;&#12473;&#35299;&#26512;&#23455;&#32722;1">&#12471;&#12540;&#12463;&#12456;&#12531;&#12473;&#35299;&#26512;&#23455;&#32722;1<a class="anchor-link" href="#&#12471;&#12540;&#12463;&#12456;&#12531;&#12473;&#35299;&#26512;&#23455;&#32722;1">&#182;</a></h1><p><b>〜第6日目：数理モデル解析〜</b></p>
 <ul>
 <li>担当：<a href="https://www.ncc.go.jp/jp/epoc/division/translational_genomics/kashiwa/members/20181015090121.html">波江野 洋</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="講義全体の流れ">講義全体の流れ<a class="anchor-link" href="#講義全体の流れ">¶</a></h2><p>ノートに記録するのは初めてなので、今回の実習の講義日程も記録しておく。</p>
+<h2 id="&#35611;&#32681;&#20840;&#20307;&#12398;&#27969;&#12428;">&#35611;&#32681;&#20840;&#20307;&#12398;&#27969;&#12428;<a class="anchor-link" href="#&#35611;&#32681;&#20840;&#20307;&#12398;&#27969;&#12428;">&#182;</a></h2><p>ノートに記録するのは初めてなので、今回の実習の講義日程も記録しておく。</p>
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h3>目的</h3>
-<p>次世代シークエンス解析関連の実験操作と解析を学ぶ</p>
+  <h3>目的</h3>
+  <p>次世代シークエンス解析関連の実験操作と解析を学ぶ</p>
 </div><table>
 <thead><tr>
 <th style="text-align:center">#</th>
@@ -183,13 +184,14 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="課題1:-ロジスティック方程式">課題1: ロジスティック方程式<a class="anchor-link" href="#課題1:-ロジスティック方程式">¶</a></h2><h3 id="ロジスティック成長：">ロジスティック成長：<a class="anchor-link" href="#ロジスティック成長：">¶</a></h3><p>内的自然増加率（$r$）と環境収容力（$K$）があり、集団の大きさに依存して増加率が変化する。</p>
+<h2 id="&#35506;&#38988;1:-&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#26041;&#31243;&#24335;">&#35506;&#38988;1: &#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#26041;&#31243;&#24335;<a class="anchor-link" href="#&#35506;&#38988;1:-&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#26041;&#31243;&#24335;">&#182;</a></h2><h3 id="&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#25104;&#38263;&#65306;">&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#25104;&#38263;&#65306;<a class="anchor-link" href="#&#12525;&#12472;&#12473;&#12486;&#12451;&#12483;&#12463;&#25104;&#38263;&#65306;">&#182;</a></h3><p>内的自然増加率（$r$）と環境収容力（$K$）があり、集団の大きさに依存して増加率が変化する。</p>
 $$\frac{dx(t)}{dt} = r\left(1-\frac{x(t)}{K}\right)x(t)$$
 </div>
 </div>
@@ -197,18 +199,18 @@ $$\frac{dx(t)}{dt} = r\left(1-\frac{x(t)}{K}\right)x(t)$$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="解析解">解析解<a class="anchor-link" href="#解析解">¶</a></h3>$$
+<h3 id="&#35299;&#26512;&#35299;">&#35299;&#26512;&#35299;<a class="anchor-link" href="#&#35299;&#26512;&#35299;">&#182;</a></h3>$$
 \begin{aligned}
 \frac{dx(t)}{dt}
-&= r\left(1-\frac{x(t)}{K}\right)x(t)\\
+&amp;= r\left(1-\frac{x(t)}{K}\right)x(t)\\
 \frac{dx(t)}{dt}
-&= \frac{r}{K}\left(K-x(t)\right)x(t)\\
+&amp;= \frac{r}{K}\left(K-x(t)\right)x(t)\\
 \int\left(\frac{1}{K-x(t)}+\frac{1}{x(t)}\right)dx(t)
-&= \int rdt\\
+&amp;= \int rdt\\
 \ln\left(\frac{x(t)}{K-x(t)}\right)
-&= Crt\qquad(C:\mathrm{const.})\\
+&amp;= Crt\qquad(C:\mathrm{const.})\\
 \frac{x(t)}{K-x(t)}
-&= Ae^{rt}\qquad(A=e^C)\\
+&amp;= Ae^{rt}\qquad(A=e^C)\\
 \end{aligned}
 $$<p>ここで、$t=0$ で $x(t)=x_0$ だから、$A = \frac{x_0}{K-x_0}$ となるので、これを代入して、</p>
 $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$
@@ -218,42 +220,46 @@ $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="シミュレーション（数値計算）">シミュレーション（数値計算）<a class="anchor-link" href="#シミュレーション（数値計算）">¶</a></h3>
+<h3 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#65288;&#25968;&#20516;&#35336;&#31639;&#65289;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#65288;&#25968;&#20516;&#35336;&#31639;&#65289;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#65288;&#25968;&#20516;&#35336;&#31639;&#65289;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">xmin</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">10</span>
 
 <span class="n">K</span> <span class="o">=</span> <span class="mi">1000</span>
 <span class="n">r</span> <span class="o">=</span> <span class="mf">1.2</span>
 <span class="n">x0</span> <span class="o">=</span> <span class="mi">10</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 厳密解</span>
 <span class="k">def</span> <span class="nf">Logistic_equation</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">x0</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">K</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span> <span class="p">(</span><span class="n">K</span><span class="o">/</span><span class="n">x0</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">e</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">r</span><span class="o">*</span><span class="n">t</span><span class="p">)))</span>
@@ -261,15 +267,17 @@ $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$
 <span class="n">t_exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">Logistic_equation</span><span class="p">)(</span><span class="n">t_exact</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">x0</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 数値計算</span>
 <span class="k">def</span> <span class="nf">d_Logisitc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">r</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="o">/</span><span class="n">K</span><span class="p">)</span><span class="o">*</span><span class="n">x</span>
@@ -281,30 +289,41 @@ $$x(t) = \frac{K}{1 + \left(\frac{K}{x_0}-1\right)e^{-rt}}$$
     <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">d_Logisitc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">)</span>
     <span class="n">numerical</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_numerical</span><span class="p">,</span> <span class="n">numerical</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"numerical"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_exact</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"exact"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Logistic equation: $r=</span><span class="si">{}</span><span class="s2">,\ K=</span><span class="si">{}</span><span class="s2">, x_0=</span><span class="si">{}</span><span class="s2">$"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">x0</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"$t$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$x(t)$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">t_numerical</span><span class="p">,</span> <span class="n">numerical</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;numerical&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t_exact</span><span class="p">,</span> <span class="n">exact</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Logistic equation: $r=</span><span class="si">{}</span><span class="s2">,\ K=</span><span class="si">{}</span><span class="s2">, x_0=</span><span class="si">{}</span><span class="s2">$&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">x0</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;$t$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$x(t)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZEAAAEaCAYAAADQVmpMAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -536,47 +555,53 @@ MiUREZ+YWaqZfc/vOESaQ0lExD+jadv3rZJ2QFesi/jAzM4kcC+jfOAAcJlzbqO/UYk0npKIiE/M
 7D3gTufcynoXFglRas4S8U86sNbvIESaQ0lExAdm1p3AKHvlfsci0hxKIiL+SKMNjvUt7Y+SiIg/
 1hIY+2GlmbWXkfakDVLHuoiINJlqIiIi0mRKIiIi0mRKIiIi0mRKIiIi0mRKIiIi0mRKIiIi0mRK
 IiIi0mT/H4DX1yMN+tPJAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="課題2:-突然変異固定確率（モラン過程）">課題2: 突然変異固定確率（モラン過程）<a class="anchor-link" href="#課題2:-突然変異固定確率（モラン過程）">¶</a></h2><h3 id="モラン過程：">モラン過程：<a class="anchor-link" href="#モラン過程：">¶</a></h3><p>有限集団の中で細胞の入れ替えが起こっている。<b>「1細胞が分裂」</b>に選ばれて<b>「1細胞が死亡」</b>に選ばれることを繰り返す中で特定の細胞の子孫が最終的に集団を占める確率を計算する。</p>
+<h2 id="&#35506;&#38988;2:-&#31361;&#28982;&#22793;&#30064;&#22266;&#23450;&#30906;&#29575;&#65288;&#12514;&#12521;&#12531;&#36942;&#31243;&#65289;">&#35506;&#38988;2: &#31361;&#28982;&#22793;&#30064;&#22266;&#23450;&#30906;&#29575;&#65288;&#12514;&#12521;&#12531;&#36942;&#31243;&#65289;<a class="anchor-link" href="#&#35506;&#38988;2:-&#31361;&#28982;&#22793;&#30064;&#22266;&#23450;&#30906;&#29575;&#65288;&#12514;&#12521;&#12531;&#36942;&#31243;&#65289;">&#182;</a></h2><h3 id="&#12514;&#12521;&#12531;&#36942;&#31243;&#65306;">&#12514;&#12521;&#12531;&#36942;&#31243;&#65306;<a class="anchor-link" href="#&#12514;&#12521;&#12531;&#36942;&#31243;&#65306;">&#182;</a></h3><p>有限集団の中で細胞の入れ替えが起こっている。<b>「1細胞が分裂」</b>に選ばれて<b>「1細胞が死亡」</b>に選ばれることを繰り返す中で特定の細胞の子孫が最終的に集団を占める確率を計算する。</p>
 <p><b>※ ここで、がん細胞の適応度を $r$ とする。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="組織の中で1細胞生まれたがん細胞が拡がる確率を計算する：">組織の中で1細胞生まれたがん細胞が拡がる確率を計算する：<a class="anchor-link" href="#組織の中で1細胞生まれたがん細胞が拡がる確率を計算する：">¶</a></h3><p>単位時間経過後にがん細胞の数が $i$ から $j$ になる確率を $P_{ij}$ とすると、</p>
+<h3 id="&#32068;&#32340;&#12398;&#20013;&#12391;1&#32048;&#32990;&#29983;&#12414;&#12428;&#12383;&#12364;&#12435;&#32048;&#32990;&#12364;&#25313;&#12364;&#12427;&#30906;&#29575;&#12434;&#35336;&#31639;&#12377;&#12427;&#65306;">&#32068;&#32340;&#12398;&#20013;&#12391;1&#32048;&#32990;&#29983;&#12414;&#12428;&#12383;&#12364;&#12435;&#32048;&#32990;&#12364;&#25313;&#12364;&#12427;&#30906;&#29575;&#12434;&#35336;&#31639;&#12377;&#12427;&#65306;<a class="anchor-link" href="#&#32068;&#32340;&#12398;&#20013;&#12391;1&#32048;&#32990;&#29983;&#12414;&#12428;&#12383;&#12364;&#12435;&#32048;&#32990;&#12364;&#25313;&#12364;&#12427;&#30906;&#29575;&#12434;&#35336;&#31639;&#12377;&#12427;&#65306;">&#182;</a></h3><p>単位時間経過後にがん細胞の数が $i$ から $j$ になる確率を $P_{ij}$ とすると、</p>
 $$
 \begin{cases}
-  P_{i\rightarrow i+1} &= \frac{N-i}{N}\frac{ri}{(N-i) + ri} \\
-  P_{i\rightarrow i-1} &= \frac{i}{N}\frac{N-i}{(N-i) + ri} \\
-  P_{i\rightarrow i}   &= 1-P_{i\rightarrow i+1}-P_{i\rightarrow i+1} = \frac{1}{N}\frac{(N-i)^2+ri^2}{(N-i) + ri}\\
+  P_{i\rightarrow i+1} &amp;= \frac{N-i}{N}\frac{ri}{(N-i) + ri} \\
+  P_{i\rightarrow i-1} &amp;= \frac{i}{N}\frac{N-i}{(N-i) + ri} \\
+  P_{i\rightarrow i}   &amp;= 1-P_{i\rightarrow i+1}-P_{i\rightarrow i+1} = \frac{1}{N}\frac{(N-i)^2+ri^2}{(N-i) + ri}\\
 \end{cases}
 $$<p>したがって、$i$ 細胞からスタートしたがん細胞が最終的に固定する確率を $V_i$ とすると、</p>
 $$
 \begin{aligned}
 V_i 
-&= V_{i+1}P_{i\rightarrow i+1} + V_{i-1}P_{i\rightarrow i-1} + V_iP_{i\rightarrow i}\\
-&= V_{i+1}\frac{N-i}{N}\frac{ri}{(N-i) + ri} + V_{i-1}\frac{i}{N}\frac{N-i}{(N-i) + ri} + V_i\frac{1}{N}\frac{(N-i)^2+ri^2}{(N-i) + ri}\\
+&amp;= V_{i+1}P_{i\rightarrow i+1} + V_{i-1}P_{i\rightarrow i-1} + V_iP_{i\rightarrow i}\\
+&amp;= V_{i+1}\frac{N-i}{N}\frac{ri}{(N-i) + ri} + V_{i-1}\frac{i}{N}\frac{N-i}{(N-i) + ri} + V_i\frac{1}{N}\frac{(N-i)^2+ri^2}{(N-i) + ri}\\
 V_{i+1}-V_i
-&= \frac{1}{r}(V_i-V_{i-1}), \quad (V_0=0, V_N=1)\\
+&amp;= \frac{1}{r}(V_i-V_{i-1}), \quad (V_0=0, V_N=1)\\
 V_i
-&= V_1\frac{1-(1/r)^i}{1-1/r}
+&amp;= V_1\frac{1-(1/r)^i}{1-1/r}
 \end{aligned}
 $$<p>$i=N$ を代入して、</p>
 $$V_1 = \frac{1-1/r}{1-(1/r)^N}$$
@@ -586,34 +611,37 @@ $$V_1 = \frac{1-1/r}{1-(1/r)^N}$$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="シミュレーション（数値計算）">シミュレーション（数値計算）<a class="anchor-link" href="#シミュレーション（数値計算）">¶</a></h3>
+<h3 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#65288;&#25968;&#20516;&#35336;&#31639;&#65289;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#65288;&#25968;&#20516;&#35336;&#31639;&#65289;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#65288;&#25968;&#20516;&#35336;&#31639;&#65289;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">rs</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">/</span><span class="mi">10</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">21</span><span class="p">)]</span>
 <span class="n">Ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 厳密解</span>
 <span class="k">def</span> <span class="nf">Fixation_probability</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">r</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span> <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="n">N</span><span class="p">)</span>
@@ -621,15 +649,17 @@ $$V_1 = \frac{1-1/r}{1-(1/r)^N}$$
 
 <span class="n">exact10</span><span class="p">,</span><span class="n">exact100</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Fixation_probability</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rs</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">Ns</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ITER_MAX</span> <span class="o">=</span> <span class="mi">10000</span>
 <span class="n">COUNT</span> <span class="o">=</span> <span class="mi">1000</span>
 
@@ -643,8 +673,8 @@ $$V_1 = \frac{1-1/r}{1-(1/r)^N}$$
         <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ITER_MAX</span><span class="p">):</span>
             <span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">()</span>
             
-            <span class="k">if</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="n">r</span><span class="o">*</span><span class="n">mu</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span> <span class="o">></span> <span class="n">rand</span><span class="p">:</span>   <span class="n">mu</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span> <span class="n">no</span><span class="o">-=</span><span class="mi">1</span>
-            <span class="k">elif</span> <span class="n">mu</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span> <span class="o">></span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">rand</span><span class="p">):</span> <span class="n">mu</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span> <span class="n">no</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="n">r</span><span class="o">*</span><span class="n">mu</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span> <span class="o">+</span> <span class="n">r</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">rand</span><span class="p">:</span>   <span class="n">mu</span><span class="o">+=</span><span class="mi">1</span><span class="p">;</span> <span class="n">no</span><span class="o">-=</span><span class="mi">1</span>
+            <span class="k">elif</span> <span class="n">mu</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="n">mu</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">mu</span><span class="p">)</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">rand</span><span class="p">):</span> <span class="n">mu</span><span class="o">-=</span><span class="mi">1</span><span class="p">;</span> <span class="n">no</span><span class="o">+=</span><span class="mi">1</span>
             <span class="k">else</span><span class="p">:</span> <span class="k">continue</span>
             
             <span class="k">if</span> <span class="n">no</span> <span class="o">==</span> <span class="n">N</span><span class="p">:</span> <span class="k">break</span>
@@ -654,33 +684,44 @@ $$V_1 = \frac{1-1/r}{1-(1/r)^N}$$
 
 <span class="n">numerical10</span><span class="p">,</span> <span class="n">numerical100</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Numeric_analysis</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rs</span><span class="p">]</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">Ns</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact10</span><span class="p">,</span>      <span class="n">c</span><span class="o">=</span><span class="s2">"#80160e"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"exact, $N=10$"</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact10</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">"#80160e"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact100</span><span class="p">,</span>     <span class="n">c</span><span class="o">=</span><span class="s2">"#80160e"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"exact, $N=100$"</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">"#80160e"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical10</span><span class="p">,</span>  <span class="n">c</span><span class="o">=</span><span class="s2">"#6da3fc"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"numerical, $N=10$"</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical10</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">"#6da3fc"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">"#6da3fc"</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"o"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"numerical, $N=100$"</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">"#6da3fc"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The probability of the fixation probability $V_1$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"fitness $r$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$V_1$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact10</span><span class="p">,</span>      <span class="n">c</span><span class="o">=</span><span class="s2">&quot;#80160e&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact, $N=10$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact10</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&quot;#80160e&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact100</span><span class="p">,</span>     <span class="n">c</span><span class="o">=</span><span class="s2">&quot;#80160e&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact, $N=100$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">exact100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&quot;#80160e&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical10</span><span class="p">,</span>  <span class="n">c</span><span class="o">=</span><span class="s2">&quot;#6da3fc&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;numerical, $N=10$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical10</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&quot;#6da3fc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical100</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&quot;#6da3fc&quot;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;o&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;numerical, $N=100$&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">rs</span><span class="p">,</span> <span class="n">numerical100</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s2">&quot;#6da3fc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The probability of the fixation probability $V_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;fitness $r$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$V_1$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAEaCAYAAADkL6tQAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1064,11 +1105,15 @@ LOReqH4K8CcReUNVF9Q3rc7DTse5Foknl800pj5WJIxpWAnOBekb8gawXET+qqoHRCTdfVw1UKiq
 T4rIYeBKEelZd1o9/Y3EGUrbmJixImFMA1S1QJxrlOfiXMv6wSjtNonIH4DXRMSHUxx+DnQE7haR
 sDvtpzgFoO60ukbi0ZXQjInGTlwbY4yJyk5cG2OMicqKhDHGmKisSBhjjInKioQxxpiorEgYY4yJ
 yoqEMcaYqKxIGGOMier/AXrI/hx3l7RYAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -1076,20 +1121,22 @@ yoqEMcaYqKxIGGOMier/AXrI/hx3l7RYAAAAAElFTkSuQmCC
 <p><b>$N$ が小さければ、適応度 $r$ が $1$ より小さくても固定する可能性がある！</b></p>
 <blockquote><p>ということが言いたかったらしいのですが、当たり前やなあ。という感じですね。</p>
 </blockquote>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr />
+<hr>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="課題3:-競争系のダイナミクス">課題3: 競争系のダイナミクス<a class="anchor-link" href="#課題3:-競争系のダイナミクス">¶</a></h2>$$
+<h2 id="&#35506;&#38988;3:-&#31478;&#20105;&#31995;&#12398;&#12480;&#12452;&#12490;&#12511;&#12463;&#12473;">&#35506;&#38988;3: &#31478;&#20105;&#31995;&#12398;&#12480;&#12452;&#12490;&#12511;&#12463;&#12473;<a class="anchor-link" href="#&#35506;&#38988;3:-&#31478;&#20105;&#31995;&#12398;&#12480;&#12452;&#12490;&#12511;&#12463;&#12473;">&#182;</a></h2>$$
 \begin{cases}
   \frac{dx}{dt} = (a-bx-cy)x\\
   \frac{dy}{dt} = (d-ex-fy)y
@@ -1099,19 +1146,20 @@ $$<p>【仮定】</p>
 <li>種 $x,y$ はそれぞれ $x,y$ がいなければロジスティック成長（$b,e$ が<b>種内競争係数</b>を意味。）</li>
 <li>種 $x$ と種 $y$ はお互いに増殖を抑制し合う（$c,f$ が<b>種間競争係数</b>を意味。）</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="1.-式$(1)$-の平衡点を解く">1. 式$(1)$ の平衡点を解く<a class="anchor-link" href="#1.-式$(1)$-の平衡点を解く">¶</a></h3><p>　解の平衡点は、$\frac{dx}{dt}=0$ かつ $\frac{dy}{dt}=0$ を満たす点なので、以下の $4$ 点である。</p>
+<h3 id="1.-&#24335;$(1)$-&#12398;&#24179;&#34913;&#28857;&#12434;&#35299;&#12367;">1. &#24335;$(1)$ &#12398;&#24179;&#34913;&#28857;&#12434;&#35299;&#12367;<a class="anchor-link" href="#1.-&#24335;$(1)$-&#12398;&#24179;&#34913;&#28857;&#12434;&#35299;&#12367;">&#182;</a></h3><p>　解の平衡点は、$\frac{dx}{dt}=0$ かつ $\frac{dy}{dt}=0$ を満たす点なので、以下の $4$ 点である。</p>
 $$
 \begin{cases}
-  x = 0 & y = 0\\
-  x = 0 & y = \frac{d}{f}\\
-  x = \frac{a}{b} & y = 0\\
-  x = \frac{af-cd}{bf-ce} & y = \frac{ae-bd}{ce-bf}
+  x = 0 &amp; y = 0\\
+  x = 0 &amp; y = \frac{d}{f}\\
+  x = \frac{a}{b} &amp; y = 0\\
+  x = \frac{af-cd}{bf-ce} &amp; y = \frac{ae-bd}{ce-bf}
 \end{cases}
 $$
 </div>
@@ -1120,7 +1168,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2.-種-$x$-と種-$y$-が共に正の値をとる平衡点が出現するパラメータ-$(a,b,c,d,e,f)$-の関係式を示す">2. 種 $x$ と種 $y$ が共に正の値をとる平衡点が出現するパラメータ $(a,b,c,d,e,f)$ の関係式を示す<a class="anchor-link" href="#2.-種-$x$-と種-$y$-が共に正の値をとる平衡点が出現するパラメータ-$(a,b,c,d,e,f)$-の関係式を示す">¶</a></h3><p>　以下の平衡点 $(x,y)$ が共に正の値を取れば良い。</p>
+<h3 id="2.-&#31278;-$x$-&#12392;&#31278;-$y$-&#12364;&#20849;&#12395;&#27491;&#12398;&#20516;&#12434;&#12392;&#12427;&#24179;&#34913;&#28857;&#12364;&#20986;&#29694;&#12377;&#12427;&#12497;&#12521;&#12513;&#12540;&#12479;-$(a,b,c,d,e,f)$-&#12398;&#38306;&#20418;&#24335;&#12434;&#31034;&#12377;">2. &#31278; $x$ &#12392;&#31278; $y$ &#12364;&#20849;&#12395;&#27491;&#12398;&#20516;&#12434;&#12392;&#12427;&#24179;&#34913;&#28857;&#12364;&#20986;&#29694;&#12377;&#12427;&#12497;&#12521;&#12513;&#12540;&#12479; $(a,b,c,d,e,f)$ &#12398;&#38306;&#20418;&#24335;&#12434;&#31034;&#12377;<a class="anchor-link" href="#2.-&#31278;-$x$-&#12392;&#31278;-$y$-&#12364;&#20849;&#12395;&#27491;&#12398;&#20516;&#12434;&#12392;&#12427;&#24179;&#34913;&#28857;&#12364;&#20986;&#29694;&#12377;&#12427;&#12497;&#12521;&#12513;&#12540;&#12479;-$(a,b,c,d,e,f)$-&#12398;&#38306;&#20418;&#24335;&#12434;&#31034;&#12377;">&#182;</a></h3><p>　以下の平衡点 $(x,y)$ が共に正の値を取れば良い。</p>
 $$x = \frac{af-cd}{bf-ce}, y = \frac{bd-ae}{bf-ce}$$
 </div>
 </div>
@@ -1128,15 +1176,15 @@ $$x = \frac{af-cd}{bf-ce}, y = \frac{bd-ae}{bf-ce}$$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="3.-アイソクライン法で問2の平衡点の安定性を調べる">3. アイソクライン法で問2の平衡点の安定性を調べる<a class="anchor-link" href="#3.-アイソクライン法で問2の平衡点の安定性を調べる">¶</a></h3>
+<h3 id="3.-&#12450;&#12452;&#12477;&#12463;&#12521;&#12452;&#12531;&#27861;&#12391;&#21839;2&#12398;&#24179;&#34913;&#28857;&#12398;&#23433;&#23450;&#24615;&#12434;&#35519;&#12409;&#12427;">3. &#12450;&#12452;&#12477;&#12463;&#12521;&#12452;&#12531;&#27861;&#12391;&#21839;2&#12398;&#24179;&#34913;&#28857;&#12398;&#23433;&#23450;&#24615;&#12434;&#35519;&#12409;&#12427;<a class="anchor-link" href="#3.-&#12450;&#12452;&#12477;&#12463;&#12521;&#12452;&#12531;&#27861;&#12391;&#21839;2&#12398;&#24179;&#34913;&#28857;&#12398;&#23433;&#23450;&#24615;&#12434;&#35519;&#12409;&#12427;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ITER_MAX</span> <span class="o">=</span> <span class="mi">1000</span>
 
 <span class="k">def</span> <span class="nf">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">d</span><span class="p">,</span><span class="n">e</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">inix</span><span class="p">,</span><span class="n">iniy</span><span class="p">):</span>
@@ -1157,14 +1205,14 @@ $$x = \frac{af-cd}{bf-ce}, y = \frac{bd-ae}{bf-ce}$$
     <span class="c1"># 直線</span>
     <span class="n">func1</span> <span class="o">=</span> <span class="n">a</span><span class="o">/</span><span class="n">c</span> <span class="o">-</span> <span class="n">b</span><span class="o">/</span><span class="n">c</span><span class="o">*</span><span class="n">x</span>
     <span class="n">func2</span> <span class="o">=</span> <span class="n">d</span><span class="o">/</span><span class="n">f</span> <span class="o">-</span> <span class="n">e</span><span class="o">/</span><span class="n">f</span><span class="o">*</span><span class="n">x</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">func1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#721940"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"line1"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">func2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#F1E3A7"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"line2"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">func1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#721940&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;line1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">func2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#F1E3A7&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;line2&quot;</span><span class="p">)</span>
     
     <span class="c1"># 平衡点</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>   <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#1A1406"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"bp1"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">d</span><span class="o">/</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#721940"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"bp2"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#F1E3A7"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"bp3"</span><span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">e</span><span class="p">),</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">e</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">e</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FFF2DE"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"bp4"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span>   <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#1A1406&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;bp1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">d</span><span class="o">/</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#721940&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;bp2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#F1E3A7&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;bp3&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">((</span><span class="n">a</span><span class="o">*</span><span class="n">f</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">e</span><span class="p">),</span> <span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">e</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">c</span><span class="o">*</span><span class="n">e</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">f</span><span class="p">),</span> <span class="n">s</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#FFF2DE&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;bp4&quot;</span><span class="p">)</span>
     
     <span class="c1"># シミュレーション</span>
     <span class="n">x</span><span class="o">=</span><span class="n">inix</span><span class="p">;</span> <span class="n">y</span><span class="o">=</span><span class="n">iniy</span>
@@ -1172,40 +1220,58 @@ $$x = \frac{af-cd}{bf-ce}, y = \frac{bd-ae}{bf-ce}$$
     <span class="k">for</span> <span class="n">it</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ITER_MAX</span><span class="p">):</span>
         <span class="n">lst_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">lst_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
         <span class="n">x</span><span class="o">+=</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="n">y</span><span class="o">+=</span><span class="mi">1</span><span class="o">/</span><span class="mi">10</span><span class="o">*</span><span class="p">(</span><span class="n">d</span><span class="o">-</span><span class="n">e</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="n">f</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">y</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lst_x</span><span class="p">,</span><span class="n">lst_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"simulation: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">inix</span><span class="p">,</span><span class="n">iniy</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"initial state: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">"s"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lst_x</span><span class="p">,</span><span class="n">lst_y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;simulation: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">inix</span><span class="p">,</span><span class="n">iniy</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;initial state: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
 
-    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The simulation results."</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The simulation results.&quot;</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">xmax</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">ymax</span><span class="p">)</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af<cd, bd&lt;ae&lt; span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af&lt;cd, bd&lt;ae</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_text output_subarea ">
-<pre><figure size 432x288 with 0 axes></pre>
+<pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYUAAAF1CAYAAAAHsfZRAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1995,32 +2061,52 @@ Ckd4Y+BXR0X+FejjZZ0TgEMOPZuByk7n9naU8zHgn97U6TiOBCbedp7HyhP7P8HzQCr29659gJeB
 lx3xCvtiU8cdWup7qSyz0jkLuO5UN3c7wss5ynG/o06M8rLOQU51cwdORiyj+uINjY40vbB3cnE+
 z9Nl+Rh2H8YBp++1dW7VTz2iWaPRaDTp6BHNGo1Go0lHGwWNRqPRpKONgkaj0WjS0UZBo9FoNOlo
 o6DRaDSadLRR0Gg0Gk062ihoNBqNJh1tFDQajUaTzv8DHFqIEFkMNI0AAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af<cd, bd>ae</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af&lt;cd, bd&gt;ae</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_text output_subarea ">
-<pre><figure size 432x288 with 0 axes></pre>
+<pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYIAAAF1CAYAAADlbe0oAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -2797,32 +2883,52 @@ HpYDD7pGD90EXJBS/nqlCzRpGpL1CFvha7hpi+lAKPC5q7/8ZynlMM1ENxJu2sIvcNMWq4HBQohM
 wA78TUrpc2/NbtriGSBZCPE0zo7jv/jogyNCiEU4HwCiXH0iLwMGACnlXJx9JLcCR4Bi4P9qLNNH
 baVQKBQKN1EzixUKhcLPUY5AoVAo/BzlCBQKhcLPUY5AoVAo/BzlCBQKhcLPUY5AoVAo/BzlCBQK
 hcLPUY5AoVAo/Jz/D4ixRJL0V7guAAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af>cd, bd<ae&lt; span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af&gt;cd, bd&lt;ae</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_text output_subarea ">
-<pre><figure size 432x288 with 0 axes></pre>
+<pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAX8AAAF1CAYAAAAA3+oBAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -3575,32 +3681,52 @@ H7UG+yMwws2Ntjqdc4Gjmp4dQAeHssM1G6cBL+qpU/s8A3i7UjlP2zMeuAiUYe8XHQG8DLyspQvs
 ixela3q6edqeTmhcAeQ6tM1k7XhbzY6HtDYxWWdbjnVom0k4XKyqai966dTyxGKfbOJYztP2jMY+
 xnDY4bd9zF3tU73hq1AoFD6IesNXoVAofBDl/BUKhcIHUc5foVAofBDl/BUKhcIHUc5foVAofBDl
 /BUKhcIHUc5foVAofBDl/BUKhcIH+X+5gUefV1X4oQAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af>cd, bd>ae</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plot_nurcline</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">e</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">f</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">inix</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span><span class="n">iniy</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span> <span class="c1"># af&gt;cd, bd&gt;ae</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_text output_subarea ">
-<pre><figure size 432x288 with 0 axes></pre>
+<pre>&lt;Figure size 432x288 with 0 Axes&gt;</pre>
 </div>
+
 </div>
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXwAAAF1CAYAAADr6FECAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -4340,18 +4466,24 @@ pWxysuY2PaQjVVmGBl6OxUuAEVhdd976hJRyomZBtxEvxyIgeDkWG4HbhBDfAS7gSSllp/sW7OVY
 /AF4WwjxOzwncH/VGXcQhRAr8HzIJ9Sdr/gvIAhASrkQz/mLCUARYAZ+7VW7nXCsFEVRlEaoO20V
 RVEChEr4iqIoAUIlfEVRlAChEr6iKEqAUAlfURQlQKiEryiKEiBUwlcURQkQKuEriqIEiP8Hw/jd
 xsckw2YAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -4368,6 +4500,7 @@ xsckw2YAAAAASUVORK5CYII=
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -4401,10 +4534,10 @@ xsckw2YAAAAASUVORK5CYII=
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-07-03T00:00:00+09:00"> 7 3, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-07-03T00:00:00+09:00">Jul 3, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-07-03T00:00:00+09:00"> 7 3, 2019</time>
+<time datetime="2019-07-03T00:00:00+09:00">Jul 3, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -4422,8 +4555,6 @@ xsckw2YAAAAASUVORK5CYII=
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

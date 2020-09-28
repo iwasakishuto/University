@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="シミュレーション実習 Day2 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/生命科学基礎実験-シミュレーション実習-2.html" />
-<meta property="og:description" content="シミュレーション実習¶Day.2: 蛍光プローブと化学反応シミュレーション 担当：黒田研究室 実習のwiki：Slides and programs" />
+<meta property="og:description" content="プローブと信号" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-07-10T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-07-10T00:00:00+09:00" />
 <meta name="twitter:title" content="シミュレーション実習 Day2 ">
-<meta name="twitter:description" content="シミュレーション実習¶Day.2: 蛍光プローブと化学反応シミュレーション 担当：黒田研究室 実習のwiki：Slides and programs">
+<meta name="twitter:description" content="プローブと信号">
 
         <title>シミュレーション実習 Day2  · 3S
 </title>
@@ -119,36 +119,40 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="シミュレーション実習">シミュレーション実習<a class="anchor-link" href="#シミュレーション実習">¶</a></h1><p><b>Day.2: 蛍光プローブと化学反応シミュレーション</b></p>
+<h1 id="&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;<a class="anchor-link" href="#&#12471;&#12511;&#12517;&#12524;&#12540;&#12471;&#12519;&#12531;&#23455;&#32722;">&#182;</a></h1><p><b>Day.2: 蛍光プローブと化学反応シミュレーション</b></p>
 <ul>
 <li>担当：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/">黒田研究室</a></li>
 <li>実習のwiki：<a href="http://kurodalab.bs.s.u-tokyo.ac.jp/class/Summer/2019/">Slides and programs</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="概要">概要<a class="anchor-link" href="#概要">¶</a></h2><ol>
-<li><a data-scroll="" href="#anchor1">蛍光プローブ（カルシウム指示薬）</a>：化学的指示薬と遺伝子工学的指示薬</li>
-<li><a data-scroll="" href="#anchor2">プローブの反応速度</a>：反応速度が応答波形に与える影響</li>
-<li><a data-scroll="" href="#anchor3">プローブの解離定数</a>：解離定数が応答感度に与える影響</li>
-<li><a data-scroll="" href="#anchor4">プローブの緩衝作用</a>：競合阻害の可能性</li>
-<li><a data-scroll="" href="#anchor5">まとめ & 発展課題</a></li>
+<h2 id="&#27010;&#35201;">&#27010;&#35201;<a class="anchor-link" href="#&#27010;&#35201;">&#182;</a></h2><ol>
+<li><a data-scroll href="#anchor1">蛍光プローブ（カルシウム指示薬）</a>：化学的指示薬と遺伝子工学的指示薬</li>
+<li><a data-scroll href="#anchor2">プローブの反応速度</a>：反応速度が応答波形に与える影響</li>
+<li><a data-scroll href="#anchor3">プローブの解離定数</a>：解離定数が応答感度に与える影響</li>
+<li><a data-scroll href="#anchor4">プローブの緩衝作用</a>：競合阻害の可能性</li>
+<li><a data-scroll href="#anchor5">まとめ & 発展課題</a></li>
 </ol>
+
 </div>
 </div>
 </div>
@@ -162,13 +166,14 @@
 <li>細胞内/細胞/組織/器官/個体など、様々なスケールで使われる。</li>
 <li>例としては、<font color="red"><b>カルシウム（$\mathrm{Ca}^{2+}$）指示薬</b></font>が挙げられる。$\mathrm{Ca}^{2+}$ は<b>炎症・代謝・筋収縮・記憶・免疫</b>など、非常に多くの生命現象に関わるので重要！最近では、<a href="http://www.nibb.ac.jp/press/2017/03/07.html">カエルの形態形成における細胞骨格変化</a>や<a href="http://www.iam.u-tokyo.ac.jp/okuyamalab/">マウスの社会性行動におけるニューロン発火</a>などで利用されている。</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="カルシウム（$\mathrm{Ca}^{2+}$）指示薬の分類">カルシウム（$\mathrm{Ca}^{2+}$）指示薬の分類<a class="anchor-link" href="#カルシウム（$\mathrm{Ca}^{2+}$）指示薬の分類">¶</a></h3><ul>
+<h3 id="&#12459;&#12523;&#12471;&#12454;&#12512;&#65288;$\mathrm{Ca}^{2+}$&#65289;&#25351;&#31034;&#34220;&#12398;&#20998;&#39006;">&#12459;&#12523;&#12471;&#12454;&#12512;&#65288;$\mathrm{Ca}^{2+}$&#65289;&#25351;&#31034;&#34220;&#12398;&#20998;&#39006;<a class="anchor-link" href="#&#12459;&#12523;&#12471;&#12454;&#12512;&#65288;$\mathrm{Ca}^{2+}$&#65289;&#25351;&#31034;&#34220;&#12398;&#20998;&#39006;">&#182;</a></h3><ul>
 <li>化学的指示薬（Chemical indicator）<ul>
 <li>キレート剤（EGTA）を改変した小分子</li>
 <li>in vitro（生体外）でしか使えない</li>
@@ -181,13 +186,14 @@
 </ul>
 </li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="各種-$\mathrm{Ca}^{2+}$-指示薬">各種 $\mathrm{Ca}^{2+}$ 指示薬<a class="anchor-link" href="#各種-$\mathrm{Ca}^{2+}$-指示薬">¶</a></h3><table>
+<h3 id="&#21508;&#31278;-$\mathrm{Ca}^{2+}$-&#25351;&#31034;&#34220;">&#21508;&#31278; $\mathrm{Ca}^{2+}$ &#25351;&#31034;&#34220;<a class="anchor-link" href="#&#21508;&#31278;-$\mathrm{Ca}^{2+}$-&#25351;&#31034;&#34220;">&#182;</a></h3><table>
 <thead><tr>
 <th style="text-align:left">名称</th>
 <th style="text-align:left">励起波長(nm)</th>
@@ -221,7 +227,7 @@
 <tr>
 <td style="text-align:left">Indo1</td>
 <td style="text-align:left">330</td>
-<td style="text-align:left">Ca free: 485<br />Ca bind: 410</td>
+<td style="text-align:left">Ca free: 485<br>Ca bind: 410</td>
 <td style="text-align:left">250</td>
 <td style="text-align:left">1波長励起・2波長蛍光</td>
 </tr>
@@ -256,13 +262,14 @@
 </tbody>
 </table>
 <p>参考HP：<a href="http://calcium.cmp.m.u-tokyo.ac.jp/iino/depcom.html">飯野研@東大医</a></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="反応の定式化">反応の定式化<a class="anchor-link" href="#反応の定式化">¶</a></h3><p>$\mathrm{Ca}^{2+}$ 指示薬は基本的にはキレート剤（$\mathrm{Ca}^{2+}$ と複合体を形成する）であり、$\mathrm{Ca}^{2+}$ 指示薬の応答は<b>分子間相互作用</b>として以下のようにモデル化できる。</p>
+<h3 id="&#21453;&#24540;&#12398;&#23450;&#24335;&#21270;">&#21453;&#24540;&#12398;&#23450;&#24335;&#21270;<a class="anchor-link" href="#&#21453;&#24540;&#12398;&#23450;&#24335;&#21270;">&#182;</a></h3><p>$\mathrm{Ca}^{2+}$ 指示薬は基本的にはキレート剤（$\mathrm{Ca}^{2+}$ と複合体を形成する）であり、$\mathrm{Ca}^{2+}$ 指示薬の応答は<b>分子間相互作用</b>として以下のようにモデル化できる。</p>
 $$\mathrm{Ca}^{2+}\text{indicator} + \mathrm{Ca}^{2+}\overset{k_{\mathrm{f}}}{\underset{k_{\mathrm{b}}}{\rightleftarrows}}\mathrm{Ca}^{2+}\cdot\mathrm{Ca}^{2+}\text{indicator}$$<ul>
 <li>順反応速度: $\mathbf{v}_{\mathrm{f}}=\mathrm{k}_{\mathrm{f}} \cdot\left[\mathrm{Ca}^{2+} \text { indicator }\right] \cdot\left[\mathrm{Ca}^{2+}\right]$</li>
 <li>逆反応速度: $\mathbf{v}_{\mathrm{b}}=\mathrm{k}_{\mathrm{b}} \cdot\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]$</li>
@@ -270,20 +277,21 @@ $$\mathrm{Ca}^{2+}\text{indicator} + \mathrm{Ca}^{2+}\overset{k_{\mathrm{f}}}{\u
 <p>したがって、$\mathrm{k}_{\mathrm{f}}, \mathrm{k}_{\mathrm{b}}$ の値が大きいほどそれぞれの反応速度が大きい。</p>
 <p>また、平衡状態では両方向の反応速度が等しいため、以下の式が成り立つ。</p>
 $$\begin{aligned}
-    &\mathrm{k}_{\mathrm{f}} \cdot\left[\mathrm{Ca}^{2+} \text { indicator }\right] \cdot\left[\mathrm{Ca}^{2+}\right]=\mathrm{k}_{\mathrm{b}} \cdot\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]\\
-    &\mathrm{K}_{\mathrm{d}}=\frac{\mathrm{k}_{\mathrm{b}}}{\mathrm{k}_{\mathrm{f}}}=\frac{\left[\mathrm{Ca}^{2+}\mathrm{indicator}\right] \cdot\left[\mathrm{Ca}^{2+}\right]}{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \mathrm{indicator}\right]}\end{aligned}$$<p>この時、$\mathrm{K_d} = \mathrm{k_b/k_f}$ を<font color="red"><b>解離定数</b></font>と呼び、<b>基質親和性が高いほどこの値が小さくなる</b>ことがわかる。</p>
+    &amp;\mathrm{k}_{\mathrm{f}} \cdot\left[\mathrm{Ca}^{2+} \text { indicator }\right] \cdot\left[\mathrm{Ca}^{2+}\right]=\mathrm{k}_{\mathrm{b}} \cdot\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]\\
+    &amp;\mathrm{K}_{\mathrm{d}}=\frac{\mathrm{k}_{\mathrm{b}}}{\mathrm{k}_{\mathrm{f}}}=\frac{\left[\mathrm{Ca}^{2+}\mathrm{indicator}\right] \cdot\left[\mathrm{Ca}^{2+}\right]}{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \mathrm{indicator}\right]}\end{aligned}$$<p>この時、$\mathrm{K_d} = \mathrm{k_b/k_f}$ を<font color="red"><b>解離定数</b></font>と呼び、<b>基質親和性が高いほどこの値が小さくなる</b>ことがわかる。</p>
 <p>さらに、<b>カルシウムと結合しているプローブの割合</b>を $\mathrm{P}$ とおくと、</p>
 $$
 \begin{aligned}
 \mathrm{P}
-&=\frac{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]}{\left[\mathrm{Ca}^{2+} \text { indicator }\right]_{\mathrm{all}}}\\
-&=\frac{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]}{\left[\mathrm{Ca}^{2+} \text { indicator }\right] + \left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]}\\
-&= \frac{1}{\frac{\left[\mathrm{Ca}^{2+} \text { indicator }\right]}{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]} + 1}\\
-&= \frac{1}{\frac{\mathrm{K_d}}{\left[\mathrm{Ca}^{2+}\right]} + 1}\\
-&= \frac{\left[\mathrm{Ca}^{2+}\right]}{\mathrm{K_d} + \left[\mathrm{Ca}^{2+}\right]}
+&amp;=\frac{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]}{\left[\mathrm{Ca}^{2+} \text { indicator }\right]_{\mathrm{all}}}\\
+&amp;=\frac{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]}{\left[\mathrm{Ca}^{2+} \text { indicator }\right] + \left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]}\\
+&amp;= \frac{1}{\frac{\left[\mathrm{Ca}^{2+} \text { indicator }\right]}{\left[\mathrm{Ca}^{2+} \cdot \mathrm{Ca}^{2+} \text { indicator }\right]} + 1}\\
+&amp;= \frac{1}{\frac{\mathrm{K_d}}{\left[\mathrm{Ca}^{2+}\right]} + 1}\\
+&amp;= \frac{\left[\mathrm{Ca}^{2+}\right]}{\mathrm{K_d} + \left[\mathrm{Ca}^{2+}\right]}
 \end{aligned}
 $$<p>よって、両辺逆数を取ると、</p>
 $$\frac{1}{\mathrm{P}} = \mathrm{K_d}\cdot\frac{1}{\left[\mathrm{Ca}^{2+}\right]} + 1$$<p>となり、$1/\mathrm{P}$ が $1/\left[\mathrm{Ca}^{2+}\right]$ に対する1次関数となることがわかる。</p>
+
 </div>
 </div>
 </div>
@@ -291,10 +299,10 @@ $$\frac{1}{\mathrm{P}} = \mathrm{K_d}\cdot\frac{1}{\left[\mathrm{Ca}^{2+}\right]
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h3>本実習で検証するポイント</h3>
-<li>プローブはカルシウム応答に追従できる？</li>
-<li>定量できるカルシウム濃度の限界とは？</li>
-<li>プローブは生体(生化学反応）に影響を与えない？</li>
+    <h3>本実習で検証するポイント</h3>
+    <li>プローブはカルシウム応答に追従できる？</li>
+    <li>定量できるカルシウム濃度の限界とは？</li>
+    <li>プローブは生体(生化学反応）に影響を与えない？</li>
 </div>
 </div>
 </div>
@@ -309,7 +317,7 @@ $$\frac{1}{\mathrm{P}} = \mathrm{K_d}\cdot\frac{1}{\left[\mathrm{Ca}^{2+}\right]
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題1：$\mathrm{Ca}^{2+}$-プローブのカルシウム結合">課題1：$\mathrm{Ca}^{2+}$ プローブのカルシウム結合<a class="anchor-link" href="#課題1：$\mathrm{Ca}^{2+}$-プローブのカルシウム結合">¶</a></h3><p>ステップ $\mathrm{Ca}^{2+}$ 刺激（$t=20$ において $0\ \mathrm{nM}\Rightarrow100\ \mathrm{nM}$ ) を与えた時の $\mathrm{Ca}^{2+}$ 指示薬（Indo1)の応答をシミュレートしなさい。また、グラフ（$19.95-20.05\ \mathrm{sec}$）を拡大して、プローブの応答を詳細に観察しなさい。<font color="red">（発展課題）</font></p>
+<h3 id="&#35506;&#38988;1&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;">&#35506;&#38988;1&#65306;$\mathrm{Ca}^{2+}$ &#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;<a class="anchor-link" href="#&#35506;&#38988;1&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;">&#182;</a></h3><p>ステップ $\mathrm{Ca}^{2+}$ 刺激（$t=20$ において $0\ \mathrm{nM}\Rightarrow100\ \mathrm{nM}$ ) を与えた時の $\mathrm{Ca}^{2+}$ 指示薬（Indo1)の応答をシミュレートしなさい。また、グラフ（$19.95-20.05\ \mathrm{sec}$）を拡大して、プローブの応答を詳細に観察しなさい。<font color="red">（発展課題）</font></p>
 <table>
 <thead><tr>
 <th style="text-align:center">$\mathrm{Ca}$ 指示薬</th>
@@ -327,74 +335,85 @@ $$\frac{1}{\mathrm{P}} = \mathrm{K_d}\cdot\frac{1}{\left[\mathrm{Ca}^{2+}\right]
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span>  <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># カルシウムの濃度 </span>
 <span class="n">B</span>  <span class="o">=</span> <span class="mf">1e-6</span>  <span class="c1"># プローブの濃度(1 µM)</span>
 <span class="n">AB</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># 複合体の濃度</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kf</span> <span class="o">=</span> <span class="mf">9.4</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">8</span>
 <span class="n">kb</span> <span class="o">=</span> <span class="mi">180</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># 0.0001sec 刻み</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">CaComplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
     <span class="n">dA</span>  <span class="o">=</span> <span class="mi">0</span> <span class="c1"># NOTE: バッファーの仮定（カルシウム濃度は一定に保たれる。）</span>
     <span class="n">dB</span>  <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">kf</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">B</span> <span class="o">+</span> <span class="n">kb</span><span class="o">*</span><span class="n">AB</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
@@ -405,33 +424,44 @@ $$\frac{1}{\mathrm{P}} = \mathrm{K_d}\cdot\frac{1}{\left[\mathrm{Ca}^{2+}\right]
     
     <span class="n">Ca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span> <span class="n">Probe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span> <span class="n">CaComplex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">AB</span>   <span class="c1"># 記録  </span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 軸を綺麗に表示するため</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Simulation result [kadai1]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulation result [kadai1]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">],</span><span class="n">yticks</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -587,43 +617,56 @@ XnoaTHX1LGw1ykFhHVZErCRpC1gg6aet3MxE4ERJDb39NjWc7kPAPvrX9amfpo3TC4A/k/QU/Fvg
 eeDpdP5vgC0i4g8kPbvOTUdcOws2jS/xaWBuK+s2K5hvjzUrA0mXAr+LiDkl2t5RwL4R8d+l2J5Z
 Pj6jMCuPHwJbl3B7W1DB4V6tY/EZhZmZ5eUzCjMzy8tBYWZmeTkozMwsLweFmZnl5aAwM7O8/j/A
 bQ6U3KOutAAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="発展課題">発展課題<a class="anchor-link" href="#発展課題">¶</a></h4>
+<h4 id="&#30330;&#23637;&#35506;&#38988;">&#30330;&#23637;&#35506;&#38988;<a class="anchor-link" href="#&#30330;&#23637;&#35506;&#38988;">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 軸を綺麗に表示するため</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Simulation result [kadai1+]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulation result [kadai1+]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">],</span><span class="n">yticks</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mf">19.95</span><span class="p">,</span><span class="mf">20.05</span><span class="p">)</span> <span class="c1"># 追加</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -808,85 +851,100 @@ q8bMOppZQ4IRzy4JB3+i1KWnjgSdCYqklRKF1FruvoagLWCemd1bycP0By4zsznsOvJfrKnA0TED
 Vd0bNk7PA/5D0IvuXwl62v0wXP4XYC93f5Wgu+pZZjYbuBF2jH/wI2BWJeMWSZhujxWpBmb2IPBP
 d5+couOdBRzj7v+XiuOJxKMahUj1uBNokMLj7UUwnrJI2qlGISIicalGISIicSlRiIhIXEoUIiIS
 lxKFiIjEpUQhIiJx/X9NWn+izrLyyAAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2.1：$\mathrm{Ca}^{2+}$-プローブのカルシウム結合">課題2.1：$\mathrm{Ca}^{2+}$ プローブのカルシウム結合<a class="anchor-link" href="#課題2.1：$\mathrm{Ca}^{2+}$-プローブのカルシウム結合">¶</a></h3><p><b>~化学的指示薬（反応速度定数が大きいプローブ）~</b></p>
+<h3 id="&#35506;&#38988;2.1&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;">&#35506;&#38988;2.1&#65306;$\mathrm{Ca}^{2+}$ &#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;<a class="anchor-link" href="#&#35506;&#38988;2.1&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;">&#182;</a></h3><p><b>~化学的指示薬（反応速度定数が大きいプローブ）~</b></p>
 <p>先ほどの反応系で、$100\ \mathrm{nM}$ パルス $\mathrm{Ca}^{2+}$ 刺激を与えた時の $\mathrm{Ca}^{2+}$ 指示薬（Indo1)の応答をシミュレートしなさい。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span>  <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># カルシウムの濃度 </span>
 <span class="n">B</span>  <span class="o">=</span> <span class="mf">1e-6</span>  <span class="c1"># プローブの濃度(1 µM)</span>
 <span class="n">AB</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># 複合体の濃度</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kf</span> <span class="o">=</span> <span class="mf">9.4</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">8</span>
 <span class="n">kb</span> <span class="o">=</span> <span class="mi">180</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># 0.0001sec 刻み</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">CaComplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
     <span class="n">dA</span>  <span class="o">=</span> <span class="mi">0</span> <span class="c1"># NOTE: バッファーの仮定（カルシウム濃度は一定に保たれる。）</span>
     <span class="n">dB</span>  <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">kf</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">B</span> <span class="o">+</span> <span class="n">kb</span><span class="o">*</span><span class="n">AB</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
@@ -898,33 +956,44 @@ lxKFiIjEpUQhIiJx/X9NWn+izrLyyAAAAABJRU5ErkJggg==
     
     <span class="n">Ca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span> <span class="n">Probe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span> <span class="n">CaComplex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">AB</span>   <span class="c1"># 記録  </span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]</span> <span class="c1"># 軸を綺麗に表示するため</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Simulation result [kadai2.1]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulation result [kadai2.1]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">],</span><span class="n">yticks</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1085,16 +1154,20 @@ qylfo7A8ew/Ypr0bRzJvxp8knQTJSLiSPtbCqrOAPQs3JA2IiKcj4lKSlsZuwG+As9Mh15E0MB3t
 BJ4gGdn0JyRDRv8hXf5jkmlHf00yjHRjOnPehbB+Do89SUYSNaspfzzWrBNIugb4ZURMr9L+TgAO
 iIj/rMb+zEpxi8Ksc3wb2KqK+9sM+H4V92fWKrcozMysJLcozMysJAeFmZmV5KAwM7OSHBRmZlaS
 g8LMzEr6fzC0tW5D1zg3AAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題2.2：$\mathrm{Ca}^{2+}$-プローブのカルシウム結合">課題2.2：$\mathrm{Ca}^{2+}$ プローブのカルシウム結合<a class="anchor-link" href="#課題2.2：$\mathrm{Ca}^{2+}$-プローブのカルシウム結合">¶</a></h3><p><b>~遺伝子工学的指示薬（反応速度定数が大きいプローブ）~</b></p>
+<h3 id="&#35506;&#38988;2.2&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;">&#35506;&#38988;2.2&#65306;$\mathrm{Ca}^{2+}$ &#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;<a class="anchor-link" href="#&#35506;&#38988;2.2&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12398;&#12459;&#12523;&#12471;&#12454;&#12512;&#32080;&#21512;">&#182;</a></h3><p><b>~遺伝子工学的指示薬（反応速度定数が大きいプローブ）~</b></p>
 <p>Cameleon3.6に $100\ \mathrm{nM}$ のパルスカルシウム刺激を与えた時の応答波形をシミュレーションしなさい。</p>
 <table>
 <thead><tr>
@@ -1125,74 +1198,85 @@ g8LMzEr6fzC0tW5D1zg3AAAAAElFTkSuQmCC
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span>  <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># カルシウムの濃度 </span>
 <span class="n">B</span>  <span class="o">=</span> <span class="mf">1e-6</span>  <span class="c1"># プローブの濃度(1 µM)</span>
 <span class="n">AB</span> <span class="o">=</span> <span class="mi">0</span>     <span class="c1"># 複合体の濃度</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kf</span> <span class="o">=</span> <span class="mf">1.33</span> <span class="o">*</span> <span class="mi">10</span><span class="o">**</span><span class="mi">6</span>
 <span class="n">kb</span> <span class="o">=</span> <span class="mf">0.33</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># 0.0001sec 刻み</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">CaComplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
     <span class="n">dA</span>  <span class="o">=</span> <span class="mi">0</span> <span class="c1"># NOTE: バッファーの仮定（カルシウム濃度は一定に保たれる。）</span>
     <span class="n">dB</span>  <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">kf</span><span class="o">*</span><span class="n">A</span><span class="o">*</span><span class="n">B</span> <span class="o">+</span> <span class="n">kb</span><span class="o">*</span><span class="n">AB</span><span class="p">)</span> <span class="o">*</span> <span class="n">dt</span>
@@ -1204,33 +1288,44 @@ g8LMzEr6fzC0tW5D1zg3AAAAAElFTkSuQmCC
     
     <span class="n">Ca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span> <span class="n">Probe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span> <span class="n">CaComplex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">AB</span>   <span class="c1"># 記録  </span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">]</span> <span class="c1"># 軸を綺麗に表示するため</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Simulation result [kadai2.2]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Simulation result [kadai2.2]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">],</span><span class="n">yticks</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYoAAAEWCAYAAAB42tAoAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1449,18 +1544,22 @@ mFkrd5/k7rcR1DT2Az4ALg+HXMfMWoejnX4IXGhmNcL1BZueWhMMPiiSUEoUUmm5+1qCvoAZZvbv
 Uh5mAHCxmeWPTnpGEdt8BnS0Xe1T/w47p2cAXxGMbPoUwZDR34TrnySYdvR9gmGks8OZ8/4GO+fw
 OIhgJFGRhNLpsSLlwMweAv7r7h/F6XhnAUe6+63xOJ5IJKpRiJSPu4EacTxeJvBAHI8nUizVKERE
 JCLVKEREJCIlChERiUiJQkREIlKiEBGRiJQoREQkov8PN0n0g934JzkAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<p>プローブの応答は<b>必ずしもカルシウム波形を正確に反映している<font color="red">わけではない！！</font></b></p>
-<p><font color="red"><b>→プローブを使う際は、応答速度に注意が必要！！</b></font></p>
+    <p>プローブの応答は<b>必ずしもカルシウム波形を正確に反映している<font color="red">わけではない！！</font></b></p>
+    <p><font color="red"><b>→プローブを使う際は、応答速度に注意が必要！！</b></font></p>
 </div>
 </div>
 </div>
@@ -1468,38 +1567,43 @@ JCLVKEREJCIlChERiUiJQkREIlKiEBGRiJQoREQkov8PN0n0g934JzkAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題3：$\mathrm{Ca}^{2+}$-プローブと反応速度定数">課題3：$\mathrm{Ca}^{2+}$ プローブと反応速度定数<a class="anchor-link" href="#課題3：$\mathrm{Ca}^{2+}$-プローブと反応速度定数">¶</a></h3><p><b>~遺伝子工学的指示薬~</b></p>
+<h3 id="&#35506;&#38988;3&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12392;&#21453;&#24540;&#36895;&#24230;&#23450;&#25968;">&#35506;&#38988;3&#65306;$\mathrm{Ca}^{2+}$ &#12503;&#12525;&#12540;&#12502;&#12392;&#21453;&#24540;&#36895;&#24230;&#23450;&#25968;<a class="anchor-link" href="#&#35506;&#38988;3&#65306;$\mathrm{Ca}^{2+}$-&#12503;&#12525;&#12540;&#12502;&#12392;&#21453;&#24540;&#36895;&#24230;&#23450;&#25968;">&#182;</a></h3><p><b>~遺伝子工学的指示薬~</b></p>
 <p>Cameleon 3.6にパルス幅 $50\ \mathrm{msec},100\ \mathrm{nM}$ のカルシウムインパルス刺激を $10$ 回行った時の応答をシミュレートしなさい。刺激間隔は $0.5, 1, 2$ 秒とする。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">spans</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">span</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">spans</span><span class="p">):</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1">#=== パラメータ ===</span>
@@ -1531,12 +1635,12 @@ JCLVKEREJCIlChERiUiJQkREIlKiEBGRiJQoREQkov8PN0n0g934JzkAAAAASUVORK5CYII=
     
     <span class="c1">#=== プロット ===</span>
     <span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># 軸を綺麗に表示するため</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Simulation result [kadai3] span=</span><span class="si">{}</span><span class="s2">[s]"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">span</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-7}$"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Simulation result [kadai3] span=</span><span class="si">{}</span><span class="s2">[s]&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">span</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-7}$&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">],</span> <span class="n">yticks</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="mf">1e-7</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -1545,13 +1649,22 @@ JCLVKEREJCIlChERiUiJQkREIlKiEBGRiJQoREQkov8PN0n0g934JzkAAAAASUVORK5CYII=
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABHgAAAEYCAYAAAAnPkG+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -2007,16 +2120,21 @@ T2ADkCMi+cAzAI5/EjcDOd2MWymlfIrmfKWU8g2a75XS06Qr5VYi8jKw0Riz1UXPtwyIM8b8yBXP
 p5RSynU05yullG/QfK+uVTqCRyn3egEIdOHz9Qf+x4XPp5RSynU05yullG/QfK+uSTqCRymllFJK
 KaWUUqqX0xE8SimllFJKKaWUUr2cFniUUkoppZRSSimlejkt8CillFJKKaWUUkr1clrgUUoppZRS
 SimllOrltMCjlFJKKaWUUkop1cv9f2Qt5JtWq+75AAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>※ $y$ 軸の目盛りに注目すればわかるが、カルシウム $\mathrm{Ca^{2+}}$ 濃度が見えないのは、目盛り内に収まっていないから。</b></p>
+
 </div>
 </div>
 </div>
@@ -2030,7 +2148,7 @@ SimllOrltMCjlFJKKaWUUkop1cv9f2Qt5JtWq+75AAAAAElFTkSuQmCC
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題4：$\mathrm{Ca}^{2+}$-イメージングの応答感受性について">課題4：$\mathrm{Ca}^{2+}$ イメージングの応答感受性について<a class="anchor-link" href="#課題4：$\mathrm{Ca}^{2+}$-イメージングの応答感受性について">¶</a></h3><p><b>~検出限界の問題~</b></p>
+<h3 id="&#35506;&#38988;4&#65306;$\mathrm{Ca}^{2+}$-&#12452;&#12513;&#12540;&#12472;&#12531;&#12464;&#12398;&#24540;&#31572;&#24863;&#21463;&#24615;&#12395;&#12388;&#12356;&#12390;">&#35506;&#38988;4&#65306;$\mathrm{Ca}^{2+}$ &#12452;&#12513;&#12540;&#12472;&#12531;&#12464;&#12398;&#24540;&#31572;&#24863;&#21463;&#24615;&#12395;&#12388;&#12356;&#12390;<a class="anchor-link" href="#&#35506;&#38988;4&#65306;$\mathrm{Ca}^{2+}$-&#12452;&#12513;&#12540;&#12472;&#12531;&#12464;&#12398;&#24540;&#31572;&#24863;&#21463;&#24615;&#12395;&#12388;&#12356;&#12390;">&#182;</a></h3><p><b>~検出限界の問題~</b></p>
 <p>以下のそれぞれのプローブにステップカルシウム刺激を与えた際の応答波形とドーズレスポンスを調べなさい。</p>
 <table>
 <thead><tr>
@@ -2055,6 +2173,7 @@ SimllOrltMCjlFJKKaWUUkop1cv9f2Qt5JtWq+75AAAAAElFTkSuQmCC
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -2062,127 +2181,143 @@ SimllOrltMCjlFJKKaWUUkop1cv9f2Qt5JtWq+75AAAAAElFTkSuQmCC
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h4>ドーズレスポンス（用量反応曲線）</h4>
-<p>ドーズレスポンス（用量反応曲線）とは、生物に対して化学物質や物理的作用を与えたときに、その作用強度と生物が示す反応の関係性を表す曲線のこと。</p>
+    <h4>ドーズレスポンス（用量反応曲線）</h4>
+    <p>ドーズレスポンス（用量反応曲線）とは、生物に対して化学物質や物理的作用を与えたときに、その作用強度と生物が示す反応の関係性を表す曲線のこと。</p>
 </div>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"Cameleon3.6"</span><span class="p">:</span>
+    <span class="s2">&quot;Cameleon3.6&quot;</span><span class="p">:</span>
     <span class="p">{</span>
-        <span class="s2">"kf"</span><span class="p">:</span> <span class="mf">1.33</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span>
-        <span class="s2">"kb"</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
+        <span class="s2">&quot;kf&quot;</span><span class="p">:</span> <span class="mf">1.33</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span>
+        <span class="s2">&quot;kb&quot;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s2">"Cameleon-Nano15"</span><span class="p">:</span>
+    <span class="s2">&quot;Cameleon-Nano15&quot;</span><span class="p">:</span>
     <span class="p">{</span>
-        <span class="s2">"kf"</span><span class="p">:</span> <span class="mf">2.36</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
-        <span class="s2">"kb"</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
+        <span class="s2">&quot;kf&quot;</span><span class="p">:</span> <span class="mf">2.36</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
+        <span class="s2">&quot;kb&quot;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Cameleon3.6"</span><span class="p">,</span> <span class="s2">"Cameleon-Nano15"</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Cameleon3.6&quot;</span><span class="p">,</span> <span class="s2">&quot;Cameleon-Nano15&quot;</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># 0.1 msec 刻み</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">CaComplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dCas</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-7</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [33]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ticks_cons</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 <span class="n">ticks_dose_cameleon3_6</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
 <span class="n">ticks_dose_cameleonNano</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [34]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [35]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
-    <span class="n">kb</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">"kb"</span><span class="p">]</span>
-    <span class="n">kf</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">"kf"</span><span class="p">]</span>
+    <span class="n">kb</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;kb&quot;</span><span class="p">]</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;kf&quot;</span><span class="p">]</span>
     <span class="n">Complex_max</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">l_A</span> <span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span>
-    <span class="n">l_B</span> <span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span>
-    <span class="n">l_AB</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span>
+    <span class="n">l_A</span> <span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span>
+    <span class="n">l_B</span> <span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span>
+    <span class="n">l_AB</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">dca</span> <span class="ow">in</span> <span class="n">dCas</span><span class="p">:</span>
         <span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">B</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">;</span> <span class="n">AB</span><span class="o">=</span><span class="mi">0</span> <span class="c1"># 濃度の初期化</span>
@@ -2197,13 +2332,13 @@ SimllOrltMCjlFJKKaWUUkop1cv9f2Qt5JtWq+75AAAAAElFTkSuQmCC
             <span class="n">Ca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span> <span class="n">Probe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span> <span class="n">CaComplex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">AB</span>
 
         <span class="n">Complex_max</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AB</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_A</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_B</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_AB</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_A</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_B</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_AB</span><span class="p">)</span>
         <span class="n">l_A</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="n">l_B</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="n">l_AB</span><span class="o">=</span><span class="kc">None</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Simulation result </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Simulation result </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ticks_cons</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ticks_cons</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -2211,29 +2346,38 @@ SimllOrltMCjlFJKKaWUUkop1cv9f2Qt5JtWq+75AAAAAElFTkSuQmCC
     <span class="c1">#=== Dose response ===</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">dCas</span><span class="p">,</span><span class="n">Complex_max</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Dose response </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$ conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Dose response </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$ conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ticks_cons</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">ticks_cons</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"Cameleon3.6"</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;Cameleon3.6&quot;</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ticks_dose_cameleon3_6</span><span class="p">])</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ticks_dose_cameleon3_6</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"$\mathrm{Ca-probe}$ complex cons.(M) × $10^{-7}$"</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm{Ca-probe}$ complex cons.(M) × $10^{-7}$&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ticks_dose_cameleonNano</span><span class="p">])</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">ticks_dose_cameleonNano</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"$\mathrm{Ca-probe}$ complex cons.(M) × $10^{-6}$"</span><span class="p">)</span>        
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm{Ca-probe}$ complex cons.(M) × $10^{-6}$&quot;</span><span class="p">)</span>        
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQgAAALICAYAAAAzLx1UAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -3333,23 +3477,28 @@ CVV1N8mLJMeqarOqLnb31ySXkjxOsp7k3nj/AAALIwvKgsDuUMPvMQDzUlUnklzu7nP/OP9+kivd
 /XG+dwYAwLzJgsBe4AQhwJyN/0Y/raqlv80dWz4eCIQAAPuDLAjsBU4QAgAAAMCEOUEIAAAAABOm
 QAgAAAAAE6ZACAAAAAATpkAIAAAAABOmQAgAAAAAE6ZACAAAAAATpkAIAAAAABP2HezrYNPcHnos
 AAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Cameleon-Nano15の方は<b>感度が<font color="red">高く</font>、定量性が失われている</b>ことがわかる。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題5：$\mathrm{Ca}^{2+}$-イメージングの応答感受性について">課題5：$\mathrm{Ca}^{2+}$ イメージングの応答感受性について<a class="anchor-link" href="#課題5：$\mathrm{Ca}^{2+}$-イメージングの応答感受性について">¶</a></h3><p><b>~検出限界の問題~</b></p>
+<h3 id="&#35506;&#38988;5&#65306;$\mathrm{Ca}^{2+}$-&#12452;&#12513;&#12540;&#12472;&#12531;&#12464;&#12398;&#24540;&#31572;&#24863;&#21463;&#24615;&#12395;&#12388;&#12356;&#12390;">&#35506;&#38988;5&#65306;$\mathrm{Ca}^{2+}$ &#12452;&#12513;&#12540;&#12472;&#12531;&#12464;&#12398;&#24540;&#31572;&#24863;&#21463;&#24615;&#12395;&#12388;&#12356;&#12390;<a class="anchor-link" href="#&#35506;&#38988;5&#65306;$\mathrm{Ca}^{2+}$-&#12452;&#12513;&#12540;&#12472;&#12531;&#12464;&#12398;&#24540;&#31572;&#24863;&#21463;&#24615;&#12395;&#12388;&#12356;&#12390;">&#182;</a></h3><p><b>~検出限界の問題~</b></p>
 <p>以下のそれぞれのプローブに $100\mathrm{nM}$ および $5\mathrm{nM}$ の繰り返し矩形波刺激を与えた時にどの様な応答波形になるかシミュレートしなさい。</p>
 <table>
 <thead><tr>
@@ -3374,118 +3523,135 @@ AAAAAElFTkSuQmCC
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [36]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">"Cameleon3.6"</span><span class="p">:</span>
+    <span class="s2">&quot;Cameleon3.6&quot;</span><span class="p">:</span>
     <span class="p">{</span>
-        <span class="s2">"kf"</span><span class="p">:</span> <span class="mf">1.33</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span>
-        <span class="s2">"kb"</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
+        <span class="s2">&quot;kf&quot;</span><span class="p">:</span> <span class="mf">1.33</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">6</span><span class="p">,</span>
+        <span class="s2">&quot;kb&quot;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
     <span class="p">},</span>
-    <span class="s2">"Cameleon-Nano15"</span><span class="p">:</span>
+    <span class="s2">&quot;Cameleon-Nano15&quot;</span><span class="p">:</span>
     <span class="p">{</span>
-        <span class="s2">"kf"</span><span class="p">:</span> <span class="mf">2.36</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
-        <span class="s2">"kb"</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
+        <span class="s2">&quot;kf&quot;</span><span class="p">:</span> <span class="mf">2.36</span><span class="o">*</span><span class="mi">10</span><span class="o">**</span><span class="mi">7</span><span class="p">,</span>
+        <span class="s2">&quot;kb&quot;</span><span class="p">:</span> <span class="mf">0.33</span><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [37]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Cameleon3.6"</span><span class="p">,</span> <span class="s2">"Cameleon-Nano15"</span><span class="p">]</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Cameleon3.6&quot;</span><span class="p">,</span> <span class="s2">&quot;Cameleon-Nano15&quot;</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [38]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span> <span class="c1"># 0.1 msec 刻み</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [39]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">400</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [40]:</div>
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">CaComplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [41]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">span</span><span class="o">=</span><span class="mi">20</span> <span class="c1"># 20 secごとに刺激のスイッチをひねる。</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [42]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dCas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">100</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="mf">1e-9</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [43]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [44]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">c</span><span class="p">,</span><span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">names</span><span class="p">):</span>
-    <span class="n">kb</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">"kb"</span><span class="p">]</span>
-    <span class="n">kf</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">"kf"</span><span class="p">]</span>
+    <span class="n">kb</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;kb&quot;</span><span class="p">]</span>
+    <span class="n">kf</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="s2">&quot;kf&quot;</span><span class="p">]</span>
     <span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">dca</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dCas</span><span class="p">):</span>
         <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">r</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
         <span class="n">flag</span> <span class="o">=</span> <span class="mi">1</span>
@@ -3502,12 +3668,12 @@ AAAAAElFTkSuQmCC
 
             <span class="n">Ca</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">A</span><span class="p">;</span> <span class="n">Probe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">B</span><span class="p">;</span> <span class="n">CaComplex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">AB</span>
 
-        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$"</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$"</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{Complex}</span><span class="s2">$"</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Simulation result input=</span><span class="si">{}</span><span class="s2">nM"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dca</span> <span class="o">*</span> <span class="mf">1e9</span><span class="p">)))</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-6}$"</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">^{2+}$&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{CaProbe}</span><span class="s2">$&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">CaComplex</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{Complex}</span><span class="s2">$&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Simulation result input=</span><span class="si">{}</span><span class="s2">nM&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">dca</span> <span class="o">*</span> <span class="mf">1e9</span><span class="p">)))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-6}$&quot;</span><span class="p">)</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-7</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)])</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">([</span><span class="nb">round</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mf">0.1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">11</span><span class="p">)])</span>
         <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1e-6</span><span class="p">)</span>
@@ -3515,13 +3681,22 @@ AAAAAElFTkSuQmCC
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQgAAALICAYAAAAzLx1UAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -5337,16 +5512,21 @@ U4FoEfkEmAUsM8asAu4FCAweOwPLQuy3UkoppVSTpmNBpZQ6OSMibvdBKaUikjHmWeBDEfncovau
 AQaKyINWtKeUUkoppeyjY0Gl1NlEzyBUSin7TAQSLWwvGnjawvaUUkoppZR9dCyolDpr6BmESiml
 lFJKKaWUUko1YXoGoVJKKaWUUkoppZRSTZguECqllFJKKaWUUkop1YTpAqFSSimllFJKKaWUUk2Y
 LhAqpZRSSimllFJKKdWE6QKhUkoppZRSSimllFJN2P8H2lZIQIz2OuwAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Cameleon 3.60の方は<b>感度が<font color="red">低く</font>、定量性が失われている</b>ことがわかる。</p>
+
 </div>
 </div>
 </div>
@@ -5360,108 +5540,123 @@ LhAqpZRSSimllFJKKdWE6QKhUkoppZRSSimllFJN2P8H2lZIQIz2OuwAAAAASUVORK5CYII=
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://player.slidesplayer.net/92/15345580/slides/slide_10.jpg" /></p>
+<p><img src="https://player.slidesplayer.net/92/15345580/slides/slide_10.jpg"></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [45]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">kf0</span> <span class="o">=</span> <span class="mf">1.33</span><span class="o">*</span><span class="mf">1e6</span>
 <span class="n">kb0</span> <span class="o">=</span> <span class="mf">0.33</span>
 <span class="n">kf1</span> <span class="o">=</span> <span class="mf">1.5</span><span class="o">*</span><span class="mf">1e8</span>
 <span class="n">kb1</span> <span class="o">=</span> <span class="mi">23</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [46]:</div>
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.00001</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [47]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [48]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Ca</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Protein</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">ABcomplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">AZcomplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [49]:</div>
+<div class="prompt input_prompt">In&nbsp;[49]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">As</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.2</span> <span class="o">*</span> <span class="mf">1e-4</span> <span class="o">*</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">21</span><span class="p">)]</span>
 <span class="n">Bs</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1"># + Probe / - Probe</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [50]:</div>
+<div class="prompt input_prompt">In&nbsp;[50]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [51]:</div>
+<div class="prompt input_prompt">In&nbsp;[51]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">yticks</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.2</span><span class="p">,</span><span class="mf">0.4</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [52]:</div>
+<div class="prompt input_prompt">In&nbsp;[52]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">r</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Bs</span><span class="p">):</span>
     <span class="n">CaProteinComplexMax</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">r</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-    <span class="n">l_Ca</span>  <span class="o">=</span> <span class="s2">"$\mathrm</span><span class="si">{Ca}</span><span class="s2">$"</span>
-    <span class="n">l_Probe</span>  <span class="o">=</span> <span class="s2">"$\mathrm</span><span class="si">{Probe}</span><span class="s2">$"</span>
-    <span class="n">l_Protein</span> <span class="o">=</span> <span class="s2">"$\mathrm</span><span class="si">{Protein}</span><span class="s2">$"</span>
-    <span class="n">l_AB</span> <span class="o">=</span> <span class="s2">"$\mathrm</span><span class="si">{CaProbeComplex}</span><span class="s2">$"</span>
-    <span class="n">l_AZ</span> <span class="o">=</span> <span class="s2">"$\mathrm</span><span class="si">{CaProteinComplex}</span><span class="s2">$"</span>
+    <span class="n">l_Ca</span>  <span class="o">=</span> <span class="s2">&quot;$\mathrm</span><span class="si">{Ca}</span><span class="s2">$&quot;</span>
+    <span class="n">l_Probe</span>  <span class="o">=</span> <span class="s2">&quot;$\mathrm</span><span class="si">{Probe}</span><span class="s2">$&quot;</span>
+    <span class="n">l_Protein</span> <span class="o">=</span> <span class="s2">&quot;$\mathrm</span><span class="si">{Protein}</span><span class="s2">$&quot;</span>
+    <span class="n">l_AB</span> <span class="o">=</span> <span class="s2">&quot;$\mathrm</span><span class="si">{CaProbeComplex}</span><span class="s2">$&quot;</span>
+    <span class="n">l_AZ</span> <span class="o">=</span> <span class="s2">&quot;$\mathrm</span><span class="si">{CaProteinComplex}</span><span class="s2">$&quot;</span>
     <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">As</span><span class="p">:</span>
         <span class="n">A</span><span class="o">=</span><span class="n">a</span><span class="p">;</span> <span class="n">B</span><span class="o">=</span><span class="n">b</span><span class="p">;</span> <span class="n">Z</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">;</span> <span class="n">AB</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">AZ</span><span class="o">=</span><span class="mi">0</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
@@ -5477,25 +5672,25 @@ LhAqpZRSSimllFJKKdWE6QKhUkoppZRSSimllFJN2P8H2lZIQIz2OuwAAAAASUVORK5CYII=
         
         <span class="n">CaProteinComplexMax</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AZ</span><span class="p">)</span>
 
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_Ca</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_Probe</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Protein</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_Protein</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"cyan"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">ABcomplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_AB</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">AZcomplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_AZ</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"green"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Ca</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_Ca</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_Probe</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">Protein</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_Protein</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;cyan&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">ABcomplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_AB</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">AZcomplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">l_AZ</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="n">l_Ca</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="n">l_Probe</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="n">l_Protein</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="n">l_AB</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span> <span class="n">l_AZ</span><span class="o">=</span><span class="kc">None</span><span class="p">;</span>
     <span class="c1"># plt.yticks([1e-5*i for i in range(1,13,2)],[round(0.1*i,1) for i in range(1,13,2)])</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"conc.(M) ×$10^{-4}$"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(M) ×$10^{-4}$&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">1e-4</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"Simulation result initial Probe=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Simulation result initial Probe=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-4</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     
     <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">r</span><span class="o">*</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">As</span><span class="p">,</span> <span class="n">CaProteinComplexMax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"CaProteinComplex"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"input CaConc. ×$10^{-4}$"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"CaProbeComplex"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">As</span><span class="p">,</span> <span class="n">CaProteinComplexMax</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;CaProteinComplex&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;input CaConc. ×$10^{-4}$&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;CaProbeComplex&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">1e-4</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">yticks</span><span class="p">])</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">yticks</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
@@ -5503,13 +5698,22 @@ LhAqpZRSSimllFJKKdWE6QKhUkoppZRSSimllFJN2P8H2lZIQIz2OuwAAAAASUVORK5CYII=
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABQgAAALICAYAAAAzLx1UAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -7441,32 +7645,38 @@ pVeL/QJeCry2aWFE/Bz4I3BwRCyIiCuLx2qicKfhQxT6xr6jeHxJepso/LdOkiRJkqTKUhydd/No
 xZKkruEdhJIkSZIkSVIV8w5CSZIkSZIkqYp5B6EkSZIkSZJUxSwQSpIkSZIkSVXMAqEkSZIkSZJU
 xSwQSpIkSZIkSVXMAqEkSZIkSZJUxSwQSpIkSZIkSVXMAqEkSZIkSZJUxSwQSpIkSZIkSVXs/wN9
 qjdlZAekKwAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><b>$\mathrm{Ca}^{2+}$ プローブは内在性のたんぱく質と $\mathrm{Ca}^{2+}$ に競合的に結合するため、同じ量のカルシウムが存在しても形成される複合体の量が異なることがわかる。</b></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="課題7：プローブと細胞内の応答の関係">課題7：プローブと細胞内の応答の関係<a class="anchor-link" href="#課題7：プローブと細胞内の応答の関係">¶</a></h3><p>カルシウム振動する細胞にプローブを加えて振動がどの様に変調されるか観察しなさい。加えるプローブ量は $2,20,200\ \mathrm{\mu M}$ とする</p>
+<h3 id="&#35506;&#38988;7&#65306;&#12503;&#12525;&#12540;&#12502;&#12392;&#32048;&#32990;&#20869;&#12398;&#24540;&#31572;&#12398;&#38306;&#20418;">&#35506;&#38988;7&#65306;&#12503;&#12525;&#12540;&#12502;&#12392;&#32048;&#32990;&#20869;&#12398;&#24540;&#31572;&#12398;&#38306;&#20418;<a class="anchor-link" href="#&#35506;&#38988;7&#65306;&#12503;&#12525;&#12540;&#12502;&#12392;&#32048;&#32990;&#20869;&#12398;&#24540;&#31572;&#12398;&#38306;&#20418;">&#182;</a></h3><p>カルシウム振動する細胞にプローブを加えて振動がどの様に変調されるか観察しなさい。加えるプローブ量は $2,20,200\ \mathrm{\mu M}$ とする</p>
 <p>参考：<a href="https://www.sciencedirect.com/science/article/pii/S0006349599769766">Model of Intercellular Calcium Oscillations in Hepatocytes: Synchronization of Heterogeneous Cells</a></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [53]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">K3</span><span class="o">=</span><span class="mf">0.12</span>
 <span class="n">K4</span><span class="o">=</span><span class="mf">0.12</span>
 <span class="n">rou</span><span class="o">=</span><span class="mf">0.02</span>
@@ -7489,73 +7699,85 @@ qjdlZAekKwAAAABJRU5ErkJggg==
 <span class="n">kon</span><span class="o">=</span><span class="mf">9.4</span><span class="o">*</span><span class="mf">1e2</span>
 <span class="n">koff</span><span class="o">=</span><span class="mi">180</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [54]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dt</span> <span class="o">=</span> <span class="mf">0.0001</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [55]:</div>
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="n">dt</span><span class="p">)</span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [56]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">PlasmaCa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">ERCa</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">Probe</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 <span class="n">ProbeComplex</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [57]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Probe_cons</span> <span class="o">=</span> <span class="p">[</span><span class="mi">200</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [58]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [59]:</div>
+<div class="prompt input_prompt">In&nbsp;[59]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">j</span><span class="p">,</span><span class="n">y_init</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Probe_cons</span><span class="p">):</span>
     <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>    <span class="c1"># PlasmaCa</span>
     <span class="n">y</span><span class="o">=</span><span class="n">y_init</span> <span class="c1"># Probe</span>
@@ -7580,25 +7802,34 @@ qjdlZAekKwAAAABJRU5ErkJggg==
         <span class="n">x</span><span class="o">+=</span><span class="n">dx</span><span class="p">;</span> <span class="n">y</span><span class="o">+=</span><span class="n">dy</span><span class="p">;</span> <span class="n">z</span><span class="o">+=</span><span class="n">dz</span><span class="p">;</span> <span class="n">w</span><span class="o">+=</span><span class="n">dw</span><span class="p">;</span>
         <span class="n">PlasmaCa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="p">;</span> <span class="n">ERCa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">z</span><span class="p">;</span> <span class="n">Probe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">y</span><span class="p">;</span> <span class="n">ProbeComplex</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">w</span>
         
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">PlasmaCa</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"PlasmaCa"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ERCa</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"ERCa"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Probe"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ProbeComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"ProbeComplex"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">"simulation result initial Probe=</span><span class="si">{}</span><span class="s2">µL"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_init</span><span class="p">))</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">"time (sec)"</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">"conc.(µM)"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">PlasmaCa</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;PlasmaCa&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ERCa</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ERCa&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">Probe</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Probe&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">ProbeComplex</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;ProbeComplex&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;simulation result initial Probe=</span><span class="si">{}</span><span class="s2">µL&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">y_init</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;time (sec)&quot;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;conc.(µM)&quot;</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
     
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABHgAAAEYCAYAAAAnPkG+AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -9038,11 +9269,15 @@ SqncoTlfqYvpZdKVShER+SbwU2PML1N0vA8Am4wxX07F8ZRSSqWW5n2llModmvPVfKAjeJRKnb8B
 8lN4PBfwP1N4PKWUUqmleV8ppXKH5nw15+kIHqWUUkoppZRSSql5TkfwKKWUUkoppZRSSs1z2sGj
 lFJKKaWUUkopNc9pB49SSimllFJKKaXUPKcdPEoppZRSSimllFLznHbwKKWUUkoppZRSSs1z/x93
 dNnvoQr1gQAAAABJRU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -9052,6 +9287,7 @@ dNnvoQr1gQAAAABJRU5ErkJggg==
 <li>プローブ濃度が適正な（$20\ \mathrm{\mu M}$）場合→<b>細胞内カルシウムの変動が見える。</b></li>
 <li>プローブ濃度が低い（$200\ \mathrm{\mu M}$）場合→<b>プローブの応答が小さい。</b></li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -9059,10 +9295,10 @@ dNnvoQr1gQAAAABJRU5ErkJggg==
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="border: solid 1.0px #000000;padding: 0.5em 1em; margin: 2em 0;">
-<h2 id="#anchor5">まとめ</h2>
-<li>機能性プローブにより細胞内の反応を可視化できる。</li>
-<li>プローブの応答速度や基質親和性によっては画像から受ける印象が実際の応答とは大きく異なる</li>
-<li>プローブは添加量によっては細胞内応答を阻害しうる</li>
+    <h2 id="#anchor5">まとめ</h2>
+    <li>機能性プローブにより細胞内の反応を可視化できる。</li>
+    <li>プローブの応答速度や基質親和性によっては画像から受ける印象が実際の応答とは大きく異なる</li>
+    <li>プローブは添加量によっては細胞内応答を阻害しうる</li>
 </div>
 </div>
 </div>
@@ -9076,21 +9312,25 @@ dNnvoQr1gQAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -9107,6 +9347,7 @@ dNnvoQr1gQAAAABJRU5ErkJggg==
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -9140,10 +9381,10 @@ dNnvoQr1gQAAAABJRU5ErkJggg==
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-07-10T00:00:00+09:00"> 7 10, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-07-10T00:00:00+09:00">Jul 10, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-07-10T00:00:00+09:00"> 7 10, 2019</time>
+<time datetime="2019-07-10T00:00:00+09:00">Jul 10, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-ming-ke-xue-ji-chu-shi-yan-ref">生命科学基礎実験</a>
@@ -9161,8 +9402,6 @@ dNnvoQr1gQAAAABJRU5ErkJggg==
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

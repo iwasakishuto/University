@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="3次元空間情報の取得と処理 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/映像メディア工学-7.html" />
-<meta property="og:description" content="講師：山崎俊彦 参考書：CG-ARTS協会発行「ディジタル画像処理」 参考書：R. Szeliski, Computer Vision Algorithms and Applications, Springer (PDF版はインターネット上で無料公開)" />
+<meta property="og:description" content="3次元空間情報の取得と処理" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-11-13T10:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-11-13T10:00:00+09:00" />
 <meta name="twitter:title" content="3次元空間情報の取得と処理 ">
-<meta name="twitter:description" content="講師：山崎俊彦 参考書：CG-ARTS協会発行「ディジタル画像処理」 参考書：R. Szeliski, Computer Vision Algorithms and Applications, Springer (PDF版はインターネット上で無料公開)">
+<meta name="twitter:description" content="3次元空間情報の取得と処理">
 
         <title>3次元空間情報の取得と処理  · 3A
 </title>
@@ -124,20 +124,23 @@
 <li>参考書：<a href="https://www.cgarts.or.jp/book/img_engineer/">CG-ARTS協会発行「ディジタル画像処理」</a></li>
 <li>参考書：<a href="http://szeliski.org/Book/">R. Szeliski, Computer Vision Algorithms and Applications, Springer</a> (PDF版はインターネット上で無料公開)</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -147,13 +150,14 @@
 <li><strong><a href="#アクティブ法">アクティブ法</a></strong>：光やレーザーなど、エネルギーを当てて反応を観測。</li>
 <li><strong><a href="#パッシブ法">パッシブ法</a></strong>：カメラなど、エネルギーを放出しないもののみを使う。</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="アクティブ法">アクティブ法<a class="anchor-link" href="#アクティブ法">¶</a></h3>
+<h3 id="&#12450;&#12463;&#12486;&#12451;&#12502;&#27861;">&#12450;&#12463;&#12486;&#12451;&#12502;&#27861;<a class="anchor-link" href="#&#12450;&#12463;&#12486;&#12451;&#12502;&#27861;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -171,7 +175,7 @@
 <tr>
 <td style="text-align:center"><span class="marker-pink">time-of-flight法(ToF)</span></td>
 <td style="text-align:left">光を照射して戻るまでの時間から算出。直接は計算できないので、変調をかけて位相差等から計算する。<strong>（計算可能な範囲が指定されるのはこの為。）</strong></td>
-<td style="text-align:left">高精度だが、時間がかかる。そのため、動物体に弱い。<br />XBox2(Microsoft)のKinect2というコントローラや自動運転用のLIDARなどで使われている。</td>
+<td style="text-align:left">高精度だが、時間がかかる。そのため、動物体に弱い。<br>XBox2(Microsoft)のKinect2というコントローラや自動運転用のLIDARなどで使われている。</td>
 </tr>
 <tr>
 <td style="text-align:center"><span class="marker-pink">スリット光照射法</span></td>
@@ -185,13 +189,14 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="パッシブ法">パッシブ法<a class="anchor-link" href="#パッシブ法">¶</a></h3>
+<h3 id="&#12497;&#12483;&#12471;&#12502;&#27861;">&#12497;&#12483;&#12471;&#12502;&#27861;<a class="anchor-link" href="#&#12497;&#12483;&#12471;&#12502;&#27861;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -223,13 +228,14 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="平行ステレオ法">平行ステレオ法<a class="anchor-link" href="#平行ステレオ法">¶</a></h4>
+<h4 id="&#24179;&#34892;&#12473;&#12486;&#12524;&#12458;&#27861;">&#24179;&#34892;&#12473;&#12486;&#12524;&#12458;&#27861;<a class="anchor-link" href="#&#24179;&#34892;&#12473;&#12486;&#12524;&#12458;&#27861;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -244,6 +250,7 @@
 <li>カメラの焦点距離：$f$</li>
 <li>画像面と光軸の交点が画像座標原点</li>
 </ul>
+
 </div>
 </div>
 </div>
@@ -251,13 +258,14 @@
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>このとき、視差（$=u-v$）がわかると、奥行き情報 $Z$ がわかる。なお、視差は<span class="marker-pink">ブロックマッチング法</span>等で見つける。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="照度差ステレオ法">照度差ステレオ法<a class="anchor-link" href="#照度差ステレオ法">¶</a></h4>
+<h4 id="&#29031;&#24230;&#24046;&#12473;&#12486;&#12524;&#12458;&#27861;">&#29031;&#24230;&#24046;&#12473;&#12486;&#12524;&#12458;&#27861;<a class="anchor-link" href="#&#29031;&#24230;&#24046;&#12473;&#12486;&#12524;&#12458;&#27861;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -271,13 +279,14 @@ $$\text{Lambert model:  }I_x\left(\text{Brightness}\right)=\rho L\mathbf{n}\cdot
 <li>2~3通りの位置から観測すると、$\mathbf{n}$ がわかる。</li>
 <li>通常は20~100の位置に照明をおき、最小2乗法で解く。</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Shape-from-motion(SfM)">Shape-from-motion(SfM)<a class="anchor-link" href="#Shape-from-motion(SfM)">¶</a></h4>
+<h4 id="Shape-from-motion(SfM)">Shape-from-motion(SfM)<a class="anchor-link" href="#Shape-from-motion(SfM)">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -290,33 +299,38 @@ $$\text{Lambert model:  }I_x\left(\text{Brightness}\right)=\rho L\mathbf{n}\cdot
 <li>2つの視点間には回転 $\mathbf{R}(3\times3)$ と平行移動 $\mathbf{t}(3\times1)$ から成る行列で次の関係がある。
 $$
 \left(u^{\prime},v^{\prime},1\right)\begin{pmatrix}
-f_{11} & & \\ & \ddots & \\&&f;_{33} \end{pmatrix}\begin{pmatrix}
+f_{11} &amp; &amp; \\ &amp; \ddots &amp; \\&amp;&amp;f_{33} \end{pmatrix}\begin{pmatrix}
 u\\v\\1 \end{pmatrix} = \mathbf{0}
 $$</li>
 <li>逆に $\mathbf{F}$ がわかれば2枚の画像の全てのピクセルで対応がとれているはず。対応点がわかっている点が9点以上あると、最小2乗法で解ける。</li>
 <li>しかし、実は $\mathbf{F}$ は規格化できるので、$8$ パラメータが決まれば残り $1$ つは自動的に決定できる。<strong>（自由度 $8$, eight-point algorithmと呼ぶ。）</strong></li>
 <li>今は five-point algorithm まで進化。</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -333,6 +347,7 @@ $$</li>
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -366,10 +381,10 @@ $$</li>
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-11-13T10:00:00+09:00">11 13, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-11-13T10:00:00+09:00">Nov 13, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-11-13T10:00:00+09:00">11 13, 2019</time>
+<time datetime="2019-11-13T10:00:00+09:00">Nov 13, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#ying-xiang-medeiagong-xue-ref">映像メディア工学</a>
@@ -387,8 +402,6 @@ $$</li>
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="検量線周りのまとめ② "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3S/Calibration_curve2.html" />
-<meta property="og:description" content="非線形関数フィッティング¶ 酵素反応は一般に基質濃度を[S]として、 $$-\frac{d[S]}{dt}=k[S]$$ として表されます。この解を解析的に求めることは簡単で、時間と基質濃度の関係は以下の式で与えられます。 $$[S] = Ae^{-kt}\qquad (\text{Aは積分定数})$$ この式は非線形関数ですが、誤差関数を指定して（今回は二乗誤差）パラメータを最尤推定すれば曲線フィッティングが可能です。 一応今回の実験のプロトコルや原理をかいつまんで書いておくので、非線形関数フィッティングだけ見たい場合はここへどうぞ。 原理¶リゾチームは、真正細菌の細胞壁を構成する多糖類を加水分解する酵素である。 Wikipedia この時の反応は酵素反応であり、細胞溶液の濃度は、式(2)の曲線に乗ると考えられます。 なお、直接濃度を測ることは難しいので、$\mathrm{OD}_{600}$ の値を用います。なお、$\mathrm{OD}_{600}$ と濃度の関係は $\mathrm{OD}_{600}=a[S]+b$ という関係で表せることがわかっているので、以下の式で表されます。 $$\begin{aligned} \mathrm{OD}_{600} &amp;= aAe^{-kt} + b\\ &amp;= Ce^{-kt} + b \end{aligned}$$ プロトコル¶ 0.3 mg/mL菌液(Mycrococcus lysodeikticus)25 mLを分注した。 リゾチームを500 mM酢酸ナトリウムpH 4.5に溶かし、0.1 mg/mLを作製した。 菌液をよく撹拌してから1.4 mLを光学セルに入れ、600 nmの吸光度を測定した。これを、t=0 秒後の吸光度の値とした。 0.1 mg/mLのリゾチーム溶液を0.1 mL入れて反応を開始した。リゾチームを添加して120 秒後までの吸光度を10 秒毎に測定した。なお、この時毎回の測定の間にピペッティングをした。 結果¶ t[s] 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 $\mathrm{OD}_{600}$ 0.939 0.677 0.576 0.508 0.451 0.419 0.381 0.362 0.339 0.321 0.299 0.282 0.275 0.276 0.267 0.252" />
+<meta property="og:description" content="非線形関数フィッティング" />
 <meta property="og:site_name" content="3S" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-05-28T14:20:00+09:00" />
 <meta property="og:article:modified_time" content="2019-05-28T14:20:00+09:00" />
 <meta name="twitter:title" content="検量線周りのまとめ② ">
-<meta name="twitter:description" content="非線形関数フィッティング¶ 酵素反応は一般に基質濃度を[S]として、 $$-\frac{d[S]}{dt}=k[S]$$ として表されます。この解を解析的に求めることは簡単で、時間と基質濃度の関係は以下の式で与えられます。 $$[S] = Ae^{-kt}\qquad (\text{Aは積分定数})$$ この式は非線形関数ですが、誤差関数を指定して（今回は二乗誤差）パラメータを最尤推定すれば曲線フィッティングが可能です。 一応今回の実験のプロトコルや原理をかいつまんで書いておくので、非線形関数フィッティングだけ見たい場合はここへどうぞ。 原理¶リゾチームは、真正細菌の細胞壁を構成する多糖類を加水分解する酵素である。 Wikipedia この時の反応は酵素反応であり、細胞溶液の濃度は、式(2)の曲線に乗ると考えられます。 なお、直接濃度を測ることは難しいので、$\mathrm{OD}_{600}$ の値を用います。なお、$\mathrm{OD}_{600}$ と濃度の関係は $\mathrm{OD}_{600}=a[S]+b$ という関係で表せることがわかっているので、以下の式で表されます。 $$\begin{aligned} \mathrm{OD}_{600} &amp;= aAe^{-kt} + b\\ &amp;= Ce^{-kt} + b \end{aligned}$$ プロトコル¶ 0.3 mg/mL菌液(Mycrococcus lysodeikticus)25 mLを分注した。 リゾチームを500 mM酢酸ナトリウムpH 4.5に溶かし、0.1 mg/mLを作製した。 菌液をよく撹拌してから1.4 mLを光学セルに入れ、600 nmの吸光度を測定した。これを、t=0 秒後の吸光度の値とした。 0.1 mg/mLのリゾチーム溶液を0.1 mL入れて反応を開始した。リゾチームを添加して120 秒後までの吸光度を10 秒毎に測定した。なお、この時毎回の測定の間にピペッティングをした。 結果¶ t[s] 0 10 20 30 40 50 60 70 80 90 100 110 120 130 140 150 $\mathrm{OD}_{600}$ 0.939 0.677 0.576 0.508 0.451 0.419 0.381 0.362 0.339 0.321 0.299 0.282 0.275 0.276 0.267 0.252">
+<meta name="twitter:description" content="非線形関数フィッティング">
 
         <title>検量線周りのまとめ②  · 3S
 </title>
@@ -119,7 +119,7 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="非線形関数フィッティング">非線形関数フィッティング<a class="anchor-link" href="#非線形関数フィッティング">¶</a></h1>
+<h1 id="&#38750;&#32218;&#24418;&#38306;&#25968;&#12501;&#12451;&#12483;&#12486;&#12451;&#12531;&#12464;">&#38750;&#32218;&#24418;&#38306;&#25968;&#12501;&#12451;&#12483;&#12486;&#12451;&#12531;&#12464;<a class="anchor-link" href="#&#38750;&#32218;&#24418;&#38306;&#25968;&#12501;&#12451;&#12483;&#12486;&#12451;&#12531;&#12464;">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -131,6 +131,7 @@ $$-\frac{d[S]}{dt}=k[S]$$
 として表されます。この解を解析的に求めることは簡単で、時間と基質濃度の関係は以下の式で与えられます。
 $$[S] = Ae^{-kt}\qquad (\text{Aは積分定数})$$
 　この式は非線形関数ですが、<b>誤差関数を指定して（今回は二乗誤差）パラメータを最尤推定すれば曲線フィッティングが可能です。</b></p>
+
 </div>
 </div>
 </div>
@@ -138,41 +139,44 @@ $$[S] = Ae^{-kt}\qquad (\text{Aは積分定数})$$
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>　一応今回の実験のプロトコルや原理をかいつまんで書いておくので、非線形関数フィッティングだけ見たい場合は<a href="#考察（フィッティング）">ここ</a>へどうぞ。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="原理">原理<a class="anchor-link" href="#原理">¶</a></h3><blockquote><p>リゾチームは、真正細菌の細胞壁を構成する多糖類を加水分解する酵素である。 <a href="https://en.wikipedia.org/wiki/Lysozyme">Wikipedia</a>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mecanism_of_action_for_Lysozyme.svg/640px-Mecanism_of_action_for_Lysozyme.svg.png" width="60%" /></p>
+<h3 id="&#21407;&#29702;">&#21407;&#29702;<a class="anchor-link" href="#&#21407;&#29702;">&#182;</a></h3><blockquote><p>リゾチームは、真正細菌の細胞壁を構成する多糖類を加水分解する酵素である。 <a href="https://en.wikipedia.org/wiki/Lysozyme">Wikipedia</a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Mecanism_of_action_for_Lysozyme.svg/640px-Mecanism_of_action_for_Lysozyme.svg.png" width=60%></p>
 </blockquote>
-<p>この時の反応は酵素反応であり、細胞溶液の濃度は、式(2)の曲線に乗ると考えられます。<br />
+<p>この時の反応は酵素反応であり、細胞溶液の濃度は、式(2)の曲線に乗ると考えられます。<br>
 なお、直接濃度を測ることは難しいので、$\mathrm{OD}_{600}$ の値を用います。なお、$\mathrm{OD}_{600}$ と濃度の関係は $\mathrm{OD}_{600}=a[S]+b$ という関係で表せることがわかっているので、以下の式で表されます。
 $$\begin{aligned}
 \mathrm{OD}_{600} 
-&= aAe^{-kt} + b\\
-&= Ce^{-kt} + b
+&amp;= aAe^{-kt} + b\\
+&amp;= Ce^{-kt} + b
 \end{aligned}$$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="プロトコル">プロトコル<a class="anchor-link" href="#プロトコル">¶</a></h3><ol>
+<h3 id="&#12503;&#12525;&#12488;&#12467;&#12523;">&#12503;&#12525;&#12488;&#12467;&#12523;<a class="anchor-link" href="#&#12503;&#12525;&#12488;&#12467;&#12523;">&#182;</a></h3><ol>
 <li>0.3 mg/mL菌液(Mycrococcus lysodeikticus)25 mLを分注した。</li>
 <li>リゾチームを500 mM酢酸ナトリウムpH 4.5に溶かし、0.1 mg/mLを作製した。</li>
 <li>菌液をよく撹拌してから1.4 mLを光学セルに入れ、600 nmの吸光度を測定した。これを、t=0 秒後の吸光度の値とした。</li>
 <li>0.1 mg/mLのリゾチーム溶液を0.1 mL入れて反応を開始した。リゾチームを添加して120 秒後までの吸光度を10 秒毎に測定した。なお、この時毎回の測定の間にピペッティングをした。</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="結果">結果<a class="anchor-link" href="#結果">¶</a></h3><table>
+<h3 id="&#32080;&#26524;">&#32080;&#26524;<a class="anchor-link" href="#&#32080;&#26524;">&#182;</a></h3><table>
 <thead><tr>
 <th style="text-align:center">t[s]</th>
 <th>0</th>
@@ -215,53 +219,67 @@ $$\begin{aligned}
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="mi">70</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">110</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">130</span><span class="p">,</span><span class="mi">140</span><span class="p">,</span><span class="mi">150</span><span class="p">]</span>
 <span class="n">OD</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.939</span><span class="p">,</span> <span class="mf">0.677</span><span class="p">,</span> <span class="mf">0.576</span><span class="p">,</span> <span class="mf">0.508</span><span class="p">,</span> <span class="mf">0.451</span><span class="p">,</span> <span class="mf">0.419</span><span class="p">,</span> <span class="mf">0.381</span><span class="p">,</span> <span class="mf">0.362</span><span class="p">,</span> <span class="mf">0.339</span><span class="p">,</span> <span class="mf">0.321</span><span class="p">,</span> <span class="mf">0.299</span><span class="p">,</span> <span class="mf">0.282</span><span class="p">,</span> <span class="mf">0.275</span><span class="p">,</span> <span class="mf">0.276</span><span class="p">,</span> <span class="mf">0.267</span><span class="p">,</span> <span class="mf">0.252</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time [s]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time [s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAEYCAYAAACp5wpbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -478,160 +496,191 @@ c1xoZpPd/b32CFjkSKhNQuRw1UCb2wM8uEHUBjP7AgRDv5vZmJbWM7NhHgwzfRvB8PUttmOIJIKS
 hEgEd99B8Ev+HTOb3cbNXAl8w8yWAyuJ757pPwj3+TbBsNNPt7SCSCKoC6xIEqgLrHQWOpMQSY69
 wDXxXEwHbE1cWCKH05mEiIjEpDMJERGJSUlCRERiUpIQEZGYlCRERCSm/x/st+XyzHEGVQAAAABJ
 RU5ErkJggg==
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="考察（フィッティング）">考察（フィッティング）<a class="anchor-link" href="#考察（フィッティング）">¶</a></h3><p>　今回は、<a href="https://www.scipy.org">SciPy</a>の <code>curve_fit</code> メソッドを使います。基本的な使い方は、パラメトリックな関数（<code>f</code>）とフッティングしたいデータ（<code>xdata</code>,<code>ydata</code>）を引数に与えるだけです。<br />
+<h3 id="&#32771;&#23519;&#65288;&#12501;&#12451;&#12483;&#12486;&#12451;&#12531;&#12464;&#65289;">&#32771;&#23519;&#65288;&#12501;&#12451;&#12483;&#12486;&#12451;&#12531;&#12464;&#65289;<a class="anchor-link" href="#&#32771;&#23519;&#65288;&#12501;&#12451;&#12483;&#12486;&#12451;&#12531;&#12464;&#65289;">&#182;</a></h3><p>　今回は、<a href="https://www.scipy.org">SciPy</a>の <code>curve_fit</code> メソッドを使います。基本的な使い方は、パラメトリックな関数（<code>f</code>）とフッティングしたいデータ（<code>xdata</code>,<code>ydata</code>）を引数に与えるだけです。<br>
 　この時、関数 <code>f</code> の形は
 $$\mathrm{ydata} = \mathrm{f(xdata, *params)} + \epsilon$$ 
-を想定されているので、指定されている形通りに与えます。<br />
+を想定されているので、指定されている形通りに与えます。<br>
 　なお、戻り値は、誤差が最小になるパラメータの配列 <code>popt</code> と、それらの推定される共分散行列 <code>pcov</code>（2-D）です。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">curve_fit</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>以下のパラメトリック関数を定義します。
 $$\mathrm{OD}_{600} = Ce^{-kt} + b$$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="c1"># 順番に注意。t(xdata)が最初。</span>
     <span class="k">return</span>  <span class="n">C</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># フィッティング</span>
-<span class="n">popt</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'dogbox'</span><span class="p">)</span>
+<span class="n">popt</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;dogbox&#39;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="最適化手法">最適化手法<a class="anchor-link" href="#最適化手法">¶</a></h3><p>参考：<a href="https://jp.mathworks.com/help/optim/ug/equation-solving-algorithms.html">MathWorks</a><br />
+<h3 id="&#26368;&#36969;&#21270;&#25163;&#27861;">&#26368;&#36969;&#21270;&#25163;&#27861;<a class="anchor-link" href="#&#26368;&#36969;&#21270;&#25163;&#27861;">&#182;</a></h3><p>参考：<a href="https://jp.mathworks.com/help/optim/ug/equation-solving-algorithms.html">MathWorks</a><br>
 　上記のフィッティングは、最小二乗法に基づいていますが、解析的に求めることはできません。この <code>curve_fit</code> メソッドでは、以下の3つの手法が用意されています。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="trf（Trust-Region-Reflective-algorithm,-信頼領域法）">trf（Trust Region Reflective algorithm, 信頼領域法）<a class="anchor-link" href="#trf（Trust-Region-Reflective-algorithm,-信頼領域法）">¶</a></h4><p>　反復法の１つで、基本的な概念は、シンプルな関数 $q$ で 点 $\mathbf{x}$ の近傍 $N$ （<b>信頼領域</b>）での目的関数 $f$ の挙動を近似するというもの。
+<h4 id="trf&#65288;Trust-Region-Reflective-algorithm,-&#20449;&#38972;&#38936;&#22495;&#27861;&#65289;">trf&#65288;Trust Region Reflective algorithm, &#20449;&#38972;&#38936;&#22495;&#27861;&#65289;<a class="anchor-link" href="#trf&#65288;Trust-Region-Reflective-algorithm,-&#20449;&#38972;&#38936;&#22495;&#27861;&#65289;">&#182;</a></h4><p>　反復法の１つで、基本的な概念は、シンプルな関数 $q$ で 点 $\mathbf{x}$ の近傍 $N$ （<b>信頼領域</b>）での目的関数 $f$ の挙動を近似するというもの。
 $$\underset{\mathbf{s}}{\min}\{q(\mathbf{s}), \mathbf{s}\in N\}$$
-ここで、$f(\mathbf{x}+\mathbf{s})<f(\mathbf{x})$ の場合、現在の点が $\mathbf{x}+\mathbf{s}$ に更新される。そうでない場合は現在の点は変更されず、信頼領域 $n$ は縮小され、テストステップの計算が繰り返される。なお、標準的な信頼領域法では、&lt; p>
+ここで、$f(\mathbf{x}+\mathbf{s})&lt;f(\mathbf{x})$ の場合、現在の点が $\mathbf{x}+\mathbf{s}$ に更新される。そうでない場合は現在の点は変更されず、信頼領域 $N$ は縮小され、テストステップの計算が繰り返される。なお、標準的な信頼領域法では、</p>
 <ul>
 <li>二次近似 $q$ は、$\mathbf{x}$ における $f$ のテイラー近似のはじめの $2$ 項によって決められる。</li>
 <li>近傍 $N$ は球体または楕円体。</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://optimization.mccormick.northwestern.edu/images/e/e4/Trust-Region_Method_Overview.png" /></p>
+<p><img src="https://optimization.mccormick.northwestern.edu/images/e/e4/Trust-Region_Method_Overview.png"></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="dogbox（dogleg-algorithm-with-rectangular-trust-regions）">dogbox（dogleg algorithm with rectangular trust regions）<a class="anchor-link" href="#dogbox（dogleg-algorithm-with-rectangular-trust-regions）">¶</a></h4><p>　信頼領域法の一種。経路に沿って、信頼領域（rectangula）内で目的関数 $f$ を最小化する $\mathbf{x}$ を見つける。</p>
+<h4 id="dogbox&#65288;dogleg-algorithm-with-rectangular-trust-regions&#65289;">dogbox&#65288;dogleg algorithm with rectangular trust regions&#65289;<a class="anchor-link" href="#dogbox&#65288;dogleg-algorithm-with-rectangular-trust-regions&#65289;">&#182;</a></h4><p>　信頼領域法の一種。経路に沿って、信頼領域（rectangula）内で目的関数 $f$ を最小化する $\mathbf{x}$ を見つける。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="https://www.researchgate.net/publication/303981220/figure/fig1/AS:669017660461059@1536517648099/Typical-history-of-the-trust-regions-In-every-iteration-of-the-optimization-process-the.png" width="50%" /></p>
+<p><img src="https://www.researchgate.net/publication/303981220/figure/fig1/AS:669017660461059@1536517648099/Typical-history-of-the-trust-regions-In-every-iteration-of-the-optimization-process-the.png" width=50%></p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="lm（Levenberg-Marquardt-algorithm）※default">lm（Levenberg-Marquardt algorithm）※default<a class="anchor-link" href="#lm（Levenberg-Marquardt-algorithm）※default">¶</a></h4><p>　ニュートン法でヘッセ行列・またその逆行列が必要となるが、それらを用いるのは大変。<br />
-→ ヤコビ行列の積でヘッセ行列を近似しよう（ガウス・ニュートン法）<br />
+<h4 id="lm&#65288;Levenberg-Marquardt-algorithm&#65289;&#8251;default">lm&#65288;Levenberg-Marquardt algorithm&#65289;&#8251;default<a class="anchor-link" href="#lm&#65288;Levenberg-Marquardt-algorithm&#65289;&#8251;default">&#182;</a></h4><p>　ニュートン法でヘッセ行列・またその逆行列が必要となるが、それらを用いるのは大変。<br>
+→ ヤコビ行列の積でヘッセ行列を近似しよう（ガウス・ニュートン法）<br>
 → 最急降下法と組み合わせよう（初期は最急降下法、近傍でガウス・ニュートン法に切り替えて収束速度を上げる？）</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">optimal_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2"> = Ce^{-kt}+b$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time [s]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2"> = Ce^{-kt}+b$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time [s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAEYCAYAAACp5wpbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -883,142 +932,186 @@ FTifpyCcGwglN2SlqjpHRD7CGczxWxGZoKobfRGwMU1hfRLGVJUPNLo/QJ0bRG0XkZ+BM/S7iIyo
 azkR6afOMNNP4QxfX2c/hjH+YEnCGA+qehDnl/xaEZnbyNVcDdwkIquAddTvnun3uLe5GmfY6X/V
 tYAx/mCnwBoTAHYKrGktrCVhTGAUADfX52I6YJ//wjKmKmtJGGOM8cpaEsYYY7yyJGGMMcYrSxLG
 GGO8siRhjDHGq/8Pn8CV3gPIS5EAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">popt</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[10]:</div>
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(0.6275861226226153, 0.032148117696153874, 0.27216089574449037)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>各種パラメータを代入すると、以下の式になった。
 $$\mathrm{OD}_{600} = 0.62e^{-0.32t}+0.27$$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"RMSE: </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">OD</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func</span><span class="p">)(</span><span class="n">time</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">OD</span><span class="p">))))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">OD</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func</span><span class="p">)(</span><span class="n">time</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">OD</span><span class="p">))))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>RMSE: 0.022
 </pre>
 </div>
 </div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="&#35036;&#27491;">&#35036;&#27491;<a class="anchor-link" href="#&#35036;&#27491;">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="補正">補正<a class="anchor-link" href="#補正">¶</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="補正①">補正①<a class="anchor-link" href="#補正①">¶</a></h4><p>　まず考えられる補正方法として、<a href="#プロトコル">プロトコル</a>の2で菌液1.4 mLの吸光度をt=0 秒後の吸光度の値としたにも関わらず、t>0 では0.1 mg/mLのリゾチーム溶液が0.1 mL加えられており、条件が明らかに揃っていません。そこで、今回は単純にt=0秒後の吸光度の値を14/15倍にして補正します。</p>
+<h4 id="&#35036;&#27491;&#9312;">&#35036;&#27491;&#9312;<a class="anchor-link" href="#&#35036;&#27491;&#9312;">&#182;</a></h4><p>　まず考えられる補正方法として、<a href="#プロトコル">プロトコル</a>の2で菌液1.4 mLの吸光度をt=0 秒後の吸光度の値としたにも関わらず、t&gt;0 では0.1 mg/mLのリゾチーム溶液が0.1 mL加えられており、条件が明らかに揃っていません。そこで、今回は単純にt=0秒後の吸光度の値を14/15倍にして補正します。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">OD1</span> <span class="o">=</span> <span class="p">[</span><span class="n">od</span><span class="o">*</span><span class="p">(</span><span class="mi">14</span><span class="o">/</span><span class="mi">15</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="mi">0</span> <span class="k">else</span> <span class="n">od</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">od</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">OD</span><span class="p">)]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># フィッティング</span>
-<span class="n">popt1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">OD1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'dogbox'</span><span class="p">)</span>
+<span class="n">popt1</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">OD1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;dogbox&#39;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [14]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">optimal_func1</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">popt1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt1</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [15]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Y1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func1</span><span class="p">)(</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [16]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2"> = Ce^{-kt}+b$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time [s]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2"> = Ce^{-kt}+b$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">OD1</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time [s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAEYCAYAAACp5wpbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1271,138 +1364,182 @@ TqHH8zKP6TKcz1MYzgBCqbXZqKrOFJFPcTpz/EZExqrqen8EbEx9WJ2EMRUdBepcH6DOAFFbReRy
 cLp+F5HBNa0nIj3U6WZ6Fk739TXWYxgTCJYkjPGgqvtxfsmvEZHZddzMVcANIrISyMS3MdN/5d7n
 Kpxupz+raQVjAsGawBoTBNYE1jQWdiZhTHAcA27y5WY6YE/gwjKmIjuTMMYY45WdSRhjjPHKkoQx
 xhivLEkYY4zxypKEMcYYr/4/nLAqmQPnRxYAAAAASUVORK5CYII=
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [17]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">popt1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt1</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[17]:</div>
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(0.5871856985136539, 0.028176701384466905, 0.26227771876439065)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>各種パラメータを代入すると、以下の式になった。
 $$\mathrm{OD}_{600} = 0.59e^{-0.028t}+0.26$$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [18]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"RMSE: </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">OD1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func1</span><span class="p">)(</span><span class="n">time</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">OD1</span><span class="p">))))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">OD1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func1</span><span class="p">)(</span><span class="n">time</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">OD1</span><span class="p">))))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>RMSE: 0.015
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="補正②">補正②<a class="anchor-link" href="#補正②">¶</a></h4><p>　続いて考えられるものとして、分光光度計の測定時間の誤差が挙げられます。というのも、分光光度計を押してから計測に数秒かかっているので、どのタイミングで測られたのかわかりません。（TAの方に聞いてもわかりませんでした笑）<br />
+<h4 id="&#35036;&#27491;&#9313;">&#35036;&#27491;&#9313;<a class="anchor-link" href="#&#35036;&#27491;&#9313;">&#182;</a></h4><p>　続いて考えられるものとして、分光光度計の測定時間の誤差が挙げられます。というのも、分光光度計を押してから計測に数秒かかっているので、どのタイミングで測られたのかわかりません。（TAの方に聞いてもわかりませんでした笑）<br>
 　誤差があるのはt=0 秒後とt=10 秒後の間だけなので、初期値を取り除いてみます。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [19]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time2</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">t</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">time</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="mi">0</span><span class="p">]</span>
 <span class="n">OD2</span>   <span class="o">=</span> <span class="p">[</span><span class="n">od</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">od</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">OD</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">!=</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [20]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># フィッティング</span>
-<span class="n">popt2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">time2</span><span class="p">,</span> <span class="n">OD2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">"dogbox"</span><span class="p">)</span>
+<span class="n">popt2</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">time2</span><span class="p">,</span> <span class="n">OD2</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;dogbox&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [21]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">optimal_func2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">popt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [22]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">time2</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">time2</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
 <span class="n">Y2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func2</span><span class="p">)(</span><span class="n">X2</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [23]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2"> = Ce^{-kt}+b$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time2</span><span class="p">,</span> <span class="n">OD2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"data"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"time [s]"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span><span class="n">Y2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2"> = Ce^{-kt}+b$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">time2</span><span class="p">,</span> <span class="n">OD2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;data&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;The relationship between time and $\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;time [s]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;$\mathrm</span><span class="si">{OD}</span><span class="s2">_</span><span class="si">{600}</span><span class="s2">$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYkAAAEYCAYAAACp5wpbAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDIuMi40LCBo
@@ -1651,39 +1788,53 @@ aCilPhs1xswUkS+wBoVcJiJjjDFbXBGwUo2hbRJKnS4faHB7gLEmmtolIr8Bawh5Eelf1+NEpLOx
 hpqeBawA6mzHUMoTNEkoVYUx5gjWL/kNIjK7gZu5CrhRRNYCG7FmrKvLPfZ9rsMaevqruh6glCdo
 F1ilvEC7wCp/oWcSSnnHCeBmZy6mAw55LiylTqdnEkoppRzSMwmllFIOaZJQSinlkCYJpZRSDmmS
 UEop5dD/A8lPtND9SEA7AAAAAElFTkSuQmCC
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [24]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">"RMSE: </span><span class="si">{:.3f}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">OD2</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func2</span><span class="p">)(</span><span class="n">time2</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">OD2</span><span class="p">))))</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;RMSE: </span><span class="si">{:.3f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">OD2</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">optimal_func2</span><span class="p">)(</span><span class="n">time2</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">OD2</span><span class="p">))))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>RMSE: 0.030
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>各種パラメータを代入すると、以下の式になった。
 $$\mathrm{OD}_{600} = 0.53e^{-0.022t}+0.24$$</p>
+
 </div>
 </div>
 </div>
@@ -1697,152 +1848,212 @@ $$t = \frac{1}{k}\ln\frac{C}{\mathrm{OD}_{600}-b}$$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [25]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">inv_func2</span><span class="p">(</span><span class="n">od</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="k">return</span> <span class="mi">1</span><span class="o">/</span><span class="n">k</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">C</span><span class="o">/</span><span class="p">(</span><span class="n">od</span><span class="o">-</span><span class="n">b</span><span class="p">))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [26]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">inv_optimal_func2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">od</span><span class="p">:</span> <span class="n">inv_func2</span><span class="p">(</span><span class="n">od</span><span class="p">,</span><span class="n">popt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [27]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># この値をとるtを求めたい。</span>
 <span class="n">OD</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[27]:</div>
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>0.939</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [28]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">optimal_func2</span><span class="p">(</span><span class="n">inv_optimal_func2</span><span class="p">(</span><span class="n">OD</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[28]:</div>
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>0.9688133478428795</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [29]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 誤差がある…値が小さいから？？関数ミスった？？</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [30]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># パラメータ。確かに値は小さい。</span>
 <span class="n">popt2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">popt2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">popt2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[30]:</div>
+
+    <div class="prompt output_prompt">Out[30]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>(0.5322786897114126, 0.022362718093662307, 0.24234754790161073)</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [31]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">inv_optimal_func2</span><span class="p">(</span><span class="n">OD</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[31]:</div>
+
+    <div class="prompt output_prompt">Out[31]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>-12.034290565630748</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [32]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># -12秒は流石に嘘。</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [ ]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
+
+    </div>
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -1859,6 +2070,7 @@ $$t = \frac{1}{k}\ln\frac{C}{\mathrm{OD}_{600}-b}$$
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -1892,10 +2104,10 @@ $$t = \frac{1}{k}\ln\frac{C}{\mathrm{OD}_{600}-b}$$
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-05-28T14:20:00+09:00"> 5 28, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-05-28T14:20:00+09:00">May 28, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-05-28T14:20:00+09:00"> 5 28, 2019</time>
+<time datetime="2019-05-28T14:20:00+09:00">May 28, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3S/categories.html#sheng-wu-hua-xue-shi-yan-i-ref">生物化学実験Ⅰ</a>
@@ -1913,8 +2125,6 @@ $$t = \frac{1}{k}\ln\frac{C}{\mathrm{OD}_{600}-b}$$
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

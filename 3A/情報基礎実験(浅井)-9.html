@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="Zuker Algorithm "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/情報基礎実験(浅井)-9.html" />
-<meta property="og:description" content="Free energy minimization of RNA seconary structure.¶ In cells, RNAs are likely to form energetically stable secondary structure. The correctness of secondary structure should be evaluated based on the free energy, rather than the number of base-pairs (Nussinov Algorithm) We first describe a way to calculate the free energy of a particular RNA secondary structure." />
+<meta property="og:description" content="" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-10-10T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-10-10T00:00:00+09:00" />
 <meta name="twitter:title" content="Zuker Algorithm ">
-<meta name="twitter:description" content="Free energy minimization of RNA seconary structure.¶ In cells, RNAs are likely to form energetically stable secondary structure. The correctness of secondary structure should be evaluated based on the free energy, rather than the number of base-pairs (Nussinov Algorithm) We first describe a way to calculate the free energy of a particular RNA secondary structure.">
+<meta name="twitter:description" content="">
 
         <title>Zuker Algorithm  · 3A
 </title>
@@ -119,58 +119,60 @@
   <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Free-energy-minimization-of-RNA-seconary-structure.">Free energy minimization of RNA seconary structure.<a class="anchor-link" href="#Free-energy-minimization-of-RNA-seconary-structure.">¶</a></h3><ul>
+<h3 id="Free-energy-minimization-of-RNA-seconary-structure.">Free energy minimization of RNA seconary structure.<a class="anchor-link" href="#Free-energy-minimization-of-RNA-seconary-structure.">&#182;</a></h3><ul>
 <li>In cells, RNAs are likely to form energetically stable secondary structure.</li>
 <li>The correctness of secondary structure should be evaluated based on the free energy, rather than the number of base-pairs (<a href="https://iwasakishuto.github.io/University/3A/情報基礎実験-6.html">Nussinov Algorithm</a>)</li>
 <li>We first describe a way to calculate the free energy of a particular RNA secondary structure.</li>
 <li>We describe the <span class="marker-pink">Zuker algorithm</span> which calculates the RNA secondary structure with the minimum free energy (MFE).</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Free-energy-of-RNA-secondary-structure">Free energy of RNA secondary structure<a class="anchor-link" href="#Free-energy-of-RNA-secondary-structure">¶</a></h3><ul>
+<h3 id="Free-energy-of-RNA-secondary-structure">Free energy of RNA secondary structure<a class="anchor-link" href="#Free-energy-of-RNA-secondary-structure">&#182;</a></h3><ul>
 <li>The free energy of a secondary structure is approximated as the sum of the free energy of <b>"loops".</b></li>
 </ul>
 $$E = \sum_iE_i$$<ul>
 <li>The free energy of individual loop is <b>given</b> by experimental data. (ex. $\mathrm{C-G: }-3.4\mathrm{kcal/mol}$, $\mathrm{U-A: }-0.9\mathrm{kcal/mol}$)</li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id='Five-types-of-"loops"'>Five types of "loops"<a class="anchor-link" href='#Five-types-of-"loops"'>¶</a></h3><table>
-<thead>
-<tr>
-<th align="center">hairpin loop</th>
-<th align="center">stacking</th>
-<th align="center">bulge loop</th>
-<th align="center">internal loop</th>
-<th align="center">multi-loop</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/hairpin_loop.png" /></th>
-<th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/stacking.png" /></th>
-<th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/bulge_loop.png" /></th>
-<th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/internal_loop.png" /></th>
-<th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/multi_loop.png" /></th>
-</tr>
-<tr>
-<th align="center">F1(i,j)</th>
-<th align="center" colspan="3">F2(i,j,h,l)</th>
-<th align="center">Fm=a+bk+cu</th>
-</tr>
-</tbody>
+<h3 id="Five-types-of-&quot;loops&quot;">Five types of "loops"<a class="anchor-link" href="#Five-types-of-&quot;loops&quot;">&#182;</a></h3><table>
+    <thead>
+        <tr>
+            <th align="center">hairpin loop</th>
+            <th align="center">stacking</th>
+            <th align="center">bulge loop</th>
+            <th align="center">internal loop</th>
+            <th align="center">multi-loop</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/hairpin_loop.png"></th>
+            <th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/stacking.png"></th>
+            <th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/bulge_loop.png"></th>
+            <th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/internal_loop.png"></th>
+            <th align="center"><img src="theme/img/3A_Basic_Laboratory/RNA_secondary_structure/multi_loop.png"></th>
+        </tr>
+        <tr>
+            <th align="center">F1(i,j)</th>
+            <th align="center" colspan=3>F2(i,j,h,l)</th>
+            <th align="center">Fm=a+bk+cu</th>
+        </tr>
+    </tbody>
 </table><ul>
-<li>a,b,c: constant</li>
-<li>k: the number of <b>base-pairs</b> in a multi-loop</li>
-<li>u: the number of <b>single stranded nucleotides</b> in a multi-loop</li>
+    <li>a,b,c: constant</li>
+    <li>k: the number of <b>base-pairs</b> in a multi-loop</li>
+    <li>u: the number of <b>single stranded nucleotides</b> in a multi-loop</li>
 </ul>
 </div>
 </div>
@@ -178,7 +180,7 @@ $$E = \sum_iE_i$$<ul>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">¶</a></h3><table>
+<h3 id="Algorithm">Algorithm<a class="anchor-link" href="#Algorithm">&#182;</a></h3><table>
 <thead><tr>
 <th style="text-align:center">variable</th>
 <th style="text-align:left">meaning</th>
@@ -203,107 +205,142 @@ $$E = \sum_iE_i$$<ul>
 </tr>
 </tbody>
 </table>
-<h4 id="Recursion">Recursion<a class="anchor-link" href="#Recursion">¶</a></h4>$$
+<h4 id="Recursion">Recursion<a class="anchor-link" href="#Recursion">&#182;</a></h4>$$
 \begin{aligned}
-    W(i,j) &= \min
+    W(i,j) &amp;= \min
     \begin{cases}
-        W(i+1,j)\\W(i,j-1)\\V(i,j)\\\min_{i\leq k<j}\left\{w(i,k) + w(k+1,j)\right\} \end{cases}\\ v(i,j) &amp;="\min" \begin{cases} f_1(i,j)\\\min_{i&lt;h&lt;l&lt;j}f_2(i,j,h,l) + v(h,l)\\m(i+1,j-1)+a+b \end{cases}\\ m(i,j) &amp;="\min_{i\leq&lt;k&lt;j}\left\{M1(i,k)" + m1(k+1,j)\right\}\\ m1(i,j) &amp;="\min" \begin{cases} m(i,j)\\v(i,j)+b\\m1(i+1,j)+c\\m1(i,j-1)+c \end{cases}\\ \end{aligned} $$ &lt; div>
+        W(i+1,j)\\W(i,j-1)\\V(i,j)\\\min_{i\leq k&lt;j}\left\{W(i,k) + W(k+1,j)\right\}
+    \end{cases}\\
+    V(i,j) &amp;= \min
+    \begin{cases}
+        F_1(i,j)\\\min_{i&lt;h&lt;l&lt;j}F_2(i,j,h,l) + V(h,l)\\M(i+1,j-1)+a+b
+    \end{cases}\\
+    M(i,j) &amp;= \min_{i\leq&lt;k&lt;j}\left\{M1(i,k) + M1(k+1,j)\right\}\\
+    M1(i,j) &amp;= \min
+    \begin{cases}
+        M(i,j)\\V(i,j)+b\\M1(i+1,j)+c\\M1(i,j-1)+c
+    \end{cases}\\    
+\end{aligned}
+$$
+</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Initialization">Initialization<a class="anchor-link" href="#Initialization">¶</a></h4>
+<h4 id="Initialization">Initialization<a class="anchor-link" href="#Initialization">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">kerasy.Bio.structure</span> <span class="kn">import</span> <span class="n">Zuker</span>
 <span class="kn">from</span> <span class="nn">kerasy.utils.bio</span> <span class="kn">import</span> <span class="n">readMonoSeq</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">Zuker</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 以下の形のパラメタファイルを受け取ります。</span>
 <span class="o">!</span> cat params.json
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>{
-    "inf": 1e3,
+    &#34;inf&#34;: 1e3,
     
-    "type": "RNA",
-    "Watson_Crick": true,
-    "Wobble": true,
+    &#34;type&#34;: &#34;RNA&#34;,
+    &#34;Watson_Crick&#34;: true,
+    &#34;Wobble&#34;: true,
     
-    "hairpin":  [Infinity, Infinity, 4.4, 4.6, 4.7, 4.4, 5.0, 4.5, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.9, 6.0, 6.1, 6.1, 6.2, 6.2, 6.3, 6.3, 6.4, 6.4, 6.5, 6.5, 6.5, 6.6, 6.6, 6.7, Infinity],
-    "internal": [Infinity, 1.0, 1.0, 1.1, 2.0, 2.0, 2.1, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 2.9, 3.0, 3.1, 3.1, 3.2, 3.3, 3.3, 3.4, 3.4, 3.5, 3.5, 3.5, 3.6, 3.6, 3.7, 3.7, Infinity],
-    "buldge":   [1.0, 1.0, 1.0, 1.1, 2.0, 2.0, 2.1, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 2.9, 3.0, 3.1, 3.1, 3.2, 3.3, 3.3, 3.4, 3.4, 3.5, 3.5, 3.5, 3.6, 3.6, 3.7, 3.7, Infinity],
-    "a": 6.0,
-    "b": -1.0,
-    "c": 0.1,
-    "stacking_cols": ["CG", "AU", "GU"],
-    "stacking_score": [[-3.0, -2.0, -2.0],
+    &#34;hairpin&#34;:  [Infinity, Infinity, 4.4, 4.6, 4.7, 4.4, 5.0, 4.5, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.9, 6.0, 6.1, 6.1, 6.2, 6.2, 6.3, 6.3, 6.4, 6.4, 6.5, 6.5, 6.5, 6.6, 6.6, 6.7, Infinity],
+    &#34;internal&#34;: [Infinity, 1.0, 1.0, 1.1, 2.0, 2.0, 2.1, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 2.9, 3.0, 3.1, 3.1, 3.2, 3.3, 3.3, 3.4, 3.4, 3.5, 3.5, 3.5, 3.6, 3.6, 3.7, 3.7, Infinity],
+    &#34;buldge&#34;:   [1.0, 1.0, 1.0, 1.1, 2.0, 2.0, 2.1, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 2.9, 3.0, 3.1, 3.1, 3.2, 3.3, 3.3, 3.4, 3.4, 3.5, 3.5, 3.5, 3.6, 3.6, 3.7, 3.7, Infinity],
+    &#34;a&#34;: 6.0,
+    &#34;b&#34;: -1.0,
+    &#34;c&#34;: 0.1,
+    &#34;stacking_cols&#34;: [&#34;CG&#34;, &#34;AU&#34;, &#34;GU&#34;],
+    &#34;stacking_score&#34;: [[-3.0, -2.0, -2.0],
                        [-2.0, -0.5, -0.5],
                        [-2.0, -0.5, -0.5]]
 }</pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_params</span><span class="p">(</span><span class="s2">"params.json"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">load_params</span><span class="p">(</span><span class="s2">&quot;params.json&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>| parameter  |value |
 ---------------------
@@ -317,103 +354,147 @@ $$E = \sum_iE_i$$<ul>
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [6]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">stacking_cols</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[6]:</div>
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
-<pre>array(['CG', 'AU', 'GU'], dtype='<u2&#x27;)&lt; pre>
+<pre>array([&#39;CG&#39;, &#39;AU&#39;, &#39;GU&#39;], dtype=&#39;&lt;U2&#39;)</pre>
+</div>
+
+</div>
+
 </div>
 </div>
-</div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [7]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">stacking_score</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[7]:</div>
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[-3.e+00, -2.e+00, -2.e+00,  1.e+03],
        [-2.e+00, -5.e-01, -5.e-01,  1.e+03],
        [-2.e+00, -5.e-01, -5.e-01,  1.e+03],
        [ 1.e+03,  1.e+03,  1.e+03,  1.e+03]])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [8]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># サンプル配列</span>
-<span class="n">sequence</span> <span class="o">=</span> <span class="n">readMonoSeq</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">"sample_seq4.fasta"</span><span class="p">)</span>
+<span class="n">sequence</span> <span class="o">=</span> <span class="n">readMonoSeq</span><span class="p">(</span><span class="n">path</span><span class="o">=</span><span class="s2">&quot;sample_seq4.fasta&quot;</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [9]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>['CCACCUCGCCGCGAAGAUUGGAUGUAAUGUUCACUUAAGCCUAGGCGUUCGCAAAGAAAUACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG']
+<pre>[&#39;CCACCUCGCCGCGAAGAUUGGAUGUAAUGUUCACUUAAGCCUAGGCGUUCGCAAAGAAAUACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG&#39;]
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [10]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># 最大ペアの配列</span>
 <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sequence</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre><span class="ansi-default-inverse-fg ansi-red-bg"> Zuker Algorithm </span>
 Score: <span class="ansi-blue-fg">-37.5</span>
@@ -428,23 +509,34 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
 </pre>
 </div>
 </div>
+
 </div>
 </div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [11]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">W</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[11]:</div>
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[  0. ,   0. ,   0. , ..., -34.5, -37.5, -37.5],
        [  0. ,   0. ,   0. , ..., -34.5, -34.5, -34.5],
@@ -454,24 +546,36 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
        [  0. ,   0. ,   0. , ...,   0. ,   0. ,   0. ],
        [  0. ,   0. ,   0. , ...,   0. ,   0. ,   0. ]])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [12]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">M</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[12]:</div>
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[1000. ,  999. ,  999. , ...,  -35.4,  -38.5,  -38.4],
        [1000. , 1000. ,  999. , ...,  -35.5,  -35.4,  -35.3],
@@ -481,24 +585,36 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
        [1000. , 1000. , 1000. , ..., 1000. , 1000. ,  999. ],
        [1000. , 1000. , 1000. , ..., 1000. , 1000. , 1000. ]])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [13]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">V</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt output_prompt">Out[13]:</div>
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+
 <div class="output_text output_subarea output_execute_result">
 <pre>array([[1000. , 1000. , 1000. , ...,  -31.5,  -37.5,  -34.5],
        [1000. , 1000. , 1000. , ...,  -34.5,  -31.5,  -31.5],
@@ -508,16 +624,21 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
        [1000. , 1000. , 1000. , ..., 1000. , 1000. , 1000. ],
        [1000. , 1000. , 1000. , ..., 1000. , 1000. , 1000. ]])</pre>
 </div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -534,6 +655,7 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -567,10 +689,10 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-10-10T00:00:00+09:00">10 10, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-10-10T00:00:00+09:00">Oct 10, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-10-10T00:00:00+09:00">10 10, 2019</time>
+<time datetime="2019-10-10T00:00:00+09:00">Oct 10, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#qing-bao-ji-chu-shi-yan-qian-jing-ref">情報基礎実験(浅井)</a>
@@ -588,8 +710,6 @@ seq: ACCUAUGGUAAUUUGACUAGCGGUAACAAUGAAAGAAAAGGUGUAGGCGAGGUGGG
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>

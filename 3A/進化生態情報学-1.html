@@ -16,13 +16,13 @@
 
 <meta property="og:title" content="進化生態情報学 第1回 "/>
 <meta property="og:url" content="https://iwasakishuto.github.io/University/3A/進化生態情報学-1.html" />
-<meta property="og:description" content="講師：岩崎渉 参考書：分子系統学への統計的アプローチ -計算分子進化学-（共立出版、2009） 参考書：進化ー分子・個体・生態系（メディカルサイエンスインターナショナル、2009） 参考書：分子進化と分子系統学（培風館、2006） 参考書：Brock Biology of Microorganisms 14th Edition（Benjamin Cummings、2014） 参考書：ディジタル画像処理 改訂新版（CG-ARTS協会、2015）" />
+<meta property="og:description" content="進化生態情報学 第1回" />
 <meta property="og:site_name" content="3A" />
 <meta property="og:article:author" content="Shuto" />
 <meta property="og:article:published_time" content="2019-11-29T00:00:00+09:00" />
 <meta property="og:article:modified_time" content="2019-11-29T00:00:00+09:00" />
 <meta name="twitter:title" content="進化生態情報学 第1回 ">
-<meta name="twitter:description" content="講師：岩崎渉 参考書：分子系統学への統計的アプローチ -計算分子進化学-（共立出版、2009） 参考書：進化ー分子・個体・生態系（メディカルサイエンスインターナショナル、2009） 参考書：分子進化と分子系統学（培風館、2006） 参考書：Brock Biology of Microorganisms 14th Edition（Benjamin Cummings、2014） 参考書：ディジタル画像処理 改訂新版（CG-ARTS協会、2015）">
+<meta name="twitter:description" content="進化生態情報学 第1回">
 
         <title>進化生態情報学 第1回  · 3A
 </title>
@@ -127,25 +127,28 @@
 <li>参考書：<a href="https://www.amazon.com/Brock-Biology-Microorganisms-Michael-Madigan/dp/0321897390">Brock Biology of Microorganisms 14th Edition（Benjamin Cummings、2014）</a></li>
 <li>参考書：<a href="https://www.amazon.co.jp/ディジタル画像処理-改訂新版-画像情報教育振興協会/dp/490347450X">ディジタル画像処理 改訂新版（CG-ARTS協会、2015）</a></li>
 </ul>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [1]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="塩基置換のマルコフモデル">塩基置換のマルコフモデル<a class="anchor-link" href="#塩基置換のマルコフモデル">¶</a></h2>
+<h2 id="&#22633;&#22522;&#32622;&#25563;&#12398;&#12510;&#12523;&#12467;&#12501;&#12514;&#12487;&#12523;">&#22633;&#22522;&#32622;&#25563;&#12398;&#12510;&#12523;&#12467;&#12501;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#22633;&#22522;&#32622;&#25563;&#12398;&#12510;&#12523;&#12467;&#12501;&#12514;&#12487;&#12523;">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -177,17 +180,18 @@
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="チャップマン-コルモゴロフの定理">チャップマン-コルモゴロフの定理<a class="anchor-link" href="#チャップマン-コルモゴロフの定理">¶</a></h4><p>以下が成立することは、定義から明らか。</p>
+<h4 id="&#12481;&#12515;&#12483;&#12503;&#12510;&#12531;-&#12467;&#12523;&#12514;&#12468;&#12525;&#12501;&#12398;&#23450;&#29702;">&#12481;&#12515;&#12483;&#12503;&#12510;&#12531;-&#12467;&#12523;&#12514;&#12468;&#12525;&#12501;&#12398;&#23450;&#29702;<a class="anchor-link" href="#&#12481;&#12515;&#12483;&#12503;&#12510;&#12531;-&#12467;&#12523;&#12514;&#12468;&#12525;&#12501;&#12398;&#23450;&#29702;">&#182;</a></h4><p>以下が成立することは、定義から明らか。</p>
 $$
 \begin{aligned}
-&p;_{ij}(s+t) = \sum_{k}p_{ik}(s)p_{kj}(t)\\
-&\Longleftrightarrow P(s+t) = P(s)P(t)
+&amp;p_{ij}(s+t) = \sum_{k}p_{ik}(s)p_{kj}(t)\\
+&amp;\Longleftrightarrow P(s+t) = P(s)P(t)
 \end{aligned}
 $$
 </div>
@@ -196,14 +200,14 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="$P(t)$-と-$Q$-の関係">$P(t)$ と $Q$ の関係<a class="anchor-link" href="#$P(t)$-と-$Q$-の関係">¶</a></h4><p>$P(t)$ は微分可能であり、上式を用いて導関数を計算することができる。</p>
+<h4 id="$P(t)$-&#12392;-$Q$-&#12398;&#38306;&#20418;">$P(t)$ &#12392; $Q$ &#12398;&#38306;&#20418;<a class="anchor-link" href="#$P(t)$-&#12392;-$Q$-&#12398;&#38306;&#20418;">&#182;</a></h4><p>$P(t)$ は微分可能であり、上式を用いて導関数を計算することができる。</p>
 $$\begin{aligned}
 P(t+\Delta t) 
-&= P(t)P(\Delta t) \\
-&= P(t)P(0)(I + Q\Delta t)\\
-&= P(t) + P(t)Q\Delta t\\
-\frac{P(t+\Delta t) - P(t)}{(t+\Delta t) - t}&= P(t)Q\\
-\underset{t\rightarrow0}{\Longrightarrow} \frac{dP(t)}{dt} &= P(t)Q
+&amp;= P(t)P(\Delta t) \\
+&amp;= P(t)P(0)(I + Q\Delta t)\\
+&amp;= P(t) + P(t)Q\Delta t\\
+\frac{P(t+\Delta t) - P(t)}{(t+\Delta t) - t}&amp;= P(t)Q\\
+\underset{t\rightarrow0}{\Longrightarrow} \frac{dP(t)}{dt} &amp;= P(t)Q
 \end{aligned}$$<p>ここで、この微分方程式は簡単に解くことができる。</p>
 <ol>
 <li>一般の $n\times n$ 行列 $A$ に対し、$e^{tA} = \sum_{k=0}^{\infty}\frac{t^k}{k!}A^k$</li>
@@ -211,31 +215,33 @@ P(t+\Delta t)
 <li>先の式と照らし合わせると、以下を得る。
 $$P(t) = e^{Qt}$$</li>
 </ol>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="対角化と-$P(t)$-の解">対角化と $P(t)$ の解<a class="anchor-link" href="#対角化と-$P(t)$-の解">¶</a></h4><p>行列 $Q$ が <strong>異なる固有値を $n(=4)$ 個持つ<span class="marker-pink">（対角化できる）</span>とする</strong>と、正則行列 $U$ を用いて以下のように対角化できる。</p>
+<h4 id="&#23550;&#35282;&#21270;&#12392;-$P(t)$-&#12398;&#35299;">&#23550;&#35282;&#21270;&#12392; $P(t)$ &#12398;&#35299;<a class="anchor-link" href="#&#23550;&#35282;&#21270;&#12392;-$P(t)$-&#12398;&#35299;">&#182;</a></h4><p>行列 $Q$ が <strong>異なる固有値を $n(=4)$ 個持つ<span class="marker-pink">（対角化できる）</span>とする</strong>と、正則行列 $U$ を用いて以下のように対角化できる。</p>
 $$\Lambda = U^{-1}QU\Longleftrightarrow Q=U\Lambda U^{-1}$$<p>これを先の式に代入すると、</p>
 $$
 \begin{aligned}
-P(t) &=\exp\left(Qt\right)\\
-&= \sum_{k=0}^{\infty}\frac{t^k}{k}Q^k\\
-&= \sum_{k=0}^{\infty}\frac{t^k}{k}\left(U\Lambda U^{-1}\right)^k\\
-&= U\left(\sum_{k=0}^{\infty}\frac{t^k}{k}\Lambda^k\right)U^{-1}\\
-&= U\exp\left(\Lambda t\right) U^{-1}\\
-&= U \text{diag}\left\{\exp(\lambda_1t), \exp(\lambda_2t),\cdots,\exp(\lambda_nt)\right\}U^{-1}
+P(t) &amp;=\exp\left(Qt\right)\\
+&amp;= \sum_{k=0}^{\infty}\frac{t^k}{k}Q^k\\
+&amp;= \sum_{k=0}^{\infty}\frac{t^k}{k}\left(U\Lambda U^{-1}\right)^k\\
+&amp;= U\left(\sum_{k=0}^{\infty}\frac{t^k}{k}\Lambda^k\right)U^{-1}\\
+&amp;= U\exp\left(\Lambda t\right) U^{-1}\\
+&amp;= U \text{diag}\left\{\exp(\lambda_1t), \exp(\lambda_2t),\cdots,\exp(\lambda_nt)\right\}U^{-1}
 \end{aligned}
 $$<p>よって、$\Sigma$ が消えて簡単な形で表せるようになった。</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="各塩基の分布-$\pi(t)$">各塩基の分布 $\pi(t)$<a class="anchor-link" href="#各塩基の分布-$\pi(t)$">¶</a></h4>
+<h4 id="&#21508;&#22633;&#22522;&#12398;&#20998;&#24067;-$\pi(t)$">&#21508;&#22633;&#22522;&#12398;&#20998;&#24067; $\pi(t)$<a class="anchor-link" href="#&#21508;&#22633;&#22522;&#12398;&#20998;&#24067;-$\pi(t)$">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -244,6 +250,7 @@ $$<p>よって、$\Sigma$ が消えて簡単な形で表せるようになった
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>状態 $k$ の初期確率分布が $\pi(0)$ で与えられる時、時刻 $t$ の分布は次式によって計算できる。
 $$\pi(t) = \pi(0)P(t)$$</p>
+
 </div>
 </div>
 </div>
@@ -253,19 +260,20 @@ $$\pi(t) = \pi(0)P(t)$$</p>
 <p><strong>定常分布</strong>の時、</p>
 $$
 \begin{aligned}
-\pi &= \pi P(t)\\
-&= \pi P(0)(I + Qt)\\
-&= \pi + \pi Qt\\
-\therefore \pi Qt &= 0
+\pi &amp;= \pi P(t)\\
+&amp;= \pi P(0)(I + Qt)\\
+&amp;= \pi + \pi Qt\\
+\therefore \pi Qt &amp;= 0
 \end{aligned}
 $$<p>最後の式は、$t$ の値に依存せずに成り立つので、$\pi Q=0$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="提案されているモデル">提案されているモデル<a class="anchor-link" href="#提案されているモデル">¶</a></h3>
+<h3 id="&#25552;&#26696;&#12373;&#12428;&#12390;&#12356;&#12427;&#12514;&#12487;&#12523;">&#25552;&#26696;&#12373;&#12428;&#12390;&#12356;&#12427;&#12514;&#12487;&#12523;<a class="anchor-link" href="#&#25552;&#26696;&#12373;&#12428;&#12390;&#12356;&#12427;&#12514;&#12487;&#12523;">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -276,8 +284,8 @@ $$<p>最後の式は、$t$ の値に依存せずに成り立つので、$\pi Q=0
 $$
 \begin{cases}
     \begin{aligned}
-    P(t) &=\exp\left(Qt\right) \\
-    &= U \text{diag}\left\{\exp(\lambda_1t), \exp(\lambda_2t),\cdots,\exp(\lambda_nt)\right\}U^{-1}
+    P(t) &amp;=\exp\left(Qt\right) \\
+    &amp;= U \text{diag}\left\{\exp(\lambda_1t), \exp(\lambda_2t),\cdots,\exp(\lambda_nt)\right\}U^{-1}
     \end{aligned}\\
 Q=U\Lambda U^{-1}
 \end{cases}
@@ -288,7 +296,7 @@ $$
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="JC69モデル">JC69モデル<a class="anchor-link" href="#JC69モデル">¶</a></h4>
+<h4 id="JC69&#12514;&#12487;&#12523;">JC69&#12514;&#12487;&#12523;<a class="anchor-link" href="#JC69&#12514;&#12487;&#12523;">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -300,10 +308,10 @@ $$
 Q = \{ q_{i,j} \} = 
 \left[ 
 \begin{array}{rrrr}
-    -3\mu & \mu & \mu & \mu \\
-    \mu & -3\mu & \mu & \mu \\ 
-    \mu & \mu & -3\mu & \mu \\ 
-    \mu & \mu & \mu & -3\mu 
+    -3\mu &amp; \mu &amp; \mu &amp; \mu \\
+    \mu &amp; -3\mu &amp; \mu &amp; \mu \\ 
+    \mu &amp; \mu &amp; -3\mu &amp; \mu \\ 
+    \mu &amp; \mu &amp; \mu &amp; -3\mu 
 \end{array} 
 \right]
 $$
@@ -317,10 +325,10 @@ $$
 $$
 \begin{aligned}
 \det\left(Q-\lambda I\right) 
-&= \mu\left(x^4 - 6x^2 + 8x -3\right), \qquad \left(x = (-3-\lambda/\mu)\right)\\
-&= (x-1)(x^3 + x^2 - 5x + 3)\\
-&= (x-1)(x-1)(x^2 + 2x -3)\\
-&= (x-1)(x-1)(x-1)(x+3)
+&amp;= \mu\left(x^4 - 6x^2 + 8x -3\right), \qquad \left(x = (-3-\lambda/\mu)\right)\\
+&amp;= (x-1)(x^3 + x^2 - 5x + 3)\\
+&amp;= (x-1)(x-1)(x^2 + 2x -3)\\
+&amp;= (x-1)(x-1)(x-1)(x+3)
 \end{aligned}
 $$
 </div>
@@ -334,27 +342,27 @@ $$
 Q = 
 \left(
     \begin{array}{rrrr}
-        -1 & -1 & -1 & 1 \\
-         0 &  0 &  1 & 1 \\ 
-         0 &  1 &  0 & 1 \\ 
-         0 &  0 &  0 & 1 
+        -1 &amp; -1 &amp; -1 &amp; 1 \\
+         0 &amp;  0 &amp;  1 &amp; 1 \\ 
+         0 &amp;  1 &amp;  0 &amp; 1 \\ 
+         0 &amp;  0 &amp;  0 &amp; 1 
     \end{array} 
 \right)
 \left(
     \begin{array}{rrrr}
-        -4\mu & 0 & 0 & 0 \\
-        0 & -4\mu & 0 & 0 \\ 
-        0 & 0 & -4\mu & 0 \\ 
-        0 & 0 & 0 & 0 
+        -4\mu &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; -4\mu &amp; 0 &amp; 0 \\ 
+        0 &amp; 0 &amp; -4\mu &amp; 0 \\ 
+        0 &amp; 0 &amp; 0 &amp; 0 
     \end{array} 
 \right)
 \left(\frac{1}{4}
     \left(
         \begin{array}{rrrr}
-            -1 & -1 & -1 &  3 \\
-            -1 & -1 &  3 & -1 \\ 
-            -1 &  3 & -1 & -1 \\ 
-             1 &  1 &  1 &  1 
+            -1 &amp; -1 &amp; -1 &amp;  3 \\
+            -1 &amp; -1 &amp;  3 &amp; -1 \\ 
+            -1 &amp;  3 &amp; -1 &amp; -1 \\ 
+             1 &amp;  1 &amp;  1 &amp;  1 
         \end{array} 
     \right)
 \right)
@@ -364,9 +372,9 @@ $$
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [2]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">JC69</span><span class="p">():</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">substitution_rate_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
@@ -379,7 +387,7 @@ $$
         <span class="bp">self</span><span class="o">.</span><span class="n">U_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">U</span><span class="p">)</span>
                 
     <span class="k">def</span> <span class="nf">Q</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lamda</span><span class="p">):</span>
-        <span class="sd">""" Substitution Rate Matrix """</span>
+        <span class="sd">&quot;&quot;&quot; Substitution Rate Matrix &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">lamda</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">substitution_rate_matrix</span>
     
     <span class="k">def</span> <span class="nf">P</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">lamda</span><span class="p">):</span>
@@ -392,64 +400,85 @@ $$
     <span class="k">def</span> <span class="nf">p1</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">lamda</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">P</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">lamda</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [3]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [4]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
-<div class="input_area">
+    <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">JC69</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In [5]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
-<div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">p0</span><span class="p">)(</span><span class="n">time</span><span class="p">,</span> <span class="n">lamda</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"red"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$p_0$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">p1</span><span class="p">)(</span><span class="n">time</span><span class="p">,</span> <span class="n">lamda</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">"blue"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"$p_1$"</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">"--"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"black"</span><span class="p">)</span>
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">p0</span><span class="p">)(</span><span class="n">time</span><span class="p">,</span> <span class="n">lamda</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$p_0$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">p1</span><span class="p">)(</span><span class="n">time</span><span class="p">,</span> <span class="n">lamda</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;$p_1$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(),</span> <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">2500</span><span class="p">,</span><span class="mi">5000</span><span class="p">,</span><span class="mi">7500</span><span class="p">,</span><span class="mi">10000</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
+
+    </div>
 </div>
 </div>
-</div>
+
 <div class="output_wrapper">
 <div class="output">
+
+
 <div class="output_area">
-<div class="prompt"></div>
+
+    <div class="prompt"></div>
+
+
+
+
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,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
-" />
+"
+>
+</div>
+
+</div>
+
 </div>
 </div>
+
 </div>
-</div>
-</div>
+ 
+
 
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
     mathjaxscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
@@ -466,6 +495,7 @@ $$
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
         "    } " +
         "}); ";
@@ -499,10 +529,10 @@ $$
         <div id="toc"></div>
 
           <h5>Published</h5>
-          <time itemprop="dateCreated" datetime="2019-11-29T00:00:00+09:00">11 29, 2019</time>
+          <time itemprop="dateCreated" datetime="2019-11-29T00:00:00+09:00">Nov 29, 2019</time>
 
 <h5>Last Updated</h5>
-<time datetime="2019-11-29T00:00:00+09:00">11 29, 2019</time>
+<time datetime="2019-11-29T00:00:00+09:00">Nov 29, 2019</time>
 
           <h5>Category</h5>
           <a class="category-link" href="https://iwasakishuto.github.io/University/3A/categories.html#jin-hua-sheng-tai-qing-bao-xue-ref">進化生態情報学</a>
@@ -520,8 +550,6 @@ $$
     <i class="fab fa-twitter sidebar-social-links"></i></a>
     <a href="https://github.com/iwasakishuto" title="My github Profile" class="sidebar-social-links" target="_blank">
     <i class="fab fa-github sidebar-social-links"></i></a>
-    <a href="https://www.facebook.com/iwasakishuto" title="My facebook Profile" class="sidebar-social-links" target="_blank">
-    <i class="fab fa-facebook sidebar-social-links"></i></a>
       </div>
     </section>
   </div>
